@@ -2,6 +2,8 @@
 
 NLTK-compatible Python module for working with Cantonese corpus data
 
+Test with test_corpus.py
+
 Developer: Jackson L. Lee
 
 In collaboration with Litong Chen and Tsz-Him Tsui for testing and compiling datasets
