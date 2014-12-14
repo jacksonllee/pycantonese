@@ -138,7 +138,23 @@ def all_characters():
 def all_jyutping():
     return
 
-def search(corpus, whatPositionList, output='list'):
+def character(corpus, what_character, output='token'):
+    resultList = list()
+
+    for character_jpString in corpus.words():
+
+        if character_jpString.count('_') == 1:
+            character, jpString = character_jpString.split('_')
+
+            if what_character in character:
+                resultList.append(character_jpString)
+
+    if output == 'type':
+        return list(set(resultList))
+    else:
+        return resultList
+
+def search_jp(corpus, whatPositionList, output='token'):
     resultList = list()
 
     for character_jpString in corpus.words():
@@ -163,42 +179,42 @@ def search(corpus, whatPositionList, output='list'):
                     resultList.append(character_jpString)
                     break
 
-    if output == 'set':
+    if output == 'type':
         return list(set(resultList))
     else:
         return resultList
 
-def onset(corpus, what_onset, output='list'):
+def onset(corpus, what_onset, output='token'):
     if what_onset in ONSET:
-        return search(corpus, [(what_onset, 0)], output)
+        return search_jp(corpus, [(what_onset, 0)], output)
     else:
         raise JyutpingError('onset error -- ' + repr(what_onset))
 
-def initial(corpus, what_onset, output='list'):
+def initial(corpus, what_onset, output='token'):
     if what_onset in ONSET:
         return onset(corpus, what_onset, output)
     else:
         raise JyutpingError('onset error -- ' + repr(what_onset))
 
-def nucleus(corpus, what_nucleus, output='list'):
+def nucleus(corpus, what_nucleus, output='token'):
     if what_nucleus in NUCLEUS:
-        return search(corpus, [(what_nucleus, 1)], output)
+        return search_jp(corpus, [(what_nucleus, 1)], output)
     else:
         raise JyutpingError('nucleus error -- ' + repr(what_nucleus))
 
-def coda(corpus, what_coda, output='list'):
+def coda(corpus, what_coda, output='token'):
     if what_coda in CODA:
-        return search(corpus, [(what_coda, 2)], output)
+        return search_jp(corpus, [(what_coda, 2)], output)
     else:
         raise JyutpingError('coda error -- ' + repr(what_coda))
 
-def tone(corpus, what_tone, output='list'):
+def tone(corpus, what_tone, output='token'):
     if what_tone in TONE:
-        return search(corpus, [(what_tone, 3)], output)
+        return search_jp(corpus, [(what_tone, 3)], output)
     else:
         raise JyutpingError('tone error -- ' + repr(what_tone))
 
-def final(corpus, what_final, output='list'):
+def final(corpus, what_final, output='token'):
     if (type(what_final) is not str) and (len(what_final) < 1):
         raise JyutpingError('final error -- ' + repr(what_final))
     validFinal = False
@@ -214,7 +230,7 @@ def final(corpus, what_final, output='list'):
             break
 
     if validFinal:
-        return search(corpus, [(what_nucleus, 1), (what_coda, 2)], output)
+        return search_jp(corpus, [(what_nucleus, 1), (what_coda, 2)], output)
     else:
         raise JyutpingError('final error -- ' + repr(what_final))
 
