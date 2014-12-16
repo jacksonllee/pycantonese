@@ -19,7 +19,7 @@ Put the following in the same directory:
 - `pycantonese.py`
 - folder `data_sample` with its contents
 
-Run `test_corpus.py` with Python, and you will see something like the follow:
+Run `test_corpus.py` with Python, and you will see something like this:
 
     Find all words with a specific tone (e.g., tone 4):
     There are 80 matching words, e.g.:
