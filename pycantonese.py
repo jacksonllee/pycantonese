@@ -125,15 +125,13 @@ class CantoneseWord_withPOS():
         return self.pos_string
 
 
-def readCorpus(path):
+def read_corpus(path):
     '''
     returns NLTK corpus object given data from path
     type(path) = str
     '''
     from nltk.corpus.reader.tagged import TaggedCorpusReader as corpusreader
     return corpusreader(path, os.listdir(path))
-
-
 
 def all_characters():
     return
@@ -236,6 +234,33 @@ def final(corpus, what_final, output='token'):
         return search_jp(corpus, [(what_nucleus, 1), (what_coda, 2)], output)
     else:
         raise JyutpingError('final error -- ' + repr(what_final))
+
+def character_range(corpus, what_character, before, after):
+    resultList = list()
+
+    wordList = corpus.words()
+    wordListLen = len(wordList)
+
+    for (idx, character_jpString) in enumerate(wordList):
+
+        if character_jpString.count('_') == 1:
+            character, jpString = character_jpString.split('_')
+
+            if what_character in character:
+
+                if before < idx:
+                    start = idx - before
+                else:
+                    start = 0
+
+                if (after + idx) > wordListLen:
+                    end = wordListLen
+                else:
+                    end = after + idx + 1
+
+                resultList.append(wordList[start: end])
+
+    return resultList
 
 if __name__ == "__main__":
     import doctest
