@@ -101,6 +101,13 @@ Run `test_corpus.py` with Python, and you will see something like this:
     喎_wo3
 
 
+    Type jyutping string: gwong2dung1waa2
+    [('gw', 'o', 'ng', '2'), ('d', 'u', 'ng', '1'), ('w', 'aa', '', '2')]
+
+    Type jyutping string: m4goi1
+    [('', 'm', '', '4'), ('g', 'o', 'i', '1')]
+
+
 ## Data
 
 `data_sample.txt` is derived from KK Luke's Cantonese corpus:

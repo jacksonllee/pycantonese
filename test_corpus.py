@@ -71,3 +71,8 @@ print 'There are %d instances of \'我\', e.g.:' % (len(ngo5_range))
 for i in range(3): # 3 results
     printListUTF8(ngo5_range[i])
     print
+
+# parsing jyutping from string input
+for i in range(2):
+    what_jp = raw_input('\nType jyutping string: ')
+    print pc.jyutping(what_jp)
