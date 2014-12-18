@@ -1,16 +1,21 @@
-#!/usr/bin/python
-# coding: utf-8
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 '''
+PyCantonese: Working with Cantonese corpus data using Python
 
 Developer: Jackson L. Lee
 In collaboration with Litong Chen and Tsz-Him Tsui
 for testing and compiling datasets
 
+http://pycantonese.github.io
+
 '''
 
 import os
 import nltk
+
+__version__ = '0.1'
 
 ONSET = set(['b', 'd', 'g', 'gw', 'z', 'p', 't', 'k', 'kw', 'c', 'm', 'n',
              'ng', 'f', 'h', 's', 'l', 'w', 'j', ''])
