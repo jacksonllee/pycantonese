@@ -1,4 +1,4 @@
-# PyCantonese: NLTK-compatible Python module for working with Cantonese corpus data
+# PyCantonese: Working with Cantonese corpus data using Python
 
 ## Development
 
@@ -11,13 +11,25 @@ Developer: Jackson L. Lee
 
 In collaboration with Litong Chen and Tsz-Him Tsui for testing and compiling datasets
 
+## Installation
+
+For Mac/Unix users: (steps modeled on the [installation guidelines from NLTK](http://www.nltk.org/install.html))
+
+1. If you have not installed Setuptools, you need it: [http://pypi.python.org/pypi/setuptools](http://pypi.python.org/pypi/setuptools)
+
+2. If you have not installed Pip, you also need it: run ``sudo easy_install pip``
+
+3. Install PyCantonese: run ``sudo pip install pycantonese`` (PyCantonese depends on [NLTK](http://www.nltk.org/). If the system detects that NLTK is not installed, it will be automatically installed.)
+
+4. Test installation: run ``python`` then type ``import pycantonese``
+
 ## Usage
 
 Put the following in the same directory:
 
 - `test_corpus.py`
-- `pycantonese.py`
 - folder `data_sample` with its contents
+- `pycantonese.py` (not needed if you have installed PyCantonese according to the "Installation" section above)
 
 Run `test_corpus.py` with Python, and you will see something like this:
 
