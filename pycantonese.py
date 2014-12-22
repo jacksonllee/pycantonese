@@ -6,7 +6,6 @@ PyCantonese: Working with Cantonese corpus data using Python
 
 Developer: Jackson L. Lee
 In collaboration with Litong Chen and Tsz-Him Tsui
-for testing and compiling datasets
 
 http://pycantonese.github.io
 
