@@ -9,7 +9,7 @@ Module under development; see the [wiki](https://github.com/pycantonese/pycanton
 
 Developer: Jackson L. Lee
 
-In collaboration with Litong Chen and Tsz-Him Tsui for testing and compiling datasets
+In collaboration with Litong Chen and Tsz-Him Tsui.
 
 ## Installation
 
