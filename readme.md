@@ -13,7 +13,7 @@ In collaboration with Litong Chen and Tsz-Him Tsui.
 
 ## Installation
 
-For Mac/Unix users: (steps modeled on the [installation guidelines from NLTK](http://www.nltk.org/install.html))
+The stable version is released on the [Python Package Index](https://pypi.python.org/pypi): (steps modeled on the [installation guidelines for NLTK](http://www.nltk.org/install.html))
 
 1. If you have not installed Setuptools, you need it: [http://pypi.python.org/pypi/setuptools](http://pypi.python.org/pypi/setuptools)
 
@@ -22,6 +22,12 @@ For Mac/Unix users: (steps modeled on the [installation guidelines from NLTK](ht
 3. Install PyCantonese: run ``sudo pip install pycantonese`` (PyCantonese depends on [NLTK](http://www.nltk.org/). If the system detects that NLTK is not installed, it will be automatically installed.)
 
 4. Test installation: run ``python`` then type ``import pycantonese``
+
+The latest version under development and testing is available from the GitHub repository here:
+
+    git clone https://github.com/pycantonese/pycantonese.git
+    cd pycantonese
+    python setup.py install --user
 
 ## Usage
 
