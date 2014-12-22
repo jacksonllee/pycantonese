@@ -35,7 +35,6 @@ Put the following in the same directory:
 
 - `test_corpus.py`
 - folder `data_sample` with its contents
-- `pycantonese.py` (not needed if you have installed PyCantonese according to the "Installation" section above)
 
 Run `test_corpus.py` with Python, and you will see something like this:
 
