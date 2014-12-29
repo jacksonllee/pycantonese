@@ -1,35 +1,56 @@
 # PyCantonese: Working with Cantonese corpus data using Python
 
-## Development
 
-Module under development; see the [wiki](https://github.com/pycantonese/pycantonese/wiki) page for work being undertaken.
+## Documentation and versions
+
+The official documentation describes the latest stable release and is here:
+[http://pycantonese.github.io/](http://pycantonese.github.io/)
+
+The latest stable release is version 0.1
 
 
-## Authors
+## Current development
 
-Developer: Jackson L. Lee
+Version 0.2 is under development. New features/changes:
 
-In collaboration with Litong Chen and Tsz-Him Tsui.
+- add a general search function, plus its "range" version (cf. the
+  ``character_range`` function)
+
+- add capabilities with regard to speaker info (gender etc.); this means adding
+  relevant new search functions and augmenting existing ones for the new corpus
+  data format
+
+See the [wiki](https://github.com/pycantonese/pycantonese/wiki) page for work
+planned to be undertaken.
+
 
 ## Installation
 
-The stable version is released on the [Python Package Index](https://pypi.python.org/pypi): (steps modeled on the [installation guidelines for NLTK](http://www.nltk.org/install.html))
+The stable version is released on the
+[Python Package Index](https://pypi.python.org/pypi):
+(steps modeled on the
+[installation guidelines for NLTK](http://www.nltk.org/install.html))
 
-1. If you have not installed Setuptools, you need it: [http://pypi.python.org/pypi/setuptools](http://pypi.python.org/pypi/setuptools)
+1. If you have not installed Setuptools, you need it:
+[http://pypi.python.org/pypi/setuptools](http://pypi.python.org/pypi/setuptools)
 
-2. If you have not installed Pip, you also need it: run ``sudo easy_install pip``
+2. If you have not installed Pip, you also need it:
+   run ``sudo easy_install pip``
 
-3. Install PyCantonese: run ``sudo pip install pycantonese`` (PyCantonese depends on [NLTK](http://www.nltk.org/). If the system detects that NLTK is not installed, it will be automatically installed.)
+3. Install PyCantonese: run ``sudo pip install pycantonese``
+   (PyCantonese depends on [NLTK](http://www.nltk.org/). If the system detects
+   that NLTK is not installed, it will be automatically installed.)
 
 4. Test installation: run ``python`` then type ``import pycantonese``
 
-The latest version under development and testing is available from the GitHub repository here:
+The latest version under development and testing is available from the GitHub
+repository here:
 
     git clone https://github.com/pycantonese/pycantonese.git
     cd pycantonese
     python setup.py install --user
 
-## Usage
+## Sample usage
 
 Put the following in the same directory:
 
@@ -125,8 +146,15 @@ Run `test_corpus.py` with Python, and you will see something like this:
     [('', 'm', '', '4'), ('g', 'o', 'i', '1')]
 
 
-## Data
+## Sample corpus data
 
-`data_sample.txt` is derived from KK Luke's Cantonese corpus:
+`data_sample.txt` is derived from a very small portion of KK Luke's Cantonese
+corpus:
 
 Luke, Kang Kwong. (2011). "The Hong Kong Cantonese corpus: Design and uses". Paper presented at the Roundtable Conference on Linguistic Corpus and Corpus Linguistics in the Chinese Context , The Hong Kong Institute of Education, Hong Kong, May 6-8 2011.
+
+## Authors
+
+Developer: Jackson L. Lee
+
+In collaboration with Litong Chen and Tsz-Him Tsui.
