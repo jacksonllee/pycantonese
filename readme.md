@@ -13,12 +13,16 @@ The latest stable release is version 0.1
 
 Version 0.2 is under development. New features/changes:
 
-- add a general search function, plus its "range" version (cf. the
+- a general search function, plus its "range" version (cf. the
   ``character_range`` function)
 
-- add capabilities with regard to speaker info (gender etc.); this means adding
+- capabilities with regard to speaker info (gender etc.); this means adding
   relevant new search functions and augmenting existing ones for the new corpus
   data format
+
+- Jyutping to (LaTeX TIPA styled) IPA conversion
+
+- Jyutping to Yale conversion
 
 See the [wiki](https://github.com/pycantonese/pycantonese/wiki) page for work
 planned to be undertaken.
