@@ -58,6 +58,6 @@ repository here:
 
 Developer: Jackson L. Lee
 
-Gratefu if the following is cited for using PyCantonese (a paper is being prepared):
+Grateful if the following is cited for using PyCantonese (a paper is being prepared):
 
 Lee, Jackson L., Litong Chen, and Tsz-Him Tsui. 2015. PyCantonese: new perspectives on Cantonese linguistcs.
