@@ -16,10 +16,12 @@ from pkg_resources import resource_string
 from nltk.corpus.reader.tagged import TaggedCorpusReader
 from nltk.corpus.reader.api import CorpusReader
 
-__version__ = '0.2'
+__version__ = '0.2.1'
 
 #------------------------------------------------------------------------------#
 # constants
+
+ABSPATH = os.path.dirname(os.path.abspath(__file__))
 
 ONSET = set(['b', 'd', 'g', 'gw', 'z', 'p', 't', 'k', 'kw', 'c', 'm', 'n',
              'ng', 'f', 'h', 's', 'l', 'w', 'j', ''])
@@ -227,10 +229,10 @@ class HKCANCOR_CorpusReader(CantoneseCorpusReader):
     a subclass of CantoneseCorpusReader
     specific for KK Luke's Hong Kong Cantonese Corpus (Luke and Wong 2015)
     '''
-    def __init__(self, root, fileids):
-        CantoneseCorpusReader.__init__(self, root, fileids)
-        self._root = root
-        self._fileids = fileids
+    def __init__(self):
+        CantoneseCorpusReader.__init__(self, ABSPATH + '/data/luke', r'FC.*')
+#        self._root = root # need this later?
+#        self._fileids = fileids # need this later?
         self.speakerfile = resource_string(__name__,
                            dir_hkcancor + '/SPEAKERS').strip('\n').split('\n')
         self.fileinfofile = resource_string(__name__,
@@ -283,12 +285,12 @@ class HKCANCOR_CorpusReader(CantoneseCorpusReader):
                                }
         return fileDict
 
-    def speaker_filtered_tagged_sents(self, speakerlist):
-        return [tagged_sent
-                for (speaker, tagged_sent) in self.speaker_tagged_sents(self)
-                if speaker in speakerlist]
+#    def speaker_filtered_tagged_sents(self, speakerlist):
+#        return [tagged_sent
+#                for (speaker, tagged_sent) in self.speaker_tagged_sents(self)
+#                if speaker in speakerlist]
 
-hkcancor = HKCANCOR_CorpusReader(dir_hkcancor, r'FC.*')
+hkcancor = HKCANCOR_CorpusReader()
 
 
 #------------------------------------------------------------------------------#
