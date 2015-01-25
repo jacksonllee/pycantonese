@@ -1,14 +1,15 @@
 from setuptools import setup
 
 setup(name='pycantonese',
-    version='0.2',
+    version='0.2.1',
     description='Working with Cantonese corpus data using Python',
     url='http://pycantonese.github.io/',
     author='Jackson L. Lee',
     author_email='jsllee.phon@gmail.com',
     license='MIT',
     packages=['pycantonese'],
-    keywords=['Cantonese', 'linguistics', 'corpora', 'speech', 'language',
+    keywords=['computational linguistics', 'natural language processing', 'NLP',
+              'Cantonese', 'linguistics', 'corpora', 'speech', 'language',
               'Chinese', 'Jyutping', 'NLTK'],
     install_requires=['nltk'],
 
