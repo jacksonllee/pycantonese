@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 '''
 PyCantonese: A Python module for working with Cantonese corpus data
@@ -16,7 +15,7 @@ from pkg_resources import resource_string
 from nltk.corpus.reader.tagged import TaggedCorpusReader
 from nltk.corpus.reader.api import CorpusReader
 
-__version__ = '0.2.1'
+__version__ = '0.3dev'
 
 #------------------------------------------------------------------------------#
 # constants
@@ -231,12 +230,11 @@ class HKCANCOR_CorpusReader(CantoneseCorpusReader):
     '''
     def __init__(self):
         CantoneseCorpusReader.__init__(self, ABSPATH + '/data/luke', r'FC.*')
-#        self._root = root # need this later?
-#        self._fileids = fileids # need this later?
-        self.speakerfile = resource_string(__name__,
-                           dir_hkcancor + '/SPEAKERS').strip('\n').split('\n')
-        self.fileinfofile = resource_string(__name__,
-                           dir_hkcancor + '/FILE_INFO').strip('\n').split('\n')
+
+        self.speakerfile = str(resource_string(__name__,
+                           dir_hkcancor + '/SPEAKERS')).strip('\n').split('\n')
+        self.fileinfofile = str(resource_string(__name__,
+                           dir_hkcancor + '/FILE_INFO')).strip('\n').split('\n')
 
     def speakers(self):
         '''
@@ -388,7 +386,10 @@ def parse_final(what_final):
         return None
 
 
-def ipa(jpString):
+def latexipa(jpString):
+    '''
+    takes a jp string and converts it to a list of LaTeX TIPA strings
+    '''
     jpParsedList = jyutping(jpString)
     ipaList = list()
 
@@ -406,105 +407,6 @@ def ipa(jpString):
 
 #------------------------------------------------------------------------------#
 # search functions
-
-
-def character(corpus, what_character, output='token'):
-    resultList = list()
-
-    for character_jpString in corpus.words():
-
-        if character_jpString.count('_') == 1:
-            character, jpString = character_jpString.split('_')
-
-            if what_character in character:
-                resultList.append(character_jpString)
-
-    if output == 'type':
-        return list(set(resultList))
-    else:
-        return resultList
-
-def search_jp(corpus, whatPositionList, output='token'):
-    resultList = list()
-
-    for character_jpString in corpus.words():
-
-        if character_jpString.count('_') == 1:
-            character, jpString = character_jpString.split('_')
-
-            try:
-                jpList = jyutping(jpString)
-            except:
-                continue
-
-            for jp in jpList:
-                checkList = [0] * len(whatPositionList)
-
-                for (e, (what, position)) in enumerate(whatPositionList):
-
-                    if jp[position] == what:
-                        checkList[e] = 1
-
-                if all(checkList):
-                    resultList.append(character_jpString)
-                    break
-
-    if output == 'type':
-        return list(set(resultList))
-    else:
-        return resultList
-
-def onset(corpus, what_onset, output='token'):
-    if what_onset in ONSET:
-        return search_jp(corpus, [(what_onset, 0)], output)
-    else:
-        raise JyutpingError('onset error -- ' + repr(what_onset))
-
-def initial(corpus, what_onset, output='token'):
-    if what_onset in ONSET:
-        return onset(corpus, what_onset, output)
-    else:
-        raise JyutpingError('onset error -- ' + repr(what_onset))
-
-def nucleus(corpus, what_nucleus, output='token'):
-    if what_nucleus in NUCLEUS:
-        return search_jp(corpus, [(what_nucleus, 1)], output)
-    else:
-        raise JyutpingError('nucleus error -- ' + repr(what_nucleus))
-
-def coda(corpus, what_coda, output='token'):
-    if what_coda in CODA:
-        return search_jp(corpus, [(what_coda, 2)], output)
-    else:
-        raise JyutpingError('coda error -- ' + repr(what_coda))
-
-def tone(corpus, what_tone, output='token'):
-    if what_tone in TONE:
-        return search_jp(corpus, [(what_tone, 3)], output)
-    else:
-        raise JyutpingError('tone error -- ' + repr(what_tone))
-
-def final(corpus, what_final, output='token'):
-    if (type(what_final) is not str) and (len(what_final) < 1):
-        raise JyutpingError('final error -- ' + repr(what_final))
-    validFinal = False
-
-    for i in range(1, len(what_final)+1):
-        possibleNucleus = what_final[: i]
-        possibleCoda = what_final[i :]
-
-        if (possibleNucleus in NUCLEUS) and (possibleCoda in CODA):
-            validFinal = True
-            what_nucleus = possibleNucleus
-            what_coda = possibleCoda
-            break
-
-    if validFinal:
-        return search_jp(corpus, [(what_nucleus, 1), (what_coda, 2)], output)
-    else:
-        raise JyutpingError('final error -- ' + repr(what_final))
-
-
 
 def search(corpus, onset=None, nucleus=None, coda=None, tone=None,
            initial=None, final=None, jp=None,
@@ -549,7 +451,7 @@ def search(corpus, onset=None, nucleus=None, coda=None, tone=None,
     if (wordrangeleft < 0) or (wordrangeright < 0):
         raise SearchError('both wordrangeleft and wordrangeright must be non-negative')
 
-    # needs work here
+    # TODO
 #    if (wordrangeleft or wordrangeright) and \
 #       (sentrangeleft or sentrangeright):
 #        raise SearchError('word range and sent range cannot be used together')

@@ -11,7 +11,7 @@ The latest stable release is version 0.2.1.
 
 ## Current development
 
-New features/changes in future releases:
+New features/changes planned for the next release (version 0.3):
 
 - search with sent ranges (analogous with word ranges available from version 0.2+)
 
@@ -20,12 +20,14 @@ New features/changes in future releases:
   relevant new search functions and augmenting existing ones
 
 - Jyutping to (LaTeX TIPA styled) IPA conversion
+  (now implemented -- see ``latextipa()`` in the current code in dev here)
+
+Other features planned in future releases:
 
 - Jyutping to Yale conversion
 
 See also the [wiki](https://github.com/pycantonese/pycantonese/wiki)
-page for work
-planned to be undertaken.
+page for work planned to be undertaken in the even more distant future...
 
 
 ## Installation
