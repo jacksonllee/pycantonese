@@ -116,6 +116,83 @@ TONE_IPA = {'1': '55',
             '6': '22',
            }
 
+ONSET_YALE = {'b': 'p',
+              'd': 'd',
+              'g': 'g',
+              'gw': 'gw',
+              'z': 'j',
+              'p': 'p',
+              't': 't',
+              'k': 'k',
+              'kw': 'kw',
+              'c': 'ch',
+              'm': 'm',
+              'n': 'n',
+              'ng' :'ng',
+              'f': 'f',
+              'h': 'h',
+              's': 's',
+              'l': 'l',
+              'w': 'w',
+              'j': 'y',
+              '': '',
+            }
+
+FINAL_YALE = {'i': 'i',
+              'ip': 'ip',
+              'it': 'it',
+              'ik': 'ik',
+              'im': 'im',
+              'in': 'in',
+              'ing': 'ing',
+              'iu': 'iu',
+              'yu': 'yu',
+              'yut': 'yut',
+              'yun': 'yun',
+              'u': 'u',
+              'ut': 'ut',
+              'uk': 'uk',
+              'un': 'un',
+              'ung': 'ung',
+              'ui': 'ui',
+              'e': 'e',
+              'ek': 'ek',
+              'eng': 'eng',
+              'ei': 'ei',
+              'eot': 'eut',
+              'eon': 'eun',
+              'eoi': 'eui',
+              'oe': 'eu',
+              'oek': 'euk',
+              'oeng': 'eung',
+              'o': 'o',
+              'ot': 'ot',
+              'ok': 'ok',
+              'on': 'on',
+              'ong': 'ong',
+              'oi': 'oi',
+              'ou': 'ou',
+              'ap': 'ap',
+              'at': 'at',
+              'ak': 'ak',
+              'am': 'am',
+              'an': 'an',
+              'ang': 'ang',
+              'ai': 'ai',
+              'au': 'au',
+              'aa': 'a',
+              'aap': 'aap',
+              'aat': 'aat',
+              'aak': 'aak',
+              'aam': 'aam',
+              'aan': 'aan',
+              'aang': 'aang',
+              'aai': 'aai',
+              'aau': 'aau',
+              'm': 'm',
+              'ng': 'ng',
+            }
+
 FINAL = set(FINAL_IPA.keys())
 
 #------------------------------------------------------------------------------#
@@ -404,6 +481,23 @@ def latexipa(jpString):
 
     return ipaList
 
+def yale(jpString):
+    '''
+    takes a jp string and converts it to a list of Yale strings
+    '''
+    jpParsedList = jyutping(jpString)
+    yaleList = list()
+
+    for jpParsed in jpParsedList:
+        _onset = jpParsed[0]
+        _final = jpParsed[1] + jpParsed[2]
+        _tone = jpParsed[3]
+        _yale = ONSET_YALE[_onset] + FINAL_YALE[_final] + _tone
+        if _yale.startswith('yy'):
+            _yale = _yale[1:]
+        yaleList.append(_yale)
+
+    return yaleList
 
 #------------------------------------------------------------------------------#
 # search functions
