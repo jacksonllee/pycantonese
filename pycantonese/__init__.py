@@ -116,7 +116,7 @@ TONE_IPA = {'1': '55',
             '6': '22',
            }
 
-ONSET_YALE = {'b': 'p',
+ONSET_YALE = {'b': 'b',
               'd': 'd',
               'g': 'g',
               'gw': 'gw',
