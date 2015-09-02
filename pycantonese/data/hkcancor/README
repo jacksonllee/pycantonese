@@ -23,7 +23,7 @@ None of the 61 text files have an extension name (such as .txt).
 For each corpus data file:
 
 Each non-empty line is a sentence, with words separated by the space character.
-Example from the file ``FC-001_v2``:
+Example:
 
 SP:FC-001_v2-A 喂_wai3/e 遲_ci4/a 啲_di1/u 去_heoi3/v 唔_m4/d 去_heoi3/v
 
