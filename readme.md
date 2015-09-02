@@ -28,6 +28,17 @@ repository here:
 More from the documentation on [downloading and installing PyCantonese]
 (http://pycantonese.github.io/download.html).
 
+
+## Bug fixes and new features
+
+Bugs fixes, as well as new features
+(all at the GitHub source here -- to be included in the
+next release at PyPI):
+
+* Fixed the Yale conversion issue with "yu"
+* Added `number_of_words` and `number_of_characters` methods for corpus access
+
+
 ## Author
 
 Developer: Jackson L. Lee
