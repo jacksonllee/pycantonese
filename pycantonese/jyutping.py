@@ -291,8 +291,9 @@ def yale(jp_str):
         # 1. disallow "yyu" (when onset is "y")
         # 2. change nucleus "yu" into "u" -- this is a hack for adding tone
         #       diacritic, since we don't want "y" to bear the diacritic
-        if nucleus == "yu" and onset == "y":
-            onset = ""
+        if nucleus == "yu":
+            if onset == "y":
+                onset = ""
             nucleus = "u"
 
         # add the yale tone diacritic to the first nucleus letter

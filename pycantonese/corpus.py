@@ -74,6 +74,15 @@ class CantoneseCorpusReader():
                   if '_' in word)
                 for tagged_sent in self.tagged_sents())
 
+    def number_of_words(self):
+        return len(list(self.words()))
+
+    def number_of_characters(self):
+        count_ = 0
+        for characters_in_word in self.characters():
+            count_ += len(characters_in_word)
+        return count_
+
     def readme(self):
         return open(os.path.join(self.root, "README")).read()
 
