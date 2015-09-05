@@ -66,7 +66,7 @@ def search(corpus, onset=None, nucleus=None, coda=None, tone=None,
         jp_search = True
     if pos:
         pos_search = True
-        pos = pos.casefold()
+        pos = pos.upper() # PoS tags in NLP research are in caps by convention
     if not (character_search or jp_search or pos_search):
         raise SearchError('no search element')
 
