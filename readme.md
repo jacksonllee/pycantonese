@@ -11,7 +11,7 @@ search functionalities for built-in or custom corpus data.
 The official documentation describes the latest release and is here:
 [http://pycantonese.github.io/](http://pycantonese.github.io/)
 
-The latest release is version 1.0dev.
+The latest release is version 1.0.
 
 ## Installation
 
@@ -32,12 +32,9 @@ More from the documentation on [downloading and installing PyCantonese]
 ## Bug fixes and new features
 
 Bugs fixes, as well as new features
-(all at the GitHub source here;
-they may or may not be currently included in the release on PyPI):
+(available at the GitHub source here, not yet in the release on PyPI):
 
-* Fixed the Yale conversion issue with "yu"
-* Added `number_of_words` and `number_of_characters` methods for corpus access
-* part-of-speech tags are all forced to be in caps
+* N/A
 
 
 ## Author
