@@ -39,21 +39,9 @@ def search(corpus, onset=None, nucleus=None, coda=None, tone=None,
     if not isinstance(corpus, CantoneseCorpusReader):
         raise SearchError('a corpus object is required')
 
-    # check if search elements conflict with one another
-    if (onset != initial) and onset and initial:
-        raise SearchError('onset conflicts with initial')
-    if initial:
-        onset = initial
-    if final and (nucleus or coda):
-        raise SearchError('final cannot be used together with either nucleus or'
-                          ' coda (or both)')
-    if jp and (onset or final or nucleus or coda or tone):
-        raise SearchError('jp cannot be used together with other Jyutping '
-                          'elements')
+    # check if both word_left and word_right are integers
     if not (type(word_left) == type(word_right) == int):
         raise SearchError('both word_left and word_right must be integers')
-    if (word_left < 0) or (word_right < 0):
-        raise SearchError('both word_left and word_right must be non-negative')
 
     # check what kinds of search we are doing
     character_search = False
@@ -72,6 +60,17 @@ def search(corpus, onset=None, nucleus=None, coda=None, tone=None,
 
     # check if jyutping search is valid
     if jp_search:
+        if (onset != initial) and onset and initial:
+            raise SearchError('onset conflicts with initial')
+        if initial:
+            onset = initial
+        if final and (nucleus or coda):
+            raise SearchError('final cannot be used together with '
+                              'either nucleus or coda (or both)')
+        if jp and (onset or final or nucleus or coda or tone):
+            raise SearchError('jp cannot be used together with other Jyutping '
+                              'elements')
+
         if jp:
             try:
                 jp_search_list = jyutping(jp)
@@ -108,7 +107,8 @@ def search(corpus, onset=None, nucleus=None, coda=None, tone=None,
             jp_match = False
             pos_match = False
             if tag:
-                tag = tag.casefold()
+                # PoS tags in NLP research are in caps by convention
+                tag = str(tag).upper()
 
             if character_jpstring.count('_') == 1:
                 character_str, jp_string = character_jpstring.split('_')
