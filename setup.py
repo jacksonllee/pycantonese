@@ -4,11 +4,12 @@ from setuptools import (setup, find_packages)
 
 setup(name="pycantonese",
     version="1.0",
+    description="PyCantonese",
 
-    description="""
+    long_description="""
 PyCantonese is a Python library for working with Cantonese corpus data. While it is under active development and many other features and functions are forthcoming, it currently includes JyutPing parsing and conversion tools as well as general search functionalities for built-in or custom corpus data.
 
-Documentation: http://pycantonese.github.io/
+Documentation: `http://pycantonese.github.io/ <http://pycantonese.github.io/>`_
 """,
 
     url="http://pycantonese.github.io/",
