@@ -11,7 +11,7 @@ search functionalities for built-in or custom corpus data.
 The official documentation describes the latest release and is here:
 [http://pycantonese.github.io/](http://pycantonese.github.io/)
 
-The latest release is version 1.0.
+The latest stable release is version **1.0**.
 
 ## Installation
 
@@ -25,16 +25,22 @@ repository here:
     cd pycantonese
     python3 setup.py install --user
 
-More from the documentation on [downloading and installing PyCantonese]
-(http://pycantonese.github.io/download.html).
+For how this current latest version differs from the stable release version,
+see the bug fixes and new features below.
 
 
 ## Bug fixes and new features
 
+The current version from the GitHub source here is **1.1-alpha.1**.
+
 Bugs fixes, as well as new features
 (available at the GitHub source here, not yet in the release on PyPI):
 
-* N/A
+* Jyutping "eu" correctly converted to Yale "ew" (cf. issue [#6](https://github.com/pycantonese/pycantonese/issues/6))
+
+* For Jyutping-Yale conversion with codas "i/u" and low tones,
+  the low-tone "h" in Yale now follows the gliding coda (cf. issue [#7](https://github.com/pycantonese/pycantonese/issues/7))
+
 
 
 ## Author

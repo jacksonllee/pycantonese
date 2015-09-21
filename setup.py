@@ -3,7 +3,7 @@
 from setuptools import (setup, find_packages)
 
 setup(name="pycantonese",
-    version="1.0",
+    version="1.1-alpha.1",
     description="PyCantonese",
 
     long_description="""
@@ -29,7 +29,7 @@ Documentation: `http://pycantonese.github.io/ <http://pycantonese.github.io/>`_
     zip_safe=False,
 
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
         'Intended Audience :: Developers',
         'Intended Audience :: Education',

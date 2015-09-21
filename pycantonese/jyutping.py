@@ -334,8 +334,15 @@ def yale(jp_str):
         if jp_parsed[1] == "yu":
             nucleus = "y" + nucleus
 
+        # jyutping final "eu" should be yale "ew" (not "eu")
+        if coda == "u" and nucleus == "e":
+            coda = "w"
+
         # save the resultant yale
-        yale = onset + nucleus + low_tone_h + coda
+        if coda in {"i", "u", "w"} and tone in {"4", "5", "6"}:
+            yale = onset + nucleus + coda + low_tone_h
+        else:
+            yale = onset + nucleus + low_tone_h + coda
         yale_list.append(yale)
 
     return yale_list

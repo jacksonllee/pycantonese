@@ -22,13 +22,7 @@ import sys
 #------------------------------------------------------------------------------#
 
 # Version
-try:
-    # read from the VERSION file
-    version_file = os.path.join(os.path.dirname(__file__), 'VERSION')
-    with open(version_file, 'r') as infile:
-        __version__ = infile.read().strip()
-except (NameError, IOError, FileNotFoundError):
-    __version__ = 'unknown version number'
+__version__ = '1.1-alpha.1'
 
 # Copyright notice and license
 __copyright__ = """\
@@ -63,7 +57,7 @@ __author_email__ = __maintainer_email__
 
 # trove classifiers for Python Package Index
 __classifiers__ = [
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
         'Intended Audience :: Developers',
         'Intended Audience :: Education',
