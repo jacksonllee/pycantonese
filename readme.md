@@ -47,9 +47,13 @@ Bugs fixes, as well as new features
 
 Developer: Jackson L. Lee
 
+A talk introducing PyCantonese:
+
+Lee, Jackson L. 2015. PyCantonese: Cantonese linguistic research in the age of big data. Talk at the Childhood Bilingualism Research Centre, Chinese University of Hong Kong. September 15. 2015. [Notes+slides](http://jacksonllee.com/papers/Lee-pycantonese-2015.html)
+
 A paper is being prepared:
 
-Lee, Jackson L., Litong Chen, and Tsz-Him Tsui. 2015. PyCantonese: new perspectives on Cantonese linguistcs.
+Lee, Jackson L., Litong Chen, and Tsz-Him Tsui. PyCantonese: new perspectives on Cantonese linguistcs.
 
 ## Contributors
 
