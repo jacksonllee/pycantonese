@@ -14,8 +14,6 @@ http://pycantonese.github.io
 
 '''
 
-import os
-import sys
 
 #------------------------------------------------------------------------------#
 # METADATA

@@ -91,7 +91,8 @@ def search(corpus, onset=None, nucleus=None, coda=None, tone=None,
                 if jp_element is None:
                     continue
                 if jp_element not in checkset:
-                    raise SearchError('invalid jyutping -- %s' % (repr(what)))
+                    raise SearchError('invalid jyutping -- %s' %
+                                      repr(jp_element))
             if final:
                 nucleus, coda = parse_final(final)
             jp_search_tuple = (onset, nucleus, coda, tone)

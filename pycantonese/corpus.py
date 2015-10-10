@@ -2,6 +2,7 @@
 # corpus reader class for all Cantonese corpora in general
 
 import os
+import sys
 from pycantonese import ABSPATH
 
 try:
