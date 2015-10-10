@@ -1,6 +1,3 @@
-# Compiled python modules.
-*.pyc
-
 # Setuptools distribution folder.
 /dist/
 /build/
@@ -12,9 +9,9 @@
 /pycantonese.github.io/
 
 
-*~
 *.sh
 
+/.idea/
 /dev_testing/
 /doc/
 
