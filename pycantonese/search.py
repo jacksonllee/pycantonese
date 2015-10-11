@@ -2,7 +2,7 @@
 #
 # Copyright (C) 2015 PyCantonese Project
 # Author: Jackson Lee <jsllee.phon@gmail.com>
-# URL: <http://pycantonese.github.io/>
+# URL: <http://pycantonese.org/>
 # For license information, see LICENSE.TXT
 
 from nltk.corpus.reader.api import CorpusReader

@@ -1,4 +1,10 @@
-#------------------------------------------------------------------------------#
+# PyCantonese
+#
+# Copyright (C) 2015 PyCantonese Project
+# Author: Jackson Lee <jsllee.phon@gmail.com>
+# URL: <http://pycantonese.org/>
+# For license information, see LICENSE.TXT
+
 # corpus reader class for all Cantonese corpora in general
 
 import os
