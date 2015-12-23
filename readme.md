@@ -1,17 +1,20 @@
-# PyCantonese
+# PyCantonese: Cantonese Linguistics in Python
 
-PyCantonese is a Python library for working with Cantonese corpus data.
+
+PyCantonese is a Python library for Cantonese linguistic research.
 While it is under active development and many other features and
 functions are forthcoming, 
-it currently includes JyutPing parsing and conversion tools as well as general 
+it currently includes Jyutping parsing and conversion tools as well as general
 search functionalities for built-in or custom corpus data.
+
 
 ## Documentation and versions
 
 The official documentation describes the latest release and is here:
-[http://pycantonese.github.io/](http://pycantonese.github.io/)
+[http://pycantonese.org/](http://pycantonese.org/)
 
 The latest stable release is version **1.0**.
+
 
 ## Installation
 
@@ -42,7 +45,6 @@ Bugs fixes, as well as new features
   the low-tone "h" in Yale now follows the gliding coda (cf. issue [#7](https://github.com/pycantonese/pycantonese/issues/7))
 
 
-
 ## Author
 
 Developer: Jackson L. Lee
@@ -54,12 +56,11 @@ Lee, Jackson L. 2015. PyCantonese: Cantonese linguistic research in the age of b
 
 A paper is being prepared:
 
-Lee, Jackson L., Litong Chen, and Tsz-Him Tsui. PyCantonese: new perspectives on Cantonese linguistcs.
+Lee, Jackson L., Litong Chen, and Tsz-Him Tsui. PyCantonese: new perspectives on Cantonese linguistics.
+
 
 ## Contributors
 
 Comments, advice, and code contributed by the following individuals:
 
 Charles Lam, Hill Ma, Stephan Stiller
-
-
