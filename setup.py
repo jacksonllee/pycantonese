@@ -1,6 +1,13 @@
 #!usr/bin/env python3
+# -*- coding: utf-8 -*-
 
+import sys
 from setuptools import (setup, find_packages)
+
+py_version = sys.version_info[:2]
+if py_version < (3, 4):
+    sys.exit('Error: PyCantonese requires Python 3.4 or above.\n'
+             'You are using Python {}.{}.'.format(*py_version))
 
 setup(name="pycantonese",
     version="1.1-alpha.1",
@@ -39,10 +46,8 @@ Documentation: `http://pycantonese.org/ <http://pycantonese.org/>`_
         'Natural Language :: Chinese (Traditional)',
         'Natural Language :: Cantonese',
         'Operating System :: OS Independent',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.2',
-        'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
         'Topic :: Scientific/Engineering',
         'Topic :: Scientific/Engineering :: Artificial Intelligence',
         'Topic :: Scientific/Engineering :: Human Machine Interfaces',
