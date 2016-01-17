@@ -2,7 +2,7 @@
 
 # PyCantonese
 #
-# Copyright (C) 2015 PyCantonese Project
+# Copyright (C) 2014-2016 PyCantonese Project
 # Author: Jackson Lee <jsllee.phon@gmail.com>
 # URL: <http://pycantonese.org/>
 # For license information, see LICENSE.TXT
@@ -29,7 +29,7 @@ with open(version_filename) as f:
 
 # Copyright notice and license
 __copyright__ = """\
-Copyright (C) 2015 PyCantonese Project.
+Copyright (C) 2014-2016 PyCantonese Project.
 
 Distributed and Licensed under the Apache License, Version 2.0,
 which is included by reference.

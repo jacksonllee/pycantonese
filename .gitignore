@@ -12,6 +12,7 @@ pycantonese/__pycache__/
 /doc/
 
 insert_social_media_links.py
+update_copyright_year.py
 
 *~
 *.pyc
