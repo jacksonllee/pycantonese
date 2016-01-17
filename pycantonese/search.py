@@ -8,7 +8,6 @@
 # For license information, see LICENSE.TXT
 
 import re
-import sys
 
 from nltk.corpus.reader.api import CorpusReader
 
