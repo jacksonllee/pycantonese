@@ -298,6 +298,13 @@ def yale(jp_str):
                 onset = ""
             nucleus = "u"
 
+        # when nucleus is "ng"
+        # the tone diacritic has to be on "g" but not "n"
+        # now we pretend that the nucleus is "g", and will prepend the "n" back
+        # at the end
+        if nucleus == 'ng':
+            nucleus = 'g'
+
         # add the yale tone diacritic to the first nucleus letter
         # jyutping tone 1      --> add macron
         # jyutping tone 2 or 5 --> add acute
@@ -335,6 +342,11 @@ def yale(jp_str):
         # ("y" was taken away for convenience in adding tone diacritic)
         if jp_parsed[1] == "yu":
             nucleus = "y" + nucleus
+
+        # add back "n" if the nucleus is "ng"
+        # ('n' was taken away so that tone diacritic is on "g" but not "n")
+        if jp_parsed[1] == 'ng':
+            nucleus = 'n' + nucleus
 
         # jyutping final "eu" should be yale "ew" (not "eu")
         if coda == "u" and nucleus == "e":
