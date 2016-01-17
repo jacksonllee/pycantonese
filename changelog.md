@@ -1,24 +1,21 @@
-..  _changelog:
-
 Change log
 ==========
 
-For unreleased new features and fixes under development, please see
-`the GitHub repository <https://github.com/pycantonese/pycantonese>`_.
+Current version: 1.0
 
-- Version 1.1-alpha.1 2015-09-21
+- Version 1.1 in progress
 
-    * Jyutping "eu" correctly converted to Yale "ew" (cf. issue `#6 <https://github.com/pycantonese/pycantonese/issues/6>`_)
+    * Jyutping "eu" correctly converted to Yale "ew" (cf. issue [#6](https://github.com/pycantonese/pycantonese/issues/6))
 
     * For Jyutping-Yale conversion with codas "i/u" and low tones,
-      the low-tone "h" in Yale now follows the gliding coda (cf. issue `#7 <https://github.com/pycantonese/pycantonese/issues/7>`_)
+      the low-tone "h" in Yale now follows the gliding coda (cf. issue [#7](https://github.com/pycantonese/pycantonese/issues/7))
 
 - Version 1.0 2015-09-06
 
     * Fixed the Jyutping-Yale conversion issue with "yu"
     * Added ``number_of_words()`` and ``number_of_characters()`` methods for corpus access
     * Forced all part-of-speech tags (both in searches and internal to corpus objects)
-      in caps, in line with the NLP convention
+      in caps, in line with the NLTK convention
 
 - Version 1.0dev 2015-09-02
 
@@ -36,8 +33,7 @@ For unreleased new features and fixes under development, please see
 
 - Version 0.2 2015-01-22
 
-    * `The Hong Kong Cantonese Corpus
-      <http://compling.hss.ntu.edu.sg/hkcancor/>`_ is included in the package.
+    * [The Hong Kong Cantonese Corpus](http://compling.hss.ntu.edu.sg/hkcancor/) is included in the package.
     * A general-purpose ``search()`` function is defined, replacing the
       element-specific search functions from version 0.1.
 
@@ -48,4 +44,3 @@ For unreleased new features and fixes under development, please see
     * Reading a tagged corpus data folder
     * Searching by a given element (onset/initial, nucleus, coda, final, character)
     * Searching by a character plus a range
-
