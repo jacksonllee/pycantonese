@@ -1,6 +1,7 @@
 #!usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import os
 import sys
 from setuptools import (setup, find_packages)
 
@@ -9,8 +10,13 @@ if py_version < (3, 4):
     sys.exit('Error: PyCantonese requires Python 3.4 or above.\n'
              'You are using Python {}.{}.'.format(*py_version))
 
+version_filename = os.path.join(os.path.dirname(__file__),
+                                'pycantonese', 'VERSION')
+with open(version_filename) as f:
+    package_version = f.read().strip()
+
 setup(name="pycantonese",
-    version="1.1-alpha.1",
+    version=package_version,
     description="PyCantonese",
 
     long_description="""

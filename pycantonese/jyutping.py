@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # PyCantonese
 #
 # Copyright (C) 2015 PyCantonese Project

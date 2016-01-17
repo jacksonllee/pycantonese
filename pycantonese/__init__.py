@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # PyCantonese
 #
 # Copyright (C) 2015 PyCantonese Project
@@ -14,13 +16,16 @@ http://pycantonese.org
 
 '''
 
+import os
 
 #------------------------------------------------------------------------------#
 # METADATA
 #------------------------------------------------------------------------------#
 
 # Version
-__version__ = '1.1-alpha.1'
+version_filename = os.path.join(os.path.dirname(__file__), 'VERSION')
+with open(version_filename) as f:
+    __version__ = f.read().strip()
 
 # Copyright notice and license
 __copyright__ = """\
@@ -37,7 +42,7 @@ __description__ = "PyCantonese"
 # Long description
 __long_description__ = """\
 PyCantonese is a Python module for working with Cantonese corpus data.
-PyCantonese requires Python 3.0 or higher."""
+PyCantonese requires Python 3.4 or higher."""
 
 # keywords
 __keywords__ = ['computational linguistics', 'natural language processing',
@@ -65,10 +70,8 @@ __classifiers__ = [
         'Natural Language :: Chinese (Traditional)',
         'Natural Language :: Cantonese',
         'Operating System :: OS Independent',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.2',
-        'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
         'Topic :: Scientific/Engineering',
         'Topic :: Scientific/Engineering :: Artificial Intelligence',
         'Topic :: Scientific/Engineering :: Human Machine Interfaces',
@@ -90,4 +93,3 @@ from pycantonese.util import *
 from pycantonese.jyutping import *
 from pycantonese.search import *
 from pycantonese.corpus import *
-
