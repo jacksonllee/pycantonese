@@ -9,8 +9,6 @@
 
 import re
 
-from nltk.corpus.reader.api import CorpusReader
-
 from pycantonese.util import *
 from pycantonese.jyutping import *
 from pycantonese.corpus import CantoneseCorpusReader
