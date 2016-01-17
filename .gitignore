@@ -2,16 +2,16 @@
 /dist/
 /build/
 
-# Python egg metadata, regenerated from source files by setuptools.
-/*.egg-info
-
-# website
-/pycantonese.github.io/
-
+pycantonese/__pycache__/
+/pycantonese.egg-info
 
 *.sh
 
 /.idea/
-/dev_testing/
+/test_dev/
 /doc/
 
+insert_social_media_links.py
+
+*~
+*.pyc

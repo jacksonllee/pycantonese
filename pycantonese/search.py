@@ -7,6 +7,9 @@
 # URL: <http://pycantonese.org/>
 # For license information, see LICENSE.TXT
 
+import re
+import sys
+
 from nltk.corpus.reader.api import CorpusReader
 
 from pycantonese.util import *
@@ -49,6 +52,7 @@ def search(corpus, onset=None, nucleus=None, coda=None, tone=None,
     character_search = False
     jp_search = False
     pos_search = False
+    jp_search_tuple = None
 
     if character:
         character_search = True
@@ -56,7 +60,6 @@ def search(corpus, onset=None, nucleus=None, coda=None, tone=None,
         jp_search = True
     if pos:
         pos_search = True
-        pos = pos.upper() # PoS tags in NLP research are in caps by convention
     if not (character_search or jp_search or pos_search):
         raise SearchError('no search element')
 
@@ -83,18 +86,6 @@ def search(corpus, onset=None, nucleus=None, coda=None, tone=None,
             else:
                 jp_search_tuple = jp_search_list[0]
         else:
-            jp_validate_tuples = [ (onset, ONSET),
-                                   (nucleus, NUCLEUS),
-                                   (coda, CODA),
-                                   (tone, TONE),
-                                   (final, FINAL),
-                                 ]
-            for jp_element, checkset in jp_validate_tuples:
-                if jp_element is None:
-                    continue
-                if jp_element not in checkset:
-                    raise SearchError('invalid jyutping -- %s' %
-                                      repr(jp_element))
             if final:
                 nucleus, coda = parse_final(final)
             jp_search_tuple = (onset, nucleus, coda, tone)
@@ -146,8 +137,8 @@ def search(corpus, onset=None, nucleus=None, coda=None, tone=None,
                 continue
 
             # pos search
-            if (not pos_search) or \
-               (pos_search and pos == tag):
+            if not pos_search or \
+                    (pos_search and pos and tag and re.fullmatch(pos, tag)):
                 pos_match = True
             else:
                 continue
@@ -165,10 +156,12 @@ def search(corpus, onset=None, nucleus=None, coda=None, tone=None,
                     jp_match = True
 
                     # walk through the 4 elements of onset, nucleus, coda, tone
-                    for idx_tuple, jp_element in enumerate(jp_search_tuple):
-                        if jp_element is None:
+                    for idx_tuple, search_element in enumerate(jp_search_tuple):
+                        if search_element is None:
                             continue
-                        if jp_element != jp_string_parsed[idx_tuple]:
+
+                        check_element = jp_string_parsed[idx_tuple]
+                        if not re.fullmatch(search_element, check_element):
                             jp_match = False
                             break
 
@@ -183,4 +176,3 @@ def search(corpus, onset=None, nucleus=None, coda=None, tone=None,
         return sum(result_list, [])
     else:
         return result_list
-
