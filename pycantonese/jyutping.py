@@ -154,11 +154,12 @@ CODA_YALE = {'p': 'p',
             }
 
 #------------------------------------------------------------------------------#
-# jyutping parsing
+# parse_jyutping parsing
 
-def jyutping(jp_str):
+
+def parse_jyutping(jp_str):
     """
-    parses jp_str as a list of Cantonese romanization jyutping strings and
+    parses jp_str as a list of Cantonese romanization parse_jyutping strings and
     outputs a list of 4-tuples, each as (onset, nucleus, coda, tone)
 
     """
@@ -248,11 +249,11 @@ def parse_final(what_final):
         return None
 
 
-def tipa(jp_str, tone=True):
+def jyutping2tipa(jp_str, tone=True):
     '''
     takes a jp string and converts it to a list of LaTeX TIPA strings
     '''
-    jp_parsed_list = jyutping(jp_str)
+    jp_parsed_list = parse_jyutping(jp_str)
     tipa_list = list()
 
     for jp_parsed in jp_parsed_list:
@@ -266,26 +267,26 @@ def tipa(jp_str, tone=True):
     return tipa_list
 
 
-def yale(jp_str):
+def jyutping2yale(jp_str):
     '''
     takes a jp string and converts it to a list of Yale strings
     '''
-    jp_parsed_list = jyutping(jp_str)
+    jp_parsed_list = parse_jyutping(jp_str)
     yale_list = list()
 
     for jp_parsed in jp_parsed_list:
         onset = ONSET_YALE[jp_parsed[0]]
         nucleus = NUCLEUS_YALE[jp_parsed[1]]
         coda = CODA_YALE[jp_parsed[2]]
-        tone = jp_parsed[3] # still in jyutping
+        tone = jp_parsed[3] # still in parse_jyutping
 
-        # yale system uses "h" to mark the three low tones
+        # jyutping2yale system uses "h" to mark the three low tones
         if tone in {"4", "5", "6"}:
             low_tone_h = "h"
         else:
             low_tone_h = ""
 
-        # in yale, the long "aa" vowel with no coda is denoted by a single "a"
+        # in jyutping2yale, the long "aa" vowel with no coda is denoted by a single "a"
         if nucleus == "aa" and coda == "":
             nucleus = "a"
 
@@ -305,11 +306,11 @@ def yale(jp_str):
         if nucleus == 'ng':
             nucleus = 'g'
 
-        # add the yale tone diacritic to the first nucleus letter
-        # jyutping tone 1      --> add macron
-        # jyutping tone 2 or 5 --> add acute
-        # jyutping tone 4      --> add grave
-        # jyutping tone 3 or 6 --> (no diacritic)
+        # add the jyutping2yale tone diacritic to the first nucleus letter
+        # parse_jyutping tone 1      --> add macron
+        # parse_jyutping tone 2 or 5 --> add acute
+        # parse_jyutping tone 4      --> add grave
+        # parse_jyutping tone 3 or 6 --> (no diacritic)
         # If the accented letter doesn't exist in unicode, use the combining
         # accent instead.
 
@@ -348,11 +349,11 @@ def yale(jp_str):
         if jp_parsed[1] == 'ng':
             nucleus = 'n' + nucleus
 
-        # jyutping final "eu" should be yale "ew" (not "eu")
+        # parse_jyutping final "eu" should be jyutping2yale "ew" (not "eu")
         if coda == "u" and nucleus == "e":
             coda = "w"
 
-        # save the resultant yale
+        # save the resultant jyutping2yale
         if coda in {"i", "u", "w"} and tone in {"4", "5", "6"}:
             yale = onset + nucleus + coda + low_tone_h
         else:

@@ -77,9 +77,9 @@ def search(corpus, onset=None, nucleus=None, coda=None, tone=None,
             try:
                 jp_search_list = jyutping(jp)
             except:
-                raise SearchError('invalid jyutping -- %s' % (repr(jp)))
+                raise SearchError('invalid parse_jyutping -- %s' % (repr(jp)))
             if len(jp_search_list) > 1:
-                raise SearchError('only jyutping for one character is allowed')
+                raise SearchError('only parse_jyutping for one character is allowed')
             else:
                 jp_search_tuple = jp_search_list[0]
         else:
