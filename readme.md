@@ -1,51 +1,30 @@
-# PyCantonese: Cantonese Linguistics in Python
+PyCantonese: Cantonese Linguistics in Python
+============================================
 
+Full documentation: [http://pycantonese.org/](http://pycantonese.org/)
 
-PyCantonese is a Python library for Cantonese linguistic research.
-While it is under active development and many other features and
-functions are forthcoming, 
-it currently includes Jyutping parsing and conversion tools as well as general
-search functionalities for built-in or custom corpus data.
+Download and install
+--------------------
 
+The latest stable version is released on
+[Python Package Index](https://pypi.python.org/pypi/pycantonese)
+and can be downloaded by standard means such as `pip`.
+This is the version that the full documentation describes.
 
-## Documentation and versions
-
-The official documentation describes the latest release and is here:
-[http://pycantonese.org/](http://pycantonese.org/)
-
-The latest stable release is version **1.0**.
-
-
-## Installation
-
-The stable version is released on the
-[Python Package Index](https://pypi.python.org/pypi/pycantonese).
-
-The latest version under development and testing is available from the GitHub
-repository here:
+The [GitHub repository](https://github.com/pycantonese/pycantonese)
+is the version under development and testing,
+very likely with experimental code not yet documented.
+This version can be obtained via `git`:
 
     git clone https://github.com/pycantonese/pycantonese.git
     cd pycantonese
     python3 setup.py install --user
 
-For how this current latest version differs from the stable release version,
-see the bug fixes and new features below.
+See [changelog](changelog.md) for updates in progress.
 
 
-## Bug fixes and new features
-
-The current version from the GitHub source here is **1.1-alpha.1**.
-
-Bugs fixes, as well as new features
-(available at the GitHub source here, not yet in the release on PyPI):
-
-* Jyutping "eu" correctly converted to Yale "ew" (cf. issue [#6](https://github.com/pycantonese/pycantonese/issues/6))
-
-* For Jyutping-Yale conversion with codas "i/u" and low tones,
-  the low-tone "h" in Yale now follows the gliding coda (cf. issue [#7](https://github.com/pycantonese/pycantonese/issues/7))
-
-
-## Author
+Author
+------
 
 Developer: Jackson L. Lee
 
@@ -54,13 +33,11 @@ A talk introducing PyCantonese:
 Lee, Jackson L. 2015. PyCantonese: Cantonese linguistic research in the age of big data. Talk at the Childhood Bilingualism Research Centre, Chinese University of Hong Kong. September 15. 2015.
 ([Notes+slides](http://jacksonllee.com/papers/Lee-pycantonese-2015.html))
 
-A paper is being prepared:
+Collaborators: Litong Chen, Charles Lam, Tsz-Him Tsui
 
-Lee, Jackson L., Litong Chen, and Tsz-Him Tsui. PyCantonese: new perspectives on Cantonese linguistics.
-
-
-## Contributors
+Contributors
+------------
 
 Comments, advice, and code contributed by the following individuals:
 
-Charles Lam, Hill Ma, Stephan Stiller
+Hill Ma, Stephan Stiller

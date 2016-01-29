@@ -5,6 +5,10 @@ Current version: 1.0
 
 - Version 1.1 in progress
 
+    * Adopt CHAT as the corpus format, piggybacking on [PyLangAcq](http://pylangacq.org/)
+
+    * Convert HKCanCor into the CHAT format
+
     * Jyutping "eu" correctly converted to Yale "ew" (cf. issue [#6](https://github.com/pycantonese/pycantonese/issues/6))
 
     * For Jyutping-Yale conversion with codas "i/u" and low tones,
