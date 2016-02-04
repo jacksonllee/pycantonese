@@ -158,11 +158,12 @@ CODA_YALE = {'p': 'p',
 
 def parse_jyutping(jp_str):
     """
-    parses jp_str as a list of Cantonese romanization parse_jyutping strings and
-    outputs a list of 4-tuples, each as (onset, nucleus, coda, tone)
+    Parse *jp_str* as a string of Cantonese Jyutping romanization for one or
+    multiple characters
+    and return a list of 4-tuples, each as (onset, nucleus, coda, tone)
     """
     # check jp_str as a valid argument string
-    if not isinstance(jp_str, str):
+    if type(jp_str) is not str:
         raise ValueError('argument needs to be a string -- ' + repr(jp_str))
     jp_str = jp_str.lower()
 
@@ -183,15 +184,15 @@ def parse_jyutping(jp_str):
     for jp in jp_list:
 
         if len(jp) < 2:
-            raise ValueError('argument string needs to contain '
-                             'at least 2 characters -- ' + repr(jp))
-
-        # tone
-        if (not jp[-1].isdigit()) or (jp[-1] not in TONE):
-            raise ValueError('tone error -- ' + repr(jp))
+            raise ValueError('jyutping string has fewer than '
+                             '2 characters -- ' + repr(jp))
 
         tone = jp[-1]
         cvc = jp[:-1]
+
+        # tone
+        if tone not in TONE:
+            raise ValueError('tone error -- ' + repr(jp))
 
         # coda
         if not (cvc[-1] in 'ieaouptkmng'):
@@ -234,21 +235,22 @@ def parse_jyutping(jp_str):
     return jp_parsed_list
 
 
-def parse_final(what_final):
-    try:
-        for i in range(1, len(what_final) + 1):
-            possible_nucleus = what_final[: i]
-            possible_coda = what_final[i:]
-
-            if (possible_nucleus in NUCLEUS) and (possible_coda in CODA):
-                return possible_nucleus, possible_coda
-    except:
-        return None
-
-
-def jyutping2tipa(jp_str, tone=True):
+def parse_final(final):
     """
-    takes a jp string and converts it to a list of LaTeX TIPA strings
+    Parse *final* as (nucleus, coda).
+    """
+    for i in range(1, len(final) + 1):
+        possible_nucleus = final[: i]
+        possible_coda = final[i:]
+
+        if (possible_nucleus in NUCLEUS) and (possible_coda in CODA):
+            return possible_nucleus, possible_coda
+    return None
+
+
+def jyutping2tipa(jp_str):
+    """
+    Convert *jp_str* to a list of LaTeX TIPA strings.
     """
     jp_parsed_list = parse_jyutping(jp_str)
     tipa_list = list()
@@ -266,7 +268,7 @@ def jyutping2tipa(jp_str, tone=True):
 
 def jyutping2yale(jp_str):
     """
-    takes a jp string and converts it to a list of Yale strings
+    Convert *jp_str* to a list of Yale strings.
     """
     jp_parsed_list = parse_jyutping(jp_str)
     yale_list = list()
