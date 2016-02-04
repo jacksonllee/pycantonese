@@ -12,14 +12,6 @@ ALL_PARTICIPANTS = '**ALL**'
 ENCODING = 'utf8'
 
 
-class JyutpingError(Exception):
-    def __init__(self, msg):
-        self.msg = msg
-
-    def __str__(self):
-        return repr(self.msg)
-
-
 class SearchError(Exception):
     def __init__(self, msg):
         self.msg = msg

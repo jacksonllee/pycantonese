@@ -9,8 +9,6 @@
 
 import unicodedata
 
-from pycantonese.util import *
-
 ONSET = {'b', 'd', 'g', 'gw', 'z', 'p', 't', 'k', 'kw', 'c', 'm', 'n',
          'ng', 'f', 'h', 's', 'l', 'w', 'j', ''}
 
@@ -21,89 +19,89 @@ CODA = {'p', 't', 'k', 'm', 'n', 'ng', 'i', 'u', ''}
 TONE = {'1', '2', '3', '4', '5', '6'}
 
 ONSET_TIPA = {'b': 'p',
-             'd': 't',
-             'g': 'k',
-             'gw': 'k\\super w ',
-             'z': 'ts',
-             'p': 'p\\super h ',
-             't': 't\\super h ',
-             'k': 'k\\super h ',
-             'kw': 'k\\super w\\super h ',
-             'c': 'ts\\super h ',
-             'm': 'm',
-             'n': 'n',
-             'ng' :'N',
-             'f': 'f',
-             'h': 'h',
-             's': 's',
-             'l': 'l',
-             'w': 'w',
-             'j': 'j',
-             '': '',
-            }
+              'd': 't',
+              'g': 'k',
+              'gw': 'k\\super w ',
+              'z': 'ts',
+              'p': 'p\\super h ',
+              't': 't\\super h ',
+              'k': 'k\\super h ',
+              'kw': 'k\\super w\\super h ',
+              'c': 'ts\\super h ',
+              'm': 'm',
+              'n': 'n',
+              'ng': 'N',
+              'f': 'f',
+              'h': 'h',
+              's': 's',
+              'l': 'l',
+              'w': 'w',
+              'j': 'j',
+              '': '',
+              }
 
 FINAL_TIPA = {'i': 'i',
-             'ip': 'ip\\textcorner ',
-             'it': 'it\\textcorner ',
-             'ik': 'Ik\\textcorner ',
-             'im': 'im',
-             'in': 'in',
-             'ing': 'IN',
-             'iu': 'iu',
-             'yu': 'y',
-             'yut': 'yt\\textcorner ',
-             'yun': 'yn',
-             'u': 'u',
-             'ut': 'ut\\textcorner ',
-             'uk': 'Uk\\textcorner ',
-             'un': 'un',
-             'ung': 'UN',
-             'ui': 'uY',
-             'e': 'E',
-             'ek': 'Ek\\textcorner ',
-             'eng': 'EN',
-             'ei': 'eI',
-             'eot': '8t\\textcorner ',
-             'eon': '8n',
-             'eoi': '8Y',
-             'oe': '\\oe ',
-             'oek': '\\oe k\\textcorner ',
-             'oeng': '\\oe N',
-             'o': 'O',
-             'ot': 'Ot\\textcorner ',
-             'ok': 'Ok\\textcorner ',
-             'on': 'On',
-             'ong': 'ON',
-             'oi': 'OY',
-             'ou': 'ou',
-             'ap': '5p\\textcorner ',
-             'at': '5t\\textcorner ',
-             'ak': '5k\\textcorner ',
-             'am': '5m',
-             'an': '5n',
-             'ang': '5N',
-             'ai': '5I',
-             'au': '5u',
-             'aa': 'a',
-             'aap': 'ap\\textcorner ',
-             'aat': 'at\\textcorner ',
-             'aak': 'ak\\textcorner ',
-             'aam': 'am',
-             'aan': 'an',
-             'aang': 'aN',
-             'aai': 'aI',
-             'aau': 'au',
-             'm': '\\s{m}',
-             'ng': '\\s{N}',
-            }
+              'ip': 'ip\\textcorner ',
+              'it': 'it\\textcorner ',
+              'ik': 'Ik\\textcorner ',
+              'im': 'im',
+              'in': 'in',
+              'ing': 'IN',
+              'iu': 'iu',
+              'yu': 'y',
+              'yut': 'yt\\textcorner ',
+              'yun': 'yn',
+              'u': 'u',
+              'ut': 'ut\\textcorner ',
+              'uk': 'Uk\\textcorner ',
+              'un': 'un',
+              'ung': 'UN',
+              'ui': 'uY',
+              'e': 'E',
+              'ek': 'Ek\\textcorner ',
+              'eng': 'EN',
+              'ei': 'eI',
+              'eot': '8t\\textcorner ',
+              'eon': '8n',
+              'eoi': '8Y',
+              'oe': '\\oe ',
+              'oek': '\\oe k\\textcorner ',
+              'oeng': '\\oe N',
+              'o': 'O',
+              'ot': 'Ot\\textcorner ',
+              'ok': 'Ok\\textcorner ',
+              'on': 'On',
+              'ong': 'ON',
+              'oi': 'OY',
+              'ou': 'ou',
+              'ap': '5p\\textcorner ',
+              'at': '5t\\textcorner ',
+              'ak': '5k\\textcorner ',
+              'am': '5m',
+              'an': '5n',
+              'ang': '5N',
+              'ai': '5I',
+              'au': '5u',
+              'aa': 'a',
+              'aap': 'ap\\textcorner ',
+              'aat': 'at\\textcorner ',
+              'aak': 'ak\\textcorner ',
+              'aam': 'am',
+              'aan': 'an',
+              'aang': 'aN',
+              'aai': 'aI',
+              'aau': 'au',
+              'm': '\\s{m}',
+              'ng': '\\s{N}',
+              }
 
 TONE_TIPA = {'1': '55',
-            '2': '25',
-            '3': '33',
-            '4': '21',
-            '5': '23',
-            '6': '22',
-           }
+             '2': '25',
+             '3': '33',
+             '4': '21',
+             '5': '23',
+             '6': '22',
+             }
 
 FINAL = set(FINAL_TIPA.keys())
 
@@ -119,7 +117,7 @@ ONSET_YALE = {'b': 'b',
               'c': 'ch',
               'm': 'm',
               'n': 'n',
-              'ng' :'ng',
+              'ng': 'ng',
               'f': 'f',
               'h': 'h',
               's': 's',
@@ -127,7 +125,7 @@ ONSET_YALE = {'b': 'b',
               'w': 'w',
               'j': 'y',
               '': '',
-            }
+              }
 
 NUCLEUS_YALE = {'aa': 'aa',
                 'a': 'a',
@@ -140,7 +138,7 @@ NUCLEUS_YALE = {'aa': 'aa',
                 'o': 'o',
                 'm': 'm',
                 'ng': 'ng',
-               }
+                }
 
 CODA_YALE = {'p': 'p',
              't': 't',
@@ -151,9 +149,10 @@ CODA_YALE = {'p': 'p',
              'i': 'i',
              'u': 'u',
              '': '',
-            }
+             }
 
-#------------------------------------------------------------------------------#
+
+# ------------------------------------------------------------------------------#
 # parse_jyutping parsing
 
 
@@ -161,15 +160,13 @@ def parse_jyutping(jp_str):
     """
     parses jp_str as a list of Cantonese romanization parse_jyutping strings and
     outputs a list of 4-tuples, each as (onset, nucleus, coda, tone)
-
     """
-
-    ## check jp_str as a valid argument string
+    # check jp_str as a valid argument string
     if not isinstance(jp_str, str):
-        raise JyutpingError('argument needs to be a string -- ' + repr(jp_str))
+        raise ValueError('argument needs to be a string -- ' + repr(jp_str))
     jp_str = jp_str.lower()
 
-    ## parse jp_str as multiple jp strings
+    # parse jp_str as multiple jp strings
     jp_list = list()
     jp_current = ''
     for c in jp_str:
@@ -179,26 +176,26 @@ def parse_jyutping(jp_str):
             jp_current = ''
 
     if not jp_str[-1].isdigit():
-        raise JyutpingError('tone error -- ' + repr(jp_str[-1]))
+        raise ValueError('tone error -- ' + repr(jp_str[-1]))
 
     jp_parsed_list = list()
 
     for jp in jp_list:
 
         if len(jp) < 2:
-            raise JyutpingError('argument string needs to contain '
-                                'at least 2 characters -- ' + repr(jp))
+            raise ValueError('argument string needs to contain '
+                             'at least 2 characters -- ' + repr(jp))
 
-        ## tone
+        # tone
         if (not jp[-1].isdigit()) or (jp[-1] not in TONE):
-            raise JyutpingError('tone error -- ' + repr(jp))
+            raise ValueError('tone error -- ' + repr(jp))
 
         tone = jp[-1]
         cvc = jp[:-1]
 
-        ## coda
+        # coda
         if not (cvc[-1] in 'ieaouptkmng'):
-            raise JyutpingError('coda error -- ' + repr(jp))
+            raise ValueError('coda error -- ' + repr(jp))
 
         if cvc in ['m', 'ng', 'i', 'e', 'aa', 'o', 'u']:
             jp_parsed_list.append(('', cvc, '', tone))
@@ -207,8 +204,8 @@ def parse_jyutping(jp_str):
             coda = 'ng'
             cv = cvc[:-2]
         elif (cvc[-1] in 'ptkmn') or \
-             ((cvc[-1] == 'i') and (cvc[-2] in 'eaou')) or \
-             ((cvc[-1] == 'u') and (cvc[-2] in 'ieao')):
+                ((cvc[-1] == 'i') and (cvc[-2] in 'eaou')) or \
+                ((cvc[-1] == 'u') and (cvc[-2] in 'ieao')):
             coda = cvc[-1]
             cv = cvc[:-1]
         else:
@@ -225,12 +222,12 @@ def parse_jyutping(jp_str):
                 break
 
         if not nucleus:
-            raise JyutpingError('nucleus error -- ' + repr(jp))
+            raise ValueError('nucleus error -- ' + repr(jp))
 
         onset = cv
 
         if onset not in ONSET:
-            raise JyutpingError('onset error -- ' + repr(jp))
+            raise ValueError('onset error -- ' + repr(jp))
 
         jp_parsed_list.append((onset, nucleus, coda, tone))
 
@@ -239,20 +236,20 @@ def parse_jyutping(jp_str):
 
 def parse_final(what_final):
     try:
-        for i in range(1, len(what_final)+1):
+        for i in range(1, len(what_final) + 1):
             possible_nucleus = what_final[: i]
-            possible_coda = what_final[i :]
+            possible_coda = what_final[i:]
 
             if (possible_nucleus in NUCLEUS) and (possible_coda in CODA):
-                return (possible_nucleus, possible_coda)
+                return possible_nucleus, possible_coda
     except:
         return None
 
 
 def jyutping2tipa(jp_str, tone=True):
-    '''
+    """
     takes a jp string and converts it to a list of LaTeX TIPA strings
-    '''
+    """
     jp_parsed_list = parse_jyutping(jp_str)
     tipa_list = list()
 
@@ -268,9 +265,9 @@ def jyutping2tipa(jp_str, tone=True):
 
 
 def jyutping2yale(jp_str):
-    '''
+    """
     takes a jp string and converts it to a list of Yale strings
-    '''
+    """
     jp_parsed_list = parse_jyutping(jp_str)
     yale_list = list()
 
@@ -278,7 +275,7 @@ def jyutping2yale(jp_str):
         onset = ONSET_YALE[jp_parsed[0]]
         nucleus = NUCLEUS_YALE[jp_parsed[1]]
         coda = CODA_YALE[jp_parsed[2]]
-        tone = jp_parsed[3] # still in parse_jyutping
+        tone = jp_parsed[3]  # still in parse_jyutping
 
         # jyutping2yale system uses "h" to mark the three low tones
         if tone in {"4", "5", "6"}:
@@ -286,7 +283,7 @@ def jyutping2yale(jp_str):
         else:
             low_tone_h = ""
 
-        # in jyutping2yale, the long "aa" vowel with no coda is denoted by a single "a"
+        # in jyutping2yale, long "aa" vowel with no coda is denoted by "a"
         if nucleus == "aa" and coda == "":
             nucleus = "a"
 
@@ -314,7 +311,7 @@ def jyutping2yale(jp_str):
         # If the accented letter doesn't exist in unicode, use the combining
         # accent instead.
 
-        letter = nucleus[0] # nucleus 1st letter
+        letter = nucleus[0]  # nucleus 1st letter
         unicode_letter_name = unicodedata.name(letter)
         if tone == "1":
             try:
@@ -361,5 +358,3 @@ def jyutping2yale(jp_str):
         yale_list.append(yale)
 
     return yale_list
-
-

@@ -19,6 +19,7 @@ http://pycantonese.org
 import os
 
 from pycantonese.corpus import CantoneseCHATReader
+from pycantonese.jyutping import (parse_jyutping, jyutping2tipa, jyutping2yale)
 
 # ------------------------------------------------------------------------------
 # METADATA
