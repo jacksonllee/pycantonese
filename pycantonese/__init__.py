@@ -7,25 +7,28 @@
 # URL: <http://pycantonese.org/>
 # For license information, see LICENSE.TXT
 
-'''
+"""
 PyCantonese: A Python module for working with Cantonese corpus data
 
 Developer: Jackson Lee
 
 http://pycantonese.org
 
-'''
+"""
 
 import os
 
-#------------------------------------------------------------------------------#
+# ------------------------------------------------------------------------------
 # METADATA
-#------------------------------------------------------------------------------#
+# ------------------------------------------------------------------------------
 
 # Version
 version_filename = os.path.join(os.path.dirname(__file__), 'VERSION')
-with open(version_filename) as f:
-    __version__ = f.read().strip()
+try:
+    with open(version_filename) as f:
+        __version__ = f.read().strip()
+except FileNotFoundError:
+    __version__ = 'unknown version; VERSION file not found'
 
 # Copyright notice and license
 __copyright__ = """\
@@ -34,15 +37,13 @@ Copyright (C) 2014-2016 PyCantonese Project.
 Distributed and Licensed under the Apache License, Version 2.0,
 which is included by reference.
 """
-__license__ = "Apache License, Version 2.0"
+__license__ = 'Apache License, Version 2.0'
 
 # Description
-__description__ = "PyCantonese"
+__description__ = 'PyCantonese'
 
 # Long description
-__long_description__ = """\
-PyCantonese is a Python module for working with Cantonese corpus data.
-PyCantonese requires Python 3.4 or higher."""
+__long_description__ = 'PyCantonese: Cantonese Linguistics in Python'
 
 # keywords
 __keywords__ = ['computational linguistics', 'natural language processing',
@@ -60,36 +61,28 @@ __author_email__ = __maintainer_email__
 
 # trove classifiers for Python Package Index
 __classifiers__ = [
-        'Development Status :: 5 - Production/Stable',
-        'Environment :: Console',
-        'Intended Audience :: Developers',
-        'Intended Audience :: Education',
-        'Intended Audience :: Information Technology',
-        'Intended Audience :: Science/Research',
-        'License :: OSI Approved :: Apache Software License',
-        'Natural Language :: Chinese (Traditional)',
-        'Natural Language :: Cantonese',
-        'Operating System :: OS Independent',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
-        'Topic :: Scientific/Engineering',
-        'Topic :: Scientific/Engineering :: Artificial Intelligence',
-        'Topic :: Scientific/Engineering :: Human Machine Interfaces',
-        'Topic :: Scientific/Engineering :: Information Analysis',
-        'Topic :: Text Processing',
-        'Topic :: Text Processing :: Filters',
-        'Topic :: Text Processing :: General',
-        'Topic :: Text Processing :: Indexing',
-        'Topic :: Text Processing :: Linguistic'
-    ]
+    'Development Status :: 5 - Production/Stable',
+    'Environment :: Console',
+    'Intended Audience :: Developers',
+    'Intended Audience :: Education',
+    'Intended Audience :: Information Technology',
+    'Intended Audience :: Science/Research',
+    'License :: OSI Approved :: Apache Software License',
+    'Natural Language :: Chinese (Traditional)',
+    'Natural Language :: Cantonese',
+    'Operating System :: OS Independent',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.4',
+    'Programming Language :: Python :: 3.5',
+    'Topic :: Scientific/Engineering',
+    'Topic :: Scientific/Engineering :: Artificial Intelligence',
+    'Topic :: Scientific/Engineering :: Human Machine Interfaces',
+    'Topic :: Scientific/Engineering :: Information Analysis',
+    'Topic :: Text Processing',
+    'Topic :: Text Processing :: Filters',
+    'Topic :: Text Processing :: General',
+    'Topic :: Text Processing :: Indexing',
+    'Topic :: Text Processing :: Linguistic'
+]
 
-__install_requires__ = ["nltk"]
-
-#------------------------------------------------------------------------------#
-# PACKAGES
-#------------------------------------------------------------------------------#
-
-from pycantonese.util import *
-from pycantonese.jyutping import *
-from pycantonese.search import *
-from pycantonese.corpus import *
+__install_requires__ = ['pylangacq']
