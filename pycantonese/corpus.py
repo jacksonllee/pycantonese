@@ -9,163 +9,101 @@
 
 # corpus reader class for all Cantonese corpora in general
 
-import os
-import sys
-from pycantonese import ABSPATH
 
-try:
-    from nltk.corpus.reader.tagged import TaggedCorpusReader
-except ImportError:
-    sys.exit("Error in importing NLTK library readers")
+from pylangacq.chat import Reader
 
-class CantoneseCorpusReader():
-    '''
-    the basic corpus reader for Cantonese corpora
-    modeled on TaggedCorpusReader from NLTK
-    '''
-    def __init__(self, root, fileids):
-        self.root = root
-        self.fileids = fileids
-
-    def words(self):
-        _words = TaggedCorpusReader(self.root, self.fileids).words()
-        return (w for w in _words
-                if not w.startswith('SP:'))
-
-    def sents(self):
-        _sents = TaggedCorpusReader(self.root, self.fileids).sents()
-        return (sent[1:] for sent in _sents
-                if len(sent) > 1)
-
-    def tagged_words(self):
-        _tagged_words = TaggedCorpusReader(self.root,
-                                           self.fileids).tagged_words()
-        return ((word, tag) for (word, tag) in _tagged_words
-                if not word.startswith('SP:'))
-
-    def tagged_sents(self):
-        _tagged_sents = TaggedCorpusReader(self.root,
-                                           self.fileids).tagged_sents()
-        return (tagged_sent[1:] for tagged_sent in _tagged_sents
-                if len(tagged_sent) > 1)
-
-    def jyutpings(self):
-        '''
-        :return: the given file(s) as a list of jyutpings
-        :rtype: list(str)
-        '''
-        return (word.split('_')[1] for word in self.words()
-                if '_' in word)
-
-    def characters(self):
-        '''
-        :return: the given file(s) as a list of characters
-        :rtype: list(str)
-        '''
-        return (word.split('_')[0] for word in self.words()
-                if '_' in word)
-
-    def jyutpings_sents(self):
-        return ((word.split('_')[1] for word in sent if '_' in word)
-                for sent in self.sents())
-
-    def characters_sents(self):
-        return ((word.split('_')[0] for word in sent if '_' in word)
-                for sent in self.sents())
-
-    def characters_tagged_sents(self):
-        return (((word.split('_')[0], tag) for (word, tag) in tagged_sent
-                  if '_' in word)
-                for tagged_sent in self.tagged_sents())
-
-    def jyutpings_tagged_sents(self):
-        return (((word.split('_')[1], tag) for (word, tag) in tagged_sent
-                  if '_' in word)
-                for tagged_sent in self.tagged_sents())
-
-    def number_of_words(self):
-        return len(list(self.words()))
-
-    def number_of_characters(self):
-        count_ = 0
-        for characters_in_word in self.characters():
-            count_ += len(characters_in_word)
-        return count_
-
-    def readme(self):
-        return open(os.path.join(self.root, "README")).read()
+from pycantonese.util import (ENCODING, ALL_PARTICIPANTS,
+                              get_jyutping_from_mor,
+                              ListFromIterables)
 
 
-#------------------------------------------------------------------------------#
-# corpus reader classes for built-in corpora
+class CantoneseCHATReader(Reader):
+    """
+    A class for reading Cantonese CHAT corpus files.
+    """
+    def __init__(self, *filenames, encoding=ENCODING):
+        super(CantoneseCHATReader, self).__init__(*filenames, encoding=encoding)
 
-dir_hkcancor = ["data", "hkcancor"]
+    def _get_jyutping_sents(self, participant=ALL_PARTICIPANTS, sents=True):
+        fname_to_tagged_sents = self.tagged_sents(participant=participant,
+                                                  by_files=True)
 
-class HKCanCor(CantoneseCorpusReader):
-    '''
-    a subclass of CorpusReader
-    specific for KK Luke's Hong Kong Cantonese Corpus (Luke and Wong 2015)
-    '''
-    def __init__(self):
-        DIR = os.path.join(ABSPATH, *dir_hkcancor)
-        CantoneseCorpusReader.__init__(self, DIR, r'FC.*')
+        fn_to_jyutpings = dict()
+        jyutpings_list = list()
 
-        self.speakerfile = open(os.path.join(DIR, "SPEAKERS"))
-        self.fileinfofile = open(os.path.join(DIR, "FILE_INFO"))
+        for fn in self.filenames():
+            fn_to_jyutpings[fn] = list()
+            tagged_sents = fname_to_tagged_sents[fn]
 
-    def speakers(self):
-        '''
-        returns a dictionary of key=speakerID, value={file, gender, age, origin}
-        '''
-        speakerDict = dict()
+            for tagged_sent in tagged_sents:
+                if sents:
+                    jyutpings_list = list()
 
-        for line in self.speakerfile:
-            line = line.strip()
-            if not line:
-                continue
+                for tagged_word in tagged_sent:
+                    _, _, mor, _ = tagged_word
+                    jyutping = get_jyutping_from_mor(mor)
 
-            speakerID, gender_age_origin = line.split()
-            gender, age, origin = gender_age_origin.split('-')
+                    if sents:
+                        jyutpings_list.append(jyutping)
+                    else:
+                        fn_to_jyutpings[fn].append(jyutping)
 
-            if gender not in ['F', 'M']:
-                gender = None
-            if not age.isdigit():
-                age = None
-            else:
-                age = int(age)
-            if origin == '?':
-                origin == None
+                if sents:
+                    fn_to_jyutpings[fn].append(jyutpings_list)
 
-            speakerDict[speakerID] = {'file': speakerID[:-2],
-                                      'gender': gender,
-                                      'age': age,
-                                      'origin': origin,
-                                     }
-        return speakerDict
+        return fn_to_jyutpings
 
-    def files(self):
-        '''
-        returns a dictionary of
-        key=fileID, value={tape_number, date_of_recording, speakers}
-        '''
-        fileDict = dict()
+    def jyutpings(self, participant=ALL_PARTICIPANTS, by_files=False):
+        """
+        Return a list of jyutping strings by *participant* in all files.
 
-        for line in self.fileinfofile:
-            line = line.strip()
-            if not line:
-                continue
+        :param participant: The participant(s) of interest (default is all
+            participants if unspecified). This parameter is flexible.
+            Set it to be ``'XXA'`` for this particular person, for example.
+            If multiple participants are desired, this parameter can take
+            a sequence such as ``{'XXA', 'XXB'}``.
+            Underlyingly, this parameter actually performs
+            regular expression matching.
+            To include all participants except "XXA", use ``^(?!.*XXA).*$``.
 
-            fileID, tape_number, date_of_recording, speakerListAsStr = line.split()
+        :param by_files: If True (default: False), return dict(absolute-path
+            filename: X for that file) instead of X for all files altogether.
 
-            list_of_speakers = list()
-            for speaker in speakerListAsStr:
-                list_of_speakers.append(fileID + '-' + speaker)
+        :rtype: list(str), or dict(str: list(str))
+        """
+        fn_to_jyutpings = self._get_jyutping_sents(participant=participant,
+                                                    sents=False)
 
-            fileDict[fileID] = {'tape_number': tape_number,
-                                'date_of_recording': date_of_recording,
-                                'speakers': list_of_speakers,
-                               }
-        return fileDict
+        if by_files:
+            return fn_to_jyutpings
+        else:
+            return ListFromIterables(*(v for _, v in
+                                       sorted(fn_to_jyutpings.items())))
 
-hkcancor = HKCanCor()
+    def jyutping_sents(self, participant=ALL_PARTICIPANTS, by_files=False):
+        """
+        Return a list of sents of jyutping strings
+        by *participant* in all files.
 
+        :param participant: The participant(s) of interest (default is all
+            participants if unspecified). This parameter is flexible.
+            Set it to be ``'XXA'`` for this particular person, for example.
+            If multiple participants are desired, this parameter can take
+            a sequence such as ``{'XXA', 'XXB'}``.
+            Underlyingly, this parameter actually performs
+            regular expression matching.
+            To include all participants except "XXA", use ``^(?!.*XXA).*$``.
+
+        :param by_files: If True (default: False), return dict(absolute-path
+            filename: X for that file) instead of X for all files altogether.
+
+        :rtype: list(list(str)), or dict(str: list(list(str)))
+        """
+        fn_to_jyutpings = self._get_jyutping_sents(participant=participant,
+                                                    sents=True)
+
+        if by_files:
+            return fn_to_jyutpings
+        else:
+            return ListFromIterables(*(v for _, v in
+                                       sorted(fn_to_jyutpings.items())))

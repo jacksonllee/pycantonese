@@ -8,7 +8,7 @@
 # For license information, see LICENSE.TXT
 
 """
-PyCantonese: A Python module for working with Cantonese corpus data
+PyCantonese: Cantonese Linguistics in Python
 
 Developer: Jackson Lee
 
@@ -17,6 +17,8 @@ http://pycantonese.org
 """
 
 import os
+
+from pycantonese.corpus import CantoneseCHATReader
 
 # ------------------------------------------------------------------------------
 # METADATA
@@ -86,3 +88,13 @@ __classifiers__ = [
 ]
 
 __install_requires__ = ['pylangacq']
+
+# ------------------------------------------------------------------------------
+# CORPUS OBJECTS
+# ------------------------------------------------------------------------------
+
+
+def hkcancor():
+    data_path = os.path.join(os.path.dirname(__file__),
+                             'data', 'hkcancor', '*.cha')
+    return CantoneseCHATReader(data_path, encoding='utf8')
