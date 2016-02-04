@@ -30,9 +30,9 @@ setup(name='pycantonese',
       packages=find_packages(),
       keywords=['computational linguistics', 'natural language processing',
                 'NLP', 'Cantonese', 'linguistics', 'corpora', 'speech',
-                'language', 'Chinese', 'Jyutping', 'NLTK', 'tagging'],
+                'language', 'Chinese', 'Jyutping', 'tagging'],
 
-      install_requires=['nltk', 'pylangacq'],
+      install_requires=['pylangacq'],
 
       package_data={
           'pycantonese': ['data/hkcancor/*', 'VERSION', 'VERSION_DEV'],

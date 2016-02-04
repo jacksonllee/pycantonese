@@ -50,7 +50,7 @@ __long_description__ = 'PyCantonese: Cantonese Linguistics in Python'
 # keywords
 __keywords__ = ['computational linguistics', 'natural language processing',
                 'NLP', 'Cantonese', 'linguistics', 'corpora', 'speech',
-                'language', 'Chinese', 'Jyutping', 'NLTK', 'tagging']
+                'language', 'Chinese', 'Jyutping', 'tagging']
 
 # URL
 __url__ = "http://pycantonese.org/"
