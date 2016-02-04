@@ -12,14 +12,6 @@ ALL_PARTICIPANTS = '**ALL**'
 ENCODING = 'utf8'
 
 
-class SearchError(Exception):
-    def __init__(self, msg):
-        self.msg = msg
-
-    def __str__(self):
-        return repr(self.msg)
-
-
 class ListFromIterables(list):
     """
     A class like ``list`` that can be initialized with iterables.
@@ -37,7 +29,7 @@ class ListFromIterables(list):
 
 def get_jyutping_from_mor(mor):
     """
-    Extract jyutping string from *mor*
+    Extract jyutping string from *mor*.
     """
     jyutping, _, _ = mor.partition('=')
     jyutping, _, _ = jyutping.partition('-')

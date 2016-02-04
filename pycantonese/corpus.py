@@ -10,6 +10,7 @@
 
 from pylangacq.chat import Reader
 
+from pycantonese.search import perform_search
 from pycantonese.util import (ENCODING, ALL_PARTICIPANTS,
                               get_jyutping_from_mor,
                               ListFromIterables)
@@ -35,6 +36,10 @@ class CantoneseCHATReader(Reader):
         raise NotImplementedError('method not applicable to PyCantonese')
 
     def IPSyn(self, participant='CHI'):
+        raise NotImplementedError('method not applicable to PyCantonese')
+
+    def concordance(self, search_item, participant=ALL_PARTICIPANTS,
+                    match_entire_word=True, lemma=False, by_files=False):
         raise NotImplementedError('method not applicable to PyCantonese')
 
     def _get_jyutping_sents(self, participant=ALL_PARTICIPANTS, sents=True):
@@ -208,3 +213,25 @@ class CantoneseCHATReader(Reader):
         else:
             return ListFromIterables(*(v for _, v in
                                        sorted(fn_to_characters.items())))
+
+    def search(self, onset=None, nucleus=None, coda=None, tone=None,
+               initial=None, final=None, jyutping=None,
+               character=None, pos=None,
+               words_left=0, words_right=0, sents_left=0, sents_right=0,
+               tagged=True, sents=True,
+               participant=ALL_PARTICIPANTS, by_files=False):
+
+        fn_to_results = perform_search(
+            self.tagged_sents(participant=participant, by_files=True),
+            onset=onset, nucleus=nucleus, coda=coda, tone=tone,
+            initial=initial, final=final, jyutping=jyutping,
+            character=character, pos=pos,
+            words_left=words_left, words_right=words_right,
+            sents_left=sents_left, sents_right=sents_right,
+            tagged=tagged, sents=sents)
+
+        if by_files:
+            return fn_to_results
+        else:
+            return ListFromIterables(*(v for _, v in
+                                       sorted(fn_to_results.items())))
