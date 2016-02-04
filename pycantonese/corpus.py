@@ -7,8 +7,6 @@
 # URL: <http://pycantonese.org/>
 # For license information, see LICENSE.TXT
 
-# corpus reader class for all Cantonese corpora in general
-
 
 from pylangacq.chat import Reader
 
@@ -23,6 +21,21 @@ class CantoneseCHATReader(Reader):
     """
     def __init__(self, *filenames, encoding=ENCODING):
         super(CantoneseCHATReader, self).__init__(*filenames, encoding=encoding)
+
+    def MLU(self, participant='CHI'):
+        raise NotImplementedError('method not applicable to PyCantonese')
+
+    def MLUm(self, participant='CHI'):
+        raise NotImplemented('method not applicable to PyCantonese')
+
+    def MLUw(self, participant='CHI'):
+        raise NotImplementedError('method not applicable to PyCantonese')
+
+    def TTR(self, participant='CHI'):
+        raise NotImplementedError('method not applicable to PyCantonese')
+
+    def IPSyn(self, participant='CHI'):
+        raise NotImplementedError('method not applicable to PyCantonese')
 
     def _get_jyutping_sents(self, participant=ALL_PARTICIPANTS, sents=True):
         fname_to_tagged_sents = self.tagged_sents(participant=participant,
@@ -72,7 +85,7 @@ class CantoneseCHATReader(Reader):
         :rtype: list(str), or dict(str: list(str))
         """
         fn_to_jyutpings = self._get_jyutping_sents(participant=participant,
-                                                    sents=False)
+                                                   sents=False)
 
         if by_files:
             return fn_to_jyutpings
@@ -100,7 +113,7 @@ class CantoneseCHATReader(Reader):
         :rtype: list(list(str)), or dict(str: list(list(str)))
         """
         fn_to_jyutpings = self._get_jyutping_sents(participant=participant,
-                                                    sents=True)
+                                                   sents=True)
 
         if by_files:
             return fn_to_jyutpings
