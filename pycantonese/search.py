@@ -9,7 +9,7 @@
 
 import re
 
-from pycantonese.util import (ALL_PARTICIPANTS, get_jyutping_from_mor)
+from pycantonese.util import get_jyutping_from_mor
 from pycantonese.jyutping import (parse_jyutping, parse_final)
 
 
@@ -25,8 +25,7 @@ def perform_search(fn_to_tagged_sents,
                    initial=None, final=None, jyutping=None,
                    character=None, pos=None,
                    words_left=0, words_right=0, sents_left=0, sents_right=0,
-                   tagged=True, sents=True,
-                   participant=ALL_PARTICIPANTS, by_files=False):
+                   tagged=True, sents=True):
     """
     overall strategy: deal with jp (and all jp-related elements) first, and
                       then the character
@@ -102,7 +101,6 @@ def perform_search(fn_to_tagged_sents,
     fn_to_results = dict()
 
     for fn, tagged_sents in fn_to_tagged_sents.items():
-        results_list = list()
         sent_word_index_pairs = list()
 
         for i_sent, tagged_sent in enumerate(tagged_sents):
@@ -145,6 +143,8 @@ def perform_search(fn_to_tagged_sents,
                 if jyutping_match:
                     sent_word_index_pairs.append((i_sent, i_word))
 
+        results_list = list()
+
         for i_sent, i_word in sent_word_index_pairs:
             if not sents:
                 tagged_sent = tagged_sents[i_sent]
@@ -166,7 +166,24 @@ def perform_search(fn_to_tagged_sents,
 
                 results_list.append(words_wanted)
             else:
-                pass
+                i_sent_start = i_sent - sents_left
+                i_sent_end = i_sent + sents_right + 1
+
+                if i_sent_start < 0:
+                    i_sent_start = 0
+                if i_sent_end > len(tagged_sents):
+                    i_sent_end = len(tagged_sents)
+
+                sents_wanted = tagged_sents[i_sent_start: i_sent_end]
+
+                if not tagged:
+                    for i, sent in enumerate(sents_wanted[:]):
+                        sents_wanted[i] = [x[0] for x in sent]
+
+                if len(sents_wanted) == 1:
+                    sents_wanted = sents_wanted[0]
+
+                results_list.append(sents_wanted)
 
         fn_to_results[fn] = results_list
 
