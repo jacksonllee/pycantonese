@@ -388,9 +388,9 @@ def jyutping2yale(jp_str, as_list=False):
 
     output_str = ''
 
-    for i in range(1, len(yale_list)):
-        yale1 = yale_list[i-1]
-        yale2 = yale_list[i]
+    for i in range(len(yale_list) - 1):
+        yale1 = yale_list[i]
+        yale2 = yale_list[i+1]
 
         ambiguous = False
 
@@ -410,6 +410,6 @@ def jyutping2yale(jp_str, as_list=False):
         if ambiguous:
             output_str += '\''
 
-        output_str += yale2
+    output_str += yale_list[-1]
 
     return output_str

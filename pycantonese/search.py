@@ -24,8 +24,8 @@ def perform_search(fn_to_tagged_sents,
                    onset=None, nucleus=None, coda=None, tone=None,
                    initial=None, final=None, jyutping=None,
                    character=None, pos=None,
-                   words_left=0, words_right=0, sents_left=0, sents_right=0,
-                   tagged=True, sents=True):
+                   word_range=(0, 0), sent_range=(0, 0),
+                   tagged=True, sents=False):
     """
     overall strategy: deal with jp (and all jp-related elements) first, and
                       then the character
@@ -42,6 +42,13 @@ def perform_search(fn_to_tagged_sents,
     lower search elements cannot be used together with dominating higher
     elements
     """
+    # ensure tuple type: word_range and sent_range
+    if not (type(word_range) == type(sent_range) == tuple):
+        raise ValueError('word_range and sent_range must be tuples')
+
+    words_left, words_right = word_range
+    sents_left, sents_right = sent_range
+
     # ensure int type: words_left, words_right, sents_left, sents_right
     if not (type(words_left) == type(words_right) == 
             type(sents_left) == type(sents_right) == int):
@@ -65,7 +72,7 @@ def perform_search(fn_to_tagged_sents,
         raise ValueError('no search elements')
 
     # check if jyutping search is valid
-    jp_search_tuple = None
+    jp_search_tuple = (None, None, None, None)
 
     if jp_search:
 
@@ -124,20 +131,26 @@ def perform_search(fn_to_tagged_sents,
                     continue
 
                 # determine if jyutping matches c_jyutping
-                try:
-                    c_parsed_jyutpings = parse_jyutping(c_jyutping)
-                except ValueError:
-                    continue
-
                 jyutping_match = False
-                for c_parsed_jyutping in c_parsed_jyutpings:
 
-                    booleans = [_jp_element_match(search_, current_)
-                                for search_, current_ in
-                                zip(jp_search_tuple, c_parsed_jyutping)]
+                if not jp_search and not c_jyutping:
+                    jyutping_match = True
+                elif not c_jyutping:
+                    pass
+                else:
+                    try:
+                        c_parsed_jyutpings = parse_jyutping(c_jyutping)
+                    except ValueError:
+                        continue
 
-                    if all(booleans):
-                        jyutping_match = True
+                    for c_parsed_jyutping in c_parsed_jyutpings:
+
+                        booleans = [_jp_element_match(search_, current_)
+                                    for search_, current_ in
+                                    zip(jp_search_tuple, c_parsed_jyutping)]
+
+                        if all(booleans):
+                            jyutping_match = True
                         break
 
                 if jyutping_match:

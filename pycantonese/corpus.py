@@ -217,8 +217,8 @@ class CantoneseCHATReader(Reader):
     def search(self, onset=None, nucleus=None, coda=None, tone=None,
                initial=None, final=None, jyutping=None,
                character=None, pos=None,
-               words_left=0, words_right=0, sents_left=0, sents_right=0,
-               tagged=True, sents=True,
+               word_range=(0, 0), sent_range=(0, 0),
+               tagged=True, sents=False,
                participant=ALL_PARTICIPANTS, by_files=False):
 
         fn_to_results = perform_search(
@@ -226,8 +226,7 @@ class CantoneseCHATReader(Reader):
             onset=onset, nucleus=nucleus, coda=coda, tone=tone,
             initial=initial, final=final, jyutping=jyutping,
             character=character, pos=pos,
-            words_left=words_left, words_right=words_right,
-            sents_left=sents_left, sents_right=sents_right,
+            word_range=word_range, sent_range=sent_range,
             tagged=tagged, sents=sents)
 
         if by_files:
