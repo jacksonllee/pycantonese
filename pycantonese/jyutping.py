@@ -9,6 +9,8 @@
 
 import unicodedata
 
+from pycantonese.util import (endswithoneof, startswithoneof)
+
 ONSET = {'b', 'd', 'g', 'gw', 'z', 'p', 't', 'k', 'kw', 'c', 'm', 'n',
          'ng', 'f', 'h', 's', 'l', 'w', 'j', ''}
 
@@ -266,7 +268,7 @@ def jyutping2tipa(jp_str):
     return tipa_list
 
 
-def jyutping2yale(jp_str):
+def jyutping2yale(jp_str, as_list=False):
     """
     Convert *jp_str* to a list of Yale strings.
     """
@@ -359,4 +361,55 @@ def jyutping2yale(jp_str):
             yale = onset + nucleus + low_tone_h + coda
         yale_list.append(yale)
 
-    return yale_list
+    if as_list:
+        return yale_list
+
+    # Output yale_list as a string
+    # Check if there's potential ambiguity when Yale strings are concatenated
+
+    # Ambiguity case 1:
+    #   1st syllable coda is one of the "ambiguous_consonants"
+    #   and 2nd syllable starts with a vowel *letter*
+
+    # Ambiguity case 2:
+    #   1st syllable has no coda and 2nd syllable starts with one of the
+    #   "ambiguous_consonants"
+    #   e.g., hei3hau6 'climate' --> heihauh
+    #   (middle "h" for tone in 1st syllable or being onset of 2nd syllable?)
+
+    if len(yale_list) == 1:
+        return yale_list[0]
+
+    ambiguous_consonants = {'h', 'p', 't', 'k', 'm', 'n', 'ng'}
+    vowel_letters = {'a', 'e', 'i', 'o', 'u',
+                     'á', 'é', 'í', 'ó', 'ú',
+                     'à', 'è', 'ì', 'ò', 'ù',
+                     'ā', 'ē', 'ī', 'ō', 'ū'}
+
+    output_str = ''
+
+    for i in range(1, len(yale_list)):
+        yale1 = yale_list[i-1]
+        yale2 = yale_list[i]
+
+        ambiguous = False
+
+        # test case 1:
+        if endswithoneof(yale1, ambiguous_consonants) and \
+                startswithoneof(yale2, vowel_letters):
+            ambiguous = True
+
+        # test case 2:
+        if not ambiguous and \
+                not endswithoneof(yale1, ambiguous_consonants) and \
+                startswithoneof(yale2, ambiguous_consonants):
+            ambiguous = True
+
+        output_str += yale1
+
+        if ambiguous:
+            output_str += '\''
+
+        output_str += yale2
+
+    return output_str
