@@ -30,7 +30,7 @@ setup(name='pycantonese',
       install_requires=['pylangacq'],
 
       package_data={
-          'pycantonese': ['data/hkcancor/*', 'VERSION', 'VERSION_DEV'],
+          'pycantonese': ['data/hkcancor/*', 'VERSION'],
       },
 
       zip_safe=False,
