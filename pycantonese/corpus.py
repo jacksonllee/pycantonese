@@ -75,14 +75,8 @@ class CantoneseCHATReader(Reader):
         """
         Return a list of jyutping strings by *participant* in all files.
 
-        :param participant: The participant(s) of interest (default is all
-            participants if unspecified). This parameter is flexible.
-            Set it to be ``'XXA'`` for this particular person, for example.
-            If multiple participants are desired, this parameter can take
-            a sequence such as ``{'XXA', 'XXB'}``.
-            Underlyingly, this parameter actually performs
-            regular expression matching.
-            To include all participants except "XXA", use ``^(?!.*XXA).*$``.
+        :param participant: Specify the participant(s); defaults to all
+            participants.
 
         :param by_files: If True (default: False), return dict(absolute-path
             filename: X for that file) instead of X for all files altogether.
@@ -103,14 +97,8 @@ class CantoneseCHATReader(Reader):
         Return a list of sents of jyutping strings
         by *participant* in all files.
 
-        :param participant: The participant(s) of interest (default is all
-            participants if unspecified). This parameter is flexible.
-            Set it to be ``'XXA'`` for this particular person, for example.
-            If multiple participants are desired, this parameter can take
-            a sequence such as ``{'XXA', 'XXB'}``.
-            Underlyingly, this parameter actually performs
-            regular expression matching.
-            To include all participants except "XXA", use ``^(?!.*XXA).*$``.
+        :param participant: Specify the participant(s); defaults to all
+            participants.
 
         :param by_files: If True (default: False), return dict(absolute-path
             filename: X for that file) instead of X for all files altogether.
@@ -163,14 +151,8 @@ class CantoneseCHATReader(Reader):
         """
         Return a list of Chinese characters by *participant* in all files.
 
-        :param participant: The participant(s) of interest (default is all
-            participants if unspecified). This parameter is flexible.
-            Set it to be ``'XXA'`` for this particular person, for example.
-            If multiple participants are desired, this parameter can take
-            a sequence such as ``{'XXA', 'XXB'}``.
-            Underlyingly, this parameter actually performs
-            regular expression matching.
-            To include all participants except "XXA", use ``^(?!.*XXA).*$``.
+        :param participant: Specify the participant(s); defaults to all
+            participants.
 
         :param by_files: If True (default: False), return dict(absolute-path
             filename: X for that file) instead of X for all files altogether.
@@ -191,14 +173,8 @@ class CantoneseCHATReader(Reader):
         Return a list of sents of Chinese characters
         by *participant* in all files.
 
-        :param participant: The participant(s) of interest (default is all
-            participants if unspecified). This parameter is flexible.
-            Set it to be ``'XXA'`` for this particular person, for example.
-            If multiple participants are desired, this parameter can take
-            a sequence such as ``{'XXA', 'XXB'}``.
-            Underlyingly, this parameter actually performs
-            regular expression matching.
-            To include all participants except "XXA", use ``^(?!.*XXA).*$``.
+        :param participant: Specify the participant(s); defaults to all
+            participants.
 
         :param by_files: If True (default: False), return dict(absolute-path
             filename: X for that file) instead of X for all files altogether.
@@ -220,7 +196,57 @@ class CantoneseCHATReader(Reader):
                word_range=(0, 0), sent_range=(0, 0),
                tagged=True, sents=False,
                participant=ALL_PARTICIPANTS, by_files=False):
+        """
+        Search for the specified element(s).
 
+        **Jyutping elements**
+
+        Parameters are *onset*, *nucleus*, *coda*, *tone*, *initial*,
+        *final*, *jyutping*.
+        If *jyutping* is used, none of the other Jyutping elements can be.
+        If *final* is used, neither *nucleus* nor *coda* can be.
+        *onset* and *initial* cannot conflict, unless one or both of them are
+        None.
+        Regular expression matching applies to
+        *onset*, *nucleus*, *coda*, *tone*, and *initial*.
+
+        **Chinese character**
+
+        Parameter: *character* (only one is allowed)
+
+        **Part-of-speech tag**
+
+        Parameter: *pos*
+
+        Regular expression matching applies.
+
+        **Word or sentence range**
+
+        *word_range*: specify the span of words to the left and right
+        of a match word; defaults to ``(0, 0)``.
+
+        *sent_range*: specify the span of sents preceding and following
+        the sent containing a match word; defaults to ``(0, 0)``.
+
+        If *sent_range* is used, *word_range* is ignored.
+
+        **Output formatting**
+
+        If *sents* is True (the default), sents containing a match word are
+        returned; otherwise just a word instead.
+
+        If *tagged* is True (the default), words are tagged in the form of
+        (word, pos, jyutping, rel); otherwise just word token strings.
+
+        *by_files*: If False (the default), the return object is a list
+        encompassing search results for all files. If True, the return object
+        is dict(absolute-path filename: list of search results for that file)
+        instead.
+
+        **Others**
+
+        *participant*: specify the participant(s) (default: all participants).
+        """
         fn_to_results = perform_search(
             self.tagged_sents(participant=participant, by_files=True),
             onset=onset, nucleus=nucleus, coda=coda, tone=tone,

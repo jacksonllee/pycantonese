@@ -270,7 +270,10 @@ def jyutping2tipa(jp_str):
 
 def jyutping2yale(jp_str, as_list=False):
     """
-    Convert *jp_str* to a list of Yale strings.
+    Convert *jp_str* to Yale.
+
+    :param as_list: If True (default: False), return a list of Yale strings
+        for individual syllables.
     """
     jp_parsed_list = parse_jyutping(jp_str)
     yale_list = list()

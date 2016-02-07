@@ -1,9 +1,9 @@
 Change log
 ==========
 
-Current version: 1.0
+Current version: 2.0.0
 
-Version 2.0.0 in progress
+Version 2.0.0 2016-02-06
 
 * PyCantonese now requires Python 3.4 or above.
 * Adopt the CHAT corpus format, piggybacking on [PyLangAcq](http://pylangacq.org/)
@@ -14,6 +14,7 @@ Version 2.0.0 in progress
   [#6](https://github.com/pycantonese/pycantonese/issues/6),
   [#7](https://github.com/pycantonese/pycantonese/issues/7),
   [#8](https://github.com/pycantonese/pycantonese/issues/8)
+  [#9](https://github.com/pycantonese/pycantonese/issues/9)
 
 Version 1.0 2015-09-06
 

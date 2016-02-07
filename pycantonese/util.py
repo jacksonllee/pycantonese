@@ -77,4 +77,3 @@ def endswithoneof(inputstr, seq):
             return item
     else:
         return None
-
