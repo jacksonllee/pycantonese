@@ -10,12 +10,7 @@ if py_version < (3, 4):
     sys.exit('Error: PyCantonese requires Python 3.4 or above.\n'
              'You are using Python {}.{}.'.format(*py_version))
 
-if __name__ == '__main__':
-    version_fname = 'VERSION_DEV'
-else:
-    version_fname = 'VERSION'
-
-version_path = path.join(path.dirname(__file__), 'pycantonese', version_fname)
+version_path = path.join(path.dirname(__file__), 'pycantonese', 'VERSION')
 with open(version_path) as f:
     package_version = f.read().strip()
 
