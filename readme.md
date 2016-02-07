@@ -6,10 +6,16 @@ Full documentation: [http://pycantonese.org/](http://pycantonese.org/)
 Download and install
 --------------------
 
+PyCantonese requires Python 3.4 or above.
+
 The latest stable version is released on
-[Python Package Index](https://pypi.python.org/pypi/pycantonese)
+[PyPI](https://pypi.python.org/pypi/pycantonese)
 and can be downloaded by standard means such as `pip`.
-This is the version that the full documentation describes.
+
+    $ python3 -m pip install pycantonese
+
+This is the version that the full documentation describes,
+unless otherwise noted.
 
 The [GitHub repository](https://github.com/pycantonese/pycantonese)
 is the version under development and testing,
