@@ -8,23 +8,35 @@ Download and install
 
 PyCantonese requires Python 3.4 or above.
 
-The latest stable version is released on
-[PyPI](https://pypi.python.org/pypi/pycantonese)
-and can be downloaded by standard means such as `pip`.
+* **Latest stable release** -- released on
+  [PyPI](https://pypi.python.org/pypi/pycantonese)
+  and available through standard means such as `pip`.
 
-    $ python3 -m pip install pycantonese
+  ```
+  $ python3 -m pip install pycantonese
+  ```
 
-This is the version that the full documentation describes,
-unless otherwise noted.
+  `python3` is meant to point to your Python 3 interpreter.
+  Administrative privileges (such as `sudo` on Unix-like systems) may be
+  required.
 
-The [GitHub repository](https://github.com/pycantonese/pycantonese)
-is the version under development and testing,
-very likely with experimental code not yet documented.
-This version can be obtained via `git`:
+  This is the version that the full documentation describes,
+  unless otherwise noted.
 
-    git clone https://github.com/pycantonese/pycantonese.git
-    cd pycantonese
-    python3 setup.py install --user
+* **Under testing and development** -- available at
+  the [GitHub repository](https://github.com/pycantonese/pycantonese)
+
+  This version very likely contains experimental code not yet documented.
+  It is available via `git`:
+
+  ```
+  git clone https://github.com/pycantonese/pycantonese.git
+  cd pycantonese
+  python3 setup.py install
+  ```
+
+  Administrative privileges (such as `sudo` on Unix-like systems) may be
+  required.
 
 See [changelog](changelog.md) for updates in progress.
 
