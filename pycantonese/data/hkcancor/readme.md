@@ -75,7 +75,7 @@ As an example, the data file `FC-001_v2.cha` begins as follows
 
 * Transcriptions and annotations:
 
-  *The representation of word*:
+  *The representation of words*:
   The HKCanCor source represents a word as something like "喂/e/wai3/". In the
   CHAT format, the Chinese character(s) are found on the utterance line (= the
   one that begins with `*` plus the participant code). The part-of-speech tag
