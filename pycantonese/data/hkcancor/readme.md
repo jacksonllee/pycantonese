@@ -24,15 +24,18 @@ The choice of corpus data format in PyCantonese is the CHAT format
 is well-documented, rich for annotations, and designed mainly for
 conversational data.
 
-The version of HKCanCor incorporated in PyCantonese is in the CHAT format.
+The version of HKCanCor incorporated in PyCantonese is in the CHAT format,
+in compliance with the latest CHAT manual
+(http://childes.psy.cmu.edu/manuals/CHAT.pdf)
+dated 2015-09-22.
 The following notes explain how this version differs from the source.
 
 HKCanCor comes with 58 data files, which have been rendered as `.cha` files.
 Following CHAT, each file has:
 
 * headers (= lines beginning with `@`) for metadata
-* transriptions (= lines beginning with `*` for the
-utterance and the accommpanying annotations in the `@mor` tiers).
+* transcriptions (= lines beginning with `*` for the
+utterance and the accompanying annotations in the `@mor` tiers).
 
 As an example, the data file `FC-001_v2.cha` begins as follows
 (headers plus the first three utterances):
@@ -70,7 +73,8 @@ As an example, the data file `FC-001_v2.cha` begins as follows
 
   *Age:*
   In the HKCanCor source, certain participants' age is unclear, e.g., 25-30
-  as a range. In cases like this, the smaller number is taken as the age
+  as a best-guess range.
+  In cases like this, the smaller number is taken as the age
   (i.e., 25 in this example).
 
 * Transcriptions and annotations:
