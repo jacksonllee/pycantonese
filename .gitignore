@@ -5,7 +5,8 @@
 pycantonese/__pycache__/
 /pycantonese.egg-info
 
-*.sh
+build-doc.sh
+pypi_upload.sh
 
 /.idea/
 /test_dev/

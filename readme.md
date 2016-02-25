@@ -1,6 +1,8 @@
 PyCantonese: Cantonese Linguistics in Python
 ============================================
 
+[![Build Status](https://travis-ci.org/pycantonese/pycantonese.svg?branch=master)](https://travis-ci.org/pycantonese/pycantonese)
+
 Full documentation: [http://pycantonese.org/](http://pycantonese.org/)
 
 Download and install

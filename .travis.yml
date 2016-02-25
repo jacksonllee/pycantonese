@@ -1,0 +1,18 @@
+language: python
+python:
+  - "3.4"
+  - "3.5"
+
+sudo: required
+
+# install dependencies
+before_install:
+  - pip install pylangacq
+
+# install pycantonese
+install:
+  - python setup.py install
+
+# run tests
+script:
+  - bash pytest_run.sh
