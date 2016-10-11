@@ -200,7 +200,7 @@ def parse_jyutping(jp_str):
         if not (cvc[-1] in 'ieaouptkmng'):
             raise ValueError('coda error -- ' + repr(jp))
 
-        if cvc in ['m', 'ng', 'i', 'e', 'aa', 'o', 'u']:
+        if cvc in ['m', 'n', 'ng', 'i', 'e', 'aa', 'o', 'u']:
             jp_parsed_list.append(('', cvc, '', tone))
             continue
         elif cvc[-2:] == 'ng':
