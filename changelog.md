@@ -1,7 +1,11 @@
 Change log
 ==========
 
-Current version: 2.0.0
+Current stable version: 2.0.0
+
+Version 2.0.1 in progress
+
+* Allow "n" to be a syllabic nasal.
 
 Version 2.0.0 2016-02-06
 

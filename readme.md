@@ -58,6 +58,6 @@ Collaborators: Litong Chen, Charles Lam, Tsz-Him Tsui
 Contributors
 ------------
 
-Comments, advice, and code contributed by the following individuals:
+Many thanks to the following individuals for code, comments, bug reports, etc.:
 
-Hill Ma, Stephan Stiller
+Rachel Han, Hill Ma, Stephan Stiller
