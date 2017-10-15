@@ -11,7 +11,7 @@ Full documentation: http://pycantonese.org
 Download and install
 --------------------
 
-PyCantonese supports Python 2.7 and 3.4+, and is available through pip:
+PyCantonese supports Python 3.4+, and is available through pip:
 
 .. code-block:: bash
 
