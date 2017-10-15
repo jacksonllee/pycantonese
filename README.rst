@@ -1,46 +1,35 @@
-PyCantonese: Cantonese Linguistics in Python
-============================================
+PyCantonese: Cantonese Linguistics and NLP in Python
+====================================================
 
-[![Build Status](https://travis-ci.org/pycantonese/pycantonese.svg?branch=master)](https://travis-ci.org/pycantonese/pycantonese)
+.. image:: https://travis-ci.org/pycantonese/pycantonese.svg?branch=master
+   :target: https://travis-ci.org/pycantonese/pycantonese
+   :alt: Build
 
-Full documentation: [http://pycantonese.org/](http://pycantonese.org/)
+Full documentation: http://pycantonese.org
+
 
 Download and install
 --------------------
 
-PyCantonese requires Python 3.4 or above.
+PyCantonese supports Python 2.7 and 3.4+, and is available through pip:
 
-* **Latest stable release** -- released on
-  [PyPI](https://pypi.python.org/pypi/pycantonese)
-  and available through standard means such as `pip`.
+.. code-block:: bash
 
-  ```
-  $ python3 -m pip install pycantonese
-  ```
+   $ pip install pycantonese
 
-  `python3` is meant to point to your Python 3 interpreter.
-  Administrative privileges (such as `sudo` on Unix-like systems) may be
-  required.
 
-  This is the version that the full documentation describes,
-  unless otherwise noted.
+Setting up a Development Environment
+------------------------------------
 
-* **Under testing and development** -- available at
-  the [GitHub repository](https://github.com/pycantonese/pycantonese)
+The latest code under development is available on Github at
+`pycantonese/pycantonese <https://github.com/pycantonese/pycantonese>`_.
+To obtain this version for experimental features or for development:
 
-  This version very likely contains experimental code not yet documented.
-  It is available via `git`:
+.. code-block:: bash
 
-  ```
-  git clone https://github.com/pycantonese/pycantonese.git
-  cd pycantonese
-  python3 setup.py install
-  ```
-
-  Administrative privileges (such as `sudo` on Unix-like systems) may be
-  required.
-
-See [changelog](changelog.md) for updates in progress.
+   $ git clone https://github.com/pycantonese/pycantonese.git
+   $ cd pycantonese
+   $ python setup.py develop
 
 
 Author
@@ -51,9 +40,10 @@ Developer: Jackson L. Lee
 A talk introducing PyCantonese:
 
 Lee, Jackson L. 2015. PyCantonese: Cantonese linguistic research in the age of big data. Talk at the Childhood Bilingualism Research Centre, Chinese University of Hong Kong. September 15. 2015.
-([Notes+slides](http://jacksonllee.com/papers/Lee-pycantonese-2015.html))
+`Notes+slides <http://jacksonllee.com/papers/Lee-pycantonese-2015.html>`_
 
 Collaborators: Litong Chen, Charles Lam, Tsz-Him Tsui
+
 
 Contributors
 ------------
