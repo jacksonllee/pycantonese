@@ -1,18 +1,18 @@
 language: python
+
 python:
   - "3.4"
   - "3.5"
+  - "3.6"
 
-sudo: required
+cache: pip
 
-# install dependencies
-before_install:
-  - pip install pylangacq
-
-# install pycantonese
 install:
+  - pip install --upgrade pip
+  - pip install -r requirements.txt
+  - pip install -r dev-requirements.txt
   - python setup.py install
 
-# run tests
 script:
-  - bash pytest_run.sh
+  - pytest -vv --cov pycantonese pycantonese
+  - flake8 pycantonese
