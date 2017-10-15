@@ -50,7 +50,7 @@ def perform_search(fn_to_tagged_sents,
     sents_left, sents_right = sent_range
 
     # ensure int type: words_left, words_right, sents_left, sents_right
-    if not (type(words_left) == type(words_right) == 
+    if not (type(words_left) == type(words_right) ==
             type(sents_left) == type(sents_right) == int):
         raise ValueError('int required for {words, sents}_{left, right}')
 

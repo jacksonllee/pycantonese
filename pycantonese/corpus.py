@@ -21,7 +21,8 @@ class CantoneseCHATReader(Reader):
     A class for reading Cantonese CHAT corpus files.
     """
     def __init__(self, *filenames, encoding=ENCODING):
-        super(CantoneseCHATReader, self).__init__(*filenames, encoding=encoding)
+        super(CantoneseCHATReader, self).__init__(*filenames,
+                                                  encoding=encoding)
 
     def MLU(self, participant='CHI'):
         raise NotImplementedError('method not applicable to PyCantonese')

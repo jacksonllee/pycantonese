@@ -8,7 +8,7 @@
 # For license information, see LICENSE.TXT
 
 """
-PyCantonese: Cantonese Linguistics in Python
+PyCantonese: Cantonese Linguistics and NLP in Python
 
 Developer: Jackson Lee
 
@@ -20,11 +20,12 @@ import os
 
 from pycantonese.util import ENCODING
 from pycantonese.corpus import CantoneseCHATReader
-from pycantonese.jyutping import (parse_jyutping, jyutping2tipa, jyutping2yale)
+from pycantonese.jyutping import (  # noqa
+    parse_jyutping, jyutping2tipa, jyutping2yale)
 
-# ------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # METADATA
-# ------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 
 # Version
 version_filename = os.path.join(os.path.dirname(__file__), 'VERSION')
@@ -91,9 +92,9 @@ __classifiers__ = [
 
 __install_requires__ = ['pylangacq']
 
-# ------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 # CORPUS OBJECTS
-# ------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 
 
 def hkcancor():
