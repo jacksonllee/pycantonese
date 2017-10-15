@@ -29,7 +29,16 @@ To obtain this version for experimental features or for development:
 
    $ git clone https://github.com/pycantonese/pycantonese.git
    $ cd pycantonese
+   $ pip install -r requirements.txt
+   $ pip install -r dev-requirements.txt
    $ python setup.py develop
+
+To run tests:
+
+.. code-block:: bash
+
+   $ py.test -vv --cov pycantonese pycantonese
+   $ flake8 pycantonese
 
 
 Author
