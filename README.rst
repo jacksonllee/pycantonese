@@ -60,3 +60,13 @@ Contributors
 Many thanks to the following individuals for code, comments, bug reports, etc.:
 
 Rachel Han, Hill Ma, Stephan Stiller
+
+
+License
+-------
+
+MIT License. Please see ``LICENSE.txt`` for details.
+
+The HKCanCor dataset included in PyCantonese is substantially modified from
+its source in terms of format. The original dataset has a CC BY license.
+Please see ``pycantonese/data/hkcancor/readme.md`` for details.

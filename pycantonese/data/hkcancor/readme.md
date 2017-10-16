@@ -1,6 +1,7 @@
 Hong Kong Cantonese Corpus
 ==========================
 
+
 Introduction
 ------------
 
@@ -8,13 +9,23 @@ The Hong Kong Cantonese Corpus (HKCanCor) is a corpus of conversational
 Hong Kong Cantonese compiled by Kang Kwong Luke based on data collected
 in the late 1990's from local radio programs as well as other recordings.
 
+HKCanCor as included in PyCantonese has been substantially modified from its
+source in terms of data format. Please read below for details.
+
 The HKCanCor source is here:
 http://compling.hss.ntu.edu.sg/hkcancor/
 
-HKCanCor is released under a CC BY license.
-If this corpus is used, the following should be cited:
+HKCanCor is released under a CC BY license. A copy of the license
+from the HKCanCor source
+([here](http://compling.hss.ntu.edu.sg/hkcancor/data/LICENSE),
+accessed October 2017) is included
+at `pycantonese/data/hkcancor/license.txt` (path from the PyCantonese
+repository root).
+
+If this corpus is used, the following publication should be cited:
 
 K. K. Luke and May L.Y. Wong (2015) The Hong Kong Cantonese Corpus: Design and Uses. Journal of Chinese Linguistics (to appear).
+
 
 The CHAT format in PyCantonese
 ------------------------------
@@ -92,7 +103,3 @@ As an example, the data file `FC-001_v2.cha` begins as follows
   (different kinds of parentheses, brackets, etc) are collapsed and
   represented by the double quote `"`.
   The colon is removed to avoid parsing problems.
-
-This readme file is prepared by Jackson Lee.
-
-Last updated on 2016-02-07.
