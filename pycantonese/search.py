@@ -2,8 +2,8 @@
 
 # PyCantonese
 #
-# Copyright (C) 2014-2016 PyCantonese Project
-# Author: Jackson Lee <jsllee.phon@gmail.com>
+# Copyright (C) 2014-2017 PyCantonese Project
+# Author: Jackson Lee <jacksonlunlee@gmail.com>
 # URL: <http://pycantonese.org/>
 # For license information, see LICENSE.TXT
 
