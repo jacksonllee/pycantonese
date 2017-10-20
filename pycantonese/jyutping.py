@@ -170,7 +170,7 @@ def parse_jyutping(jp_str):
     jp_str = jp_str.lower()
 
     # parse jp_str as multiple jp strings
-    jp_list = list()
+    jp_list = []
     jp_current = ''
     for c in jp_str:
         jp_current = jp_current + c
@@ -181,7 +181,7 @@ def parse_jyutping(jp_str):
     if not jp_str[-1].isdigit():
         raise ValueError('tone error -- ' + repr(jp_str[-1]))
 
-    jp_parsed_list = list()
+    jp_parsed_list = []
 
     for jp in jp_list:
 
