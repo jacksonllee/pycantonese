@@ -1,0 +1,221 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>PyCantonese: Cantonese Linguistics in Python &#8212; PyCantonese 2.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Download and install" href="download.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="download.html" title="Download and install"
+             accesskey="N">next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">PyCantonese 2.0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">PyCantonese: Cantonese Linguistics in Python</a><ul>
+<li><a class="reference internal" href="#table-of-contents">Table of contents</a></li>
+<li><a class="reference internal" href="#how-to-cite">How to cite</a></li>
+<li><a class="reference internal" href="#technical-support-library-development-etc">Technical support, library development, etc.</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="download.html"
+                        title="next chapter">Download and install</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pycantonese-cantonese-linguistics-in-python">
+<span id="index"></span><h1>PyCantonese: Cantonese Linguistics in Python<a class="headerlink" href="#pycantonese-cantonese-linguistics-in-python" title="Permalink to this headline">¶</a></h1>
+<p>PyCantonese is a Python library for Cantonese linguistic research.
+The goal of PyCantonese is to provide general-purpose tools and other
+functionality to work with Cantonese data. They include corpus search
+functions as well as various analytic and annotation tools;
+these and other possibilities
+are gradually added
+as the library grows and evolves.</p>
+<p>
+<a href="https://twitter.com/pycantonese" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @pycantonese</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="fb-follow" data-href="https://www.facebook.com/pycantonese" data-layout="button" data-show-faces="false"></div>
+
+</p>
+<div class="sidebar" style="width: 55%;">
+<p class="first sidebar-title">Quick examples – What can PyCantonese do?</p>
+<p>With PyCantonese in Python:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="kn">as</span> <span class="nn">pc</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li>Parsing Jyutping for (onset, nucleus, coda, tone)</li>
+</ol>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">parse_jyutping</span><span class="p">(</span><span class="s1">&#39;gwong2dung1waa2&#39;</span><span class="p">)</span>  <span class="c1"># 廣東話</span>
+<span class="go">[(&#39;gw&#39;, &#39;o&#39;, &#39;ng&#39;, &#39;2&#39;), (&#39;d&#39;, &#39;u&#39;, &#39;ng&#39;, &#39;1&#39;), (&#39;w&#39;, &#39;aa&#39;, &#39;&#39;, &#39;2&#39;)]</span>
+</pre></div>
+</div>
+<ol class="arabic" start="2">
+<li><p class="first">Finding all verbs in the HKCanCor corpus</p>
+<p>(verbs = part-of-speech tags beginning with “V”)</p>
+<p>We search for the regular expression <code class="docutils literal"><span class="pre">'V*.'</span></code>:</p>
+</li>
+</ol>
+<div class="last highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span> <span class="o">=</span> <span class="n">pc</span><span class="o">.</span><span class="n">hkcancor</span><span class="p">()</span> <span class="c1"># get HKCanCor</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">all_verbs</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="s1">&#39;V*.&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">all_verbs</span><span class="p">)</span>  <span class="c1"># number of all verbs</span>
+<span class="go">29010</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="n">all_verbs</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>  <span class="c1"># print 10 results</span>
+<span class="go">[(&#39;去&#39;, &#39;V&#39;, &#39;heoi3&#39;, &#39;&#39;),</span>
+<span class="go"> (&#39;去&#39;, &#39;V&#39;, &#39;heoi3&#39;, &#39;&#39;),</span>
+<span class="go"> (&#39;旅行&#39;, &#39;VN&#39;, &#39;leoi5hang4&#39;, &#39;&#39;),</span>
+<span class="go"> (&#39;有冇&#39;, &#39;V1&#39;, &#39;jau5mou5&#39;, &#39;&#39;),</span>
+<span class="go"> (&#39;要&#39;, &#39;VU&#39;, &#39;jiu3&#39;, &#39;&#39;),</span>
+<span class="go"> (&#39;有得&#39;, &#39;VU&#39;, &#39;jau5dak1&#39;, &#39;&#39;),</span>
+<span class="go"> (&#39;冇得&#39;, &#39;VU&#39;, &#39;mou5dak1&#39;, &#39;&#39;),</span>
+<span class="go"> (&#39;去&#39;, &#39;V&#39;, &#39;heoi3&#39;, &#39;&#39;),</span>
+<span class="go"> (&#39;係&#39;, &#39;V&#39;, &#39;hai6&#39;, &#39;&#39;),</span>
+<span class="go"> (&#39;係&#39;, &#39;V&#39;, &#39;hai6&#39;, &#39;&#39;)]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="table-of-contents">
+<h2>Table of contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="download.html">Download and install</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="download.html#latest-stable-release">Latest stable release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download.html#under-testing-and-development">Under testing and development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download.html#dependencies">Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Corpus data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data.html#the-chat-transcription-format">The CHAT transcription format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#accessing-built-in-data">Accessing built-in data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#accessing-custom-data">Accessing custom data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reader.html">Corpus reader methods</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reader.html#the-representation-of-words">The representation of “words”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reader.html#a-note-on-the-access-methods">A note on the access methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reader.html#metadata-methods">Metadata methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reader.html#data-methods">Data methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reader.html#full-reader-api">Full reader API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="jyutping.html">Jyutping romanization: Parsing and conversion</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="jyutping.html#parsing-jyutping-strings">Parsing Jyutping strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jyutping.html#jyutping-to-yale-conversion">Jyutping-to-Yale conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jyutping.html#jyutping-to-tipa-conversion">Jyutping-to-TIPA conversion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="searches.html">Search queries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-a-jyutping-element">Searching by a Jyutping element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-a-chinese-character">Searching by a Chinese character</a></li>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-a-part-of-speech-tag">Searching by a part-of-speech tag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-a-word-or-sentence-range">Searching by a word or sentence range</a></li>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-multiple-criteria">Searching by multiple criteria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#output-format-of-search-results">Output format of search results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="papers.html">Research outputs</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="how-to-cite">
+<h2>How to cite<a class="headerlink" href="#how-to-cite" title="Permalink to this headline">¶</a></h2>
+<p>PyCantonese is maintained by
+<a class="reference external" href="http://jacksonllee.com">Jackson Lee</a>.</p>
+<p>A talk introducing PyCantonese:</p>
+<p>Jackson L. Lee. 2015. PyCantonese: Cantonese linguistic research in the age of big data. Talk at the Childhood Bilingualism Research Centre, Chinese University of Hong Kong. September 15. 2015. <a class="reference external" href="http://jacksonllee.com/papers/Lee-pycantonese-2015.html">[Notes+slides]</a></p>
+<p>See <a class="reference internal" href="papers.html#papers"><span class="std std-ref">Research outputs</span></a> for a running list of our work.</p>
+</div>
+<div class="section" id="technical-support-library-development-etc">
+<h2>Technical support, library development, etc.<a class="headerlink" href="#technical-support-library-development-etc" title="Permalink to this headline">¶</a></h2>
+<p>Questions, bug reports and suggested features are more than welcome.
+Please create issues on the
+<a class="reference external" href="https://github.com/pycantonese/pycantonese">GitHub page</a>.
+Alternatively, you may contact <a class="reference external" href="http://jacksonllee.com">Jackson Lee</a>.</p>
+<p><a class="reference external" href="https://github.com/pycantonese/pycantonese/blob/master/changelog.md">Changelog</a> on GitHub</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="download.html" title="Download and install"
+             >next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">PyCantonese 2.0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2017, Jackson L. Lee | Documentation last updated on October 22, 2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+    </div>
+  </body>
+</html>

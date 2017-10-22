@@ -1,0 +1,199 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Jyutping romanization: Parsing and conversion &#8212; PyCantonese 2.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Search queries" href="searches.html" />
+    <link rel="prev" title="Corpus reader methods" href="reader.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="searches.html" title="Search queries"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="reader.html" title="Corpus reader methods"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Jyutping romanization: Parsing and conversion</a><ul>
+<li><a class="reference internal" href="#parsing-jyutping-strings">Parsing Jyutping strings</a></li>
+<li><a class="reference internal" href="#jyutping-to-yale-conversion">Jyutping-to-Yale conversion</a></li>
+<li><a class="reference internal" href="#jyutping-to-tipa-conversion">Jyutping-to-TIPA conversion</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="reader.html"
+                        title="previous chapter">Corpus reader methods</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="searches.html"
+                        title="next chapter">Search queries</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="jyutping-romanization-parsing-and-conversion">
+<h1>Jyutping romanization: Parsing and conversion<a class="headerlink" href="#jyutping-romanization-parsing-and-conversion" title="Permalink to this headline">¶</a></h1>
+<p>Among the most common tasks in handling Cantonese corpus data are those that
+involve the processing of <a class="reference external" href="http://lshk.org/node/47">Jyutping romanization</a>, e.g., searching for words by a
+particular Jyutping element (an onset, a tone, or something else).
+It is necessary,
+therefore, to parse a string of Jyutping romanization into
+its phonological components. Moreover, several other Cantonese romanization
+schemes are actively used alongside Jyutping. PyCantonese provides
+tools for converting Jyutping to some of these romanization systems.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If you are running a script on <strong>Windows</strong>, be sure to put all your code
+under the scope of <code class="docutils literal"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">'__main__':</span></code>.
+(PyCantonese uses the <code class="docutils literal"><span class="pre">multiprocessing</span></code> module to read data files.)</p>
+</div>
+<div class="section" id="parsing-jyutping-strings">
+<h2>Parsing Jyutping strings<a class="headerlink" href="#parsing-jyutping-strings" title="Permalink to this headline">¶</a></h2>
+<p>The function <code class="docutils literal"><span class="pre">parse_jyutping()</span></code> parses a string of Jyutping romanization
+and returns a list of tuples; the string may contain romanization for multiple
+Chinese characters. The parsed romanization for a character is a 4-tuple:
+(onset, nucleus, coda, tone):</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="kn">as</span> <span class="nn">pc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">parse_jyutping</span><span class="p">(</span><span class="s1">&#39;hou2&#39;</span><span class="p">)</span>  <span class="c1"># 好</span>
+<span class="go">[(&#39;h&#39;, &#39;o&#39;, &#39;u&#39;, &#39;2&#39;)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">parse_jyutping</span><span class="p">(</span><span class="s1">&#39;gwong2dung1waa2&#39;</span><span class="p">)</span>  <span class="c1"># 廣東話</span>
+<span class="go">[(&#39;gw&#39;, &#39;o&#39;, &#39;ng&#39;, &#39;2&#39;), (&#39;d&#39;, &#39;u&#39;, &#39;ng&#39;, &#39;1&#39;), (&#39;w&#39;, &#39;aa&#39;, &#39;&#39;, &#39;2&#39;)]</span>
+</pre></div>
+</div>
+<p>Syllabic nasals are treated as nuclei:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="kn">as</span> <span class="nn">pc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">jyutping</span><span class="p">(</span><span class="s1">&#39;m4goi1&#39;</span><span class="p">)</span>  <span class="c1"># 唔該</span>
+<span class="go">[(&#39;&#39;, &#39;m&#39;, &#39;&#39;, &#39;4&#39;), (&#39;g&#39;, &#39;o&#39;, &#39;i&#39;, &#39;1&#39;)]</span>
+</pre></div>
+</div>
+<p>The function <code class="docutils literal"><span class="pre">jyutping()</span></code> is able to detect invalid Jyutping romanization:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="kn">as</span> <span class="nn">pc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">parse_jyutping</span><span class="p">(</span><span class="s1">&#39;hou7&#39;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+  File <span class="nb">&quot;/usr/local/lib/python3.4/dist-packages/pycantonese/jyutping.py&quot;</span>, line <span class="m">197</span>, in <span class="n">parse_jyutping</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;tone error -- &#39;</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="n">jp</span><span class="p">))</span>
+<span class="gr">ValueError</span>: <span class="n">tone error -- &#39;hou7&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="jyutping-to-yale-conversion">
+<h2>Jyutping-to-Yale conversion<a class="headerlink" href="#jyutping-to-yale-conversion" title="Permalink to this headline">¶</a></h2>
+<p>The Yale romanization is still a commonly used system, particularly in numerous
+dictionaries and
+Cantonese language teaching resources. PyCantonese provides the
+<code class="docutils literal"><span class="pre">jyutping2yale()</span></code>
+function which reads a valid Jyutping string and returns the Yale equivalent:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="kn">as</span> <span class="nn">pc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">jyutping2yale</span><span class="p">(</span><span class="s1">&#39;m4goi1&#39;</span><span class="p">)</span>
+<span class="go">&#39;m̀hgōi&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">jyutping2yale</span><span class="p">(</span><span class="s1">&#39;gwong2dung1waa2&#39;</span><span class="p">)</span>
+<span class="go">&#39;gwóngdūngwá&#39;</span>
+</pre></div>
+</div>
+<p>In cases of potential ambiguity where a consonant letter could be part of
+the syllable on the left or the right,
+the quote <code class="docutils literal"><span class="pre">'</span></code> is used as a separator:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">jyutping2yale</span><span class="p">(</span><span class="s1">&#39;hei3hau6&#39;</span><span class="p">)</span>  <span class="c1"># 氣候; Yale &quot;h&quot; in 2nd syllable onset w/o separator would be ambiguous</span>
+<span class="go">&quot;hei&#39;hauh&quot;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">jyutping2yale()</span></code> has the optional parameter <code class="docutils literal"><span class="pre">as_list</span></code> for returning a list
+of Yale strings instead:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">jyutping2yale</span><span class="p">(</span><span class="s1">&#39;gwong2dung1waa2&#39;</span><span class="p">,</span> <span class="n">as_list</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="go">[&#39;gwóng&#39;, &#39;dūng&#39;, &#39;wá&#39;]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="jyutping-to-tipa-conversion">
+<h2>Jyutping-to-TIPA conversion<a class="headerlink" href="#jyutping-to-tipa-conversion" title="Permalink to this headline">¶</a></h2>
+<p>PyCantonese also offers the <code class="docutils literal"><span class="pre">jyutping2tipa()</span></code> function for the
+<a class="reference external" href="https://www.ctan.org/pkg/tipa?lang=en">LaTeX TIPA</a> users:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">jyutping2tipa</span><span class="p">(</span><span class="s1">&#39;m4goi1&#39;</span><span class="p">)</span>
+<span class="go">[&#39;\\s{m}21&#39;, &#39;kOY55&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">jyutping2tipa</span><span class="p">(</span><span class="s1">&#39;gwong2dung1waa2&#39;</span><span class="p">)</span>
+<span class="go">[&#39;k\\super w ON25&#39;, &#39;tUN55&#39;, &#39;wa25&#39;]</span>
+</pre></div>
+</div>
+<p>Currently, tones are output as Chao tone letters (= the numbers from 1 to 5)
+directly suffixed to the individual syllable string.
+(This may change in a future
+release if this behavior proves to be inconvenient.)</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="searches.html" title="Search queries"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="reader.html" title="Corpus reader methods"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2017, Jackson L. Lee | Documentation last updated on October 22, 2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+    </div>
+  </body>
+</html>

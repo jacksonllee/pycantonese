@@ -1,0 +1,175 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Corpus data &#8212; PyCantonese 2.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Corpus reader methods" href="reader.html" />
+    <link rel="prev" title="Download and install" href="download.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="reader.html" title="Corpus reader methods"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="download.html" title="Download and install"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Corpus data</a><ul>
+<li><a class="reference internal" href="#the-chat-transcription-format">The CHAT transcription format</a></li>
+<li><a class="reference internal" href="#accessing-built-in-data">Accessing built-in data</a></li>
+<li><a class="reference internal" href="#accessing-custom-data">Accessing custom data</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="download.html"
+                        title="previous chapter">Download and install</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="reader.html"
+                        title="next chapter">Corpus reader methods</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="corpus-data">
+<span id="data"></span><h1>Corpus data<a class="headerlink" href="#corpus-data" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="#chat-format"><span class="std std-ref">The CHAT transcription format</span></a></li>
+<li><a class="reference internal" href="#built-in-data"><span class="std std-ref">Accessing built-in data</span></a></li>
+<li><a class="reference internal" href="#custom-data"><span class="std std-ref">Accessing custom data</span></a></li>
+</ul>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If you are running a script on <strong>Windows</strong>, be sure to put all your code
+under the scope of <code class="docutils literal"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">'__main__':</span></code>.
+(PyCantonese uses the <code class="docutils literal"><span class="pre">multiprocessing</span></code> module to read data files.)</p>
+</div>
+<div class="section" id="the-chat-transcription-format">
+<span id="chat-format"></span><h2>The CHAT transcription format<a class="headerlink" href="#the-chat-transcription-format" title="Permalink to this headline">¶</a></h2>
+<p>PyCantonese adopts the CHAT format (as used in the CHILDES database for
+language acquisition research) as the standard corpus format.
+The choice is motivated by the fact that CHAT is widely used, well-documented,
+and rich for linguistic annotations.</p>
+<p>All built-in corpus datasets of PyCantonese are in the CHAT format.
+Underlyingly, PyCantonese uses the Python library
+<a class="reference external" href="http://pylangacq.org/">PyLangAcq</a> to parse CHAT data files.
+For the bare minimum of the CHAT format that PyCantonese assumes,
+see <a class="reference external" href="http://pylangacq.org/read.html#chat-format">here</a>.</p>
+</div>
+<div class="section" id="accessing-built-in-data">
+<span id="built-in-data"></span><h2>Accessing built-in data<a class="headerlink" href="#accessing-built-in-data" title="Permalink to this headline">¶</a></h2>
+<p>Currently, PyCantonese comes with one built-in Cantonese corpus, the
+150,000-word <a class="reference external" href="http://compling.hss.ntu.edu.sg/hkcancor/">Hong
+Kong Cantonese Corpus</a> (HKCanCor)
+by Kang Kwong Luke, via <code class="docutils literal"><span class="pre">hkcancor()</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="kn">as</span> <span class="nn">pc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span> <span class="o">=</span> <span class="n">pc</span><span class="o">.</span><span class="n">hkcancor</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>HKCanCor is released under a CC BY license.
+If this corpus is used, the following should be cited:</p>
+<p class="last">K. K. Luke and May L.Y. Wong (2015) The Hong Kong Cantonese Corpus:
+Design and Uses. <em>Journal of Chinese Linguistics</em> (to appear).</p>
+</div>
+<p>On the CHAT format of HKCanCor incorporated in PyCantonese,
+please consult this
+<a class="reference external" href="https://github.com/pycantonese/pycantonese/blob/master/pycantonese/data/hkcancor/readme.md">readme</a>.</p>
+</div>
+<div class="section" id="accessing-custom-data">
+<span id="custom-data"></span><h2>Accessing custom data<a class="headerlink" href="#accessing-custom-data" title="Permalink to this headline">¶</a></h2>
+<p>If you have a Cantonese corpus in the CHAT format in your local drive and would
+like to use PyCantonese to handle it, the function <code class="docutils literal"><span class="pre">read_chat()</span></code> is available
+for this purpose:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="kn">as</span> <span class="nn">pc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span> <span class="o">=</span> <span class="n">pc</span><span class="o">.</span><span class="n">read_chat</span><span class="p">(</span><span class="s1">&#39;path/to/files/*.cha&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If your CHAT data files have the extension name <code class="docutils literal"><span class="pre">.cha</span></code> and are all in
+a single directory, then filename pattern matching with <code class="docutils literal"><span class="pre">*</span></code> can be used to
+match all CHAT files in the specified directory.</p>
+<p><code class="docutils literal"><span class="pre">read_chat()</span></code> has the optional parameter <code class="docutils literal"><span class="pre">encoding</span></code> which defaults to
+<code class="docutils literal"><span class="pre">utf8</span></code> for UTF-8 and can be overridden for another encoding if necessary.</p>
+<p>If you are aware of other Cantonese corpora that could be incorporated into
+PyCantonese for open access,
+or if you are the owner of a Cantonese corpus and
+would like to make it accessible
+through PyCantonese, please contact <a class="reference external" href="http://jacksonllee.com">Jackson Lee</a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="reader.html" title="Corpus reader methods"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="download.html" title="Download and install"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2017, Jackson L. Lee | Documentation last updated on October 22, 2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+    </div>
+  </body>
+</html>

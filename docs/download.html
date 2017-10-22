@@ -1,0 +1,154 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Download and install &#8212; PyCantonese 2.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2.0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Corpus data" href="data.html" />
+    <link rel="prev" title="PyCantonese: Cantonese Linguistics in Python" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="data.html" title="Corpus data"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="PyCantonese: Cantonese Linguistics in Python"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Download and install</a><ul>
+<li><a class="reference internal" href="#latest-stable-release">Latest stable release</a></li>
+<li><a class="reference internal" href="#under-testing-and-development">Under testing and development</a></li>
+<li><a class="reference internal" href="#dependencies">Dependencies</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">PyCantonese: Cantonese Linguistics in Python</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="data.html"
+                        title="next chapter">Corpus data</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="download-and-install">
+<span id="download"></span><h1>Download and install<a class="headerlink" href="#download-and-install" title="Permalink to this headline">¶</a></h1>
+<p>PyCantonese requires Python 3.4 or above.</p>
+<div class="section" id="latest-stable-release">
+<h2>Latest stable release<a class="headerlink" href="#latest-stable-release" title="Permalink to this headline">¶</a></h2>
+<p>The latest stable release (version 2.0.1) is hosted at
+<a class="reference external" href="https://pypi.python.org/pypi/pycantonese">PyPI</a>
+and therefore available via <code class="docutils literal"><span class="pre">pip</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ python3 -m pip install pycantonese
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">python3</span></code> is meant to point to your Python 3 interpreter.
+Administrative privileges (e.g., <code class="docutils literal"><span class="pre">sudo</span></code> on Unix-like systems)
+may be required.</p>
+<p>To test your installation in the Python interpreter:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pycantonese</span><span class="o">.</span><span class="n">__version__</span>  <span class="c1"># show version number</span>
+</pre></div>
+</div>
+<p>The stable release version is what this documentation describes,
+unless otherwise noted.</p>
+</div>
+<div class="section" id="under-testing-and-development">
+<h2>Under testing and development<a class="headerlink" href="#under-testing-and-development" title="Permalink to this headline">¶</a></h2>
+<p>The version under testing and development is available at the
+<a class="reference external" href="https://github.com/pycantonese/pycantonese">GitHub repository</a></p>
+<p>This version likely contains experimental code not yet documented.
+You may obtain it via <code class="docutils literal"><span class="pre">git</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git clone https://github.com/pycantonese/pycantonese.git
+$ cd pycantonese
+$ python3 setup.py install
+</pre></div>
+</div>
+<p>Administrative privileges may be required for the last command.</p>
+<p><a class="reference external" href="https://github.com/pycantonese/pycantonese/blob/master/changelog.md">Changelog</a> on GitHub</p>
+</div>
+<div class="section" id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+<p>PyCantonese depends on the following Python libraries.
+If they are not detected on your system when you install PyCantonese,
+they are automatically installed for you:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://pylangacq.org">PyLangAcq</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="data.html" title="Corpus data"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="PyCantonese: Cantonese Linguistics in Python"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2014-2017, Jackson L. Lee | Documentation last updated on October 22, 2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+    </div>
+  </body>
+</html>

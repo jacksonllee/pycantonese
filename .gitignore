@@ -2,18 +2,11 @@
 /dist/
 /build/
 
-pycantonese/__pycache__/
-/pycantonese.egg-info
-
-build-doc.sh
 pypi_upload.sh
 
-/.idea/
 /test_dev/
-/doc/
+
+docs/_sources/*
 
 insert_social_media_links.py
 update_copyright_year.py
-
-*~
-*.pyc
