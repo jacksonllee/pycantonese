@@ -179,6 +179,7 @@ def parse_jyutping(jp_str):
             jp_current = ''
 
     if not jp_str[-1].isdigit():
+        # TODO: erro msg should be "no invalid tone detected" or something?
         raise ValueError('tone error -- ' + repr(jp_str[-1]))
 
     jp_parsed_list = []
