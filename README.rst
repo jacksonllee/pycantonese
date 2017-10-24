@@ -5,6 +5,10 @@ PyCantonese: Cantonese Linguistics and NLP in Python
    :target: https://travis-ci.org/pycantonese/pycantonese
    :alt: Build
 
+.. image:: https://img.shields.io/pypi/pyversions/pycantonese.svg
+   :target: https://pypi.python.org/pypi/pycantonese
+   :alt: Supported Python versions
+
 .. image:: https://landscape.io/github/pycantonese/pycantonese/master/landscape.svg?style=flat
    :target: https://landscape.io/github/pycantonese/pycantonese/master
    :alt: Code Health
