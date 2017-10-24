@@ -17,7 +17,11 @@ PyCantonese: Cantonese Linguistics and NLP in Python
    :target: https://landscape.io/github/pycantonese/pycantonese/master
    :alt: Code Health
 
-Full documentation: http://pycantonese.org
+
+Documentation
+-------------
+
+`http://pycantonese.org <http://pycantonese.org>`_
 
 
 Download and install
