@@ -7,8 +7,8 @@ from pycantonese.jyutping.tipa import ONSETS_TIPA, TONES_TIPA
 
 
 def test_correct_onset_set():
-    assert ONSETS_TIPA.keys() == ONSETS
+    assert set(ONSETS_TIPA.keys()) == ONSETS
 
 
 def test_correct_tone_set():
-    assert TONES_TIPA.keys() == TONES
+    assert set(TONES_TIPA.keys()) == TONES

@@ -32,7 +32,7 @@ version_filename = os.path.join(os.path.dirname(__file__), 'VERSION')
 try:
     with open(version_filename) as f:
         __version__ = f.read().strip()
-except FileNotFoundError:
+except FileNotFoundError:  # noqa F821 (py2 compatibility)
     __version__ = 'unknown version; VERSION file not found'
 
 
@@ -45,13 +45,15 @@ def hkcancor():
     return CantoneseCHATReader(data_path, encoding='utf8')
 
 
-def read_chat(*filenames, encoding=ENCODING):
+def read_chat(*filenames, **kwargs):
     """
     Create a corpus object based on *filenames*.
 
     :param filenames: one or multiple filenames (absolute-path or relative to
         the current directory; with or without glob matching patterns)
 
-    :param encoding: file encoding; defaults to 'utf8'.
+    :param kwargs: Keyword arguments. Currently, only ``encoding`` is
+        recognized, which defaults to 'utf8'.
     """
+    encoding = kwargs.get('encoding', ENCODING)
     return CantoneseCHATReader(*filenames, encoding=encoding)

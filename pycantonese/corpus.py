@@ -20,7 +20,8 @@ class CantoneseCHATReader(Reader):
     """
     A class for reading Cantonese CHAT corpus files.
     """
-    def __init__(self, *filenames, encoding=ENCODING):
+    def __init__(self, *filenames, **kwargs):
+        encoding = kwargs.get('encoding', ENCODING)
         super(CantoneseCHATReader, self).__init__(*filenames,
                                                   encoding=encoding)
 
