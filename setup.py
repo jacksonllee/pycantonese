@@ -1,11 +1,5 @@
 from os import path
-import sys
 from setuptools import setup, find_packages
-
-PYTHON_VERSION = sys.version_info[:2]
-if PYTHON_VERSION < (3, 4):
-    sys.exit('Error: PyCantonese requires Python 3.4 or above.\n'
-             'You are using Python {}.{}.'.format(*PYTHON_VERSION))
 
 THIS_DIR = path.dirname(__file__)
 
