@@ -8,5 +8,4 @@ pypi_upload.sh
 
 docs/_sources/*
 
-insert_social_media_links.py
 update_copyright_year.py
