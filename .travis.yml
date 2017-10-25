@@ -1,6 +1,7 @@
 language: python
 
 python:
+  - "2.7"
   - "3.4"
   - "3.5"
   - "3.6"
@@ -8,7 +9,7 @@ python:
 cache: pip
 
 install:
-  - pip install --upgrade pip
+  - pip install --upgrade pip setuptools
   - pip install -r requirements.txt
   - pip install -r dev-requirements.txt
   - python setup.py install
