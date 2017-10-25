@@ -9,6 +9,10 @@ with open(path.join(THIS_DIR, 'pycantonese', 'VERSION')) as f:
 with open(path.join(THIS_DIR, 'README.rst')) as f:
     long_description = f.read().strip()
 
+with open(path.join(THIS_DIR, 'requirements.txt')) as f:
+    requirements = [x.strip() for x in f.readlines()
+                    if x and not x.startswith('#')]
+
 
 def main():
     setup(name='pycantonese',
@@ -24,7 +28,7 @@ def main():
                     'NLP', 'Cantonese', 'linguistics', 'corpora', 'speech',
                     'language', 'Chinese', 'Jyutping', 'tagging'],
 
-          install_requires=['pylangacq'],
+          install_requires=requirements,
 
           package_data={
               'pycantonese': ['data/hkcancor/*', 'VERSION'],
@@ -33,7 +37,7 @@ def main():
           zip_safe=False,
 
           classifiers=[
-              'Development Status :: 5 - Production/Stable',
+              'Development Status :: 4 - Beta',
               'Environment :: Console',
               'Intended Audience :: Developers',
               'Intended Audience :: Education',
@@ -43,6 +47,8 @@ def main():
               'Natural Language :: Chinese (Traditional)',
               'Natural Language :: Cantonese',
               'Operating System :: OS Independent',
+              'Programming Language :: Python :: 2',
+              'Programming Language :: Python :: 2.7',
               'Programming Language :: Python :: 3',
               'Programming Language :: Python :: 3.4',
               'Programming Language :: Python :: 3.5',
