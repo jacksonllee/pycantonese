@@ -7,6 +7,15 @@
 # URL: <http://pycantonese.org/>
 # For license information, see LICENSE.TXT
 
+import sys
+
+
+if sys.version_info[0] == 2:  # pragma: no cover
+    unicode_ = unicode  # noqa F821 (undefined name 'unicode' in python >= 3)
+else:
+    unicode_ = str
+
+
 ONSETS = {'b', 'd', 'g', 'gw', 'z', 'p', 't', 'k', 'kw', 'c', 'm', 'n',
           'ng', 'f', 'h', 's', 'l', 'w', 'j', ''}
 
@@ -24,7 +33,7 @@ def parse_jyutping(jp_str):
     and return a list of 4-tuples, each as (onset, nucleus, coda, tone)
     """
     # check jp_str as a valid argument string
-    if type(jp_str) is not str:
+    if not isinstance(jp_str, (str, unicode_)):
         raise ValueError('argument needs to be a string -- ' + repr(jp_str))
     jp_str = jp_str.lower()
 
