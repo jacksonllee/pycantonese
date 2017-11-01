@@ -7,11 +7,6 @@ Corpus data
 * :ref:`built_in_data`
 * :ref:`custom_data`
 
-.. WARNING::
-   If you are running a script on **Windows**, be sure to put all your code
-   under the scope of ``if __name__ == '__main__':``.
-   (PyCantonese uses the ``multiprocessing`` module to read data files.)
-
 .. _chat_format:
 
 The CHAT transcription format

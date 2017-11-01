@@ -7,11 +7,6 @@ The sections :ref:`represent_words` and :ref:`note_on_methods` provide
 background information for how to use the methods listed in
 :ref:`metadata_methods` and :ref:`data_methods`.
 
-.. WARNING::
-   If you are running a script on **Windows**, be sure to put all your code
-   under the scope of ``if __name__ == '__main__':``.
-   (PyCantonese uses the ``multiprocessing`` module to read data files.)
-
 .. _represent_words:
 
 The representation of "words"

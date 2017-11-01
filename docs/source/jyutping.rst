@@ -17,10 +17,6 @@ its phonological components. Moreover, several other Cantonese romanization
 schemes are actively used alongside Jyutping. PyCantonese provides
 tools for converting Jyutping to some of these romanization systems.
 
-.. WARNING::
-   If you are running a script on **Windows**, be sure to put all your code
-   under the scope of ``if __name__ == '__main__':``.
-   (PyCantonese uses the ``multiprocessing`` module to read data files.)
 
 Parsing Jyutping strings
 ------------------------
