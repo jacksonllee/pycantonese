@@ -1,0 +1,7 @@
+include README.rst
+include changelog.md
+include LICENSE.txt
+include requirements.txt
+include dev-requirements.txt
+include pycantonese/VERSION
+include pycantonese/data/hkcancor/*
