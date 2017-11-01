@@ -39,7 +39,7 @@ Syllabic nasals are treated as nuclei:
 .. code-block:: python
 
     >>> import pycantonese as pc
-    >>> pc.jyutping('m4goi1')  # 唔該
+    >>> pc.parse_jyutping('m4goi1')  # 唔該
     [('', 'm', '', '4'), ('g', 'o', 'i', '1')]
 
 The function ``jyutping()`` is able to detect invalid Jyutping romanization:
