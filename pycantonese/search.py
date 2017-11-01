@@ -122,6 +122,8 @@ def perform_search(fn_to_tagged_sents,
                 else:
                     character_match = True
 
+                # if 'V' in c_pos.upper():
+                #     import pdb; pdb.set_trace()
                 if pos_search:
                     pos_match = bool(re.search(pos, c_pos))
                 else:
@@ -133,7 +135,7 @@ def perform_search(fn_to_tagged_sents,
                 # determine if jyutping matches c_jyutping
                 jyutping_match = False
 
-                if not jp_search and not c_jyutping:
+                if not jp_search:
                     jyutping_match = True
                 elif not c_jyutping:
                     pass
