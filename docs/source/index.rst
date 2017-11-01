@@ -5,10 +5,11 @@
 
 ..  _index:
 
-PyCantonese: Cantonese Linguistics in Python
-============================================
+PyCantonese: Cantonese Linguistics and NLP in Python
+====================================================
 
-PyCantonese is a Python library for Cantonese linguistic research.
+PyCantonese is a Python library for Cantonese linguistics and natural
+language processing (NLP).
 The goal of PyCantonese is to provide general-purpose tools and other
 functionality to work with Cantonese data. They include corpus search
 functions as well as various analytic and annotation tools;
@@ -38,16 +39,15 @@ as the library grows and evolves.
 
     2) Finding all verbs in the HKCanCor corpus
 
-       (verbs = part-of-speech tags beginning with "V")
-
-       We search for the regular expression ``'V*.'``:
+       We search for the regular expression ``'^V'`` for all words whose
+       part-of-speech tag begins with "V":
 
     .. code-block:: python
 
         >>> corpus = pc.hkcancor() # get HKCanCor
-        >>> all_verbs = corpus.search(pos='V*.')
+        >>> all_verbs = corpus.search(pos='^V')
         >>> len(all_verbs)  # number of all verbs
-        29010
+        29012
         >>> from pprint import pprint
         >>> pprint(all_verbs[:10])  # print 10 results
         [('去', 'V', 'heoi3', ''),
@@ -84,7 +84,7 @@ PyCantonese is maintained by
 
 A talk introducing PyCantonese:
 
-Jackson L. Lee. 2015. PyCantonese: Cantonese linguistic research in the age of big data. Talk at the Childhood Bilingualism Research Centre, Chinese University of Hong Kong. September 15. 2015. `[Notes+slides] <http://jacksonllee.com/papers/Lee-pycantonese-2015.html>`_
+Jackson L. Lee. 2015. PyCantonese: Cantonese linguistic research in the age of big data. Talk at the Childhood Bilingualism Research Centre, Chinese University of Hong Kong. September 15. 2015. `[Notes+slides] <http://pycantonese.org/papers/Lee-pycantonese-2015.html>`_
 
 See :ref:`papers` for a running list of our work.
 

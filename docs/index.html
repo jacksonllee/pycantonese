@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>PyCantonese: Cantonese Linguistics in Python &#8212; PyCantonese 2.0.1 documentation</title>
+    <title>PyCantonese: Cantonese Linguistics and NLP in Python &#8212; PyCantonese 2.1.0 documentation</title>
     <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '2.0.1',
+        VERSION:     '2.1.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -35,14 +35,14 @@
         <li class="right" >
           <a href="download.html" title="Download and install"
              accesskey="N">next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">PyCantonese 2.0.1 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="#">PyCantonese 2.1.0 documentation</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">PyCantonese: Cantonese Linguistics in Python</a><ul>
+<li><a class="reference internal" href="#">PyCantonese: Cantonese Linguistics and NLP in Python</a><ul>
 <li><a class="reference internal" href="#table-of-contents">Table of contents</a></li>
 <li><a class="reference internal" href="#how-to-cite">How to cite</a></li>
 <li><a class="reference internal" href="#technical-support-library-development-etc">Technical support, library development, etc.</a></li>
@@ -71,9 +71,10 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="pycantonese-cantonese-linguistics-in-python">
-<span id="index"></span><h1>PyCantonese: Cantonese Linguistics in Python<a class="headerlink" href="#pycantonese-cantonese-linguistics-in-python" title="Permalink to this headline">¶</a></h1>
-<p>PyCantonese is a Python library for Cantonese linguistic research.
+  <div class="section" id="pycantonese-cantonese-linguistics-and-nlp-in-python">
+<span id="index"></span><h1>PyCantonese: Cantonese Linguistics and NLP in Python<a class="headerlink" href="#pycantonese-cantonese-linguistics-and-nlp-in-python" title="Permalink to this headline">¶</a></h1>
+<p>PyCantonese is a Python library for Cantonese linguistics and natural
+language processing (NLP).
 The goal of PyCantonese is to provide general-purpose tools and other
 functionality to work with Cantonese data. They include corpus search
 functions as well as various analytic and annotation tools;
@@ -111,14 +112,14 @@ as the library grows and evolves.</p>
 </div>
 <ol class="arabic" start="2">
 <li><p class="first">Finding all verbs in the HKCanCor corpus</p>
-<p>(verbs = part-of-speech tags beginning with “V”)</p>
-<p>We search for the regular expression <code class="docutils literal"><span class="pre">'V*.'</span></code>:</p>
+<p>We search for the regular expression <code class="docutils literal"><span class="pre">'^V'</span></code> for all words whose
+part-of-speech tag begins with “V”:</p>
 </li>
 </ol>
 <div class="last highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span> <span class="o">=</span> <span class="n">pc</span><span class="o">.</span><span class="n">hkcancor</span><span class="p">()</span> <span class="c1"># get HKCanCor</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">all_verbs</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="s1">&#39;V*.&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">all_verbs</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="s1">&#39;^V&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">all_verbs</span><span class="p">)</span>  <span class="c1"># number of all verbs</span>
-<span class="go">29010</span>
+<span class="go">29012</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="n">all_verbs</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>  <span class="c1"># print 10 results</span>
 <span class="go">[(&#39;去&#39;, &#39;V&#39;, &#39;heoi3&#39;, &#39;&#39;),</span>
@@ -182,7 +183,7 @@ as the library grows and evolves.</p>
 <p>PyCantonese is maintained by
 <a class="reference external" href="http://jacksonllee.com">Jackson Lee</a>.</p>
 <p>A talk introducing PyCantonese:</p>
-<p>Jackson L. Lee. 2015. PyCantonese: Cantonese linguistic research in the age of big data. Talk at the Childhood Bilingualism Research Centre, Chinese University of Hong Kong. September 15. 2015. <a class="reference external" href="http://jacksonllee.com/papers/Lee-pycantonese-2015.html">[Notes+slides]</a></p>
+<p>Jackson L. Lee. 2015. PyCantonese: Cantonese linguistic research in the age of big data. Talk at the Childhood Bilingualism Research Centre, Chinese University of Hong Kong. September 15. 2015. <a class="reference external" href="http://pycantonese.org/papers/Lee-pycantonese-2015.html">[Notes+slides]</a></p>
 <p>See <a class="reference internal" href="papers.html#papers"><span class="std std-ref">Research outputs</span></a> for a running list of our work.</p>
 </div>
 <div class="section" id="technical-support-library-development-etc">
@@ -210,11 +211,11 @@ Alternatively, you may contact <a class="reference external" href="http://jackso
         <li class="right" >
           <a href="download.html" title="Download and install"
              >next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">PyCantonese 2.0.1 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="#">PyCantonese 2.1.0 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2014-2017, Jackson L. Lee | Documentation last updated on October 22, 2017.
+        &#169; Copyright 2014-2017, Jackson L. Lee | Documentation last updated on November 01, 2017.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
     </div>
   </body>
