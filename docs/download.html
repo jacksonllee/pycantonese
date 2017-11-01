@@ -44,16 +44,6 @@
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Download and install</a><ul>
-<li><a class="reference internal" href="#latest-stable-release">Latest stable release</a></li>
-<li><a class="reference internal" href="#under-testing-and-development">Under testing and development</a></li>
-<li><a class="reference internal" href="#dependencies">Dependencies</a></li>
-</ul>
-</li>
-</ul>
-
   <h4>Previous topic</h4>
   <p class="topless"><a href="index.html"
                         title="previous chapter">PyCantonese: Cantonese Linguistics and NLP in Python</a></p>
@@ -80,48 +70,15 @@
             
   <div class="section" id="download-and-install">
 <span id="download"></span><h1>Download and install<a class="headerlink" href="#download-and-install" title="Permalink to this headline">¶</a></h1>
-<p>PyCantonese requires Python 3.4 or above.</p>
-<div class="section" id="latest-stable-release">
-<h2>Latest stable release<a class="headerlink" href="#latest-stable-release" title="Permalink to this headline">¶</a></h2>
-<p>The latest stable release (version 2.1.0) is hosted at
-<a class="reference external" href="https://pypi.python.org/pypi/pycantonese">PyPI</a>
-and therefore available via <code class="docutils literal"><span class="pre">pip</span></code>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ python3 -m pip install pycantonese
+<p>PyCantonese is compatible with both Python 2 and 3 (specifically, 2.7 and 3.4+).
+It is available via <code class="docutils literal"><span class="pre">pip</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ pip install pycantonese
 </pre></div>
 </div>
-<p><code class="docutils literal"><span class="pre">python3</span></code> is meant to point to your Python 3 interpreter.
-Administrative privileges (e.g., <code class="docutils literal"><span class="pre">sudo</span></code> on Unix-like systems)
-may be required.</p>
 <p>To test your installation in the Python interpreter:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pycantonese</span><span class="o">.</span><span class="n">__version__</span>  <span class="c1"># show version number</span>
 </pre></div>
-</div>
-<p>The stable release version is what this documentation describes,
-unless otherwise noted.</p>
-</div>
-<div class="section" id="under-testing-and-development">
-<h2>Under testing and development<a class="headerlink" href="#under-testing-and-development" title="Permalink to this headline">¶</a></h2>
-<p>The version under testing and development is available at the
-<a class="reference external" href="https://github.com/pycantonese/pycantonese">GitHub repository</a></p>
-<p>This version likely contains experimental code not yet documented.
-You may obtain it via <code class="docutils literal"><span class="pre">git</span></code>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>$ git clone https://github.com/pycantonese/pycantonese.git
-$ cd pycantonese
-$ python3 setup.py install
-</pre></div>
-</div>
-<p>Administrative privileges may be required for the last command.</p>
-<p><a class="reference external" href="https://github.com/pycantonese/pycantonese/blob/master/changelog.md">Changelog</a> on GitHub</p>
-</div>
-<div class="section" id="dependencies">
-<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
-<p>PyCantonese depends on the following Python libraries.
-If they are not detected on your system when you install PyCantonese,
-they are automatically installed for you:</p>
-<ul class="simple">
-<li><a class="reference external" href="http://pylangacq.org">PyLangAcq</a></li>
-</ul>
 </div>
 </div>
 
