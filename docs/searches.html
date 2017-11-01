@@ -186,7 +186,7 @@ restrictions are imposed on the combination of Jyutping-related search criteria:
 parameter:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">machine</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">character</span><span class="o">=</span><span class="s1">&#39;機&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">machine</span><span class="p">)</span>
-<span class="go">175</span>
+<span class="go">184</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="n">machine</span><span class="p">[:</span> <span class="mi">5</span><span class="p">])</span>
 <span class="go">[(&#39;機票&#39;, &#39;N&#39;, &#39;gei1piu3&#39;, &#39;&#39;),</span>
 <span class="go"> (&#39;機票&#39;, &#39;N&#39;, &#39;gei1piu3&#39;, &#39;&#39;),</span>
@@ -195,6 +195,8 @@ parameter:</p>
 <span class="go"> (&#39;機&#39;, &#39;NG&#39;, &#39;gei1&#39;, &#39;&#39;)]</span>
 </pre></div>
 </div>
+<p>If you are using Python 2, use <code class="docutils literal"><span class="pre">corpus.search(character=u'機')</span></code> (note the “u”
+prefix for the string literal) for unicode.</p>
 </div>
 <div class="section" id="searching-by-a-part-of-speech-tag">
 <span id="search-pos"></span><h2>Searching by a part-of-speech tag<a class="headerlink" href="#searching-by-a-part-of-speech-tag" title="Permalink to this headline">¶</a></h2>
@@ -213,11 +215,11 @@ can be accessed as follows:</p>
 </pre></div>
 </div>
 <p>The <code class="docutils literal"><span class="pre">pos</span></code> parameter may take a regular expression. For instance,
-we can use <code class="docutils literal"><span class="pre">'V*.'</span></code> to match any part-of-speech tags that begin with “V” for
+we can use <code class="docutils literal"><span class="pre">'^V'</span></code> to match any part-of-speech tags that begin with “V” for
 different kinds of verbs annotated in HKCanCor:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">all_verbs</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="s1">&#39;V*.&#39;</span><span class="p">)</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">all_verbs</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="s1">&#39;^V&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">all_verbs</span><span class="p">)</span>  <span class="c1"># number of all verbs -- more than just &quot;V&quot; alone above</span>
-<span class="go">29010</span>
+<span class="go">29012</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="n">all_verbs</span><span class="p">[:</span><span class="mi">20</span><span class="p">])</span>  <span class="c1"># printing the first 20 results</span>
 <span class="go">[(&#39;去&#39;, &#39;V&#39;, &#39;heoi3&#39;, &#39;&#39;),</span>
 <span class="go"> (&#39;去&#39;, &#39;V&#39;, &#39;heoi3&#39;, &#39;&#39;),</span>
@@ -259,7 +261,7 @@ on the right – all within the same sent (= sentence).
 Likewise, <code class="docutils literal"><span class="pre">sent_range</span></code> defaults to <code class="docutils literal"><span class="pre">(0,</span> <span class="pre">0)</span></code> for 0 <em>sents</em>
 preceding the sent containing the match word and 0 <em>sents</em> following it.</p>
 <p>For <code class="docutils literal"><span class="pre">word_range</span></code>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gwo3</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">character</span><span class="o">=</span><span class="s1">&#39;過&#39;</span><span class="p">,</span> <span class="n">word_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gwo3</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">character</span><span class="o">=</span><span class="s1">&#39;過&#39;</span><span class="p">,</span> <span class="n">word_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>  <span class="c1"># use u&#39;過&#39; instead in python 2</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">gwo3</span><span class="p">)</span>
 <span class="go">679</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="n">gwo3</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>

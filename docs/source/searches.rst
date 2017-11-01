@@ -127,13 +127,16 @@ parameter:
 
     >>> machine = corpus.search(character='機')
     >>> len(machine)
-    175
+    184
     >>> pprint(machine[: 5])
     [('機票', 'N', 'gei1piu3', ''),
      ('機票', 'N', 'gei1piu3', ''),
      ('機票', 'N', 'gei1piu3', ''),
      ('飛機', 'N', 'fei1gei1', ''),
      ('機', 'NG', 'gei1', '')]
+
+If you are using Python 2, use ``corpus.search(character=u'機')`` (note the "u"
+prefix for the string literal) for unicode.
 
 
 .. _search_pos:
@@ -158,14 +161,14 @@ can be accessed as follows:
      ('係', 'V', 'hai6', '')]
 
 The ``pos`` parameter may take a regular expression. For instance,
-we can use ``'V*.'`` to match any part-of-speech tags that begin with "V" for
+we can use ``'^V'`` to match any part-of-speech tags that begin with "V" for
 different kinds of verbs annotated in HKCanCor:
 
 .. code-block:: python
 
-    >>> all_verbs = corpus.search(pos='V*.')
+    >>> all_verbs = corpus.search(pos='^V')
     >>> len(all_verbs)  # number of all verbs -- more than just "V" alone above
-    29010
+    29012
     >>> pprint(all_verbs[:20])  # printing the first 20 results
     [('去', 'V', 'heoi3', ''),
      ('去', 'V', 'heoi3', ''),
@@ -216,7 +219,7 @@ For ``word_range``:
 
 .. code-block:: python
 
-    >>> gwo3 = corpus.search(character='過', word_range=(1, 2))
+    >>> gwo3 = corpus.search(character='過', word_range=(1, 2))  # use u'過' instead in python 2
     >>> len(gwo3)
     679
     >>> pprint(gwo3[:5])
