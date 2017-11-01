@@ -8,7 +8,6 @@
 # For license information, see LICENSE.TXT
 
 
-ALL_PARTICIPANTS = '**ALL**'
 ENCODING = 'utf8'
 
 

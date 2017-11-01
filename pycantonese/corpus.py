@@ -11,9 +11,7 @@
 from pylangacq.chat import Reader
 
 from pycantonese.search import perform_search
-from pycantonese.util import (ENCODING, ALL_PARTICIPANTS,
-                              get_jyutping_from_mor,
-                              ListFromIterables)
+from pycantonese.util import ENCODING, get_jyutping_from_mor, ListFromIterables
 
 
 class CantoneseCHATReader(Reader):
@@ -40,11 +38,11 @@ class CantoneseCHATReader(Reader):
     def IPSyn(self, participant='CHI'):
         raise NotImplementedError('method not applicable to PyCantonese')
 
-    def concordance(self, search_item, participant=ALL_PARTICIPANTS,
+    def concordance(self, search_item, participant=None,
                     match_entire_word=True, lemma=False, by_files=False):
         raise NotImplementedError('method not applicable to PyCantonese')
 
-    def _get_jyutping_sents(self, participant=ALL_PARTICIPANTS, sents=True):
+    def _get_jyutping_sents(self, participant=None, sents=True):
         fname_to_tagged_sents = self.tagged_sents(participant=participant,
                                                   by_files=True)
 
@@ -73,7 +71,7 @@ class CantoneseCHATReader(Reader):
 
         return fn_to_jyutpings
 
-    def jyutpings(self, participant=ALL_PARTICIPANTS, by_files=False):
+    def jyutpings(self, participant=None, by_files=False):
         """
         Return a list of jyutping strings by *participant* in all files.
 
@@ -94,7 +92,7 @@ class CantoneseCHATReader(Reader):
             return ListFromIterables(*(v for _, v in
                                        sorted(fn_to_jyutpings.items())))
 
-    def jyutping_sents(self, participant=ALL_PARTICIPANTS, by_files=False):
+    def jyutping_sents(self, participant=None, by_files=False):
         """
         Return a list of sents of jyutping strings
         by *participant* in all files.
@@ -116,7 +114,7 @@ class CantoneseCHATReader(Reader):
             return ListFromIterables(*(v for _, v in
                                        sorted(fn_to_jyutpings.items())))
 
-    def _get_character_sents(self, participant=ALL_PARTICIPANTS, sents=True):
+    def _get_character_sents(self, participant=None, sents=True):
         fname_to_tagged_sents = self.tagged_sents(participant=participant,
                                                   by_files=True)
 
@@ -149,7 +147,7 @@ class CantoneseCHATReader(Reader):
 
         return fn_to_characters
 
-    def characters(self, participant=ALL_PARTICIPANTS, by_files=False):
+    def characters(self, participant=None, by_files=False):
         """
         Return a list of Chinese characters by *participant* in all files.
 
@@ -170,7 +168,7 @@ class CantoneseCHATReader(Reader):
             return ListFromIterables(*(v for _, v in
                                        sorted(fn_to_characters.items())))
 
-    def character_sents(self, participant=ALL_PARTICIPANTS, by_files=False):
+    def character_sents(self, participant=None, by_files=False):
         """
         Return a list of sents of Chinese characters
         by *participant* in all files.
@@ -197,7 +195,7 @@ class CantoneseCHATReader(Reader):
                character=None, pos=None,
                word_range=(0, 0), sent_range=(0, 0),
                tagged=True, sents=False,
-               participant=ALL_PARTICIPANTS, by_files=False):
+               participant=None, by_files=False):
         """
         Search for the specified element(s).
 

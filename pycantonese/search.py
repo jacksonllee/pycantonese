@@ -14,7 +14,7 @@ from pycantonese.jyutping import parse_jyutping, parse_final
 
 
 def _jp_element_match(search_element, current_element):
-    if search_element is None or re.fullmatch(search_element, current_element):
+    if search_element is None or re.search(search_element, current_element):
         return True
     else:
         return False
@@ -105,10 +105,10 @@ def perform_search(fn_to_tagged_sents,
                 nucleus, coda = parse_final(final)
             jp_search_tuple = (onset, nucleus, coda, tone)
 
-    fn_to_results = dict()
+    fn_to_results = {}
 
     for fn, tagged_sents in fn_to_tagged_sents.items():
-        sent_word_index_pairs = list()
+        sent_word_index_pairs = []
 
         for i_sent, tagged_sent in enumerate(tagged_sents):
 
@@ -123,7 +123,7 @@ def perform_search(fn_to_tagged_sents,
                     character_match = True
 
                 if pos_search:
-                    pos_match = re.fullmatch(pos, c_pos)
+                    pos_match = bool(re.search(pos, c_pos))
                 else:
                     pos_match = True
 
@@ -156,7 +156,7 @@ def perform_search(fn_to_tagged_sents,
                 if jyutping_match:
                     sent_word_index_pairs.append((i_sent, i_word))
 
-        results_list = list()
+        results_list = []
 
         for i_sent, i_word in sent_word_index_pairs:
             if not sents:
