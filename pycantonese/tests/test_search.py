@@ -2,10 +2,7 @@
 
 from __future__ import unicode_literals
 
-import pycantonese
-
-
-HKCANCOR = pycantonese.hkcancor()
+from pycantonese.tests.test_corpus import HKCANCOR
 
 
 def test_find_verbs_in_hkcancor():
