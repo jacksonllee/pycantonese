@@ -1,6 +1,20 @@
+"""Test Jyutping parsing.
+
+Some tests mirror what the documentation demonstrates.
+If these tests fail, the documentation should probably be updated as well
+(and the bugs should be fixed, if any).
+"""
+
+
 import pytest
 
 from pycantonese.jyutping import parse_jyutping
+
+
+def test_basic_case_gwong2dung1waa2():
+    assert parse_jyutping('gwong2dung1waa2') == [
+        ('gw', 'o', 'ng', '2'), ('d', 'u', 'ng', '1'), ('w', 'aa', '', '2')
+    ]
 
 
 def test_wrong_data_type():
