@@ -17,28 +17,11 @@ from pycantonese.util import ENCODING, get_jyutping_from_mor, ListFromIterables
 
 
 class CantoneseCHATReader(Reader):
-    """
-    A class for reading Cantonese CHAT corpus files.
-    """
+    """A class for reading Cantonese CHAT corpus files."""
     def __init__(self, *filenames, **kwargs):
         encoding = kwargs.get('encoding', ENCODING)
         super(CantoneseCHATReader, self).__init__(*filenames,
                                                   encoding=encoding)
-
-    def MLU(self, participant='CHI'):
-        raise NotImplementedError('method not applicable to PyCantonese')
-
-    def MLUm(self, participant='CHI'):
-        raise NotImplemented('method not applicable to PyCantonese')
-
-    def MLUw(self, participant='CHI'):
-        raise NotImplementedError('method not applicable to PyCantonese')
-
-    def TTR(self, participant='CHI'):
-        raise NotImplementedError('method not applicable to PyCantonese')
-
-    def IPSyn(self, participant='CHI'):
-        raise NotImplementedError('method not applicable to PyCantonese')
 
     def concordance(self, search_item, participant=None,
                     match_entire_word=True, lemma=False, by_files=False):
