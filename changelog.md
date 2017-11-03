@@ -1,9 +1,12 @@
 # Change log
 
-## v2.1.0 - 2017-11-01
+## v2.1.0 - [Unreleased]
 
 * Python 2 and 3 cross compatibility.
 * Allowed "n" to be a syllabic nasal.
+* Exposed the `exclude` parameter in various reader methods
+  for excluding specific participants. This parameter was implemented at
+  pylangacq v0.10.0.
 
 ## v2.0.0 - 2016-02-06
 
