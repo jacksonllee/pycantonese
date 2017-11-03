@@ -8,6 +8,8 @@
 # For license information, see LICENSE.TXT
 
 
+import os
+
 from pylangacq.chat import Reader
 
 from pycantonese.search import perform_search
@@ -260,3 +262,26 @@ class CantoneseCHATReader(Reader):
         else:
             return ListFromIterables(*(v for _, v in
                                        sorted(fn_to_results.items())))
+
+
+def hkcancor():
+    """
+    Create the corpus object for the Hong Kong Cantonese Corpus.
+    """
+    data_path = os.path.join(os.path.dirname(__file__),
+                             'data', 'hkcancor', '*.cha')
+    return CantoneseCHATReader(data_path, encoding='utf8')
+
+
+def read_chat(*filenames, **kwargs):
+    """
+    Create a corpus object based on *filenames*.
+
+    :param filenames: one or multiple filenames (absolute-path or relative to
+        the current directory; with or without glob matching patterns)
+
+    :param kwargs: Keyword arguments. Currently, only ``encoding`` is
+        recognized, which defaults to 'utf8'.
+    """
+    encoding = kwargs.get('encoding', ENCODING)
+    return CantoneseCHATReader(*filenames, encoding=encoding)
