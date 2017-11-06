@@ -104,7 +104,7 @@ def jyutping2tipa(jp_str):
     Convert *jp_str* to a list of LaTeX TIPA strings.
     """
     jp_parsed_list = parse_jyutping(jp_str)
-    tipa_list = list()
+    tipa_list = []
 
     for jp_parsed in jp_parsed_list:
         onset = jp_parsed[0]

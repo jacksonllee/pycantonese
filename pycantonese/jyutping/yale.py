@@ -79,7 +79,7 @@ def jyutping2yale(jp_str, as_list=False):
         jp_str = unicode(jp_str)  # noqa F821 ('unicode' undefined in py >= 3)
 
     jp_parsed_list = parse_jyutping(jp_str)
-    yale_list = list()
+    yale_list = []
 
     for jp_parsed in jp_parsed_list:
         onset = ONSETS_YALE[jp_parsed[0]]

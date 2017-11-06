@@ -32,16 +32,16 @@ class CantoneseCHATReader(Reader):
                                                   exclude=exclude,
                                                   by_files=True)
 
-        fn_to_jyutpings = dict()
-        jyutpings_list = list()
+        fn_to_jyutpings = {}
+        jyutpings_list = []
 
         for fn in self.filenames():
-            fn_to_jyutpings[fn] = list()
+            fn_to_jyutpings[fn] = []
             tagged_sents = fname_to_tagged_sents[fn]
 
             for tagged_sent in tagged_sents:
                 if sents:
-                    jyutpings_list = list()
+                    jyutpings_list = []
 
                 for tagged_word in tagged_sent:
                     _, _, mor, _ = tagged_word
@@ -107,16 +107,16 @@ class CantoneseCHATReader(Reader):
                                                   exclude=exclude,
                                                   by_files=True)
 
-        fn_to_characters = dict()
-        characters_list = list()
+        fn_to_characters = {}
+        characters_list = []
 
         for fn in self.filenames():
-            fn_to_characters[fn] = list()
+            fn_to_characters[fn] = []
             tagged_sents = fname_to_tagged_sents[fn]
 
             for tagged_sent in tagged_sents:
                 if sents:
-                    characters_list = list()
+                    characters_list = []
 
                 for tagged_word in tagged_sent:
                     chs, _, _, _ = tagged_word
