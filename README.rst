@@ -39,7 +39,9 @@ Setting up a Development Environment
 
 The latest code under development is available on Github at
 `pycantonese/pycantonese <https://github.com/pycantonese/pycantonese>`_.
-To obtain this version for experimental features or for development:
+To obtain this version for experimental features or for development
+(the version number has the "-dev" suffix if features/fixes not found
+in the latest official release through pip are present):
 
 .. code-block:: bash
 

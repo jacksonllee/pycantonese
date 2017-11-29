@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Corpus reader methods &#8212; PyCantonese 2.1.0 documentation</title>
+    <title>Corpus reader methods &#8212; PyCantonese 2.1.0-dev documentation</title>
     <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '2.1.0',
+        VERSION:     '2.1.0-dev',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -39,7 +39,7 @@
         <li class="right" >
           <a href="data.html" title="Corpus data"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.1.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.1.0-dev documentation</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -209,16 +209,16 @@ object is dict(absolute-path filename: X() for that file) instead.</p>
 <tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">tagged_sents</span></code>(*args,&nbsp;**kwargs)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.jyutpings" title="pycantonese.corpus.CantoneseCHATReader.jyutpings"><code class="xref py py-obj docutils literal"><span class="pre">jyutpings</span></code></a>([participant,&nbsp;by_files])</td>
+<tr class="row-even"><td><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.jyutpings" title="pycantonese.corpus.CantoneseCHATReader.jyutpings"><code class="xref py py-obj docutils literal"><span class="pre">jyutpings</span></code></a>([participant,&nbsp;exclude,&nbsp;by_files])</td>
 <td>Return a list of jyutping strings by <em>participant</em> in all files.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.jyutping_sents" title="pycantonese.corpus.CantoneseCHATReader.jyutping_sents"><code class="xref py py-obj docutils literal"><span class="pre">jyutping_sents</span></code></a>([participant,&nbsp;by_files])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.jyutping_sents" title="pycantonese.corpus.CantoneseCHATReader.jyutping_sents"><code class="xref py py-obj docutils literal"><span class="pre">jyutping_sents</span></code></a>([participant,&nbsp;exclude,&nbsp;by_files])</td>
 <td>Return a list of sents of jyutping strings by <em>participant</em> in all files.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.characters" title="pycantonese.corpus.CantoneseCHATReader.characters"><code class="xref py py-obj docutils literal"><span class="pre">characters</span></code></a>([participant,&nbsp;by_files])</td>
+<tr class="row-even"><td><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.characters" title="pycantonese.corpus.CantoneseCHATReader.characters"><code class="xref py py-obj docutils literal"><span class="pre">characters</span></code></a>([participant,&nbsp;exclude,&nbsp;by_files])</td>
 <td>Return a list of Chinese characters by <em>participant</em> in all files.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.character_sents" title="pycantonese.corpus.CantoneseCHATReader.character_sents"><code class="xref py py-obj docutils literal"><span class="pre">character_sents</span></code></a>([participant,&nbsp;by_files])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.character_sents" title="pycantonese.corpus.CantoneseCHATReader.character_sents"><code class="xref py py-obj docutils literal"><span class="pre">character_sents</span></code></a>([participant,&nbsp;exclude,&nbsp;by_files])</td>
 <td>Return a list of sents of Chinese characters by <em>participant</em> in all files.</td>
 </tr>
 <tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">part_of_speech_tags</span></code>(*args,&nbsp;**kwargs)</td>
@@ -256,6 +256,77 @@ object is dict(absolute-path filename: X() for that file) instead.</p>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">pylangacq.chat.Reader</span></code></p>
 <p>A class for reading Cantonese CHAT corpus files.</p>
 <dl class="method">
+<dt id="pycantonese.corpus.CantoneseCHATReader.IPSyn">
+<code class="descname">IPSyn</code><span class="sig-paren">(</span><em>participant='CHI'</em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.IPSyn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a map from a file path to the file’s IPSyn.</p>
+<p>IPSyn = index of productive syntax</p>
+<dl class="docutils">
+<dt>participant <span class="classifier-delimiter">:</span> <span class="classifier">str, optional</span></dt>
+<dd>The specified participant (default to <code class="docutils literal"><span class="pre">'CHI'</span></code>).</dd>
+</dl>
+<p>dict(str: int)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pycantonese.corpus.CantoneseCHATReader.MLU">
+<code class="descname">MLU</code><span class="sig-paren">(</span><em>participant='CHI'</em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.MLU" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a map from a file path to the file’s MLU by morphemes.</p>
+<p>MLU = mean length of utterance. This method is identical to <code class="docutils literal"><span class="pre">MLUm</span></code>.</p>
+<dl class="docutils">
+<dt>participant <span class="classifier-delimiter">:</span> <span class="classifier">str, optional</span></dt>
+<dd>The specified participant (default to <code class="docutils literal"><span class="pre">'CHI'</span></code>).</dd>
+</dl>
+<p>dict(str: float)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pycantonese.corpus.CantoneseCHATReader.MLUm">
+<code class="descname">MLUm</code><span class="sig-paren">(</span><em>participant='CHI'</em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.MLUm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a map from a file path to the file’s MLU by morphemes.</p>
+<p>MLU = mean length of utterance. This method is identical to <code class="docutils literal"><span class="pre">MLUm</span></code>.</p>
+<dl class="docutils">
+<dt>participant <span class="classifier-delimiter">:</span> <span class="classifier">str, optional</span></dt>
+<dd>The specified participant (default to <code class="docutils literal"><span class="pre">'CHI'</span></code>).</dd>
+</dl>
+<p>dict(str: float)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pycantonese.corpus.CantoneseCHATReader.MLUw">
+<code class="descname">MLUw</code><span class="sig-paren">(</span><em>participant='CHI'</em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.MLUw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a map from a file path to the file’s MLU by words.</p>
+<p>MLU = mean length of utterance.</p>
+<dl class="docutils">
+<dt>participant <span class="classifier-delimiter">:</span> <span class="classifier">str, optional</span></dt>
+<dd>The specified participant (default to <code class="docutils literal"><span class="pre">'CHI'</span></code>).</dd>
+</dl>
+<p>dict(str: float)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pycantonese.corpus.CantoneseCHATReader.TTR">
+<code class="descname">TTR</code><span class="sig-paren">(</span><em>participant='CHI'</em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.TTR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a map from a file path to the file’s TTR.</p>
+<p>TTR = type-token ratio</p>
+<dl class="docutils">
+<dt>participant <span class="classifier-delimiter">:</span> <span class="classifier">str, optional</span></dt>
+<dd>The specified participant (default to <code class="docutils literal"><span class="pre">'CHI'</span></code>).</dd>
+</dl>
+<p>dict(str: float)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pycantonese.corpus.CantoneseCHATReader.abspath">
+<code class="descname">abspath</code><span class="sig-paren">(</span><em>basename</em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.abspath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the absolute path of <code class="docutils literal"><span class="pre">basename</span></code>.</p>
+<dl class="docutils">
+<dt>basename <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
+<dd>The basename (e.g., “foobar.cha”) of the desired data file.</dd>
+</dl>
+<p>str</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="pycantonese.corpus.CantoneseCHATReader.add">
 <code class="descname">add</code><span class="sig-paren">(</span><em>*filenames</em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.add" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add one or more CHAT <code class="docutils literal"><span class="pre">filenames</span></code> to the current reader.</p>
@@ -281,7 +352,7 @@ object is dict(absolute-path filename: X() for that file) instead.</p>
 
 <dl class="method">
 <dt id="pycantonese.corpus.CantoneseCHATReader.character_sents">
-<code class="descname">character_sents</code><span class="sig-paren">(</span><em>participant=None</em>, <em>by_files=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.character_sents" title="Permalink to this definition">¶</a></dt>
+<code class="descname">character_sents</code><span class="sig-paren">(</span><em>participant=None</em>, <em>exclude=None</em>, <em>by_files=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.character_sents" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a list of sents of Chinese characters
 by <em>participant</em> in all files.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -305,7 +376,7 @@ filename: X for that file) instead of X for all files altogether.</li>
 
 <dl class="method">
 <dt id="pycantonese.corpus.CantoneseCHATReader.characters">
-<code class="descname">characters</code><span class="sig-paren">(</span><em>participant=None</em>, <em>by_files=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.characters" title="Permalink to this definition">¶</a></dt>
+<code class="descname">characters</code><span class="sig-paren">(</span><em>participant=None</em>, <em>exclude=None</em>, <em>by_files=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.characters" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a list of Chinese characters by <em>participant</em> in all files.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -356,7 +427,7 @@ filename: X for that file) instead of X for all files altogether.</li>
 <dd>Whether to return the filenames as a list sorted by the target
 child’s age.</dd>
 </dl>
-<p>set of str, or list of str</p>
+<p>set of str or list of str</p>
 </dd></dl>
 
 <dl class="method">
@@ -375,7 +446,7 @@ child’s age.</dd>
 
 <dl class="method">
 <dt id="pycantonese.corpus.CantoneseCHATReader.jyutping_sents">
-<code class="descname">jyutping_sents</code><span class="sig-paren">(</span><em>participant=None</em>, <em>by_files=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.jyutping_sents" title="Permalink to this definition">¶</a></dt>
+<code class="descname">jyutping_sents</code><span class="sig-paren">(</span><em>participant=None</em>, <em>exclude=None</em>, <em>by_files=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.jyutping_sents" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a list of sents of jyutping strings
 by <em>participant</em> in all files.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -399,7 +470,7 @@ filename: X for that file) instead of X for all files altogether.</li>
 
 <dl class="method">
 <dt id="pycantonese.corpus.CantoneseCHATReader.jyutpings">
-<code class="descname">jyutpings</code><span class="sig-paren">(</span><em>participant=None</em>, <em>by_files=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.jyutpings" title="Permalink to this definition">¶</a></dt>
+<code class="descname">jyutpings</code><span class="sig-paren">(</span><em>participant=None</em>, <em>exclude=None</em>, <em>by_files=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.jyutpings" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a list of jyutping strings by <em>participant</em> in all files.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -438,7 +509,7 @@ filename: X for that file) instead of X for all files altogether.</li>
 <dt id="pycantonese.corpus.CantoneseCHATReader.participants">
 <code class="descname">participants</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.participants" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a dict mapping a file path to the file’s participant info.</p>
-<p>dict(str: dict</p>
+<p>dict(str: dict)</p>
 </dd></dl>
 
 <dl class="method">
@@ -453,7 +524,7 @@ filename: X for that file) instead of X for all files altogether.</li>
 
 <dl class="method">
 <dt id="pycantonese.corpus.CantoneseCHATReader.search">
-<code class="descname">search</code><span class="sig-paren">(</span><em>onset=None</em>, <em>nucleus=None</em>, <em>coda=None</em>, <em>tone=None</em>, <em>initial=None</em>, <em>final=None</em>, <em>jyutping=None</em>, <em>character=None</em>, <em>pos=None</em>, <em>word_range=(0</em>, <em>0)</em>, <em>sent_range=(0</em>, <em>0)</em>, <em>tagged=True</em>, <em>sents=False</em>, <em>participant=None</em>, <em>by_files=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.search" title="Permalink to this definition">¶</a></dt>
+<code class="descname">search</code><span class="sig-paren">(</span><em>onset=None</em>, <em>nucleus=None</em>, <em>coda=None</em>, <em>tone=None</em>, <em>initial=None</em>, <em>final=None</em>, <em>jyutping=None</em>, <em>character=None</em>, <em>pos=None</em>, <em>word_range=(0</em>, <em>0)</em>, <em>sent_range=(0</em>, <em>0)</em>, <em>tagged=True</em>, <em>sents=False</em>, <em>participant=None</em>, <em>exclude=None</em>, <em>by_files=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.search" title="Permalink to this definition">¶</a></dt>
 <dd><p>Search for the specified element(s).</p>
 <p><strong>Jyutping elements</strong></p>
 <p>Parameters are <em>onset</em>, <em>nucleus</em>, <em>coda</em>, <em>tone</em>, <em>initial</em>,
@@ -518,12 +589,12 @@ instead.</p>
         <li class="right" >
           <a href="data.html" title="Corpus data"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.1.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.1.0-dev documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2014-2017, Jackson L. Lee | Documentation last updated on November 01, 2017.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.4.
+        &#169; Copyright 2014-2017, Jackson L. Lee | Documentation last updated on November 29, 2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
     </div>
   </body>
 </html>
