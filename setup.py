@@ -1,24 +1,22 @@
-from os import path
+import os
 from setuptools import setup, find_packages
 
-THIS_DIR = path.dirname(__file__)
 
-with open(path.join(THIS_DIR, 'pycantonese', 'VERSION')) as f:
-    package_version = f.read().strip()
+_THIS_DIR = os.path.dirname(__file__)
 
-with open(path.join(THIS_DIR, 'README.rst')) as f:
-    long_description = f.read().strip()
+with open(os.path.join(_THIS_DIR, 'README.rst')) as f:
+    _LONG_DESCRIPTION = f.read().strip()
 
-with open(path.join(THIS_DIR, 'requirements.txt')) as f:
-    requirements = [x.strip() for x in f.readlines()
-                    if x and not x.startswith('#')]
+__version__ = None  # updated in the next line
+exec(open(os.path.join(_THIS_DIR, 'pycantonese', '_version.py')).read())
+assert __version__ is not None
 
 
 def main():
     setup(name='pycantonese',
-          version=package_version,
+          version=__version__,
           description='PyCantonese',
-          long_description=long_description,
+          long_description=_LONG_DESCRIPTION,
           url='http://pycantonese.org/',
           author='Jackson Lee',
           author_email='jacksonlunlee@gmail.com',
@@ -28,10 +26,12 @@ def main():
                     'NLP', 'Cantonese', 'linguistics', 'corpora', 'speech',
                     'language', 'Chinese', 'Jyutping', 'tagging'],
 
-          install_requires=requirements,
+          install_requires=[
+              'pylangacq>=0.10.0'
+          ],
 
           package_data={
-              'pycantonese': ['data/hkcancor/*', 'VERSION'],
+              'pycantonese': ['data/hkcancor/*'],
           },
 
           zip_safe=False,

@@ -1,10 +1,7 @@
 # For tests
-flake8>=3.5.0,<=3.5.99
-pytest>=3.2.3,<=3.2.99
-pytest-cov>=2.5.1,<=2.5.99
+flake8
+pytest
+pytest-cov
 #
 # For docs
-Sphinx>=1.6.5,<=2.0.0
-#
-# For PyPI releases
-twine>=1.9.1
+Sphinx

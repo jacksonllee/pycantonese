@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-
-from __future__ import unicode_literals
-
 from pycantonese.jyutping.parse_jyutping import ONSETS, NUCLEI, CODAS
 from pycantonese.jyutping.yale import (
     ONSETS_YALE, NUCLEI_YALE, CODAS_YALE, jyutping2yale)

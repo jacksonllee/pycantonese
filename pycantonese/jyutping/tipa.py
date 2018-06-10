@@ -1,8 +1,6 @@
-# -*- coding: utf-8 -*-
-
 # PyCantonese
 #
-# Copyright (C) 2014-2017 PyCantonese Project
+# Copyright (C) 2014-2018 PyCantonese Project
 # Author: Jackson Lee <jacksonlunlee@gmail.com>
 # URL: <http://pycantonese.org/>
 # For license information, see LICENSE.TXT

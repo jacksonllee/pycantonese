@@ -1,13 +1,9 @@
-# -*- coding: utf-8 -*-
-
 # PyCantonese
 #
-# Copyright (C) 2014-2017 PyCantonese Project
+# Copyright (C) 2014-2018 PyCantonese Project
 # Author: Jackson Lee <jacksonlunlee@gmail.com>
 # URL: <http://pycantonese.org/>
 # For license information, see LICENSE.TXT
-
-# flake8: noqa
 
 """PyCantonese: Cantonese Linguistics and NLP in Python
 
@@ -17,11 +13,8 @@ http://pycantonese.org
 
 """
 
-import os
+# flake8: noqa
 
+from pycantonese._version import __version__
 from pycantonese.corpus import hkcancor, read_chat
 from pycantonese.jyutping import parse_jyutping, jyutping2tipa, jyutping2yale
-
-
-with open(os.path.join(os.path.dirname(__file__), 'VERSION')) as f:
-    __version__ = f.read().strip()

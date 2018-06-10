@@ -39,9 +39,7 @@ Setting up a Development Environment
 
 The latest code under development is available on Github at
 `pycantonese/pycantonese <https://github.com/pycantonese/pycantonese>`_.
-To obtain this version for experimental features or for development
-(the version number has the "-dev" suffix if features/fixes not found
-in the latest official release through pip are present):
+To obtain this version for experimental features or for development:
 
 .. code-block:: bash
 
@@ -66,10 +64,17 @@ Developer: Jackson L. Lee
 
 A talk introducing PyCantonese:
 
-Lee, Jackson L. 2015. PyCantonese: Cantonese linguistic research in the age of big data. Talk at the Childhood Bilingualism Research Centre, Chinese University of Hong Kong. September 15. 2015.
+Lee, Jackson L. 2015. PyCantonese: Cantonese linguistic research in the age of big data.
+Talk at the Childhood Bilingualism Research Centre, Chinese University of Hong Kong. September 15. 2015.
 `Notes+slides <http://jacksonllee.com/papers/Lee-pycantonese-2015.html>`_
 
 Please also see ``CONTRIBUTORS.md``.
+
+
+Change Log
+----------
+
+Please see ``CHANGELOG.md``.
 
 
 License

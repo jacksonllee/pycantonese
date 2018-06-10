@@ -1,1 +1,1 @@
-pylangacq>=0.10.0
+pylangacq==0.10.0
