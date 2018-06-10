@@ -2,10 +2,6 @@ build: false
 
 environment:
   matrix:
-    - PYTHON: "c:\\python27-x64"
-      PYTHON_VERSION: "2.7.15"
-      PYTHON_ARCH: "64"
-
     - PYTHON: "c:\\python36-x64"
       PYTHON_VERSION: "3.6.5"
       PYTHON_ARCH: "64"
