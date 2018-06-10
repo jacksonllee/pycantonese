@@ -31,7 +31,7 @@ PyCantonese is available through pip:
 
 .. code-block:: bash
 
-   $ pip install pycantonese
+   $ pip install -U pycantonese
 
 
 Setting up a Development Environment
@@ -69,15 +69,7 @@ A talk introducing PyCantonese:
 Lee, Jackson L. 2015. PyCantonese: Cantonese linguistic research in the age of big data. Talk at the Childhood Bilingualism Research Centre, Chinese University of Hong Kong. September 15. 2015.
 `Notes+slides <http://jacksonllee.com/papers/Lee-pycantonese-2015.html>`_
 
-Collaborators: Litong Chen, Charles Lam, Tsz-Him Tsui
-
-
-Contributors
-------------
-
-Many thanks to the following individuals for code, comments, bug reports, etc.:
-
-Rachel Han, Hill Ma, Stephan Stiller
+Please also see ``CONTRIBUTORS.md``.
 
 
 License
