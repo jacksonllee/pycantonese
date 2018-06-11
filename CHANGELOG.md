@@ -8,20 +8,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 ### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+
+## [2.1.0] - 2018-06-11
+
+### Added
 * Exposed the `exclude` parameter in various reader methods
   for excluding specific participants. This parameter was implemented at
   pylangacq v0.10.0.
 
-### Changed
-### Deprecated
-### Removed
-
 ### Fixed
 * Allowed "n" to be a syllabic nasal.
 * Fixed corpus reader not picking up the characters.
-
-### Security
-
 
 ## [2.0.0] - 2016-02-06
 
