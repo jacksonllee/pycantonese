@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Search queries &#8212; PyCantonese 2.1.0-dev documentation</title>
+    <title>Search queries &#8212; PyCantonese 2.1.0 documentation</title>
     <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '2.1.0-dev',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
@@ -25,8 +17,7 @@
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Research outputs" href="papers.html" />
     <link rel="prev" title="Jyutping romanization: Parsing and conversion" href="jyutping.html" /> 
-  </head>
-  <body>
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -39,7 +30,7 @@
         <li class="right" >
           <a href="jyutping.html" title="Jyutping romanization: Parsing and conversion"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.1.0-dev documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.1.0 documentation</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -65,12 +56,14 @@
                         title="next chapter">Research outputs</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -85,18 +78,18 @@
 <span id="searches"></span><h1>Search queries<a class="headerlink" href="#search-queries" title="Permalink to this headline">¶</a></h1>
 <p>A common task in corpus-based linguistic work
 is to search for specific elements of interest.
-PyCantonese provides the general-purpose <code class="docutils literal"><span class="pre">search()</span></code>
+PyCantonese provides the general-purpose <code class="docutils literal notranslate"><span class="pre">search()</span></code>
 as a corpus object method.
 For a given corpus, it can search for specific Jyutping elements,
 Chinese characters, part-of-speech tags, and any combinations of these.</p>
-<p><code class="docutils literal"><span class="pre">search()</span></code> is also capable of (so to speak) grabbing the
+<p><code class="docutils literal notranslate"><span class="pre">search()</span></code> is also capable of (so to speak) grabbing the
 neighboring words and utterances
 around the match word. This is
 useful for a wide variety of purposes, e.g., syntax,
 semantics, word collocation, discourse analysis, conversation analysis, etc.</p>
-<p>All the following examples assume that a corpus object <code class="docutils literal"><span class="pre">corpus</span></code> for HKCanCor
-has been created, and that <code class="docutils literal"><span class="pre">pprint()</span></code> is used for pretty print.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+<p>All the following examples assume that a corpus object <code class="docutils literal notranslate"><span class="pre">corpus</span></code> for HKCanCor
+has been created, and that <code class="docutils literal notranslate"><span class="pre">pprint()</span></code> is used for pretty print.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="kn">as</span> <span class="nn">pc</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span> <span class="o">=</span> <span class="n">pc</span><span class="o">.</span><span class="n">hkcancor</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">corpus</span><span class="o">.</span><span class="n">words</span><span class="p">())</span>  <span class="c1"># total number of words</span>
@@ -105,7 +98,7 @@ has been created, and that <code class="docutils literal"><span class="pre">ppri
 <span class="go">186888</span>
 </pre></div>
 </div>
-<p>The following examples show how <code class="docutils literal"><span class="pre">search()</span></code> works using its array of
+<p>The following examples show how <code class="docutils literal notranslate"><span class="pre">search()</span></code> works using its array of
 parameters.</p>
 <ul class="simple">
 <li><a class="reference internal" href="#search-jyutping"><span class="std std-ref">Searching by a Jyutping element</span></a></li>
@@ -119,19 +112,19 @@ parameters.</p>
 <span id="search-jyutping"></span><h2>Searching by a Jyutping element<a class="headerlink" href="#searching-by-a-jyutping-element" title="Permalink to this headline">¶</a></h2>
 <p>Search queries
 by various parsed Jyutping elements are possible by passing a parameter
-with its value to <code class="docutils literal"><span class="pre">search()</span></code>.</p>
+with its value to <code class="docutils literal notranslate"><span class="pre">search()</span></code>.</p>
 <p>The Jyutping parameters are:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">onset</span></code></li>
-<li><code class="docutils literal"><span class="pre">nucleus</span></code></li>
-<li><code class="docutils literal"><span class="pre">coda</span></code></li>
-<li><code class="docutils literal"><span class="pre">tone</span></code></li>
-<li><code class="docutils literal"><span class="pre">initial</span></code> (聲母, equivalent to <code class="docutils literal"><span class="pre">onset</span></code>)</li>
-<li><code class="docutils literal"><span class="pre">final</span></code> (韻母, equivalent to nucleus+coda)</li>
-<li><code class="docutils literal"><span class="pre">jyutping</span></code> (a complete Jyutping romanization, onset+nucleus+coda+tone)</li>
+<li><code class="docutils literal notranslate"><span class="pre">onset</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">nucleus</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">coda</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">tone</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">initial</span></code> (聲母, equivalent to <code class="docutils literal notranslate"><span class="pre">onset</span></code>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">final</span></code> (韻母, equivalent to nucleus+coda)</li>
+<li><code class="docutils literal notranslate"><span class="pre">jyutping</span></code> (a complete Jyutping romanization, onset+nucleus+coda+tone)</li>
 </ul>
 <p>For example, for the nucleus “aa”:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aa</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">nucleus</span><span class="o">=</span><span class="s1">&#39;aa&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aa</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">nucleus</span><span class="o">=</span><span class="s1">&#39;aa&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">aa</span><span class="p">)</span>  <span class="c1"># number of matching results found</span>
 <span class="go">21830</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="n">aa</span><span class="p">[:</span> <span class="mi">5</span><span class="p">])</span>  <span class="c1"># show first 5 results</span>
@@ -142,8 +135,8 @@ with its value to <code class="docutils literal"><span class="pre">search()</spa
 <span class="go"> (&#39;嗱&#39;, &#39;Y&#39;, &#39;laa4&#39;, &#39;&#39;)]</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal"><span class="pre">tone</span></code> parameter takes a str but not an int:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tone2</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">tone</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">)</span>
+<p>The <code class="docutils literal notranslate"><span class="pre">tone</span></code> parameter takes a str but not an int:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tone2</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">tone</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">tone2</span><span class="p">)</span>
 <span class="go">20579</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="n">tone2</span><span class="p">[:</span> <span class="mi">5</span><span class="p">])</span>
@@ -154,12 +147,12 @@ with its value to <code class="docutils literal"><span class="pre">search()</spa
 <span class="go"> (&#39;抵&#39;, &#39;A&#39;, &#39;dai2&#39;, &#39;&#39;)]</span>
 </pre></div>
 </div>
-<p>The parameters <code class="docutils literal"><span class="pre">onset</span></code>, <code class="docutils literal"><span class="pre">nucleus</span></code>, <code class="docutils literal"><span class="pre">coda</span></code>, <code class="docutils literal"><span class="pre">tone</span></code>, and <code class="docutils literal"><span class="pre">initial</span></code>
+<p>The parameters <code class="docutils literal notranslate"><span class="pre">onset</span></code>, <code class="docutils literal notranslate"><span class="pre">nucleus</span></code>, <code class="docutils literal notranslate"><span class="pre">coda</span></code>, <code class="docutils literal notranslate"><span class="pre">tone</span></code>, and <code class="docutils literal notranslate"><span class="pre">initial</span></code>
 may take a regular expression for more powerful search queries.
 For instance, we may ask for all words that contain any of the codas {p, t, k}.
-<code class="docutils literal"><span class="pre">[ptk]</span></code> can be used for regular expression matching for any of these letters,
-and we set it to be the value of the <code class="docutils literal"><span class="pre">coda</span></code> parameter:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">codas_ptk</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">coda</span><span class="o">=</span><span class="s1">&#39;[ptk]&#39;</span><span class="p">)</span>
+<code class="docutils literal notranslate"><span class="pre">[ptk]</span></code> can be used for regular expression matching for any of these letters,
+and we set it to be the value of the <code class="docutils literal notranslate"><span class="pre">coda</span></code> parameter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">codas_ptk</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">coda</span><span class="o">=</span><span class="s1">&#39;[ptk]&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">codas_ptk</span><span class="p">)</span>
 <span class="go">12409</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="n">codas_ptk</span><span class="p">[:</span> <span class="mi">5</span><span class="p">])</span>
@@ -172,19 +165,19 @@ and we set it to be the value of the <code class="docutils literal"><span class=
 </div>
 <p>For regular expressions in Python, see
 <a class="reference external" href="https://docs.python.org/3/library/re.html">here</a>.</p>
-<p>The search criteria can be mixed in a single <code class="docutils literal"><span class="pre">search()</span></code> call.
+<p>The search criteria can be mixed in a single <code class="docutils literal notranslate"><span class="pre">search()</span></code> call.
 However, in order to avoid possible conflicts,
 restrictions are imposed on the combination of Jyutping-related search criteria:</p>
 <ul class="simple">
-<li>If <code class="docutils literal"><span class="pre">jyutping</span></code> is used, no other Jyutping search parameters can be used.</li>
-<li>If <code class="docutils literal"><span class="pre">final</span></code> is used, neither <code class="docutils literal"><span class="pre">nucleus</span></code> nor <code class="docutils literal"><span class="pre">coda</span></code> can be used.</li>
+<li>If <code class="docutils literal notranslate"><span class="pre">jyutping</span></code> is used, no other Jyutping search parameters can be used.</li>
+<li>If <code class="docutils literal notranslate"><span class="pre">final</span></code> is used, neither <code class="docutils literal notranslate"><span class="pre">nucleus</span></code> nor <code class="docutils literal notranslate"><span class="pre">coda</span></code> can be used.</li>
 </ul>
 </div>
 <div class="section" id="searching-by-a-chinese-character">
 <span id="search-character"></span><h2>Searching by a Chinese character<a class="headerlink" href="#searching-by-a-chinese-character" title="Permalink to this headline">¶</a></h2>
-<p>Search queries for a given Chinese character are performed by the <code class="docutils literal"><span class="pre">character</span></code>
+<p>Search queries for a given Chinese character are performed by the <code class="docutils literal notranslate"><span class="pre">character</span></code>
 parameter:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">machine</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">character</span><span class="o">=</span><span class="s1">&#39;機&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">machine</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">character</span><span class="o">=</span><span class="s1">&#39;機&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">machine</span><span class="p">)</span>
 <span class="go">184</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="n">machine</span><span class="p">[:</span> <span class="mi">5</span><span class="p">])</span>
@@ -195,15 +188,15 @@ parameter:</p>
 <span class="go"> (&#39;機&#39;, &#39;NG&#39;, &#39;gei1&#39;, &#39;&#39;)]</span>
 </pre></div>
 </div>
-<p>If you are using Python 2, use <code class="docutils literal"><span class="pre">corpus.search(character=u'機')</span></code> (note the “u”
+<p>If you are using Python 2, use <code class="docutils literal notranslate"><span class="pre">corpus.search(character=u'機')</span></code> (note the “u”
 prefix for the string literal) for unicode.</p>
 </div>
 <div class="section" id="searching-by-a-part-of-speech-tag">
 <span id="search-pos"></span><h2>Searching by a part-of-speech tag<a class="headerlink" href="#searching-by-a-part-of-speech-tag" title="Permalink to this headline">¶</a></h2>
-<p>With the parameter <code class="docutils literal"><span class="pre">pos</span></code> in <code class="docutils literal"><span class="pre">search()</span></code>,
+<p>With the parameter <code class="docutils literal notranslate"><span class="pre">pos</span></code> in <code class="docutils literal notranslate"><span class="pre">search()</span></code>,
 verbs which bear the part-of-speech tag “V” in HKCanCor
 can be accessed as follows:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">verbs</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">verbs</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">verbs</span><span class="p">)</span>
 <span class="go">23768</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="n">verbs</span><span class="p">[:</span> <span class="mi">5</span><span class="p">])</span>
@@ -214,10 +207,10 @@ can be accessed as follows:</p>
 <span class="go"> (&#39;係&#39;, &#39;V&#39;, &#39;hai6&#39;, &#39;&#39;)]</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal"><span class="pre">pos</span></code> parameter may take a regular expression. For instance,
-we can use <code class="docutils literal"><span class="pre">'^V'</span></code> to match any part-of-speech tags that begin with “V” for
+<p>The <code class="docutils literal notranslate"><span class="pre">pos</span></code> parameter may take a regular expression. For instance,
+we can use <code class="docutils literal notranslate"><span class="pre">'^V'</span></code> to match any part-of-speech tags that begin with “V” for
 different kinds of verbs annotated in HKCanCor:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">all_verbs</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="s1">&#39;^V&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">all_verbs</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="s1">&#39;^V&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">all_verbs</span><span class="p">)</span>  <span class="c1"># number of all verbs -- more than just &quot;V&quot; alone above</span>
 <span class="go">29012</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="n">all_verbs</span><span class="p">[:</span><span class="mi">20</span><span class="p">])</span>  <span class="c1"># printing the first 20 results</span>
@@ -252,16 +245,16 @@ different kinds of verbs annotated in HKCanCor:</p>
 <p>It is possible to include in search results the neighboring words and sentences
 with respect to a match word. This functionality is useful for syntax,
 semantics, and discourse-level research.</p>
-<p>The parameters <code class="docutils literal"><span class="pre">word_range</span></code> and <code class="docutils literal"><span class="pre">sent_range</span></code> each take a tuple of
+<p>The parameters <code class="docutils literal notranslate"><span class="pre">word_range</span></code> and <code class="docutils literal notranslate"><span class="pre">sent_range</span></code> each take a tuple of
 (int, int).</p>
-<p><code class="docutils literal"><span class="pre">word_range</span></code> defaults to <code class="docutils literal"><span class="pre">(0,</span> <span class="pre">0)</span></code> for 0 <em>words</em>
-(the first <code class="docutils literal"><span class="pre">0</span></code>)
-on the left of a match word and 0 <em>words</em> (the second <code class="docutils literal"><span class="pre">0</span></code>)
+<p><code class="docutils literal notranslate"><span class="pre">word_range</span></code> defaults to <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0)</span></code> for 0 <em>words</em>
+(the first <code class="docutils literal notranslate"><span class="pre">0</span></code>)
+on the left of a match word and 0 <em>words</em> (the second <code class="docutils literal notranslate"><span class="pre">0</span></code>)
 on the right – all within the same sent (= sentence).
-Likewise, <code class="docutils literal"><span class="pre">sent_range</span></code> defaults to <code class="docutils literal"><span class="pre">(0,</span> <span class="pre">0)</span></code> for 0 <em>sents</em>
+Likewise, <code class="docutils literal notranslate"><span class="pre">sent_range</span></code> defaults to <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0)</span></code> for 0 <em>sents</em>
 preceding the sent containing the match word and 0 <em>sents</em> following it.</p>
-<p>For <code class="docutils literal"><span class="pre">word_range</span></code>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gwo3</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">character</span><span class="o">=</span><span class="s1">&#39;過&#39;</span><span class="p">,</span> <span class="n">word_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>  <span class="c1"># use u&#39;過&#39; instead in python 2</span>
+<p>For <code class="docutils literal notranslate"><span class="pre">word_range</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gwo3</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">character</span><span class="o">=</span><span class="s1">&#39;過&#39;</span><span class="p">,</span> <span class="n">word_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>  <span class="c1"># use u&#39;過&#39; instead in python 2</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">gwo3</span><span class="p">)</span>
 <span class="go">679</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="n">gwo3</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
@@ -281,11 +274,11 @@ preceding the sent containing the match word and 0 <em>sents</em> following it.<
 <span class="go">  (&#39;好&#39;, &#39;D&#39;, &#39;hou2&#39;, &#39;&#39;)]]</span>
 </pre></div>
 </div>
-<p>Note that the return object is list(list(tagged words)) when <code class="docutils literal"><span class="pre">word_range</span></code>
-is used. Also, the words that <code class="docutils literal"><span class="pre">word_range</span></code> specifies do not
+<p>Note that the return object is list(list(tagged words)) when <code class="docutils literal notranslate"><span class="pre">word_range</span></code>
+is used. Also, the words that <code class="docutils literal notranslate"><span class="pre">word_range</span></code> specifies do not
 cross sentence boundaries.</p>
-<p>For <code class="docutils literal"><span class="pre">sent_range</span></code>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">laa1</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">jyutping</span><span class="o">=</span><span class="s1">&#39;laa1&#39;</span><span class="p">,</span> <span class="n">sent_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<p>For <code class="docutils literal notranslate"><span class="pre">sent_range</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">laa1</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">jyutping</span><span class="o">=</span><span class="s1">&#39;laa1&#39;</span><span class="p">,</span> <span class="n">sent_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">laa1</span><span class="p">)</span>
 <span class="go">1583</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="n">laa1</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># print the 1st result</span>
@@ -305,16 +298,16 @@ cross sentence boundaries.</p>
 <span class="go">  (&#39;.&#39;, &#39;.&#39;, &#39;&#39;, &#39;&#39;)]]</span>
 </pre></div>
 </div>
-<p>If <code class="docutils literal"><span class="pre">sent_range</span></code> is not <code class="docutils literal"><span class="pre">(0,</span> <span class="pre">0)</span></code>, <code class="docutils literal"><span class="pre">word_range</span></code> is ignored (as full
+<p>If <code class="docutils literal notranslate"><span class="pre">sent_range</span></code> is not <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0)</span></code>, <code class="docutils literal notranslate"><span class="pre">word_range</span></code> is ignored (as full
 sentences are in the output anyway).</p>
 </div>
 <div class="section" id="searching-by-multiple-criteria">
 <span id="search-combination"></span><h2>Searching by multiple criteria<a class="headerlink" href="#searching-by-multiple-criteria" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal"><span class="pre">search()</span></code> is flexible and allows multiple parameters described
+<p><code class="docutils literal notranslate"><span class="pre">search()</span></code> is flexible and allows multiple parameters described
 above to be specified at the same time.
 For instance, if we are interested in <em>pinjam</em> (“tone change”) in Cantonese,
 we may be interested in all words with coda {p, t, k} plus tone 2 (high-rising):</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ptk_tone2</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">coda</span><span class="o">=</span><span class="s1">&#39;[ptk]&#39;</span><span class="p">,</span> <span class="n">tone</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ptk_tone2</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">coda</span><span class="o">=</span><span class="s1">&#39;[ptk]&#39;</span><span class="p">,</span> <span class="n">tone</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">ptk_tone2</span><span class="p">)</span>
 <span class="go">70</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="n">ptk_tone2</span><span class="p">[:</span> <span class="mi">10</span><span class="p">])</span>
@@ -333,16 +326,16 @@ we may be interested in all words with coda {p, t, k} plus tone 2 (high-rising):
 </div>
 <div class="section" id="output-format-of-search-results">
 <span id="search-format"></span><h2>Output format of search results<a class="headerlink" href="#output-format-of-search-results" title="Permalink to this headline">¶</a></h2>
-<p>While <code class="docutils literal"><span class="pre">search()</span></code> always returns a list, the format of the elements in the list
-can be adjusted by the parameters <code class="docutils literal"><span class="pre">tagged</span></code> and <code class="docutils literal"><span class="pre">sents</span></code>.</p>
-<p>If <code class="docutils literal"><span class="pre">tagged</span></code> is <code class="docutils literal"><span class="pre">True</span></code> (default), words are all represented in the “tagged”
+<p>While <code class="docutils literal notranslate"><span class="pre">search()</span></code> always returns a list, the format of the elements in the list
+can be adjusted by the parameters <code class="docutils literal notranslate"><span class="pre">tagged</span></code> and <code class="docutils literal notranslate"><span class="pre">sents</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">tagged</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code> (default), words are all represented in the “tagged”
 format of (word, part-of-speech tag, Jyutping, rel),
 as in all the examples above. Otherwise, words are word token strings with
 Chinese characters only.</p>
-<p>If <code class="docutils literal"><span class="pre">sents</span></code> is <code class="docutils literal"><span class="pre">False</span></code> (default), the elements in the output list are words
-(or spans of words when <code class="docutils literal"><span class="pre">word_range</span></code> is used). Otherwise, all sents
-containing a match word are in the output list. If <code class="docutils literal"><span class="pre">sent_range</span></code> is used,
-<code class="docutils literal"><span class="pre">sents</span></code> is automatically <code class="docutils literal"><span class="pre">True</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">sents</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code> (default), the elements in the output list are words
+(or spans of words when <code class="docutils literal notranslate"><span class="pre">word_range</span></code> is used). Otherwise, all sents
+containing a match word are in the output list. If <code class="docutils literal notranslate"><span class="pre">sent_range</span></code> is used,
+<code class="docutils literal notranslate"><span class="pre">sents</span></code> is automatically <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
 </div>
 </div>
 
@@ -364,12 +357,12 @@ containing a match word are in the output list. If <code class="docutils literal
         <li class="right" >
           <a href="jyutping.html" title="Jyutping romanization: Parsing and conversion"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.1.0-dev documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.1.0 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2014-2017, Jackson L. Lee | Documentation last updated on November 29, 2017.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+        &#169; Copyright 2014-2018, Jackson L. Lee | Documentation last updated on June 11, 2018.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
     </div>
   </body>
 </html>

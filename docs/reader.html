@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Corpus reader methods &#8212; PyCantonese 2.1.0-dev documentation</title>
+    <title>Corpus reader methods &#8212; PyCantonese 2.1.0 documentation</title>
     <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '2.1.0-dev',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
@@ -25,8 +17,7 @@
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Jyutping romanization: Parsing and conversion" href="jyutping.html" />
     <link rel="prev" title="Corpus data" href="data.html" /> 
-  </head>
-  <body>
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -39,7 +30,7 @@
         <li class="right" >
           <a href="data.html" title="Corpus data"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.1.0-dev documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.1.0 documentation</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -64,12 +55,14 @@
                         title="next chapter">Jyutping romanization: Parsing and conversion</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -93,32 +86,32 @@ background information for how to use the methods listed in
 <li><p class="first">The “simple” representation as a <strong>string</strong>,
 which is what appears as a word token (in Chinese characters)
 in a transcription line
-starting with <code class="docutils literal"><span class="pre">*</span></code> in the CHAT transcript.</p>
+starting with <code class="docutils literal notranslate"><span class="pre">*</span></code> in the CHAT transcript.</p>
 </li>
 <li><p class="first">The “tagged” representation as a <strong>tuple</strong> of
 (<em>word</em>, <em>pos</em>, <em>jyutping</em>, <em>rel</em>),
-which contains information from the transcription line and its <code class="docutils literal"><span class="pre">%</span></code>-tiers:</p>
+which contains information from the transcription line and its <code class="docutils literal notranslate"><span class="pre">%</span></code>-tiers:</p>
 <p><em>word</em> (str) – Chinese character(s)</p>
-<p><em>pos</em> (str) – part-of-speech tag from <code class="docutils literal"><span class="pre">%mor</span></code> (All PoS tags are rendered in uppercase.)</p>
-<p><em>jyutping</em> (str) – Jyutping romanization from <code class="docutils literal"><span class="pre">%mor</span></code>
+<p><em>pos</em> (str) – part-of-speech tag from <code class="docutils literal notranslate"><span class="pre">%mor</span></code> (All PoS tags are rendered in uppercase.)</p>
+<p><em>jyutping</em> (str) – Jyutping romanization from <code class="docutils literal notranslate"><span class="pre">%mor</span></code>
 (plus inflectional information, if any)</p>
-<p><em>rel</em> – dependency and grammatical relation from <code class="docutils literal"><span class="pre">%gra</span></code>
-(no known datasets have made used of <code class="docutils literal"><span class="pre">%gra</span></code> yet)</p>
+<p><em>rel</em> – dependency and grammatical relation from <code class="docutils literal notranslate"><span class="pre">%gra</span></code>
+(no known datasets have made used of <code class="docutils literal notranslate"><span class="pre">%gra</span></code> yet)</p>
 </li>
 </ol>
-<p>To illustrate, let us consider the following CHAT utterance with its <code class="docutils literal"><span class="pre">%mor</span></code>
+<p>To illustrate, let us consider the following CHAT utterance with its <code class="docutils literal notranslate"><span class="pre">%mor</span></code>
 tier:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>*XXA:       喂 遲 啲 去 唔 去 旅行 啊 ?
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>*XXA:       喂 遲 啲 去 唔 去 旅行 啊 ?
 %mor:       e|wai3 a|ci4 u|di1 v|heoi3 d|m4 v|heoi3 vn|leoi5hang4 y|aa3 ?
 </pre></div>
 </div>
 <p>The list of “simple” words from this utterance are the list of word token
 strings:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;喂&#39;</span><span class="p">,</span> <span class="s1">&#39;遲&#39;</span><span class="p">,</span> <span class="s1">&#39;啲&#39;</span><span class="p">,</span> <span class="s1">&#39;去&#39;</span><span class="p">,</span> <span class="s1">&#39;唔&#39;</span><span class="p">,</span> <span class="s1">&#39;去&#39;</span><span class="p">,</span> <span class="s1">&#39;旅行&#39;</span><span class="p">,</span> <span class="s1">&#39;啊&#39;</span><span class="p">,</span> <span class="s1">&#39;?&#39;</span><span class="p">]</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;喂&#39;</span><span class="p">,</span> <span class="s1">&#39;遲&#39;</span><span class="p">,</span> <span class="s1">&#39;啲&#39;</span><span class="p">,</span> <span class="s1">&#39;去&#39;</span><span class="p">,</span> <span class="s1">&#39;唔&#39;</span><span class="p">,</span> <span class="s1">&#39;去&#39;</span><span class="p">,</span> <span class="s1">&#39;旅行&#39;</span><span class="p">,</span> <span class="s1">&#39;啊&#39;</span><span class="p">,</span> <span class="s1">&#39;?&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>The list of “tagged” words from this utterance are a list of 4-tuples:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">[(</span><span class="s1">&#39;喂&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;wai3&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[(</span><span class="s1">&#39;喂&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;wai3&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
  <span class="p">(</span><span class="s1">&#39;遲&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;ci4&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
  <span class="p">(</span><span class="s1">&#39;啲&#39;</span><span class="p">,</span> <span class="s1">&#39;U&#39;</span><span class="p">,</span> <span class="s1">&#39;di1&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
  <span class="p">(</span><span class="s1">&#39;去&#39;</span><span class="p">,</span> <span class="s1">&#39;V&#39;</span><span class="p">,</span> <span class="s1">&#39;heoi3&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
@@ -134,13 +127,13 @@ access methods listed in <a class="reference internal" href="#data-methods"><spa
 </div>
 <div class="section" id="a-note-on-the-access-methods">
 <span id="note-on-methods"></span><h2>A note on the access methods<a class="headerlink" href="#a-note-on-the-access-methods" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="kn">as</span> <span class="nn">pc</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="kn">as</span> <span class="nn">pc</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span> <span class="o">=</span> <span class="n">pc</span><span class="o">.</span><span class="n">hkcancor</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>A corpus object, such as <code class="docutils literal"><span class="pre">corpus</span></code> as shown just above, has an array of
-methods X(). An example is <code class="docutils literal"><span class="pre">number_of_files()</span></code>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span><span class="o">.</span><span class="n">number_of_files</span><span class="p">()</span>
+<p>A corpus object, such as <code class="docutils literal notranslate"><span class="pre">corpus</span></code> as shown just above, has an array of
+methods X(). An example is <code class="docutils literal notranslate"><span class="pre">number_of_files()</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span><span class="o">.</span><span class="n">number_of_files</span><span class="p">()</span>
 <span class="go">58</span>
 </pre></div>
 </div>
@@ -148,19 +141,19 @@ methods X(). An example is <code class="docutils literal"><span class="pre">numb
 programmatically inherited from the library PyLangAcq for
 language acquisition research. A few remarks here are necessary to
 avoid confusion.</p>
-<p>Many methods have the optional parameter <code class="docutils literal"><span class="pre">participant</span></code>, which may safely be
-ignored in PyCantonese. The parameter <code class="docutils literal"><span class="pre">participant</span></code> specifies
+<p>Many methods have the optional parameter <code class="docutils literal notranslate"><span class="pre">participant</span></code>, which may safely be
+ignored in PyCantonese. The parameter <code class="docutils literal notranslate"><span class="pre">participant</span></code> specifies
 which participant(s) are of interest. This is important in the context of
-language acquisition: <code class="docutils literal"><span class="pre">'CHI'</span></code> for the target child, <code class="docutils literal"><span class="pre">'MOT'</span></code> for the mother,
+language acquisition: <code class="docutils literal notranslate"><span class="pre">'CHI'</span></code> for the target child, <code class="docutils literal notranslate"><span class="pre">'MOT'</span></code> for the mother,
 and so forth. In the CHAT format of HKCanCor that PyCantonese includes, the
-participants are rendered as codes such <code class="docutils literal"><span class="pre">'XXA'</span></code>, <code class="docutils literal"><span class="pre">'XXB'</span></code> etc based on
-the original HKCanCor files. When <code class="docutils literal"><span class="pre">participant</span></code> is not specified,
+participants are rendered as codes such <code class="docutils literal notranslate"><span class="pre">'XXA'</span></code>, <code class="docutils literal notranslate"><span class="pre">'XXB'</span></code> etc based on
+the original HKCanCor files. When <code class="docutils literal notranslate"><span class="pre">participant</span></code> is not specified,
 all participants are automatically included.</p>
-<p>Another optional parameter of interest is <code class="docutils literal"><span class="pre">by_files</span></code>. Typically, a corpus
-comes in the form of multiple CHAT files. If a method X() has <code class="docutils literal"><span class="pre">by_files</span></code>,
-this parameter is set to be <code class="docutils literal"><span class="pre">False</span></code> by default, so that X() returns whatever
+<p>Another optional parameter of interest is <code class="docutils literal notranslate"><span class="pre">by_files</span></code>. Typically, a corpus
+comes in the form of multiple CHAT files. If a method X() has <code class="docutils literal notranslate"><span class="pre">by_files</span></code>,
+this parameter is set to be <code class="docutils literal notranslate"><span class="pre">False</span></code> by default, so that X() returns whatever
 it is for all the files <em>without</em> the file structure. If you are interested
-in results for individual files, set <code class="docutils literal"><span class="pre">by_files</span></code> to be <code class="docutils literal"><span class="pre">True</span></code> and the return
+in results for individual files, set <code class="docutils literal notranslate"><span class="pre">by_files</span></code> to be <code class="docutils literal notranslate"><span class="pre">True</span></code> and the return
 object is dict(absolute-path filename: X() for that file) instead.</p>
 </div>
 <div class="section" id="metadata-methods">
@@ -171,16 +164,16 @@ object is dict(absolute-path filename: X() for that file) instead.</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.filenames" title="pycantonese.corpus.CantoneseCHATReader.filenames"><code class="xref py py-obj docutils literal"><span class="pre">filenames</span></code></a>([sorted_by_age])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.filenames" title="pycantonese.corpus.CantoneseCHATReader.filenames"><code class="xref py py-obj docutils literal notranslate"><span class="pre">filenames</span></code></a>([sorted_by_age])</td>
 <td>Return the set of absolute-path filenames.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">find_filename</span></code></td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_filename</span></code></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.number_of_files" title="pycantonese.corpus.CantoneseCHATReader.number_of_files"><code class="xref py py-obj docutils literal"><span class="pre">number_of_files</span></code></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.number_of_files" title="pycantonese.corpus.CantoneseCHATReader.number_of_files"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_files</span></code></a>()</td>
 <td>Return the number of files.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">number_of_utterances</span></code>(*args,&nbsp;**kwargs)</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_utterances</span></code>(**kwargs)</td>
 <td></td>
 </tr>
 </tbody>
@@ -194,55 +187,55 @@ object is dict(absolute-path filename: X() for that file) instead.</p>
 <col width="90%" />
 </colgroup>
 <tbody valign="top">
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">utterances</span></code>(*args,&nbsp;**kwargs)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">utterances</span></code>(**kwargs)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">words</span></code>(*args,&nbsp;**kwargs)</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">words</span></code>(**kwargs)</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">tagged_words</span></code>(*args,&nbsp;**kwargs)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">tagged_words</span></code>(**kwargs)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">sents</span></code>(*args,&nbsp;**kwargs)</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">sents</span></code>(**kwargs)</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">tagged_sents</span></code>(*args,&nbsp;**kwargs)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">tagged_sents</span></code>(**kwargs)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.jyutpings" title="pycantonese.corpus.CantoneseCHATReader.jyutpings"><code class="xref py py-obj docutils literal"><span class="pre">jyutpings</span></code></a>([participant,&nbsp;exclude,&nbsp;by_files])</td>
+<tr class="row-even"><td><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.jyutpings" title="pycantonese.corpus.CantoneseCHATReader.jyutpings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">jyutpings</span></code></a>([participant,&nbsp;exclude,&nbsp;by_files])</td>
 <td>Return a list of jyutping strings by <em>participant</em> in all files.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.jyutping_sents" title="pycantonese.corpus.CantoneseCHATReader.jyutping_sents"><code class="xref py py-obj docutils literal"><span class="pre">jyutping_sents</span></code></a>([participant,&nbsp;exclude,&nbsp;by_files])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.jyutping_sents" title="pycantonese.corpus.CantoneseCHATReader.jyutping_sents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">jyutping_sents</span></code></a>([participant,&nbsp;exclude,&nbsp;by_files])</td>
 <td>Return a list of sents of jyutping strings by <em>participant</em> in all files.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.characters" title="pycantonese.corpus.CantoneseCHATReader.characters"><code class="xref py py-obj docutils literal"><span class="pre">characters</span></code></a>([participant,&nbsp;exclude,&nbsp;by_files])</td>
+<tr class="row-even"><td><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.characters" title="pycantonese.corpus.CantoneseCHATReader.characters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">characters</span></code></a>([participant,&nbsp;exclude,&nbsp;by_files])</td>
 <td>Return a list of Chinese characters by <em>participant</em> in all files.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.character_sents" title="pycantonese.corpus.CantoneseCHATReader.character_sents"><code class="xref py py-obj docutils literal"><span class="pre">character_sents</span></code></a>([participant,&nbsp;exclude,&nbsp;by_files])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.character_sents" title="pycantonese.corpus.CantoneseCHATReader.character_sents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">character_sents</span></code></a>([participant,&nbsp;exclude,&nbsp;by_files])</td>
 <td>Return a list of sents of Chinese characters by <em>participant</em> in all files.</td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">part_of_speech_tags</span></code>(*args,&nbsp;**kwargs)</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">part_of_speech_tags</span></code>(**kwargs)</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">word_frequency</span></code>(*args,&nbsp;**kwargs)</td>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">word_frequency</span></code>(**kwargs)</td>
 <td></td>
 </tr>
-<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">word_ngrams</span></code>(*args,&nbsp;**kwargs)</td>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal notranslate"><span class="pre">word_ngrams</span></code>(**kwargs)</td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.search" title="pycantonese.corpus.CantoneseCHATReader.search"><code class="xref py py-obj docutils literal"><span class="pre">search</span></code></a>([onset,&nbsp;nucleus,&nbsp;coda,&nbsp;tone,&nbsp;…])</td>
+<tr class="row-odd"><td><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.search" title="pycantonese.corpus.CantoneseCHATReader.search"><code class="xref py py-obj docutils literal notranslate"><span class="pre">search</span></code></a>([onset,&nbsp;nucleus,&nbsp;coda,&nbsp;tone,&nbsp;…])</td>
 <td>Search for the specified element(s).</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.update" title="pycantonese.corpus.CantoneseCHATReader.update"><code class="xref py py-obj docutils literal"><span class="pre">update</span></code></a>(reader)</td>
-<td>Combine the current CHAT Reader instance with <code class="docutils literal"><span class="pre">reader</span></code>.</td>
+<tr class="row-even"><td><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.update" title="pycantonese.corpus.CantoneseCHATReader.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(reader)</td>
+<td>Combine the current CHAT Reader instance with <code class="docutils literal notranslate"><span class="pre">reader</span></code>.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.add" title="pycantonese.corpus.CantoneseCHATReader.add"><code class="xref py py-obj docutils literal"><span class="pre">add</span></code></a>(*filenames)</td>
-<td>Add one or more CHAT <code class="docutils literal"><span class="pre">filenames</span></code> to the current reader.</td>
+<tr class="row-odd"><td><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.add" title="pycantonese.corpus.CantoneseCHATReader.add"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add</span></code></a>(*filenames)</td>
+<td>Add one or more CHAT <code class="docutils literal notranslate"><span class="pre">filenames</span></code> to the current reader.</td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.remove" title="pycantonese.corpus.CantoneseCHATReader.remove"><code class="xref py py-obj docutils literal"><span class="pre">remove</span></code></a>(*filenames)</td>
-<td>Remove one or more CHAT <code class="docutils literal"><span class="pre">filenames</span></code> from the current reader.</td>
+<tr class="row-even"><td><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.remove" title="pycantonese.corpus.CantoneseCHATReader.remove"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove</span></code></a>(*filenames)</td>
+<td>Remove one or more CHAT <code class="docutils literal notranslate"><span class="pre">filenames</span></code> from the current reader.</td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.clear" title="pycantonese.corpus.CantoneseCHATReader.clear"><code class="xref py py-obj docutils literal"><span class="pre">clear</span></code></a>()</td>
+<tr class="row-odd"><td><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.clear" title="pycantonese.corpus.CantoneseCHATReader.clear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code></a>()</td>
 <td>Clear everything and reset as an empty Reader instance.</td>
 </tr>
 </tbody>
@@ -253,7 +246,7 @@ object is dict(absolute-path filename: X() for that file) instead.</p>
 <dl class="class">
 <dt id="pycantonese.corpus.CantoneseCHATReader">
 <em class="property">class </em><code class="descclassname">pycantonese.corpus.</code><code class="descname">CantoneseCHATReader</code><span class="sig-paren">(</span><em>*filenames</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">pylangacq.chat.Reader</span></code></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pylangacq.chat.Reader</span></code></p>
 <p>A class for reading Cantonese CHAT corpus files.</p>
 <dl class="method">
 <dt id="pycantonese.corpus.CantoneseCHATReader.IPSyn">
@@ -262,7 +255,7 @@ object is dict(absolute-path filename: X() for that file) instead.</p>
 <p>IPSyn = index of productive syntax</p>
 <dl class="docutils">
 <dt>participant <span class="classifier-delimiter">:</span> <span class="classifier">str, optional</span></dt>
-<dd>The specified participant (default to <code class="docutils literal"><span class="pre">'CHI'</span></code>).</dd>
+<dd>The specified participant (default to <code class="docutils literal notranslate"><span class="pre">'CHI'</span></code>).</dd>
 </dl>
 <p>dict(str: int)</p>
 </dd></dl>
@@ -271,10 +264,10 @@ object is dict(absolute-path filename: X() for that file) instead.</p>
 <dt id="pycantonese.corpus.CantoneseCHATReader.MLU">
 <code class="descname">MLU</code><span class="sig-paren">(</span><em>participant='CHI'</em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.MLU" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a map from a file path to the file’s MLU by morphemes.</p>
-<p>MLU = mean length of utterance. This method is identical to <code class="docutils literal"><span class="pre">MLUm</span></code>.</p>
+<p>MLU = mean length of utterance. This method is identical to <code class="docutils literal notranslate"><span class="pre">MLUm</span></code>.</p>
 <dl class="docutils">
 <dt>participant <span class="classifier-delimiter">:</span> <span class="classifier">str, optional</span></dt>
-<dd>The specified participant (default to <code class="docutils literal"><span class="pre">'CHI'</span></code>).</dd>
+<dd>The specified participant (default to <code class="docutils literal notranslate"><span class="pre">'CHI'</span></code>).</dd>
 </dl>
 <p>dict(str: float)</p>
 </dd></dl>
@@ -283,10 +276,10 @@ object is dict(absolute-path filename: X() for that file) instead.</p>
 <dt id="pycantonese.corpus.CantoneseCHATReader.MLUm">
 <code class="descname">MLUm</code><span class="sig-paren">(</span><em>participant='CHI'</em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.MLUm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a map from a file path to the file’s MLU by morphemes.</p>
-<p>MLU = mean length of utterance. This method is identical to <code class="docutils literal"><span class="pre">MLUm</span></code>.</p>
+<p>MLU = mean length of utterance. This method is identical to <code class="docutils literal notranslate"><span class="pre">MLUm</span></code>.</p>
 <dl class="docutils">
 <dt>participant <span class="classifier-delimiter">:</span> <span class="classifier">str, optional</span></dt>
-<dd>The specified participant (default to <code class="docutils literal"><span class="pre">'CHI'</span></code>).</dd>
+<dd>The specified participant (default to <code class="docutils literal notranslate"><span class="pre">'CHI'</span></code>).</dd>
 </dl>
 <p>dict(str: float)</p>
 </dd></dl>
@@ -298,7 +291,7 @@ object is dict(absolute-path filename: X() for that file) instead.</p>
 <p>MLU = mean length of utterance.</p>
 <dl class="docutils">
 <dt>participant <span class="classifier-delimiter">:</span> <span class="classifier">str, optional</span></dt>
-<dd>The specified participant (default to <code class="docutils literal"><span class="pre">'CHI'</span></code>).</dd>
+<dd>The specified participant (default to <code class="docutils literal notranslate"><span class="pre">'CHI'</span></code>).</dd>
 </dl>
 <p>dict(str: float)</p>
 </dd></dl>
@@ -310,7 +303,7 @@ object is dict(absolute-path filename: X() for that file) instead.</p>
 <p>TTR = type-token ratio</p>
 <dl class="docutils">
 <dt>participant <span class="classifier-delimiter">:</span> <span class="classifier">str, optional</span></dt>
-<dd>The specified participant (default to <code class="docutils literal"><span class="pre">'CHI'</span></code>).</dd>
+<dd>The specified participant (default to <code class="docutils literal notranslate"><span class="pre">'CHI'</span></code>).</dd>
 </dl>
 <p>dict(str: float)</p>
 </dd></dl>
@@ -318,7 +311,7 @@ object is dict(absolute-path filename: X() for that file) instead.</p>
 <dl class="method">
 <dt id="pycantonese.corpus.CantoneseCHATReader.abspath">
 <code class="descname">abspath</code><span class="sig-paren">(</span><em>basename</em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.abspath" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the absolute path of <code class="docutils literal"><span class="pre">basename</span></code>.</p>
+<dd><p>Return the absolute path of <code class="docutils literal notranslate"><span class="pre">basename</span></code>.</p>
 <dl class="docutils">
 <dt>basename <span class="classifier-delimiter">:</span> <span class="classifier">str</span></dt>
 <dd>The basename (e.g., “foobar.cha”) of the desired data file.</dd>
@@ -329,10 +322,10 @@ object is dict(absolute-path filename: X() for that file) instead.</p>
 <dl class="method">
 <dt id="pycantonese.corpus.CantoneseCHATReader.add">
 <code class="descname">add</code><span class="sig-paren">(</span><em>*filenames</em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.add" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add one or more CHAT <code class="docutils literal"><span class="pre">filenames</span></code> to the current reader.</p>
+<dd><p>Add one or more CHAT <code class="docutils literal notranslate"><span class="pre">filenames</span></code> to the current reader.</p>
 <dl class="docutils">
 <dt><a href="#id3"><span class="problematic" id="id4">*</span></a>filenames</dt>
-<dd>Filenames may take glob patterns with wildcards <code class="docutils literal"><span class="pre">*</span></code> and <code class="docutils literal"><span class="pre">?</span></code>.</dd>
+<dd>Filenames may take glob patterns with wildcards <code class="docutils literal notranslate"><span class="pre">*</span></code> and <code class="docutils literal notranslate"><span class="pre">?</span></code>.</dd>
 </dl>
 </dd></dl>
 
@@ -345,7 +338,7 @@ object is dict(absolute-path filename: X() for that file) instead.</p>
 <dt>participant <span class="classifier-delimiter">:</span> <span class="classifier">str, optional</span></dt>
 <dd>The specified participant</dd>
 <dt>months <span class="classifier-delimiter">:</span> <span class="classifier">bool, optional</span></dt>
-<dd>If <code class="docutils literal"><span class="pre">True</span></code>, age is in months.</dd>
+<dd>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, age is in months.</dd>
 </dl>
 <p>dict(str: tuple(int, int, int)) or dict(str: float)</p>
 </dd></dl>
@@ -515,10 +508,10 @@ filename: X for that file) instead of X for all files altogether.</li>
 <dl class="method">
 <dt id="pycantonese.corpus.CantoneseCHATReader.remove">
 <code class="descname">remove</code><span class="sig-paren">(</span><em>*filenames</em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.remove" title="Permalink to this definition">¶</a></dt>
-<dd><p>Remove one or more CHAT <code class="docutils literal"><span class="pre">filenames</span></code> from the current reader.</p>
+<dd><p>Remove one or more CHAT <code class="docutils literal notranslate"><span class="pre">filenames</span></code> from the current reader.</p>
 <dl class="docutils">
 <dt><a href="#id5"><span class="problematic" id="id6">*</span></a>filenames</dt>
-<dd>Filenames may take glob patterns with wildcards <code class="docutils literal"><span class="pre">*</span></code> and <code class="docutils literal"><span class="pre">?</span></code>.</dd>
+<dd>Filenames may take glob patterns with wildcards <code class="docutils literal notranslate"><span class="pre">*</span></code> and <code class="docutils literal notranslate"><span class="pre">?</span></code>.</dd>
 </dl>
 </dd></dl>
 
@@ -542,9 +535,9 @@ Regular expression matching applies to
 <p>Regular expression matching applies.</p>
 <p><strong>Word or sentence range</strong></p>
 <p><em>word_range</em>: specify the span of words to the left and right
-of a match word; defaults to <code class="docutils literal"><span class="pre">(0,</span> <span class="pre">0)</span></code>.</p>
+of a match word; defaults to <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0)</span></code>.</p>
 <p><em>sent_range</em>: specify the span of sents preceding and following
-the sent containing a match word; defaults to <code class="docutils literal"><span class="pre">(0,</span> <span class="pre">0)</span></code>.</p>
+the sent containing a match word; defaults to <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0)</span></code>.</p>
 <p>If <em>sent_range</em> is used, <em>word_range</em> is ignored.</p>
 <p><strong>Output formatting</strong></p>
 <p>If <em>sents</em> is True (the default), sents containing a match word are
@@ -562,7 +555,7 @@ instead.</p>
 <dl class="method">
 <dt id="pycantonese.corpus.CantoneseCHATReader.update">
 <code class="descname">update</code><span class="sig-paren">(</span><em>reader</em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.update" title="Permalink to this definition">¶</a></dt>
-<dd><p>Combine the current CHAT Reader instance with <code class="docutils literal"><span class="pre">reader</span></code>.</p>
+<dd><p>Combine the current CHAT Reader instance with <code class="docutils literal notranslate"><span class="pre">reader</span></code>.</p>
 <p>reader : Reader</p>
 </dd></dl>
 
@@ -589,12 +582,12 @@ instead.</p>
         <li class="right" >
           <a href="data.html" title="Corpus data"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.1.0-dev documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.1.0 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2014-2017, Jackson L. Lee | Documentation last updated on November 29, 2017.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+        &#169; Copyright 2014-2018, Jackson L. Lee | Documentation last updated on June 11, 2018.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
     </div>
   </body>
 </html>

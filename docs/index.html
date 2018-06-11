@@ -4,28 +4,19 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>PyCantonese: Cantonese Linguistics and NLP in Python &#8212; PyCantonese 2.1.0-dev documentation</title>
+    <title>PyCantonese: Cantonese Linguistics and NLP in Python &#8212; PyCantonese 2.1.0 documentation</title>
     <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '2.1.0-dev',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Download and install" href="download.html" /> 
-  </head>
-  <body>
+  </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
@@ -35,7 +26,7 @@
         <li class="right" >
           <a href="download.html" title="Download and install"
              accesskey="N">next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">PyCantonese 2.1.0-dev documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="#">PyCantonese 2.1.0 documentation</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
@@ -55,12 +46,14 @@
                         title="next chapter">Download and install</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -81,42 +74,26 @@ functions as well as various analytic and annotation tools;
 these and other possibilities
 are gradually added
 as the library grows and evolves.</p>
-<p>
-<a href="https://twitter.com/pycantonese" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @pycantonese</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-<div class="fb-follow" data-href="https://www.facebook.com/pycantonese" data-layout="button" data-show-faces="false"></div>
-
-</p>
 <div class="sidebar" style="width: 55%;">
 <p class="first sidebar-title">Quick examples – What can PyCantonese do?</p>
 <p>With PyCantonese in Python:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="kn">as</span> <span class="nn">pc</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="kn">as</span> <span class="nn">pc</span>
 </pre></div>
 </div>
 <ol class="arabic simple">
 <li>Parsing Jyutping for (onset, nucleus, coda, tone)</li>
 </ol>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">parse_jyutping</span><span class="p">(</span><span class="s1">&#39;gwong2dung1waa2&#39;</span><span class="p">)</span>  <span class="c1"># 廣東話</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">parse_jyutping</span><span class="p">(</span><span class="s1">&#39;gwong2dung1waa2&#39;</span><span class="p">)</span>  <span class="c1"># 廣東話</span>
 <span class="go">[(&#39;gw&#39;, &#39;o&#39;, &#39;ng&#39;, &#39;2&#39;), (&#39;d&#39;, &#39;u&#39;, &#39;ng&#39;, &#39;1&#39;), (&#39;w&#39;, &#39;aa&#39;, &#39;&#39;, &#39;2&#39;)]</span>
 </pre></div>
 </div>
 <ol class="arabic" start="2">
 <li><p class="first">Finding all verbs in the HKCanCor corpus</p>
-<p>We search for the regular expression <code class="docutils literal"><span class="pre">'^V'</span></code> for all words whose
+<p>We search for the regular expression <code class="docutils literal notranslate"><span class="pre">'^V'</span></code> for all words whose
 part-of-speech tag begins with “V”:</p>
 </li>
 </ol>
-<div class="last highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span> <span class="o">=</span> <span class="n">pc</span><span class="o">.</span><span class="n">hkcancor</span><span class="p">()</span> <span class="c1"># get HKCanCor</span>
+<div class="last highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span> <span class="o">=</span> <span class="n">pc</span><span class="o">.</span><span class="n">hkcancor</span><span class="p">()</span> <span class="c1"># get HKCanCor</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">all_verbs</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="s1">&#39;^V&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">all_verbs</span><span class="p">)</span>  <span class="c1"># number of all verbs</span>
 <span class="go">29012</span>
@@ -187,7 +164,7 @@ part-of-speech tag begins with “V”:</p>
 Please create issues on the
 <a class="reference external" href="https://github.com/pycantonese/pycantonese">GitHub page</a>.
 Alternatively, you may contact <a class="reference external" href="http://jacksonllee.com">Jackson Lee</a>.</p>
-<p><a class="reference external" href="https://github.com/pycantonese/pycantonese/blob/master/changelog.md">Changelog</a> on GitHub</p>
+<p><a class="reference external" href="https://github.com/pycantonese/pycantonese/blob/master/CHANGELOG.md">Changelog</a> on GitHub</p>
 </div>
 </div>
 
@@ -206,12 +183,12 @@ Alternatively, you may contact <a class="reference external" href="http://jackso
         <li class="right" >
           <a href="download.html" title="Download and install"
              >next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">PyCantonese 2.1.0-dev documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="#">PyCantonese 2.1.0 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2014-2017, Jackson L. Lee | Documentation last updated on November 29, 2017.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.5.
+        &#169; Copyright 2014-2018, Jackson L. Lee | Documentation last updated on June 11, 2018.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
     </div>
   </body>
 </html>
