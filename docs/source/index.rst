@@ -18,9 +18,6 @@ are gradually added
 as the library grows and evolves.
 
 
-#social-media#
-
-
 .. sidebar:: Quick examples -- What can PyCantonese do?
 
     With PyCantonese in Python:
@@ -96,5 +93,5 @@ Please create issues on the
 `GitHub page <https://github.com/pycantonese/pycantonese>`_.
 Alternatively, you may contact `Jackson Lee <http://jacksonllee.com>`_.
 
-`Changelog <https://github.com/pycantonese/pycantonese/blob/master/changelog.md>`_ on GitHub
+`Changelog <https://github.com/pycantonese/pycantonese/blob/master/CHANGELOG.md>`_ on GitHub
 
