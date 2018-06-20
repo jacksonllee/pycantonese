@@ -93,5 +93,6 @@ Please create issues on the
 `GitHub page <https://github.com/pycantonese/pycantonese>`_.
 Alternatively, you may contact `Jackson Lee <http://jacksonllee.com>`_.
 
-`Changelog <https://github.com/pycantonese/pycantonese/blob/master/CHANGELOG.md>`_ on GitHub
+For updates, tips, and more:
 
+#social-media#
