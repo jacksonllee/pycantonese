@@ -10,7 +10,6 @@
 _STOP_WORDS = """
 一啲
 一定
-下
 不如
 不過
 之後
@@ -22,11 +21,8 @@ _STOP_WORDS = """
 你哋
 佢
 佢哋
-來
 係
-俾
 個
-做
 其他
 冇
 再
@@ -129,7 +125,14 @@ def stop_words(add=None, remove=None):
     """
     _stop_words = set(_STOP_WORDS)
     if add:
-        _stop_words = _stop_words | set(add)
+        if isinstance(add, str):
+            _stop_words.add(add)
+        else:
+            # assume "add" is an iterable of strings
+            _stop_words = _stop_words | set(add)
     if remove:
-        _stop_words = _stop_words - set(remove)
+        if isinstance(remove, str):
+            _stop_words.remove(remove)
+        else:
+            _stop_words = _stop_words - set(remove)
     return _stop_words

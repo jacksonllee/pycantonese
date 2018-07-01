@@ -18,3 +18,4 @@ http://pycantonese.org
 from pycantonese._version import __version__
 from pycantonese.corpus import hkcancor, read_chat
 from pycantonese.jyutping import parse_jyutping, jyutping2tipa, jyutping2yale
+from pycantonese.stop_words import stop_words
