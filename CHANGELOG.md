@@ -8,15 +8,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 ### Added
-
-* 104 stop words.
-
 ### Changed
 ### Deprecated
 ### Removed
 ### Fixed
 ### Security
 
+## [2.2.0] - 2018-06-30
+
+### Added
+* 104 stop words.
 
 ## [2.1.0] - 2018-06-11
 
