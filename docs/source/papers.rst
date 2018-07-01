@@ -1,6 +1,6 @@
 .. _papers:
 
-Research outputs
+Research Outputs
 ================
 
 Jackson L. Lee, Litong Chen, and Tsz-Him Tsui. 2016. PyCantonese: Developing computational tools for Cantonese linguistics.

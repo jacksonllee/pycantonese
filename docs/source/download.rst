@@ -1,6 +1,6 @@
 ..  _download:
 
-Download and install
+Download and Install
 ====================
 
 PyCantonese requires Python 3.4+.

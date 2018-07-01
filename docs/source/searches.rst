@@ -1,6 +1,6 @@
 ..  _searches:
 
-Search queries
+Search Queries
 ==============
 
 A common task in corpus-based linguistic work
@@ -42,7 +42,7 @@ parameters.
 
 .. _search_jyutping:
 
-Searching by a Jyutping element
+Searching by a Jyutping Element
 -------------------------------
 
 Search queries
@@ -117,7 +117,7 @@ restrictions are imposed on the combination of Jyutping-related search criteria:
 
 .. _search_character:
 
-Searching by a Chinese character
+Searching by a Chinese Character
 --------------------------------
 
 Search queries for a given Chinese character are performed by the ``character``
@@ -141,7 +141,7 @@ prefix for the string literal) for unicode.
 
 .. _search_pos:
 
-Searching by a part-of-speech tag
+Searching by a Part-of-speech Tag
 ---------------------------------
 
 With the parameter ``pos`` in ``search()``,
@@ -198,7 +198,7 @@ For the part-of-speech tagset used by HKCanCor, see `here <http://compling.hss.n
 
 .. _search_range:
 
-Searching by a word or sentence range
+Searching by a Word or Sentence Range
 -------------------------------------
 
 It is possible to include in search results the neighboring words and sentences
@@ -270,7 +270,7 @@ sentences are in the output anyway).
 
 .. _search_combination:
 
-Searching by multiple criteria
+Searching by Multiple Criteria
 ------------------------------
 
 ``search()`` is flexible and allows multiple parameters described
@@ -297,7 +297,7 @@ we may be interested in all words with coda {p, t, k} plus tone 2 (high-rising):
 
 .. _search_format:
 
-Output format of search results
+Output Format of Search Results
 -------------------------------
 
 While ``search()`` always returns a list, the format of the elements in the list

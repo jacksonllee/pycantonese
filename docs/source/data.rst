@@ -1,6 +1,6 @@
 ..  _data:
 
-Corpus data
+Corpus Data
 ===========
 
 * :ref:`chat_format`
@@ -9,7 +9,7 @@ Corpus data
 
 .. _chat_format:
 
-The CHAT transcription format
+The CHAT Transcription Format
 -----------------------------
 
 PyCantonese adopts the CHAT format (as used in the CHILDES database for
@@ -26,7 +26,7 @@ see `here <http://pylangacq.org/read.html#chat-format>`_.
 
 .. _built_in_data:
 
-Accessing built-in data
+Accessing Built-in Data
 -----------------------
 
 Currently, PyCantonese comes with one built-in Cantonese corpus, the
@@ -53,7 +53,7 @@ please consult this
 
 .. _custom_data:
 
-Accessing custom data
+Accessing Custom Data
 ---------------------
 
 If you have a Cantonese corpus in the CHAT format in your local drive and would

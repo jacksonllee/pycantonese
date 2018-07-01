@@ -59,7 +59,7 @@ as the library grows and evolves.
          ('係', 'V', 'hai6', '')]
 
 
-Table of contents
+Table of Contents
 -----------------
 
 ..  toctree::
@@ -67,13 +67,14 @@ Table of contents
 
     download
     data
+    stop_words
     reader
     jyutping
     searches
     papers
 
 
-How to cite
+How to Cite
 -----------
 
 PyCantonese is maintained by
@@ -85,7 +86,7 @@ Jackson L. Lee. 2015. PyCantonese: Cantonese linguistic research in the age of b
 
 See :ref:`papers` for a running list of our work.
 
-Technical support, library development, etc.
+Technical Support, Library Development, etc.
 --------------------------------------------
 
 Questions, bug reports and suggested features are more than welcome.

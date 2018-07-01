@@ -1,6 +1,6 @@
 ..  _reader:
 
-Corpus reader methods
+Corpus Reader Methods
 =====================
 
 The sections :ref:`represent_words` and :ref:`note_on_methods` provide
@@ -9,7 +9,7 @@ background information for how to use the methods listed in
 
 .. _represent_words:
 
-The representation of "words"
+The Representation of "Words"
 -----------------------------
 
 The representation of "words" in PyCantonese comes in two flavors
@@ -66,7 +66,7 @@ access methods listed in :ref:`data_methods` below.
 
 .. _note_on_methods:
 
-A note on the access methods
+A Note on the Access Methods
 ----------------------------
 
 .. code-block:: python
@@ -106,7 +106,7 @@ object is dict(absolute-path filename: X() for that file) instead.
 
 .. _metadata_methods:
 
-Metadata methods
+Metadata Methods
 ----------------
 
 .. currentmodule:: pycantonese.corpus.CantoneseCHATReader
@@ -120,7 +120,7 @@ Metadata methods
 
 .. _data_methods:
 
-Data methods
+Data Methods
 ------------
 
 .. currentmodule:: pycantonese.corpus.CantoneseCHATReader
@@ -147,7 +147,7 @@ Data methods
 
 .. _reader_api:
 
-Full reader API
+Full Reader API
 ---------------
 
 .. autoclass:: pycantonese.corpus.CantoneseCHATReader

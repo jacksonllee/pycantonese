@@ -4,7 +4,7 @@
 
 .. _TIPA: https://www.ctan.org/pkg/tipa?lang=en
 
-Jyutping romanization: Parsing and conversion
+Jyutping Romanization: Parsing and Conversion
 =============================================
 
 Among the most common tasks in handling Cantonese corpus data are those that
@@ -18,7 +18,7 @@ schemes are actively used alongside Jyutping. PyCantonese provides
 tools for converting Jyutping to some of these romanization systems.
 
 
-Parsing Jyutping strings
+Parsing Jyutping Strings
 ------------------------
 
 The function ``parse_jyutping()`` parses a string of Jyutping romanization
@@ -54,7 +54,7 @@ The function ``jyutping()`` is able to detect invalid Jyutping romanization:
         raise ValueError('tone error -- ' + repr(jp))
     ValueError: tone error -- 'hou7'
 
-Jyutping-to-Yale conversion
+Jyutping-to-Yale Conversion
 ---------------------------
 
 The Yale romanization is still a commonly used system, particularly in numerous
@@ -89,7 +89,7 @@ of Yale strings instead:
     ['gwóng', 'dūng', 'wá']
 
 
-Jyutping-to-TIPA conversion
+Jyutping-to-TIPA Conversion
 ---------------------------
 
 PyCantonese also offers the ``jyutping2tipa()`` function for the
