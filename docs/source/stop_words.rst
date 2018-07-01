@@ -17,8 +17,9 @@ that returns a set of about 100 Cantonese stop words:
     >>> stop_words
     {'一啲', '一定', '不如', '不過', ...}
 
-If you would like to add or remove stop words from the default ones,
-the ``stop_words()`` function has the optional arguments of ``add`` and
+Depending on your use cases, you may like to add or remove stop words
+from the default ones.
+The ``stop_words()`` function has the optional arguments of ``add`` and
 ``remove``.
 
 ``add`` can either be a string (e.g., treat ``'香港'`` as a stop word if your

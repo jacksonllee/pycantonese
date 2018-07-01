@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Jyutping romanization: Parsing and conversion &#8212; PyCantonese 2.1.0 documentation</title>
+    <title>Jyutping Romanization: Parsing and Conversion &#8212; PyCantonese 2.2.0 documentation</title>
     <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -15,8 +15,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Search queries" href="searches.html" />
-    <link rel="prev" title="Corpus reader methods" href="reader.html" /> 
+    <link rel="next" title="Search Queries" href="searches.html" />
+    <link rel="prev" title="Corpus Reader Methods" href="reader.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -25,32 +25,32 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="searches.html" title="Search queries"
+          <a href="searches.html" title="Search Queries"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="reader.html" title="Corpus reader methods"
+          <a href="reader.html" title="Corpus Reader Methods"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.1.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.2.0 documentation</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Jyutping romanization: Parsing and conversion</a><ul>
-<li><a class="reference internal" href="#parsing-jyutping-strings">Parsing Jyutping strings</a></li>
-<li><a class="reference internal" href="#jyutping-to-yale-conversion">Jyutping-to-Yale conversion</a></li>
-<li><a class="reference internal" href="#jyutping-to-tipa-conversion">Jyutping-to-TIPA conversion</a></li>
+<li><a class="reference internal" href="#">Jyutping Romanization: Parsing and Conversion</a><ul>
+<li><a class="reference internal" href="#parsing-jyutping-strings">Parsing Jyutping Strings</a></li>
+<li><a class="reference internal" href="#jyutping-to-yale-conversion">Jyutping-to-Yale Conversion</a></li>
+<li><a class="reference internal" href="#jyutping-to-tipa-conversion">Jyutping-to-TIPA Conversion</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="reader.html"
-                        title="previous chapter">Corpus reader methods</a></p>
+                        title="previous chapter">Corpus Reader Methods</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="searches.html"
-                        title="next chapter">Search queries</a></p>
+                        title="next chapter">Search Queries</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <div class="searchformwrapper">
@@ -72,7 +72,7 @@
           <div class="body" role="main">
             
   <div class="section" id="jyutping-romanization-parsing-and-conversion">
-<h1>Jyutping romanization: Parsing and conversion<a class="headerlink" href="#jyutping-romanization-parsing-and-conversion" title="Permalink to this headline">¶</a></h1>
+<h1>Jyutping Romanization: Parsing and Conversion<a class="headerlink" href="#jyutping-romanization-parsing-and-conversion" title="Permalink to this headline">¶</a></h1>
 <p>Among the most common tasks in handling Cantonese corpus data are those that
 involve the processing of <a class="reference external" href="http://lshk.org/node/47">Jyutping romanization</a>, e.g., searching for words by a
 particular Jyutping element (an onset, a tone, or something else).
@@ -82,7 +82,7 @@ its phonological components. Moreover, several other Cantonese romanization
 schemes are actively used alongside Jyutping. PyCantonese provides
 tools for converting Jyutping to some of these romanization systems.</p>
 <div class="section" id="parsing-jyutping-strings">
-<h2>Parsing Jyutping strings<a class="headerlink" href="#parsing-jyutping-strings" title="Permalink to this headline">¶</a></h2>
+<h2>Parsing Jyutping Strings<a class="headerlink" href="#parsing-jyutping-strings" title="Permalink to this headline">¶</a></h2>
 <p>The function <code class="docutils literal notranslate"><span class="pre">parse_jyutping()</span></code> parses a string of Jyutping romanization
 and returns a list of tuples; the string may contain romanization for multiple
 Chinese characters. The parsed romanization for a character is a 4-tuple:
@@ -112,7 +112,7 @@ Chinese characters. The parsed romanization for a character is a 4-tuple:
 </div>
 </div>
 <div class="section" id="jyutping-to-yale-conversion">
-<h2>Jyutping-to-Yale conversion<a class="headerlink" href="#jyutping-to-yale-conversion" title="Permalink to this headline">¶</a></h2>
+<h2>Jyutping-to-Yale Conversion<a class="headerlink" href="#jyutping-to-yale-conversion" title="Permalink to this headline">¶</a></h2>
 <p>The Yale romanization is still a commonly used system, particularly in numerous
 dictionaries and
 Cantonese language teaching resources. PyCantonese provides the
@@ -140,7 +140,7 @@ of Yale strings instead:</p>
 </div>
 </div>
 <div class="section" id="jyutping-to-tipa-conversion">
-<h2>Jyutping-to-TIPA conversion<a class="headerlink" href="#jyutping-to-tipa-conversion" title="Permalink to this headline">¶</a></h2>
+<h2>Jyutping-to-TIPA Conversion<a class="headerlink" href="#jyutping-to-tipa-conversion" title="Permalink to this headline">¶</a></h2>
 <p>PyCantonese also offers the <code class="docutils literal notranslate"><span class="pre">jyutping2tipa()</span></code> function for the
 <a class="reference external" href="https://www.ctan.org/pkg/tipa?lang=en">LaTeX TIPA</a> users:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
@@ -170,16 +170,16 @@ release if this behavior proves to be inconvenient.)</p>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="searches.html" title="Search queries"
+          <a href="searches.html" title="Search Queries"
              >next</a> |</li>
         <li class="right" >
-          <a href="reader.html" title="Corpus reader methods"
+          <a href="reader.html" title="Corpus Reader Methods"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.1.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.2.0 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2014-2018, Jackson L. Lee | Documentation last updated on June 19, 2018.
+        &#169; Copyright 2014-2018, Jackson L. Lee | Documentation last updated on June 30, 2018.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
     </div>
   </body>

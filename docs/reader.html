@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Corpus reader methods &#8212; PyCantonese 2.1.0 documentation</title>
+    <title>Corpus Reader Methods &#8212; PyCantonese 2.2.0 documentation</title>
     <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -15,8 +15,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Jyutping romanization: Parsing and conversion" href="jyutping.html" />
-    <link rel="prev" title="Corpus data" href="data.html" /> 
+    <link rel="next" title="Jyutping Romanization: Parsing and Conversion" href="jyutping.html" />
+    <link rel="prev" title="Stop Words" href="stop_words.html" /> 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -25,34 +25,34 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="jyutping.html" title="Jyutping romanization: Parsing and conversion"
+          <a href="jyutping.html" title="Jyutping Romanization: Parsing and Conversion"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="data.html" title="Corpus data"
+          <a href="stop_words.html" title="Stop Words"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.1.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.2.0 documentation</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Corpus reader methods</a><ul>
-<li><a class="reference internal" href="#the-representation-of-words">The representation of “words”</a></li>
-<li><a class="reference internal" href="#a-note-on-the-access-methods">A note on the access methods</a></li>
-<li><a class="reference internal" href="#metadata-methods">Metadata methods</a></li>
-<li><a class="reference internal" href="#data-methods">Data methods</a></li>
-<li><a class="reference internal" href="#full-reader-api">Full reader API</a></li>
+<li><a class="reference internal" href="#">Corpus Reader Methods</a><ul>
+<li><a class="reference internal" href="#the-representation-of-words">The Representation of “Words”</a></li>
+<li><a class="reference internal" href="#a-note-on-the-access-methods">A Note on the Access Methods</a></li>
+<li><a class="reference internal" href="#metadata-methods">Metadata Methods</a></li>
+<li><a class="reference internal" href="#data-methods">Data Methods</a></li>
+<li><a class="reference internal" href="#full-reader-api">Full Reader API</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="data.html"
-                        title="previous chapter">Corpus data</a></p>
+  <p class="topless"><a href="stop_words.html"
+                        title="previous chapter">Stop Words</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="jyutping.html"
-                        title="next chapter">Jyutping romanization: Parsing and conversion</a></p>
+                        title="next chapter">Jyutping Romanization: Parsing and Conversion</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <div class="searchformwrapper">
@@ -74,12 +74,12 @@
           <div class="body" role="main">
             
   <div class="section" id="corpus-reader-methods">
-<span id="reader"></span><h1>Corpus reader methods<a class="headerlink" href="#corpus-reader-methods" title="Permalink to this headline">¶</a></h1>
-<p>The sections <a class="reference internal" href="#represent-words"><span class="std std-ref">The representation of “words”</span></a> and <a class="reference internal" href="#note-on-methods"><span class="std std-ref">A note on the access methods</span></a> provide
+<span id="reader"></span><h1>Corpus Reader Methods<a class="headerlink" href="#corpus-reader-methods" title="Permalink to this headline">¶</a></h1>
+<p>The sections <a class="reference internal" href="#represent-words"><span class="std std-ref">The Representation of “Words”</span></a> and <a class="reference internal" href="#note-on-methods"><span class="std std-ref">A Note on the Access Methods</span></a> provide
 background information for how to use the methods listed in
-<a class="reference internal" href="#metadata-methods"><span class="std std-ref">Metadata methods</span></a> and <a class="reference internal" href="#data-methods"><span class="std std-ref">Data methods</span></a>.</p>
+<a class="reference internal" href="#metadata-methods"><span class="std std-ref">Metadata Methods</span></a> and <a class="reference internal" href="#data-methods"><span class="std std-ref">Data Methods</span></a>.</p>
 <div class="section" id="the-representation-of-words">
-<span id="represent-words"></span><h2>The representation of “words”<a class="headerlink" href="#the-representation-of-words" title="Permalink to this headline">¶</a></h2>
+<span id="represent-words"></span><h2>The Representation of “Words”<a class="headerlink" href="#the-representation-of-words" title="Permalink to this headline">¶</a></h2>
 <p>The representation of “words” in PyCantonese comes in two flavors
 (similar to NLTK):</p>
 <ol class="arabic">
@@ -123,10 +123,10 @@ strings:</p>
 </pre></div>
 </div>
 <p>The distinction of “simple” versus “tagged” words is reflected in the data
-access methods listed in <a class="reference internal" href="#data-methods"><span class="std std-ref">Data methods</span></a> below.</p>
+access methods listed in <a class="reference internal" href="#data-methods"><span class="std std-ref">Data Methods</span></a> below.</p>
 </div>
 <div class="section" id="a-note-on-the-access-methods">
-<span id="note-on-methods"></span><h2>A note on the access methods<a class="headerlink" href="#a-note-on-the-access-methods" title="Permalink to this headline">¶</a></h2>
+<span id="note-on-methods"></span><h2>A Note on the Access Methods<a class="headerlink" href="#a-note-on-the-access-methods" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="kn">as</span> <span class="nn">pc</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span> <span class="o">=</span> <span class="n">pc</span><span class="o">.</span><span class="n">hkcancor</span><span class="p">()</span>
 </pre></div>
@@ -157,7 +157,7 @@ in results for individual files, set <code class="docutils literal notranslate">
 object is dict(absolute-path filename: X() for that file) instead.</p>
 </div>
 <div class="section" id="metadata-methods">
-<span id="id1"></span><h2>Metadata methods<a class="headerlink" href="#metadata-methods" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2>Metadata Methods<a class="headerlink" href="#metadata-methods" title="Permalink to this headline">¶</a></h2>
 <table border="1" class="longtable docutils">
 <colgroup>
 <col width="10%" />
@@ -180,7 +180,7 @@ object is dict(absolute-path filename: X() for that file) instead.</p>
 </table>
 </div>
 <div class="section" id="data-methods">
-<span id="id2"></span><h2>Data methods<a class="headerlink" href="#data-methods" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>Data Methods<a class="headerlink" href="#data-methods" title="Permalink to this headline">¶</a></h2>
 <table border="1" class="longtable docutils">
 <colgroup>
 <col width="10%" />
@@ -242,7 +242,7 @@ object is dict(absolute-path filename: X() for that file) instead.</p>
 </table>
 </div>
 <div class="section" id="full-reader-api">
-<span id="reader-api"></span><h2>Full reader API<a class="headerlink" href="#full-reader-api" title="Permalink to this headline">¶</a></h2>
+<span id="reader-api"></span><h2>Full Reader API<a class="headerlink" href="#full-reader-api" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="pycantonese.corpus.CantoneseCHATReader">
 <em class="property">class </em><code class="descclassname">pycantonese.corpus.</code><code class="descname">CantoneseCHATReader</code><span class="sig-paren">(</span><em>*filenames</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader" title="Permalink to this definition">¶</a></dt>
@@ -577,16 +577,16 @@ instead.</p>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="jyutping.html" title="Jyutping romanization: Parsing and conversion"
+          <a href="jyutping.html" title="Jyutping Romanization: Parsing and Conversion"
              >next</a> |</li>
         <li class="right" >
-          <a href="data.html" title="Corpus data"
+          <a href="stop_words.html" title="Stop Words"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.1.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.2.0 documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2014-2018, Jackson L. Lee | Documentation last updated on June 19, 2018.
+        &#169; Copyright 2014-2018, Jackson L. Lee | Documentation last updated on June 30, 2018.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
     </div>
   </body>

@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 
-* Stop words.
+* 104 stop words.
 
 ### Changed
 ### Deprecated
