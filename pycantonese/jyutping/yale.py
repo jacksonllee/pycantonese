@@ -1,20 +1,8 @@
-# PyCantonese
-#
-# Copyright (C) 2014-2018 PyCantonese Project
-# Author: Jackson Lee <jacksonlunlee@gmail.com>
-# URL: <http://pycantonese.org/>
-# For license information, see LICENSE.TXT
-
-from __future__ import unicode_literals
-
-import sys
 import unicodedata
 
 from pycantonese.jyutping import parse_jyutping
 from pycantonese.util import endswithoneof, startswithoneof
 
-
-PY2 = sys.version_info[0] == 2
 
 ONSETS_YALE = {
     'b': 'b',
@@ -73,9 +61,6 @@ def jyutping2yale(jp_str, as_list=False):
     :param as_list: If True (default: False), return a list of Yale strings
         for individual syllables.
     """
-    if PY2 and isinstance(jp_str, str):  # pragma: no cover
-        jp_str = unicode(jp_str)  # noqa F821 ('unicode' undefined in py >= 3)
-
     jp_parsed_list = parse_jyutping(jp_str)
     yale_list = []
 

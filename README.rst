@@ -38,12 +38,12 @@ Setting up a Development Environment
 ------------------------------------
 
 The latest code under development is available on Github at
-`pycantonese/pycantonese <https://github.com/pycantonese/pycantonese>`_.
+`jacksonllee/pycantonese <https://github.com/jacksonllee/pycantonese>`_.
 To obtain this version for experimental features or for development:
 
 .. code-block:: bash
 
-   $ git clone https://github.com/pycantonese/pycantonese.git
+   $ git clone https://github.com/jacksonllee/pycantonese.git
    $ cd pycantonese
    $ pip install -r requirements.txt
    $ pip install -r dev-requirements.txt

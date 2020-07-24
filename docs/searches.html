@@ -1,18 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Search Queries &#8212; PyCantonese 2.2.0 documentation</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Queries &#8212; PyCantonese 2.3.0 documentation</title>
     <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Research Outputs" href="papers.html" />
@@ -30,44 +30,10 @@
         <li class="right" >
           <a href="jyutping.html" title="Jyutping Romanization: Parsing and Conversion"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.2.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.3.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Search Queries</a></li> 
       </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Search Queries</a><ul>
-<li><a class="reference internal" href="#searching-by-a-jyutping-element">Searching by a Jyutping Element</a></li>
-<li><a class="reference internal" href="#searching-by-a-chinese-character">Searching by a Chinese Character</a></li>
-<li><a class="reference internal" href="#searching-by-a-part-of-speech-tag">Searching by a Part-of-speech Tag</a></li>
-<li><a class="reference internal" href="#searching-by-a-word-or-sentence-range">Searching by a Word or Sentence Range</a></li>
-<li><a class="reference internal" href="#searching-by-multiple-criteria">Searching by Multiple Criteria</a></li>
-<li><a class="reference internal" href="#output-format-of-search-results">Output Format of Search Results</a></li>
-</ul>
-</li>
-</ul>
-
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="jyutping.html"
-                        title="previous chapter">Jyutping Romanization: Parsing and Conversion</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="papers.html"
-                        title="next chapter">Research Outputs</a></p>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+    </div>  
 
     <div class="document">
       <div class="documentwrapper">
@@ -90,7 +56,7 @@ semantics, word collocation, discourse analysis, conversation analysis, etc.</p>
 <p>All the following examples assume that a corpus object <code class="docutils literal notranslate"><span class="pre">corpus</span></code> for HKCanCor
 has been created, and that <code class="docutils literal notranslate"><span class="pre">pprint()</span></code> is used for pretty print.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="kn">as</span> <span class="nn">pc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span> <span class="o">=</span> <span class="n">pc</span><span class="o">.</span><span class="n">hkcancor</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">corpus</span><span class="o">.</span><span class="n">words</span><span class="p">())</span>  <span class="c1"># total number of words</span>
 <span class="go">149781</span>
@@ -101,12 +67,12 @@ has been created, and that <code class="docutils literal notranslate"><span clas
 <p>The following examples show how <code class="docutils literal notranslate"><span class="pre">search()</span></code> works using its array of
 parameters.</p>
 <ul class="simple">
-<li><a class="reference internal" href="#search-jyutping"><span class="std std-ref">Searching by a Jyutping Element</span></a></li>
-<li><a class="reference internal" href="#search-character"><span class="std std-ref">Searching by a Chinese Character</span></a></li>
-<li><a class="reference internal" href="#search-pos"><span class="std std-ref">Searching by a Part-of-speech Tag</span></a></li>
-<li><a class="reference internal" href="#search-range"><span class="std std-ref">Searching by a Word or Sentence Range</span></a></li>
-<li><a class="reference internal" href="#search-combination"><span class="std std-ref">Searching by Multiple Criteria</span></a></li>
-<li><a class="reference internal" href="#search-format"><span class="std std-ref">Output Format of Search Results</span></a></li>
+<li><p><a class="reference internal" href="#search-jyutping"><span class="std std-ref">Searching by a Jyutping Element</span></a></p></li>
+<li><p><a class="reference internal" href="#search-character"><span class="std std-ref">Searching by a Chinese Character</span></a></p></li>
+<li><p><a class="reference internal" href="#search-pos"><span class="std std-ref">Searching by a Part-of-speech Tag</span></a></p></li>
+<li><p><a class="reference internal" href="#search-range"><span class="std std-ref">Searching by a Word or Sentence Range</span></a></p></li>
+<li><p><a class="reference internal" href="#search-combination"><span class="std std-ref">Searching by Multiple Criteria</span></a></p></li>
+<li><p><a class="reference internal" href="#search-format"><span class="std std-ref">Output Format of Search Results</span></a></p></li>
 </ul>
 <div class="section" id="searching-by-a-jyutping-element">
 <span id="search-jyutping"></span><h2>Searching by a Jyutping Element<a class="headerlink" href="#searching-by-a-jyutping-element" title="Permalink to this headline">¶</a></h2>
@@ -115,13 +81,13 @@ by various parsed Jyutping elements are possible by passing a parameter
 with its value to <code class="docutils literal notranslate"><span class="pre">search()</span></code>.</p>
 <p>The Jyutping parameters are:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">onset</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">nucleus</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">coda</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">tone</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">initial</span></code> (聲母, equivalent to <code class="docutils literal notranslate"><span class="pre">onset</span></code>)</li>
-<li><code class="docutils literal notranslate"><span class="pre">final</span></code> (韻母, equivalent to nucleus+coda)</li>
-<li><code class="docutils literal notranslate"><span class="pre">jyutping</span></code> (a complete Jyutping romanization, onset+nucleus+coda+tone)</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">onset</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nucleus</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">coda</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tone</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">initial</span></code> (聲母, equivalent to <code class="docutils literal notranslate"><span class="pre">onset</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">final</span></code> (韻母, equivalent to nucleus+coda)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">jyutping</span></code> (a complete Jyutping romanization, onset+nucleus+coda+tone)</p></li>
 </ul>
 <p>For example, for the nucleus “aa”:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">aa</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">nucleus</span><span class="o">=</span><span class="s1">&#39;aa&#39;</span><span class="p">)</span>
@@ -152,7 +118,7 @@ may take a regular expression for more powerful search queries.
 For instance, we may ask for all words that contain any of the codas {p, t, k}.
 <code class="docutils literal notranslate"><span class="pre">[ptk]</span></code> can be used for regular expression matching for any of these letters,
 and we set it to be the value of the <code class="docutils literal notranslate"><span class="pre">coda</span></code> parameter:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">codas_ptk</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">coda</span><span class="o">=</span><span class="s1">&#39;[ptk]&#39;</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">codas_ptk</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">coda</span><span class="o">=</span><span class="s1">&#39;[ptk]&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">codas_ptk</span><span class="p">)</span>
 <span class="go">12409</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="n">codas_ptk</span><span class="p">[:</span> <span class="mi">5</span><span class="p">])</span>
@@ -169,8 +135,8 @@ and we set it to be the value of the <code class="docutils literal notranslate">
 However, in order to avoid possible conflicts,
 restrictions are imposed on the combination of Jyutping-related search criteria:</p>
 <ul class="simple">
-<li>If <code class="docutils literal notranslate"><span class="pre">jyutping</span></code> is used, no other Jyutping search parameters can be used.</li>
-<li>If <code class="docutils literal notranslate"><span class="pre">final</span></code> is used, neither <code class="docutils literal notranslate"><span class="pre">nucleus</span></code> nor <code class="docutils literal notranslate"><span class="pre">coda</span></code> can be used.</li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">jyutping</span></code> is used, no other Jyutping search parameters can be used.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">final</span></code> is used, neither <code class="docutils literal notranslate"><span class="pre">nucleus</span></code> nor <code class="docutils literal notranslate"><span class="pre">coda</span></code> can be used.</p></li>
 </ul>
 </div>
 <div class="section" id="searching-by-a-chinese-character">
@@ -340,7 +306,41 @@ containing a match word are in the output list. If <code class="docutils literal
 </div>
 
 
+            <div class="clearer"></div>
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Search Queries</a><ul>
+<li><a class="reference internal" href="#searching-by-a-jyutping-element">Searching by a Jyutping Element</a></li>
+<li><a class="reference internal" href="#searching-by-a-chinese-character">Searching by a Chinese Character</a></li>
+<li><a class="reference internal" href="#searching-by-a-part-of-speech-tag">Searching by a Part-of-speech Tag</a></li>
+<li><a class="reference internal" href="#searching-by-a-word-or-sentence-range">Searching by a Word or Sentence Range</a></li>
+<li><a class="reference internal" href="#searching-by-multiple-criteria">Searching by Multiple Criteria</a></li>
+<li><a class="reference internal" href="#output-format-of-search-results">Output Format of Search Results</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="jyutping.html"
+                        title="previous chapter">Jyutping Romanization: Parsing and Conversion</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="papers.html"
+                        title="next chapter">Research Outputs</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -357,12 +357,13 @@ containing a match word are in the output list. If <code class="docutils literal
         <li class="right" >
           <a href="jyutping.html" title="Jyutping Romanization: Parsing and Conversion"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.2.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.3.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Search Queries</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2014-2018, Jackson L. Lee | Documentation last updated on June 30, 2018.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
+        &#169; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on July 24, 2020.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
     </div>
   </body>
 </html>

@@ -1,0 +1,59 @@
+version: 2
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - build-python-3.6
+      - build-python-3.7
+      - build-python-3.8
+
+jobs:
+  build-python-3.8: &template
+    docker:
+      - image: circleci/python:3.8
+    steps:
+      - checkout
+      - run:
+          name: Build source distribution and install package from it
+          working_directory: ~/project/
+          # Test that we can build a source distribution that can correctly
+          # install from clean slate.
+          # "python setup.py sdist" creates dist/pycantonese-x.y.z.tar.gz
+          command: |
+              pip install --progress-bar off --upgrade pip setuptools
+              python setup.py sdist
+              pip install dist/`ls dist/ | grep .tar.gz`
+      - run:
+          name: Check for PyPI compliance via twine
+          working_directory: ~/project/
+          command: |
+            pip install --progress-bar off twine
+            twine check dist/`ls dist/ | grep .tar.gz`
+      - run:
+          name: Install the full development requirements
+          working_directory: ~/project/
+          command: pip install --progress-bar off -r dev-requirements.txt
+      - run:
+          name: Show installed Python packages
+          command: pip list
+      - run:
+          name: Run linter
+          working_directory: ~/
+          # Avoid being able to do relative imports.
+          # Test code by importing the *installed* library in site-packages.
+          command: flake8 project/setup.py project/pycantonese
+      - run:
+          name: Run python tests
+          working_directory: ~/
+          # Avoid being able to do relative imports.
+          # Test code by importing the *installed* library in site-packages.
+          command: pytest -vv --cov=project/pycantonese project/pycantonese
+  build-python-3.6:
+    <<: *template
+    docker:
+      - image: circleci/python:3.6
+  build-python-3.7:
+    <<: *template
+    docker:
+      - image: circleci/python:3.7

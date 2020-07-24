@@ -1,10 +1,3 @@
-# PyCantonese
-#
-# Copyright (C) 2014-2018 PyCantonese Project
-# Author: Jackson Lee <jacksonlunlee@gmail.com>
-# URL: <http://pycantonese.org/>
-# For license information, see LICENSE.TXT
-
 """Stop words for Cantonese."""
 
 _STOP_WORDS = """

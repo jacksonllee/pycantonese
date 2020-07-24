@@ -14,6 +14,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 ### Security
 
+## [2.3.0] - 2020-07-24
+
+### Added
+* Added support for Python 3.7 and 3.8.
+
+### Removed
+* Dropped support for Python 3.4 and 3.5 (supporting 3.6, 3.7, and 3.8 now).
+
 ## [2.2.0] - 2018-06-30
 
 ### Added
