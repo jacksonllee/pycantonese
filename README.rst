@@ -9,13 +9,9 @@ PyCantonese: Cantonese Linguistics and NLP in Python
    :target: https://pypi.python.org/pypi/pycantonese
    :alt: Supported Python versions
 
-.. image:: https://travis-ci.org/pycantonese/pycantonese.svg?branch=master
-   :target: https://travis-ci.org/pycantonese/pycantonese
+.. image:: https://circleci.com/gh/jacksonllee/pycantonese/tree/master.svg?style=svg
+   :target: https://circleci.com/gh/jacksonllee/pycantonese/tree/master
    :alt: Build
-
-.. image:: https://landscape.io/github/pycantonese/pycantonese/master/landscape.svg?style=flat
-   :target: https://landscape.io/github/pycantonese/pycantonese/master
-   :alt: Code Health
 
 
 Documentation
