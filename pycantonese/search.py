@@ -11,12 +11,22 @@ def _jp_element_match(search_element, current_element):
         return False
 
 
-def perform_search(fn_to_tagged_sents,
-                   onset=None, nucleus=None, coda=None, tone=None,
-                   initial=None, final=None, jyutping=None,
-                   character=None, pos=None,
-                   word_range=(0, 0), sent_range=(0, 0),
-                   tagged=True, sents=False):
+def perform_search(
+    fn_to_tagged_sents,
+    onset=None,
+    nucleus=None,
+    coda=None,
+    tone=None,
+    initial=None,
+    final=None,
+    jyutping=None,
+    character=None,
+    pos=None,
+    word_range=(0, 0),
+    sent_range=(0, 0),
+    tagged=True,
+    sents=False,
+):
     """
     overall strategy: deal with jp (and all jp-related elements) first, and
                       then the character
@@ -35,15 +45,20 @@ def perform_search(fn_to_tagged_sents,
     """
     # ensure tuple type: word_range and sent_range
     if not (type(word_range) == type(sent_range) == tuple):
-        raise ValueError('word_range and sent_range must be tuples')
+        raise ValueError("word_range and sent_range must be tuples")
 
     words_left, words_right = word_range
     sents_left, sents_right = sent_range
 
     # ensure int type: words_left, words_right, sents_left, sents_right
-    if not (type(words_left) == type(words_right) ==
-            type(sents_left) == type(sents_right) == int):
-        raise ValueError('int required for {words, sents}_{left, right}')
+    if not (
+        type(words_left)
+        == type(words_right)
+        == type(sents_left)
+        == type(sents_right)
+        == int
+    ):
+        raise ValueError("int required for {words, sents}_{left, right}")
 
     if sents_left > 0 or sents_right > 0:
         sents = True
@@ -60,7 +75,7 @@ def perform_search(fn_to_tagged_sents,
     if pos:
         pos_search = True
     if not (character_search or jp_search or pos_search):
-        raise ValueError('no search elements')
+        raise ValueError("no search elements")
 
     # check if jyutping search is valid
     jp_search_tuple = (None, None, None, None)
@@ -69,13 +84,17 @@ def perform_search(fn_to_tagged_sents,
 
         # ensure compatible jyutping search elements
         if final and (nucleus or coda):
-            raise ValueError('final cannot be used together with '
-                             'either nucleus or coda (or both)')
+            raise ValueError(
+                "final cannot be used together with "
+                "either nucleus or coda (or both)"
+            )
         if jyutping and (onset or final or nucleus or coda or tone):
-            raise ValueError('jyutping cannot be used together with other '
-                             'Jyutping elements')
+            raise ValueError(
+                "jyutping cannot be used together with other "
+                "Jyutping elements"
+            )
         if (onset != initial) and onset and initial:
-            raise ValueError('onset conflicts with initial')
+            raise ValueError("onset conflicts with initial")
 
         # onset/initial
         if initial:
@@ -86,9 +105,9 @@ def perform_search(fn_to_tagged_sents,
             try:
                 jp_search_list = parse_jyutping(jyutping)
             except ValueError:
-                raise ValueError('invalid jyutping -- %s' % (repr(jyutping)))
+                raise ValueError("invalid jyutping -- %s" % (repr(jyutping)))
             if len(jp_search_list) > 1:
-                raise ValueError('only jyutping for one character is allowed')
+                raise ValueError("only jyutping for one character is allowed")
             else:
                 jp_search_tuple = jp_search_list[0]
         else:
@@ -138,9 +157,12 @@ def perform_search(fn_to_tagged_sents,
 
                     for c_parsed_jyutping in c_parsed_jyutpings:
 
-                        booleans = [_jp_element_match(search_, current_)
-                                    for search_, current_ in
-                                    zip(jp_search_tuple, c_parsed_jyutping)]
+                        booleans = [
+                            _jp_element_match(search_, current_)
+                            for search_, current_ in zip(
+                                jp_search_tuple, c_parsed_jyutping
+                            )
+                        ]
 
                         if all(booleans):
                             jyutping_match = True
@@ -162,7 +184,7 @@ def perform_search(fn_to_tagged_sents,
                 if i_word_end > len(tagged_sent):
                     i_word_end = len(tagged_sent)
 
-                words_wanted = tagged_sent[i_word_start: i_word_end]
+                words_wanted = tagged_sent[i_word_start:i_word_end]
 
                 if not tagged:
                     words_wanted = [x[0] for x in words_wanted]
@@ -180,7 +202,7 @@ def perform_search(fn_to_tagged_sents,
                 if i_sent_end > len(tagged_sents):
                     i_sent_end = len(tagged_sents)
 
-                sents_wanted = tagged_sents[i_sent_start: i_sent_end]
+                sents_wanted = tagged_sents[i_sent_start:i_sent_end]
 
                 if not tagged:
                     for i, sent in enumerate(sents_wanted[:]):

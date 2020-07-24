@@ -15,6 +15,9 @@ def test_correct_tone_set():
 
 
 def test_jyutping2tipa():
-    assert jyutping2tipa('m4goi1') == ['\\s{m}21', 'kOY55']
-    assert jyutping2tipa('gwong2dung1waa2') == [
-        'k\\super w ON25', 'tUN55', 'wa25']
+    assert jyutping2tipa("m4goi1") == ["\\s{m}21", "kOY55"]
+    assert jyutping2tipa("gwong2dung1waa2") == [
+        "k\\super w ON25",
+        "tUN55",
+        "wa25",
+    ]

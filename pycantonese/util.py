@@ -1,10 +1,11 @@
-ENCODING = 'utf8'
+ENCODING = "utf8"
 
 
 class ListFromIterables(list):
     """
     A class like ``list`` that can be initialized with iterables.
     """
+
     def __init__(self, *iterables):
         super(ListFromIterables, self).__init__()
         self.input_iterables = iterables
@@ -20,9 +21,9 @@ def get_jyutping_from_mor(mor):
     """
     Extract jyutping string from *mor*.
     """
-    jyutping, _, _ = mor.partition('=')
-    jyutping, _, _ = jyutping.partition('-')
-    jyutping, _, _ = jyutping.partition('&')
+    jyutping, _, _ = mor.partition("=")
+    jyutping, _, _ = jyutping.partition("-")
+    jyutping, _, _ = jyutping.partition("&")
     return jyutping
 
 

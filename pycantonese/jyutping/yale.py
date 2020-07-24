@@ -5,52 +5,52 @@ from pycantonese.util import endswithoneof, startswithoneof
 
 
 ONSETS_YALE = {
-    'b': 'b',
-    'd': 'd',
-    'g': 'g',
-    'gw': 'gw',
-    'z': 'j',
-    'p': 'p',
-    't': 't',
-    'k': 'k',
-    'kw': 'k',
-    'c': 'ch',
-    'm': 'm',
-    'n': 'n',
-    'ng': 'ng',
-    'f': 'f',
-    'h': 'h',
-    's': 's',
-    'l': 'l',
-    'w': 'w',
-    'j': 'y',
-    '': '',
+    "b": "b",
+    "d": "d",
+    "g": "g",
+    "gw": "gw",
+    "z": "j",
+    "p": "p",
+    "t": "t",
+    "k": "k",
+    "kw": "k",
+    "c": "ch",
+    "m": "m",
+    "n": "n",
+    "ng": "ng",
+    "f": "f",
+    "h": "h",
+    "s": "s",
+    "l": "l",
+    "w": "w",
+    "j": "y",
+    "": "",
 }
 
 NUCLEI_YALE = {
-    'aa': 'aa',
-    'a': 'a',
-    'i': 'i',
-    'yu': 'yu',
-    'u': 'u',
-    'oe': 'eu',
-    'e': 'e',
-    'eo': 'eu',
-    'o': 'o',
-    'm': 'm',
-    'ng': 'ng',
+    "aa": "aa",
+    "a": "a",
+    "i": "i",
+    "yu": "yu",
+    "u": "u",
+    "oe": "eu",
+    "e": "e",
+    "eo": "eu",
+    "o": "o",
+    "m": "m",
+    "ng": "ng",
 }
 
 CODAS_YALE = {
-    'p': 'p',
-    't': 't',
-    'k': 'k',
-    'm': 'm',
-    'n': 'n',
-    'ng': 'ng',
-    'i': 'i',
-    'u': 'u',
-    '': '',
+    "p": "p",
+    "t": "t",
+    "k": "k",
+    "m": "m",
+    "n": "n",
+    "ng": "ng",
+    "i": "i",
+    "u": "u",
+    "": "",
 }
 
 
@@ -93,8 +93,8 @@ def jyutping2yale(jp_str, as_list=False):
         # the tone diacritic has to be on "g" but not "n"
         # now we pretend that the nucleus is "g", and will prepend the "n" back
         # at the end
-        if nucleus == 'ng':
-            nucleus = 'g'
+        if nucleus == "ng":
+            nucleus = "g"
 
         # add the jyutping2yale tone diacritic to the first nucleus letter
         # parse_jyutping tone 1      --> add macron
@@ -109,19 +109,22 @@ def jyutping2yale(jp_str, as_list=False):
         if tone == "1":
             try:
                 letter_with_diacritic = unicodedata.lookup(
-                    unicode_letter_name + " WITH MACRON")
+                    unicode_letter_name + " WITH MACRON"
+                )
             except KeyError:
                 letter_with_diacritic = letter + "\u0304"
         elif tone in {"2", "5"}:
             try:
                 letter_with_diacritic = unicodedata.lookup(
-                    unicode_letter_name + " WITH ACUTE")
+                    unicode_letter_name + " WITH ACUTE"
+                )
             except KeyError:
                 letter_with_diacritic = letter + "\u0301"
         elif tone == "4":
             try:
                 letter_with_diacritic = unicodedata.lookup(
-                    unicode_letter_name + " WITH GRAVE")
+                    unicode_letter_name + " WITH GRAVE"
+                )
             except KeyError:
                 letter_with_diacritic = letter + "\u0300"
         else:
@@ -136,8 +139,8 @@ def jyutping2yale(jp_str, as_list=False):
 
         # add back "n" if the nucleus is "ng"
         # ('n' was taken away so that tone diacritic is on "g" but not "n")
-        if jp_parsed[1] == 'ng':
-            nucleus = 'n' + nucleus
+        if jp_parsed[1] == "ng":
+            nucleus = "n" + nucleus
 
         # parse_jyutping final "eu" should be jyutping2yale "ew" (not "eu")
         if coda == "u" and nucleus == "e":
@@ -169,35 +172,56 @@ def jyutping2yale(jp_str, as_list=False):
     if len(yale_list) == 1:
         return yale_list[0]
 
-    ambiguous_consonants = {'h', 'p', 't', 'k', 'm', 'n', 'ng'}
-    vowel_letters = {'a', 'e', 'i', 'o', 'u',
-                     'á', 'é', 'í', 'ó', 'ú',
-                     'à', 'è', 'ì', 'ò', 'ù',
-                     'ā', 'ē', 'ī', 'ō', 'ū'}
+    ambiguous_consonants = {"h", "p", "t", "k", "m", "n", "ng"}
+    vowel_letters = {
+        "a",
+        "e",
+        "i",
+        "o",
+        "u",
+        "á",
+        "é",
+        "í",
+        "ó",
+        "ú",
+        "à",
+        "è",
+        "ì",
+        "ò",
+        "ù",
+        "ā",
+        "ē",
+        "ī",
+        "ō",
+        "ū",
+    }
 
-    output_str = ''
+    output_str = ""
 
     for i in range(len(yale_list) - 1):
         yale1 = yale_list[i]
-        yale2 = yale_list[i+1]
+        yale2 = yale_list[i + 1]
 
         ambiguous = False
 
         # test case 1:
-        if endswithoneof(yale1, ambiguous_consonants) and \
-                startswithoneof(yale2, vowel_letters):
+        if endswithoneof(yale1, ambiguous_consonants) and startswithoneof(
+            yale2, vowel_letters
+        ):
             ambiguous = True
 
         # test case 2:
-        if not ambiguous and \
-                not endswithoneof(yale1, ambiguous_consonants) and \
-                startswithoneof(yale2, ambiguous_consonants):
+        if (
+            not ambiguous
+            and not endswithoneof(yale1, ambiguous_consonants)
+            and startswithoneof(yale2, ambiguous_consonants)
+        ):
             ambiguous = True
 
         output_str += yale1
 
         if ambiguous:
-            output_str += '\''
+            output_str += "'"
 
     output_str += yale_list[-1]
 
