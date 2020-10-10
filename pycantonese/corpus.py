@@ -1,3 +1,4 @@
+from functools import lru_cache
 import os
 
 from pylangacq.chat import Reader
@@ -281,6 +282,7 @@ class CantoneseCHATReader(Reader):
             )
 
 
+@lru_cache(maxsize=1)
 def hkcancor():
     """
     Create the corpus object for the Hong Kong Cantonese Corpus.

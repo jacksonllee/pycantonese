@@ -3,6 +3,7 @@ import pkg_resources
 from pycantonese.corpus import hkcancor, read_chat
 from pycantonese.jyutping import parse_jyutping, jyutping2tipa, jyutping2yale
 from pycantonese.stop_words import stop_words
+from pycantonese.word_segmentation import segment
 
 
 __version__ = pkg_resources.get_distribution("pycantonese").version
@@ -15,4 +16,5 @@ __all__ = [
     "jyutping2tipa",
     "jyutping2yale",
     "stop_words",
+    "segment",
 ]

@@ -35,7 +35,10 @@ def main():
         ],
         python_requires=">=3.6",
         setup_requires="setuptools>=39",
-        install_requires=["pylangacq>=0.10.0"],
+        install_requires=[
+            "pylangacq>=0.10.0",
+            "wordseg @ git+https://github.com/jacksonllee/wordseg@v0.0.1#egg=wordseg",  # noqa: E501
+        ],
         package_data={"pycantonese": ["data/hkcancor/*"]},
         data_files=[(".", ["README.rst", "LICENSE.txt", "CHANGELOG.md"])],
         zip_safe=False,

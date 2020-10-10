@@ -70,6 +70,7 @@ Table of Contents
     stop_words
     reader
     jyutping
+    word_segmentation
     searches
     papers
 

@@ -44,6 +44,12 @@ jobs:
           # Test code by importing the *installed* library in site-packages.
           command: flake8 project/setup.py project/pycantonese
       - run:
+          name: Run autoformat check
+          working_directory: ~/
+          # Avoid being able to do relative imports.
+          # Test code by importing the *installed* library in site-packages.
+          command: black --line-length=79 --check project/setup.py project/pycantonese
+      - run:
           name: Run python tests
           working_directory: ~/
           # Avoid being able to do relative imports.

@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 ### Added
+* Added the `segment()` function for word segmentation.
+
 ### Changed
 ### Deprecated
 ### Removed
