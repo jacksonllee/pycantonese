@@ -6,7 +6,7 @@ _THIS_DIR = os.path.dirname(__file__)
 with open(os.path.join(_THIS_DIR, "README.rst")) as f:
     _LONG_DESCRIPTION = f.read().strip()
 
-_VERSION = "2.4.0"
+_VERSION = "2.4.1"
 
 
 def main():
@@ -35,10 +35,7 @@ def main():
         ],
         python_requires=">=3.6",
         setup_requires="setuptools>=39",
-        install_requires=[
-            "pylangacq>=0.10.0",
-            "wordseg @ git+https://github.com/jacksonllee/wordseg@v0.0.1#egg=wordseg",  # noqa: E501
-        ],
+        install_requires=["pylangacq>=0.10.0,<1.0.0", "wordseg==0.0.1"],
         package_data={"pycantonese": ["data/hkcancor/*"]},
         data_files=[(".", ["README.rst", "LICENSE.txt", "CHANGELOG.md"])],
         zip_safe=False,

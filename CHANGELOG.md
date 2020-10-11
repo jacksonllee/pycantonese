@@ -13,6 +13,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 ### Security
 
+## [2.4.1] - 2020-10-10
+### Fixed
+* Switched to the `wordseg` dependency to a PyPI source instead of a
+  GitHub direct link.
+
 ## [2.4.0] - 2020-10-10
 
 ### Added
