@@ -4,19 +4,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-
 ## [Unreleased]
 
 ### Added
-* Added the `characters2jyutping()` function for converting
-  Cantonese characters to Jyutping romanization.
-* Added the `segment()` function for word segmentation.
-
 ### Changed
 ### Deprecated
 ### Removed
 ### Fixed
 ### Security
+
+## [2.4.0] - 2020-10-10
+
+### Added
+* Added the `characters2jyutping()` function for converting
+  Cantonese characters to Jyutping romanization.
+* Added the `segment()` function for word segmentation.
 
 ## [2.3.0] - 2020-07-24
 

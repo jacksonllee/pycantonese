@@ -6,7 +6,7 @@ _THIS_DIR = os.path.dirname(__file__)
 with open(os.path.join(_THIS_DIR, "README.rst")) as f:
     _LONG_DESCRIPTION = f.read().strip()
 
-_VERSION = "2.3.0"
+_VERSION = "2.4.0"
 
 
 def main():
