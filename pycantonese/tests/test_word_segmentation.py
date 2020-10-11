@@ -1,4 +1,4 @@
-from pycantonese.word_segmentation import segment
+from pycantonese import segment
 
 
 def test_segment():

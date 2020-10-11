@@ -9,21 +9,53 @@ Jyutping Romanization: Parsing and Conversion
 
 Among the most common tasks in handling Cantonese corpus data are those that
 involve the processing of `Jyutping romanization
-<http://lshk.org/node/47>`_, e.g., searching for words by a
-particular Jyutping element (an onset, a tone, or something else).
-It is necessary,
-therefore, to parse a string of Jyutping romanization into
-its phonological components. Moreover, several other Cantonese romanization
-schemes are actively used alongside Jyutping. PyCantonese provides
-tools for converting Jyutping to some of these romanization systems.
+<https://www.lshk.org/jyutping>`_.
+A common need is to convert Cantonese characters to Jyutping romanization.
+Another functionality of interest is the ability to convert Jyutping into
+other romanization schemes still commonly used today.
+PyCantonese provides tools for these use cases.
 
+Characters-to-Jyutping Conversion
+---------------------------------
+
+The function ``characters2jyutping()`` takes a string of Cantonese characters
+and returns a list of strings of Jyutping romanization:
+
+.. code-block:: python
+
+    >>> import pycantonese as pc
+    >>> pc.characters2jyutping('香港人講廣東話')  # "Hongkongers speak Cantonese"
+    ['hoeng1', 'gong2', 'jan4', 'gong2', 'gwong2', 'dung1', 'waa2']
+
+The characters-to-Jyutping conversion model is based entirely on the HKCanCor
+corpus data included in the PyCantonese library.
+Any unseen Cantonese character (or punctuation mark, for that matter) is
+represented by ``None`` in the output.
+
+A Cantonese character may have multiple pronunciations,
+most commonly due to *pinjam* (變音, "changed tone").
+Whether the function ``characters2jyutping()`` can intelligently output
+the correct, contextually dependent pronunciation depends on whether
+the HKCanCor data (which trains the conversion model) contains
+the relevant tokens. Example:
+
+.. code-block:: python
+
+    >>> import pycantonese as pc
+    >>> pc.characters2jyutping('蛋')  # egg
+    ['daan2']  # correct pronunciation of 蛋 with tone 2 (high-rising) as a standalone word
+    >>> pc.characters2jyutping('蛋糕')  # cake
+    ['daan6', 'gou1']  # correct pronunciation of 蛋 with tone 6 (low-level) in this context
 
 Parsing Jyutping Strings
 ------------------------
 
-The function ``parse_jyutping()`` parses a string of Jyutping romanization
+Converting Jyutping to other romanization schemes necessitates
+the ability to parse Jyutping for the various phonological components
+(onset, nucleus, coda, and tone). To this end, PyCantonese exposes
+the function ``parse_jyutping()`` which parses a string of Jyutping romanization
 and returns a list of tuples; the string may contain romanization for multiple
-Chinese characters. The parsed romanization for a character is a 4-tuple:
+Chinese characters. The parsed romanization for a character is a 4-tuple of
 (onset, nucleus, coda, tone):
 
 .. code-block:: python

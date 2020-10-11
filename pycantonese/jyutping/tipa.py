@@ -1,4 +1,4 @@
-from pycantonese.jyutping import parse_jyutping
+from pycantonese.jyutping.parse_jyutping import parse_jyutping
 
 
 ONSETS_TIPA = {

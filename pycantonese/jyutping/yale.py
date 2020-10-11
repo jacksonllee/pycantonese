@@ -1,6 +1,6 @@
 import unicodedata
 
-from pycantonese.jyutping import parse_jyutping
+from pycantonese.jyutping.parse_jyutping import parse_jyutping
 from pycantonese.util import endswithoneof, startswithoneof
 
 

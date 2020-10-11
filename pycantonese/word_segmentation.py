@@ -28,6 +28,8 @@ def segment(sent_str):
 
     :rtype: list of str
     """
+    if not sent_str:
+        return []
     model = _get_word_segmentation_model()
     segmented = list(model.predict([sent_str]))[0]
     return segmented

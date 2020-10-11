@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 ### Added
+* Added the `characters2jyutping()` function for converting
+  Cantonese characters to Jyutping romanization.
 * Added the `segment()` function for word segmentation.
 
 ### Changed

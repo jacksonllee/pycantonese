@@ -1,4 +1,4 @@
-from pycantonese.stop_words import stop_words
+from pycantonese import stop_words
 
 
 _DEFAULT_STOP_WORDS = stop_words()

@@ -1,7 +1,7 @@
 import re
 
 from pycantonese.util import get_jyutping_from_mor
-from pycantonese.jyutping import parse_jyutping, parse_final
+from pycantonese.jyutping.parse_jyutping import parse_jyutping, parse_final
 
 
 def _jp_element_match(search_element, current_element):

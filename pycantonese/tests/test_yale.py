@@ -1,9 +1,9 @@
+from pycantonese import jyutping2yale
 from pycantonese.jyutping.parse_jyutping import ONSETS, NUCLEI, CODAS
 from pycantonese.jyutping.yale import (
     ONSETS_YALE,
     NUCLEI_YALE,
     CODAS_YALE,
-    jyutping2yale,
 )
 
 

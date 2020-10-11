@@ -8,7 +8,7 @@ If these tests fail, the documentation should probably be updated as well
 
 import pytest
 
-from pycantonese.jyutping import parse_jyutping
+from pycantonese import parse_jyutping
 
 
 def test_basic_case_gwong2dung1waa2():
