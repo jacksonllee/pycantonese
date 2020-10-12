@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 ### Added
+* Added support for Python 3.9.
+
 ### Changed
 ### Deprecated
 ### Removed
