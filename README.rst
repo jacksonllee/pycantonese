@@ -80,4 +80,10 @@ MIT License. Please see ``LICENSE.txt`` for details.
 
 The HKCanCor dataset included in PyCantonese is substantially modified from
 its source in terms of format. The original dataset has a CC BY license.
-Please see ``pycantonese/data/hkcancor/readme.md`` for details.
+Please see ``pycantonese/data/hkcancor/README.md`` for details.
+
+The rime-cantonese data (release 2020.09.09) is
+incorporated into PyCantonese for word segmentation and
+characters-to-Jyutping conversion.
+This data has a CC BY 4.0 license.
+Please see ``pycantonese/data/rime_cantonese/README.md`` for details.

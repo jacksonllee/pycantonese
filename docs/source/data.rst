@@ -49,7 +49,7 @@ by Kang Kwong Luke, via ``hkcancor()``:
 
 On the CHAT format of HKCanCor incorporated in PyCantonese,
 please consult this
-`readme <https://github.com/jacksonllee/pycantonese/blob/master/pycantonese/data/hkcancor/readme.md>`_.
+`readme <https://github.com/jacksonllee/pycantonese/blob/master/pycantonese/data/hkcancor/README.md>`_.
 
 .. _custom_data:
 

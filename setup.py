@@ -36,7 +36,9 @@ def main():
         python_requires=">=3.6",
         setup_requires="setuptools>=39",
         install_requires=["pylangacq>=0.12.0,<1.0.0", "wordseg==0.0.2"],
-        package_data={"pycantonese": ["data/hkcancor/*"]},
+        package_data={
+            "pycantonese": ["data/hkcancor/*", "data/rime_cantonese/*"],
+        },
         data_files=[(".", ["README.rst", "LICENSE.txt", "CHANGELOG.md"])],
         zip_safe=False,
         classifiers=[

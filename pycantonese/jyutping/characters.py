@@ -15,13 +15,13 @@ def _get_words_characters_to_jyutping():
     for word, _, jyutping, _ in corpus.tagged_words():
         if not jyutping or not word:
             continue
-        words_to_jyutping_counters[word][jyutping] += 1
         try:
             parsed_jp = parse_jyutping(jyutping)
         except ValueError:
             continue
         if len(word) != len(parsed_jp):
             continue
+        words_to_jyutping_counters[word][jyutping] += 1
         for char, jp in zip(word, parsed_jp):
             characters_to_jyutping_counters[char]["".join(jp)] += 1
 
