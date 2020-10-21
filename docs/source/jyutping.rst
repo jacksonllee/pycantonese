@@ -19,18 +19,22 @@ Characters-to-Jyutping Conversion
 ---------------------------------
 
 The function ``characters2jyutping()`` takes a string of Cantonese characters
-and returns a list of strings of Jyutping romanization:
+and returns its word-segmented version with Jyutping romanization:
 
 .. code-block:: python
 
     >>> import pycantonese as pc
     >>> pc.characters2jyutping('香港人講廣東話')  # "Hongkongers speak Cantonese"
-    ['hoeng1', 'gong2', 'jan4', 'gong2', 'gwong2', 'dung1', 'waa2']
+    [("香港人", "hoeng1gong2jan4"), ("講", "gong2"), ("廣東話", "gwong2dung1waa2")]
 
-The characters-to-Jyutping conversion model is based entirely on the HKCanCor
-corpus data included in the PyCantonese library.
+The characters-to-Jyutping conversion model is based on two data sources:
+(i) the HKCanCor corpus data included in the PyCantonese library, and
+(ii) the rime-cantonese data (the 2020.09.09 release, CC BY license).
 Any unseen Cantonese character (or punctuation mark, for that matter) is
 represented by ``None`` in the output.
+
+To further process the Jyutping strings,
+please see `Parsing Jyutping Strings <parsing_jyutping_strings_>`_.
 
 A Cantonese character may have multiple pronunciations,
 most commonly due to *pinjam* (變音, "changed tone").
@@ -43,9 +47,11 @@ the relevant tokens. Example:
 
     >>> import pycantonese as pc
     >>> pc.characters2jyutping('蛋')  # egg
-    ['daan2']  # correct pronunciation of 蛋 with tone 2 (high-rising) as a standalone word
+    [("蛋", "daan2")]  # correct pronunciation of 蛋 with tone 2 (high-rising) as a standalone word
     >>> pc.characters2jyutping('蛋糕')  # cake
-    ['daan6', 'gou1']  # correct pronunciation of 蛋 with tone 6 (low-level) in this context
+    [("蛋糕", "daan6gou1")]  # correct pronunciation of 蛋 with tone 6 (low-level) in this context
+
+.. _parsing_jyutping_strings:
 
 Parsing Jyutping Strings
 ------------------------

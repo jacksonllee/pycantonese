@@ -51,16 +51,19 @@ PyCantonese provides tools for these use cases.</p>
 <div class="section" id="characters-to-jyutping-conversion">
 <h2>Characters-to-Jyutping Conversion<a class="headerlink" href="#characters-to-jyutping-conversion" title="Permalink to this headline">¶</a></h2>
 <p>The function <code class="docutils literal notranslate"><span class="pre">characters2jyutping()</span></code> takes a string of Cantonese characters
-and returns a list of strings of Jyutping romanization:</p>
+and returns its word-segmented version with Jyutping romanization:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">characters2jyutping</span><span class="p">(</span><span class="s1">&#39;香港人講廣東話&#39;</span><span class="p">)</span>  <span class="c1"># &quot;Hongkongers speak Cantonese&quot;</span>
-<span class="go">[&#39;hoeng1&#39;, &#39;gong2&#39;, &#39;jan4&#39;, &#39;gong2&#39;, &#39;gwong2&#39;, &#39;dung1&#39;, &#39;waa2&#39;]</span>
+<span class="go">[(&quot;香港人&quot;, &quot;hoeng1gong2jan4&quot;), (&quot;講&quot;, &quot;gong2&quot;), (&quot;廣東話&quot;, &quot;gwong2dung1waa2&quot;)]</span>
 </pre></div>
 </div>
-<p>The characters-to-Jyutping conversion model is based entirely on the HKCanCor
-corpus data included in the PyCantonese library.
+<p>The characters-to-Jyutping conversion model is based on two data sources:
+(i) the HKCanCor corpus data included in the PyCantonese library, and
+(ii) the rime-cantonese data (the 2020.09.09 release, CC BY license).
 Any unseen Cantonese character (or punctuation mark, for that matter) is
 represented by <code class="docutils literal notranslate"><span class="pre">None</span></code> in the output.</p>
+<p>To further process the Jyutping strings,
+please see <a class="reference internal" href="#parsing-jyutping-strings">Parsing Jyutping Strings</a>.</p>
 <p>A Cantonese character may have multiple pronunciations,
 most commonly due to <em>pinjam</em> (變音, “changed tone”).
 Whether the function <code class="docutils literal notranslate"><span class="pre">characters2jyutping()</span></code> can intelligently output
@@ -69,14 +72,14 @@ the HKCanCor data (which trains the conversion model) contains
 the relevant tokens. Example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">characters2jyutping</span><span class="p">(</span><span class="s1">&#39;蛋&#39;</span><span class="p">)</span>  <span class="c1"># egg</span>
-<span class="go">[&#39;daan2&#39;]  # correct pronunciation of 蛋 with tone 2 (high-rising) as a standalone word</span>
+<span class="go">[(&quot;蛋&quot;, &quot;daan2&quot;)]  # correct pronunciation of 蛋 with tone 2 (high-rising) as a standalone word</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">characters2jyutping</span><span class="p">(</span><span class="s1">&#39;蛋糕&#39;</span><span class="p">)</span>  <span class="c1"># cake</span>
-<span class="go">[&#39;daan6&#39;, &#39;gou1&#39;]  # correct pronunciation of 蛋 with tone 6 (low-level) in this context</span>
+<span class="go">[(&quot;蛋糕&quot;, &quot;daan6gou1&quot;)]  # correct pronunciation of 蛋 with tone 6 (low-level) in this context</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="parsing-jyutping-strings">
-<h2>Parsing Jyutping Strings<a class="headerlink" href="#parsing-jyutping-strings" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2>Parsing Jyutping Strings<a class="headerlink" href="#parsing-jyutping-strings" title="Permalink to this headline">¶</a></h2>
 <p>Converting Jyutping to other romanization schemes necessitates
 the ability to parse Jyutping for the various phonological components
 (onset, nucleus, coda, and tone). To this end, PyCantonese exposes

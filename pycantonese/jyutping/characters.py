@@ -2,6 +2,10 @@ from collections import Counter, defaultdict
 from functools import lru_cache
 
 from pycantonese.corpus import hkcancor
+from pycantonese.data.rime_cantonese import (
+    # TODO: Use LETTERS as well.
+    CHARS_TO_JYUTPING,
+)
 from pycantonese.jyutping.parse_jyutping import parse_jyutping
 from pycantonese.word_segmentation import segment
 
@@ -34,22 +38,38 @@ def _get_words_characters_to_jyutping():
         jp = jyutping_counter.most_common(1)[0][0]
         characters_to_jyutping[character] = jp
 
-    return words_to_jyutping, characters_to_jyutping
+    rime_words_to_jyutping = {
+        k: v for k, v in CHARS_TO_JYUTPING.items() if len(k) > 1
+    }
+    # TODO: Extract characters from rime_words_to_jyutping and add them to
+    #    rime_characters_to_jyutping
+    rime_characters_to_jyutping = {
+        k: v for k, v in CHARS_TO_JYUTPING.items() if len(k) == 1
+    }
+
+    return (
+        {**words_to_jyutping, **rime_words_to_jyutping},
+        {**characters_to_jyutping, **rime_characters_to_jyutping},
+    )
 
 
 def characters2jyutping(chars):
     """
     Convert Cantonese characters to Jyytping romanization.
 
-    The conversion model is based on the HKCanCor corpus data included
-    in this library. Any unseen Cantonese character (or punctuation mark,
+    The conversion model is based on the HKCanCor corpus and rime-cantonese
+    data. Any unseen Cantonese character (or punctuation mark,
     for that matter) is represented by None in the output.
+
+    The output is organized by a word-segmented version of the input
+    characters.
+    Each word is a tuple of (word, jyutping).
 
     :param chars: A string of Cantonese characters
 
     :return: Jyutping romanization of the input string
 
-    :rtype: list of str
+    :rtype: list of tuple of str
     """
     if not chars:
         return []
@@ -57,16 +77,14 @@ def characters2jyutping(chars):
     result = []
     for word in segment(chars):
         try:
-            parsed_jp = parse_jyutping(words_to_jyutping[word])
-            word_as_jp = ["".join(parsed) for parsed in parsed_jp]
-        except (KeyError, ValueError):
-            word_as_jp = []
+            jp = words_to_jyutping[word]
+        except KeyError:
+            jp = ""
             for char in word:
                 try:
-                    char_as_jp = chars_to_jyutping[char]
+                    jp += chars_to_jyutping[char]
                 except KeyError:
-                    word_as_jp.append(None)
-                else:
-                    word_as_jp.append(char_as_jp)
-        result.extend(word_as_jp)
+                    jp = None
+                    break
+        result.append((word, jp))
     return result

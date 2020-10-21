@@ -19,7 +19,7 @@ the segmented version:
 Currently, the underlying word segmentation model is a simple longest string
 matching algorithm, trained by
 (i) the HKCanCor corpus data included in this library and
-(ii) `the rime-cantonese data (the 2020.09.09 release, CC BY license) <https://github.com/rime/rime-cantonese/tree/2020.09.09>`_.
+(ii) the rime-cantonese data (the 2020.09.09 release, CC BY license).
 The segmentation is constrained such that the resulting words
 contain no more than five characters.
 Given the current implementation, any multi-character words unseen in the training data

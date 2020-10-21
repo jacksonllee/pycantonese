@@ -46,5 +46,6 @@ def segment(sent_str):
     if not sent_str:
         return []
     model = _get_word_segmentation_model()
+    # TODO: English words are parsed letter by letter, which is not good.
     segmented = list(model.predict([sent_str]))[0]
     return segmented
