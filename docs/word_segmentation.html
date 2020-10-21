@@ -58,9 +58,52 @@ matching algorithm, trained by
 (i) the HKCanCor corpus data included in this library and
 (ii) the rime-cantonese data (the 2020.09.09 release, CC BY license).
 The segmentation is constrained such that the resulting words
-contain no more than five characters.
-Given the current implementation, any multi-character words unseen in the training data
-would not be segmented as such.</p>
+contain no more than five characters.</p>
+<div class="section" id="customizing-segmentation">
+<h2>Customizing Segmentation<a class="headerlink" href="#customizing-segmentation" title="Permalink to this headline">¶</a></h2>
+<p>Because the current implementation of word segmentation depends entirely on
+whether a potential word is found in the training data,
+there are situations where you would like to explicitly allow or disallow
+certain potential words to be treated as words by the model.
+To this end, the <code class="docutils literal notranslate"><span class="pre">segment()</span></code> function has the <code class="docutils literal notranslate"><span class="pre">cls</span></code> keyword argument
+(think: the <code class="docutils literal notranslate"><span class="pre">cls</span></code> kwarg for <code class="docutils literal notranslate"><span class="pre">json.load</span></code>)
+that takes a <code class="docutils literal notranslate"><span class="pre">Segmenter</span></code> object for customizing in the following ways:</p>
+<ul>
+<li><p>To specify words to allow as words, pass an iterable of word strings to the
+<code class="docutils literal notranslate"><span class="pre">allow</span></code> keyword argument of <code class="docutils literal notranslate"><span class="pre">Segmenter</span></code>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pycantonese.word_segmentation</span> <span class="kn">import</span> <span class="n">Segmenter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">segmenter</span> <span class="o">=</span> <span class="n">Segmenter</span><span class="p">(</span><span class="n">allow</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;容唔容易&quot;</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">segment</span><span class="p">(</span><span class="s2">&quot;廣東話容唔容易學？&quot;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="n">segmenter</span><span class="p">)</span>
+<span class="go">[&#39;廣東話&#39;, &#39;容唔容易&#39;, &#39;學&#39;, &#39;？&#39;]</span>
+</pre></div>
+</div>
+</li>
+<li><p>To specify words to disallow as words, pass an iterable of word strings to the
+<code class="docutils literal notranslate"><span class="pre">disallow</span></code> keyword argument of <code class="docutils literal notranslate"><span class="pre">Segmenter</span></code>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pycantonese.word_segmentation</span> <span class="kn">import</span> <span class="n">Segmenter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">segmenter</span> <span class="o">=</span> <span class="n">Segmenter</span><span class="p">(</span><span class="n">disallow</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;廣東話&quot;</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">segment</span><span class="p">(</span><span class="s2">&quot;廣東話容唔容易學？&quot;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="n">segmenter</span><span class="p">)</span>
+<span class="go">[&#39;廣東&#39;, &#39;話&#39;, &#39;容&#39;, &#39;唔容易&#39;, &#39;學&#39;, &#39;？&#39;]  # 廣東 still exists as a word in the model, though 廣東話 is banned here.</span>
+</pre></div>
+</div>
+</li>
+<li><p>To control the maximum word length (default: 5), pass an integer to the
+<code class="docutils literal notranslate"><span class="pre">max_word_length</span></code> keyword argument of <code class="docutils literal notranslate"><span class="pre">Segmenter</span></code>.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pycantonese.word_segmentation</span> <span class="kn">import</span> <span class="n">Segmenter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">segmenter</span> <span class="o">=</span> <span class="n">Segmenter</span><span class="p">(</span><span class="n">max_word_length</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">segment</span><span class="p">(</span><span class="s2">&quot;廣東話容唔容易學？&quot;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="n">segmenter</span><span class="p">)</span>
+<span class="go">[&quot;廣東&quot;, &quot;話&quot;, &quot;容&quot;, &quot;唔&quot;, &quot;容易&quot;, &quot;學&quot;, &quot;？&quot;]</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>The keyword arguments <code class="docutils literal notranslate"><span class="pre">allow</span></code>, <code class="docutils literal notranslate"><span class="pre">disallow</span></code>, and <code class="docutils literal notranslate"><span class="pre">max_word_length</span></code>
+of the <code class="docutils literal notranslate"><span class="pre">Segmenter</span></code> class can be concurrently used in the same <code class="docutils literal notranslate"><span class="pre">Segmenter</span></code>
+instance.</p>
+</div>
 </div>
 
 
@@ -70,6 +113,14 @@ would not be segmented as such.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Word Segmentation</a><ul>
+<li><a class="reference internal" href="#customizing-segmentation">Customizing Segmentation</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="jyutping.html"
                         title="previous chapter">Jyutping Romanization: Parsing and Conversion</a></p>

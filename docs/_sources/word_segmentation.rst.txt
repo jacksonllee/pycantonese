@@ -22,5 +22,45 @@ matching algorithm, trained by
 (ii) the rime-cantonese data (the 2020.09.09 release, CC BY license).
 The segmentation is constrained such that the resulting words
 contain no more than five characters.
-Given the current implementation, any multi-character words unseen in the training data
-would not be segmented as such.
+
+Customizing Segmentation
+------------------------
+
+Because the current implementation of word segmentation depends entirely on
+whether a potential word is found in the training data,
+there are situations where you would like to explicitly allow or disallow
+certain potential words to be treated as words by the model.
+To this end, the ``segment()`` function has the ``cls`` keyword argument
+(think: the ``cls`` kwarg for ``json.load``)
+that takes a ``Segmenter`` object for customizing in the following ways:
+
+* To specify words to allow as words, pass an iterable of word strings to the
+  ``allow`` keyword argument of ``Segmenter``.
+
+    >>> import pycantonese as pc
+    >>> from pycantonese.word_segmentation import Segmenter
+    >>> segmenter = Segmenter(allow={"容唔容易"})
+    >>> pc.segment("廣東話容唔容易學？", cls=segmenter)
+    ['廣東話', '容唔容易', '學', '？']
+
+* To specify words to disallow as words, pass an iterable of word strings to the
+  ``disallow`` keyword argument of ``Segmenter``.
+
+    >>> import pycantonese as pc
+    >>> from pycantonese.word_segmentation import Segmenter
+    >>> segmenter = Segmenter(disallow={"廣東話"})
+    >>> pc.segment("廣東話容唔容易學？", cls=segmenter)
+    ['廣東', '話', '容', '唔容易', '學', '？']  # 廣東 still exists as a word in the model, though 廣東話 is banned here.
+
+* To control the maximum word length (default: 5), pass an integer to the
+  ``max_word_length`` keyword argument of ``Segmenter``.
+
+    >>> import pycantonese as pc
+    >>> from pycantonese.word_segmentation import Segmenter
+    >>> segmenter = Segmenter(max_word_length=2)
+    >>> pc.segment("廣東話容唔容易學？", cls=segmenter)
+    ["廣東", "話", "容", "唔", "容易", "學", "？"]
+
+The keyword arguments ``allow``, ``disallow``, and ``max_word_length``
+of the ``Segmenter`` class can be concurrently used in the same ``Segmenter``
+instance.

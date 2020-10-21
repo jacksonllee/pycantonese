@@ -6,7 +6,7 @@ Download and Install
 PyCantonese requires Python 3.6 or above.
 It is available via ``pip``::
 
-    $ pip install -U pycantonese
+    $ pip install --upgrade pycantonese
 
 To test your installation in the Python interpreter:
 

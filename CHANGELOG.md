@@ -7,8 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 ### Added
-* Added the rime-cantonese data (CC BY license) to improve
-  word segmentation and characters-to-Jyutping conversion.
+* Word segmentation:
+   - Segmentation is customizable for the following:
+      * Maximum word length
+      * A user-supplied list of words to allow as words
+      * A user-supplied list of words to disallow as words
+   - The default segmentation model has been improved with the rime-cantonese data (CC BY license).
+* Characters-to-Jyutping conversion:
+   - The conversion returns results in a word-segmented form.
+   - The conversion model has been improved with the rime-cantonese data (CC BY license).
 * Added support for Python 3.9.
 
 ### Changed

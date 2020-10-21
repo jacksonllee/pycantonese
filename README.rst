@@ -27,7 +27,7 @@ PyCantonese is available through pip:
 
 .. code-block:: bash
 
-   $ pip install -U pycantonese
+   $ pip install --upgrade pycantonese
 
 
 Setting up a Development Environment
