@@ -50,22 +50,17 @@ unsegmented string in Cantonese characters and returns
 the segmented version:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">segment</span><span class="p">(</span><span class="s2">&quot;廣東話容唔容易學？&quot;</span><span class="p">)</span>  <span class="c1"># &quot;Is Cantonese easy to learn?&quot;</span>
-<span class="go">[&#39;廣東話&#39;, &#39;容&#39;, &#39;唔&#39;, &#39;容易&#39;, &#39;學&#39;, &#39;？&#39;]</span>
+<span class="go">[&#39;廣東話&#39;, &#39;容&#39;, &#39;唔容易&#39;, &#39;學&#39;, &#39;？&#39;]</span>
 </pre></div>
 </div>
 <p>Currently, the underlying word segmentation model is a simple longest string
-matching algorithm, trained by the HKCanCor corpus data included in this library.
+matching algorithm, trained by
+(i) the HKCanCor corpus data included in this library and
+(ii) <a class="reference external" href="https://github.com/rime/rime-cantonese/tree/2020.09.09">the rime-cantonese data (the 2020.09.09 release, CC BY license)</a>.
 The segmentation is constrained such that the resulting words
 contain no more than five characters.
 Given the current implementation, any multi-character words unseen in the training data
-would not be segmented as such:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">segment</span><span class="p">(</span><span class="s2">&quot;美國芝加哥&quot;</span><span class="p">)</span>
-<span class="go">[&#39;美國&#39;, &#39;芝&#39;, &#39;加&#39;, &#39;哥&#39;]</span>
-<span class="go"># The training data from HKCanCor contains</span>
-<span class="go"># occurrences of &#39;美國&#39; (the USA) but not &#39;芝加哥&#39; (Chicago).</span>
-</pre></div>
-</div>
+would not be segmented as such.</p>
 </div>
 
 
@@ -112,7 +107,7 @@ would not be segmented as such:</p>
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on October 10, 2020.
+        &#169; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on October 21, 2020.
       Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
     </div>
   </body>

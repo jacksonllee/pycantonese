@@ -14,19 +14,13 @@ the segmented version:
 
     >>> import pycantonese as pc
     >>> pc.segment("廣東話容唔容易學？")  # "Is Cantonese easy to learn?"
-    ['廣東話', '容', '唔', '容易', '學', '？']
+    ['廣東話', '容', '唔容易', '學', '？']
 
 Currently, the underlying word segmentation model is a simple longest string
-matching algorithm, trained by the HKCanCor corpus data included in this library.
+matching algorithm, trained by
+(i) the HKCanCor corpus data included in this library and
+(ii) `the rime-cantonese data (the 2020.09.09 release, CC BY license) <https://github.com/rime/rime-cantonese/tree/2020.09.09>`_.
 The segmentation is constrained such that the resulting words
 contain no more than five characters.
 Given the current implementation, any multi-character words unseen in the training data
-would not be segmented as such:
-
-.. code-block:: python
-
-    >>> import pycantonese as pc
-    >>> pc.segment("美國芝加哥")
-    ['美國', '芝', '加', '哥']
-    # The training data from HKCanCor contains
-    # occurrences of '美國' (the USA) but not '芝加哥' (Chicago).
+would not be segmented as such.

@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
 ### Added
+* Added the rime-cantonese data (CC BY license) to improve
+  word segmentation.
 * Added support for Python 3.9.
 
 ### Changed
