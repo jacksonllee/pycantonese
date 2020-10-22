@@ -10,8 +10,5 @@ with open(os.path.join(_THIS_DIR, "chars_to_jyutping.json")) as f:
 with open(os.path.join(_THIS_DIR, "lettered.json")) as f:
     LETTERED = json.load(f)
 
-with open(os.path.join(_THIS_DIR, "phrases.json")) as f:
-    PHRASES = json.load(f)
-
 with open(os.path.join(_THIS_DIR, "maps.json")) as f:
     MAPS = json.load(f)

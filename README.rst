@@ -41,16 +41,16 @@ To obtain this version for experimental features or for development:
 
    $ git clone https://github.com/jacksonllee/pycantonese.git
    $ cd pycantonese
-   $ pip install -r requirements.txt
    $ pip install -r dev-requirements.txt
    $ python setup.py develop
 
-To run tests:
+To run tests and styling checks:
 
 .. code-block:: bash
 
    $ py.test -vv --cov pycantonese pycantonese
    $ flake8 pycantonese
+   $ black --check --line-length=79 pycantonese
 
 
 Author

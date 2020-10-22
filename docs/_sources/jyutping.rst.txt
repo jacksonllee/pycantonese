@@ -29,7 +29,7 @@ and returns its word-segmented version with Jyutping romanization:
 
 The characters-to-Jyutping conversion model is based on two data sources:
 (i) the HKCanCor corpus data included in the PyCantonese library, and
-(ii) the rime-cantonese data (the 2020.09.09 release, CC BY license).
+(ii) the rime-cantonese data (the 2020.09.09 release, CC BY 4.0 license).
 Any unseen Cantonese character (or punctuation mark, for that matter) is
 represented by ``None`` in the output.
 

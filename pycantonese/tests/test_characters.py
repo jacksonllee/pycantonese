@@ -17,8 +17,7 @@ from pycantonese import characters2jyutping
         ),
         (
             "佢成日呃like",
-            # TODO: The segmentation will be updated/fixed soon...
-            [("佢成日", "keoi5seng4jat6"), ("呃like", "ngaak1lai1")],
+            [("佢", "keoi5"), ("成日", "seng4jat6"), ("呃like", "ngaak1lai1")],
         ),
         ("蛋", [("蛋", "daan2")]),
         ("蛋糕", [("蛋糕", "daan6gou1")]),
