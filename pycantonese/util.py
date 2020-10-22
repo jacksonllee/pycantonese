@@ -1,4 +1,9 @@
+from string import ascii_letters, digits
+
 ENCODING = "utf8"
+
+# What defines non-Cantonese-ness in lettered.json from rime-cantonese
+_NOT_CANTONESE = ascii_letters + digits + "-"
 
 
 class ListFromIterables(list):
@@ -67,3 +72,29 @@ def endswithoneof(inputstr, seq):
             return item
     else:
         return None
+
+
+def split_characters_with_alphanum(chars):
+    """
+    Split Cantonese characters while respecting .
+
+    :param chars: String of Cantonese chars, possibly with alphanumeric chars.
+
+    :return: The split result that respects the alphanumeric characters.
+
+    :rtype: tuple of str
+    """
+    if not chars:
+        return tuple()
+    if len(chars) == 1:
+        return tuple(chars)
+    result = []
+    first = chars[0]
+    for second in chars[1:]:
+        if first[-1] in _NOT_CANTONESE and second in _NOT_CANTONESE:
+            first += second
+        else:
+            result.append(first)
+            first = second
+    result.append(first)
+    return tuple(result)

@@ -23,6 +23,8 @@ from pycantonese.word_segmentation import Segmenter
             Segmenter(max_word_length=2),
             ["廣東", "話", "容", "唔", "容易", "學", "？"],
         ),
+        ("佢淨係識呃like", Segmenter(), ["佢", "淨係", "識", "呃like"]),
+        ("個course超好grade", Segmenter(), ["個", "course", "超", "好grade"]),
     ],
 )
 def test_segment(chars, segmenter, expected):

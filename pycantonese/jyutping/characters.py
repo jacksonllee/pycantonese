@@ -3,11 +3,12 @@ from functools import lru_cache
 
 from pycantonese.corpus import hkcancor
 from pycantonese.data.rime_cantonese import (
-    # TODO: Use LETTERS as well.
     CHARS_TO_JYUTPING,
+    LETTERED,
 )
 from pycantonese.jyutping.parse_jyutping import parse_jyutping
 from pycantonese.word_segmentation import segment
+from pycantonese.util import split_characters_with_alphanum
 
 
 @lru_cache(maxsize=1)
@@ -38,19 +39,25 @@ def _get_words_characters_to_jyutping():
         jp = jyutping_counter.most_common(1)[0][0]
         characters_to_jyutping[character] = jp
 
-    rime_words_to_jyutping = {
-        k: v for k, v in CHARS_TO_JYUTPING.items() if len(k) > 1
-    }
-    # TODO: Extract characters from rime_words_to_jyutping and add them to
-    #    rime_characters_to_jyutping
-    rime_characters_to_jyutping = {
-        k: v for k, v in CHARS_TO_JYUTPING.items() if len(k) == 1
+    words_to_jyutping = {
+        **words_to_jyutping,
+        **{k: v for k, v in CHARS_TO_JYUTPING.items() if len(k) > 1},
+        **{
+            k: v
+            for k, v in LETTERED.items()
+            if len(split_characters_with_alphanum(k)) > 1
+        },
     }
 
-    return (
-        {**words_to_jyutping, **rime_words_to_jyutping},
-        {**characters_to_jyutping, **rime_characters_to_jyutping},
-    )
+    # TODO: Extract characters from CHARS_TO_JYUTPING and LETTERED
+    #    and add them to characters_to_jyutping
+    characters_to_jyutping = {
+        **characters_to_jyutping,
+        **{k: v for k, v in CHARS_TO_JYUTPING.items() if len(k) == 1},
+        **{k: v for k, v in LETTERED.items() if len(k) == 1},
+    }
+
+    return words_to_jyutping, characters_to_jyutping
 
 
 def characters2jyutping(chars):

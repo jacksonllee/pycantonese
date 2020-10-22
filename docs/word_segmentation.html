@@ -70,8 +70,8 @@ To this end, the <code class="docutils literal notranslate"><span class="pre">se
 that takes a <code class="docutils literal notranslate"><span class="pre">Segmenter</span></code> object for customizing in the following ways:</p>
 <ul>
 <li><p>To specify words to allow as words, pass an iterable of word strings to the
-<code class="docutils literal notranslate"><span class="pre">allow</span></code> keyword argument of <code class="docutils literal notranslate"><span class="pre">Segmenter</span></code>.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
+<code class="docutils literal notranslate"><span class="pre">allow</span></code> keyword argument of <code class="docutils literal notranslate"><span class="pre">Segmenter</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pycantonese.word_segmentation</span> <span class="kn">import</span> <span class="n">Segmenter</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">segmenter</span> <span class="o">=</span> <span class="n">Segmenter</span><span class="p">(</span><span class="n">allow</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;容唔容易&quot;</span><span class="p">})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">segment</span><span class="p">(</span><span class="s2">&quot;廣東話容唔容易學？&quot;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="n">segmenter</span><span class="p">)</span>
@@ -80,8 +80,8 @@ that takes a <code class="docutils literal notranslate"><span class="pre">Segmen
 </div>
 </li>
 <li><p>To specify words to disallow as words, pass an iterable of word strings to the
-<code class="docutils literal notranslate"><span class="pre">disallow</span></code> keyword argument of <code class="docutils literal notranslate"><span class="pre">Segmenter</span></code>.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
+<code class="docutils literal notranslate"><span class="pre">disallow</span></code> keyword argument of <code class="docutils literal notranslate"><span class="pre">Segmenter</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pycantonese.word_segmentation</span> <span class="kn">import</span> <span class="n">Segmenter</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">segmenter</span> <span class="o">=</span> <span class="n">Segmenter</span><span class="p">(</span><span class="n">disallow</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;廣東話&quot;</span><span class="p">})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">segment</span><span class="p">(</span><span class="s2">&quot;廣東話容唔容易學？&quot;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="n">segmenter</span><span class="p">)</span>
@@ -90,8 +90,8 @@ that takes a <code class="docutils literal notranslate"><span class="pre">Segmen
 </div>
 </li>
 <li><p>To control the maximum word length (default: 5), pass an integer to the
-<code class="docutils literal notranslate"><span class="pre">max_word_length</span></code> keyword argument of <code class="docutils literal notranslate"><span class="pre">Segmenter</span></code>.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
+<code class="docutils literal notranslate"><span class="pre">max_word_length</span></code> keyword argument of <code class="docutils literal notranslate"><span class="pre">Segmenter</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pycantonese.word_segmentation</span> <span class="kn">import</span> <span class="n">Segmenter</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">segmenter</span> <span class="o">=</span> <span class="n">Segmenter</span><span class="p">(</span><span class="n">max_word_length</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">segment</span><span class="p">(</span><span class="s2">&quot;廣東話容唔容易學？&quot;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="n">segmenter</span><span class="p">)</span>
