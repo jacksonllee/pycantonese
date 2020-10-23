@@ -18,7 +18,8 @@ PyCantonese provides tools for these use cases.
 Characters-to-Jyutping Conversion
 ---------------------------------
 
-The function ``characters2jyutping()`` takes a string of Cantonese characters
+The function :func:`~pycantonese.characters2jyutping`
+takes a string of Cantonese characters
 and returns its word-segmented version with Jyutping romanization:
 
 .. code-block:: python
@@ -38,7 +39,8 @@ please see `Parsing Jyutping Strings <parsing_jyutping_strings_>`_.
 
 A Cantonese character may have multiple pronunciations,
 most commonly due to *pinjam* (變音, "changed tone").
-Whether the function ``characters2jyutping()`` can intelligently output
+Whether the function :func:`~pycantonese.characters2jyutping`
+can intelligently output
 the correct, contextually dependent pronunciation depends on whether
 the HKCanCor data (which trains the conversion model) contains
 the relevant tokens. Example:
@@ -59,7 +61,8 @@ Parsing Jyutping Strings
 Converting Jyutping to other romanization schemes necessitates
 the ability to parse Jyutping for the various phonological components
 (onset, nucleus, coda, and tone). To this end, PyCantonese exposes
-the function ``parse_jyutping()`` which parses a string of Jyutping romanization
+the function :func:`~pycantonese.parse_jyutping`
+which parses a string of Jyutping romanization
 and returns a list of tuples; the string may contain romanization for multiple
 Chinese characters. The parsed romanization for a character is a 4-tuple of
 (onset, nucleus, coda, tone):
@@ -80,7 +83,8 @@ Syllabic nasals are treated as nuclei:
     >>> pc.parse_jyutping('m4goi1')  # 唔該
     [('', 'm', '', '4'), ('g', 'o', 'i', '1')]
 
-The function ``jyutping()`` is able to detect invalid Jyutping romanization:
+The function :func:`~pycantonese.parse_jyutping`
+is able to detect invalid Jyutping romanization:
 
 .. code-block:: python
 
@@ -98,7 +102,7 @@ Jyutping-to-Yale Conversion
 The Yale romanization is still a commonly used system, particularly in numerous
 dictionaries and 
 Cantonese language teaching resources. PyCantonese provides the
-``jyutping2yale()``
+:func:`~pycantonese.jyutping2yale`
 function which reads a valid Jyutping string and returns the Yale equivalent:
 
 .. code-block:: python
@@ -118,8 +122,8 @@ the quote ``'`` is used as a separator:
     >>> pc.jyutping2yale('hei3hau6')  # 氣候; Yale "h" in 2nd syllable onset w/o separator would be ambiguous
     "hei'hauh"
 
-``jyutping2yale()`` has the optional parameter ``as_list`` for returning a list
-of Yale strings instead:
+:func:`~pycantonese.jyutping2yale` has the optional parameter ``as_list``
+for returning a list of Yale strings instead:
 
 .. code-block:: python
 
@@ -130,7 +134,7 @@ of Yale strings instead:
 Jyutping-to-TIPA Conversion
 ---------------------------
 
-PyCantonese also offers the ``jyutping2tipa()`` function for the
+PyCantonese also offers the :func:`~pycantonese.jyutping2tipa` function for the
 `LaTeX TIPA <https://www.ctan.org/pkg/tipa?lang=en>`_ users::
 
     >>> import pycantonese as pc

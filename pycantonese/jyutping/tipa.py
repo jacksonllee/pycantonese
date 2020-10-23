@@ -91,8 +91,16 @@ TONES_TIPA = {
 
 
 def jyutping2tipa(jp_str):
-    """
-    Convert *jp_str* to a list of LaTeX TIPA strings.
+    """Convert Jyutping romanization into LaTeX TIPA.
+
+    Parameters
+    ----------
+    jp_str : str
+        Jyutping romanization for one or multiple characters
+
+    Returns
+    -------
+    list[str]
     """
     jp_parsed_list = parse_jyutping(jp_str)
     tipa_list = []

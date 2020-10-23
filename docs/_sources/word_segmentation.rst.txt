@@ -6,7 +6,7 @@ Word Segmentation
 By convention, Cantonese is not written with word boundaries (like spaces in English).
 However, in many natural language processing tasks, it is often necessary to
 work with a segmented form of Cantonese data.
-PyCantonese provides the function ``segment()`` that takes an
+PyCantonese provides the function :func:`~pycantonese.segment` that takes an
 unsegmented string in Cantonese characters and returns
 the segmented version:
 
@@ -30,12 +30,13 @@ Because the current implementation of word segmentation depends entirely on
 whether a potential word is found in the training data,
 there are situations where you would like to explicitly allow or disallow
 certain potential words to be treated as words by the model.
-To this end, the ``segment()`` function has the ``cls`` keyword argument
+To this end, the :func:`~pycantonese.segment` function has the ``cls`` keyword argument
 (think: the ``cls`` kwarg for ``json.load``)
-that takes a ``Segmenter`` object for customizing in the following ways:
+that takes a :class:`~pycantonese.word_segmentation.Segmenter` object
+for customizing in the following ways:
 
 * To specify words to allow as words, pass an iterable of word strings to the
-  ``allow`` keyword argument of ``Segmenter``::
+  ``allow`` keyword argument of :class:`~pycantonese.word_segmentation.Segmenter`::
 
     >>> import pycantonese as pc
     >>> from pycantonese.word_segmentation import Segmenter
@@ -44,7 +45,7 @@ that takes a ``Segmenter`` object for customizing in the following ways:
     ['廣東話', '容唔容易', '學', '？']
 
 * To specify words to disallow as words, pass an iterable of word strings to the
-  ``disallow`` keyword argument of ``Segmenter``::
+  ``disallow`` keyword argument of :class:`~pycantonese.word_segmentation.Segmenter`::
 
     >>> import pycantonese as pc
     >>> from pycantonese.word_segmentation import Segmenter
@@ -53,7 +54,7 @@ that takes a ``Segmenter`` object for customizing in the following ways:
     ['廣東', '話', '容', '唔容易', '學', '？']  # 廣東 still exists as a word in the model, though 廣東話 is banned here.
 
 * To control the maximum word length (default: 5), pass an integer to the
-  ``max_word_length`` keyword argument of ``Segmenter``::
+  ``max_word_length`` keyword argument of :class:`~pycantonese.word_segmentation.Segmenter`::
 
     >>> import pycantonese as pc
     >>> from pycantonese.word_segmentation import Segmenter
@@ -62,5 +63,6 @@ that takes a ``Segmenter`` object for customizing in the following ways:
     ["廣東", "話", "容", "唔", "容易", "學", "？"]
 
 The keyword arguments ``allow``, ``disallow``, and ``max_word_length``
-of the ``Segmenter`` class can be concurrently used in the same ``Segmenter``
+of the :class:`~pycantonese.word_segmentation.Segmenter` class
+can be concurrently used in the same :class:`~pycantonese.word_segmentation.Segmenter`
 instance.

@@ -1,0 +1,499 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycantonese.jyutping.yale &mdash; PyCantonese 2.4.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+    <link rel="canonical" href="http://pycantonese.org/_modules/pycantonese/jyutping/yale.html"/>
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> PyCantonese
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.4.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../data.html">Corpus Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../data.html#the-chat-transcription-format">The CHAT Transcription Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data.html#accessing-built-in-data">Accessing Built-in Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data.html#accessing-custom-data">Accessing Custom Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stop_words.html">Stop Words</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reader.html">Corpus Reader Methods</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../reader.html#the-representation-of-words">The Representation of “Words”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reader.html#a-note-on-the-access-methods">A Note on the Access Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reader.html#full-reader-api">Full Reader API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jyutping.html">Jyutping Romanization: Parsing and Conversion</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../jyutping.html#characters-to-jyutping-conversion">Characters-to-Jyutping Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../jyutping.html#parsing-jyutping-strings">Parsing Jyutping Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../jyutping.html#jyutping-to-yale-conversion">Jyutping-to-Yale Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../jyutping.html#jyutping-to-tipa-conversion">Jyutping-to-TIPA Conversion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../word_segmentation.html">Word Segmentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../word_segmentation.html#customizing-segmentation">Customizing Segmentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../searches.html">Search Queries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#searching-by-a-jyutping-element">Searching by a Jyutping Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#searching-by-a-chinese-character">Searching by a Chinese Character</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#searching-by-a-part-of-speech-tag">Searching by a Part-of-speech Tag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#searching-by-a-word-or-sentence-range">Searching by a Word or Sentence Range</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#searching-by-multiple-criteria">Searching by Multiple Criteria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#output-format-of-search-results">Output Format of Search Results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#reading-and-accessing-corpus-data">Reading and Accessing Corpus Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.read_chat.html">pycantonese.read_chat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.hkcancor.html">pycantonese.hkcancor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.corpus.CantoneseCHATReader.html">pycantonese.corpus.CantoneseCHATReader</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/pycantonese.corpus.CantoneseCHATReader.search.html">pycantonese.corpus.CantoneseCHATReader.search</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.corpus.CantoneseCHATReader.search.html">pycantonese.corpus.CantoneseCHATReader.search</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#performing-natural-language-processing-tasks">Performing Natural Language Processing Tasks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.stop_words.html">pycantonese.stop_words</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.segment.html">pycantonese.segment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.word_segmentation.Segmenter.html">pycantonese.word_segmentation.Segmenter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#handling-jyutping-romanization">Handling Jyutping Romanization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.characters2jyutping.html">pycantonese.characters2jyutping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.jyutping2yale.html">pycantonese.jyutping2yale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.jyutping2tipa.html">pycantonese.jyutping2tipa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.parse_jyutping.html">pycantonese.parse_jyutping</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../papers.html">Research Outputs</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyCantonese</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pycantonese.jyutping.yale</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pycantonese.jyutping.yale</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">unicodedata</span>
+
+<span class="kn">from</span> <span class="nn">pycantonese.jyutping.parse_jyutping</span> <span class="kn">import</span> <span class="n">parse_jyutping</span>
+<span class="kn">from</span> <span class="nn">pycantonese.util</span> <span class="kn">import</span> <span class="n">endswithoneof</span><span class="p">,</span> <span class="n">startswithoneof</span>
+
+
+<span class="n">ONSETS_YALE</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;d&quot;</span><span class="p">:</span> <span class="s2">&quot;d&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;g&quot;</span><span class="p">:</span> <span class="s2">&quot;g&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;gw&quot;</span><span class="p">:</span> <span class="s2">&quot;gw&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;z&quot;</span><span class="p">:</span> <span class="s2">&quot;j&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;p&quot;</span><span class="p">:</span> <span class="s2">&quot;p&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;t&quot;</span><span class="p">:</span> <span class="s2">&quot;t&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="s2">&quot;k&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;kw&quot;</span><span class="p">:</span> <span class="s2">&quot;k&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="s2">&quot;ch&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;m&quot;</span><span class="p">:</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;n&quot;</span><span class="p">:</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ng&quot;</span><span class="p">:</span> <span class="s2">&quot;ng&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;f&quot;</span><span class="p">:</span> <span class="s2">&quot;f&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;h&quot;</span><span class="p">:</span> <span class="s2">&quot;h&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;s&quot;</span><span class="p">:</span> <span class="s2">&quot;s&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;l&quot;</span><span class="p">:</span> <span class="s2">&quot;l&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;w&quot;</span><span class="p">:</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;j&quot;</span><span class="p">:</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">NUCLEI_YALE</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;aa&quot;</span><span class="p">:</span> <span class="s2">&quot;aa&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;i&quot;</span><span class="p">:</span> <span class="s2">&quot;i&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;yu&quot;</span><span class="p">:</span> <span class="s2">&quot;yu&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;u&quot;</span><span class="p">:</span> <span class="s2">&quot;u&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;oe&quot;</span><span class="p">:</span> <span class="s2">&quot;eu&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;e&quot;</span><span class="p">:</span> <span class="s2">&quot;e&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;eo&quot;</span><span class="p">:</span> <span class="s2">&quot;eu&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;o&quot;</span><span class="p">:</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;m&quot;</span><span class="p">:</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ng&quot;</span><span class="p">:</span> <span class="s2">&quot;ng&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">CODAS_YALE</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;p&quot;</span><span class="p">:</span> <span class="s2">&quot;p&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;t&quot;</span><span class="p">:</span> <span class="s2">&quot;t&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="s2">&quot;k&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;m&quot;</span><span class="p">:</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;n&quot;</span><span class="p">:</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ng&quot;</span><span class="p">:</span> <span class="s2">&quot;ng&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;i&quot;</span><span class="p">:</span> <span class="s2">&quot;i&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;u&quot;</span><span class="p">:</span> <span class="s2">&quot;u&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="jyutping2yale"><a class="viewcode-back" href="../../../generated/pycantonese.jyutping2yale.html#pycantonese.jyutping2yale">[docs]</a><span class="k">def</span> <span class="nf">jyutping2yale</span><span class="p">(</span><span class="n">jp_str</span><span class="p">,</span> <span class="n">as_list</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert Jyutping romanization into Yale romanization.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    jp_str : str</span>
+<span class="sd">        Jyutping romanization for one or multiple characters</span>
+<span class="sd">    as_list : bool, optional</span>
+<span class="sd">        If False (default is True), the output is a string with a single quote</span>
+<span class="sd">        ``&#39;`` to disambiguate unclear syllable boundaries (e.g., a consonant</span>
+<span class="sd">        ambiguous between the onset and the coda of the previous syllable).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    list[str], or str if as_list is False</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">jp_parsed_list</span> <span class="o">=</span> <span class="n">parse_jyutping</span><span class="p">(</span><span class="n">jp_str</span><span class="p">)</span>
+    <span class="n">yale_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">jp_parsed</span> <span class="ow">in</span> <span class="n">jp_parsed_list</span><span class="p">:</span>
+        <span class="n">onset</span> <span class="o">=</span> <span class="n">ONSETS_YALE</span><span class="p">[</span><span class="n">jp_parsed</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+        <span class="n">nucleus</span> <span class="o">=</span> <span class="n">NUCLEI_YALE</span><span class="p">[</span><span class="n">jp_parsed</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+        <span class="n">coda</span> <span class="o">=</span> <span class="n">CODAS_YALE</span><span class="p">[</span><span class="n">jp_parsed</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
+        <span class="n">tone</span> <span class="o">=</span> <span class="n">jp_parsed</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>  <span class="c1"># still in parse_jyutping</span>
+
+        <span class="c1"># jyutping2yale system uses &quot;h&quot; to mark the three low tones</span>
+        <span class="k">if</span> <span class="n">tone</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;4&quot;</span><span class="p">,</span> <span class="s2">&quot;5&quot;</span><span class="p">,</span> <span class="s2">&quot;6&quot;</span><span class="p">}:</span>
+            <span class="n">low_tone_h</span> <span class="o">=</span> <span class="s2">&quot;h&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">low_tone_h</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="c1"># in jyutping2yale, long &quot;aa&quot; vowel with no coda is denoted by &quot;a&quot;</span>
+        <span class="k">if</span> <span class="n">nucleus</span> <span class="o">==</span> <span class="s2">&quot;aa&quot;</span> <span class="ow">and</span> <span class="n">coda</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+            <span class="n">nucleus</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span>
+
+        <span class="c1"># when nucleus is &quot;yu&quot;...</span>
+        <span class="c1"># 1. disallow &quot;yyu&quot; (when onset is &quot;y&quot;)</span>
+        <span class="c1"># 2. change nucleus &quot;yu&quot; into &quot;u&quot; -- this is a hack for adding tone</span>
+        <span class="c1">#       diacritic, since we don&#39;t want &quot;y&quot; to bear the diacritic</span>
+        <span class="k">if</span> <span class="n">nucleus</span> <span class="o">==</span> <span class="s2">&quot;yu&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">onset</span> <span class="o">==</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span>
+                <span class="n">onset</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">nucleus</span> <span class="o">=</span> <span class="s2">&quot;u&quot;</span>
+
+        <span class="c1"># when nucleus is &quot;ng&quot;</span>
+        <span class="c1"># the tone diacritic has to be on &quot;g&quot; but not &quot;n&quot;</span>
+        <span class="c1"># now we pretend that the nucleus is &quot;g&quot;, and will prepend the &quot;n&quot; back</span>
+        <span class="c1"># at the end</span>
+        <span class="k">if</span> <span class="n">nucleus</span> <span class="o">==</span> <span class="s2">&quot;ng&quot;</span><span class="p">:</span>
+            <span class="n">nucleus</span> <span class="o">=</span> <span class="s2">&quot;g&quot;</span>
+
+        <span class="c1"># add the jyutping2yale tone diacritic to the first nucleus letter</span>
+        <span class="c1"># parse_jyutping tone 1      --&gt; add macron</span>
+        <span class="c1"># parse_jyutping tone 2 or 5 --&gt; add acute</span>
+        <span class="c1"># parse_jyutping tone 4      --&gt; add grave</span>
+        <span class="c1"># parse_jyutping tone 3 or 6 --&gt; (no diacritic)</span>
+        <span class="c1"># If the accented letter doesn&#39;t exist in unicode, use the combining</span>
+        <span class="c1"># accent instead.</span>
+
+        <span class="n">letter</span> <span class="o">=</span> <span class="n">nucleus</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># nucleus 1st letter</span>
+        <span class="n">unicode_letter_name</span> <span class="o">=</span> <span class="n">unicodedata</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">tone</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">letter_with_diacritic</span> <span class="o">=</span> <span class="n">unicodedata</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span>
+                    <span class="n">unicode_letter_name</span> <span class="o">+</span> <span class="s2">&quot; WITH MACRON&quot;</span>
+                <span class="p">)</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="n">letter_with_diacritic</span> <span class="o">=</span> <span class="n">letter</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\u0304</span><span class="s2">&quot;</span>
+        <span class="k">elif</span> <span class="n">tone</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;5&quot;</span><span class="p">}:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">letter_with_diacritic</span> <span class="o">=</span> <span class="n">unicodedata</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span>
+                    <span class="n">unicode_letter_name</span> <span class="o">+</span> <span class="s2">&quot; WITH ACUTE&quot;</span>
+                <span class="p">)</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="n">letter_with_diacritic</span> <span class="o">=</span> <span class="n">letter</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\u0301</span><span class="s2">&quot;</span>
+        <span class="k">elif</span> <span class="n">tone</span> <span class="o">==</span> <span class="s2">&quot;4&quot;</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">letter_with_diacritic</span> <span class="o">=</span> <span class="n">unicodedata</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span>
+                    <span class="n">unicode_letter_name</span> <span class="o">+</span> <span class="s2">&quot; WITH GRAVE&quot;</span>
+                <span class="p">)</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="n">letter_with_diacritic</span> <span class="o">=</span> <span class="n">letter</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\u0300</span><span class="s2">&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># either tone 3 or tone 6</span>
+            <span class="n">letter_with_diacritic</span> <span class="o">=</span> <span class="n">letter</span>
+        <span class="n">nucleus</span> <span class="o">=</span> <span class="n">letter_with_diacritic</span> <span class="o">+</span> <span class="n">nucleus</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+        <span class="c1"># add back &quot;y&quot; if the nucleus is &quot;yu&quot;</span>
+        <span class="c1"># (&quot;y&quot; was taken away for convenience in adding tone diacritic)</span>
+        <span class="k">if</span> <span class="n">jp_parsed</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;yu&quot;</span><span class="p">:</span>
+            <span class="n">nucleus</span> <span class="o">=</span> <span class="s2">&quot;y&quot;</span> <span class="o">+</span> <span class="n">nucleus</span>
+
+        <span class="c1"># add back &quot;n&quot; if the nucleus is &quot;ng&quot;</span>
+        <span class="c1"># (&#39;n&#39; was taken away so that tone diacritic is on &quot;g&quot; but not &quot;n&quot;)</span>
+        <span class="k">if</span> <span class="n">jp_parsed</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;ng&quot;</span><span class="p">:</span>
+            <span class="n">nucleus</span> <span class="o">=</span> <span class="s2">&quot;n&quot;</span> <span class="o">+</span> <span class="n">nucleus</span>
+
+        <span class="c1"># parse_jyutping final &quot;eu&quot; should be jyutping2yale &quot;ew&quot; (not &quot;eu&quot;)</span>
+        <span class="k">if</span> <span class="n">coda</span> <span class="o">==</span> <span class="s2">&quot;u&quot;</span> <span class="ow">and</span> <span class="n">nucleus</span> <span class="o">==</span> <span class="s2">&quot;e&quot;</span><span class="p">:</span>
+            <span class="n">coda</span> <span class="o">=</span> <span class="s2">&quot;w&quot;</span>
+
+        <span class="c1"># save the resultant jyutping2yale</span>
+        <span class="k">if</span> <span class="n">coda</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;i&quot;</span><span class="p">,</span> <span class="s2">&quot;u&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">}</span> <span class="ow">and</span> <span class="n">tone</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;4&quot;</span><span class="p">,</span> <span class="s2">&quot;5&quot;</span><span class="p">,</span> <span class="s2">&quot;6&quot;</span><span class="p">}:</span>
+            <span class="n">yale</span> <span class="o">=</span> <span class="n">onset</span> <span class="o">+</span> <span class="n">nucleus</span> <span class="o">+</span> <span class="n">coda</span> <span class="o">+</span> <span class="n">low_tone_h</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">yale</span> <span class="o">=</span> <span class="n">onset</span> <span class="o">+</span> <span class="n">nucleus</span> <span class="o">+</span> <span class="n">low_tone_h</span> <span class="o">+</span> <span class="n">coda</span>
+        <span class="n">yale_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">yale</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">as_list</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">yale_list</span>
+
+    <span class="c1"># Output yale_list as a string</span>
+    <span class="c1"># Check if there&#39;s potential ambiguity when Yale strings are concatenated</span>
+
+    <span class="c1"># Ambiguity case 1:</span>
+    <span class="c1">#   1st syllable coda is one of the &quot;ambiguous_consonants&quot;</span>
+    <span class="c1">#   and 2nd syllable starts with a vowel *letter*</span>
+
+    <span class="c1"># Ambiguity case 2:</span>
+    <span class="c1">#   1st syllable has no coda and 2nd syllable starts with one of the</span>
+    <span class="c1">#   &quot;ambiguous_consonants&quot;</span>
+    <span class="c1">#   e.g., hei3hau6 &#39;climate&#39; --&gt; heihauh</span>
+    <span class="c1">#   (middle &quot;h&quot; for tone in 1st syllable or being onset of 2nd syllable?)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">yale_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">yale_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">ambiguous_consonants</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="s2">&quot;p&quot;</span><span class="p">,</span> <span class="s2">&quot;t&quot;</span><span class="p">,</span> <span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="s2">&quot;ng&quot;</span><span class="p">}</span>
+    <span class="n">vowel_letters</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;a&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;e&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;i&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;o&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;u&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;á&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;é&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;í&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ó&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ú&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;à&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;è&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ì&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ò&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ù&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ā&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ē&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ī&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ō&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ū&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">output_str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">yale_list</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">yale1</span> <span class="o">=</span> <span class="n">yale_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">yale2</span> <span class="o">=</span> <span class="n">yale_list</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">ambiguous</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="c1"># test case 1:</span>
+        <span class="k">if</span> <span class="n">endswithoneof</span><span class="p">(</span><span class="n">yale1</span><span class="p">,</span> <span class="n">ambiguous_consonants</span><span class="p">)</span> <span class="ow">and</span> <span class="n">startswithoneof</span><span class="p">(</span>
+            <span class="n">yale2</span><span class="p">,</span> <span class="n">vowel_letters</span>
+        <span class="p">):</span>
+            <span class="n">ambiguous</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="c1"># test case 2:</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="ow">not</span> <span class="n">ambiguous</span>
+            <span class="ow">and</span> <span class="ow">not</span> <span class="n">endswithoneof</span><span class="p">(</span><span class="n">yale1</span><span class="p">,</span> <span class="n">ambiguous_consonants</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="n">startswithoneof</span><span class="p">(</span><span class="n">yale2</span><span class="p">,</span> <span class="n">ambiguous_consonants</span><span class="p">)</span>
+        <span class="p">):</span>
+            <span class="n">ambiguous</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="n">output_str</span> <span class="o">+=</span> <span class="n">yale1</span>
+
+        <span class="k">if</span> <span class="n">ambiguous</span><span class="p">:</span>
+            <span class="n">output_str</span> <span class="o">+=</span> <span class="s2">&quot;&#39;&quot;</span>
+
+    <span class="n">output_str</span> <span class="o">+=</span> <span class="n">yale_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">output_str</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on October 24, 2020
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

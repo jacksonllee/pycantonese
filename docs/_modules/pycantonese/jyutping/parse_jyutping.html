@@ -1,0 +1,399 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycantonese.jyutping.parse_jyutping &mdash; PyCantonese 2.4.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+    <link rel="canonical" href="http://pycantonese.org/_modules/pycantonese/jyutping/parse_jyutping.html"/>
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> PyCantonese
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.4.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../data.html">Corpus Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../data.html#the-chat-transcription-format">The CHAT Transcription Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data.html#accessing-built-in-data">Accessing Built-in Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data.html#accessing-custom-data">Accessing Custom Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stop_words.html">Stop Words</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reader.html">Corpus Reader Methods</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../reader.html#the-representation-of-words">The Representation of “Words”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reader.html#a-note-on-the-access-methods">A Note on the Access Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reader.html#full-reader-api">Full Reader API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jyutping.html">Jyutping Romanization: Parsing and Conversion</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../jyutping.html#characters-to-jyutping-conversion">Characters-to-Jyutping Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../jyutping.html#parsing-jyutping-strings">Parsing Jyutping Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../jyutping.html#jyutping-to-yale-conversion">Jyutping-to-Yale Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../jyutping.html#jyutping-to-tipa-conversion">Jyutping-to-TIPA Conversion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../word_segmentation.html">Word Segmentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../word_segmentation.html#customizing-segmentation">Customizing Segmentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../searches.html">Search Queries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#searching-by-a-jyutping-element">Searching by a Jyutping Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#searching-by-a-chinese-character">Searching by a Chinese Character</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#searching-by-a-part-of-speech-tag">Searching by a Part-of-speech Tag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#searching-by-a-word-or-sentence-range">Searching by a Word or Sentence Range</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#searching-by-multiple-criteria">Searching by Multiple Criteria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#output-format-of-search-results">Output Format of Search Results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#reading-and-accessing-corpus-data">Reading and Accessing Corpus Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.read_chat.html">pycantonese.read_chat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.hkcancor.html">pycantonese.hkcancor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.corpus.CantoneseCHATReader.html">pycantonese.corpus.CantoneseCHATReader</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/pycantonese.corpus.CantoneseCHATReader.search.html">pycantonese.corpus.CantoneseCHATReader.search</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.corpus.CantoneseCHATReader.search.html">pycantonese.corpus.CantoneseCHATReader.search</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#performing-natural-language-processing-tasks">Performing Natural Language Processing Tasks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.stop_words.html">pycantonese.stop_words</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.segment.html">pycantonese.segment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.word_segmentation.Segmenter.html">pycantonese.word_segmentation.Segmenter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#handling-jyutping-romanization">Handling Jyutping Romanization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.characters2jyutping.html">pycantonese.characters2jyutping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.jyutping2yale.html">pycantonese.jyutping2yale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.jyutping2tipa.html">pycantonese.jyutping2tipa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.parse_jyutping.html">pycantonese.parse_jyutping</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../papers.html">Research Outputs</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyCantonese</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pycantonese.jyutping.parse_jyutping</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pycantonese.jyutping.parse_jyutping</h1><div class="highlight"><pre>
+<span></span><span class="n">ONSETS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;b&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;d&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;g&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;gw&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;z&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;p&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;t&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;k&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;kw&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;c&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;m&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;n&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ng&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;f&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;h&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;s&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;l&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;w&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;j&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">NUCLEI</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;aa&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;i&quot;</span><span class="p">,</span> <span class="s2">&quot;yu&quot;</span><span class="p">,</span> <span class="s2">&quot;u&quot;</span><span class="p">,</span> <span class="s2">&quot;oe&quot;</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="s2">&quot;eo&quot;</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;ng&quot;</span><span class="p">}</span>
+
+<span class="n">CODAS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;p&quot;</span><span class="p">,</span> <span class="s2">&quot;t&quot;</span><span class="p">,</span> <span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="s2">&quot;ng&quot;</span><span class="p">,</span> <span class="s2">&quot;i&quot;</span><span class="p">,</span> <span class="s2">&quot;u&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">}</span>
+
+<span class="n">TONES</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span><span class="p">,</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span> <span class="s2">&quot;5&quot;</span><span class="p">,</span> <span class="s2">&quot;6&quot;</span><span class="p">}</span>
+
+
+<div class="viewcode-block" id="parse_jyutping"><a class="viewcode-back" href="../../../generated/pycantonese.parse_jyutping.html#pycantonese.parse_jyutping">[docs]</a><span class="k">def</span> <span class="nf">parse_jyutping</span><span class="p">(</span><span class="n">jp_str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Parse Jyutping romanization into onset, nucleus, code, and tone.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    jp_str : str</span>
+<span class="sd">        Jyutping romanization for one or multiple characters</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    list[tuple[str]]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># check jp_str as a valid argument string</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">jp_str</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;argument needs to be a string -- &quot;</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="n">jp_str</span><span class="p">))</span>
+    <span class="n">jp_str</span> <span class="o">=</span> <span class="n">jp_str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+    <span class="c1"># parse jp_str as multiple jp strings</span>
+    <span class="n">jp_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">jp_current</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">jp_str</span><span class="p">:</span>
+        <span class="n">jp_current</span> <span class="o">=</span> <span class="n">jp_current</span> <span class="o">+</span> <span class="n">c</span>
+        <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">isdigit</span><span class="p">():</span>
+            <span class="n">jp_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">jp_current</span><span class="p">)</span>
+            <span class="n">jp_current</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">jp_str</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">isdigit</span><span class="p">():</span>
+        <span class="c1"># TODO: erro msg should be &quot;no invalid tone detected&quot; or something?</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;tone error -- &quot;</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="n">jp_str</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+
+    <span class="n">jp_parsed_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">jp</span> <span class="ow">in</span> <span class="n">jp_list</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">jp</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;jyutping string has fewer than &quot;</span> <span class="s2">&quot;2 characters -- &quot;</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="n">jp</span><span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="n">tone</span> <span class="o">=</span> <span class="n">jp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">cvc</span> <span class="o">=</span> <span class="n">jp</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="c1"># tone</span>
+        <span class="k">if</span> <span class="n">tone</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">TONES</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;tone error -- &quot;</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="n">jp</span><span class="p">))</span>
+
+        <span class="c1"># coda</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">cvc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="s2">&quot;ieaouptkmng&quot;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;coda error -- &quot;</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="n">jp</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">cvc</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="s2">&quot;ng&quot;</span><span class="p">,</span> <span class="s2">&quot;i&quot;</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="s2">&quot;aa&quot;</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="s2">&quot;u&quot;</span><span class="p">]:</span>
+            <span class="n">jp_parsed_list</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">cvc</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">tone</span><span class="p">))</span>
+            <span class="k">continue</span>
+        <span class="k">elif</span> <span class="n">cvc</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span> <span class="o">==</span> <span class="s2">&quot;ng&quot;</span><span class="p">:</span>
+            <span class="n">coda</span> <span class="o">=</span> <span class="s2">&quot;ng&quot;</span>
+            <span class="n">cv</span> <span class="o">=</span> <span class="n">cvc</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="p">(</span>
+            <span class="p">(</span><span class="n">cvc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="s2">&quot;ptkmn&quot;</span><span class="p">)</span>
+            <span class="ow">or</span> <span class="p">((</span><span class="n">cvc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;i&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">cvc</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="ow">in</span> <span class="s2">&quot;eaou&quot;</span><span class="p">))</span>
+            <span class="ow">or</span> <span class="p">((</span><span class="n">cvc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;u&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">cvc</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="ow">in</span> <span class="s2">&quot;ieao&quot;</span><span class="p">))</span>
+        <span class="p">):</span>
+            <span class="n">coda</span> <span class="o">=</span> <span class="n">cvc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">cv</span> <span class="o">=</span> <span class="n">cvc</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">coda</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">cv</span> <span class="o">=</span> <span class="n">cvc</span>
+
+        <span class="c1"># nucleus, and then onset</span>
+        <span class="n">nucleus</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="k">while</span> <span class="n">cv</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="s2">&quot;ieaouy&quot;</span><span class="p">:</span>
+            <span class="n">nucleus</span> <span class="o">=</span> <span class="n">cv</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">nucleus</span>
+            <span class="n">cv</span> <span class="o">=</span> <span class="n">cv</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">cv</span><span class="p">:</span>
+                <span class="k">break</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">nucleus</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;nucleus error -- &quot;</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="n">jp</span><span class="p">))</span>
+
+        <span class="n">onset</span> <span class="o">=</span> <span class="n">cv</span>
+
+        <span class="k">if</span> <span class="n">onset</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ONSETS</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;onset error -- &quot;</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="n">jp</span><span class="p">))</span>
+
+        <span class="n">jp_parsed_list</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">onset</span><span class="p">,</span> <span class="n">nucleus</span><span class="p">,</span> <span class="n">coda</span><span class="p">,</span> <span class="n">tone</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">jp_parsed_list</span></div>
+
+
+<span class="k">def</span> <span class="nf">parse_final</span><span class="p">(</span><span class="n">final</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Parse a final into its nucleus and coda.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    final : str</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    tuple[str]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">final</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">possible_nucleus</span> <span class="o">=</span> <span class="n">final</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">possible_coda</span> <span class="o">=</span> <span class="n">final</span><span class="p">[</span><span class="n">i</span><span class="p">:]</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">possible_nucleus</span> <span class="ow">in</span> <span class="n">NUCLEI</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">possible_coda</span> <span class="ow">in</span> <span class="n">CODAS</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">possible_nucleus</span><span class="p">,</span> <span class="n">possible_coda</span>
+    <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on October 24, 2020
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

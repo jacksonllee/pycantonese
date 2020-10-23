@@ -54,12 +54,21 @@ CODAS_YALE = {
 }
 
 
-def jyutping2yale(jp_str, as_list=False):
-    """
-    Convert *jp_str* to Yale.
+def jyutping2yale(jp_str, as_list=True):
+    """Convert Jyutping romanization into Yale romanization.
 
-    :param as_list: If True (default: False), return a list of Yale strings
-        for individual syllables.
+    Parameters
+    ----------
+    jp_str : str
+        Jyutping romanization for one or multiple characters
+    as_list : bool, optional
+        If False (default is True), the output is a string with a single quote
+        ``'`` to disambiguate unclear syllable boundaries (e.g., a consonant
+        ambiguous between the onset and the coda of the previous syllable).
+
+    Returns
+    -------
+    list[str], or str if as_list is False
     """
     jp_parsed_list = parse_jyutping(jp_str)
     yale_list = []

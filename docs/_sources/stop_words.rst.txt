@@ -5,7 +5,8 @@ Stop Words
 
 In many natural language processing tasks, it is often necessary to filter
 stop words, English examples of which include function words such as
-pronouns and determiners. PyCantonese provides the function ``stop_words()``
+pronouns and determiners. PyCantonese provides the function
+:func:`~pycantonese.stop_words`
 that returns a set of about 100 Cantonese stop words:
 
 .. code-block:: python
@@ -19,10 +20,10 @@ that returns a set of about 100 Cantonese stop words:
 
 Depending on your use cases, you may like to add or remove stop words
 from the default ones.
-The ``stop_words()`` function has the optional arguments of ``add`` and
-``remove``.
+The :func:`~pycantonese.stop_words` function has the optional arguments of
+``add`` and ``remove``.
 
-``add`` can either be a string (e.g., treat ``'香港'`` as a stop word if your
+``add`` can either be a string (e.g., treat ``"香港"`` as a stop word if your
 data is all about Hong Kong) or an iterable of strings:
 
 .. code-block:: python

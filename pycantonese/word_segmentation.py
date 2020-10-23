@@ -18,7 +18,7 @@ _DISALLOWED_WORDS = None
 
 
 class Segmenter(LongestStringMatching):
-    """A customizable word segmentation model based on longest string match."""
+    """A customizable word segmentation model."""
 
     def __init__(
         self,
@@ -27,12 +27,16 @@ class Segmenter(LongestStringMatching):
         allow=None,
         disallow=None,
     ):
-        """
-        Initialize a Segmenter object.
+        """Initialize a Segmenter object.
 
-        :param max_word_length: Maximum word length this model allows.
-        :param allow: An iterable of word strings to allow as words.
-        :param disallow: An iterable of word strings to disallow as words.
+        Parameters
+        ----------
+        max_word_length : int, optional
+            Maximum word length this model allows.
+        allow : iterable[str], optional
+            Words to allow in word segmentation.
+        disallow : iterable[str], optional
+            Words to disallow in word segmentation.
         """
         super(Segmenter, self).__init__(max_word_length=max_word_length)
 
@@ -64,9 +68,8 @@ def _get_default_segmenter():
     return Segmenter()
 
 
-def segment(sent_str, cls=None):
-    """
-    Segment the unsegmented sentence.
+def segment(unsegmented, cls=None):
+    """Segment the unsegmented input.
 
     The word segmentation model is the longest string matching approach,
     trained by (i) the HKCanCor corpus included in this library and
@@ -74,21 +77,25 @@ def segment(sent_str, cls=None):
     The segmented sentence does not contain words longer than five
     characters.
 
-    :param sent_str: Unsegmented sentence string
-    :param cls: A custom `Segmenter` class object for setting the maximal
+    Parameters
+    ----------
+    unsegmented : str
+        Unsegmented input.
+    cls: Segmenter, optional
+        A custom `Segmenter` class object for setting the maximal
         word length (default = 5) and words to allow or disallow.
         If not provided, a default segmenter is used, with maximum word
         length = 5.
 
-    :return: Segmented sentence
-
-    :rtype: list of str
+    Returns
+    -------
+    list[str]
     """
-    if not sent_str:
+    if not unsegmented:
         return []
     if cls is None:
         cls = _get_default_segmenter()
     if type(cls) != Segmenter:
         raise TypeError(f"`segmenter` must be a Segmenter object: {cls}")
-    segmented = list(cls.predict([sent_str]))[0]
+    segmented = list(cls.predict([unsegmented]))[0]
     return segmented

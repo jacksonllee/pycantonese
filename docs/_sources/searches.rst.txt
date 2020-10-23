@@ -5,12 +5,14 @@ Search Queries
 
 A common task in corpus-based linguistic work
 is to search for specific elements of interest.
-PyCantonese provides the general-purpose ``search()``
+PyCantonese provides the general-purpose
+:func:`~pycantonese.corpus.CantoneseCHATReader.search`
 as a corpus object method.
 For a given corpus, it can search for specific Jyutping elements,
 Chinese characters, part-of-speech tags, and any combinations of these.
 
-``search()`` is also capable of (so to speak) grabbing the
+:func:`~pycantonese.corpus.CantoneseCHATReader.search`
+is also capable of (so to speak) grabbing the
 neighboring words and utterances
 around the match word. This is
 useful for a wide variety of purposes, e.g., syntax,
@@ -29,8 +31,9 @@ has been created, and that ``pprint()`` is used for pretty print.
     >>> len(corpus.characters())  # total number of Chinese characters
     186888
 
-The following examples show how ``search()`` works using its array of
-parameters.
+The following examples show how
+:func:`~pycantonese.corpus.CantoneseCHATReader.search`
+works using its array of parameters.
 
 * :ref:`search_jyutping`
 * :ref:`search_character`
@@ -47,7 +50,8 @@ Searching by a Jyutping Element
 
 Search queries
 by various parsed Jyutping elements are possible by passing a parameter
-with its value to ``search()``.
+with its value to
+:func:`~pycantonese.corpus.CantoneseCHATReader.search`.
 
 The Jyutping parameters are:
 
@@ -108,7 +112,9 @@ For regular expressions in Python, see
 `here <https://docs.python.org/3/library/re.html>`_.
 
 
-The search criteria can be mixed in a single ``search()`` call.
+The search criteria can be mixed in a single
+:func:`~pycantonese.corpus.CantoneseCHATReader.search`
+call.
 However, in order to avoid possible conflicts,
 restrictions are imposed on the combination of Jyutping-related search criteria:
 
@@ -135,16 +141,13 @@ parameter:
      ('飛機', 'N', 'fei1gei1', ''),
      ('機', 'NG', 'gei1', '')]
 
-If you are using Python 2, use ``corpus.search(character=u'機')`` (note the "u"
-prefix for the string literal) for unicode.
-
-
 .. _search_pos:
 
 Searching by a Part-of-speech Tag
 ---------------------------------
 
-With the parameter ``pos`` in ``search()``,
+With the parameter ``pos`` in
+:func:`~pycantonese.corpus.CantoneseCHATReader.search`,
 verbs which bear the part-of-speech tag "V" in HKCanCor
 can be accessed as follows:
 
@@ -273,7 +276,8 @@ sentences are in the output anyway).
 Searching by Multiple Criteria
 ------------------------------
 
-``search()`` is flexible and allows multiple parameters described
+:func:`~pycantonese.corpus.CantoneseCHATReader.search`
+is flexible and allows multiple parameters described
 above to be specified at the same time.
 For instance, if we are interested in *pinjam* ("tone change") in Cantonese,
 we may be interested in all words with coda {p, t, k} plus tone 2 (high-rising):
@@ -300,7 +304,9 @@ we may be interested in all words with coda {p, t, k} plus tone 2 (high-rising):
 Output Format of Search Results
 -------------------------------
 
-While ``search()`` always returns a list, the format of the elements in the list
+While
+:func:`~pycantonese.corpus.CantoneseCHATReader.search`
+always returns a list, the format of the elements in the list
 can be adjusted by the parameters ``tagged`` and ``sents``.
 
 If ``tagged`` is ``True`` (default), words are all represented in the "tagged"

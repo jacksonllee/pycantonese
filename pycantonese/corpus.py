@@ -8,9 +8,25 @@ from pycantonese.util import ENCODING, get_jyutping_from_mor, ListFromIterables
 
 
 class CantoneseCHATReader(Reader):
-    """A class for reading Cantonese CHAT corpus files."""
+    """A reader for Cantonese CHAT corpus files.
+
+    .. note:: Some of the methods are inherited from the parent class
+        ``pylangacq.chat.Reader`` for language acquisition,
+        which may or may not be applicable to your use case.
+    """
 
     def __init__(self, *filenames, **kwargs):
+        """Initialize a reader for Cantonese CHAT corpus files.
+
+        Parameters
+        ----------
+        *filenames : iterable of str
+            File paths to Cantonese CHAT data files. Glob filename matching
+            is supported.
+        **kwargs
+            Keyword arguments passed to CantoneseCHATReader. Currently, only
+            the ``encoding`` kwarg is supported (default: 'utf8').
+        """
         encoding = kwargs.get("encoding", ENCODING)
         super(CantoneseCHATReader, self).__init__(
             *filenames, encoding=encoding
@@ -58,16 +74,23 @@ class CantoneseCHATReader(Reader):
         return fn_to_jyutpings
 
     def jyutpings(self, participant=None, exclude=None, by_files=False):
-        """
-        Return a list of jyutping strings by *participant* in all files.
+        """Return the words in Jyutping romanization.
 
-        :param participant: Specify the participant(s); defaults to all
-            participants.
+        Parameters
+        ----------
+        participant : str or iterable[str], optional
+            One or more participants to include the data for.
+            If unspecified, all participants are included.
+        exclude : str or iterable[str], optional
+            One or more participants to exclude the data for.
+            If unspecified, no participants are excluded.
+        by_files : bool, optional
+            If True (default: False), return data organized by the
+            individual file paths.
 
-        :param by_files: If True (default: False), return dict(absolute-path
-            filename: X for that file) instead of X for all files altogether.
-
-        :rtype: list(str), or dict(str: list(str))
+        Returns
+        -------
+        list[str], or dict[str, list[str]] if by_files is True
         """
         fn_to_jyutpings = self._get_jyutping_sents(
             participant=participant, exclude=exclude, sents=False
@@ -81,17 +104,23 @@ class CantoneseCHATReader(Reader):
             )
 
     def jyutping_sents(self, participant=None, exclude=None, by_files=False):
-        """
-        Return a list of sents of jyutping strings
-        by *participant* in all files.
+        """Return the sentences in Jyutping romanization.
 
-        :param participant: Specify the participant(s); defaults to all
-            participants.
+        Parameters
+        ----------
+        participant : str or iterable[str], optional
+            One or more participants to include the data for.
+            If unspecified, all participants are included.
+        exclude : str or iterable[str], optional
+            One or more participants to exclude the data for.
+            If unspecified, no participants are excluded.
+        by_files : bool, optional
+            If True (default: False), return data organized by the
+            individual file paths.
 
-        :param by_files: If True (default: False), return dict(absolute-path
-            filename: X for that file) instead of X for all files altogether.
-
-        :rtype: list(list(str)), or dict(str: list(list(str)))
+        Returns
+        -------
+        list[list[str]], or dict[str, list[list[str]]] if by_files is True
         """
         fn_to_jyutpings = self._get_jyutping_sents(
             participant=participant, exclude=exclude, sents=True
@@ -139,16 +168,23 @@ class CantoneseCHATReader(Reader):
         return fn_to_characters
 
     def characters(self, participant=None, exclude=None, by_files=False):
-        """
-        Return a list of Chinese characters by *participant* in all files.
+        """Return the data split in individual Cantonese characters.
 
-        :param participant: Specify the participant(s); defaults to all
-            participants.
+        Parameters
+        ----------
+        participant : str or iterable[str], optional
+            One or more participants to include the data for.
+            If unspecified, all participants are included.
+        exclude : str or iterable[str], optional
+            One or more participants to exclude the data for.
+            If unspecified, no participants are excluded.
+        by_files : bool, optional
+            If True (default: False), return data organized by the
+            individual file paths.
 
-        :param by_files: If True (default: False), return dict(absolute-path
-            filename: X for that file) instead of X for all files altogether.
-
-        :rtype: list(str), or dict(str: list(str))
+        Returns
+        -------
+        list[str], or dict[str, list[str]] if by_files is True
         """
         fn_to_characters = self._get_character_sents(
             participant=participant, exclude=exclude, sents=False
@@ -162,17 +198,23 @@ class CantoneseCHATReader(Reader):
             )
 
     def character_sents(self, participant=None, exclude=None, by_files=False):
-        """
-        Return a list of sents of Chinese characters
-        by *participant* in all files.
+        """Return the data as sentences of individual Cantonese characters.
 
-        :param participant: Specify the participant(s); defaults to all
-            participants.
+        Parameters
+        ----------
+        participant : str or iterable[str], optional
+            One or more participants to include the data for.
+            If unspecified, all participants are included.
+        exclude : str or iterable[str], optional
+            One or more participants to exclude the data for.
+            If unspecified, no participants are excluded.
+        by_files : bool, optional
+            If True (default: False), return data organized by the
+            individual file paths.
 
-        :param by_files: If True (default: False), return dict(absolute-path
-            filename: X for that file) instead of X for all files altogether.
-
-        :rtype: list(list(str)), or dict(str: list(list(str)))
+        Returns
+        -------
+        list[list[str]], or dict[str, list[list[str]]] if by_files is True
         """
         fn_to_characters = self._get_character_sents(
             participant=participant, exclude=exclude, sents=True
@@ -187,6 +229,7 @@ class CantoneseCHATReader(Reader):
 
     def search(
         self,
+        *,
         onset=None,
         nucleus=None,
         coda=None,
@@ -204,61 +247,68 @@ class CantoneseCHATReader(Reader):
         exclude=None,
         by_files=False,
     ):
+        """Search the data for the given criteria.
+
+        Parameters
+        ----------
+        onset : str, optional
+            Onset to search for. A regex is supported.
+        nucleus : str, optional
+            Nucleus to search for. A regex is supported.
+        coda : str, optional
+            Coda to search for. A regex is supported.
+        tone : str, optional
+            Tone to search for. A regex is supported.
+        initial : str, optional
+            Initial to search for. A regex is supported.
+            An initial, a term more prevalent in traditional Chinese
+            phonology, is the equivalent of an onset.
+        final : str, optional
+            Final to search for.
+            A final, a term more prevalent in traditional Chinese
+            phonology, is the equivalent of a nucleus plus a coda.
+        jyutping : str, optional
+            Jyutping romanization of one Cantonese character to search for.
+            If the romanization contains more than one character, a ValueError
+            is raised.
+        character : str, optional
+            One or more Cantonese characters (within a segmented word) to
+            search for.
+        pos : str, optional
+            A part-of-speech tag to search for. A regex is supported.
+        word_range : tuple[int, int], optional
+            Span of words to the left and right of a matching word to include
+            in the output. The default is `(0, 0)` to disable a range.
+            If `sent_range` is used, `word_range` is ignored.
+        sent_range : tuple[int, int], optional
+            Span of sentences before and after a sentence containing a matching
+            word to include in the output. The default is `(0, 0)` to disable
+            a range. If `sent_range` is used, `word_range` is ignored.
+        tagged : bool, optional
+            If True (the default), words in the output are in the tagged form.
+            Otherwise just word token strings are returned.
+        sents : bool, optional
+            If True (default is False), sentences containing matching words
+            are returned. Otherwise, only matching words are returned.
+        participant : str or iterable[str], optional
+            One or more participants to include in the search.
+            If unspecified, all participants are included.
+        exclude : str or iterable[str], optional
+            One or more participants to exclude in the search.
+            If unspecified, no participants are excluded.
+        by_files : bool, optional
+            If True (default: False), return data organized by the
+            individual file paths.
+
+        Returns
+        -------
+        list
         """
-        Search for the specified element(s).
-
-        **Jyutping elements**
-
-        Parameters are *onset*, *nucleus*, *coda*, *tone*, *initial*,
-        *final*, *jyutping*.
-        If *jyutping* is used, none of the other Jyutping elements can be.
-        If *final* is used, neither *nucleus* nor *coda* can be.
-        *onset* and *initial* cannot conflict, unless one or both of them are
-        None.
-        Regular expression matching applies to
-        *onset*, *nucleus*, *coda*, *tone*, and *initial*.
-
-        **Chinese character**
-
-        Parameter: *character* (only one is allowed)
-
-        **Part-of-speech tag**
-
-        Parameter: *pos*
-
-        Regular expression matching applies.
-
-        **Word or sentence range**
-
-        *word_range*: specify the span of words to the left and right
-        of a match word; defaults to ``(0, 0)``.
-
-        *sent_range*: specify the span of sents preceding and following
-        the sent containing a match word; defaults to ``(0, 0)``.
-
-        If *sent_range* is used, *word_range* is ignored.
-
-        **Output formatting**
-
-        If *sents* is True (the default), sents containing a match word are
-        returned; otherwise just a word instead.
-
-        If *tagged* is True (the default), words are tagged in the form of
-        (word, pos, jyutping, rel); otherwise just word token strings.
-
-        *by_files*: If False (the default), the return object is a list
-        encompassing search results for all files. If True, the return object
-        is dict(absolute-path filename: list of search results for that file)
-        instead.
-
-        **Others**
-
-        *participant*: specify the participant(s) (default: all participants).
-        """
+        tagged_sents = self.tagged_sents(
+            participant=participant, exclude=exclude, by_files=True
+        )
         fn_to_results = perform_search(
-            self.tagged_sents(
-                participant=participant, exclude=exclude, by_files=True
-            ),
+            tagged_sents,
             onset=onset,
             nucleus=nucleus,
             coda=coda,
@@ -284,8 +334,11 @@ class CantoneseCHATReader(Reader):
 
 @lru_cache(maxsize=1)
 def hkcancor():
-    """
-    Create the corpus object for the Hong Kong Cantonese Corpus.
+    """Create a corpus object for the Hong Kong Cantonese Corpus.
+
+    Returns
+    -------
+    :class:`~pycantonese.corpus.CantoneseCHATReader`
     """
     data_path = os.path.join(
         os.path.dirname(__file__), "data", "hkcancor", "*.cha"
@@ -294,14 +347,20 @@ def hkcancor():
 
 
 def read_chat(*filenames, **kwargs):
-    """
-    Create a corpus object based on *filenames*.
+    """Read Cantonese CHAT data files into a reader object.
 
-    :param filenames: one or multiple filenames (absolute-path or relative to
-        the current directory; with or without glob matching patterns)
+    Parameters
+    ----------
+    *filenames : iterable[str]
+        File paths to Cantonese CHAT data files. Glob filename matching
+        is supported.
+    **kwargs
+        Keyword arguments passed to CantoneseCHATReader.
+        Currently, only the ``encoding`` kwarg is supported (default: 'utf8').
 
-    :param kwargs: Keyword arguments. Currently, only ``encoding`` is
-        recognized, which defaults to 'utf8'.
+    Returns
+    -------
+    :class:`~pycantonese.corpus.CantoneseCHATReader`
     """
     encoding = kwargs.get("encoding", ENCODING)
     return CantoneseCHATReader(*filenames, encoding=encoding)

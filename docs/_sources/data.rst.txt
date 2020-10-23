@@ -3,12 +3,6 @@
 Corpus Data
 ===========
 
-* :ref:`chat_format`
-* :ref:`built_in_data`
-* :ref:`custom_data`
-
-.. _chat_format:
-
 The CHAT Transcription Format
 -----------------------------
 
@@ -24,15 +18,13 @@ For the bare minimum of the CHAT format that PyCantonese assumes,
 see `here <http://pylangacq.org/read.html#chat-format>`_.
 
 
-.. _built_in_data:
-
 Accessing Built-in Data
 -----------------------
 
 Currently, PyCantonese comes with one built-in Cantonese corpus, the
 150,000-word `Hong
 Kong Cantonese Corpus <http://compling.hss.ntu.edu.sg/hkcancor/>`_ (HKCanCor)
-by Kang Kwong Luke, via ``hkcancor()``:
+by Kang Kwong Luke, via :func:`~pycantonese.hkcancor`:
 
 .. code-block:: python
 
@@ -51,14 +43,12 @@ On the CHAT format of HKCanCor incorporated in PyCantonese,
 please consult this
 `readme <https://github.com/jacksonllee/pycantonese/blob/master/pycantonese/data/hkcancor/README.md>`_.
 
-.. _custom_data:
-
 Accessing Custom Data
 ---------------------
 
 If you have a Cantonese corpus in the CHAT format in your local drive and would
-like to use PyCantonese to handle it, the function ``read_chat()`` is available
-for this purpose:
+like to use PyCantonese to handle it, the function :func:`~pycantonese.read_chat`
+is available for this purpose:
 
 .. code-block:: python
 
@@ -69,7 +59,7 @@ If your CHAT data files have the extension name ``.cha`` and are all in
 a single directory, then filename pattern matching with ``*`` can be used to
 match all CHAT files in the specified directory.
 
-``read_chat()`` has the optional parameter ``encoding`` which defaults to
+:func:`~pycantonese.read_chat` has the optional parameter ``encoding`` which defaults to
 ``utf8`` for UTF-8 and can be overridden for another encoding if necessary.
 
 If you are aware of other Cantonese corpora that could be incorporated into

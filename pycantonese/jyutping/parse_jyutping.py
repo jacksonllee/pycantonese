@@ -29,10 +29,16 @@ TONES = {"1", "2", "3", "4", "5", "6"}
 
 
 def parse_jyutping(jp_str):
-    """
-    Parse *jp_str* as a string of Cantonese Jyutping romanization for one or
-    multiple characters
-    and return a list of 4-tuples, each as (onset, nucleus, coda, tone)
+    """Parse Jyutping romanization into onset, nucleus, code, and tone.
+
+    Parameters
+    ----------
+    jp_str : str
+        Jyutping romanization for one or multiple characters
+
+    Returns
+    -------
+    list[tuple[str]]
     """
     # check jp_str as a valid argument string
     if not isinstance(jp_str, str):
@@ -112,8 +118,15 @@ def parse_jyutping(jp_str):
 
 
 def parse_final(final):
-    """
-    Parse *final* as (nucleus, coda).
+    """Parse a final into its nucleus and coda.
+
+    Parameters
+    ----------
+    final : str
+
+    Returns
+    -------
+    tuple[str]
     """
     for i in range(1, len(final) + 1):
         possible_nucleus = final[:i]

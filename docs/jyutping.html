@@ -1,44 +1,216 @@
 
-<!DOCTYPE html>
 
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jyutping Romanization: Parsing and Conversion &#8212; PyCantonese 2.4.1 documentation</title>
-    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Jyutping Romanization: Parsing and Conversion &mdash; PyCantonese 2.4.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+    <link rel="canonical" href="http://pycantonese.org/jyutping.html"/>
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Word Segmentation" href="word_segmentation.html" />
     <link rel="prev" title="Corpus Reader Methods" href="reader.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="word_segmentation.html" title="Word Segmentation"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="reader.html" title="Corpus Reader Methods"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.4.1 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Jyutping Romanization: Parsing and Conversion</a></li> 
-      </ul>
-    </div>  
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> PyCantonese
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.4.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="data.html">Corpus Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data.html#the-chat-transcription-format">The CHAT Transcription Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#accessing-built-in-data">Accessing Built-in Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#accessing-custom-data">Accessing Custom Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="stop_words.html">Stop Words</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reader.html">Corpus Reader Methods</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reader.html#the-representation-of-words">The Representation of “Words”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reader.html#a-note-on-the-access-methods">A Note on the Access Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reader.html#full-reader-api">Full Reader API</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Jyutping Romanization: Parsing and Conversion</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#characters-to-jyutping-conversion">Characters-to-Jyutping Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parsing-jyutping-strings">Parsing Jyutping Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#jyutping-to-yale-conversion">Jyutping-to-Yale Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#jyutping-to-tipa-conversion">Jyutping-to-TIPA Conversion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="word_segmentation.html">Word Segmentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="word_segmentation.html#customizing-segmentation">Customizing Segmentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="searches.html">Search Queries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-a-jyutping-element">Searching by a Jyutping Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-a-chinese-character">Searching by a Chinese Character</a></li>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-a-part-of-speech-tag">Searching by a Part-of-speech Tag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-a-word-or-sentence-range">Searching by a Word or Sentence Range</a></li>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-multiple-criteria">Searching by Multiple Criteria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#output-format-of-search-results">Output Format of Search Results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#reading-and-accessing-corpus-data">Reading and Accessing Corpus Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.read_chat.html">pycantonese.read_chat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.hkcancor.html">pycantonese.hkcancor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.corpus.CantoneseCHATReader.html">pycantonese.corpus.CantoneseCHATReader</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/pycantonese.corpus.CantoneseCHATReader.search.html">pycantonese.corpus.CantoneseCHATReader.search</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.corpus.CantoneseCHATReader.search.html">pycantonese.corpus.CantoneseCHATReader.search</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#performing-natural-language-processing-tasks">Performing Natural Language Processing Tasks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.stop_words.html">pycantonese.stop_words</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.segment.html">pycantonese.segment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.word_segmentation.Segmenter.html">pycantonese.word_segmentation.Segmenter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#handling-jyutping-romanization">Handling Jyutping Romanization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.characters2jyutping.html">pycantonese.characters2jyutping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.jyutping2yale.html">pycantonese.jyutping2yale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.jyutping2tipa.html">pycantonese.jyutping2tipa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.parse_jyutping.html">pycantonese.parse_jyutping</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="papers.html">Research Outputs</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyCantonese</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Jyutping Romanization: Parsing and Conversion</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="jyutping-romanization-parsing-and-conversion">
 <h1>Jyutping Romanization: Parsing and Conversion<a class="headerlink" href="#jyutping-romanization-parsing-and-conversion" title="Permalink to this headline">¶</a></h1>
@@ -50,7 +222,8 @@ other romanization schemes still commonly used today.
 PyCantonese provides tools for these use cases.</p>
 <div class="section" id="characters-to-jyutping-conversion">
 <h2>Characters-to-Jyutping Conversion<a class="headerlink" href="#characters-to-jyutping-conversion" title="Permalink to this headline">¶</a></h2>
-<p>The function <code class="docutils literal notranslate"><span class="pre">characters2jyutping()</span></code> takes a string of Cantonese characters
+<p>The function <a class="reference internal" href="generated/pycantonese.characters2jyutping.html#pycantonese.characters2jyutping" title="pycantonese.characters2jyutping"><code class="xref py py-func docutils literal notranslate"><span class="pre">characters2jyutping()</span></code></a>
+takes a string of Cantonese characters
 and returns its word-segmented version with Jyutping romanization:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">characters2jyutping</span><span class="p">(</span><span class="s1">&#39;香港人講廣東話&#39;</span><span class="p">)</span>  <span class="c1"># &quot;Hongkongers speak Cantonese&quot;</span>
@@ -66,7 +239,8 @@ represented by <code class="docutils literal notranslate"><span class="pre">None
 please see <a class="reference internal" href="#parsing-jyutping-strings">Parsing Jyutping Strings</a>.</p>
 <p>A Cantonese character may have multiple pronunciations,
 most commonly due to <em>pinjam</em> (變音, “changed tone”).
-Whether the function <code class="docutils literal notranslate"><span class="pre">characters2jyutping()</span></code> can intelligently output
+Whether the function <a class="reference internal" href="generated/pycantonese.characters2jyutping.html#pycantonese.characters2jyutping" title="pycantonese.characters2jyutping"><code class="xref py py-func docutils literal notranslate"><span class="pre">characters2jyutping()</span></code></a>
+can intelligently output
 the correct, contextually dependent pronunciation depends on whether
 the HKCanCor data (which trains the conversion model) contains
 the relevant tokens. Example:</p>
@@ -83,7 +257,8 @@ the relevant tokens. Example:</p>
 <p>Converting Jyutping to other romanization schemes necessitates
 the ability to parse Jyutping for the various phonological components
 (onset, nucleus, coda, and tone). To this end, PyCantonese exposes
-the function <code class="docutils literal notranslate"><span class="pre">parse_jyutping()</span></code> which parses a string of Jyutping romanization
+the function <a class="reference internal" href="generated/pycantonese.parse_jyutping.html#pycantonese.parse_jyutping" title="pycantonese.parse_jyutping"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_jyutping()</span></code></a>
+which parses a string of Jyutping romanization
 and returns a list of tuples; the string may contain romanization for multiple
 Chinese characters. The parsed romanization for a character is a 4-tuple of
 (onset, nucleus, coda, tone):</p>
@@ -100,7 +275,8 @@ Chinese characters. The parsed romanization for a character is a 4-tuple of
 <span class="go">[(&#39;&#39;, &#39;m&#39;, &#39;&#39;, &#39;4&#39;), (&#39;g&#39;, &#39;o&#39;, &#39;i&#39;, &#39;1&#39;)]</span>
 </pre></div>
 </div>
-<p>The function <code class="docutils literal notranslate"><span class="pre">jyutping()</span></code> is able to detect invalid Jyutping romanization:</p>
+<p>The function <a class="reference internal" href="generated/pycantonese.parse_jyutping.html#pycantonese.parse_jyutping" title="pycantonese.parse_jyutping"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_jyutping()</span></code></a>
+is able to detect invalid Jyutping romanization:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">parse_jyutping</span><span class="p">(</span><span class="s1">&#39;hou7&#39;</span><span class="p">)</span>
 <span class="gt">Traceback (most recent call last):</span>
@@ -116,7 +292,7 @@ Chinese characters. The parsed romanization for a character is a 4-tuple of
 <p>The Yale romanization is still a commonly used system, particularly in numerous
 dictionaries and
 Cantonese language teaching resources. PyCantonese provides the
-<code class="docutils literal notranslate"><span class="pre">jyutping2yale()</span></code>
+<a class="reference internal" href="generated/pycantonese.jyutping2yale.html#pycantonese.jyutping2yale" title="pycantonese.jyutping2yale"><code class="xref py py-func docutils literal notranslate"><span class="pre">jyutping2yale()</span></code></a>
 function which reads a valid Jyutping string and returns the Yale equivalent:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">jyutping2yale</span><span class="p">(</span><span class="s1">&#39;m4goi1&#39;</span><span class="p">)</span>
@@ -132,8 +308,8 @@ the quote <code class="docutils literal notranslate"><span class="pre">'</span><
 <span class="go">&quot;hei&#39;hauh&quot;</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">jyutping2yale()</span></code> has the optional parameter <code class="docutils literal notranslate"><span class="pre">as_list</span></code> for returning a list
-of Yale strings instead:</p>
+<p><a class="reference internal" href="generated/pycantonese.jyutping2yale.html#pycantonese.jyutping2yale" title="pycantonese.jyutping2yale"><code class="xref py py-func docutils literal notranslate"><span class="pre">jyutping2yale()</span></code></a> has the optional parameter <code class="docutils literal notranslate"><span class="pre">as_list</span></code>
+for returning a list of Yale strings instead:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">jyutping2yale</span><span class="p">(</span><span class="s1">&#39;gwong2dung1waa2&#39;</span><span class="p">,</span> <span class="n">as_list</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="go">[&#39;gwóng&#39;, &#39;dūng&#39;, &#39;wá&#39;]</span>
 </pre></div>
@@ -141,7 +317,7 @@ of Yale strings instead:</p>
 </div>
 <div class="section" id="jyutping-to-tipa-conversion">
 <h2>Jyutping-to-TIPA Conversion<a class="headerlink" href="#jyutping-to-tipa-conversion" title="Permalink to this headline">¶</a></h2>
-<p>PyCantonese also offers the <code class="docutils literal notranslate"><span class="pre">jyutping2tipa()</span></code> function for the
+<p>PyCantonese also offers the <a class="reference internal" href="generated/pycantonese.jyutping2tipa.html#pycantonese.jyutping2tipa" title="pycantonese.jyutping2tipa"><code class="xref py py-func docutils literal notranslate"><span class="pre">jyutping2tipa()</span></code></a> function for the
 <a class="reference external" href="https://www.ctan.org/pkg/tipa?lang=en">LaTeX TIPA</a> users:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">jyutping2tipa</span><span class="p">(</span><span class="s1">&#39;m4goi1&#39;</span><span class="p">)</span>
@@ -158,62 +334,59 @@ release if this behavior proves to be inconvenient.)</p>
 </div>
 
 
-            <div class="clearer"></div>
+           </div>
+           
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Jyutping Romanization: Parsing and Conversion</a><ul>
-<li><a class="reference internal" href="#characters-to-jyutping-conversion">Characters-to-Jyutping Conversion</a></li>
-<li><a class="reference internal" href="#parsing-jyutping-strings">Parsing Jyutping Strings</a></li>
-<li><a class="reference internal" href="#jyutping-to-yale-conversion">Jyutping-to-Yale Conversion</a></li>
-<li><a class="reference internal" href="#jyutping-to-tipa-conversion">Jyutping-to-TIPA Conversion</a></li>
-</ul>
-</li>
-</ul>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="word_segmentation.html" class="btn btn-neutral float-right" title="Word Segmentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="reader.html" class="btn btn-neutral float-left" title="Corpus Reader Methods" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="reader.html"
-                        title="previous chapter">Corpus Reader Methods</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="word_segmentation.html"
-                        title="next chapter">Word Segmentation</a></p>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script>
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on October 24, 2020
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="word_segmentation.html" title="Word Segmentation"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="reader.html" title="Corpus Reader Methods"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">PyCantonese 2.4.1 documentation</a> &#187;</li>
-        <li class="nav-item nav-item-this"><a href="">Jyutping Romanization: Parsing and Conversion</a></li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on October 23, 2020.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
-    </div>
-  </body>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
 </html>

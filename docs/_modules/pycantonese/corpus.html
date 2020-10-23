@@ -1,0 +1,628 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycantonese.corpus &mdash; PyCantonese 2.4.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+    <link rel="canonical" href="http://pycantonese.org/_modules/pycantonese/corpus.html"/>
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> PyCantonese
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.4.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../data.html">Corpus Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data.html#the-chat-transcription-format">The CHAT Transcription Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data.html#accessing-built-in-data">Accessing Built-in Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data.html#accessing-custom-data">Accessing Custom Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../stop_words.html">Stop Words</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reader.html">Corpus Reader Methods</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../reader.html#the-representation-of-words">The Representation of “Words”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reader.html#a-note-on-the-access-methods">A Note on the Access Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reader.html#full-reader-api">Full Reader API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../jyutping.html">Jyutping Romanization: Parsing and Conversion</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../jyutping.html#characters-to-jyutping-conversion">Characters-to-Jyutping Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jyutping.html#parsing-jyutping-strings">Parsing Jyutping Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jyutping.html#jyutping-to-yale-conversion">Jyutping-to-Yale Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jyutping.html#jyutping-to-tipa-conversion">Jyutping-to-TIPA Conversion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../word_segmentation.html">Word Segmentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../word_segmentation.html#customizing-segmentation">Customizing Segmentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../searches.html">Search Queries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../searches.html#searching-by-a-jyutping-element">Searching by a Jyutping Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../searches.html#searching-by-a-chinese-character">Searching by a Chinese Character</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../searches.html#searching-by-a-part-of-speech-tag">Searching by a Part-of-speech Tag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../searches.html#searching-by-a-word-or-sentence-range">Searching by a Word or Sentence Range</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../searches.html#searching-by-multiple-criteria">Searching by Multiple Criteria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../searches.html#output-format-of-search-results">Output Format of Search Results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#reading-and-accessing-corpus-data">Reading and Accessing Corpus Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/pycantonese.read_chat.html">pycantonese.read_chat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/pycantonese.hkcancor.html">pycantonese.hkcancor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/pycantonese.corpus.CantoneseCHATReader.html">pycantonese.corpus.CantoneseCHATReader</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/pycantonese.corpus.CantoneseCHATReader.search.html">pycantonese.corpus.CantoneseCHATReader.search</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/pycantonese.corpus.CantoneseCHATReader.search.html">pycantonese.corpus.CantoneseCHATReader.search</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#performing-natural-language-processing-tasks">Performing Natural Language Processing Tasks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/pycantonese.stop_words.html">pycantonese.stop_words</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/pycantonese.segment.html">pycantonese.segment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/pycantonese.word_segmentation.Segmenter.html">pycantonese.word_segmentation.Segmenter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#handling-jyutping-romanization">Handling Jyutping Romanization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/pycantonese.characters2jyutping.html">pycantonese.characters2jyutping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/pycantonese.jyutping2yale.html">pycantonese.jyutping2yale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/pycantonese.jyutping2tipa.html">pycantonese.jyutping2tipa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/pycantonese.parse_jyutping.html">pycantonese.parse_jyutping</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../papers.html">Research Outputs</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PyCantonese</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>pycantonese.corpus</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pycantonese.corpus</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">lru_cache</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">pylangacq.chat</span> <span class="kn">import</span> <span class="n">Reader</span>
+
+<span class="kn">from</span> <span class="nn">pycantonese.search</span> <span class="kn">import</span> <span class="n">perform_search</span>
+<span class="kn">from</span> <span class="nn">pycantonese.util</span> <span class="kn">import</span> <span class="n">ENCODING</span><span class="p">,</span> <span class="n">get_jyutping_from_mor</span><span class="p">,</span> <span class="n">ListFromIterables</span>
+
+
+<div class="viewcode-block" id="CantoneseCHATReader"><a class="viewcode-back" href="../../reader.html#pycantonese.corpus.CantoneseCHATReader">[docs]</a><span class="k">class</span> <span class="nc">CantoneseCHATReader</span><span class="p">(</span><span class="n">Reader</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A reader for Cantonese CHAT corpus files.</span>
+
+<span class="sd">    .. note:: Some of the methods are inherited from the parent class</span>
+<span class="sd">        ``pylangacq.chat.Reader`` for language acquisition,</span>
+<span class="sd">        which may or may not be applicable to your use case.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CantoneseCHATReader.__init__"><a class="viewcode-back" href="../../generated/pycantonese.corpus.CantoneseCHATReader.html#pycantonese.corpus.CantoneseCHATReader.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">filenames</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize a reader for Cantonese CHAT corpus files.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        *filenames : iterable of str</span>
+<span class="sd">            File paths to Cantonese CHAT data files. Glob filename matching</span>
+<span class="sd">            is supported.</span>
+<span class="sd">        **kwargs</span>
+<span class="sd">            Keyword arguments passed to CantoneseCHATReader. Currently, only</span>
+<span class="sd">            the ``encoding`` kwarg is supported (default: &#39;utf8&#39;).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">encoding</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="n">ENCODING</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CantoneseCHATReader</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="o">*</span><span class="n">filenames</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="CantoneseCHATReader.concordance"><a class="viewcode-back" href="../../reader.html#pycantonese.corpus.CantoneseCHATReader.concordance">[docs]</a>    <span class="k">def</span> <span class="nf">concordance</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">search_item</span><span class="p">,</span>
+        <span class="n">participant</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">match_entire_word</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">lemma</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">by_files</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;coming soon!&quot;</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_get_jyutping_sents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">participant</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sents</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">fname_to_tagged_sents</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tagged_sents</span><span class="p">(</span>
+            <span class="n">participant</span><span class="o">=</span><span class="n">participant</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">exclude</span><span class="p">,</span> <span class="n">by_files</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+
+        <span class="n">fn_to_jyutpings</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">jyutpings_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">filenames</span><span class="p">():</span>
+            <span class="n">fn_to_jyutpings</span><span class="p">[</span><span class="n">fn</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">tagged_sents</span> <span class="o">=</span> <span class="n">fname_to_tagged_sents</span><span class="p">[</span><span class="n">fn</span><span class="p">]</span>
+
+            <span class="k">for</span> <span class="n">tagged_sent</span> <span class="ow">in</span> <span class="n">tagged_sents</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">sents</span><span class="p">:</span>
+                    <span class="n">jyutpings_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+                <span class="k">for</span> <span class="n">tagged_word</span> <span class="ow">in</span> <span class="n">tagged_sent</span><span class="p">:</span>
+                    <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">mor</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">tagged_word</span>
+                    <span class="n">jyutping</span> <span class="o">=</span> <span class="n">get_jyutping_from_mor</span><span class="p">(</span><span class="n">mor</span><span class="p">)</span>
+
+                    <span class="k">if</span> <span class="n">sents</span><span class="p">:</span>
+                        <span class="n">jyutpings_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">jyutping</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">fn_to_jyutpings</span><span class="p">[</span><span class="n">fn</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">jyutping</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">sents</span><span class="p">:</span>
+                    <span class="n">fn_to_jyutpings</span><span class="p">[</span><span class="n">fn</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">jyutpings_list</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">fn_to_jyutpings</span>
+
+<div class="viewcode-block" id="CantoneseCHATReader.jyutpings"><a class="viewcode-back" href="../../reader.html#pycantonese.corpus.CantoneseCHATReader.jyutpings">[docs]</a>    <span class="k">def</span> <span class="nf">jyutpings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">participant</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">by_files</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the words in Jyutping romanization.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        participant : str or iterable[str], optional</span>
+<span class="sd">            One or more participants to include the data for.</span>
+<span class="sd">            If unspecified, all participants are included.</span>
+<span class="sd">        exclude : str or iterable[str], optional</span>
+<span class="sd">            One or more participants to exclude the data for.</span>
+<span class="sd">            If unspecified, no participants are excluded.</span>
+<span class="sd">        by_files : bool, optional</span>
+<span class="sd">            If True (default: False), return data organized by the</span>
+<span class="sd">            individual file paths.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list[str], or dict[str, list[str]] if by_files is True</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fn_to_jyutpings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_jyutping_sents</span><span class="p">(</span>
+            <span class="n">participant</span><span class="o">=</span><span class="n">participant</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">exclude</span><span class="p">,</span> <span class="n">sents</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">by_files</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">fn_to_jyutpings</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ListFromIterables</span><span class="p">(</span>
+                <span class="o">*</span><span class="p">(</span><span class="n">v</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">fn_to_jyutpings</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+            <span class="p">)</span></div>
+
+<div class="viewcode-block" id="CantoneseCHATReader.jyutping_sents"><a class="viewcode-back" href="../../reader.html#pycantonese.corpus.CantoneseCHATReader.jyutping_sents">[docs]</a>    <span class="k">def</span> <span class="nf">jyutping_sents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">participant</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">by_files</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the sentences in Jyutping romanization.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        participant : str or iterable[str], optional</span>
+<span class="sd">            One or more participants to include the data for.</span>
+<span class="sd">            If unspecified, all participants are included.</span>
+<span class="sd">        exclude : str or iterable[str], optional</span>
+<span class="sd">            One or more participants to exclude the data for.</span>
+<span class="sd">            If unspecified, no participants are excluded.</span>
+<span class="sd">        by_files : bool, optional</span>
+<span class="sd">            If True (default: False), return data organized by the</span>
+<span class="sd">            individual file paths.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list[list[str]], or dict[str, list[list[str]]] if by_files is True</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fn_to_jyutpings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_jyutping_sents</span><span class="p">(</span>
+            <span class="n">participant</span><span class="o">=</span><span class="n">participant</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">exclude</span><span class="p">,</span> <span class="n">sents</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">by_files</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">fn_to_jyutpings</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ListFromIterables</span><span class="p">(</span>
+                <span class="o">*</span><span class="p">(</span><span class="n">v</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">fn_to_jyutpings</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+            <span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_get_character_sents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">participant</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sents</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">fname_to_tagged_sents</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tagged_sents</span><span class="p">(</span>
+            <span class="n">participant</span><span class="o">=</span><span class="n">participant</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">exclude</span><span class="p">,</span> <span class="n">by_files</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+
+        <span class="n">fn_to_characters</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">characters_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">filenames</span><span class="p">():</span>
+            <span class="n">fn_to_characters</span><span class="p">[</span><span class="n">fn</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">tagged_sents</span> <span class="o">=</span> <span class="n">fname_to_tagged_sents</span><span class="p">[</span><span class="n">fn</span><span class="p">]</span>
+
+            <span class="k">for</span> <span class="n">tagged_sent</span> <span class="ow">in</span> <span class="n">tagged_sents</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">sents</span><span class="p">:</span>
+                    <span class="n">characters_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+                <span class="k">for</span> <span class="n">tagged_word</span> <span class="ow">in</span> <span class="n">tagged_sent</span><span class="p">:</span>
+                    <span class="n">chs</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">tagged_word</span>
+
+                    <span class="k">if</span> <span class="n">chs</span> <span class="ow">and</span> <span class="s2">&quot;</span><span class="se">\u4e00</span><span class="s2">&quot;</span> <span class="o">&lt;=</span> <span class="n">chs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="s2">&quot;</span><span class="se">\u9fff</span><span class="s2">&quot;</span><span class="p">:</span>
+                        <span class="n">characters_in_word</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chs</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">characters_in_word</span> <span class="o">=</span> <span class="p">[</span><span class="n">chs</span><span class="p">]</span>
+
+                    <span class="k">if</span> <span class="n">sents</span><span class="p">:</span>
+                        <span class="n">characters_list</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">characters_in_word</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">fn_to_characters</span><span class="p">[</span><span class="n">fn</span><span class="p">]</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">characters_in_word</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">sents</span><span class="p">:</span>
+                    <span class="n">fn_to_characters</span><span class="p">[</span><span class="n">fn</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">characters_list</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">fn_to_characters</span>
+
+<div class="viewcode-block" id="CantoneseCHATReader.characters"><a class="viewcode-back" href="../../reader.html#pycantonese.corpus.CantoneseCHATReader.characters">[docs]</a>    <span class="k">def</span> <span class="nf">characters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">participant</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">by_files</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the data split in individual Cantonese characters.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        participant : str or iterable[str], optional</span>
+<span class="sd">            One or more participants to include the data for.</span>
+<span class="sd">            If unspecified, all participants are included.</span>
+<span class="sd">        exclude : str or iterable[str], optional</span>
+<span class="sd">            One or more participants to exclude the data for.</span>
+<span class="sd">            If unspecified, no participants are excluded.</span>
+<span class="sd">        by_files : bool, optional</span>
+<span class="sd">            If True (default: False), return data organized by the</span>
+<span class="sd">            individual file paths.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list[str], or dict[str, list[str]] if by_files is True</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fn_to_characters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_character_sents</span><span class="p">(</span>
+            <span class="n">participant</span><span class="o">=</span><span class="n">participant</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">exclude</span><span class="p">,</span> <span class="n">sents</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">by_files</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">fn_to_characters</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ListFromIterables</span><span class="p">(</span>
+                <span class="o">*</span><span class="p">(</span><span class="n">v</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">fn_to_characters</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+            <span class="p">)</span></div>
+
+<div class="viewcode-block" id="CantoneseCHATReader.character_sents"><a class="viewcode-back" href="../../reader.html#pycantonese.corpus.CantoneseCHATReader.character_sents">[docs]</a>    <span class="k">def</span> <span class="nf">character_sents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">participant</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">by_files</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the data as sentences of individual Cantonese characters.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        participant : str or iterable[str], optional</span>
+<span class="sd">            One or more participants to include the data for.</span>
+<span class="sd">            If unspecified, all participants are included.</span>
+<span class="sd">        exclude : str or iterable[str], optional</span>
+<span class="sd">            One or more participants to exclude the data for.</span>
+<span class="sd">            If unspecified, no participants are excluded.</span>
+<span class="sd">        by_files : bool, optional</span>
+<span class="sd">            If True (default: False), return data organized by the</span>
+<span class="sd">            individual file paths.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list[list[str]], or dict[str, list[list[str]]] if by_files is True</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">fn_to_characters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_character_sents</span><span class="p">(</span>
+            <span class="n">participant</span><span class="o">=</span><span class="n">participant</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">exclude</span><span class="p">,</span> <span class="n">sents</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">by_files</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">fn_to_characters</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ListFromIterables</span><span class="p">(</span>
+                <span class="o">*</span><span class="p">(</span><span class="n">v</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">fn_to_characters</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+            <span class="p">)</span></div>
+
+<div class="viewcode-block" id="CantoneseCHATReader.search"><a class="viewcode-back" href="../../reader.html#pycantonese.corpus.CantoneseCHATReader.search">[docs]</a>    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">onset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">nucleus</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">coda</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">tone</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">initial</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">final</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">jyutping</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">character</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">pos</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">word_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">sent_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">tagged</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">sents</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">participant</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">by_files</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Search the data for the given criteria.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        onset : str, optional</span>
+<span class="sd">            Onset to search for. A regex is supported.</span>
+<span class="sd">        nucleus : str, optional</span>
+<span class="sd">            Nucleus to search for. A regex is supported.</span>
+<span class="sd">        coda : str, optional</span>
+<span class="sd">            Coda to search for. A regex is supported.</span>
+<span class="sd">        tone : str, optional</span>
+<span class="sd">            Tone to search for. A regex is supported.</span>
+<span class="sd">        initial : str, optional</span>
+<span class="sd">            Initial to search for. A regex is supported.</span>
+<span class="sd">            An initial, a term more prevalent in traditional Chinese</span>
+<span class="sd">            phonology, is the equivalent of an onset.</span>
+<span class="sd">        final : str, optional</span>
+<span class="sd">            Final to search for.</span>
+<span class="sd">            A final, a term more prevalent in traditional Chinese</span>
+<span class="sd">            phonology, is the equivalent of a nucleus plus a coda.</span>
+<span class="sd">        jyutping : str, optional</span>
+<span class="sd">            Jyutping romanization of one Cantonese character to search for.</span>
+<span class="sd">            If the romanization contains more than one character, a ValueError</span>
+<span class="sd">            is raised.</span>
+<span class="sd">        character : str, optional</span>
+<span class="sd">            One or more Cantonese characters (within a segmented word) to</span>
+<span class="sd">            search for.</span>
+<span class="sd">        pos : str, optional</span>
+<span class="sd">            A part-of-speech tag to search for. A regex is supported.</span>
+<span class="sd">        word_range : tuple[int, int], optional</span>
+<span class="sd">            Span of words to the left and right of a matching word to include</span>
+<span class="sd">            in the output. The default is `(0, 0)` to disable a range.</span>
+<span class="sd">            If `sent_range` is used, `word_range` is ignored.</span>
+<span class="sd">        sent_range : tuple[int, int], optional</span>
+<span class="sd">            Span of sentences before and after a sentence containing a matching</span>
+<span class="sd">            word to include in the output. The default is `(0, 0)` to disable</span>
+<span class="sd">            a range. If `sent_range` is used, `word_range` is ignored.</span>
+<span class="sd">        tagged : bool, optional</span>
+<span class="sd">            If True (the default), words in the output are in the tagged form.</span>
+<span class="sd">            Otherwise just word token strings are returned.</span>
+<span class="sd">        sents : bool, optional</span>
+<span class="sd">            If True (default is False), sentences containing matching words</span>
+<span class="sd">            are returned. Otherwise, only matching words are returned.</span>
+<span class="sd">        participant : str or iterable[str], optional</span>
+<span class="sd">            One or more participants to include in the search.</span>
+<span class="sd">            If unspecified, all participants are included.</span>
+<span class="sd">        exclude : str or iterable[str], optional</span>
+<span class="sd">            One or more participants to exclude in the search.</span>
+<span class="sd">            If unspecified, no participants are excluded.</span>
+<span class="sd">        by_files : bool, optional</span>
+<span class="sd">            If True (default: False), return data organized by the</span>
+<span class="sd">            individual file paths.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tagged_sents</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tagged_sents</span><span class="p">(</span>
+            <span class="n">participant</span><span class="o">=</span><span class="n">participant</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">exclude</span><span class="p">,</span> <span class="n">by_files</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+        <span class="n">fn_to_results</span> <span class="o">=</span> <span class="n">perform_search</span><span class="p">(</span>
+            <span class="n">tagged_sents</span><span class="p">,</span>
+            <span class="n">onset</span><span class="o">=</span><span class="n">onset</span><span class="p">,</span>
+            <span class="n">nucleus</span><span class="o">=</span><span class="n">nucleus</span><span class="p">,</span>
+            <span class="n">coda</span><span class="o">=</span><span class="n">coda</span><span class="p">,</span>
+            <span class="n">tone</span><span class="o">=</span><span class="n">tone</span><span class="p">,</span>
+            <span class="n">initial</span><span class="o">=</span><span class="n">initial</span><span class="p">,</span>
+            <span class="n">final</span><span class="o">=</span><span class="n">final</span><span class="p">,</span>
+            <span class="n">jyutping</span><span class="o">=</span><span class="n">jyutping</span><span class="p">,</span>
+            <span class="n">character</span><span class="o">=</span><span class="n">character</span><span class="p">,</span>
+            <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">,</span>
+            <span class="n">word_range</span><span class="o">=</span><span class="n">word_range</span><span class="p">,</span>
+            <span class="n">sent_range</span><span class="o">=</span><span class="n">sent_range</span><span class="p">,</span>
+            <span class="n">tagged</span><span class="o">=</span><span class="n">tagged</span><span class="p">,</span>
+            <span class="n">sents</span><span class="o">=</span><span class="n">sents</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">by_files</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">fn_to_results</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ListFromIterables</span><span class="p">(</span>
+                <span class="o">*</span><span class="p">(</span><span class="n">v</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">fn_to_results</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+            <span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="hkcancor"><a class="viewcode-back" href="../../generated/pycantonese.hkcancor.html#pycantonese.corpus.hkcancor">[docs]</a><span class="nd">@lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">hkcancor</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Create a corpus object for the Hong Kong Cantonese Corpus.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    :class:`~pycantonese.corpus.CantoneseCHATReader`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="s2">&quot;hkcancor&quot;</span><span class="p">,</span> <span class="s2">&quot;*.cha&quot;</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">CantoneseCHATReader</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="read_chat"><a class="viewcode-back" href="../../generated/pycantonese.read_chat.html#pycantonese.corpus.read_chat">[docs]</a><span class="k">def</span> <span class="nf">read_chat</span><span class="p">(</span><span class="o">*</span><span class="n">filenames</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Read Cantonese CHAT data files into a reader object.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    *filenames : iterable[str]</span>
+<span class="sd">        File paths to Cantonese CHAT data files. Glob filename matching</span>
+<span class="sd">        is supported.</span>
+<span class="sd">    **kwargs</span>
+<span class="sd">        Keyword arguments passed to CantoneseCHATReader.</span>
+<span class="sd">        Currently, only the ``encoding`` kwarg is supported (default: &#39;utf8&#39;).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    :class:`~pycantonese.corpus.CantoneseCHATReader`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">encoding</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="n">ENCODING</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">CantoneseCHATReader</span><span class="p">(</span><span class="o">*</span><span class="n">filenames</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on October 24, 2020
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

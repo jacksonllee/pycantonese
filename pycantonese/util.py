@@ -76,7 +76,7 @@ def endswithoneof(inputstr, seq):
 
 def split_characters_with_alphanum(chars):
     """
-    Split Cantonese characters while respecting .
+    Split Cantonese characters while respecting alphanumeric characters.
 
     :param chars: String of Cantonese chars, possibly with alphanumeric chars.
 

@@ -1,0 +1,379 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycantonese.jyutping.tipa &mdash; PyCantonese 2.4.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+    <link rel="canonical" href="http://pycantonese.org/_modules/pycantonese/jyutping/tipa.html"/>
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> PyCantonese
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.4.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../data.html">Corpus Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../data.html#the-chat-transcription-format">The CHAT Transcription Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data.html#accessing-built-in-data">Accessing Built-in Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data.html#accessing-custom-data">Accessing Custom Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stop_words.html">Stop Words</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reader.html">Corpus Reader Methods</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../reader.html#the-representation-of-words">The Representation of “Words”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reader.html#a-note-on-the-access-methods">A Note on the Access Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reader.html#full-reader-api">Full Reader API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jyutping.html">Jyutping Romanization: Parsing and Conversion</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../jyutping.html#characters-to-jyutping-conversion">Characters-to-Jyutping Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../jyutping.html#parsing-jyutping-strings">Parsing Jyutping Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../jyutping.html#jyutping-to-yale-conversion">Jyutping-to-Yale Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../jyutping.html#jyutping-to-tipa-conversion">Jyutping-to-TIPA Conversion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../word_segmentation.html">Word Segmentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../word_segmentation.html#customizing-segmentation">Customizing Segmentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../searches.html">Search Queries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#searching-by-a-jyutping-element">Searching by a Jyutping Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#searching-by-a-chinese-character">Searching by a Chinese Character</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#searching-by-a-part-of-speech-tag">Searching by a Part-of-speech Tag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#searching-by-a-word-or-sentence-range">Searching by a Word or Sentence Range</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#searching-by-multiple-criteria">Searching by Multiple Criteria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#output-format-of-search-results">Output Format of Search Results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#reading-and-accessing-corpus-data">Reading and Accessing Corpus Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.read_chat.html">pycantonese.read_chat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.hkcancor.html">pycantonese.hkcancor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.corpus.CantoneseCHATReader.html">pycantonese.corpus.CantoneseCHATReader</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/pycantonese.corpus.CantoneseCHATReader.search.html">pycantonese.corpus.CantoneseCHATReader.search</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.corpus.CantoneseCHATReader.search.html">pycantonese.corpus.CantoneseCHATReader.search</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#performing-natural-language-processing-tasks">Performing Natural Language Processing Tasks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.stop_words.html">pycantonese.stop_words</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.segment.html">pycantonese.segment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.word_segmentation.Segmenter.html">pycantonese.word_segmentation.Segmenter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#handling-jyutping-romanization">Handling Jyutping Romanization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.characters2jyutping.html">pycantonese.characters2jyutping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.jyutping2yale.html">pycantonese.jyutping2yale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.jyutping2tipa.html">pycantonese.jyutping2tipa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.parse_jyutping.html">pycantonese.parse_jyutping</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../papers.html">Research Outputs</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyCantonese</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pycantonese.jyutping.tipa</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pycantonese.jyutping.tipa</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pycantonese.jyutping.parse_jyutping</span> <span class="kn">import</span> <span class="n">parse_jyutping</span>
+
+
+<span class="n">ONSETS_TIPA</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="s2">&quot;p&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;d&quot;</span><span class="p">:</span> <span class="s2">&quot;t&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;g&quot;</span><span class="p">:</span> <span class="s2">&quot;k&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;gw&quot;</span><span class="p">:</span> <span class="s2">&quot;k</span><span class="se">\\</span><span class="s2">super w &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;z&quot;</span><span class="p">:</span> <span class="s2">&quot;ts&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;p&quot;</span><span class="p">:</span> <span class="s2">&quot;p</span><span class="se">\\</span><span class="s2">super h &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;t&quot;</span><span class="p">:</span> <span class="s2">&quot;t</span><span class="se">\\</span><span class="s2">super h &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;k&quot;</span><span class="p">:</span> <span class="s2">&quot;k</span><span class="se">\\</span><span class="s2">super h &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;kw&quot;</span><span class="p">:</span> <span class="s2">&quot;k</span><span class="se">\\</span><span class="s2">super w</span><span class="se">\\</span><span class="s2">super h &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="s2">&quot;ts</span><span class="se">\\</span><span class="s2">super h &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;m&quot;</span><span class="p">:</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;n&quot;</span><span class="p">:</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ng&quot;</span><span class="p">:</span> <span class="s2">&quot;N&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;f&quot;</span><span class="p">:</span> <span class="s2">&quot;f&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;h&quot;</span><span class="p">:</span> <span class="s2">&quot;h&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;s&quot;</span><span class="p">:</span> <span class="s2">&quot;s&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;l&quot;</span><span class="p">:</span> <span class="s2">&quot;l&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;w&quot;</span><span class="p">:</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;j&quot;</span><span class="p">:</span> <span class="s2">&quot;j&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">FINALS_TIPA</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;i&quot;</span><span class="p">:</span> <span class="s2">&quot;i&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ip&quot;</span><span class="p">:</span> <span class="s2">&quot;ip</span><span class="se">\\</span><span class="s2">textcorner &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;it&quot;</span><span class="p">:</span> <span class="s2">&quot;it</span><span class="se">\\</span><span class="s2">textcorner &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ik&quot;</span><span class="p">:</span> <span class="s2">&quot;Ik</span><span class="se">\\</span><span class="s2">textcorner &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;im&quot;</span><span class="p">:</span> <span class="s2">&quot;im&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;in&quot;</span><span class="p">:</span> <span class="s2">&quot;in&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ing&quot;</span><span class="p">:</span> <span class="s2">&quot;IN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;iu&quot;</span><span class="p">:</span> <span class="s2">&quot;iu&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;yu&quot;</span><span class="p">:</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;yut&quot;</span><span class="p">:</span> <span class="s2">&quot;yt</span><span class="se">\\</span><span class="s2">textcorner &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;yun&quot;</span><span class="p">:</span> <span class="s2">&quot;yn&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;u&quot;</span><span class="p">:</span> <span class="s2">&quot;u&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ut&quot;</span><span class="p">:</span> <span class="s2">&quot;ut</span><span class="se">\\</span><span class="s2">textcorner &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;uk&quot;</span><span class="p">:</span> <span class="s2">&quot;Uk</span><span class="se">\\</span><span class="s2">textcorner &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;un&quot;</span><span class="p">:</span> <span class="s2">&quot;un&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ung&quot;</span><span class="p">:</span> <span class="s2">&quot;UN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ui&quot;</span><span class="p">:</span> <span class="s2">&quot;uY&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;e&quot;</span><span class="p">:</span> <span class="s2">&quot;E&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ek&quot;</span><span class="p">:</span> <span class="s2">&quot;Ek</span><span class="se">\\</span><span class="s2">textcorner &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;eng&quot;</span><span class="p">:</span> <span class="s2">&quot;EN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ei&quot;</span><span class="p">:</span> <span class="s2">&quot;eI&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;eot&quot;</span><span class="p">:</span> <span class="s2">&quot;8t</span><span class="se">\\</span><span class="s2">textcorner &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;eon&quot;</span><span class="p">:</span> <span class="s2">&quot;8n&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;eoi&quot;</span><span class="p">:</span> <span class="s2">&quot;8Y&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;oe&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">oe &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;oek&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">oe k</span><span class="se">\\</span><span class="s2">textcorner &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;oeng&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">oe N&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;o&quot;</span><span class="p">:</span> <span class="s2">&quot;O&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ot&quot;</span><span class="p">:</span> <span class="s2">&quot;Ot</span><span class="se">\\</span><span class="s2">textcorner &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ok&quot;</span><span class="p">:</span> <span class="s2">&quot;Ok</span><span class="se">\\</span><span class="s2">textcorner &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;on&quot;</span><span class="p">:</span> <span class="s2">&quot;On&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ong&quot;</span><span class="p">:</span> <span class="s2">&quot;ON&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;oi&quot;</span><span class="p">:</span> <span class="s2">&quot;OY&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ou&quot;</span><span class="p">:</span> <span class="s2">&quot;ou&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ap&quot;</span><span class="p">:</span> <span class="s2">&quot;5p</span><span class="se">\\</span><span class="s2">textcorner &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;at&quot;</span><span class="p">:</span> <span class="s2">&quot;5t</span><span class="se">\\</span><span class="s2">textcorner &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ak&quot;</span><span class="p">:</span> <span class="s2">&quot;5k</span><span class="se">\\</span><span class="s2">textcorner &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;am&quot;</span><span class="p">:</span> <span class="s2">&quot;5m&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;an&quot;</span><span class="p">:</span> <span class="s2">&quot;5n&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ang&quot;</span><span class="p">:</span> <span class="s2">&quot;5N&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ai&quot;</span><span class="p">:</span> <span class="s2">&quot;5I&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;au&quot;</span><span class="p">:</span> <span class="s2">&quot;5u&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;aa&quot;</span><span class="p">:</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;aap&quot;</span><span class="p">:</span> <span class="s2">&quot;ap</span><span class="se">\\</span><span class="s2">textcorner &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;aat&quot;</span><span class="p">:</span> <span class="s2">&quot;at</span><span class="se">\\</span><span class="s2">textcorner &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;aak&quot;</span><span class="p">:</span> <span class="s2">&quot;ak</span><span class="se">\\</span><span class="s2">textcorner &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;aam&quot;</span><span class="p">:</span> <span class="s2">&quot;am&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;aan&quot;</span><span class="p">:</span> <span class="s2">&quot;an&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;aang&quot;</span><span class="p">:</span> <span class="s2">&quot;aN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;aai&quot;</span><span class="p">:</span> <span class="s2">&quot;aI&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;aau&quot;</span><span class="p">:</span> <span class="s2">&quot;au&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;m&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">s</span><span class="si">{m}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ng&quot;</span><span class="p">:</span> <span class="s2">&quot;</span><span class="se">\\</span><span class="s2">s</span><span class="si">{N}</span><span class="s2">&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">TONES_TIPA</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;1&quot;</span><span class="p">:</span> <span class="s2">&quot;55&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;2&quot;</span><span class="p">:</span> <span class="s2">&quot;25&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;3&quot;</span><span class="p">:</span> <span class="s2">&quot;33&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;4&quot;</span><span class="p">:</span> <span class="s2">&quot;21&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;5&quot;</span><span class="p">:</span> <span class="s2">&quot;23&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;6&quot;</span><span class="p">:</span> <span class="s2">&quot;22&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="jyutping2tipa"><a class="viewcode-back" href="../../../generated/pycantonese.jyutping2tipa.html#pycantonese.jyutping2tipa">[docs]</a><span class="k">def</span> <span class="nf">jyutping2tipa</span><span class="p">(</span><span class="n">jp_str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert Jyutping romanization into LaTeX TIPA.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    jp_str : str</span>
+<span class="sd">        Jyutping romanization for one or multiple characters</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    list[str]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">jp_parsed_list</span> <span class="o">=</span> <span class="n">parse_jyutping</span><span class="p">(</span><span class="n">jp_str</span><span class="p">)</span>
+    <span class="n">tipa_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">jp_parsed</span> <span class="ow">in</span> <span class="n">jp_parsed_list</span><span class="p">:</span>
+        <span class="n">onset</span> <span class="o">=</span> <span class="n">jp_parsed</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1"># TODO: Separate &quot;final&quot; as &quot;nucleus&quot; and &quot;coda&quot; instead?</span>
+        <span class="n">final</span> <span class="o">=</span> <span class="n">jp_parsed</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">jp_parsed</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">tone</span> <span class="o">=</span> <span class="n">jp_parsed</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+        <span class="n">tipa</span> <span class="o">=</span> <span class="n">ONSETS_TIPA</span><span class="p">[</span><span class="n">onset</span><span class="p">]</span> <span class="o">+</span> <span class="n">FINALS_TIPA</span><span class="p">[</span><span class="n">final</span><span class="p">]</span>
+        <span class="n">tipa</span> <span class="o">=</span> <span class="n">tipa</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">+</span> <span class="n">TONES_TIPA</span><span class="p">[</span><span class="n">tone</span><span class="p">]</span>
+        <span class="n">tipa_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tipa</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">tipa_list</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on October 24, 2020
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

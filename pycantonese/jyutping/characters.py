@@ -61,22 +61,24 @@ def _get_words_characters_to_jyutping():
 
 
 def characters2jyutping(chars):
-    """
-    Convert Cantonese characters to Jyytping romanization.
+    """Convert Cantonese characters into Jyytping romanization.
 
     The conversion model is based on the HKCanCor corpus and rime-cantonese
     data. Any unseen Cantonese character (or punctuation mark,
-    for that matter) is represented by None in the output.
+    for that matter) is represented by `None` in the output.
 
     The output is organized by a word-segmented version of the input
     characters.
     Each word is a tuple of (word, jyutping).
 
-    :param chars: A string of Cantonese characters
+    Parameters
+    ----------
+    chars : str
+        A string of Cantonese characters.
 
-    :return: Jyutping romanization of the input string
-
-    :rtype: list of tuple of str
+    Returns
+    -------
+    list[tuple[str]]
     """
     if not chars:
         return []

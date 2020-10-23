@@ -1,0 +1,550 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycantonese.corpus.CantoneseCHATReader &mdash; PyCantonese 2.4.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+    <link rel="canonical" href="http://pycantonese.org/generated/pycantonese.corpus.CantoneseCHATReader.html"/>
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="pycantonese.corpus.CantoneseCHATReader.search" href="pycantonese.corpus.CantoneseCHATReader.search.html" />
+    <link rel="prev" title="pycantonese.hkcancor" href="pycantonese.hkcancor.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> PyCantonese
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.4.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../data.html">Corpus Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data.html#the-chat-transcription-format">The CHAT Transcription Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data.html#accessing-built-in-data">Accessing Built-in Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data.html#accessing-custom-data">Accessing Custom Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../stop_words.html">Stop Words</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reader.html">Corpus Reader Methods</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reader.html#the-representation-of-words">The Representation of “Words”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reader.html#a-note-on-the-access-methods">A Note on the Access Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reader.html#full-reader-api">Full Reader API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../jyutping.html">Jyutping Romanization: Parsing and Conversion</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../jyutping.html#characters-to-jyutping-conversion">Characters-to-Jyutping Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jyutping.html#parsing-jyutping-strings">Parsing Jyutping Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jyutping.html#jyutping-to-yale-conversion">Jyutping-to-Yale Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jyutping.html#jyutping-to-tipa-conversion">Jyutping-to-TIPA Conversion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../word_segmentation.html">Word Segmentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../word_segmentation.html#customizing-segmentation">Customizing Segmentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../searches.html">Search Queries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../searches.html#searching-by-a-jyutping-element">Searching by a Jyutping Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../searches.html#searching-by-a-chinese-character">Searching by a Chinese Character</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../searches.html#searching-by-a-part-of-speech-tag">Searching by a Part-of-speech Tag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../searches.html#searching-by-a-word-or-sentence-range">Searching by a Word or Sentence Range</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../searches.html#searching-by-multiple-criteria">Searching by Multiple Criteria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../searches.html#output-format-of-search-results">Output Format of Search Results</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../api.html#reading-and-accessing-corpus-data">Reading and Accessing Corpus Data</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="pycantonese.read_chat.html">pycantonese.read_chat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycantonese.hkcancor.html">pycantonese.hkcancor</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">pycantonese.corpus.CantoneseCHATReader</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycantonese.corpus.CantoneseCHATReader.search.html">pycantonese.corpus.CantoneseCHATReader.search</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="pycantonese.corpus.CantoneseCHATReader.search.html">pycantonese.corpus.CantoneseCHATReader.search</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#performing-natural-language-processing-tasks">Performing Natural Language Processing Tasks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pycantonese.stop_words.html">pycantonese.stop_words</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycantonese.segment.html">pycantonese.segment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycantonese.word_segmentation.Segmenter.html">pycantonese.word_segmentation.Segmenter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#handling-jyutping-romanization">Handling Jyutping Romanization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pycantonese.characters2jyutping.html">pycantonese.characters2jyutping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycantonese.jyutping2yale.html">pycantonese.jyutping2yale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycantonese.jyutping2tipa.html">pycantonese.jyutping2tipa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycantonese.parse_jyutping.html">pycantonese.parse_jyutping</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../papers.html">Research Outputs</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">PyCantonese</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../api.html">API Reference</a> &raquo;</li>
+        
+      <li>pycantonese.corpus.CantoneseCHATReader</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pycantonese-corpus-cantonesechatreader">
+<h1>pycantonese.corpus.CantoneseCHATReader<a class="headerlink" href="#pycantonese-corpus-cantonesechatreader" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="pycantonese.corpus.CantoneseCHATReader">
+<em class="property">class </em><code class="sig-prename descclassname">pycantonese.corpus.</code><code class="sig-name descname">CantoneseCHATReader</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">filenames</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycantonese/corpus.html#CantoneseCHATReader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>A reader for Cantonese CHAT corpus files.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Some of the methods are inherited from the parent class
+<code class="docutils literal notranslate"><span class="pre">pylangacq.chat.Reader</span></code> for language acquisition,
+which may or may not be applicable to your use case.</p>
+</div>
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.IPSyn" title="pycantonese.corpus.CantoneseCHATReader.IPSyn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IPSyn</span></code></a>([participant])</p></td>
+<td><p>Return a map from a file path to the file’s IPSyn.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.MLU" title="pycantonese.corpus.CantoneseCHATReader.MLU"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MLU</span></code></a>([participant])</p></td>
+<td><p>Return a map from a file path to the file’s MLU by morphemes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.MLUm" title="pycantonese.corpus.CantoneseCHATReader.MLUm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MLUm</span></code></a>([participant])</p></td>
+<td><p>Return a map from a file path to the file’s MLU by morphemes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.MLUw" title="pycantonese.corpus.CantoneseCHATReader.MLUw"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MLUw</span></code></a>([participant])</p></td>
+<td><p>Return a map from a file path to the file’s MLU by words.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.TTR" title="pycantonese.corpus.CantoneseCHATReader.TTR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TTR</span></code></a>([participant])</p></td>
+<td><p>Return a map from a file path to the file’s TTR.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.abspath" title="pycantonese.corpus.CantoneseCHATReader.abspath"><code class="xref py py-obj docutils literal notranslate"><span class="pre">abspath</span></code></a>(basename)</p></td>
+<td><p>Return the absolute path of <code class="docutils literal notranslate"><span class="pre">basename</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.add" title="pycantonese.corpus.CantoneseCHATReader.add"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add</span></code></a>(*filenames)</p></td>
+<td><p>Add one or more CHAT <code class="docutils literal notranslate"><span class="pre">filenames</span></code> to the current reader.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.age" title="pycantonese.corpus.CantoneseCHATReader.age"><code class="xref py py-obj docutils literal notranslate"><span class="pre">age</span></code></a>([participant, months])</p></td>
+<td><p>Return a map from a file path to the <em>participant</em>’s age.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.character_sents" title="pycantonese.corpus.CantoneseCHATReader.character_sents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">character_sents</span></code></a>([participant, exclude, by_files])</p></td>
+<td><p>Return the data as sentences of individual Cantonese characters.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.characters" title="pycantonese.corpus.CantoneseCHATReader.characters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">characters</span></code></a>([participant, exclude, by_files])</p></td>
+<td><p>Return the data split in individual Cantonese characters.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.clear" title="pycantonese.corpus.CantoneseCHATReader.clear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code></a>()</p></td>
+<td><p>Clear everything and reset as an empty Reader instance.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.concordance" title="pycantonese.corpus.CantoneseCHATReader.concordance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">concordance</span></code></a>(search_item[, participant, …])</p></td>
+<td><p>Return a list of utterances with <em>search_item</em> for <em>participant</em>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.date_of_birth" title="pycantonese.corpus.CantoneseCHATReader.date_of_birth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">date_of_birth</span></code></a>()</p></td>
+<td><p>Return a map from a file path to the date of birth.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.dates_of_recording" title="pycantonese.corpus.CantoneseCHATReader.dates_of_recording"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dates_of_recording</span></code></a>()</p></td>
+<td><p>Return a map from a file path to the date of recording.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.filenames" title="pycantonese.corpus.CantoneseCHATReader.filenames"><code class="xref py py-obj docutils literal notranslate"><span class="pre">filenames</span></code></a>([sorted_by_age])</p></td>
+<td><p>Return the set of absolute-path filenames.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.from_chat_files" title="pycantonese.corpus.CantoneseCHATReader.from_chat_files"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_chat_files</span></code></a>(*filenames, **kwargs)</p></td>
+<td><p>Create a <code class="docutils literal notranslate"><span class="pre">Reader</span></code> object with CHAT data files.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.from_chat_str" title="pycantonese.corpus.CantoneseCHATReader.from_chat_str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_chat_str</span></code></a>(chat_str[, encoding])</p></td>
+<td><p>Create a <code class="docutils literal notranslate"><span class="pre">Reader</span></code> object with CHAT data as a string.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.headers" title="pycantonese.corpus.CantoneseCHATReader.headers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">headers</span></code></a>()</p></td>
+<td><p>Return a dict mapping a file path to the headers of that file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.index_to_tiers" title="pycantonese.corpus.CantoneseCHATReader.index_to_tiers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">index_to_tiers</span></code></a>()</p></td>
+<td><p>Return a dict mapping a file path to the file’s index_to_tiers dict.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.jyutping_sents" title="pycantonese.corpus.CantoneseCHATReader.jyutping_sents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">jyutping_sents</span></code></a>([participant, exclude, by_files])</p></td>
+<td><p>Return the sentences in Jyutping romanization.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.jyutpings" title="pycantonese.corpus.CantoneseCHATReader.jyutpings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">jyutpings</span></code></a>([participant, exclude, by_files])</p></td>
+<td><p>Return the words in Jyutping romanization.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.languages" title="pycantonese.corpus.CantoneseCHATReader.languages"><code class="xref py py-obj docutils literal notranslate"><span class="pre">languages</span></code></a>()</p></td>
+<td><p>Return a map from a file path to the languages used.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.number_of_files" title="pycantonese.corpus.CantoneseCHATReader.number_of_files"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_files</span></code></a>()</p></td>
+<td><p>Return the number of files.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.number_of_utterances" title="pycantonese.corpus.CantoneseCHATReader.number_of_utterances"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_utterances</span></code></a>([participant, exclude, …])</p></td>
+<td><p>Return the number of utterances for <em>participant</em> in all files.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.part_of_speech_tags" title="pycantonese.corpus.CantoneseCHATReader.part_of_speech_tags"><code class="xref py py-obj docutils literal notranslate"><span class="pre">part_of_speech_tags</span></code></a>([participant, exclude, …])</p></td>
+<td><p>Return the part-of-speech tags in the data for <em>participant</em>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.participant_codes" title="pycantonese.corpus.CantoneseCHATReader.participant_codes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">participant_codes</span></code></a>([by_files])</p></td>
+<td><p>Return the participant codes (e.g., <code class="docutils literal notranslate"><span class="pre">{'CHI',</span> <span class="pre">'MOT'}</span></code>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.participants" title="pycantonese.corpus.CantoneseCHATReader.participants"><code class="xref py py-obj docutils literal notranslate"><span class="pre">participants</span></code></a>()</p></td>
+<td><p>Return a dict mapping a file path to the file’s participant info.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.remove" title="pycantonese.corpus.CantoneseCHATReader.remove"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove</span></code></a>(*filenames)</p></td>
+<td><p>Remove one or more CHAT <code class="docutils literal notranslate"><span class="pre">filenames</span></code> from the current reader.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.search" title="pycantonese.corpus.CantoneseCHATReader.search"><code class="xref py py-obj docutils literal notranslate"><span class="pre">search</span></code></a>(*[, onset, nucleus, coda, tone, …])</p></td>
+<td><p>Search the data for the given criteria.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.sents" title="pycantonese.corpus.CantoneseCHATReader.sents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sents</span></code></a>([participant, exclude, by_files])</p></td>
+<td><p>Return a list of sents by <em>participant</em> in all files.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.tagged_sents" title="pycantonese.corpus.CantoneseCHATReader.tagged_sents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tagged_sents</span></code></a>([participant, exclude, by_files])</p></td>
+<td><p>Return a list of tagged sents by <em>participant</em> in all files.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.tagged_words" title="pycantonese.corpus.CantoneseCHATReader.tagged_words"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tagged_words</span></code></a>([participant, exclude, by_files])</p></td>
+<td><p>Return a list of tagged words by <em>participant</em> in all files.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.update" title="pycantonese.corpus.CantoneseCHATReader.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(reader)</p></td>
+<td><p>Combine the current CHAT Reader instance with <code class="docutils literal notranslate"><span class="pre">reader</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.utterances" title="pycantonese.corpus.CantoneseCHATReader.utterances"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utterances</span></code></a>([participant, exclude, clean, …])</p></td>
+<td><p>Return a list of (<em>participant</em>, utterance) pairs from all files.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.word_frequency" title="pycantonese.corpus.CantoneseCHATReader.word_frequency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">word_frequency</span></code></a>([participant, exclude, …])</p></td>
+<td><p>Return a word frequency counter for <em>participant</em> in all files.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.word_ngrams" title="pycantonese.corpus.CantoneseCHATReader.word_ngrams"><code class="xref py py-obj docutils literal notranslate"><span class="pre">word_ngrams</span></code></a>(n[, participant, exclude, …])</p></td>
+<td><p>Return a word <code class="docutils literal notranslate"><span class="pre">n</span></code>-gram counter by <code class="docutils literal notranslate"><span class="pre">participant</span></code> in all files. participant : str or iterable of str, optional     Participants of interest. If unspecified or <code class="docutils literal notranslate"><span class="pre">None</span></code>, all participants are included. exclude : str or iterable of str, optional     Participants to exclude. If unspecified or <code class="docutils literal notranslate"><span class="pre">None</span></code>, no participants are excluded. by_files : bool, optional     If <code class="docutils literal notranslate"><span class="pre">True</span></code>, return dict(absolute-path filename: X for that file)     instead of X for all files altogether. keep_case : bool, optional     If <code class="docutils literal notranslate"><span class="pre">True</span></code> (the default), case distinctions are kept, e.g.,     word tokens like “the” and “The” are treated as distinct. If <code class="docutils literal notranslate"><span class="pre">False</span></code>, all word tokens are forced to be in lowercase.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.words" title="pycantonese.corpus.CantoneseCHATReader.words"><code class="xref py py-obj docutils literal notranslate"><span class="pre">words</span></code></a>([participant, exclude, by_files])</p></td>
+<td><p>Return a list of words by <em>participant</em> in all files.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt id="pycantonese.corpus.CantoneseCHATReader.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">filenames</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycantonese/corpus.html#CantoneseCHATReader.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize a reader for Cantonese CHAT corpus files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>*filenames</strong><span class="classifier">iterable of str</span></dt><dd><p>File paths to Cantonese CHAT data files. Glob filename matching
+is supported.</p>
+</dd>
+<dt><strong>**kwargs</strong></dt><dd><p>Keyword arguments passed to CantoneseCHATReader. Currently, only
+the <code class="docutils literal notranslate"><span class="pre">encoding</span></code> kwarg is supported (default: ‘utf8’).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.IPSyn" title="pycantonese.corpus.CantoneseCHATReader.IPSyn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IPSyn</span></code></a>([participant])</p></td>
+<td><p>Return a map from a file path to the file’s IPSyn.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.MLU" title="pycantonese.corpus.CantoneseCHATReader.MLU"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MLU</span></code></a>([participant])</p></td>
+<td><p>Return a map from a file path to the file’s MLU by morphemes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.MLUm" title="pycantonese.corpus.CantoneseCHATReader.MLUm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MLUm</span></code></a>([participant])</p></td>
+<td><p>Return a map from a file path to the file’s MLU by morphemes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.MLUw" title="pycantonese.corpus.CantoneseCHATReader.MLUw"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MLUw</span></code></a>([participant])</p></td>
+<td><p>Return a map from a file path to the file’s MLU by words.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.TTR" title="pycantonese.corpus.CantoneseCHATReader.TTR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TTR</span></code></a>([participant])</p></td>
+<td><p>Return a map from a file path to the file’s TTR.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.__init__" title="pycantonese.corpus.CantoneseCHATReader.__init__"><code class="xref py py-obj docutils literal notranslate"><span class="pre">__init__</span></code></a>(*filenames, **kwargs)</p></td>
+<td><p>Initialize a reader for Cantonese CHAT corpus files.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.abspath" title="pycantonese.corpus.CantoneseCHATReader.abspath"><code class="xref py py-obj docutils literal notranslate"><span class="pre">abspath</span></code></a>(basename)</p></td>
+<td><p>Return the absolute path of <code class="docutils literal notranslate"><span class="pre">basename</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.add" title="pycantonese.corpus.CantoneseCHATReader.add"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add</span></code></a>(*filenames)</p></td>
+<td><p>Add one or more CHAT <code class="docutils literal notranslate"><span class="pre">filenames</span></code> to the current reader.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.age" title="pycantonese.corpus.CantoneseCHATReader.age"><code class="xref py py-obj docutils literal notranslate"><span class="pre">age</span></code></a>([participant, months])</p></td>
+<td><p>Return a map from a file path to the <em>participant</em>’s age.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.character_sents" title="pycantonese.corpus.CantoneseCHATReader.character_sents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">character_sents</span></code></a>([participant, exclude, by_files])</p></td>
+<td><p>Return the data as sentences of individual Cantonese characters.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.characters" title="pycantonese.corpus.CantoneseCHATReader.characters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">characters</span></code></a>([participant, exclude, by_files])</p></td>
+<td><p>Return the data split in individual Cantonese characters.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.clear" title="pycantonese.corpus.CantoneseCHATReader.clear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code></a>()</p></td>
+<td><p>Clear everything and reset as an empty Reader instance.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.concordance" title="pycantonese.corpus.CantoneseCHATReader.concordance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">concordance</span></code></a>(search_item[, participant, …])</p></td>
+<td><p>Return a list of utterances with <em>search_item</em> for <em>participant</em>.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.date_of_birth" title="pycantonese.corpus.CantoneseCHATReader.date_of_birth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">date_of_birth</span></code></a>()</p></td>
+<td><p>Return a map from a file path to the date of birth.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.dates_of_recording" title="pycantonese.corpus.CantoneseCHATReader.dates_of_recording"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dates_of_recording</span></code></a>()</p></td>
+<td><p>Return a map from a file path to the date of recording.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.filenames" title="pycantonese.corpus.CantoneseCHATReader.filenames"><code class="xref py py-obj docutils literal notranslate"><span class="pre">filenames</span></code></a>([sorted_by_age])</p></td>
+<td><p>Return the set of absolute-path filenames.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.from_chat_files" title="pycantonese.corpus.CantoneseCHATReader.from_chat_files"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_chat_files</span></code></a>(*filenames, **kwargs)</p></td>
+<td><p>Create a <code class="docutils literal notranslate"><span class="pre">Reader</span></code> object with CHAT data files.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.from_chat_str" title="pycantonese.corpus.CantoneseCHATReader.from_chat_str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_chat_str</span></code></a>(chat_str[, encoding])</p></td>
+<td><p>Create a <code class="docutils literal notranslate"><span class="pre">Reader</span></code> object with CHAT data as a string.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.headers" title="pycantonese.corpus.CantoneseCHATReader.headers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">headers</span></code></a>()</p></td>
+<td><p>Return a dict mapping a file path to the headers of that file.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.index_to_tiers" title="pycantonese.corpus.CantoneseCHATReader.index_to_tiers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">index_to_tiers</span></code></a>()</p></td>
+<td><p>Return a dict mapping a file path to the file’s index_to_tiers dict.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.jyutping_sents" title="pycantonese.corpus.CantoneseCHATReader.jyutping_sents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">jyutping_sents</span></code></a>([participant, exclude, by_files])</p></td>
+<td><p>Return the sentences in Jyutping romanization.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.jyutpings" title="pycantonese.corpus.CantoneseCHATReader.jyutpings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">jyutpings</span></code></a>([participant, exclude, by_files])</p></td>
+<td><p>Return the words in Jyutping romanization.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.languages" title="pycantonese.corpus.CantoneseCHATReader.languages"><code class="xref py py-obj docutils literal notranslate"><span class="pre">languages</span></code></a>()</p></td>
+<td><p>Return a map from a file path to the languages used.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.number_of_files" title="pycantonese.corpus.CantoneseCHATReader.number_of_files"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_files</span></code></a>()</p></td>
+<td><p>Return the number of files.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.number_of_utterances" title="pycantonese.corpus.CantoneseCHATReader.number_of_utterances"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_utterances</span></code></a>([participant, exclude, …])</p></td>
+<td><p>Return the number of utterances for <em>participant</em> in all files.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.part_of_speech_tags" title="pycantonese.corpus.CantoneseCHATReader.part_of_speech_tags"><code class="xref py py-obj docutils literal notranslate"><span class="pre">part_of_speech_tags</span></code></a>([participant, exclude, …])</p></td>
+<td><p>Return the part-of-speech tags in the data for <em>participant</em>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.participant_codes" title="pycantonese.corpus.CantoneseCHATReader.participant_codes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">participant_codes</span></code></a>([by_files])</p></td>
+<td><p>Return the participant codes (e.g., <code class="docutils literal notranslate"><span class="pre">{'CHI',</span> <span class="pre">'MOT'}</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.participants" title="pycantonese.corpus.CantoneseCHATReader.participants"><code class="xref py py-obj docutils literal notranslate"><span class="pre">participants</span></code></a>()</p></td>
+<td><p>Return a dict mapping a file path to the file’s participant info.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.remove" title="pycantonese.corpus.CantoneseCHATReader.remove"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove</span></code></a>(*filenames)</p></td>
+<td><p>Remove one or more CHAT <code class="docutils literal notranslate"><span class="pre">filenames</span></code> from the current reader.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.search" title="pycantonese.corpus.CantoneseCHATReader.search"><code class="xref py py-obj docutils literal notranslate"><span class="pre">search</span></code></a>(*[, onset, nucleus, coda, tone, …])</p></td>
+<td><p>Search the data for the given criteria.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.sents" title="pycantonese.corpus.CantoneseCHATReader.sents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sents</span></code></a>([participant, exclude, by_files])</p></td>
+<td><p>Return a list of sents by <em>participant</em> in all files.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.tagged_sents" title="pycantonese.corpus.CantoneseCHATReader.tagged_sents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tagged_sents</span></code></a>([participant, exclude, by_files])</p></td>
+<td><p>Return a list of tagged sents by <em>participant</em> in all files.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.tagged_words" title="pycantonese.corpus.CantoneseCHATReader.tagged_words"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tagged_words</span></code></a>([participant, exclude, by_files])</p></td>
+<td><p>Return a list of tagged words by <em>participant</em> in all files.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.update" title="pycantonese.corpus.CantoneseCHATReader.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(reader)</p></td>
+<td><p>Combine the current CHAT Reader instance with <code class="docutils literal notranslate"><span class="pre">reader</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.utterances" title="pycantonese.corpus.CantoneseCHATReader.utterances"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utterances</span></code></a>([participant, exclude, clean, …])</p></td>
+<td><p>Return a list of (<em>participant</em>, utterance) pairs from all files.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.word_frequency" title="pycantonese.corpus.CantoneseCHATReader.word_frequency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">word_frequency</span></code></a>([participant, exclude, …])</p></td>
+<td><p>Return a word frequency counter for <em>participant</em> in all files.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.word_ngrams" title="pycantonese.corpus.CantoneseCHATReader.word_ngrams"><code class="xref py py-obj docutils literal notranslate"><span class="pre">word_ngrams</span></code></a>(n[, participant, exclude, …])</p></td>
+<td><p>Return a word <code class="docutils literal notranslate"><span class="pre">n</span></code>-gram counter by <code class="docutils literal notranslate"><span class="pre">participant</span></code> in all files. participant : str or iterable of str, optional     Participants of interest. If unspecified or <code class="docutils literal notranslate"><span class="pre">None</span></code>, all participants are included. exclude : str or iterable of str, optional     Participants to exclude. If unspecified or <code class="docutils literal notranslate"><span class="pre">None</span></code>, no participants are excluded. by_files : bool, optional     If <code class="docutils literal notranslate"><span class="pre">True</span></code>, return dict(absolute-path filename: X for that file)     instead of X for all files altogether. keep_case : bool, optional     If <code class="docutils literal notranslate"><span class="pre">True</span></code> (the default), case distinctions are kept, e.g.,     word tokens like “the” and “The” are treated as distinct. If <code class="docutils literal notranslate"><span class="pre">False</span></code>, all word tokens are forced to be in lowercase.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader.words" title="pycantonese.corpus.CantoneseCHATReader.words"><code class="xref py py-obj docutils literal notranslate"><span class="pre">words</span></code></a>([participant, exclude, by_files])</p></td>
+<td><p>Return a list of words by <em>participant</em> in all files.</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pycantonese.corpus.CantoneseCHATReader.search.html" class="btn btn-neutral float-right" title="pycantonese.corpus.CantoneseCHATReader.search" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pycantonese.hkcancor.html" class="btn btn-neutral float-left" title="pycantonese.hkcancor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on October 24, 2020
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

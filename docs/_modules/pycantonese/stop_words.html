@@ -1,0 +1,399 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycantonese.stop_words &mdash; PyCantonese 2.4.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+    <link rel="canonical" href="http://pycantonese.org/_modules/pycantonese/stop_words.html"/>
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> PyCantonese
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.4.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../data.html">Corpus Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data.html#the-chat-transcription-format">The CHAT Transcription Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data.html#accessing-built-in-data">Accessing Built-in Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data.html#accessing-custom-data">Accessing Custom Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../stop_words.html">Stop Words</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../reader.html">Corpus Reader Methods</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../reader.html#the-representation-of-words">The Representation of “Words”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reader.html#a-note-on-the-access-methods">A Note on the Access Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reader.html#full-reader-api">Full Reader API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../jyutping.html">Jyutping Romanization: Parsing and Conversion</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../jyutping.html#characters-to-jyutping-conversion">Characters-to-Jyutping Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jyutping.html#parsing-jyutping-strings">Parsing Jyutping Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jyutping.html#jyutping-to-yale-conversion">Jyutping-to-Yale Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../jyutping.html#jyutping-to-tipa-conversion">Jyutping-to-TIPA Conversion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../word_segmentation.html">Word Segmentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../word_segmentation.html#customizing-segmentation">Customizing Segmentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../searches.html">Search Queries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../searches.html#searching-by-a-jyutping-element">Searching by a Jyutping Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../searches.html#searching-by-a-chinese-character">Searching by a Chinese Character</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../searches.html#searching-by-a-part-of-speech-tag">Searching by a Part-of-speech Tag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../searches.html#searching-by-a-word-or-sentence-range">Searching by a Word or Sentence Range</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../searches.html#searching-by-multiple-criteria">Searching by Multiple Criteria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../searches.html#output-format-of-search-results">Output Format of Search Results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#reading-and-accessing-corpus-data">Reading and Accessing Corpus Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/pycantonese.read_chat.html">pycantonese.read_chat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/pycantonese.hkcancor.html">pycantonese.hkcancor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/pycantonese.corpus.CantoneseCHATReader.html">pycantonese.corpus.CantoneseCHATReader</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/pycantonese.corpus.CantoneseCHATReader.search.html">pycantonese.corpus.CantoneseCHATReader.search</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/pycantonese.corpus.CantoneseCHATReader.search.html">pycantonese.corpus.CantoneseCHATReader.search</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#performing-natural-language-processing-tasks">Performing Natural Language Processing Tasks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/pycantonese.stop_words.html">pycantonese.stop_words</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/pycantonese.segment.html">pycantonese.segment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/pycantonese.word_segmentation.Segmenter.html">pycantonese.word_segmentation.Segmenter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../api.html#handling-jyutping-romanization">Handling Jyutping Romanization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/pycantonese.characters2jyutping.html">pycantonese.characters2jyutping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/pycantonese.jyutping2yale.html">pycantonese.jyutping2yale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/pycantonese.jyutping2tipa.html">pycantonese.jyutping2tipa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/pycantonese.parse_jyutping.html">pycantonese.parse_jyutping</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../papers.html">Research Outputs</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">PyCantonese</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>pycantonese.stop_words</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pycantonese.stop_words</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Stop words for Cantonese.&quot;&quot;&quot;</span>
+
+<span class="n">_STOP_WORDS</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">一啲</span>
+<span class="s2">一定</span>
+<span class="s2">不如</span>
+<span class="s2">不過</span>
+<span class="s2">之後</span>
+<span class="s2">乜</span>
+<span class="s2">乜嘢</span>
+<span class="s2">人哋</span>
+<span class="s2">但係</span>
+<span class="s2">你</span>
+<span class="s2">你哋</span>
+<span class="s2">佢</span>
+<span class="s2">佢哋</span>
+<span class="s2">係</span>
+<span class="s2">個</span>
+<span class="s2">其他</span>
+<span class="s2">冇</span>
+<span class="s2">再</span>
+<span class="s2">到</span>
+<span class="s2">即</span>
+<span class="s2">即係</span>
+<span class="s2">原來</span>
+<span class="s2">去</span>
+<span class="s2">又</span>
+<span class="s2">可以</span>
+<span class="s2">可能</span>
+<span class="s2">同</span>
+<span class="s2">同埋</span>
+<span class="s2">吖</span>
+<span class="s2">呀</span>
+<span class="s2">呢</span>
+<span class="s2">咁</span>
+<span class="s2">咗</span>
+<span class="s2">咩</span>
+<span class="s2">咪</span>
+<span class="s2">哦</span>
+<span class="s2">哩</span>
+<span class="s2">哩個</span>
+<span class="s2">哩啲</span>
+<span class="s2">哩度</span>
+<span class="s2">哩樣</span>
+<span class="s2">唔</span>
+<span class="s2">唔使</span>
+<span class="s2">唔係</span>
+<span class="s2">啊</span>
+<span class="s2">啲</span>
+<span class="s2">喎</span>
+<span class="s2">喺</span>
+<span class="s2">喺度</span>
+<span class="s2">嗯</span>
+<span class="s2">嗰</span>
+<span class="s2">嗰個</span>
+<span class="s2">嗰啲</span>
+<span class="s2">嗰度</span>
+<span class="s2">嘅</span>
+<span class="s2">嘢</span>
+<span class="s2">噉</span>
+<span class="s2">噉樣</span>
+<span class="s2">因為</span>
+<span class="s2">多</span>
+<span class="s2">太</span>
+<span class="s2">好</span>
+<span class="s2">如果</span>
+<span class="s2">就</span>
+<span class="s2">已經</span>
+<span class="s2">幾</span>
+<span class="s2">幾多</span>
+<span class="s2">得</span>
+<span class="s2">想</span>
+<span class="s2">應該</span>
+<span class="s2">成日</span>
+<span class="s2">我</span>
+<span class="s2">我哋</span>
+<span class="s2">或者</span>
+<span class="s2">所以</span>
+<span class="s2">最</span>
+<span class="s2">會</span>
+<span class="s2">有</span>
+<span class="s2">有冇</span>
+<span class="s2">有啲</span>
+<span class="s2">未</span>
+<span class="s2">梗係</span>
+<span class="s2">然之後</span>
+<span class="s2">由</span>
+<span class="s2">真係</span>
+<span class="s2">睇</span>
+<span class="s2">知</span>
+<span class="s2">而</span>
+<span class="s2">而家</span>
+<span class="s2">自己</span>
+<span class="s2">要</span>
+<span class="s2">覺得</span>
+<span class="s2">話</span>
+<span class="s2">諗</span>
+<span class="s2">講</span>
+<span class="s2">譬如</span>
+<span class="s2">跟住</span>
+<span class="s2">返</span>
+<span class="s2">過</span>
+<span class="s2">邊個</span>
+<span class="s2">都</span>
+<span class="s2">點</span>
+<span class="s2">點樣</span>
+<span class="s2">點解</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="stop_words"><a class="viewcode-back" href="../../generated/pycantonese.stop_words.html#pycantonese.stop_words">[docs]</a><span class="k">def</span> <span class="nf">stop_words</span><span class="p">(</span><span class="n">add</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remove</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return Cantonese stop words.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    add : iterable[str], optional</span>
+<span class="sd">        Stop words to add.</span>
+<span class="sd">    remove : iterable[str], optional</span>
+<span class="sd">        Stop words to remove.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    set[str]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_stop_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">_STOP_WORDS</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">add</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">add</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">_stop_words</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">add</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># assume &quot;add&quot; is an iterable of strings</span>
+            <span class="n">_stop_words</span> <span class="o">=</span> <span class="n">_stop_words</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">add</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">remove</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">remove</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">_stop_words</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">remove</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">_stop_words</span> <span class="o">=</span> <span class="n">_stop_words</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">remove</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_stop_words</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on October 24, 2020
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

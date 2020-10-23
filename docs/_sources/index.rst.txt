@@ -18,62 +18,75 @@ are gradually added
 as the library grows and evolves.
 
 
-.. sidebar:: Quick examples -- What can PyCantonese do?
+Quick Examples
+--------------
 
-    With PyCantonese in Python:
+With PyCantonese imported:
 
-    .. code-block:: python
+.. code-block:: python
 
-        >>> import pycantonese as pc
+    >>> import pycantonese as pc
 
-    1) Parsing Jyutping for (onset, nucleus, coda, tone)
+1. Word segmentation
 
-    .. code-block:: python
+.. code-block:: python
 
-        >>> pc.parse_jyutping('gwong2dung1waa2')  # 廣東話
-        [('gw', 'o', 'ng', '2'), ('d', 'u', 'ng', '1'), ('w', 'aa', '', '2')]
+    >>> pc.segment("廣東話好難學？")  # Is Cantonese difficult to learn?
+    ['廣東話', '好', '難', '學', '？']
 
+2. Conversion from Cantonese characters to Jyutping
 
-    2) Finding all verbs in the HKCanCor corpus
+.. code-block:: python
 
-       We search for the regular expression ``'^V'`` for all words whose
-       part-of-speech tag begins with "V":
+    >>> pc.characters2jyutping('香港人講廣東話')  # Hongkongers speak Cantonese
+    [("香港人", "hoeng1gong2jan4"), ("講", "gong2"), ("廣東話", "gwong2dung1waa2")]
 
-    .. code-block:: python
+3. Finding all verbs in the HKCanCor corpus
 
-        >>> corpus = pc.hkcancor() # get HKCanCor
-        >>> all_verbs = corpus.search(pos='^V')
-        >>> len(all_verbs)  # number of all verbs
-        29012
-        >>> from pprint import pprint
-        >>> pprint(all_verbs[:10])  # print 10 results
-        [('去', 'V', 'heoi3', ''),
-         ('去', 'V', 'heoi3', ''),
-         ('旅行', 'VN', 'leoi5hang4', ''),
-         ('有冇', 'V1', 'jau5mou5', ''),
-         ('要', 'VU', 'jiu3', ''),
-         ('有得', 'VU', 'jau5dak1', ''),
-         ('冇得', 'VU', 'mou5dak1', ''),
-         ('去', 'V', 'heoi3', ''),
-         ('係', 'V', 'hai6', ''),
-         ('係', 'V', 'hai6', '')]
+   In this example,
+   we search for the regular expression ``'^V'`` for all words whose
+   part-of-speech tag begins with "V" in the original HKCanCor annotations:
 
+.. code-block:: python
 
-Table of Contents
------------------
+    >>> corpus = pc.hkcancor() # get HKCanCor
+    >>> all_verbs = corpus.search(pos='^V')
+    >>> len(all_verbs)  # number of all verbs
+    29012
+    >>> from pprint import pprint
+    >>> pprint(all_verbs[:10])  # print 10 results
+    [('去', 'V', 'heoi3', ''),
+     ('去', 'V', 'heoi3', ''),
+     ('旅行', 'VN', 'leoi5hang4', ''),
+     ('有冇', 'V1', 'jau5mou5', ''),
+     ('要', 'VU', 'jiu3', ''),
+     ('有得', 'VU', 'jau5dak1', ''),
+     ('冇得', 'VU', 'mou5dak1', ''),
+     ('去', 'V', 'heoi3', ''),
+     ('係', 'V', 'hai6', ''),
+     ('係', 'V', 'hai6', '')]
 
-..  toctree::
-    :maxdepth: 2
+4. Parsing Jyutping for (onset, nucleus, coda, tone)
 
-    download
-    data
-    stop_words
-    reader
-    jyutping
-    word_segmentation
-    searches
-    papers
+.. code-block:: python
 
+    >>> pc.parse_jyutping('gwong2dung1waa2')  # 廣東話
+    [('gw', 'o', 'ng', '2'), ('d', 'u', 'ng', '1'), ('w', 'aa', '', '2')]
+
+Download and Install
+--------------------
+
+PyCantonese requires Python 3.6 or above.
+It is available via ``pip``::
+
+    $ pip install --upgrade pycantonese
+
+To test your installation in the Python interpreter:
+
+.. code-block:: python
+
+    >>> import pycantonese as pc
+    >>> pc.__version__  # show version number
 
 How to Cite
 -----------
@@ -98,3 +111,18 @@ Alternatively, you may contact `Jackson Lee <http://jacksonllee.com>`_.
 For updates, tips, and more:
 
 #social-media#
+
+Table of Contents
+-----------------
+
+..  toctree::
+    :maxdepth: 2
+
+    data
+    stop_words
+    reader
+    jyutping
+    word_segmentation
+    searches
+    api
+    papers

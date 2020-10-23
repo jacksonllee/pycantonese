@@ -103,54 +103,9 @@ it is for all the files *without* the file structure. If you are interested
 in results for individual files, set ``by_files`` to be ``True`` and the return
 object is dict(absolute-path filename: X() for that file) instead.
 
-
-.. _metadata_methods:
-
-Metadata Methods
-----------------
-
-.. currentmodule:: pycantonese.corpus.CantoneseCHATReader
-
-.. autosummary::
-
-   filenames
-   find_filename
-   number_of_files
-   number_of_utterances
-
-.. _data_methods:
-
-Data Methods
-------------
-
-.. currentmodule:: pycantonese.corpus.CantoneseCHATReader
-
-.. autosummary::
-
-   utterances
-   words
-   tagged_words
-   sents
-   tagged_sents
-   jyutpings
-   jyutping_sents
-   characters
-   character_sents
-   part_of_speech_tags
-   word_frequency
-   word_ngrams
-   search
-   update
-   add
-   remove
-   clear
-
-.. _reader_api:
-
 Full Reader API
 ---------------
 
 .. autoclass:: pycantonese.corpus.CantoneseCHATReader
-   :show-inheritance:
-   :inherited-members:
-
+    :members:
+    :inherited-members:

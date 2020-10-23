@@ -109,12 +109,18 @@ _STOP_WORDS = """
 
 
 def stop_words(add=None, remove=None):
-    """
-    Get the stop words.
+    """Return Cantonese stop words.
 
-    :param add: Stop words to add.
-    :param remove: Stop words to remove.
-    :return: Stop words.
+    Parameters
+    ----------
+    add : iterable[str], optional
+        Stop words to add.
+    remove : iterable[str], optional
+        Stop words to remove.
+
+    Returns
+    -------
+    set[str]
     """
     _stop_words = set(_STOP_WORDS)
     if add:

@@ -15,6 +15,8 @@
 
 from datetime import date
 
+import sphinx_rtd_theme  # noqa: F401 (imported but not used)
+
 import pycantonese
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -30,10 +32,18 @@ import pycantonese
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
+
+# Setting this flag is needed to enable the generation of source code pages
+# (under "API Reference") and hyperlinks to them.
+autosummary_generate = True
+
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.doctest',
     'sphinx.ext.autosummary',
+    "sphinx.ext.viewcode",
+    "sphinx_rtd_theme",
+    "numpydoc.numpydoc",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -117,12 +127,15 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'sphinxdoc'
+html_theme = 'sphinx_rtd_theme'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
-#html_theme_options = {}
+html_theme_options = {
+    "collapse_navigation": False,
+    "canonical_url": "http://pycantonese.org/",
+}
 
 # Add any paths that contain custom themes here, relative to this directory.
 #html_theme_path = []
@@ -294,4 +307,7 @@ texinfo_documents = [
 
 
 # Example configuration for intersphinx: refer to the Python standard library.
-intersphinx_mapping = {'http://docs.python.org/': None}
+intersphinx_mapping = {
+    "python": ('https://docs.python.org/3/', None),
+    "pylangacq": ("http://pylangacq.org/", None),
+}
