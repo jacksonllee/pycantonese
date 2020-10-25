@@ -18,7 +18,7 @@
   
   
   
-    <link rel="canonical" href="http://pycantonese.org/generated/pycantonese.corpus.CantoneseCHATReader.search.html"/>
+    <link rel="canonical" href="https://pycantonese.org/generated/pycantonese.corpus.CantoneseCHATReader.search.html"/>
   
 
   
@@ -95,20 +95,20 @@
 <li class="toctree-l2"><a class="reference internal" href="../data.html#accessing-custom-data">Accessing Custom Data</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../stop_words.html">Stop Words</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../reader.html">Corpus Reader Methods</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../reader.html#the-representation-of-words">The Representation of “Words”</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../reader.html#a-note-on-the-access-methods">A Note on the Access Methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../reader.html#full-reader-api">Full Reader API</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../jyutping.html">Jyutping Romanization: Parsing and Conversion</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../jyutping.html">Jyutping Romanization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../jyutping.html#characters-to-jyutping-conversion">Characters-to-Jyutping Conversion</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../jyutping.html#parsing-jyutping-strings">Parsing Jyutping Strings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../jyutping.html#jyutping-to-yale-conversion">Jyutping-to-Yale Conversion</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../jyutping.html#jyutping-to-tipa-conversion">Jyutping-to-TIPA Conversion</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../stop_words.html">Stop Words</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../word_segmentation.html">Word Segmentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../word_segmentation.html#customizing-segmentation">Customizing Segmentation</a></li>
 </ul>
@@ -140,10 +140,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#handling-jyutping-romanization">Handling Jyutping Romanization</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="pycantonese.characters2jyutping.html">pycantonese.characters2jyutping</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pycantonese.jyutping2yale.html">pycantonese.jyutping2yale</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pycantonese.jyutping2tipa.html">pycantonese.jyutping2tipa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycantonese.characters_to_jyutping.html">pycantonese.characters_to_jyutping</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pycantonese.parse_jyutping.html">pycantonese.parse_jyutping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycantonese.jyutping_to_yale.html">pycantonese.jyutping_to_yale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycantonese.jyutping_to_tipa.html">pycantonese.jyutping_to_tipa</a></li>
 </ul>
 </li>
 </ul>
@@ -222,6 +222,7 @@
 <dt id="pycantonese.corpus.CantoneseCHATReader.search">
 <code class="sig-prename descclassname">CantoneseCHATReader.</code><code class="sig-name descname">search</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">onset</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">nucleus</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">coda</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tone</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">initial</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">final</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">jyutping</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">character</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">pos</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">word_range</span><span class="o">=</span><span class="default_value">0, 0</span></em>, <em class="sig-param"><span class="n">sent_range</span><span class="o">=</span><span class="default_value">0, 0</span></em>, <em class="sig-param"><span class="n">tagged</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">sents</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">participant</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">by_files</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycantonese/corpus.html#CantoneseCHATReader.search"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.search" title="Permalink to this definition">¶</a></dt>
 <dd><p>Search the data for the given criteria.</p>
+<p>For examples, please see <a class="reference external" href="https://pycantonese.org/searches.html">https://pycantonese.org/searches.html</a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
@@ -306,7 +307,7 @@ individual file paths.</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on October 24, 2020
+        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on October 25, 2020
 
     </p>
   </div>

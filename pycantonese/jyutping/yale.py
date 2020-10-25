@@ -1,7 +1,7 @@
 import unicodedata
 
 from pycantonese.jyutping.parse_jyutping import parse_jyutping
-from pycantonese.util import endswithoneof, startswithoneof
+from pycantonese.util import endswithoneof, startswithoneof, _deprecate
 
 
 ONSETS_YALE = {
@@ -54,8 +54,16 @@ CODAS_YALE = {
 }
 
 
-def jyutping2yale(jp_str, as_list=True):
+def jyutping_to_yale(jp_str, as_list=True):
     """Convert Jyutping romanization into Yale romanization.
+
+    .. versionadded:: 3.0.0
+        This function replaces the deprecated equivalent ``jyutping2yale``.
+
+    .. versionchanged:: 3.0.0
+        ``as_list`` has its default value switched from ``False`` to ``True``,
+        so that by default the function returns a list, which is in line with
+        the other "jyutping_to_X" functions.
 
     Parameters
     ----------
@@ -64,11 +72,27 @@ def jyutping2yale(jp_str, as_list=True):
     as_list : bool, optional
         If False (default is True), the output is a string with a single quote
         ``'`` to disambiguate unclear syllable boundaries (e.g., a consonant
-        ambiguous between the onset and the coda of the previous syllable).
+        or the low-tone marker "h" being ambiguous as an onset or as
+        part of the previous syllable).
 
     Returns
     -------
     list[str], or str if as_list is False
+
+    Raises
+    ------
+    ValueError
+        If the Jyutping romanization is illegal (e.g., with unrecognized
+        elements).
+
+    Examples
+    --------
+    >>> jyutping_to_yale("gwong2dung1waa2")  # 廣東話, Cantonese
+    ['gwóng', 'dūng', 'wá']
+    >>> jyutping_to_yale("gwong2dung1waa2", as_list=False)
+    'gwóngdūngwá'
+    >>> jyutping_to_yale("hei3hau6", as_list=False)  # 氣候, climate
+    'hei'hauh'  # 'heihauh' would be ambiguous between hei3hau6 and hei6au6.
     """
     jp_parsed_list = parse_jyutping(jp_str)
     yale_list = []
@@ -235,3 +259,12 @@ def jyutping2yale(jp_str, as_list=True):
     output_str += yale_list[-1]
 
     return output_str
+
+
+@_deprecate("jyutping2yale", "jyutping_to_yale", "3.0.0", "4.0.0")
+def jyutping2yale(*args, **kwargs):
+    """Same as jyutping_to_yale.
+
+    .. deprecated:: 3.0.0
+    """
+    return jyutping_to_yale(*args, **kwargs)

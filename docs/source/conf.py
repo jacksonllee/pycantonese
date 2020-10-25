@@ -62,7 +62,7 @@ master_doc = 'index'
 project = 'PyCantonese'
 author = 'Jackson L. Lee'
 html_author_link = author  # can't use the next line?
-# html_author_link = '<a href="http://jacksonllee.com/">{}</a>'.format(author)
+# html_author_link = '<a href="https://jacksonllee.com/">{}</a>'.format(author)
 today_ = date.today()
 copyright = '2014-{}, {} | Documentation last updated on {}'.format(
     today_.strftime('%Y'),
@@ -134,7 +134,7 @@ html_theme = 'sphinx_rtd_theme'
 # documentation.
 html_theme_options = {
     "collapse_navigation": False,
-    "canonical_url": "http://pycantonese.org/",
+    "canonical_url": "https://pycantonese.org/",
 }
 
 # Add any paths that contain custom themes here, relative to this directory.
@@ -309,5 +309,5 @@ texinfo_documents = [
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {
     "python": ('https://docs.python.org/3/', None),
-    "pylangacq": ("http://pylangacq.org/", None),
+    "pylangacq": ("https://pylangacq.org/", None),
 }

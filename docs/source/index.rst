@@ -88,29 +88,29 @@ To test your installation in the Python interpreter:
     >>> import pycantonese as pc
     >>> pc.__version__  # show version number
 
-How to Cite
------------
-
-PyCantonese is maintained by
-`Jackson Lee <http://jacksonllee.com>`_.
-
-A talk introducing PyCantonese:
-
-Jackson L. Lee. 2015. PyCantonese: Cantonese linguistic research in the age of big data. Talk at the Childhood Bilingualism Research Centre, Chinese University of Hong Kong. September 15. 2015. `[Notes+slides] <http://pycantonese.org/papers/Lee-pycantonese-2015.html>`_
-
-See :ref:`papers` for a running list of our work.
-
 Technical Support, Library Development, etc.
 --------------------------------------------
 
 Questions, bug reports and suggested features are more than welcome.
 Please create issues on the
 `GitHub page <https://github.com/jacksonllee/pycantonese>`_.
-Alternatively, you may contact `Jackson Lee <http://jacksonllee.com>`_.
+Alternatively, you may contact `Jackson Lee <https://jacksonllee.com>`_.
 
 For updates, tips, and more:
 
 #social-media#
+
+How to Cite
+-----------
+
+PyCantonese is maintained by
+`Jackson Lee <https://jacksonllee.com>`_.
+
+A talk introducing PyCantonese:
+
+Jackson L. Lee. 2015. PyCantonese: Cantonese linguistic research in the age of big data. Talk at the Childhood Bilingualism Research Centre, Chinese University of Hong Kong. September 15. 2015. `[Notes+slides] <https://pycantonese.org/papers/Lee-pycantonese-2015.html>`_
+
+See :ref:`papers` for a running list of our work.
 
 Table of Contents
 -----------------
@@ -119,9 +119,9 @@ Table of Contents
     :maxdepth: 2
 
     data
-    stop_words
     reader
     jyutping
+    stop_words
     word_segmentation
     searches
     api

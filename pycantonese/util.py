@@ -1,4 +1,7 @@
+from functools import wraps
 from string import ascii_letters, digits
+import warnings
+
 
 ENCODING = "utf8"
 
@@ -98,3 +101,41 @@ def split_characters_with_alphanum(chars):
             first = second
     result.append(first)
     return tuple(result)
+
+
+def _deprecate(what, use_instead, since, remove_from):
+    """Create a decorator which throws a FutureWarning.
+
+    FutureWarning is used instead of DeprecationWarning, because Python
+    does not show DeprecationWarning by default.
+
+    Parameters
+    ----------
+    what : str
+        What to deprecate.
+    use_instead : str
+        Use this instead.
+    since : str
+        Version "x.y.z" since which the deprecation is in effect.
+    remove_from : str
+        Version "x.y.z" after which the deprecated functionality is removed.
+
+    Returns
+    -------
+    A decorated function that throws a FutureWarning.
+    """
+
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            warnings.warn(
+                f"'{what}' has been deprecated since PyCantonese v{since} and "
+                f"will be removed from v{remove_from}. Please use "
+                f"'{use_instead}' instead.",
+                FutureWarning,
+            )
+            return func(*args, **kwargs)
+
+        return wrapper
+
+    return decorator

@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+### API-breaking Changes Compared to v2.5.x
+* `jyutping_to_yale`: The default value of the keyword argument `as_list` has
+  been changed from `False` to `True`, so that this function is now more in
+  line with the other "jyutping_to_X" functions for returning a list.
+* `characters_to_jyutping`: The returned valued is now a list of segmented words,
+  where each is a 2-tuple of (Cantonese characters, Jyutping).
+  Previously, it was a list of Jyutping strings for the individual
+  Cantonese characters.
+
 ### Added
 * Word segmentation:
    - Segmentation is customizable for the following:
@@ -16,13 +25,35 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 * Characters-to-Jyutping conversion:
    - The conversion returns results in a word-segmented form.
    - The conversion model has been improved with the rime-cantonese data (CC BY 4.0 license).
+* Added the following functions; they are equivalent to their (now deprecated)
+  `x2y` counterparts:
+    - `characters_to_jyutping`
+    - `jyutping_to_tipa`
+    - `jyutping_to_yale`
 * Added support for Python 3.9.
 
 ### Changed
+* `jyutping_to_yale`: The default value of the keyword argument `as_list` has
+  been changed from `False` to `True`, so that this function is now more in
+  line with the other "jyutping_to_X" functions for returning a list.
+* `characters_to_jyutping`: The returned valued is now a list of segmented words,
+  where each is a 2-tuple of (Cantonese characters, Jyutping).
+  Previously, it was a list of Jyutping strings for the individual
+  Cantonese characters.
+* Switched documentation to the readthedocs theme and numpydoc docstring style.
+
 ### Deprecated
+* The following `x2y` functions have been deprecated in favor of their
+  equivalents named in the form of `x_to_y`.
+    - `characters2jyutping`
+    - `jyutping2tipa`
+    - `jyutping2yale`
+ 
 ### Removed
 ### Fixed
 ### Security
+- Turned on HTTPS for the pycantonese.org domain.
+
 
 ## [2.4.1] - 2020-10-10
 ### Fixed

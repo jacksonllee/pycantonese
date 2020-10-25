@@ -18,7 +18,7 @@
   
   
   
-    <link rel="canonical" href="http://pycantonese.org/papers.html"/>
+    <link rel="canonical" href="https://pycantonese.org/papers.html"/>
   
 
   
@@ -38,7 +38,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="pycantonese.parse_jyutping" href="generated/pycantonese.parse_jyutping.html" /> 
+    <link rel="prev" title="pycantonese.jyutping_to_tipa" href="generated/pycantonese.jyutping_to_tipa.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -94,20 +94,20 @@
 <li class="toctree-l2"><a class="reference internal" href="data.html#accessing-custom-data">Accessing Custom Data</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="stop_words.html">Stop Words</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reader.html">Corpus Reader Methods</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="reader.html#the-representation-of-words">The Representation of “Words”</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reader.html#a-note-on-the-access-methods">A Note on the Access Methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reader.html#full-reader-api">Full Reader API</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="jyutping.html">Jyutping Romanization: Parsing and Conversion</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="jyutping.html">Jyutping Romanization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="jyutping.html#characters-to-jyutping-conversion">Characters-to-Jyutping Conversion</a></li>
 <li class="toctree-l2"><a class="reference internal" href="jyutping.html#parsing-jyutping-strings">Parsing Jyutping Strings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="jyutping.html#jyutping-to-yale-conversion">Jyutping-to-Yale Conversion</a></li>
 <li class="toctree-l2"><a class="reference internal" href="jyutping.html#jyutping-to-tipa-conversion">Jyutping-to-TIPA Conversion</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="stop_words.html">Stop Words</a></li>
 <li class="toctree-l1"><a class="reference internal" href="word_segmentation.html">Word Segmentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="word_segmentation.html#customizing-segmentation">Customizing Segmentation</a></li>
 </ul>
@@ -139,10 +139,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#handling-jyutping-romanization">Handling Jyutping Romanization</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.characters2jyutping.html">pycantonese.characters2jyutping</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.jyutping2yale.html">pycantonese.jyutping2yale</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.jyutping2tipa.html">pycantonese.jyutping2tipa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.characters_to_jyutping.html">pycantonese.characters_to_jyutping</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.parse_jyutping.html">pycantonese.parse_jyutping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.jyutping_to_yale.html">pycantonese.jyutping_to_yale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.jyutping_to_tipa.html">pycantonese.jyutping_to_tipa</a></li>
 </ul>
 </li>
 </ul>
@@ -216,12 +216,12 @@
 <p>Jackson L. Lee, Litong Chen, and Tsz-Him Tsui. 2016. PyCantonese: Developing computational tools for Cantonese linguistics.
 Talk at the 3rd Workshop on Innovations in Cantonese Linguistics, The Ohio State University.
 March 12. 2016.
-<a class="reference external" href="http://pycantonese.org/papers/lee-chen-tsui-wicl3-slides-2016-03-12.pdf">[Slides]</a>
-<a class="reference external" href="http://pycantonese.org/papers/lee-chen-tsui-wicl3-handout-2016-03-12.pdf">[Handout]</a></p>
+<a class="reference external" href="https://pycantonese.org/papers/lee-chen-tsui-wicl3-slides-2016-03-12.pdf">[Slides]</a>
+<a class="reference external" href="https://pycantonese.org/papers/lee-chen-tsui-wicl3-handout-2016-03-12.pdf">[Handout]</a></p>
 <p>Jackson L. Lee. 2015. PyCantonese: Cantonese linguistic research in the age of big data.
 Talk at the Childhood Bilingualism Research Centre, Chinese University of Hong Kong.
 September 15. 2015.
-<a class="reference external" href="http://pycantonese.org/papers/Lee-pycantonese-2015.html">[Notes+slides]</a></p>
+<a class="reference external" href="https://pycantonese.org/papers/Lee-pycantonese-2015.html">[Notes+slides]</a></p>
 </div>
 
 
@@ -233,7 +233,7 @@ September 15. 2015.
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="generated/pycantonese.parse_jyutping.html" class="btn btn-neutral float-left" title="pycantonese.parse_jyutping" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="generated/pycantonese.jyutping_to_tipa.html" class="btn btn-neutral float-left" title="pycantonese.jyutping_to_tipa" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -243,7 +243,7 @@ September 15. 2015.
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on October 24, 2020
+        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on October 25, 2020
 
     </p>
   </div>

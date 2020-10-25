@@ -18,7 +18,7 @@
   
   
   
-    <link rel="canonical" href="http://pycantonese.org/_modules/pycantonese/jyutping/tipa.html"/>
+    <link rel="canonical" href="https://pycantonese.org/_modules/pycantonese/jyutping/tipa.html"/>
   
 
   
@@ -93,20 +93,20 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../data.html#accessing-custom-data">Accessing Custom Data</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../stop_words.html">Stop Words</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reader.html">Corpus Reader Methods</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../reader.html#the-representation-of-words">The Representation of “Words”</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../reader.html#a-note-on-the-access-methods">A Note on the Access Methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../reader.html#full-reader-api">Full Reader API</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../../jyutping.html">Jyutping Romanization: Parsing and Conversion</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../jyutping.html">Jyutping Romanization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../jyutping.html#characters-to-jyutping-conversion">Characters-to-Jyutping Conversion</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../jyutping.html#parsing-jyutping-strings">Parsing Jyutping Strings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../jyutping.html#jyutping-to-yale-conversion">Jyutping-to-Yale Conversion</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../jyutping.html#jyutping-to-tipa-conversion">Jyutping-to-TIPA Conversion</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stop_words.html">Stop Words</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../word_segmentation.html">Word Segmentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../word_segmentation.html#customizing-segmentation">Customizing Segmentation</a></li>
 </ul>
@@ -138,10 +138,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api.html#handling-jyutping-romanization">Handling Jyutping Romanization</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.characters2jyutping.html">pycantonese.characters2jyutping</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.jyutping2yale.html">pycantonese.jyutping2yale</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.jyutping2tipa.html">pycantonese.jyutping2tipa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.characters_to_jyutping.html">pycantonese.characters_to_jyutping</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.parse_jyutping.html">pycantonese.parse_jyutping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.jyutping_to_yale.html">pycantonese.jyutping_to_yale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.jyutping_to_tipa.html">pycantonese.jyutping_to_tipa</a></li>
 </ul>
 </li>
 </ul>
@@ -212,6 +212,7 @@
             
   <h1>Source code for pycantonese.jyutping.tipa</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">pycantonese.jyutping.parse_jyutping</span> <span class="kn">import</span> <span class="n">parse_jyutping</span>
+<span class="kn">from</span> <span class="nn">pycantonese.util</span> <span class="kn">import</span> <span class="n">_deprecate</span>
 
 
 <span class="n">ONSETS_TIPA</span> <span class="o">=</span> <span class="p">{</span>
@@ -303,8 +304,11 @@
 <span class="p">}</span>
 
 
-<div class="viewcode-block" id="jyutping2tipa"><a class="viewcode-back" href="../../../generated/pycantonese.jyutping2tipa.html#pycantonese.jyutping2tipa">[docs]</a><span class="k">def</span> <span class="nf">jyutping2tipa</span><span class="p">(</span><span class="n">jp_str</span><span class="p">):</span>
+<div class="viewcode-block" id="jyutping_to_tipa"><a class="viewcode-back" href="../../../generated/pycantonese.jyutping_to_tipa.html#pycantonese.jyutping_to_tipa">[docs]</a><span class="k">def</span> <span class="nf">jyutping_to_tipa</span><span class="p">(</span><span class="n">jp_str</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Convert Jyutping romanization into LaTeX TIPA.</span>
+
+<span class="sd">    .. versionadded:: 3.0.0</span>
+<span class="sd">        This function replaces the deprecated equivalent ``jyutping2tipa``.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -314,6 +318,17 @@
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    list[str]</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If the Jyutping romanization is illegal (e.g., with unrecognized</span>
+<span class="sd">        elements).</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; jyutping_to_tipa(&quot;gwong2dung1waa2&quot;)  # 廣東話, Cantonese</span>
+<span class="sd">    [&#39;k\\super w ON25&#39;, &#39;tUN55&#39;, &#39;wa25&#39;]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">jp_parsed_list</span> <span class="o">=</span> <span class="n">parse_jyutping</span><span class="p">(</span><span class="n">jp_str</span><span class="p">)</span>
     <span class="n">tipa_list</span> <span class="o">=</span> <span class="p">[]</span>
@@ -328,6 +343,15 @@
         <span class="n">tipa_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tipa</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">tipa_list</span></div>
+
+
+<span class="nd">@_deprecate</span><span class="p">(</span><span class="s2">&quot;jyutping2tipa&quot;</span><span class="p">,</span> <span class="s2">&quot;jyutping_to_tipa&quot;</span><span class="p">,</span> <span class="s2">&quot;3.0.0&quot;</span><span class="p">,</span> <span class="s2">&quot;4.0.0&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">jyutping2tipa</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Same as jyutping_to_tipa.</span>
+
+<span class="sd">    .. deprecated:: 3.0.0</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">jyutping_to_tipa</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
 
            </div>
@@ -341,7 +365,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on October 24, 2020
+        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on October 25, 2020
 
     </p>
   </div>

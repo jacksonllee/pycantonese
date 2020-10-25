@@ -13,9 +13,9 @@ and rich for linguistic annotations.
 
 All built-in corpus datasets of PyCantonese are in the CHAT format.
 Underlyingly, PyCantonese uses the Python library
-`PyLangAcq <http://pylangacq.org/>`_ to parse CHAT data files.
+`PyLangAcq <https://pylangacq.org/>`_ to parse CHAT data files.
 For the bare minimum of the CHAT format that PyCantonese assumes,
-see `here <http://pylangacq.org/read.html#chat-format>`_.
+see `here <https://pylangacq.org/read.html#chat-format>`_.
 
 
 Accessing Built-in Data
@@ -66,4 +66,4 @@ If you are aware of other Cantonese corpora that could be incorporated into
 PyCantonese for open access,
 or if you are the owner of a Cantonese corpus and
 would like to make it accessible
-through PyCantonese, please contact `Jackson Lee <http://jacksonllee.com>`_.
+through PyCantonese, please contact `Jackson Lee <https://jacksonllee.com>`_.

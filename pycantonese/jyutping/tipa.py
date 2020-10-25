@@ -1,4 +1,5 @@
 from pycantonese.jyutping.parse_jyutping import parse_jyutping
+from pycantonese.util import _deprecate
 
 
 ONSETS_TIPA = {
@@ -90,8 +91,11 @@ TONES_TIPA = {
 }
 
 
-def jyutping2tipa(jp_str):
+def jyutping_to_tipa(jp_str):
     """Convert Jyutping romanization into LaTeX TIPA.
+
+    .. versionadded:: 3.0.0
+        This function replaces the deprecated equivalent ``jyutping2tipa``.
 
     Parameters
     ----------
@@ -101,6 +105,17 @@ def jyutping2tipa(jp_str):
     Returns
     -------
     list[str]
+
+    Raises
+    ------
+    ValueError
+        If the Jyutping romanization is illegal (e.g., with unrecognized
+        elements).
+
+    Examples
+    --------
+    >>> jyutping_to_tipa("gwong2dung1waa2")  # 廣東話, Cantonese
+    ['k\\super w ON25', 'tUN55', 'wa25']
     """
     jp_parsed_list = parse_jyutping(jp_str)
     tipa_list = []
@@ -115,3 +130,12 @@ def jyutping2tipa(jp_str):
         tipa_list.append(tipa)
 
     return tipa_list
+
+
+@_deprecate("jyutping2tipa", "jyutping_to_tipa", "3.0.0", "4.0.0")
+def jyutping2tipa(*args, **kwargs):
+    """Same as jyutping_to_tipa.
+
+    .. deprecated:: 3.0.0
+    """
+    return jyutping_to_tipa(*args, **kwargs)

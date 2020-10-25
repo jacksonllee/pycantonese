@@ -1,6 +1,6 @@
 import pytest
 
-from pycantonese import characters2jyutping
+from pycantonese import characters_to_jyutping
 
 
 @pytest.mark.parametrize(
@@ -23,6 +23,6 @@ from pycantonese import characters2jyutping
         ("蛋糕", [("蛋糕", "daan6gou1")]),
     ],
 )
-def test_characters2jyutping(chars, expected):
-    actual = characters2jyutping(chars)
+def test_characters_to_jyutping(chars, expected):
+    actual = characters_to_jyutping(chars)
     assert actual == expected

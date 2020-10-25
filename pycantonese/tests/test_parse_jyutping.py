@@ -73,8 +73,3 @@ def test_coda_ng():
 
 def test_no_noda():
     assert parse_jyutping("gaa1") == [("g", "aa", "", "1")]
-
-
-def test_unicode_str_compatibility():
-    assert parse_jyutping("wui5") == [("w", "u", "i", "5")]
-    assert parse_jyutping(u"wui5") == [("w", "u", "i", "5")]  # note prefix u

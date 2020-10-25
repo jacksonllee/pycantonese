@@ -1,4 +1,4 @@
-from pycantonese import jyutping2yale
+from pycantonese import jyutping_to_yale
 from pycantonese.jyutping.parse_jyutping import ONSETS, NUCLEI, CODAS
 from pycantonese.jyutping.yale import (
     ONSETS_YALE,
@@ -20,8 +20,8 @@ def test_correct_coda_set():
 
 
 def test_jyutping2yale_m4goi1():
-    assert jyutping2yale("m4goi1") == "m̀hgōi"
+    assert jyutping_to_yale("m4goi1") == ["m̀h", "gōi"]
 
 
 def test_jyutping2yale_gwong2dung1waa2():
-    assert jyutping2yale("gwong2dung1waa2") == "gwóngdūngwá"
+    assert jyutping_to_yale("gwong2dung1waa2") == ["gwóng", "dūng", "wá"]

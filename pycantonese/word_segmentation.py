@@ -18,7 +18,10 @@ _DISALLOWED_WORDS = None
 
 
 class Segmenter(LongestStringMatching):
-    """A customizable word segmentation model."""
+    """A customizable word segmentation model.
+
+    .. versionadded:: 3.0.0
+    """
 
     def __init__(
         self,
@@ -77,6 +80,11 @@ def segment(unsegmented, cls=None):
     The segmented sentence does not contain words longer than five
     characters.
 
+    .. versionadded:: 2.4.0
+
+    .. versionchanged:: 3.0.0
+        Added the keyword argument ``cls`` to allow a customized segmenter.
+
     Parameters
     ----------
     unsegmented : str
@@ -90,6 +98,17 @@ def segment(unsegmented, cls=None):
     Returns
     -------
     list[str]
+
+    Examples
+    --------
+    >>> segment("廣東話容唔容易學？")  # "Is Cantonese easy to learn?"
+    ['廣東話', '容', '唔容易', '學', '？']
+    >>>
+    >>> # Customizing the segmentation behavior.
+    >>> from pycantonese.word_segmentation import Segmenter
+    >>> segmenter = Segmenter(allow={"容唔容易"})
+    >>> segment("廣東話容唔容易學？", cls=segmenter)
+    ['廣東話', '容唔容易', '學', '？']
     """
     if not unsegmented:
         return []

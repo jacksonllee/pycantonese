@@ -18,7 +18,7 @@
   
   
   
-    <link rel="canonical" href="http://pycantonese.org/data.html"/>
+    <link rel="canonical" href="https://pycantonese.org/data.html"/>
   
 
   
@@ -38,7 +38,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Stop Words" href="stop_words.html" />
+    <link rel="next" title="Corpus Reader Methods" href="reader.html" />
     <link rel="prev" title="PyCantonese: Cantonese Linguistics and NLP in Python" href="index.html" /> 
 </head>
 
@@ -95,20 +95,20 @@
 <li class="toctree-l2"><a class="reference internal" href="#accessing-custom-data">Accessing Custom Data</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="stop_words.html">Stop Words</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reader.html">Corpus Reader Methods</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="reader.html#the-representation-of-words">The Representation of “Words”</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reader.html#a-note-on-the-access-methods">A Note on the Access Methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reader.html#full-reader-api">Full Reader API</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="jyutping.html">Jyutping Romanization: Parsing and Conversion</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="jyutping.html">Jyutping Romanization</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="jyutping.html#characters-to-jyutping-conversion">Characters-to-Jyutping Conversion</a></li>
 <li class="toctree-l2"><a class="reference internal" href="jyutping.html#parsing-jyutping-strings">Parsing Jyutping Strings</a></li>
 <li class="toctree-l2"><a class="reference internal" href="jyutping.html#jyutping-to-yale-conversion">Jyutping-to-Yale Conversion</a></li>
 <li class="toctree-l2"><a class="reference internal" href="jyutping.html#jyutping-to-tipa-conversion">Jyutping-to-TIPA Conversion</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="stop_words.html">Stop Words</a></li>
 <li class="toctree-l1"><a class="reference internal" href="word_segmentation.html">Word Segmentation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="word_segmentation.html#customizing-segmentation">Customizing Segmentation</a></li>
 </ul>
@@ -140,10 +140,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#handling-jyutping-romanization">Handling Jyutping Romanization</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.characters2jyutping.html">pycantonese.characters2jyutping</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.jyutping2yale.html">pycantonese.jyutping2yale</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.jyutping2tipa.html">pycantonese.jyutping2tipa</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.characters_to_jyutping.html">pycantonese.characters_to_jyutping</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.parse_jyutping.html">pycantonese.parse_jyutping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.jyutping_to_yale.html">pycantonese.jyutping_to_yale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.jyutping_to_tipa.html">pycantonese.jyutping_to_tipa</a></li>
 </ul>
 </li>
 </ul>
@@ -222,9 +222,9 @@ The choice is motivated by the fact that CHAT is widely used, well-documented,
 and rich for linguistic annotations.</p>
 <p>All built-in corpus datasets of PyCantonese are in the CHAT format.
 Underlyingly, PyCantonese uses the Python library
-<a class="reference external" href="http://pylangacq.org/">PyLangAcq</a> to parse CHAT data files.
+<a class="reference external" href="https://pylangacq.org/">PyLangAcq</a> to parse CHAT data files.
 For the bare minimum of the CHAT format that PyCantonese assumes,
-see <a class="reference external" href="http://pylangacq.org/read.html#chat-format">here</a>.</p>
+see <a class="reference external" href="https://pylangacq.org/read.html#chat-format">here</a>.</p>
 </div>
 <div class="section" id="accessing-built-in-data">
 <h2>Accessing Built-in Data<a class="headerlink" href="#accessing-built-in-data" title="Permalink to this headline">¶</a></h2>
@@ -265,7 +265,7 @@ match all CHAT files in the specified directory.</p>
 PyCantonese for open access,
 or if you are the owner of a Cantonese corpus and
 would like to make it accessible
-through PyCantonese, please contact <a class="reference external" href="http://jacksonllee.com">Jackson Lee</a>.</p>
+through PyCantonese, please contact <a class="reference external" href="https://jacksonllee.com">Jackson Lee</a>.</p>
 </div>
 </div>
 
@@ -277,7 +277,7 @@ through PyCantonese, please contact <a class="reference external" href="http://j
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="stop_words.html" class="btn btn-neutral float-right" title="Stop Words" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="reader.html" class="btn btn-neutral float-right" title="Corpus Reader Methods" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral float-left" title="PyCantonese: Cantonese Linguistics and NLP in Python" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -290,7 +290,7 @@ through PyCantonese, please contact <a class="reference external" href="http://j
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on October 24, 2020
+        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on October 25, 2020
 
     </p>
   </div>

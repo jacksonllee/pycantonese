@@ -111,6 +111,8 @@ _STOP_WORDS = """
 def stop_words(add=None, remove=None):
     """Return Cantonese stop words.
 
+    .. versionadded:: 2.2.0
+
     Parameters
     ----------
     add : iterable[str], optional
@@ -121,6 +123,22 @@ def stop_words(add=None, remove=None):
     Returns
     -------
     set[str]
+
+    Examples
+    --------
+    >>> stop_words = stop_words()
+    >>> len(stop_words)
+    104
+    >>> '香港' in stop_words
+    False
+    >>> stop_words
+    {'一啲', '一定', '不如', '不過', ...}
+    >>>
+    >>> stop_words_1 = stop_words(add='香港')
+    >>> len(stop_words_1)
+    105
+    >>> '香港' in stop_words_1
+    True
     """
     _stop_words = set(_STOP_WORDS)
     if add:
@@ -128,10 +146,11 @@ def stop_words(add=None, remove=None):
             _stop_words.add(add)
         else:
             # assume "add" is an iterable of strings
-            _stop_words = _stop_words | set(add)
+            _stop_words |= set(add)
     if remove:
         if isinstance(remove, str):
             _stop_words.remove(remove)
         else:
-            _stop_words = _stop_words - set(remove)
+            # assume "remove" is an iterable of strings
+            _stop_words -= set(remove)
     return _stop_words

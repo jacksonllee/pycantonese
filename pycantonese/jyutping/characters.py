@@ -8,7 +8,7 @@ from pycantonese.data.rime_cantonese import (
 )
 from pycantonese.jyutping.parse_jyutping import parse_jyutping
 from pycantonese.word_segmentation import segment
-from pycantonese.util import split_characters_with_alphanum
+from pycantonese.util import split_characters_with_alphanum, _deprecate
 
 
 @lru_cache(maxsize=1)
@@ -60,16 +60,25 @@ def _get_words_characters_to_jyutping():
     return words_to_jyutping, characters_to_jyutping
 
 
-def characters2jyutping(chars):
-    """Convert Cantonese characters into Jyytping romanization.
+def characters_to_jyutping(chars):
+    """Convert Cantonese characters into Jyutping romanization.
 
     The conversion model is based on the HKCanCor corpus and rime-cantonese
     data. Any unseen Cantonese character (or punctuation mark,
     for that matter) is represented by `None` in the output.
 
-    The output is organized by a word-segmented version of the input
-    characters.
-    Each word is a tuple of (word, jyutping).
+    The output is a list of segmented words, where each word is a 2-tuple of
+    (Cantonese characters, Jyutping romanization).
+
+    .. versionadded:: 3.0.0
+        This function replaces the deprecated equivalent
+        ``characters2jyutping``.
+
+    .. versionchanged:: 3.0.0
+        The returned valued is now a list of segmented words,
+        where each word is a 2-tuple of (Cantonese characters, Jyutping).
+        Previously, it was a list of Jyutping strings for the individual
+        Cantonese characters.
 
     Parameters
     ----------
@@ -79,6 +88,14 @@ def characters2jyutping(chars):
     Returns
     -------
     list[tuple[str]]
+
+    Examples
+    --------
+    >>> characters_to_jyutping("香港人講廣東話。")  # Hongkongers speak Cantonese.
+    [('香港人', 'hoeng1gong2jan4'),
+     ('講', 'gong2'),
+     ('廣東話', 'gwong2dung1waa2'),
+     ('。', None)]
     """
     if not chars:
         return []
@@ -97,3 +114,12 @@ def characters2jyutping(chars):
                     break
         result.append((word, jp))
     return result
+
+
+@_deprecate("characters2jyutping", "characters_to_jyutping", "3.0.0", "4.0.0")
+def characters2jyutping(*args, **kwargs):
+    """Same as characters_to_jyutping.
+
+    .. deprecated:: 3.0.0
+    """
+    return characters_to_jyutping(*args, **kwargs)

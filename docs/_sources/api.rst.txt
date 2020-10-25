@@ -32,7 +32,7 @@ Handling Jyutping Romanization
 .. autosummary::
     :toctree: generated
 
-    characters2jyutping
-    jyutping2yale
-    jyutping2tipa
+    characters_to_jyutping
     parse_jyutping
+    jyutping_to_yale
+    jyutping_to_tipa

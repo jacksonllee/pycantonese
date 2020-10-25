@@ -249,6 +249,8 @@ class CantoneseCHATReader(Reader):
     ):
         """Search the data for the given criteria.
 
+        For examples, please see https://pycantonese.org/searches.html.
+
         Parameters
         ----------
         onset : str, optional

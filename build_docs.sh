@@ -5,8 +5,11 @@ SOURCEPATH=docs/source
 
 rm $BUILDPATH/*.html
 rm -rf $BUILDPATH/_sources
+rm -rf $BUILDPATH/_modules
 rm -rf $BUILDPATH/_static
 rm -rf $BUILDPATH/.doctrees
+rm -rf $BUILDPATH/_generated
+rm -rf SOURCEPATH/_generated
 
 sphinx-build -b html $SOURCEPATH $BUILDPATH
 

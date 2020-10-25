@@ -34,11 +34,22 @@ def parse_jyutping(jp_str):
     Parameters
     ----------
     jp_str : str
-        Jyutping romanization for one or multiple characters
+        Jyutping romanization for one or multiple characters.
 
     Returns
     -------
     list[tuple[str]]
+
+    Raises
+    ------
+    ValueError
+        If the Jyutping romanization is illegal (e.g., with unrecognized
+        elements).
+
+    Examples
+    --------
+    >>> parse_jyutping("gwong2dung1waa2")  # 廣東話, Cantonese
+    [('gw', 'o', 'ng', '2'), ('d', 'u', 'ng', '1'), ('w', 'aa', '', '2')]
     """
     # check jp_str as a valid argument string
     if not isinstance(jp_str, str):

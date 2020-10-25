@@ -1,10 +1,13 @@
 import pkg_resources
 
 from pycantonese.corpus import hkcancor, read_chat
-from pycantonese.jyutping.characters import characters2jyutping
+from pycantonese.jyutping.characters import (
+    characters_to_jyutping,
+    characters2jyutping,
+)
 from pycantonese.jyutping.parse_jyutping import parse_jyutping
-from pycantonese.jyutping.tipa import jyutping2tipa
-from pycantonese.jyutping.yale import jyutping2yale
+from pycantonese.jyutping.tipa import jyutping_to_tipa, jyutping2tipa
+from pycantonese.jyutping.yale import jyutping_to_yale, jyutping2yale
 from pycantonese.stop_words import stop_words
 from pycantonese.word_segmentation import segment
 
@@ -13,12 +16,15 @@ __version__ = pkg_resources.get_distribution("pycantonese").version
 
 __all__ = [
     "__version__",
-    "hkcancor",
-    "read_chat",
-    "parse_jyutping",
+    "characters_to_jyutping",
     "characters2jyutping",
+    "hkcancor",
+    "jyutping_to_tipa",
+    "jyutping_to_yale",
     "jyutping2tipa",
     "jyutping2yale",
+    "parse_jyutping",
+    "read_chat",
     "stop_words",
     "segment",
 ]
