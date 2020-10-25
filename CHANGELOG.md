@@ -1,12 +1,12 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/)
-and this project adheres to [Semantic Versioning](http://semver.org/).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
+and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-### API-breaking Changes Compared to v2.5.x
+### API-breaking Changes Compared to v2.x.x
 * `jyutping_to_yale`: The default value of the keyword argument `as_list` has
   been changed from `False` to `True`, so that this function is now more in
   line with the other "jyutping_to_X" functions for returning a list.
@@ -41,6 +41,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
   Previously, it was a list of Jyutping strings for the individual
   Cantonese characters.
 * Switched documentation to the readthedocs theme and numpydoc docstring style.
+* Improved CircleCI builds with orbs.
 
 ### Deprecated
 * The following `x2y` functions have been deprecated in favor of their

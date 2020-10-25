@@ -17,7 +17,7 @@ PyCantonese: Cantonese Linguistics and NLP in Python
 Documentation
 -------------
 
-`http://pycantonese.org <http://pycantonese.org>`_
+`https://pycantonese.org <https://pycantonese.org>`_
 
 
 Download and install
@@ -41,7 +41,7 @@ To obtain this version for experimental features or for development:
 
    $ git clone https://github.com/jacksonllee/pycantonese.git
    $ cd pycantonese
-   $ pip install -r dev-requirements.txt
+   $ pip install -r requirements.txt
    $ python setup.py develop
 
 To run tests and styling checks:
@@ -62,7 +62,7 @@ A talk introducing PyCantonese:
 
 Lee, Jackson L. 2015. PyCantonese: Cantonese linguistic research in the age of big data.
 Talk at the Childhood Bilingualism Research Centre, Chinese University of Hong Kong. September 15. 2015.
-`Notes+slides <http://pycantonese.org/papers/Lee-pycantonese-2015.html>`_
+`Notes+slides <https://pycantonese.org/papers/Lee-pycantonese-2015.html>`_
 
 Please also see ``CONTRIBUTORS.md``.
 

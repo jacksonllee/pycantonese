@@ -1,30 +1,54 @@
-version: 2
+version: 2.1
 
-workflows:
-  version: 2
-  test:
-    jobs:
-      - build-python-3.6
-      - build-python-3.7
-      - build-python-3.8
-      - build-python-3.9
+orbs:
+  python: circleci/python@1.2.0
 
 jobs:
-  build-python-3.9: &template
+  pre-build:
+    description: Install and run a Python standalone package
+    parameters:
+      command-name:
+        type: string
+      command-run:
+        type: string
     docker:
-      - image: circleci/python:3.9
+      - image: cimg/python:3.9
+        #auth:
+        #  username: $DOCKERHUB_USERNAME
+        #  password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
       - run:
-          name: Build source distribution and install package from it
-          working_directory: ~/project/
-          # Test that we can build a source distribution that can correctly
-          # install from clean slate.
-          # "python setup.py sdist" creates dist/pycantonese-x.y.z.tar.gz
-          command: |
-              pip install --progress-bar off --upgrade pip setuptools
-              python setup.py sdist
-              pip install dist/`ls dist/ | grep .tar.gz`
+          name: Create custom requirements
+          command: grep << parameters.command-name >> requirements.txt > << parameters.command-name >>_requirements.txt
+      - python/install-packages:
+          pkg-manager: pip
+          pip-dependency-file: << parameters.command-name >>_requirements.txt
+          cache-version: << parameters.command-name >>-v1
+      - run:
+          working_directory: ~/
+          command: << parameters.command-run >>
+
+  build-python:
+    parameters:
+      python-version:
+        type: string
+    docker:
+      - image: cimg/python:<< parameters.python-version >>
+        #auth:
+        #  username: $DOCKERHUB_USERNAME
+        #  password: $DOCKERHUB_PASSWORD
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip
+          pre-install-steps:
+              - run:
+                  name: Build source distribution and install package from it
+                  command: |
+                      pip install --progress-bar off --upgrade pip setuptools
+                      python setup.py sdist
+                      pip install dist/*.tar.gz
       - run:
           name: Check for PyPI compliance via twine
           working_directory: ~/project/
@@ -32,39 +56,34 @@ jobs:
             pip install --progress-bar off twine
             twine check dist/`ls dist/ | grep .tar.gz`
       - run:
-          name: Install the full development requirements
-          working_directory: ~/project/
-          command: pip install --progress-bar off -r dev-requirements.txt
-      - run:
           name: Show installed Python packages
-          command: pip list
-      - run:
-          name: Run linter
-          working_directory: ~/
-          # Avoid being able to do relative imports.
-          # Test code by importing the *installed* library in site-packages.
-          command: flake8 project/setup.py project/pycantonese
-      - run:
-          name: Run autoformat check
-          working_directory: ~/
-          # Avoid being able to do relative imports.
-          # Test code by importing the *installed* library in site-packages.
-          command: black --line-length=79 --check project/setup.py project/pycantonese
+          command: pip list -v
       - run:
           name: Run python tests
           working_directory: ~/
-          # Avoid being able to do relative imports.
-          # Test code by importing the *installed* library in site-packages.
-          command: pytest -vv --cov=project/pycantonese project/pycantonese
-  build-python-3.6:
-    <<: *template
-    docker:
-      - image: circleci/python:3.6
-  build-python-3.7:
-    <<: *template
-    docker:
-      - image: circleci/python:3.7
-  build-python-3.8:
-    <<: *template
-    docker:
-      - image: circleci/python:3.8
+          # Avoid being able to import pycantonese by relative import.
+          # Test code by importing the *installed* pycantonese in site-packages.
+          command: |
+              pytest -vv project/pycantonese --junitxml /tmp/testxml/report.xml
+      - store_test_results:
+          path: /tmp/testxml/
+
+workflows:
+  version: 2
+  build-and-test:
+    jobs:
+      - pre-build:
+          name: flake8
+          command-name: flake8
+          command-run: flake8 project/setup.py project/pycantonese
+      - pre-build:
+          name: black
+          command-name: black
+          command-run: black --line-length=79 --check project/setup.py project/pycantonese
+      - build-python:
+          requires:
+            - flake8
+            - black
+          matrix:
+            parameters:
+              python-version: ["3.6", "3.7", "3.8", "3.9"]
