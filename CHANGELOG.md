@@ -12,10 +12,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
       * Maximum word length
       * A user-supplied list of words to allow as words
       * A user-supplied list of words to disallow as words
-   - The default segmentation model has been improved with the rime-cantonese data (CC BY license).
+   - The default segmentation model has been improved with the rime-cantonese data (CC BY 4.0 license).
 * Characters-to-Jyutping conversion:
    - The conversion returns results in a word-segmented form.
-   - The conversion model has been improved with the rime-cantonese data (CC BY license).
+   - The conversion model has been improved with the rime-cantonese data (CC BY 4.0 license).
 * Added support for Python 3.9.
 
 ### Changed
