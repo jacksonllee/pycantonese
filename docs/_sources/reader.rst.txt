@@ -3,10 +3,6 @@
 Corpus Reader Methods
 =====================
 
-The sections :ref:`represent_words` and :ref:`note_on_methods` provide
-background information for how to use the methods listed in
-:ref:`metadata_methods` and :ref:`data_methods`.
-
 .. _represent_words:
 
 The Representation of "Words"

@@ -6,7 +6,7 @@ _THIS_DIR = os.path.dirname(__file__)
 with open(os.path.join(_THIS_DIR, "README.rst")) as f:
     _LONG_DESCRIPTION = f.read().strip()
 
-_VERSION = "2.4.1"
+_VERSION = "3.0.0"
 
 
 def main():
@@ -16,7 +16,7 @@ def main():
         description="PyCantonese",
         long_description=_LONG_DESCRIPTION,
         long_description_content_type="text/x-rst",
-        url="http://pycantonese.org/",
+        url="https://pycantonese.org",
         author="Jackson L. Lee",
         author_email="jacksonlunlee@gmail.com",
         license="MIT License",

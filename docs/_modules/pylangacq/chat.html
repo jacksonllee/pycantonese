@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pylangacq.chat &mdash; PyCantonese 2.4.1 documentation</title>
+  <title>pylangacq.chat &mdash; PyCantonese 3.0.0 documentation</title>
   
 
   
@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                2.4.1
+                3.0.0
               </div>
             
           
@@ -292,9 +292,7 @@
 
     <span class="k">def</span> <span class="nf">real_decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
         <span class="n">returns_header</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">        Returns</span><span class="se">\n</span><span class="s2">        -------&quot;</span>
-        <span class="n">func</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__doc__</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
-            <span class="n">returns_header</span><span class="p">,</span> <span class="n">docstring</span> <span class="o">+</span> <span class="n">returns_header</span>
-        <span class="p">)</span>
+        <span class="n">func</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__doc__</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">returns_header</span><span class="p">,</span> <span class="n">docstring</span> <span class="o">+</span> <span class="n">returns_header</span><span class="p">)</span>
 
         <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
         <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -416,9 +414,7 @@
                 <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">fns</span>
             <span class="p">]</span>
 
-            <span class="n">filenames_set</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
-                <span class="n">fnmatch</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">candidate_filenames</span><span class="p">,</span> <span class="n">abs_fullpath</span><span class="p">)</span>
-            <span class="p">)</span>
+            <span class="n">filenames_set</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">fnmatch</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">candidate_filenames</span><span class="p">,</span> <span class="n">abs_fullpath</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">filenames_set</span>
 
     <span class="k">def</span> <span class="nf">_reset_reader</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">filenames</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -436,9 +432,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_fname_to_reader</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filenames</span><span class="p">:</span>
             <span class="c1"># TODO rewrite what _SingleReader takes as args</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_fname_to_reader</span><span class="p">[</span><span class="n">fn</span><span class="p">]</span> <span class="o">=</span> <span class="n">_SingleReader</span><span class="p">(</span>
-                <span class="n">fn</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">encoding</span>
-            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_fname_to_reader</span><span class="p">[</span><span class="n">fn</span><span class="p">]</span> <span class="o">=</span> <span class="n">_SingleReader</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">encoding</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the number of files.</span>
@@ -467,10 +461,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># sort by filename first (so filenames with same age are sorted)</span>
             <span class="k">return</span> <span class="p">[</span>
-                <span class="n">fn</span>
-                <span class="k">for</span> <span class="n">fn</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span>
-                    <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">age</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-                <span class="p">)</span>
+                <span class="n">fn</span> <span class="k">for</span> <span class="n">fn</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">age</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
             <span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">number_of_files</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -483,9 +474,7 @@
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
     <span class="nd">@params_in_docstring</span><span class="p">(</span><span class="s2">&quot;participant&quot;</span><span class="p">,</span> <span class="s2">&quot;exclude&quot;</span><span class="p">,</span> <span class="s2">&quot;by_files&quot;</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">number_of_utterances</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">participant</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">by_files</span><span class="o">=</span><span class="kc">False</span>
-    <span class="p">):</span>
+    <span class="k">def</span> <span class="nf">number_of_utterances</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">participant</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">by_files</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the number of utterances for *participant* in all files.</span>
 
 <span class="sd">        Parameters</span>
@@ -517,9 +506,7 @@
 <span class="sd">        -------</span>
 <span class="sd">        dict(str: dict)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">{</span>
-            <span class="n">fn</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fname_to_reader</span><span class="p">[</span><span class="n">fn</span><span class="p">]</span><span class="o">.</span><span class="n">headers</span><span class="p">()</span> <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filenames</span>
-        <span class="p">}</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">fn</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fname_to_reader</span><span class="p">[</span><span class="n">fn</span><span class="p">]</span><span class="o">.</span><span class="n">headers</span><span class="p">()</span> <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filenames</span><span class="p">}</span>
 
     <span class="k">def</span> <span class="nf">index_to_tiers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return a dict mapping a file path to the file&#39;s index_to_tiers dict.</span>
@@ -529,8 +516,7 @@
 <span class="sd">        dict(str: dict)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">{</span>
-            <span class="n">fn</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fname_to_reader</span><span class="p">[</span><span class="n">fn</span><span class="p">]</span><span class="o">.</span><span class="n">index_to_tiers</span><span class="p">()</span>
-            <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filenames</span>
+            <span class="n">fn</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fname_to_reader</span><span class="p">[</span><span class="n">fn</span><span class="p">]</span><span class="o">.</span><span class="n">index_to_tiers</span><span class="p">()</span> <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filenames</span>
         <span class="p">}</span>
 
     <span class="k">def</span> <span class="nf">participants</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -540,10 +526,7 @@
 <span class="sd">        -------</span>
 <span class="sd">        dict(str: dict)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">{</span>
-            <span class="n">fn</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fname_to_reader</span><span class="p">[</span><span class="n">fn</span><span class="p">]</span><span class="o">.</span><span class="n">participants</span><span class="p">()</span>
-            <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filenames</span>
-        <span class="p">}</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">fn</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fname_to_reader</span><span class="p">[</span><span class="n">fn</span><span class="p">]</span><span class="o">.</span><span class="n">participants</span><span class="p">()</span> <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filenames</span><span class="p">}</span>
 
     <span class="nd">@params_in_docstring</span><span class="p">(</span><span class="s2">&quot;by_files&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">participant_codes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">by_files</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -575,9 +558,7 @@
 <span class="sd">        -------</span>
 <span class="sd">        dict(str: list(str))</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">{</span>
-            <span class="n">fn</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fname_to_reader</span><span class="p">[</span><span class="n">fn</span><span class="p">]</span><span class="o">.</span><span class="n">languages</span><span class="p">()</span> <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filenames</span>
-        <span class="p">}</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">fn</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fname_to_reader</span><span class="p">[</span><span class="n">fn</span><span class="p">]</span><span class="o">.</span><span class="n">languages</span><span class="p">()</span> <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filenames</span><span class="p">}</span>
 
     <span class="k">def</span> <span class="nf">dates_of_recording</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return a map from a file path to the date of recording.</span>
@@ -589,8 +570,7 @@
 <span class="sd">        dict(str: list(tuple(int, int, int)))</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">{</span>
-            <span class="n">fn</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fname_to_reader</span><span class="p">[</span><span class="n">fn</span><span class="p">]</span><span class="o">.</span><span class="n">dates_of_recording</span><span class="p">()</span>
-            <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filenames</span>
+            <span class="n">fn</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fname_to_reader</span><span class="p">[</span><span class="n">fn</span><span class="p">]</span><span class="o">.</span><span class="n">dates_of_recording</span><span class="p">()</span> <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filenames</span>
         <span class="p">}</span>
 
     <span class="k">def</span> <span class="nf">date_of_birth</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -600,10 +580,7 @@
 <span class="sd">        -------</span>
 <span class="sd">        dict(str: dict(str: tuple(int, int, int)))</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">{</span>
-            <span class="n">fn</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fname_to_reader</span><span class="p">[</span><span class="n">fn</span><span class="p">]</span><span class="o">.</span><span class="n">date_of_birth</span><span class="p">()</span>
-            <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filenames</span>
-        <span class="p">}</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">fn</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fname_to_reader</span><span class="p">[</span><span class="n">fn</span><span class="p">]</span><span class="o">.</span><span class="n">date_of_birth</span><span class="p">()</span> <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filenames</span><span class="p">}</span>
 
     <span class="k">def</span> <span class="nf">age</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">participant</span><span class="o">=</span><span class="s2">&quot;CHI&quot;</span><span class="p">,</span> <span class="n">months</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return a map from a file path to the *participant*&#39;s age.</span>
@@ -622,9 +599,7 @@
 <span class="sd">        dict(str: tuple(int, int, int)) or dict(str: float)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">{</span>
-            <span class="n">fn</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fname_to_reader</span><span class="p">[</span><span class="n">fn</span><span class="p">]</span><span class="o">.</span><span class="n">age</span><span class="p">(</span>
-                <span class="n">participant</span><span class="o">=</span><span class="n">participant</span><span class="p">,</span> <span class="n">months</span><span class="o">=</span><span class="n">months</span>
-            <span class="p">)</span>
+            <span class="n">fn</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fname_to_reader</span><span class="p">[</span><span class="n">fn</span><span class="p">]</span><span class="o">.</span><span class="n">age</span><span class="p">(</span><span class="n">participant</span><span class="o">=</span><span class="n">participant</span><span class="p">,</span> <span class="n">months</span><span class="o">=</span><span class="n">months</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filenames</span>
         <span class="p">}</span>
 
@@ -648,9 +623,7 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;No such file.&quot;</span><span class="p">)</span>
 
     <span class="nd">@params_in_docstring</span><span class="p">(</span><span class="s2">&quot;participant&quot;</span><span class="p">,</span> <span class="s2">&quot;exclude&quot;</span><span class="p">,</span> <span class="s2">&quot;by_files&quot;</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">utterances</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">participant</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">clean</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">by_files</span><span class="o">=</span><span class="kc">False</span>
-    <span class="p">):</span>
+    <span class="k">def</span> <span class="nf">utterances</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">participant</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">clean</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">by_files</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return a list of (*participant*, utterance) pairs from all files.</span>
 
 <span class="sd">        Parameters</span>
@@ -826,9 +799,7 @@
             <span class="p">)</span>
 
     <span class="nd">@params_in_docstring</span><span class="p">(</span><span class="s2">&quot;participant&quot;</span><span class="p">,</span> <span class="s2">&quot;exclude&quot;</span><span class="p">,</span> <span class="s2">&quot;by_files&quot;</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">part_of_speech_tags</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">participant</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">by_files</span><span class="o">=</span><span class="kc">False</span>
-    <span class="p">):</span>
+    <span class="k">def</span> <span class="nf">part_of_speech_tags</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">participant</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">by_files</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the part-of-speech tags in the data for *participant*.</span>
 
 <span class="sd">        Parameters</span>
@@ -1232,13 +1203,11 @@
             <span class="k">if</span> <span class="ow">not</span> <span class="n">current_line</span><span class="p">:</span>
                 <span class="k">continue</span>
 
-            <span class="k">if</span> <span class="n">current_line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%x</span><span class="s2">pho:&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">current_line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span>
-                <span class="s2">&quot;</span><span class="si">%x</span><span class="s2">mod:&quot;</span>
-            <span class="p">):</span>
+            <span class="k">if</span> <span class="n">current_line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%x</span><span class="s2">pho:&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">current_line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%x</span><span class="s2">mod:&quot;</span><span class="p">):</span>
                 <span class="n">current_line</span> <span class="o">=</span> <span class="n">current_line</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%x</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;%&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="n">previous_line</span> <span class="ow">and</span> <span class="n">current_line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">):</span>
-                <span class="n">previous_line</span> <span class="o">=</span> <span class="sa">u</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">previous_line</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                     <span class="n">previous_line</span><span class="p">,</span> <span class="n">current_line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
                 <span class="p">)</span>  <span class="c1"># strip \t</span>
             <span class="k">elif</span> <span class="n">previous_line</span><span class="p">:</span>
@@ -1296,9 +1265,7 @@
 
             <span class="k">elif</span> <span class="n">utterance</span> <span class="ow">and</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;%&quot;</span><span class="p">):</span>
                 <span class="n">tier_marker</span> <span class="o">=</span> <span class="n">line_split</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">)</span>
-                <span class="n">result_with_collapses</span><span class="p">[</span><span class="n">index_</span><span class="p">][</span><span class="n">tier_marker</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-                    <span class="n">line_split</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-                <span class="p">)</span>
+                <span class="n">result_with_collapses</span><span class="p">[</span><span class="n">index_</span><span class="p">][</span><span class="n">tier_marker</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">line_split</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
 
         <span class="c1"># handle collapses such as [x 4]</span>
         <span class="n">result_without_collapses</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1379,9 +1346,11 @@
                 <span class="k">for</span> <span class="n">participant</span> <span class="ow">in</span> <span class="n">participants</span><span class="p">:</span>
                     <span class="n">participant</span> <span class="o">=</span> <span class="n">participant</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
                     <span class="n">code</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">participant_label</span> <span class="o">=</span> <span class="n">participant</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
-                    <span class="n">participant_name</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">participant_role</span> <span class="o">=</span> <span class="p">(</span>
-                        <span class="n">participant_label</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
-                    <span class="p">)</span>
+                    <span class="p">(</span>
+                        <span class="n">participant_name</span><span class="p">,</span>
+                        <span class="n">_</span><span class="p">,</span>
+                        <span class="n">participant_role</span><span class="p">,</span>
+                    <span class="p">)</span> <span class="o">=</span> <span class="n">participant_label</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
                     <span class="c1"># code = participant code, e.g. CHI, MOT</span>
                     <span class="n">headname_to_entry</span><span class="p">[</span><span class="s2">&quot;Participants&quot;</span><span class="p">][</span><span class="n">code</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
                         <span class="s2">&quot;participant_name&quot;</span><span class="p">:</span> <span class="n">participant_name</span>
@@ -1408,9 +1377,7 @@
                     <span class="s2">&quot;education&quot;</span><span class="p">,</span>
                     <span class="s2">&quot;custom&quot;</span><span class="p">,</span>
                 <span class="p">]</span>
-                <span class="n">head_to_info</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-                    <span class="nb">zip</span><span class="p">(</span><span class="n">participant_info_heads</span><span class="p">,</span> <span class="n">participant_info</span><span class="p">)</span>
-                <span class="p">)</span>
+                <span class="n">head_to_info</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">participant_info_heads</span><span class="p">,</span> <span class="n">participant_info</span><span class="p">))</span>
 
                 <span class="n">headname_to_entry</span><span class="p">[</span><span class="s2">&quot;Participants&quot;</span><span class="p">][</span><span class="n">code</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">head_to_info</span><span class="p">)</span>
 
@@ -1580,9 +1547,7 @@
         <span class="k">except</span> <span class="p">(</span><span class="ne">KeyError</span><span class="p">,</span> <span class="ne">IndexError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
             <span class="k">return</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">utterances</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">participant</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">clean</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">time_marker</span><span class="o">=</span><span class="kc">False</span>
-    <span class="p">):</span>
+    <span class="k">def</span> <span class="nf">utterances</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">participant</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">clean</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">time_marker</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Return a list of the utterances by *participant*</span>
 <span class="sd">        as (*participant*, *utterance*) pairs.</span>
@@ -1622,10 +1587,14 @@
                             <span class="k">try</span><span class="p">:</span>
                                 <span class="n">time_marker</span> <span class="o">=</span> <span class="n">get_time_marker</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
                             <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                                <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;At line </span><span class="si">%d</span><span class="s2"> in file </span><span class="si">%s</span><span class="s2">: &quot;</span> <span class="o">%</span> <span class="p">(</span>
-                                    <span class="n">i</span><span class="p">,</span>
-                                    <span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">(),</span>
-                                <span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+                                <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span>
+                                    <span class="s2">&quot;At line </span><span class="si">%d</span><span class="s2"> in file </span><span class="si">%s</span><span class="s2">: &quot;</span>
+                                    <span class="o">%</span> <span class="p">(</span>
+                                        <span class="n">i</span><span class="p">,</span>
+                                        <span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">(),</span>
+                                    <span class="p">)</span>
+                                    <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+                                <span class="p">)</span>
                                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
                             <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                                 <span class="p">(</span>
@@ -1774,9 +1743,7 @@
             <span class="n">participant</span><span class="o">=</span><span class="n">participant</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">exclude</span><span class="p">,</span> <span class="n">tagged</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sents</span><span class="o">=</span><span class="kc">True</span>
         <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_get_words</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">participant</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tagged</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sents</span><span class="o">=</span><span class="kc">True</span>
-    <span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_get_words</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">participant</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tagged</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sents</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Extract words for the specified participant(s).</span>
 
@@ -1834,14 +1801,14 @@
         <span class="n">participants</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_determine_participants</span><span class="p">(</span><span class="n">participant</span><span class="p">,</span> <span class="n">exclude</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">sents</span><span class="p">:</span>
-            <span class="n">add_function</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">result_</span><span class="p">,</span> <span class="n">sent_</span><span class="p">:</span> <span class="n">result_</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sent_</span><span class="p">)</span>  <span class="c1"># noqa: E731, E501</span>
+            <span class="n">add_function</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">result_</span><span class="p">,</span> <span class="n">sent_</span><span class="p">:</span> <span class="n">result_</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sent_</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">add_function</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">result_</span><span class="p">,</span> <span class="n">sent_</span><span class="p">:</span> <span class="n">result_</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">sent_</span><span class="p">)</span>  <span class="c1"># noqa: E731, E501</span>
+            <span class="n">add_function</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">result_</span><span class="p">,</span> <span class="n">sent_</span><span class="p">:</span> <span class="n">result_</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">sent_</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">tagged</span><span class="p">:</span>
-            <span class="n">sent_to_add</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">sent_</span><span class="p">:</span> <span class="n">sent_</span>  <span class="c1"># noqa: E731</span>
+            <span class="n">sent_to_add</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">sent_</span><span class="p">:</span> <span class="n">sent_</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">sent_to_add</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">sent_</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sent_</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">CLITIC</span><span class="p">]</span>  <span class="c1"># noqa: E731, E501</span>
+            <span class="n">sent_to_add</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">sent_</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sent_</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">CLITIC</span><span class="p">]</span>
 
         <span class="k">for</span> <span class="n">participant_code</span><span class="p">,</span> <span class="n">tagged_sent</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_all_tagged_sents</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">participant_code</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">participants</span><span class="p">:</span>
@@ -2004,9 +1971,7 @@
 <span class="sd">            except ``&#39;CHI&#39;``), use ``^(?!.*CHI).*$``.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">output_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-        <span class="n">tagged_words</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tagged_words</span><span class="p">(</span>
-            <span class="n">participant</span><span class="o">=</span><span class="n">participant</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">exclude</span>
-        <span class="p">)</span>
+        <span class="n">tagged_words</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tagged_words</span><span class="p">(</span><span class="n">participant</span><span class="o">=</span><span class="n">participant</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">exclude</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">tagged_word</span> <span class="ow">in</span> <span class="n">tagged_words</span><span class="p">:</span>
             <span class="n">pos</span> <span class="o">=</span> <span class="n">tagged_word</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
@@ -2113,9 +2078,7 @@
 
 <span class="sd">        :param participant: The participant specified, default to ``&#39;CHI&#39;``</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="n">get_IPSyn</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">tagged_sents</span><span class="p">(</span><span class="n">participant</span><span class="o">=</span><span class="n">participant</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">exclude</span><span class="p">)</span>
-        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">get_IPSyn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tagged_sents</span><span class="p">(</span><span class="n">participant</span><span class="o">=</span><span class="n">participant</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">exclude</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">search</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -2171,13 +2134,11 @@
 
         <span class="c1"># set up the match function</span>
         <span class="k">if</span> <span class="n">match_entire_word</span> <span class="ow">or</span> <span class="n">lemma</span><span class="p">:</span>
-            <span class="n">match_function</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">search_</span><span class="p">,</span> <span class="n">test_</span><span class="p">:</span> <span class="n">search_</span> <span class="o">==</span> <span class="n">test_</span>  <span class="c1"># noqa: E731, E501</span>
+            <span class="n">match_function</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">search_</span><span class="p">,</span> <span class="n">test_</span><span class="p">:</span> <span class="n">search_</span> <span class="o">==</span> <span class="n">test_</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">match_function</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">search_</span><span class="p">,</span> <span class="n">test_</span><span class="p">:</span> <span class="n">search_</span> <span class="ow">in</span> <span class="n">test_</span>  <span class="c1"># noqa: E731, E501</span>
+            <span class="n">match_function</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">search_</span><span class="p">,</span> <span class="n">test_</span><span class="p">:</span> <span class="n">search_</span> <span class="ow">in</span> <span class="n">test_</span>
 
-        <span class="n">tagged_sents</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tagged_sents</span><span class="p">(</span>
-            <span class="n">participant</span><span class="o">=</span><span class="n">participant</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">exclude</span>
-        <span class="p">)</span>
+        <span class="n">tagged_sents</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tagged_sents</span><span class="p">(</span><span class="n">participant</span><span class="o">=</span><span class="n">participant</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">exclude</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">tagged_sent</span> <span class="ow">in</span> <span class="n">tagged_sents</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">tagged_word</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tagged_sent</span><span class="p">):</span>
@@ -2202,13 +2163,9 @@
                         <span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">preceding_words</span> <span class="k">if</span> <span class="n">w</span> <span class="o">!=</span> <span class="n">CLITIC</span>
                     <span class="p">]</span>  <span class="c1"># remove CLITIC</span>
                     <span class="n">char_number</span> <span class="o">=</span> <span class="p">(</span>
-                        <span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">preceding_words</span><span class="p">)</span>
-                        <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">preceding_words</span><span class="p">)</span>
-                        <span class="o">-</span> <span class="mi">1</span>
+                        <span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">preceding_words</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">preceding_words</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
                     <span class="p">)</span>  <span class="c1"># plus spaces</span>
-                    <span class="n">taggedsent_charnumber_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                        <span class="p">(</span><span class="n">tagged_sent</span><span class="p">,</span> <span class="n">char_number</span><span class="p">)</span>
-                    <span class="p">)</span>
+                    <span class="n">taggedsent_charnumber_list</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">tagged_sent</span><span class="p">,</span> <span class="n">char_number</span><span class="p">))</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">taggedsent_charnumber_list</span><span class="p">:</span>  <span class="c1"># if empty</span>
             <span class="k">return</span> <span class="n">taggedsent_charnumber_list</span>
@@ -2216,16 +2173,14 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">concordance</span><span class="p">:</span>
 
             <span class="k">if</span> <span class="n">output_sents</span><span class="p">:</span>
-                <span class="n">add_function</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">result_</span><span class="p">,</span> <span class="n">sent_</span><span class="p">:</span> <span class="n">result_</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sent_</span><span class="p">)</span>  <span class="c1"># noqa: E731, E501</span>
+                <span class="n">add_function</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">result_</span><span class="p">,</span> <span class="n">sent_</span><span class="p">:</span> <span class="n">result_</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sent_</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">add_function</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">result_</span><span class="p">,</span> <span class="n">sent_</span><span class="p">:</span> <span class="n">result_</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">sent_</span><span class="p">)</span>  <span class="c1"># noqa: E731, E501</span>
+                <span class="n">add_function</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">result_</span><span class="p">,</span> <span class="n">sent_</span><span class="p">:</span> <span class="n">result_</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">sent_</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="n">output_tagged</span><span class="p">:</span>
-                <span class="n">sent_to_add</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">sent_</span><span class="p">:</span> <span class="n">sent_</span>  <span class="c1"># noqa: E731</span>
+                <span class="n">sent_to_add</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">sent_</span><span class="p">:</span> <span class="n">sent_</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">sent_to_add</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">sent_</span><span class="p">:</span> <span class="p">[</span>  <span class="c1"># noqa: E731</span>
-                    <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sent_</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">CLITIC</span>
-                <span class="p">]</span>
+                <span class="n">sent_to_add</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">sent_</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">sent_</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">CLITIC</span><span class="p">]</span>
 
             <span class="n">result_list</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -2238,12 +2193,8 @@
             <span class="n">result_list</span> <span class="o">=</span> <span class="p">[]</span>
 
             <span class="k">for</span> <span class="n">tagged_sent</span><span class="p">,</span> <span class="n">char_number</span> <span class="ow">in</span> <span class="n">taggedsent_charnumber_list</span><span class="p">:</span>
-                <span class="n">sent</span> <span class="o">=</span> <span class="p">[</span>
-                    <span class="n">word_</span> <span class="k">for</span> <span class="n">word_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tagged_sent</span> <span class="k">if</span> <span class="n">word_</span> <span class="o">!=</span> <span class="n">CLITIC</span>
-                <span class="p">]</span>
-                <span class="n">sent_str</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span> <span class="o">*</span> <span class="p">(</span><span class="n">max_char_number</span> <span class="o">-</span> <span class="n">char_number</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-                    <span class="n">sent</span>
-                <span class="p">)</span>
+                <span class="n">sent</span> <span class="o">=</span> <span class="p">[</span><span class="n">word_</span> <span class="k">for</span> <span class="n">word_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tagged_sent</span> <span class="k">if</span> <span class="n">word_</span> <span class="o">!=</span> <span class="n">CLITIC</span><span class="p">]</span>
+                <span class="n">sent_str</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span> <span class="o">*</span> <span class="p">(</span><span class="n">max_char_number</span> <span class="o">-</span> <span class="n">char_number</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sent</span><span class="p">)</span>
                 <span class="n">result_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sent_str</span><span class="p">)</span>
 
             <span class="k">return</span> <span class="n">result_list</span>
