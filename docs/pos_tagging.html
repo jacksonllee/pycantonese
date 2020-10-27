@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>API Reference &mdash; PyCantonese 3.0.0 documentation</title>
+  <title>Part-of-Speech Tagging &mdash; PyCantonese 3.0.0 documentation</title>
   
 
   
@@ -18,7 +18,7 @@
   
   
   
-    <link rel="canonical" href="https://pycantonese.org/api.html"/>
+    <link rel="canonical" href="https://pycantonese.org/pos_tagging.html"/>
   
 
   
@@ -38,8 +38,8 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Research Outputs" href="papers.html" />
-    <link rel="prev" title="Part-of-Speech Tagging" href="pos_tagging.html" /> 
+    <link rel="next" title="API Reference" href="api.html" />
+    <link rel="prev" title="Word Segmentation" href="word_segmentation.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -122,11 +122,11 @@
 <li class="toctree-l2"><a class="reference internal" href="word_segmentation.html#customizing-segmentation">Customizing Segmentation</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="pos_tagging.html">Part-of-Speech Tagging</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#corpus-data">Corpus Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#jyutping-romanization">Jyutping Romanization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#natural-language-processing">Natural Language Processing</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Part-of-Speech Tagging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#corpus-data">Corpus Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#jyutping-romanization">Jyutping Romanization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#natural-language-processing">Natural Language Processing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="papers.html">Research Outputs</a></li>
@@ -176,7 +176,7 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>API Reference</li>
+      <li>Part-of-Speech Tagging</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -193,77 +193,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="api-reference">
-<span id="api"></span><h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="corpus-data">
-<h2>Corpus Data<a class="headerlink" href="#corpus-data" title="Permalink to this headline">¶</a></h2>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/pycantonese.read_chat.html#pycantonese.read_chat" title="pycantonese.read_chat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">read_chat</span></code></a>(*filenames, **kwargs)</p></td>
-<td><p>Read Cantonese CHAT data files into a reader object.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/pycantonese.hkcancor.html#pycantonese.hkcancor" title="pycantonese.hkcancor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hkcancor</span></code></a>()</p></td>
-<td><p>Create a corpus object for the Hong Kong Cantonese Corpus.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="reader.html#pycantonese.corpus.CantoneseCHATReader" title="pycantonese.corpus.CantoneseCHATReader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">corpus.CantoneseCHATReader</span></code></a>(*filenames, **kwargs)</p></td>
-<td><p>A reader for Cantonese CHAT corpus files.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="reader.html#pycantonese.corpus.CantoneseCHATReader.search" title="pycantonese.corpus.CantoneseCHATReader.search"><code class="xref py py-obj docutils literal notranslate"><span class="pre">corpus.CantoneseCHATReader.search</span></code></a>(*[, …])</p></td>
-<td><p>Search the data for the given criteria.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="jyutping-romanization">
-<h2>Jyutping Romanization<a class="headerlink" href="#jyutping-romanization" title="Permalink to this headline">¶</a></h2>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/pycantonese.characters_to_jyutping.html#pycantonese.characters_to_jyutping" title="pycantonese.characters_to_jyutping"><code class="xref py py-obj docutils literal notranslate"><span class="pre">characters_to_jyutping</span></code></a>(chars)</p></td>
-<td><p>Convert Cantonese characters into Jyutping romanization.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/pycantonese.parse_jyutping.html#pycantonese.parse_jyutping" title="pycantonese.parse_jyutping"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parse_jyutping</span></code></a>(jp_str)</p></td>
-<td><p>Parse Jyutping romanization into onset, nucleus, code, and tone.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/pycantonese.jyutping_to_yale.html#pycantonese.jyutping_to_yale" title="pycantonese.jyutping_to_yale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">jyutping_to_yale</span></code></a>(jp_str[, as_list])</p></td>
-<td><p>Convert Jyutping romanization into Yale romanization.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/pycantonese.jyutping_to_tipa.html#pycantonese.jyutping_to_tipa" title="pycantonese.jyutping_to_tipa"><code class="xref py py-obj docutils literal notranslate"><span class="pre">jyutping_to_tipa</span></code></a>(jp_str)</p></td>
-<td><p>Convert Jyutping romanization into LaTeX TIPA.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="natural-language-processing">
-<h2>Natural Language Processing<a class="headerlink" href="#natural-language-processing" title="Permalink to this headline">¶</a></h2>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/pycantonese.stop_words.html#pycantonese.stop_words" title="pycantonese.stop_words"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stop_words</span></code></a>([add, remove])</p></td>
-<td><p>Return Cantonese stop words.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/pycantonese.segment.html#pycantonese.segment" title="pycantonese.segment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">segment</span></code></a>(unsegmented[, cls])</p></td>
-<td><p>Segment the unsegmented input.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/pycantonese.word_segmentation.Segmenter.html#pycantonese.word_segmentation.Segmenter" title="pycantonese.word_segmentation.Segmenter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">word_segmentation.Segmenter</span></code></a>(*[, …])</p></td>
-<td><p>A customizable word segmentation model.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/pycantonese.pos_tagging.hkcancor_to_ud.html#pycantonese.pos_tagging.hkcancor_to_ud" title="pycantonese.pos_tagging.hkcancor_to_ud"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pos_tagging.hkcancor_to_ud</span></code></a>(tag)</p></td>
-<td><p>Map a part-of-speech tag from HKCanCor to Universal Dependencies.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
+  <div class="section" id="part-of-speech-tagging">
+<span id="pos-tagging"></span><h1>Part-of-Speech Tagging<a class="headerlink" href="#part-of-speech-tagging" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference internal" href="generated/pycantonese.pos_tagging.hkcancor_to_ud.html#pycantonese.pos_tagging.hkcancor_to_ud" title="pycantonese.pos_tagging.hkcancor_to_ud"><code class="xref py py-func docutils literal notranslate"><span class="pre">hkcancor_to_ud()</span></code></a>
+maps a part-of-speech tag from HKCanCor to Universal Dependencies v2.</p>
 </div>
 
 
@@ -274,10 +207,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="papers.html" class="btn btn-neutral float-right" title="Research Outputs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="api.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="pos_tagging.html" class="btn btn-neutral float-left" title="Part-of-Speech Tagging" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="word_segmentation.html" class="btn btn-neutral float-left" title="Word Segmentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

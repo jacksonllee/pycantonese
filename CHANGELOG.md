@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+* Part-of-speech tagging:
+   - Added the function `hkcancor_to_ud` that maps a part-of-speech tag
+     from the original HKCanCor annotated data to one of the tags from the
+     Universal Dependencies v2 tagset.
+
 ### Changed
 ### Deprecated
 ### Removed

@@ -7,7 +7,7 @@
 # to re-segment more keys to improve data quality.
 
 # Changelog for major re-segmentation work done so far:
-#   * v2.5.0: Keys with 我 你 佢 都
+#   * v3.0.0: Keys with 我 你 佢 都
 
 丫巴兒
 吖笨

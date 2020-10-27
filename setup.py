@@ -17,6 +17,11 @@ def main():
         long_description=_LONG_DESCRIPTION,
         long_description_content_type="text/x-rst",
         url="https://pycantonese.org",
+        project_urls={
+            "Bug Tracker": "https://github.com/jacksonllee/pycantonese/issues",
+            "Source Code": "https://github.com/jacksonllee/pycantonese",
+        },
+        download_url="https://pypi.org/project/pycantonese/#files",
         author="Jackson L. Lee",
         author_email="jacksonlunlee@gmail.com",
         license="MIT License",

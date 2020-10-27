@@ -1,7 +1,7 @@
 ..  _searches:
 
-Search Queries
-==============
+Corpus Search Queries
+=====================
 
 A common task in corpus-based linguistic work
 is to search for specific elements of interest.

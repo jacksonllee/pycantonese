@@ -120,9 +120,10 @@ Table of Contents
 
     data
     reader
+    searches
     jyutping
     stop_words
     word_segmentation
-    searches
+    pos_tagging
     api
     papers

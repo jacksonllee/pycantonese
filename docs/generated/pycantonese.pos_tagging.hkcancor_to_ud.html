@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pycantonese.segment &mdash; PyCantonese 3.0.0 documentation</title>
+  <title>pycantonese.pos_tagging.hkcancor_to_ud &mdash; PyCantonese 3.0.0 documentation</title>
   
 
   
@@ -18,7 +18,7 @@
   
   
   
-    <link rel="canonical" href="https://pycantonese.org/generated/pycantonese.segment.html"/>
+    <link rel="canonical" href="https://pycantonese.org/generated/pycantonese.pos_tagging.hkcancor_to_ud.html"/>
   
 
   
@@ -174,7 +174,7 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>pycantonese.segment</li>
+      <li>pycantonese.pos_tagging.hkcancor_to_ud</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -191,50 +191,37 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="pycantonese-segment">
-<h1>pycantonese.segment<a class="headerlink" href="#pycantonese-segment" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="pycantonese-pos-tagging-hkcancor-to-ud">
+<h1>pycantonese.pos_tagging.hkcancor_to_ud<a class="headerlink" href="#pycantonese-pos-tagging-hkcancor-to-ud" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
-<dt id="pycantonese.segment">
-<code class="sig-prename descclassname">pycantonese.</code><code class="sig-name descname">segment</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">unsegmented</span></em>, <em class="sig-param"><span class="n">cls</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycantonese/word_segmentation.html#segment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycantonese.segment" title="Permalink to this definition">¶</a></dt>
-<dd><p>Segment the unsegmented input.</p>
-<p>The word segmentation model is the longest string matching approach,
-trained by (i) the HKCanCor corpus included in this library and
-(ii) the rime-cantonese data.
-The segmented sentence does not contain words longer than five
-characters.</p>
+<dt id="pycantonese.pos_tagging.hkcancor_to_ud">
+<code class="sig-prename descclassname">pycantonese.pos_tagging.</code><code class="sig-name descname">hkcancor_to_ud</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tag</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="../_modules/pycantonese/pos_tagging/hkcancor_to_ud.html#hkcancor_to_ud"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycantonese.pos_tagging.hkcancor_to_ud" title="Permalink to this definition">¶</a></dt>
+<dd><p>Map a part-of-speech tag from HKCanCor to Universal Dependencies.</p>
+<p>HKCanCor uses a part-of-speech tagset of over 100 tags (46 of which
+are described at <a class="reference external" href="http://compling.hss.ntu.edu.sg/hkcancor/">http://compling.hss.ntu.edu.sg/hkcancor/</a>).
+These tags are mapped to one of the 17 tags in the Universal Dependencies
+v2 tagset (<a class="reference external" href="https://universaldependencies.org/u/pos/index.html">https://universaldependencies.org/u/pos/index.html</a>).</p>
+<p>Any unrecognized tag is mapped to <code class="docutils literal notranslate"><span class="pre">&quot;X&quot;</span></code>.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 2.4.0.</span></p>
-</div>
-<div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 3.0.0: </span>Added the keyword argument <code class="docutils literal notranslate"><span class="pre">cls</span></code> to allow a customized segmenter.</p>
+<p><span class="versionmodified added">New in version 3.1.0.</span></p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>unsegmented</strong><span class="classifier">str</span></dt><dd><p>Unsegmented input.</p>
-</dd>
-<dt><strong>cls: Segmenter, optional</strong></dt><dd><p>A custom <cite>Segmenter</cite> class object for setting the maximal
-word length (default = 5) and words to allow or disallow.
-If not provided, a default segmenter is used, with maximum word
-length = 5.</p>
+<dt><strong>tag</strong><span class="classifier">str</span></dt><dd><p>A tag from the original HKCanCor annotated data.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>list[str]</dt><dd></dd>
+<dt>str</dt><dd><p>A tag from the Universal Dependencies v2 tagset.</p>
+</dd>
 </dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">segment</span><span class="p">(</span><span class="s2">&quot;廣東話容唔容易學？&quot;</span><span class="p">)</span>  <span class="c1"># &quot;Is Cantonese easy to learn?&quot;</span>
-<span class="go">[&#39;廣東話&#39;, &#39;容&#39;, &#39;唔容易&#39;, &#39;學&#39;, &#39;？&#39;]</span>
-<span class="go">&gt;&gt;&gt;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Customizing the segmentation behavior.</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pycantonese.word_segmentation</span> <span class="kn">import</span> <span class="n">Segmenter</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">segmenter</span> <span class="o">=</span> <span class="n">Segmenter</span><span class="p">(</span><span class="n">allow</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;容唔容易&quot;</span><span class="p">})</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">segment</span><span class="p">(</span><span class="s2">&quot;廣東話容唔容易學？&quot;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="n">segmenter</span><span class="p">)</span>
-<span class="go">[&#39;廣東話&#39;, &#39;容唔容易&#39;, &#39;學&#39;, &#39;？&#39;]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hkcancor_to_ud</span><span class="p">(</span><span class="s2">&quot;V&quot;</span><span class="p">)</span>
+<span class="go">&quot;VERB&quot;</span>
 </pre></div>
 </div>
 </dd></dl>

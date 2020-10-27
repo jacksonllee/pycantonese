@@ -1,0 +1,404 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycantonese.pos_tagging.hkcancor_to_ud &mdash; PyCantonese 3.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+    <link rel="canonical" href="https://pycantonese.org/_modules/pycantonese/pos_tagging/hkcancor_to_ud.html"/>
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> PyCantonese
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../data.html">Corpus Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../data.html#the-chat-transcription-format">The CHAT Transcription Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data.html#accessing-built-in-data">Accessing Built-in Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data.html#accessing-custom-data">Accessing Custom Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reader.html">Corpus Reader Methods</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../reader.html#the-representation-of-words">The Representation of “Words”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reader.html#a-note-on-the-access-methods">A Note on the Access Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reader.html#full-reader-api">Full Reader API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../searches.html">Corpus Search Queries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#searching-by-a-jyutping-element">Searching by a Jyutping Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#searching-by-a-chinese-character">Searching by a Chinese Character</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#searching-by-a-part-of-speech-tag">Searching by a Part-of-speech Tag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#searching-by-a-word-or-sentence-range">Searching by a Word or Sentence Range</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#searching-by-multiple-criteria">Searching by Multiple Criteria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#output-format-of-search-results">Output Format of Search Results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jyutping.html">Jyutping Romanization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../jyutping.html#characters-to-jyutping-conversion">Characters-to-Jyutping Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../jyutping.html#parsing-jyutping-strings">Parsing Jyutping Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../jyutping.html#jyutping-to-yale-conversion">Jyutping-to-Yale Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../jyutping.html#jyutping-to-tipa-conversion">Jyutping-to-TIPA Conversion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stop_words.html">Stop Words</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../word_segmentation.html">Word Segmentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../word_segmentation.html#customizing-segmentation">Customizing Segmentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pos_tagging.html">Part-of-Speech Tagging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#corpus-data">Corpus Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#jyutping-romanization">Jyutping Romanization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#natural-language-processing">Natural Language Processing</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../papers.html">Research Outputs</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyCantonese</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pycantonese.pos_tagging.hkcancor_to_ud</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pycantonese.pos_tagging.hkcancor_to_ud</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;POS tagset mapping between HKCanCor and Universal Dependencies.&quot;&quot;&quot;</span>
+
+
+<span class="c1"># The Python dictionary below maps the HKCanCor tagset to the Universal</span>
+<span class="c1"># Dependencies (UD) 2.0 tagset.</span>
+<span class="c1">#</span>
+<span class="c1"># HKCanCor tagset: http://compling.hss.ntu.edu.sg/hkcancor/</span>
+<span class="c1"># UD 2.0 tagset: https://universaldependencies.org/u/pos/index.html</span>
+<span class="c1">#</span>
+<span class="c1"># The HKCanCor paper describes 46 tags in its tagset, but the</span>
+<span class="c1"># actual data (as included in this pycantonese library) has 112 tags,</span>
+<span class="c1"># all of which are listed as keys in the Python dictionary below.</span>
+<span class="c1">#</span>
+<span class="c1"># For convenience, if HKCanCor has a brief part-of-speech tag description,</span>
+<span class="c1"># the description appears as a comment together with the key in the</span>
+<span class="c1"># dictionary below, e.g., the key &quot;A&quot; has the comment &quot;HKCanCor: Adjective&quot;.</span>
+
+<span class="n">_MAP</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;!&quot;</span><span class="p">:</span> <span class="s2">&quot;PUNCT&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;&quot;&#39;</span><span class="p">:</span> <span class="s2">&quot;PUNCT&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;#&quot;</span><span class="p">:</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;&#39;&quot;</span><span class="p">:</span> <span class="s2">&quot;PUNCT&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;,&quot;</span><span class="p">:</span> <span class="s2">&quot;PUNCT&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;-&quot;</span><span class="p">:</span> <span class="s2">&quot;PUNCT&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;.&quot;</span><span class="p">:</span> <span class="s2">&quot;PUNCT&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;...&quot;</span><span class="p">:</span> <span class="s2">&quot;PUNCT&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;?&quot;</span><span class="p">:</span> <span class="s2">&quot;PUNCT&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="s2">&quot;ADJ&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Adjective</span>
+    <span class="s2">&quot;AD&quot;</span><span class="p">:</span> <span class="s2">&quot;ADV&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Adjective as Adverbial</span>
+    <span class="s2">&quot;AG&quot;</span><span class="p">:</span> <span class="s2">&quot;ADJ&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Adjective Morpheme</span>
+    <span class="s2">&quot;AIRWAYS0&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AN&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Adjective with Nominal Function</span>
+    <span class="s2">&quot;AND&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># In one instance of &quot;Chilli and Pepper&quot;</span>
+    <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="s2">&quot;ADJ&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Non-predicate Adjective</span>
+    <span class="s2">&quot;BEAN0&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># In one instance of &quot;Mr Bean&quot;</span>
+    <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="s2">&quot;CCONJ&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Conjunction</span>
+    <span class="s2">&quot;CENTRE0&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>  <span class="c1"># In one instance of &quot;career centre&quot;</span>
+    <span class="s2">&quot;CG&quot;</span><span class="p">:</span> <span class="s2">&quot;CCONJ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;D&quot;</span><span class="p">:</span> <span class="s2">&quot;ADV&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Adverb</span>
+    <span class="s2">&quot;D1&quot;</span><span class="p">:</span> <span class="s2">&quot;ADV&quot;</span><span class="p">,</span>  <span class="c1"># Most instances are gwai2 &quot;ghost&quot;.</span>
+    <span class="s2">&quot;DG&quot;</span><span class="p">:</span> <span class="s2">&quot;ADV&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Adverb Morpheme</span>
+    <span class="s2">&quot;E&quot;</span><span class="p">:</span> <span class="s2">&quot;INTJ&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Interjection</span>
+    <span class="s2">&quot;ECHO0&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># In one instance of &quot;Big Echo&quot;</span>
+    <span class="s2">&quot;F&quot;</span><span class="p">:</span> <span class="s2">&quot;ADV&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Directional Locality</span>
+    <span class="s2">&quot;G1&quot;</span><span class="p">:</span> <span class="s2">&quot;V&quot;</span><span class="p">,</span>  <span class="c1"># The first A in the &quot;A-not-AB&quot; pattern, where AB is a verb.</span>
+    <span class="s2">&quot;G2&quot;</span><span class="p">:</span> <span class="s2">&quot;ADJ&quot;</span><span class="p">,</span>  <span class="c1"># The first A in &quot;A-not-AB&quot;, where AB is an adjective.</span>
+    <span class="s2">&quot;H&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Prefix (aa3 阿 followed by a person name)</span>
+    <span class="s2">&quot;HILL0&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># In &quot;Benny Hill&quot;</span>
+    <span class="s2">&quot;I&quot;</span><span class="p">:</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Idiom</span>
+    <span class="s2">&quot;IG&quot;</span><span class="p">:</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;J&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Abbreviation</span>
+    <span class="s2">&quot;JB&quot;</span><span class="p">:</span> <span class="s2">&quot;ADJ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;JM&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;JN&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;JNS&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;JNT&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;JNZ&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;K&quot;</span><span class="p">:</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Suffix (sing3 性 for nouns; dei6 地 for adverbs)</span>
+    <span class="s2">&quot;KONG&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># In &quot;Hong Kong&quot;</span>
+    <span class="s2">&quot;L&quot;</span><span class="p">:</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span>  <span class="c1"># Fixed Expression</span>
+    <span class="s2">&quot;L1&quot;</span><span class="p">:</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;LG&quot;</span><span class="p">:</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;M&quot;</span><span class="p">:</span> <span class="s2">&quot;NUM&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Numeral</span>
+    <span class="s2">&quot;MG&quot;</span><span class="p">:</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;MONTY0&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># In &quot;Full Monty&quot;</span>
+    <span class="s2">&quot;MOUNTAIN0&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># In &quot;Blue Mountain&quot;</span>
+    <span class="s2">&quot;N&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>  <span class="c1"># Common Noun</span>
+    <span class="s2">&quot;NG&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NR&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Personal Name</span>
+    <span class="s2">&quot;NS&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Place Name</span>
+    <span class="s2">&quot;NSG&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;NT&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Organization Name</span>
+    <span class="s2">&quot;NX&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Nominal Character String</span>
+    <span class="s2">&quot;NZ&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Other Proper Noun</span>
+    <span class="s2">&quot;O&quot;</span><span class="p">:</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Onomatopoeia</span>
+    <span class="s2">&quot;P&quot;</span><span class="p">:</span> <span class="s2">&quot;ADP&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Preposition</span>
+    <span class="s2">&quot;PEPPER0&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># In &quot;Chilli and Pepper&quot;</span>
+    <span class="s2">&quot;Q&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Classifier</span>
+    <span class="s2">&quot;R&quot;</span><span class="p">:</span> <span class="s2">&quot;PRON&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Pronoun</span>
+    <span class="s2">&quot;RG&quot;</span><span class="p">:</span> <span class="s2">&quot;PRON&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Pronoun Morpheme</span>
+    <span class="s2">&quot;S&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Space Word</span>
+    <span class="s2">&quot;SOUND0&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># In &quot;Manchester&#39;s Sound&quot;</span>
+    <span class="s2">&quot;T&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Time Word</span>
+    <span class="s2">&quot;TELECOM0&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># In &quot;Hong Kong Telecom&quot;</span>
+    <span class="s2">&quot;TG&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Time Word Morpheme</span>
+    <span class="s2">&quot;TOUCH0&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># In &quot;Don&#39;t Touch&quot; (a magazine)</span>
+    <span class="s2">&quot;U&quot;</span><span class="p">:</span> <span class="s2">&quot;PART&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Auxiliary (e.g., ge3 嘅 after an attributive adj)</span>
+    <span class="s2">&quot;U0&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># U as in &quot;Hong Kong U&quot; (= The University of Hong Kong)</span>
+    <span class="s2">&quot;V&quot;</span><span class="p">:</span> <span class="s2">&quot;VERB&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Verb</span>
+    <span class="s2">&quot;V1&quot;</span><span class="p">:</span> <span class="s2">&quot;VERB&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;VD&quot;</span><span class="p">:</span> <span class="s2">&quot;ADV&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Verb as Adverbial</span>
+    <span class="s2">&quot;VG&quot;</span><span class="p">:</span> <span class="s2">&quot;VERB&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;VK&quot;</span><span class="p">:</span> <span class="s2">&quot;VERB&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;VN&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Verb with Nominal Function</span>
+    <span class="s2">&quot;VU&quot;</span><span class="p">:</span> <span class="s2">&quot;AUX&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;VUG&quot;</span><span class="p">:</span> <span class="s2">&quot;AUX&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;W&quot;</span><span class="p">:</span> <span class="s2">&quot;PUNCT&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Punctuation</span>
+    <span class="s2">&quot;X&quot;</span><span class="p">:</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Unclassified Item</span>
+    <span class="s2">&quot;XA&quot;</span><span class="p">:</span> <span class="s2">&quot;ADJ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;XB&quot;</span><span class="p">:</span> <span class="s2">&quot;ADJ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;XC&quot;</span><span class="p">:</span> <span class="s2">&quot;CCONJ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;XD&quot;</span><span class="p">:</span> <span class="s2">&quot;ADV&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;XE&quot;</span><span class="p">:</span> <span class="s2">&quot;INTJ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;XJ&quot;</span><span class="p">:</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;XJB&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;XJN&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;XJNT&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;XJNZ&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;XJV&quot;</span><span class="p">:</span> <span class="s2">&quot;VERB&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;XL1&quot;</span><span class="p">:</span> <span class="s2">&quot;INTJ&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;XM&quot;</span><span class="p">:</span> <span class="s2">&quot;NUM&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;XN&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;XNG&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;XNR&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;XNS&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;XNT&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;XNX&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;XNZ&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;XP&quot;</span><span class="p">:</span> <span class="s2">&quot;ADP&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;XQ&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;XR&quot;</span><span class="p">:</span> <span class="s2">&quot;PRON&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;XS&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;XT&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;XV&quot;</span><span class="p">:</span> <span class="s2">&quot;VERB&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;XVG&quot;</span><span class="p">:</span> <span class="s2">&quot;VERB&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;XVN&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;XX&quot;</span><span class="p">:</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Y&quot;</span><span class="p">:</span> <span class="s2">&quot;PART&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Modal Particle</span>
+    <span class="s2">&quot;Y1&quot;</span><span class="p">:</span> <span class="s2">&quot;PART&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Z&quot;</span><span class="p">:</span> <span class="s2">&quot;ADJ&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Descriptive</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="hkcancor_to_ud"><a class="viewcode-back" href="../../../generated/pycantonese.pos_tagging.hkcancor_to_ud.html#pycantonese.pos_tagging.hkcancor_to_ud">[docs]</a><span class="k">def</span> <span class="nf">hkcancor_to_ud</span><span class="p">(</span><span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Map a part-of-speech tag from HKCanCor to Universal Dependencies.</span>
+
+<span class="sd">    HKCanCor uses a part-of-speech tagset of over 100 tags (46 of which</span>
+<span class="sd">    are described at http://compling.hss.ntu.edu.sg/hkcancor/).</span>
+<span class="sd">    These tags are mapped to one of the 17 tags in the Universal Dependencies</span>
+<span class="sd">    v2 tagset (https://universaldependencies.org/u/pos/index.html).</span>
+
+<span class="sd">    Any unrecognized tag is mapped to ``&quot;X&quot;``.</span>
+
+<span class="sd">    .. versionadded:: 3.1.0</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    tag : str</span>
+<span class="sd">        A tag from the original HKCanCor annotated data.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    str</span>
+<span class="sd">        A tag from the Universal Dependencies v2 tagset.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; hkcancor_to_ud(&quot;V&quot;)</span>
+<span class="sd">    &quot;VERB&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_MAP</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">tag</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span> <span class="ow">or</span> <span class="s2">&quot;X&quot;</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on October 26, 2020
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
