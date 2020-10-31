@@ -122,9 +122,31 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../pos_tagging.html">Part-of-Speech Tagging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../api.html">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../api.html#corpus-data">Corpus Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../api.html#jyutping-romanization">Jyutping Romanization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../api.html#natural-language-processing">Natural Language Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#corpus-data">Corpus Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.read_chat.html">pycantonese.read_chat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.hkcancor.html">pycantonese.hkcancor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.corpus.CantoneseCHATReader.html">pycantonese.corpus.CantoneseCHATReader</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/pycantonese.corpus.CantoneseCHATReader.search.html">pycantonese.corpus.CantoneseCHATReader.search</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.corpus.CantoneseCHATReader.search.html">pycantonese.corpus.CantoneseCHATReader.search</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#jyutping-romanization">Jyutping Romanization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.characters_to_jyutping.html">pycantonese.characters_to_jyutping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.parse_jyutping.html">pycantonese.parse_jyutping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.jyutping_to_yale.html">pycantonese.jyutping_to_yale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.jyutping_to_tipa.html">pycantonese.jyutping_to_tipa</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#natural-language-processing">Natural Language Processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.stop_words.html">pycantonese.stop_words</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.segment.html">pycantonese.segment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.word_segmentation.Segmenter.html">pycantonese.word_segmentation.Segmenter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.pos_tag.html">pycantonese.pos_tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.pos_tagging.hkcancor_to_ud.html">pycantonese.pos_tagging.hkcancor_to_ud</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../papers.html">Research Outputs</a></li>
@@ -325,7 +347,7 @@
 <span class="p">}</span>
 
 
-<div class="viewcode-block" id="hkcancor_to_ud"><a class="viewcode-back" href="../../../generated/pycantonese.pos_tagging.hkcancor_to_ud.html#pycantonese.pos_tagging.hkcancor_to_ud">[docs]</a><span class="k">def</span> <span class="nf">hkcancor_to_ud</span><span class="p">(</span><span class="n">tag</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="hkcancor_to_ud"><a class="viewcode-back" href="../../../generated/pycantonese.pos_tagging.hkcancor_to_ud.html#pycantonese.pos_tagging.hkcancor_to_ud">[docs]</a><span class="k">def</span> <span class="nf">hkcancor_to_ud</span><span class="p">(</span><span class="n">tag</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Map a part-of-speech tag from HKCanCor to Universal Dependencies.</span>
 
 <span class="sd">    HKCanCor uses a part-of-speech tagset of over 100 tags (46 of which</span>
@@ -341,18 +363,24 @@
 <span class="sd">    ----------</span>
 <span class="sd">    tag : str</span>
 <span class="sd">        A tag from the original HKCanCor annotated data.</span>
+<span class="sd">        If not provided or ``None``, this function returns the entire</span>
+<span class="sd">        dictionary of the tagset mapping from HKCanCor to UD.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    str</span>
-<span class="sd">        A tag from the Universal Dependencies v2 tagset.</span>
+<span class="sd">    str or dict[str, str]</span>
+<span class="sd">        A tag from the Universal Dependencies v2 tagset, or a dictioary</span>
+<span class="sd">        from HKCanCor to UD tags if no input is given.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; hkcancor_to_ud(&quot;V&quot;)</span>
 <span class="sd">    &quot;VERB&quot;</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">_MAP</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">tag</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span> <span class="ow">or</span> <span class="s2">&quot;X&quot;</span></div>
+    <span class="k">if</span> <span class="n">tag</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_MAP</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_MAP</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">tag</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span> <span class="ow">or</span> <span class="s2">&quot;X&quot;</span></div>
 </pre></div>
 
            </div>
@@ -366,7 +394,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on October 26, 2020
+        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on October 30, 2020
 
     </p>
   </div>

@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 * Part-of-speech tagging:
+   - Added the function `pos_tag` that takes a segmented sentence or phrase
+     and returns its part-of-speech tags.
    - Added the function `hkcancor_to_ud` that maps a part-of-speech tag
      from the original HKCanCor annotated data to one of the tags from the
      Universal Dependencies v2 tagset.

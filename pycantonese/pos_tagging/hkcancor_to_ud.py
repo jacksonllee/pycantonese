@@ -131,7 +131,7 @@ _MAP = {
 }
 
 
-def hkcancor_to_ud(tag: str) -> str:
+def hkcancor_to_ud(tag: str = None):
     """Map a part-of-speech tag from HKCanCor to Universal Dependencies.
 
     HKCanCor uses a part-of-speech tagset of over 100 tags (46 of which
@@ -147,15 +147,21 @@ def hkcancor_to_ud(tag: str) -> str:
     ----------
     tag : str
         A tag from the original HKCanCor annotated data.
+        If not provided or ``None``, this function returns the entire
+        dictionary of the tagset mapping from HKCanCor to UD.
 
     Returns
     -------
-    str
-        A tag from the Universal Dependencies v2 tagset.
+    str or dict[str, str]
+        A tag from the Universal Dependencies v2 tagset, or a dictioary
+        from HKCanCor to UD tags if no input is given.
 
     Examples
     --------
     >>> hkcancor_to_ud("V")
     "VERB"
     """
-    return _MAP.get(tag.strip().upper()) or "X"
+    if tag is None:
+        return _MAP
+    else:
+        return _MAP.get(tag.strip().upper()) or "X"

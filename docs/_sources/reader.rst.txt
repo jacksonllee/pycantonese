@@ -57,9 +57,6 @@ The list of "tagged" words from this utterance are a list of 4-tuples:
      ('啊', 'Y', 'aa3', ''),
      ('?', '?', '', '')]
 
-The distinction of "simple" versus "tagged" words is reflected in the data
-access methods listed in :ref:`data_methods` below.
-
 .. _note_on_methods:
 
 A Note on the Access Methods

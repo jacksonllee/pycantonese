@@ -20,7 +20,7 @@ except ModuleNotFoundError:
     )
 
 
-_BRANCH = "rime-data-in-pycantonese-v2.5.0"
+_BRANCH = "2020.09.09"
 _URL = f"https://github.com/jacksonllee/rime-cantonese/archive/{_BRANCH}.zip"
 
 _THIS_DIR = os.path.abspath(os.path.dirname(__file__))

@@ -1,0 +1,595 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pycantonese.pos_tagging.tagger &mdash; PyCantonese 3.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+    <link rel="canonical" href="https://pycantonese.org/_modules/pycantonese/pos_tagging/tagger.html"/>
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> PyCantonese
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../data.html">Corpus Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../data.html#the-chat-transcription-format">The CHAT Transcription Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data.html#accessing-built-in-data">Accessing Built-in Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data.html#accessing-custom-data">Accessing Custom Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reader.html">Corpus Reader Methods</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../reader.html#the-representation-of-words">The Representation of “Words”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reader.html#a-note-on-the-access-methods">A Note on the Access Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reader.html#full-reader-api">Full Reader API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../searches.html">Corpus Search Queries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#searching-by-a-jyutping-element">Searching by a Jyutping Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#searching-by-a-chinese-character">Searching by a Chinese Character</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#searching-by-a-part-of-speech-tag">Searching by a Part-of-speech Tag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#searching-by-a-word-or-sentence-range">Searching by a Word or Sentence Range</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#searching-by-multiple-criteria">Searching by Multiple Criteria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#output-format-of-search-results">Output Format of Search Results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../jyutping.html">Jyutping Romanization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../jyutping.html#characters-to-jyutping-conversion">Characters-to-Jyutping Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../jyutping.html#parsing-jyutping-strings">Parsing Jyutping Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../jyutping.html#jyutping-to-yale-conversion">Jyutping-to-Yale Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../jyutping.html#jyutping-to-tipa-conversion">Jyutping-to-TIPA Conversion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../stop_words.html">Stop Words</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../word_segmentation.html">Word Segmentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../word_segmentation.html#customizing-segmentation">Customizing Segmentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pos_tagging.html">Part-of-Speech Tagging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#corpus-data">Corpus Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.read_chat.html">pycantonese.read_chat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.hkcancor.html">pycantonese.hkcancor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.corpus.CantoneseCHATReader.html">pycantonese.corpus.CantoneseCHATReader</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/pycantonese.corpus.CantoneseCHATReader.search.html">pycantonese.corpus.CantoneseCHATReader.search</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.corpus.CantoneseCHATReader.search.html">pycantonese.corpus.CantoneseCHATReader.search</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#jyutping-romanization">Jyutping Romanization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.characters_to_jyutping.html">pycantonese.characters_to_jyutping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.parse_jyutping.html">pycantonese.parse_jyutping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.jyutping_to_yale.html">pycantonese.jyutping_to_yale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.jyutping_to_tipa.html">pycantonese.jyutping_to_tipa</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#natural-language-processing">Natural Language Processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.stop_words.html">pycantonese.stop_words</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.segment.html">pycantonese.segment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.word_segmentation.Segmenter.html">pycantonese.word_segmentation.Segmenter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.pos_tag.html">pycantonese.pos_tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.pos_tagging.hkcancor_to_ud.html">pycantonese.pos_tagging.hkcancor_to_ud</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../papers.html">Research Outputs</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">PyCantonese</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>pycantonese.pos_tagging.tagger</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pycantonese.pos_tagging.tagger</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
+
+
+<span class="n">_THIS_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+<span class="n">_PICKLE_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_THIS_DIR</span><span class="p">,</span> <span class="s2">&quot;tagger.pickle&quot;</span><span class="p">)</span>
+
+<span class="c1"># Reference: https://en.wikipedia.org/wiki/Chinese_punctuation</span>
+<span class="n">_PUNCTUATIONS</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">，</span>
+<span class="s2">。</span>
+<span class="s2">！</span>
+<span class="s2">？</span>
+<span class="s2">；</span>
+<span class="s2">：</span>
+<span class="s2">（ </span>
+<span class="s2">）</span>
+<span class="s2">「</span>
+<span class="s2">」</span>
+<span class="s2">［</span>
+<span class="s2">］</span>
+<span class="s2">【 </span>
+<span class="s2">】</span>
+<span class="s2">《</span>
+<span class="s2">》</span>
+<span class="s2">〈</span>
+<span class="s2">〉</span>
+<span class="s2">、</span>
+<span class="s2">‧</span>
+<span class="s2">…</span>
+<span class="s2">—</span>
+<span class="s2">～</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">_AveragedPerceptron</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;An averaged perceptron.</span>
+
+<span class="sd">    This is a modified version based on the textblob-aptagger codebase</span>
+<span class="sd">    (MIT license), with original implementation by Matthew Honnibal:</span>
+<span class="sd">    https://github.com/sloria/textblob-aptagger/blob/266fa1c22daaff7c60577efa8577f1b6ce2f7f70/textblob_aptagger/_perceptron.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Each feature (key) gets its own weight vector (value).</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">classes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="c1"># The accumulated values, for the averaging. These will be keyed by</span>
+        <span class="c1"># feature/class tuples</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_totals</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="c1"># The last time the feature was changed, for the averaging. Also</span>
+        <span class="c1"># keyed by feature/class tuples</span>
+        <span class="c1"># (tstamps is short for timestamps)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tstamps</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="c1"># Number of instances seen</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">features</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the best label for the given features.</span>
+
+<span class="sd">        It&#39;s computed based on the dot-product between the features and</span>
+<span class="sd">        current weights.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">scores</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">feat</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">features</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">feat</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">weights</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">[</span><span class="n">feat</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">label</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">weights</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">scores</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">+=</span> <span class="n">value</span> <span class="o">*</span> <span class="n">weight</span>
+        <span class="c1"># Do a secondary alphabetic sort, for stability</span>
+        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">label</span><span class="p">:</span> <span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="n">label</span><span class="p">],</span> <span class="n">label</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">truth</span><span class="p">,</span> <span class="n">guess</span><span class="p">,</span> <span class="n">features</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Update the feature weights.&quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">upd_feat</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+            <span class="n">param</span> <span class="o">=</span> <span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_totals</span><span class="p">[</span><span class="n">param</span><span class="p">]</span> <span class="o">+=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">i</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tstamps</span><span class="p">[</span><span class="n">param</span><span class="p">])</span> <span class="o">*</span> <span class="n">w</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_tstamps</span><span class="p">[</span><span class="n">param</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">i</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">[</span><span class="n">f</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">w</span> <span class="o">+</span> <span class="n">v</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">truth</span> <span class="o">==</span> <span class="n">guess</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+            <span class="n">weights</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="p">{})</span>
+            <span class="n">upd_feat</span><span class="p">(</span><span class="n">truth</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">weights</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">truth</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="mf">1.0</span><span class="p">)</span>
+            <span class="n">upd_feat</span><span class="p">(</span><span class="n">guess</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">weights</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">guess</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">average_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Average weights from all iterations.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">feat</span><span class="p">,</span> <span class="n">weights</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">new_feat_weights</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">clas</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">weights</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">param</span> <span class="o">=</span> <span class="p">(</span><span class="n">feat</span><span class="p">,</span> <span class="n">clas</span><span class="p">)</span>
+                <span class="n">total</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_totals</span><span class="p">[</span><span class="n">param</span><span class="p">]</span>
+                <span class="n">total</span> <span class="o">+=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">i</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tstamps</span><span class="p">[</span><span class="n">param</span><span class="p">])</span> <span class="o">*</span> <span class="n">weight</span>
+                <span class="n">averaged</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">total</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">i</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">averaged</span><span class="p">:</span>
+                    <span class="n">new_feat_weights</span><span class="p">[</span><span class="n">clas</span><span class="p">]</span> <span class="o">=</span> <span class="n">averaged</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">[</span><span class="n">feat</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_feat_weights</span>
+
+
+<span class="k">class</span> <span class="nc">POSTagger</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;A part-of-speech tagger.</span>
+
+<span class="sd">    This is a modified version based on the textblob-aptagger codebase</span>
+<span class="sd">    (MIT license), with original implementation by Matthew Honnibal:</span>
+<span class="sd">    https://github.com/sloria/textblob-aptagger/blob/266fa1c22daaff7c60577efa8577f1b6ce2f7f70/textblob_aptagger/taggers.py</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">START</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;-START-&quot;</span><span class="p">,</span> <span class="s2">&quot;-START2-&quot;</span><span class="p">]</span>
+    <span class="n">END</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;-END-&quot;</span><span class="p">,</span> <span class="s2">&quot;-END2-&quot;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">frequency_threshold</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">ambiguity_threshold</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">5</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize a part-of-speech tagger.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        frequency_threshold : int, optional</span>
+<span class="sd">            A good number of words are almost unambiguously associated with</span>
+<span class="sd">            a given tag. If these words have a frequency of occurrence above</span>
+<span class="sd">            this threshold in the training data, they are directly associated</span>
+<span class="sd">            with their tag in the model.</span>
+<span class="sd">        ambiguity_threshold : float, optional</span>
+<span class="sd">            A good number of words are almost unambiguously associated with</span>
+<span class="sd">            a given tag. If the ratio of (# of occurrences of this word with</span>
+<span class="sd">            this tag) / (# of occurrences of this word) in the training data</span>
+<span class="sd">            is equal to or greater than this threshold, then this word is</span>
+<span class="sd">            directly associated with the tag in the model.</span>
+<span class="sd">        n_iter : int, optional</span>
+<span class="sd">            Number of times the training phase iterates through the data.</span>
+<span class="sd">            At each new iteration, the data is randomly shuffled.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">frequency_threshold</span> <span class="o">=</span> <span class="n">frequency_threshold</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ambiguity_threshold</span> <span class="o">=</span> <span class="n">ambiguity_threshold</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_iter</span> <span class="o">=</span> <span class="n">n_iter</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">_AveragedPerceptron</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tagdict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">classes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+        <span class="c1"># HKCanCor doesn&#39;t have the Chinese full-width punctuation marks.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tagdict</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">punct</span><span class="p">:</span> <span class="s2">&quot;PUNCT&quot;</span> <span class="k">for</span> <span class="n">punct</span> <span class="ow">in</span> <span class="n">_PUNCTUATIONS</span><span class="p">})</span>
+
+    <span class="k">def</span> <span class="nf">tag</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">words</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Tag the words.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        words : list[str]</span>
+<span class="sd">            A segmented sentence or phrase, where each word is Cantonese</span>
+<span class="sd">            characters.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        list[str]</span>
+<span class="sd">            The list of predicted tags.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">prev</span><span class="p">,</span> <span class="n">prev2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">START</span>
+        <span class="n">tags</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">START</span> <span class="o">+</span> <span class="n">words</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">END</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">words</span><span class="p">):</span>
+            <span class="n">tag</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tagdict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">tag</span><span class="p">:</span>
+                <span class="n">features</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_features</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">prev</span><span class="p">,</span> <span class="n">prev2</span><span class="p">)</span>
+                <span class="n">tag</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+            <span class="n">tags</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span>
+            <span class="n">prev2</span> <span class="o">=</span> <span class="n">prev</span>
+            <span class="n">prev</span> <span class="o">=</span> <span class="n">tag</span>
+        <span class="k">return</span> <span class="n">tags</span>
+
+    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tagged_sents</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Train a model.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        tagged_sents : list[list[tuple[str, str]]]</span>
+<span class="sd">            A list of segmented and tagged sentences for training.</span>
+<span class="sd">        save : str, optional</span>
+<span class="sd">            If given, save the trained model as a pickle at this path.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_make_tagdict</span><span class="p">(</span><span class="n">tagged_sents</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">classes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">classes</span>
+
+        <span class="n">prev</span><span class="p">,</span> <span class="n">prev2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">START</span>
+        <span class="k">for</span> <span class="n">iter_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_iter</span><span class="p">):</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">tagged_sent</span> <span class="ow">in</span> <span class="n">tagged_sents</span><span class="p">:</span>
+                <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">START</span> <span class="o">+</span> <span class="p">[</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tagged_sent</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">END</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">tag</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tagged_sent</span><span class="p">):</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">guess</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tagdict</span><span class="p">[</span><span class="n">word</span><span class="p">]</span>
+                    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                        <span class="n">feats</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_features</span><span class="p">(</span>
+                            <span class="n">i</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">prev</span><span class="p">,</span> <span class="n">prev2</span>
+                        <span class="p">)</span>
+                        <span class="n">guess</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">feats</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">tag</span><span class="p">,</span> <span class="n">guess</span><span class="p">,</span> <span class="n">feats</span><span class="p">)</span>
+                    <span class="n">prev2</span> <span class="o">=</span> <span class="n">prev</span>
+                    <span class="n">prev</span> <span class="o">=</span> <span class="n">guess</span>
+                    <span class="n">c</span> <span class="o">+=</span> <span class="n">guess</span> <span class="o">==</span> <span class="n">tag</span>
+                    <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">tagged_sents</span><span class="p">)</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Iter </span><span class="si">%d</span><span class="s2">: </span><span class="si">%d</span><span class="s2"> / </span><span class="si">%d</span><span class="s2"> = </span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">iter_</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">c</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">average_weights</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">save</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span>
+                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">weights</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tagdict</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">classes</span><span class="p">),</span>
+                <span class="nb">open</span><span class="p">(</span><span class="n">save</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">),</span>
+                <span class="n">protocol</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Load a pickled model.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        path : str</span>
+<span class="sd">            The path where the pickled model is located.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">w_td_c</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Missing trontagger.pickle file.&quot;</span>
+            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">weights</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tagdict</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">classes</span> <span class="o">=</span> <span class="n">w_td_c</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">classes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">classes</span>
+
+    <span class="k">def</span> <span class="nf">_get_features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">prev</span><span class="p">,</span> <span class="n">prev2</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Map tokens into a feature representation, implemented as a</span>
+<span class="sd">        {hashable: float} dict. If the features change, a new model must be</span>
+<span class="sd">        trained.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+            <span class="n">features</span><span class="p">[</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">name</span><span class="p">,)</span> <span class="o">+</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">args</span><span class="p">))]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="n">i</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">START</span><span class="p">)</span>
+        <span class="n">features</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+        <span class="c1"># It&#39;s useful to have a constant feature,</span>
+        <span class="c1"># which acts sort of like a prior.</span>
+        <span class="n">add</span><span class="p">(</span><span class="s2">&quot;bias&quot;</span><span class="p">)</span>
+
+        <span class="n">add</span><span class="p">(</span><span class="s2">&quot;i word&#39;s first char&quot;</span><span class="p">,</span> <span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">add</span><span class="p">(</span><span class="s2">&quot;i word&#39;s final char&quot;</span><span class="p">,</span> <span class="n">word</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="n">add</span><span class="p">(</span><span class="s2">&quot;i-1 word&#39;s first char&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">add</span><span class="p">(</span><span class="s2">&quot;i-1 word&#39;s final char&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">add</span><span class="p">(</span><span class="s2">&quot;i-1 tag&quot;</span><span class="p">,</span> <span class="n">prev</span><span class="p">)</span>
+
+        <span class="n">add</span><span class="p">(</span><span class="s2">&quot;i-2 word&#39;s first char&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">add</span><span class="p">(</span><span class="s2">&quot;i-2 word&#39;s final char&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">add</span><span class="p">(</span><span class="s2">&quot;i-2 tag&quot;</span><span class="p">,</span> <span class="n">prev2</span><span class="p">)</span>
+
+        <span class="n">add</span><span class="p">(</span><span class="s2">&quot;i+1 word&#39;s first char&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">add</span><span class="p">(</span><span class="s2">&quot;i+1 word&#39;s final char&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="n">add</span><span class="p">(</span><span class="s2">&quot;i+2 word&#39;s first char&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">add</span><span class="p">(</span><span class="s2">&quot;i+2 word&#39;s final char&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">features</span>
+
+    <span class="k">def</span> <span class="nf">_make_tagdict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tagged_sents</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Make a tag dictionary for single-tag words.&quot;&quot;&quot;</span>
+        <span class="n">counts</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">collections</span><span class="o">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">tagged_sent</span> <span class="ow">in</span> <span class="n">tagged_sents</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">tagged_sent</span><span class="p">:</span>
+                <span class="n">counts</span><span class="p">[</span><span class="n">word</span><span class="p">][</span><span class="n">tag</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">classes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span>
+        <span class="n">words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">tag_freqs</span> <span class="ow">in</span> <span class="n">counts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">words</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+            <span class="n">tag</span><span class="p">,</span> <span class="n">mode</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">tag_freqs</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">item</span><span class="p">:</span> <span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">tag_freqs</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+            <span class="n">above_freq_threshold</span> <span class="o">=</span> <span class="n">n</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">frequency_threshold</span>
+            <span class="n">unambiguous</span> <span class="o">=</span> <span class="p">(</span><span class="n">mode</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ambiguity_threshold</span>
+            <span class="k">if</span> <span class="n">above_freq_threshold</span> <span class="ow">and</span> <span class="n">unambiguous</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">tagdict</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="n">tag</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2"> unique words in the training data&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">))</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2"> tags in this tagset&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes</span><span class="p">))</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="si">%d</span><span class="s2"> words are treated as having a unique tag&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tagdict</span><span class="p">)</span>
+        <span class="p">)</span>
+
+
+<span class="nd">@functools</span><span class="o">.</span><span class="n">lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">_get_tagger</span><span class="p">():</span>
+    <span class="n">tagger</span> <span class="o">=</span> <span class="n">POSTagger</span><span class="p">()</span>
+    <span class="n">tagger</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">_PICKLE_PATH</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">tagger</span>
+
+
+<span class="c1"># TODO: Improve documentation. Add examples.</span>
+<div class="viewcode-block" id="pos_tag"><a class="viewcode-back" href="../../../generated/pycantonese.pos_tag.html#pycantonese.pos_tag">[docs]</a><span class="k">def</span> <span class="nf">pos_tag</span><span class="p">(</span><span class="n">words</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Tag the words for their parts of speech.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    words : list[str]</span>
+<span class="sd">        A segmented sentence or phrase, where each word is a string of</span>
+<span class="sd">        Cantonese characters.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    list[str]</span>
+<span class="sd">        The list of predicted tags.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    TypeError</span>
+<span class="sd">        If the input is a string.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">words</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Input must be a list of segmented words, not a string: </span><span class="si">{</span><span class="n">words</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">_get_tagger</span><span class="p">()</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="n">words</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on October 30, 2020
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
