@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
    - Added the function `hkcancor_to_ud` that maps a part-of-speech tag
      from the original HKCanCor annotated data to one of the tags from the
      Universal Dependencies v2 tagset.
+* Word segmentation:
+   - Improved segmentation quality by revising the underlying wordlist data.
 
 ### Changed
 ### Deprecated

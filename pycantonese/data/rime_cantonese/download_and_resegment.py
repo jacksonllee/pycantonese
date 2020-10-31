@@ -3,6 +3,7 @@
 import collections
 import io
 import json
+import logging
 import os
 import tempfile
 import zipfile
@@ -183,11 +184,15 @@ def _resegment_chars_jyutping_data(json_filename):
 
 def main():
     for f in _CHARS_JYUTPING_FILES:
+        logging.info("Downloading %s as %s", f.yaml_filename, f.json_filename)
         _download_chars_jyutping_data(f.yaml_filename, f.json_filename)
+        logging.info("Resegmenting %s", f.json_filename)
         _resegment_chars_jyutping_data(f.json_filename)
     for f in _CHARS_FILES:
+        logging.info("Downloading %s as %s", f.yaml_filename, f.json_filename)
         _download_chars_data(f.yaml_filename, f.json_filename)
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level="INFO")
     main()
