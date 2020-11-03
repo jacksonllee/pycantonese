@@ -16,6 +16,8 @@
 
   
   
+    <link rel="shortcut icon" href="_static/pycantonese-logo.ico"/>
+  
   
   
     <link rel="canonical" href="https://pycantonese.org/pos_tagging.html"/>
@@ -56,6 +58,9 @@
             <a href="index.html" class="icon icon-home" alt="Documentation Home"> PyCantonese
           
 
+          
+            
+            <img src="_static/pycantonese-logo-white.svg" class="logo" alt="Logo"/>
           
           </a>
 
@@ -271,6 +276,23 @@
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 3.1.0.</span></p>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>As of November 2020, PyCantonese v3.1.0 hasn’t been released yet.
+All functionality related to part-of-speech tagging
+is available only through the GitHub repository for early testers.
+Everything (what functions are provided, how they behave) is subject to
+change while it is still under active development.
+To download and install this (unstable) version of PyCantonese:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install -e git://github.com/jacksonllee/pycantonese.git@master#egg=pycantonese
+</pre></div>
+</div>
+<p>If you notice any issues, please don’t hesitate to
+<a class="reference external" href="https://pycantonese.org/#links">report them</a>.</p>
+<p>While the documentation below is minimal for now, it is going to be updated
+and expanded once the part-of-speech tagging functionality is finalized
+in a new PyCantonese release.</p>
+</div>
 <p><a class="reference internal" href="generated/pycantonese.pos_tag.html#pycantonese.pos_tag" title="pycantonese.pos_tag"><code class="xref py py-func docutils literal notranslate"><span class="pre">pos_tag()</span></code></a>
 tags words in a segmented sentence or phrase for their parts of speech.</p>
 <p><a class="reference internal" href="generated/pycantonese.pos_tagging.hkcancor_to_ud.html#pycantonese.pos_tagging.hkcancor_to_ud" title="pycantonese.pos_tagging.hkcancor_to_ud"><code class="xref py py-func docutils literal notranslate"><span class="pre">hkcancor_to_ud()</span></code></a>
@@ -298,7 +320,7 @@ maps a part-of-speech tag from HKCanCor to Universal Dependencies v2.</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on November 02, 2020
+        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on November 03, 2020
 
     </p>
   </div>

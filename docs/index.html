@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="PyCantonese: Cantonese Linguistics and NLP in Python" name="description" />
-<meta content="pycantonese, cantonese, python, linguistics, language, computational linguistics, natural language processing, nlp, jyutping, 廣東話, 粵語, 粵拼, 語言學, 自然語言處理, 停用詞, 分詞, 詞性標注, 广东话, 粤语, 粤拼, 语言学, 自然语言处理, 停用词, 分词, 词性标注" name="keywords" />
+<meta content="pycantonese, cantonese, python, linguistics, language, computational linguistics, natural language processing, nlp, jyutping, stop words, word segmentation, part-of-speech tagging, 廣東話, 粵語, 粵拼, 語言學, 自然語言處理, 停用詞, 分詞, 詞性標注, 广东话, 粤语, 粤拼, 语言学, 自然语言处理, 停用词, 分词, 词性标注" name="keywords" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
 
   
+  
+    <link rel="shortcut icon" href="_static/pycantonese-logo.ico"/>
   
   
   
@@ -57,6 +59,9 @@
             <a href="#" class="icon icon-home" alt="Documentation Home"> PyCantonese
           
 
+          
+            
+            <img src="_static/pycantonese-logo-white.svg" class="logo" alt="Logo"/>
           
           </a>
 
@@ -269,14 +274,11 @@
             
   <div class="section" id="pycantonese-cantonese-linguistics-and-nlp-in-python">
 <span id="index"></span><h1>PyCantonese: Cantonese Linguistics and NLP in Python<a class="headerlink" href="#pycantonese-cantonese-linguistics-and-nlp-in-python" title="Permalink to this headline">¶</a></h1>
-<p>PyCantonese is a Python library for Cantonese linguistics and natural
-language processing (NLP).
-The goal of PyCantonese is to provide general-purpose tools and other
-functionality to work with Cantonese data. They include corpus search
-functions as well as various analytic and annotation tools;
-these and other possibilities
-are gradually added
-as the library grows and evolves.</p>
+<p>PyCantonese is a Python library for Cantonese linguistics and natural language
+processing (NLP). The goal of PyCantonese is to provide general-purpose tools
+and other functionality to work with Cantonese data. They include corpus search
+functions as well as various analytic and annotation tools; these and other
+possibilities are gradually added as the library grows and evolves.</p>
 <div class="section" id="quick-examples">
 <h2>Quick Examples<a class="headerlink" href="#quick-examples" title="Permalink to this headline">¶</a></h2>
 <p>With PyCantonese imported:</p>
@@ -351,21 +353,53 @@ It is available via <code class="docutils literal notranslate"><span class="pre"
 <li><p>Email: Please contact <a class="reference external" href="https://jacksonllee.com">Jackson Lee</a>.</p></li>
 <li><p>Social media: Updates, tips, and more are posted on the Facebook page below.</p></li>
 </ul>
-<p>
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v8.0" nonce="4Dv3gcYx"></script>
 <div class="fb-page" data-href="https://www.facebook.com/pycantonese/" data-tabs="timeline" data-width="" data-height="" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
     <blockquote cite="https://www.facebook.com/pycantonese/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/pycantonese/">PyCantonese: Cantonese Linguistics and NLP in Python</a></blockquote>
+</div><div class="line-block">
+<div class="line"><br /></div>
 </div>
-</p>
 </div>
 <div class="section" id="how-to-cite">
 <h2>How to Cite<a class="headerlink" href="#how-to-cite" title="Permalink to this headline">¶</a></h2>
-<p>PyCantonese is maintained by
-<a class="reference external" href="https://jacksonllee.com">Jackson Lee</a>.</p>
+<p>PyCantonese is authored and mainteined by <a class="reference external" href="https://jacksonllee.com">Jackson L. Lee</a>.</p>
 <p>A talk introducing PyCantonese:</p>
-<p>Jackson L. Lee. 2015. PyCantonese: Cantonese linguistic research in the age of big data. Talk at the Childhood Bilingualism Research Centre, Chinese University of Hong Kong. September 15. 2015. <a class="reference external" href="https://pycantonese.org/papers/Lee-pycantonese-2015.html">[Notes+slides]</a></p>
-<p>See <a class="reference internal" href="papers.html#papers"><span class="std std-ref">Research Outputs</span></a> for a running list of our work.</p>
+<p>Lee, Jackson L. 2015. PyCantonese: Cantonese linguistic research in the age of big data.
+Talk at the Childhood Bilingualism Research Centre, Chinese University of Hong Kong. September 15. 2015.
+<a class="reference external" href="https://pycantonese.org/papers/Lee-pycantonese-2015.html">Notes+slides</a></p>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>MIT License. Please see <code class="docutils literal notranslate"><span class="pre">LICENSE.txt</span></code> in the GitHub source code for details.</p>
+<p>The HKCanCor dataset included in PyCantonese is substantially modified from
+its source in terms of format. The original dataset has a CC BY license.
+Please see <code class="docutils literal notranslate"><span class="pre">pycantonese/data/hkcancor/README.md</span></code>
+in the GitHub source code for details.</p>
+<p>The rime-cantonese data (release 2020.09.09) is
+incorporated into PyCantonese for word segmentation and
+characters-to-Jyutping conversion.
+This data has a CC BY 4.0 license.
+Please see <code class="docutils literal notranslate"><span class="pre">pycantonese/data/rime_cantonese/README.md</span></code>
+in the GitHub source code for details.</p>
+</div>
+<div class="section" id="acknowledgments">
+<h2>Acknowledgments<a class="headerlink" href="#acknowledgments" title="Permalink to this headline">¶</a></h2>
+<p>Individuals who have contributed feedback, bug reports, etc.
+(in alphabetical order of last names if known):</p>
+<ul class="simple">
+<li><p>&#64;cathug</p></li>
+<li><p>Litong Chen</p></li>
+<li><p>&#64;g-traveller</p></li>
+<li><p>Rachel Han</p></li>
+<li><p>Charles Lam</p></li>
+<li><p>Hill Ma</p></li>
+<li><p>&#64;richielo</p></li>
+<li><p>&#64;rylanchiu</p></li>
+<li><p>Stephan Stiller</p></li>
+<li><p>Tsz-Him Tsui</p></li>
+</ul>
+<p>Logo design by albino.snowman (Instagram handle).</p>
 </div>
 <div class="section" id="table-of-contents">
 <h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
@@ -452,7 +486,7 @@ It is available via <code class="docutils literal notranslate"><span class="pre"
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on November 02, 2020
+        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on November 03, 2020
 
     </p>
   </div>

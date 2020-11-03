@@ -16,6 +16,8 @@
 
   
   
+    <link rel="shortcut icon" href="../../../_static/pycantonese-logo.ico"/>
+  
   
   
     <link rel="canonical" href="https://pycantonese.org/_modules/pycantonese/pos_tagging/tagger.html"/>
@@ -54,6 +56,9 @@
             <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> PyCantonese
           
 
+          
+            
+            <img src="../../../_static/pycantonese-logo-white.svg" class="logo" alt="Logo"/>
           
           </a>
 
@@ -573,9 +578,15 @@
 
 
 <span class="c1"># TODO: Write tests.</span>
-<span class="c1"># TODO: Improve documentation. Add examples.</span>
 <div class="viewcode-block" id="pos_tag"><a class="viewcode-back" href="../../../generated/pycantonese.pos_tag.html#pycantonese.pos_tag">[docs]</a><span class="k">def</span> <span class="nf">pos_tag</span><span class="p">(</span><span class="n">words</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Tag the words for their parts of speech.</span>
+
+<span class="sd">    .. versionadded:: 3.1.0</span>
+
+<span class="sd">    .. warning::</span>
+<span class="sd">        As of November 2020, PyCantonese v3.1.0 hasn&#39;t been released yet.</span>
+<span class="sd">        The availability and behavior of this function are subject to change</span>
+<span class="sd">        in the upcoming release.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -591,7 +602,13 @@
 <span class="sd">    Raises</span>
 <span class="sd">    ------</span>
 <span class="sd">    TypeError</span>
-<span class="sd">        If the input is a string.</span>
+<span class="sd">        If the input is a string (e.g., an unsegmented string of Cantonse).</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; words = [&#39;我&#39;, &#39;噚日&#39;, &#39;買&#39;, &#39;嗰&#39;, &#39;對&#39;, &#39;鞋&#39;, &#39;。&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; pos_tag(words)  # I bought those shoes yesterday.</span>
+<span class="sd">    [&#39;PRON&#39;, &#39;ADV&#39;, &#39;VERB&#39;, &#39;PRON&#39;, &#39;NOUN&#39;, &#39;NOUN&#39;, &#39;PUNCT&#39;]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">words</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
@@ -611,7 +628,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on November 02, 2020
+        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on November 03, 2020
 
     </p>
   </div>

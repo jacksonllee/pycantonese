@@ -16,6 +16,8 @@
 
   
   
+    <link rel="shortcut icon" href="../../../_static/pycantonese-logo.ico"/>
+  
   
   
     <link rel="canonical" href="https://pycantonese.org/_modules/pycantonese/pos_tagging/hkcancor_to_ud.html"/>
@@ -54,6 +56,9 @@
             <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> PyCantonese
           
 
+          
+            
+            <img src="../../../_static/pycantonese-logo-white.svg" class="logo" alt="Logo"/>
           
           </a>
 
@@ -347,9 +352,9 @@
     <span class="s2">&quot;RG&quot;</span><span class="p">:</span> <span class="s2">&quot;PRON&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Pronoun Morpheme</span>
     <span class="s2">&quot;S&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Space Word</span>
     <span class="s2">&quot;SOUND0&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># In &quot;Manchester&#39;s Sound&quot;</span>
-    <span class="s2">&quot;T&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Time Word</span>
+    <span class="s2">&quot;T&quot;</span><span class="p">:</span> <span class="s2">&quot;ADV&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Time Word</span>
     <span class="s2">&quot;TELECOM0&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># In &quot;Hong Kong Telecom&quot;</span>
-    <span class="s2">&quot;TG&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Time Word Morpheme</span>
+    <span class="s2">&quot;TG&quot;</span><span class="p">:</span> <span class="s2">&quot;ADV&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Time Word Morpheme</span>
     <span class="s2">&quot;TOUCH0&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># In &quot;Don&#39;t Touch&quot; (a magazine)</span>
     <span class="s2">&quot;U&quot;</span><span class="p">:</span> <span class="s2">&quot;PART&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Auxiliary (e.g., ge3 嘅 after an attributive adj)</span>
     <span class="s2">&quot;U0&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># U as in &quot;Hong Kong U&quot; (= The University of Hong Kong)</span>
@@ -403,12 +408,22 @@
 
 <span class="sd">    HKCanCor uses a part-of-speech tagset of over 100 tags (46 of which</span>
 <span class="sd">    are described at http://compling.hss.ntu.edu.sg/hkcancor/).</span>
-<span class="sd">    These tags are mapped to one of the 17 tags in the Universal Dependencies</span>
-<span class="sd">    v2 tagset (https://universaldependencies.org/u/pos/index.html).</span>
+<span class="sd">    For applications that would benefit from a less granular part-of-speech</span>
+<span class="sd">    tagset (e.g, part-of-speech tagging, especially when only major word</span>
+<span class="sd">    classes are of interest and/or when there&#39;s not sufficient annotated</span>
+<span class="sd">    data for training), we can map the HKCanCor tagset to</span>
+<span class="sd">    the Universal Dependencies v2 tagset with 17 tags</span>
+<span class="sd">    (https://universaldependencies.org/u/pos/index.html)</span>
+<span class="sd">    -- the purpose of this function.</span>
 
 <span class="sd">    Any unrecognized tag is mapped to ``&quot;X&quot;``.</span>
 
 <span class="sd">    .. versionadded:: 3.1.0</span>
+
+<span class="sd">    .. warning::</span>
+<span class="sd">        As of November 2020, PyCantonese v3.1.0 hasn&#39;t been released yet.</span>
+<span class="sd">        The availability and behavior of this function are subject to change</span>
+<span class="sd">        in the upcoming release.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -445,7 +460,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on November 02, 2020
+        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on November 03, 2020
 
     </p>
   </div>

@@ -3,6 +3,8 @@
 Research Outputs
 ================
 
+Talks introducing PyCantonese:
+
 Jackson L. Lee, Litong Chen, and Tsz-Him Tsui. 2016. PyCantonese: Developing computational tools for Cantonese linguistics.
 Talk at the 3rd Workshop on Innovations in Cantonese Linguistics, The Ohio State University.
 March 12. 2016.
