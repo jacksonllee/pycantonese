@@ -1,12 +1,21 @@
 import os
+import re
 from setuptools import setup, find_packages
 
 
 _THIS_DIR = os.path.dirname(__file__)
-with open(os.path.join(_THIS_DIR, "README.rst")) as f:
-    _LONG_DESCRIPTION = f.read().strip()
 
 _VERSION = "3.0.0"
+
+
+def _get_long_description():
+    with open(os.path.join(_THIS_DIR, "README.rst")) as f:
+        readme = f.read().strip()
+    # PyPI / twine doesn't accept the `raw` directive in reStructuredText.
+    long_description = re.sub(
+        r"\.\. start-raw-directive[\s\S]+?\.\. end-raw-directive", "", readme
+    )
+    return long_description
 
 
 def main():
@@ -14,7 +23,7 @@ def main():
         name="pycantonese",
         version=_VERSION,
         description="PyCantonese",
-        long_description=_LONG_DESCRIPTION,
+        long_description=_get_long_description(),
         long_description_content_type="text/x-rst",
         url="https://pycantonese.org",
         project_urls={
@@ -42,7 +51,11 @@ def main():
         setup_requires="setuptools>=39",
         install_requires=["pylangacq>=0.12.0,<1.0.0", "wordseg==0.0.2"],
         package_data={
-            "pycantonese": ["data/hkcancor/*", "data/rime_cantonese/*"],
+            "pycantonese": [
+                "data/hkcancor/*",
+                "data/rime_cantonese/*",
+                "pos_tagging/*.pickle",
+            ],
         },
         data_files=[(".", ["README.rst", "LICENSE.txt", "CHANGELOG.md"])],
         zip_safe=False,
