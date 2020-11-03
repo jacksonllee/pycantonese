@@ -80,9 +80,9 @@ _MAP = {
     "RG": "PRON",  # HKCanCor: Pronoun Morpheme
     "S": "NOUN",  # HKCanCor: Space Word
     "SOUND0": "PROPN",  # In "Manchester's Sound"
-    "T": "NOUN",  # HKCanCor: Time Word
+    "T": "ADV",  # HKCanCor: Time Word
     "TELECOM0": "PROPN",  # In "Hong Kong Telecom"
-    "TG": "NOUN",  # HKCanCor: Time Word Morpheme
+    "TG": "ADV",  # HKCanCor: Time Word Morpheme
     "TOUCH0": "PROPN",  # In "Don't Touch" (a magazine)
     "U": "PART",  # HKCanCor: Auxiliary (e.g., ge3 嘅 after an attributive adj)
     "U0": "PROPN",  # U as in "Hong Kong U" (= The University of Hong Kong)
@@ -136,12 +136,22 @@ def hkcancor_to_ud(tag: str = None):
 
     HKCanCor uses a part-of-speech tagset of over 100 tags (46 of which
     are described at http://compling.hss.ntu.edu.sg/hkcancor/).
-    These tags are mapped to one of the 17 tags in the Universal Dependencies
-    v2 tagset (https://universaldependencies.org/u/pos/index.html).
+    For applications that would benefit from a less granular part-of-speech
+    tagset (e.g, part-of-speech tagging, especially when only major word
+    classes are of interest and/or when there's not sufficient annotated
+    data for training), we can map the HKCanCor tagset to
+    the Universal Dependencies v2 tagset with 17 tags
+    (https://universaldependencies.org/u/pos/index.html)
+    -- the purpose of this function.
 
     Any unrecognized tag is mapped to ``"X"``.
 
     .. versionadded:: 3.1.0
+
+    .. warning::
+        As of November 2020, PyCantonese v3.1.0 hasn't been released yet.
+        The availability and behavior of this function are subject to change
+        in the upcoming release.
 
     Parameters
     ----------

@@ -306,9 +306,15 @@ def _get_tagger():
 
 
 # TODO: Write tests.
-# TODO: Improve documentation. Add examples.
 def pos_tag(words):
     """Tag the words for their parts of speech.
+
+    .. versionadded:: 3.1.0
+
+    .. warning::
+        As of November 2020, PyCantonese v3.1.0 hasn't been released yet.
+        The availability and behavior of this function are subject to change
+        in the upcoming release.
 
     Parameters
     ----------
@@ -324,7 +330,13 @@ def pos_tag(words):
     Raises
     ------
     TypeError
-        If the input is a string.
+        If the input is a string (e.g., an unsegmented string of Cantonse).
+
+    Examples
+    --------
+    >>> words = ['我', '噚日', '買', '嗰', '對', '鞋', '。']
+    >>> pos_tag(words)  # I bought those shoes yesterday.
+    ['PRON', 'ADV', 'VERB', 'PRON', 'NOUN', 'NOUN', 'PUNCT']
     """
     if type(words) == str:
         raise TypeError(
