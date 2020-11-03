@@ -3,6 +3,8 @@
 Stop Words
 ==========
 
+.. versionadded:: 2.2.0
+
 In many natural language processing tasks, it is often necessary to filter
 stop words, English examples of which include function words such as
 pronouns and determiners. PyCantonese provides the function

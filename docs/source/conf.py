@@ -135,6 +135,7 @@ html_theme = 'sphinx_rtd_theme'
 html_theme_options = {
     "collapse_navigation": False,
     "canonical_url": "https://pycantonese.org/",
+    "analytics_id": "G-KG6V9GL0NC",
 }
 
 # Add any paths that contain custom themes here, relative to this directory.

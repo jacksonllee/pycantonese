@@ -8,6 +8,15 @@
 PyCantonese: Cantonese Linguistics and NLP in Python
 ====================================================
 
+.. meta::
+   :description:
+        PyCantonese: Cantonese Linguistics and NLP in Python
+   :keywords:
+        pycantonese, cantonese, python, linguistics, language,
+        computational linguistics, natural language processing, nlp, jyutping,
+        廣東話, 粵語, 粵拼, 語言學, 自然語言處理, 停用詞, 分詞, 詞性標注,
+        广东话, 粤语, 粤拼, 语言学, 自然语言处理, 停用词, 分词, 词性标注
+
 PyCantonese is a Python library for Cantonese linguistics and natural
 language processing (NLP).
 The goal of PyCantonese is to provide general-purpose tools and other
@@ -88,15 +97,13 @@ To test your installation in the Python interpreter:
     >>> import pycantonese as pc
     >>> pc.__version__  # show version number
 
-Technical Support, Library Development, etc.
---------------------------------------------
+Links
+-----
 
-Questions, bug reports and suggested features are more than welcome.
-Please create issues on the
-`GitHub page <https://github.com/jacksonllee/pycantonese>`_.
-Alternatively, you may contact `Jackson Lee <https://jacksonllee.com>`_.
-
-For updates, tips, and more:
+* Source code: https://github.com/jacksonllee/pycantonese
+* Bug tracker, feature requests: https://github.com/jacksonllee/pycantonese/issues
+* Email: Please contact `Jackson Lee <https://jacksonllee.com>`_.
+* Social media: Updates, tips, and more are posted on the Facebook page below.
 
 #social-media#
 
@@ -126,4 +133,5 @@ Table of Contents
     word_segmentation
     pos_tagging
     api
+    changelog
     papers

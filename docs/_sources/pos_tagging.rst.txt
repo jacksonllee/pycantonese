@@ -3,6 +3,8 @@
 Part-of-Speech Tagging
 ======================
 
+.. versionadded:: 3.1.0
+
 :func:`~pycantonese.pos_tag`
 tags words in a segmented sentence or phrase for their parts of speech.
 

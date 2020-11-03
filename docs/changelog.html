@@ -1,0 +1,578 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Changelog &mdash; PyCantonese 3.0.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+    <link rel="canonical" href="https://pycantonese.org/changelog.html"/>
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Research Outputs" href="papers.html" />
+    <link rel="prev" title="pycantonese.pos_tagging.hkcancor_to_ud" href="generated/pycantonese.pos_tagging.hkcancor_to_ud.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> PyCantonese
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.0.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="data.html">Corpus Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data.html#the-chat-transcription-format">The CHAT Transcription Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#accessing-built-in-data">Accessing Built-in Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#accessing-custom-data">Accessing Custom Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reader.html">Corpus Reader Methods</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reader.html#the-representation-of-words">The Representation of “Words”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reader.html#a-note-on-the-access-methods">A Note on the Access Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reader.html#full-reader-api">Full Reader API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="searches.html">Corpus Search Queries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-a-jyutping-element">Searching by a Jyutping Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-a-chinese-character">Searching by a Chinese Character</a></li>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-a-part-of-speech-tag">Searching by a Part-of-speech Tag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-a-word-or-sentence-range">Searching by a Word or Sentence Range</a></li>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-multiple-criteria">Searching by Multiple Criteria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#output-format-of-search-results">Output Format of Search Results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="jyutping.html">Jyutping Romanization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="jyutping.html#characters-to-jyutping-conversion">Characters-to-Jyutping Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jyutping.html#parsing-jyutping-strings">Parsing Jyutping Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jyutping.html#jyutping-to-yale-conversion">Jyutping-to-Yale Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jyutping.html#jyutping-to-tipa-conversion">Jyutping-to-TIPA Conversion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="stop_words.html">Stop Words</a></li>
+<li class="toctree-l1"><a class="reference internal" href="word_segmentation.html">Word Segmentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="word_segmentation.html#customizing-segmentation">Customizing Segmentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pos_tagging.html">Part-of-Speech Tagging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#corpus-data">Corpus Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.read_chat.html">pycantonese.read_chat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.hkcancor.html">pycantonese.hkcancor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.corpus.CantoneseCHATReader.html">pycantonese.corpus.CantoneseCHATReader</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/pycantonese.corpus.CantoneseCHATReader.search.html">pycantonese.corpus.CantoneseCHATReader.search</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.corpus.CantoneseCHATReader.search.html">pycantonese.corpus.CantoneseCHATReader.search</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#jyutping-romanization">Jyutping Romanization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.characters_to_jyutping.html">pycantonese.characters_to_jyutping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.parse_jyutping.html">pycantonese.parse_jyutping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.jyutping_to_yale.html">pycantonese.jyutping_to_yale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.jyutping_to_tipa.html">pycantonese.jyutping_to_tipa</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#natural-language-processing">Natural Language Processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.stop_words.html">pycantonese.stop_words</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.segment.html">pycantonese.segment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.word_segmentation.Segmenter.html">pycantonese.word_segmentation.Segmenter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.pos_tag.html">pycantonese.pos_tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.pos_tagging.hkcancor_to_ud.html">pycantonese.pos_tagging.hkcancor_to_ud</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#unreleased">[Unreleased]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#added">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#changed">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#deprecated">Deprecated</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#removed">Removed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fixed">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#security">Security</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">[3.0.0] - 2020-10-25</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Changed</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#api-breaking-changes">API-breaking Changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#non-api-breaking-changes">Non-API-breaking Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Deprecated</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Security</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">[2.4.1] - 2020-10-10</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">[2.4.0] - 2020-10-10</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Added</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id11">[2.3.0] - 2020-07-24</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id12">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">Removed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id14">[2.2.0] - 2018-06-30</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id15">Added</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id16">[2.1.0] - 2018-06-11</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id17">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id19">[2.0.0] - 2016-02-06</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id25">[1.0] - 2015-09-06</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dev-2015-09-02">[1.0dev] - 2015-09-02</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id26">[0.2.1] - 2015-01-25</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id27">[0.2] - 2015-01-22</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id28">[0.1] - 2014-12-17</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="papers.html">Research Outputs</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyCantonese</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Changelog</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="changelog">
+<span id="id1"></span><h1>Changelog<a class="headerlink" href="#changelog" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="unreleased">
+<h2>[Unreleased]<a class="headerlink" href="#unreleased" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="added">
+<h3>Added<a class="headerlink" href="#added" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Part-of-speech tagging:</p>
+<ul>
+<li><p>Added the function <code class="docutils literal notranslate"><span class="pre">pos_tag</span></code> that takes a segmented sentence or phrase
+and returns its part-of-speech tags.</p></li>
+<li><p>Added the function <code class="docutils literal notranslate"><span class="pre">hkcancor_to_ud</span></code> that maps a part-of-speech tag
+from the original HKCanCor annotated data to one of the tags from the
+Universal Dependencies v2 tagset.</p></li>
+</ul>
+</li>
+<li><p>Word segmentation:</p>
+<ul>
+<li><p>Improved segmentation quality by revising the underlying wordlist data.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="changed">
+<h3>Changed<a class="headerlink" href="#changed" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="deprecated">
+<h3>Deprecated<a class="headerlink" href="#deprecated" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="removed">
+<h3>Removed<a class="headerlink" href="#removed" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="fixed">
+<h3>Fixed<a class="headerlink" href="#fixed" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="security">
+<h3>Security<a class="headerlink" href="#security" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>[3.0.0] - 2020-10-25<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h3>Added<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Word segmentation:</p>
+<ul>
+<li><p>Segmentation is customizable for the following:</p>
+<ul>
+<li><p>Maximum word length</p></li>
+<li><p>A user-supplied list of words to allow as words</p></li>
+<li><p>A user-supplied list of words to disallow as words</p></li>
+</ul>
+</li>
+<li><p>The default segmentation model has been improved with the rime-cantonese data (CC BY 4.0 license).</p></li>
+</ul>
+</li>
+<li><p>Characters-to-Jyutping conversion:</p>
+<ul>
+<li><p>The conversion returns results in a word-segmented form.</p></li>
+<li><p>The conversion model has been improved with the rime-cantonese data (CC BY 4.0 license).</p></li>
+</ul>
+</li>
+<li><p>Added the following functions; they are equivalent to their (now deprecated)
+<code class="docutils literal notranslate"><span class="pre">x2y</span></code> counterparts:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">characters_to_jyutping</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">jyutping_to_tipa</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">jyutping_to_yale</span></code></p></li>
+</ul>
+</li>
+<li><p>Added support for Python 3.9.</p></li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h3>Changed<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="api-breaking-changes">
+<h4>API-breaking Changes<a class="headerlink" href="#api-breaking-changes" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">jyutping_to_yale</span></code>: The default value of the keyword argument <code class="docutils literal notranslate"><span class="pre">as_list</span></code> has
+been changed from <code class="docutils literal notranslate"><span class="pre">False</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code>, so that this function is now more in
+line with the other “jyutping_to_X” functions for returning a list.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">characters_to_jyutping</span></code>: The returned valued is now a list of segmented words,
+where each is a 2-tuple of (Cantonese characters, Jyutping).
+Previously, it was a list of Jyutping strings for the individual
+Cantonese characters.</p></li>
+</ul>
+</div>
+<div class="section" id="non-api-breaking-changes">
+<h4>Non-API-breaking Changes<a class="headerlink" href="#non-api-breaking-changes" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>Switched documentation to the readthedocs theme and numpydoc docstring style.</p></li>
+<li><p>Improved CircleCI builds with orbs.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>Deprecated<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The following <code class="docutils literal notranslate"><span class="pre">x2y</span></code> functions have been deprecated in favor of their
+equivalents named in the form of <code class="docutils literal notranslate"><span class="pre">x_to_y</span></code>.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">characters2jyutping</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">jyutping2tipa</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">jyutping2yale</span></code></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h3>Security<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Turned on HTTPS for the pycantonese.org domain.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>[2.4.1] - 2020-10-10<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id8">
+<h3>Fixed<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Switched to the <code class="docutils literal notranslate"><span class="pre">wordseg</span></code> dependency to a PyPI source instead of a
+GitHub direct link.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id9">
+<h2>[2.4.0] - 2020-10-10<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id10">
+<h3>Added<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Added the <code class="docutils literal notranslate"><span class="pre">characters2jyutping()</span></code> function for converting
+Cantonese characters to Jyutping romanization.</p></li>
+<li><p>Added the <code class="docutils literal notranslate"><span class="pre">segment()</span></code> function for word segmentation.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id11">
+<h2>[2.3.0] - 2020-07-24<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id12">
+<h3>Added<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Added support for Python 3.7 and 3.8.</p></li>
+</ul>
+</div>
+<div class="section" id="id13">
+<h3>Removed<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Dropped support for Python 3.4 and 3.5 (supporting 3.6, 3.7, and 3.8 now).</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id14">
+<h2>[2.2.0] - 2018-06-30<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id15">
+<h3>Added<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>104 stop words.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id16">
+<h2>[2.1.0] - 2018-06-11<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id17">
+<h3>Added<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Exposed the <code class="docutils literal notranslate"><span class="pre">exclude</span></code> parameter in various reader methods
+for excluding specific participants. This parameter was implemented at
+pylangacq v0.10.0.</p></li>
+</ul>
+</div>
+<div class="section" id="id18">
+<h3>Fixed<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Allowed “n” to be a syllabic nasal.</p></li>
+<li><p>Fixed corpus reader not picking up the characters.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id19">
+<h2>[2.0.0] - 2016-02-06<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>PyCantonese now requires Python 3.4 or above.</p></li>
+<li><p>Adopted the CHAT corpus format, piggybacking on <a class="reference external" href="http://pylangacq.org/">PyLangAcq</a></p></li>
+<li><p>Converted HKCanCor into the CHAT format</p></li>
+<li><p>Switched to transparent function names
+(cf. issue <a class="reference external" href="https://github.com/pycantonese/pycantonese/issues/10">#10</a>): <code class="docutils literal notranslate"><span class="pre">parse_jyutping()</span></code>, <code class="docutils literal notranslate"><span class="pre">jyutping2yale()</span></code>, <code class="docutils literal notranslate"><span class="pre">jyutping2tipa()</span></code></p></li>
+<li><p>Bug fixes: issues
+<a class="reference external" href="https://github.com/pycantonese/pycantonese/issues/6">#6</a>,
+<a class="reference external" href="https://github.com/pycantonese/pycantonese/issues/7">#7</a>,
+<a class="reference external" href="https://github.com/pycantonese/pycantonese/issues/8">#8</a>
+<a class="reference external" href="https://github.com/pycantonese/pycantonese/issues/9">#9</a></p></li>
+</ul>
+</div>
+<div class="section" id="id25">
+<h2>[1.0] - 2015-09-06<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fixed the Jyutping-Yale conversion issue with “yu”</p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">number_of_words()</span></code> and <code class="docutils literal notranslate"><span class="pre">number_of_characters()</span></code> for corpus access</p></li>
+<li><p>Forced all part-of-speech tags
+(both in searches and internal to corpus objects)
+in caps, in line with the NLTK convention</p></li>
+</ul>
+</div>
+<div class="section" id="dev-2015-09-02">
+<h2>[1.0dev] - 2015-09-02<a class="headerlink" href="#dev-2015-09-02" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Overall code restructuring</p></li>
+<li><p>Only Python 3.x is supported from this point onwards</p></li>
+<li><p>Used generators instead of lists for corpus access methods</p></li>
+<li><p>Added the part-of-speech search criterion</p></li>
+<li><p>Added Jyutping-to-Yale conversion</p></li>
+<li><p>Added Jyutping-to-TIPA conversion</p></li>
+<li><p>Disabled the function for reading a custom corpus dataset (it will come back)</p></li>
+</ul>
+</div>
+<div class="section" id="id26">
+<h2>[0.2.1] - 2015-01-25<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fixed corpus access path issues</p></li>
+</ul>
+</div>
+<div class="section" id="id27">
+<h2>[0.2] - 2015-01-22<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="http://compling.hss.ntu.edu.sg/hkcancor/">The Hong Kong Cantonese Corpus</a> is included in the package.</p></li>
+<li><p>A general-purpose <code class="docutils literal notranslate"><span class="pre">search()</span></code> function is defined, replacing the
+element-specific search functions from version 0.1.</p></li>
+</ul>
+</div>
+<div class="section" id="id28">
+<h2>[0.1] - 2014-12-17<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Basic functions available, including…</p></li>
+<li><p>Parsing Jyutping romanization</p></li>
+<li><p>Reading a tagged corpus data folder</p></li>
+<li><p>Searching by a given element (onset/initial, nucleus, coda, final, character)</p></li>
+<li><p>Searching by a character plus a range</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="papers.html" class="btn btn-neutral float-right" title="Research Outputs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="generated/pycantonese.pos_tagging.hkcancor_to_ud.html" class="btn btn-neutral float-left" title="pycantonese.pos_tagging.hkcancor_to_ud" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on November 02, 2020
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'G-KG6V9GL0NC', 'auto');
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

@@ -18,6 +18,8 @@ PyCantonese provides tools for these use cases.
 Characters-to-Jyutping Conversion
 ---------------------------------
 
+.. versionadded:: 2.4.0
+
 The function :func:`~pycantonese.characters_to_jyutping`
 takes a string of Cantonese characters
 and returns its word-segmented version with Jyutping romanization:
