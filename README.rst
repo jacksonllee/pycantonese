@@ -55,7 +55,7 @@ With PyCantonese imported:
 
 .. code-block:: python
 
-    >>> pc.characters2jyutping('香港人講廣東話')  # Hongkongers speak Cantonese
+    >>> pc.characters_to_jyutping('香港人講廣東話')  # Hongkongers speak Cantonese
     [("香港人", "hoeng1gong2jan4"), ("講", "gong2"), ("廣東話", "gwong2dung1waa2")]
 
 3. Finding all verbs in the HKCanCor corpus
