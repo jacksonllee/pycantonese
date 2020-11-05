@@ -38,13 +38,18 @@ import pycantonese
 autosummary_generate = True
 
 extensions = [
-    'sphinx.ext.autodoc',
-    'sphinx.ext.doctest',
-    'sphinx.ext.autosummary',
+    "sphinx.ext.autodoc",
+    "sphinx.ext.doctest",
+    "sphinx.ext.autosummary",
     "sphinx.ext.viewcode",
     "sphinx_rtd_theme",
     "numpydoc.numpydoc",
+    "sphinx_sitemap",
 ]
+
+# See https://pypi.org/project/sphinx-sitemap/2.2.0/
+html_baseurl = "https://pycantonese.org/"
+sitemap_url_scheme = "{link}"
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -135,7 +140,7 @@ html_theme = 'sphinx_rtd_theme'
 html_theme_options = {
     "collapse_navigation": False,
     "canonical_url": "https://pycantonese.org/",
-    "analytics_id": "G-KG6V9GL0NC",
+    "analytics_id": "UA-181803559",
 }
 
 # Add any paths that contain custom themes here, relative to this directory.

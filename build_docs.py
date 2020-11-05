@@ -42,8 +42,17 @@ def create_changelog_rst():
         f.write(changelog_rst)
 
 
+def create_robots_txt():
+    logging.info("Creating robots.txt")
+    with open(os.path.join(_DOCS, "robots.txt"), "w") as f:
+        f.write(
+            "User-agent: *\n\nSitemap: https://pycantonese.org/sitemap.xml\n"
+        )
+
+
 if __name__ == "__main__":
     logging.basicConfig(level="INFO")
     remove_generated_docs()
     rebuild_docs()
     create_changelog_rst()
+    create_robots_txt()
