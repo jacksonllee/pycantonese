@@ -31,20 +31,20 @@ def rebuild_docs():
 
 def create_changelog_rst():
     logging.info("Creating changelog.rst")
-    with open(os.path.join(_THIS_DIR, "CHANGELOG.md")) as f:
+    with open(os.path.join(_THIS_DIR, "CHANGELOG.md"), encoding="utf8") as f:
         changelog_md = f.read()
     changelog_rst = (
         ".. _changelog:\n\n"
         + "Changelog\n=========\n"
         + m2r.convert(changelog_md[changelog_md.index("## [Unreleased]"):])
     )
-    with open(os.path.join(_DOCS_SOURCE, "changelog.rst"), "w") as f:
+    with open(os.path.join(_DOCS_SOURCE, "changelog.rst"), "w", encoding="utf8") as f:
         f.write(changelog_rst)
 
 
 def create_robots_txt():
     logging.info("Creating robots.txt")
-    with open(os.path.join(_DOCS, "robots.txt"), "w") as f:
+    with open(os.path.join(_DOCS, "robots.txt"), "w", encoding="utf8") as f:
         f.write(
             "User-agent: *\n\nSitemap: https://pycantonese.org/sitemap.xml\n"
         )

@@ -93,7 +93,9 @@ def _download_chars_jyutping_data(yaml_filename, json_filename):
             )[0][0]
         chars_to_jyutping[chars] = jyutping
 
-    with open(os.path.join(_THIS_DIR, json_filename), "w") as f:
+    with open(
+        os.path.join(_THIS_DIR, json_filename), "w", encoding="utf8"
+    ) as f:
         json.dump(chars_to_jyutping, f, indent=4, ensure_ascii=False)
 
 
@@ -123,17 +125,21 @@ def _download_chars_data(yaml_filename, json_filename):
                         continue
                     chars.append(line)
 
-    with open(os.path.join(_THIS_DIR, json_filename), "w") as f:
+    with open(
+        os.path.join(_THIS_DIR, json_filename), "w", encoding="utf8"
+    ) as f:
         json.dump(chars, f, indent=4, ensure_ascii=False)
 
 
 def _resegment_chars_jyutping_data(json_filename):
     json_path = os.path.join(_THIS_DIR, json_filename)
 
-    with open(json_path) as f:
+    with open(json_path, encoding="utf8") as f:
         chars_to_jyutping = json.load(f)
 
-    with open(os.path.join(_THIS_DIR, _RESEGMENTED_FILENAME)) as f:
+    with open(
+        os.path.join(_THIS_DIR, _RESEGMENTED_FILENAME), encoding="utf8"
+    ) as f:
         resegmented = {}
         for line in f:
             line = line.strip()
@@ -178,7 +184,7 @@ def _resegment_chars_jyutping_data(json_filename):
         else:
             new_chars_to_jyutping[chars] = jp
 
-    with open(json_path, "w") as f:
+    with open(json_path, "w", encoding="utf8") as f:
         json.dump(new_chars_to_jyutping, f, indent=4, ensure_ascii=False)
 
 

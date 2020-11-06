@@ -20,6 +20,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Deprecated
 ### Removed
 ### Fixed
+* Fixed the issue of not opening text files with UTF-8 encoding
+  (a possible issue on Windows).
+
 ### Security
 
 ## [3.0.0] - 2020-10-25

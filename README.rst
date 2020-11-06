@@ -165,6 +165,7 @@ Individuals who have contributed feedback, bug reports, etc.
 - Litong Chen
 - @g-traveller
 - Rachel Han
+- Ryan Lai
 - Charles Lam
 - Hill Ma
 - @richielo

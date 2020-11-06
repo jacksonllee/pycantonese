@@ -9,7 +9,7 @@ _VERSION = "3.0.0"
 
 
 def _get_long_description():
-    with open(os.path.join(_THIS_DIR, "README.rst")) as f:
+    with open(os.path.join(_THIS_DIR, "README.rst"), encoding="utf8") as f:
         readme = f.read().strip()
     # PyPI / twine doesn't accept the `raw` directive in reStructuredText.
     long_description = re.sub(
