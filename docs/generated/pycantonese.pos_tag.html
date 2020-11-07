@@ -279,6 +279,12 @@
 <dt id="pycantonese.pos_tag">
 <code class="sig-prename descclassname">pycantonese.</code><code class="sig-name descname">pos_tag</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">words</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycantonese/pos_tagging/tagger.html#pos_tag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycantonese.pos_tag" title="Permalink to this definition">¶</a></dt>
 <dd><p>Tag the words for their parts of speech.</p>
+<p>The part-of-speech tagger is trained by the HKCanCor data.
+While HKCanCor uses a part-of-speech tagset of over 100 tags (46 of which
+are described at <a class="reference external" href="http://compling.hss.ntu.edu.sg/hkcancor/">http://compling.hss.ntu.edu.sg/hkcancor/</a>),
+these tags have been mapped to the much smaller Universal Dependencies v2
+tagset of 17 tags (<a class="reference external" href="https://universaldependencies.org/u/pos/index.html">https://universaldependencies.org/u/pos/index.html</a>)
+for training this POS tagger.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 3.1.0.</span></p>
 </div>
@@ -298,13 +304,14 @@ Cantonese characters.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>list[str]</dt><dd><p>The list of predicted tags.</p>
+<dt>list[tuple[str, str]]</dt><dd><p>The segmented sentence/phrase where each word is paired with its
+predicted POS tag.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-odd">Raises</dt>
 <dd class="field-odd"><dl class="simple">
-<dt>TypeError</dt><dd><p>If the input is a string (e.g., an unsegmented string of Cantonse).</p>
+<dt>TypeError</dt><dd><p>If the input is a string (e.g., an unsegmented string of Cantonese).</p>
 </dd>
 </dl>
 </dd>
@@ -312,7 +319,13 @@ Cantonese characters.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;我&#39;</span><span class="p">,</span> <span class="s1">&#39;噚日&#39;</span><span class="p">,</span> <span class="s1">&#39;買&#39;</span><span class="p">,</span> <span class="s1">&#39;嗰&#39;</span><span class="p">,</span> <span class="s1">&#39;對&#39;</span><span class="p">,</span> <span class="s1">&#39;鞋&#39;</span><span class="p">,</span> <span class="s1">&#39;。&#39;</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pos_tag</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>  <span class="c1"># I bought those shoes yesterday.</span>
-<span class="go">[&#39;PRON&#39;, &#39;ADV&#39;, &#39;VERB&#39;, &#39;PRON&#39;, &#39;NOUN&#39;, &#39;NOUN&#39;, &#39;PUNCT&#39;]</span>
+<span class="go">[(&#39;我&#39;, &#39;PRON&#39;),</span>
+<span class="go"> (&#39;噚日&#39;, &#39;ADV&#39;),</span>
+<span class="go"> (&#39;買&#39;, &#39;VERB&#39;),</span>
+<span class="go"> (&#39;嗰&#39;, &#39;PRON&#39;),</span>
+<span class="go"> (&#39;對&#39;, &#39;NOUN&#39;),</span>
+<span class="go"> (&#39;鞋&#39;, &#39;NOUN&#39;),</span>
+<span class="go"> (&#39;。&#39;, &#39;PUNCT&#39;)]</span>
 </pre></div>
 </div>
 </dd></dl>

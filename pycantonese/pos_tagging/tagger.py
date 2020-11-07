@@ -309,6 +309,13 @@ def _get_tagger():
 def pos_tag(words):
     """Tag the words for their parts of speech.
 
+    The part-of-speech tagger is trained by the HKCanCor data.
+    While HKCanCor uses a part-of-speech tagset of over 100 tags (46 of which
+    are described at http://compling.hss.ntu.edu.sg/hkcancor/),
+    these tags have been mapped to the much smaller Universal Dependencies v2
+    tagset of 17 tags (https://universaldependencies.org/u/pos/index.html)
+    for training this POS tagger.
+
     .. versionadded:: 3.1.0
 
     .. warning::
@@ -324,22 +331,30 @@ def pos_tag(words):
 
     Returns
     -------
-    list[str]
-        The list of predicted tags.
+    list[tuple[str, str]]
+        The segmented sentence/phrase where each word is paired with its
+        predicted POS tag.
 
     Raises
     ------
     TypeError
-        If the input is a string (e.g., an unsegmented string of Cantonse).
+        If the input is a string (e.g., an unsegmented string of Cantonese).
 
     Examples
     --------
     >>> words = ['我', '噚日', '買', '嗰', '對', '鞋', '。']
     >>> pos_tag(words)  # I bought those shoes yesterday.
-    ['PRON', 'ADV', 'VERB', 'PRON', 'NOUN', 'NOUN', 'PUNCT']
+    [('我', 'PRON'),
+     ('噚日', 'ADV'),
+     ('買', 'VERB'),
+     ('嗰', 'PRON'),
+     ('對', 'NOUN'),
+     ('鞋', 'NOUN'),
+     ('。', 'PUNCT')]
     """
     if type(words) == str:
         raise TypeError(
             f"Input must be a list of segmented words, not a string: {words}"
         )
-    return _get_tagger().tag(words)
+    tags = _get_tagger().tag(words)
+    return list(zip(words, tags))

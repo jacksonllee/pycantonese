@@ -581,6 +581,13 @@
 <div class="viewcode-block" id="pos_tag"><a class="viewcode-back" href="../../../generated/pycantonese.pos_tag.html#pycantonese.pos_tag">[docs]</a><span class="k">def</span> <span class="nf">pos_tag</span><span class="p">(</span><span class="n">words</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Tag the words for their parts of speech.</span>
 
+<span class="sd">    The part-of-speech tagger is trained by the HKCanCor data.</span>
+<span class="sd">    While HKCanCor uses a part-of-speech tagset of over 100 tags (46 of which</span>
+<span class="sd">    are described at http://compling.hss.ntu.edu.sg/hkcancor/),</span>
+<span class="sd">    these tags have been mapped to the much smaller Universal Dependencies v2</span>
+<span class="sd">    tagset of 17 tags (https://universaldependencies.org/u/pos/index.html)</span>
+<span class="sd">    for training this POS tagger.</span>
+
 <span class="sd">    .. versionadded:: 3.1.0</span>
 
 <span class="sd">    .. warning::</span>
@@ -596,25 +603,33 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    list[str]</span>
-<span class="sd">        The list of predicted tags.</span>
+<span class="sd">    list[tuple[str, str]]</span>
+<span class="sd">        The segmented sentence/phrase where each word is paired with its</span>
+<span class="sd">        predicted POS tag.</span>
 
 <span class="sd">    Raises</span>
 <span class="sd">    ------</span>
 <span class="sd">    TypeError</span>
-<span class="sd">        If the input is a string (e.g., an unsegmented string of Cantonse).</span>
+<span class="sd">        If the input is a string (e.g., an unsegmented string of Cantonese).</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; words = [&#39;我&#39;, &#39;噚日&#39;, &#39;買&#39;, &#39;嗰&#39;, &#39;對&#39;, &#39;鞋&#39;, &#39;。&#39;]</span>
 <span class="sd">    &gt;&gt;&gt; pos_tag(words)  # I bought those shoes yesterday.</span>
-<span class="sd">    [&#39;PRON&#39;, &#39;ADV&#39;, &#39;VERB&#39;, &#39;PRON&#39;, &#39;NOUN&#39;, &#39;NOUN&#39;, &#39;PUNCT&#39;]</span>
+<span class="sd">    [(&#39;我&#39;, &#39;PRON&#39;),</span>
+<span class="sd">     (&#39;噚日&#39;, &#39;ADV&#39;),</span>
+<span class="sd">     (&#39;買&#39;, &#39;VERB&#39;),</span>
+<span class="sd">     (&#39;嗰&#39;, &#39;PRON&#39;),</span>
+<span class="sd">     (&#39;對&#39;, &#39;NOUN&#39;),</span>
+<span class="sd">     (&#39;鞋&#39;, &#39;NOUN&#39;),</span>
+<span class="sd">     (&#39;。&#39;, &#39;PUNCT&#39;)]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">words</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;Input must be a list of segmented words, not a string: </span><span class="si">{</span><span class="n">words</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="p">)</span>
-    <span class="k">return</span> <span class="n">_get_tagger</span><span class="p">()</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="n">words</span><span class="p">)</span></div>
+    <span class="n">tags</span> <span class="o">=</span> <span class="n">_get_tagger</span><span class="p">()</span><span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">words</span><span class="p">,</span> <span class="n">tags</span><span class="p">))</span></div>
 </pre></div>
 
            </div>
