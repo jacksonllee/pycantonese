@@ -13,7 +13,7 @@ Part-of-Speech Tagging
     change while it is still under active development.
     To download and install this (unstable) version of PyCantonese::
 
-        $ pip install -e git://github.com/jacksonllee/pycantonese.git@master#egg=pycantonese
+        $ pip install git+https://github.com/jacksonllee/pycantonese.git@master#egg=pycantonese
 
     If you notice any issues, please don't hesitate to
     `report them <https://pycantonese.org/#links>`_.

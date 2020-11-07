@@ -34,6 +34,10 @@ Removed
 Fixed
 ^^^^^
 
+
+* Fixed the issue of not opening text files with UTF-8 encoding
+  (a possible issue on Windows).
+
 Security
 ^^^^^^^^
 

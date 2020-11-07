@@ -94,9 +94,16 @@ Download and Install
 --------------------
 
 PyCantonese requires Python 3.6 or above.
-It is available via ``pip``::
+To download and install the stable, most recent version::
 
     $ pip install --upgrade pycantonese
+
+For bug fixes and new features not yet available through a released version
+(they are documented under the "Unreleased" section of the changelog),
+you can get this (possibly unstable, still in development) version of PyCantonese
+by installing directly from the source code hosted on GitHub::
+
+    $ pip install git+https://github.com/jacksonllee/pycantonese.git@master#egg=pycantonese
 
 To test your installation in the Python interpreter:
 
@@ -203,3 +210,9 @@ To run tests and styling checks:
    $ py.test -vv --cov pycantonese pycantonese
    $ flake8 pycantonese
    $ black --check --line-length=79 pycantonese
+
+To build the documentation website files:
+
+.. code-block:: bash
+
+    $ python build_docs.py
