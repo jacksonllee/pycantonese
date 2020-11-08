@@ -30,10 +30,14 @@ Full Documentation: https://pycantonese.org
 .. start-sphinx-website-index-page
 
 PyCantonese is a Python library for Cantonese linguistics and natural language
-processing (NLP). The goal of PyCantonese is to provide general-purpose tools
-and other functionality to work with Cantonese data. They include corpus search
-functions as well as various analytic and annotation tools; these and other
-possibilities are gradually added as the library grows and evolves.
+processing (NLP).
+The goal is to provide general-purpose tools to work with Cantonese language data:
+
+- Accessing and searching corpus data
+- Parsing and conversion tools for Jyutping romanization
+- Stop words
+- Word segmentation
+- Part-of-speech tagging
 
 Quick Examples
 --------------
