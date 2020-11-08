@@ -13,7 +13,16 @@ Part-of-Speech Tagging
     change while it is still under active development.
     To download and install this (unstable) version of PyCantonese::
 
-        $ pip install git+https://github.com/jacksonllee/pycantonese.git@master#egg=pycantonese
+    1. If you haven't done so already, install `Git LFS <https://git-lfs.github.com/>`_ on your system.
+       You only have to do this step once per system. Git LFS is to enable
+       the proper fetching of model files (such as the POS tagger) stored
+       differently due to its file size and/or binary nature.
+
+    2. Download and install PyCantonese from the GitHub source:
+
+       .. code-block:: bash
+
+           $ pip install git+https://github.com/jacksonllee/pycantonese.git@master#egg=pycantonese
 
     If you notice any issues, please don't hesitate to
     `report them <https://pycantonese.org/#links>`_.

@@ -105,9 +105,18 @@ To download and install the stable, most recent version::
 For bug fixes and new features not yet available through a released version
 (they are documented under the "Unreleased" section of the changelog),
 you can get this (possibly unstable, still in development) version of PyCantonese
-by installing directly from the source code hosted on GitHub::
+by installing directly from the source code hosted on GitHub:
 
-    $ pip install git+https://github.com/jacksonllee/pycantonese.git@master#egg=pycantonese
+1. If you haven't done so already, install `Git LFS <https://git-lfs.github.com/>`_
+   on your system. You only have to do this step once per system.
+   Git LFS is to enable the proper fetching of model files stored differently
+   due to its file size and/or binary nature.
+
+2. Download and install PyCantonese from the GitHub source:
+
+   .. code-block:: bash
+
+       $ pip install git+https://github.com/jacksonllee/pycantonese.git@master#egg=pycantonese
 
 To test your installation in the Python interpreter:
 
@@ -198,6 +207,7 @@ Setting up a Development Environment
 
 The latest code under development is available on Github at
 `jacksonllee/pycantonese <https://github.com/jacksonllee/pycantonese>`_.
+You need to have `Git LFS <https://git-lfs.github.com/>`_ installed on your system.
 To obtain this version for experimental features or for development:
 
 .. code-block:: bash

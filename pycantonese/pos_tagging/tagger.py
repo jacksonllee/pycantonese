@@ -235,8 +235,16 @@ class POSTagger:
         try:
             w_td_c = pickle.load(open(path, "rb"))
         except IOError:
-            msg = "Missing trontagger.pickle file."
-            raise FileNotFoundError(msg)
+            raise FileNotFoundError(f"Can't locate tagger model {path}")
+        except:  # noqa
+            raise EnvironmentError(
+                f"A file is detected at {path}, but it cannot be read as a "
+                "a tagger model. The likely cause is that you do not have "
+                "Git LFS installed on your system -- please install it "
+                "(https://git-lfs.github.com/) and re-install pycantonese "
+                "with this command: "
+                "pip install git+https://github.com/jacksonllee/pycantonese.git@master#egg=pycantonese"  # noqa: E501
+            )
         self.model.weights, self.tagdict, self.classes = w_td_c
         self.model.classes = self.classes
 

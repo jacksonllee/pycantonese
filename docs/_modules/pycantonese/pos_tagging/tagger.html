@@ -507,8 +507,16 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="n">w_td_c</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">))</span>
         <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
-            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Missing trontagger.pickle file.&quot;</span>
-            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Can&#39;t locate tagger model </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>  <span class="c1"># noqa</span>
+            <span class="k">raise</span> <span class="ne">EnvironmentError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;A file is detected at </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">, but it cannot be read as a &quot;</span>
+                <span class="s2">&quot;a tagger model. The likely cause is that you do not have &quot;</span>
+                <span class="s2">&quot;Git LFS installed on your system -- please install it &quot;</span>
+                <span class="s2">&quot;(https://git-lfs.github.com/) and re-install pycantonese &quot;</span>
+                <span class="s2">&quot;with this command: &quot;</span>
+                <span class="s2">&quot;pip install git+https://github.com/jacksonllee/pycantonese.git@master#egg=pycantonese&quot;</span>  <span class="c1"># noqa: E501</span>
+            <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">weights</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tagdict</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">classes</span> <span class="o">=</span> <span class="n">w_td_c</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">classes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">classes</span>
 
