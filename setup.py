@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 _THIS_DIR = os.path.dirname(__file__)
 
-_VERSION = "3.1.0dev1"
+_VERSION = "3.1.0.dev2"
 
 
 def _get_long_description():

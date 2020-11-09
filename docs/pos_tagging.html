@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Part-of-Speech Tagging &mdash; PyCantonese 3.0.0 documentation</title>
+  <title>Part-of-Speech Tagging &mdash; PyCantonese 3.1.0.dev2 documentation</title>
   
 
   
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                3.0.0
+                3.1.0.dev2
               </div>
             
           
@@ -283,18 +283,13 @@ All functionality related to part-of-speech tagging
 is available only through the GitHub repository for early testers.
 Everything (what functions are provided, how they behave) is subject to
 change while it is still under active development.
-To download and install this (unstable) version of PyCantonese:</p>
-<ol class="arabic">
-<li><p>If you haven’t done so already, install <a class="reference external" href="https://git-lfs.github.com/">Git LFS</a> on your system.
-You only have to do this step once per system. Git LFS is to enable
-the proper fetching of model files (such as the POS tagger) stored
-differently due to its file size and/or binary nature.</p></li>
-<li><p>Download and install PyCantonese from the GitHub source:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install git+https://github.com/jacksonllee/pycantonese.git@master#egg<span class="o">=</span>pycantonese
+To download and install this (unstable) version of PyCantonese
+(the <code class="docutils literal notranslate"><span class="pre">--pre</span></code> flag means a pre-release version):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install --pre --upgrade pycantonese
 </pre></div>
 </div>
-</li>
-</ol>
+<p>Running <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">pycantonese</span> <span class="pre">as</span> <span class="pre">pc;</span> <span class="pre">print(pc.__version__)</span></code> will show a
+version number similar to <code class="docutils literal notranslate"><span class="pre">3.1.0.dev2</span></code>.</p>
 <p>If you notice any issues, please don’t hesitate to
 <a class="reference external" href="https://pycantonese.org/#links">report them</a>.</p>
 <p>While the documentation below is minimal for now, it is going to be updated

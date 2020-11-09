@@ -8,6 +8,13 @@ import random
 from typing import Dict
 
 
+# Use the highest pickle protocol version that's compatible for all supported
+# Python versions.
+# Protocol version 4 was added in Python 3.4.
+# Protocol version 5 was added in Python 3.8.
+# Reference: https://docs.python.org/3/library/pickle.html#data-stream-format
+_PICKLE_PROTOCOL = 4
+
 _THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 _PICKLE_PATH = os.path.join(_THIS_DIR, "tagger.pickle")
 
@@ -221,7 +228,7 @@ class POSTagger:
             pickle.dump(
                 (self.model.weights, self.tagdict, self.classes),
                 open(save, "wb"),
-                protocol=-1,
+                protocol=_PICKLE_PROTOCOL,
             )
 
     def load(self, path):
