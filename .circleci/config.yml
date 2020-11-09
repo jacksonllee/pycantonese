@@ -40,6 +40,24 @@ jobs:
         #  password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
+      - run:
+          name: Install Git LFS
+          command: |
+            curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+            sudo apt-get -y install git-lfs
+            git lfs install
+      - run:
+          name: Create an asset id file of Git LFS files
+          command: git lfs ls-files -l | cut -d' ' -f1 | sort > .assets-id
+      - restore_cache:
+          key: v1-my-cache-key-{{ checksum ".assets-id" }}
+      - run:
+          name: Fetch the files under Git LFS
+          command: git lfs pull
+      - save_cache:
+          key: v1-my-cache-key-{{ checksum ".assets-id" }}
+          paths:
+            - .git/lfs
       - python/install-packages:
           pkg-manager: pip
           pre-install-steps:
@@ -52,8 +70,7 @@ jobs:
       - run:
           name: Check for PyPI compliance via twine
           working_directory: ~/project/
-          command: |
-            twine check dist/`ls dist/ | grep .tar.gz`
+          command: twine check dist/`ls dist/ | grep .tar.gz`
       - run:
           name: Show installed Python packages
           command: pip list -v
@@ -62,8 +79,7 @@ jobs:
           working_directory: ~/
           # Avoid being able to import pycantonese by relative import.
           # Test code by importing the *installed* pycantonese in site-packages.
-          command: |
-              pytest -vv project/pycantonese --junitxml /tmp/testxml/report.xml
+          command: pytest -vv project/pycantonese --junitxml /tmp/testxml/report.xml
       - store_test_results:
           path: /tmp/testxml/
 
