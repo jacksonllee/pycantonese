@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 _THIS_DIR = os.path.dirname(__file__)
 
-_VERSION = "3.0.0"
+_VERSION = "3.1.0dev1"
 
 
 def _get_long_description():
@@ -22,7 +22,7 @@ def main():
     setup(
         name="pycantonese",
         version=_VERSION,
-        description="PyCantonese",
+        description="PyCantonese: Cantonese Linguistics and NLP in Python",
         long_description=_get_long_description(),
         long_description_content_type="text/x-rst",
         url="https://pycantonese.org",
