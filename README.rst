@@ -214,6 +214,7 @@ To obtain this version for experimental features or for development:
 
    $ git clone https://github.com/jacksonllee/pycantonese.git
    $ cd pycantonese
+   $ git lfs pull
    $ pip install -r requirements.txt
    $ pip install -e .
 
