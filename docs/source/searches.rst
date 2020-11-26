@@ -155,13 +155,13 @@ can be accessed as follows:
 
     >>> verbs = corpus.search(pos='V')
     >>> len(verbs)
-    23768
+    29229
     >>> pprint(verbs[: 5])
     [('去', 'V', 'heoi3', ''),
      ('去', 'V', 'heoi3', ''),
-     ('去', 'V', 'heoi3', ''),
-     ('係', 'V', 'hai6', ''),
-     ('係', 'V', 'hai6', '')]
+     ('旅行', 'VN', 'leoi5hang4', ''),
+     ('有冇', 'V1', 'jau5mou5', ''),
+     ('要', 'VU', 'jiu3', '')]
 
 The ``pos`` parameter may take a regular expression. For instance,
 we can use ``'^V'`` to match any part-of-speech tags that begin with "V" for
@@ -251,7 +251,7 @@ For ``sent_range``:
 
     >>> laa1 = corpus.search(jyutping='laa1', sent_range=(1, 1))
     >>> len(laa1)
-    1583
+    1601
     >>> pprint(laa1[0])  # print the 1st result
     [[('係', 'V', 'hai6', ''),
       ('唔係', 'V', 'm4hai6', ''),

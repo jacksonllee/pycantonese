@@ -17,7 +17,7 @@ that returns a set of about 100 Cantonese stop words:
     >>> stop_words = pc.stop_words()
     >>> len(stop_words)
     104
-    >>> stop_words
+    >>> stop_words  # doctest: +SKIP
     {'一啲', '一定', '不如', '不過', ...}
 
 Depending on your use cases, you may like to add or remove stop words
@@ -36,9 +36,9 @@ data is all about Hong Kong) or an iterable of strings:
     105
     >>> '香港' in stop_words_1
     True
-    >>> stop_words_2 = pc.stop_words(add=['香港島', '九龍', '新界'])
+    >>> stop_words_2 = pc.stop_words(add=['香港島', '九龍', '新界'])  # Hong Kong Island, Kowloon, the New Territories
     >>> len(stop_words_2)
-    >>> 107
+    107
     >>> {'香港島', '九龍', '新界'}.issubset(stop_words_2)
     True
 

@@ -20,10 +20,10 @@ jobs:
       - checkout
       - run:
           name: Create custom requirements
-          command: grep << parameters.command-name >> requirements.txt > << parameters.command-name >>_requirements.txt
+          command: grep << parameters.command-name >> dev-requirements.txt > << parameters.command-name >>-dev-requirements.txt
       - python/install-packages:
           pkg-manager: pip
-          pip-dependency-file: << parameters.command-name >>_requirements.txt
+          pip-dependency-file: << parameters.command-name >>-dev-requirements.txt
           cache-version: << parameters.command-name >>-v1
       - run:
           working_directory: ~/
@@ -60,6 +60,7 @@ jobs:
             - .git/lfs
       - python/install-packages:
           pkg-manager: pip
+          pip-dependency-file: dev-requirements.txt
           pre-install-steps:
               - run:
                   name: Build source distribution and install package from it
@@ -79,7 +80,7 @@ jobs:
           working_directory: ~/
           # Avoid being able to import pycantonese by relative import.
           # Test code by importing the *installed* pycantonese in site-packages.
-          command: pytest -vv project/pycantonese --junitxml /tmp/testxml/report.xml
+          command: pytest -vv --doctest-modules --cov=project/pycantonese --junitxml=/tmp/testxml/report.xml project/pycantonese project/docs
       - store_test_results:
           path: /tmp/testxml/
 

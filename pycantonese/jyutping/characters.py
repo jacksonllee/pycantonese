@@ -92,11 +92,8 @@ def characters_to_jyutping(chars):
     Examples
     --------
     >>> characters_to_jyutping("香港人講廣東話。")  # Hongkongers speak Cantonese.
-    [('香港人', 'hoeng1gong2jan4'),
-     ('講', 'gong2'),
-     ('廣東話', 'gwong2dung1waa2'),
-     ('。', None)]
-    """
+    [('香港人', 'hoeng1gong2jan4'), ('講', 'gong2'), ('廣東話', 'gwong2dung1waa2'), ('。', None)]
+    """  # noqa: E501
     if not chars:
         return []
     words_to_jyutping, chars_to_jyutping = _get_words_characters_to_jyutping()

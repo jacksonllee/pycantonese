@@ -288,8 +288,8 @@ PyCantonese provides tools for these use cases.</p>
 takes a string of Cantonese characters
 and returns its word-segmented version with Jyutping romanization:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">characters_to_jyutping</span><span class="p">(</span><span class="s1">&#39;香港人講廣東話&#39;</span><span class="p">)</span>  <span class="c1"># &quot;Hongkongers speak Cantonese&quot;</span>
-<span class="go">[(&quot;香港人&quot;, &quot;hoeng1gong2jan4&quot;), (&quot;講&quot;, &quot;gong2&quot;), (&quot;廣東話&quot;, &quot;gwong2dung1waa2&quot;)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">characters_to_jyutping</span><span class="p">(</span><span class="s1">&#39;香港人講廣東話&#39;</span><span class="p">)</span>  <span class="c1"># Hongkongers speak Cantonese</span>
+<span class="go">[(&#39;香港人&#39;, &#39;hoeng1gong2jan4&#39;), (&#39;講&#39;, &#39;gong2&#39;), (&#39;廣東話&#39;, &#39;gwong2dung1waa2&#39;)]</span>
 </pre></div>
 </div>
 <p>The characters-to-Jyutping conversion model is based on two data sources:
@@ -307,10 +307,13 @@ the correct, contextually dependent pronunciation depends on whether
 the HKCanCor data (which trains the conversion model) contains
 the relevant tokens. Example:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># The correct pronunciation of 蛋 is with tone 2 (high-rising) as a standalone word.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">characters_to_jyutping</span><span class="p">(</span><span class="s1">&#39;蛋&#39;</span><span class="p">)</span>  <span class="c1"># egg</span>
-<span class="go">[(&quot;蛋&quot;, &quot;daan2&quot;)]  # correct pronunciation of 蛋 with tone 2 (high-rising) as a standalone word</span>
+<span class="go">[(&#39;蛋&#39;, &#39;daan2&#39;)]</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># The correct pronunciation of 蛋 is with tone 6 (low-level) in 蛋糕.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">characters_to_jyutping</span><span class="p">(</span><span class="s1">&#39;蛋糕&#39;</span><span class="p">)</span>  <span class="c1"># cake</span>
-<span class="go">[(&quot;蛋糕&quot;, &quot;daan6gou1&quot;)]  # correct pronunciation of 蛋 with tone 6 (low-level) in this context</span>
+<span class="go">[(&#39;蛋糕&#39;, &#39;daan6gou1&#39;)]</span>
 </pre></div>
 </div>
 </div>
@@ -325,15 +328,15 @@ and returns a list of tuples; the string may contain romanization for multiple
 Chinese characters. The parsed romanization for a character is a 4-tuple of
 (onset, nucleus, coda, tone):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">parse_jyutping</span><span class="p">(</span><span class="s1">&#39;hou2&#39;</span><span class="p">)</span>  <span class="c1"># 好</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">parse_jyutping</span><span class="p">(</span><span class="s1">&#39;hou2&#39;</span><span class="p">)</span>  <span class="c1"># 好 good</span>
 <span class="go">[(&#39;h&#39;, &#39;o&#39;, &#39;u&#39;, &#39;2&#39;)]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">parse_jyutping</span><span class="p">(</span><span class="s1">&#39;gwong2dung1waa2&#39;</span><span class="p">)</span>  <span class="c1"># 廣東話</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">parse_jyutping</span><span class="p">(</span><span class="s1">&#39;gwong2dung1waa2&#39;</span><span class="p">)</span>  <span class="c1"># 廣東話 Cantonese</span>
 <span class="go">[(&#39;gw&#39;, &#39;o&#39;, &#39;ng&#39;, &#39;2&#39;), (&#39;d&#39;, &#39;u&#39;, &#39;ng&#39;, &#39;1&#39;), (&#39;w&#39;, &#39;aa&#39;, &#39;&#39;, &#39;2&#39;)]</span>
 </pre></div>
 </div>
 <p>Syllabic nasals are treated as nuclei:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">parse_jyutping</span><span class="p">(</span><span class="s1">&#39;m4goi1&#39;</span><span class="p">)</span>  <span class="c1"># 唔該</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">parse_jyutping</span><span class="p">(</span><span class="s1">&#39;m4goi1&#39;</span><span class="p">)</span>  <span class="c1"># 唔該 thank you / please</span>
 <span class="go">[(&#39;&#39;, &#39;m&#39;, &#39;&#39;, &#39;4&#39;), (&#39;g&#39;, &#39;o&#39;, &#39;i&#39;, &#39;1&#39;)]</span>
 </pre></div>
 </div>
@@ -343,7 +346,7 @@ is able to detect invalid Jyutping romanization:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">parse_jyutping</span><span class="p">(</span><span class="s1">&#39;hou7&#39;</span><span class="p">)</span>
 <span class="gt">Traceback (most recent call last):</span>
   File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
-  File <span class="nb">&quot;/usr/local/lib/python3.4/dist-packages/pycantonese/jyutping.py&quot;</span>, line <span class="m">197</span>, in <span class="n">parse_jyutping</span>
+  File <span class="nb">&quot;/usr/local/lib/python3.9/dist-packages/pycantonese/jyutping.py&quot;</span>, line <span class="m">197</span>, in <span class="n">parse_jyutping</span>
     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;tone error -- &#39;</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="n">jp</span><span class="p">))</span>
 <span class="gr">ValueError</span>: <span class="n">tone error -- &#39;hou7&#39;</span>
 </pre></div>
@@ -357,16 +360,16 @@ Cantonese language teaching resources. PyCantonese provides the
 <a class="reference internal" href="generated/pycantonese.jyutping_to_yale.html#pycantonese.jyutping_to_yale" title="pycantonese.jyutping_to_yale"><code class="xref py py-func docutils literal notranslate"><span class="pre">jyutping_to_yale()</span></code></a>
 function which reads a valid Jyutping string and returns the Yale equivalent:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">jyutping_to_yale</span><span class="p">(</span><span class="s1">&#39;m4goi1&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">jyutping_to_yale</span><span class="p">(</span><span class="s1">&#39;m4goi1&#39;</span><span class="p">)</span>  <span class="c1"># 唔該 thank you / please</span>
 <span class="go">[&#39;m̀h&#39;, &#39;gōi&#39;]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">jyutping_to_yale</span><span class="p">(</span><span class="s1">&#39;gwong2dung1waa2&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">jyutping_to_yale</span><span class="p">(</span><span class="s1">&#39;gwong2dung1waa2&#39;</span><span class="p">)</span>  <span class="c1"># 廣東話 Cantonese</span>
 <span class="go">[&#39;gwóng&#39;, &#39;dūng&#39;, &#39;wá&#39;]</span>
 </pre></div>
 </div>
 <p><a class="reference internal" href="generated/pycantonese.jyutping_to_yale.html#pycantonese.jyutping_to_yale" title="pycantonese.jyutping_to_yale"><code class="xref py py-func docutils literal notranslate"><span class="pre">jyutping_to_yale()</span></code></a> has the keyword argument <code class="docutils literal notranslate"><span class="pre">as_list</span></code>.
 When set to be <code class="docutils literal notranslate"><span class="pre">False</span></code>, it turns the returned value into a string.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">jyutping_to_yale</span><span class="p">(</span><span class="s1">&#39;gwong2dung1waa2&#39;</span><span class="p">,</span> <span class="n">as_list</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">jyutping_to_yale</span><span class="p">(</span><span class="s1">&#39;gwong2dung1waa2&#39;</span><span class="p">,</span> <span class="n">as_list</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># 廣東話 Cantonese</span>
 <span class="go">&#39;gwóngdūngwá&#39;</span>
 </pre></div>
 </div>
@@ -377,8 +380,9 @@ the low-tone marker “h” can be ambiguous as an onset of a syllable or as par
 of the previous syllable. When such ambiguity is detected, <code class="docutils literal notranslate"><span class="pre">as_list=False</span></code>
 automatically adds the quote character <code class="docutils literal notranslate"><span class="pre">'</span></code> as a separator to disambiguate:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">jyutping_to_yale</span><span class="p">(</span><span class="s1">&#39;hei3hau6&#39;</span><span class="p">)</span>  <span class="c1"># 氣候, climate</span>
-<span class="go">&#39;hei&#39;hauh&#39;  # &#39;heihauh&#39; would be ambiguous between hei3hau6 and hei6au6.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">jyutping_to_yale</span><span class="p">(</span><span class="s1">&#39;hei3hau6&#39;</span><span class="p">,</span> <span class="n">as_list</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># 氣候 climate</span>
+<span class="go">&quot;hei&#39;hauh&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># &#39;heihauh&#39; would be ambiguous between hei3hau6 and hei6au6.</span>
 </pre></div>
 </div>
 </div>
@@ -387,9 +391,9 @@ automatically adds the quote character <code class="docutils literal notranslate
 <p>PyCantonese also offers the <a class="reference internal" href="generated/pycantonese.jyutping_to_tipa.html#pycantonese.jyutping_to_tipa" title="pycantonese.jyutping_to_tipa"><code class="xref py py-func docutils literal notranslate"><span class="pre">jyutping_to_tipa()</span></code></a> function for the
 <a class="reference external" href="https://www.ctan.org/pkg/tipa?lang=en">LaTeX TIPA</a> users:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">jyutping_to_tipa</span><span class="p">(</span><span class="s1">&#39;m4goi1&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">jyutping_to_tipa</span><span class="p">(</span><span class="s1">&#39;m4goi1&#39;</span><span class="p">)</span>  <span class="c1"># 唔該 thank you / please</span>
 <span class="go">[&#39;\\s{m}21&#39;, &#39;kOY55&#39;]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">jyutping_to_tipa</span><span class="p">(</span><span class="s1">&#39;gwong2dung1waa2&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">jyutping_to_tipa</span><span class="p">(</span><span class="s1">&#39;gwong2dung1waa2&#39;</span><span class="p">)</span>  <span class="c1"># 廣東話 Cantonese</span>
 <span class="go">[&#39;k\\super w ON25&#39;, &#39;tUN55&#39;, &#39;wa25&#39;]</span>
 </pre></div>
 </div>
@@ -421,7 +425,7 @@ release if this behavior proves to be inconvenient.)</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on November 08, 2020
+        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on November 26, 2020
 
     </p>
   </div>

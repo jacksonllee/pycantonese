@@ -30,8 +30,7 @@ Full Documentation: https://pycantonese.org
 .. start-sphinx-website-index-page
 
 PyCantonese is a Python library for Cantonese linguistics and natural language
-processing (NLP).
-The goal is to provide general-purpose tools to work with Cantonese language data:
+processing (NLP). Currently implemented features (more to come!):
 
 - Accessing and searching corpus data
 - Parsing and conversion tools for Jyutping romanization
@@ -101,22 +100,6 @@ PyCantonese requires Python 3.6 or above.
 To download and install the stable, most recent version::
 
     $ pip install --upgrade pycantonese
-
-For bug fixes and new features not yet available through a released version
-(they are documented under the "Unreleased" section of the changelog),
-you can get this (possibly unstable, still in development) version of PyCantonese
-by installing directly from the source code hosted on GitHub:
-
-1. If you haven't done so already, install `Git LFS <https://git-lfs.github.com/>`_
-   on your system. You only have to do this step once per system.
-   Git LFS is to enable the proper fetching of model files stored differently
-   due to its file size and/or binary nature.
-
-2. Download and install PyCantonese from the GitHub source:
-
-   .. code-block:: bash
-
-       $ pip install git+https://github.com/jacksonllee/pycantonese.git@master#egg=pycantonese
 
 To test your installation in the Python interpreter:
 
@@ -215,14 +198,14 @@ To obtain this version for experimental features or for development:
    $ git clone https://github.com/jacksonllee/pycantonese.git
    $ cd pycantonese
    $ git lfs pull
-   $ pip install -r requirements.txt
+   $ pip install -r dev-requirements.txt
    $ pip install -e .
 
 To run tests and styling checks:
 
 .. code-block:: bash
 
-   $ py.test -vv --cov pycantonese pycantonese
+   $ pytest -vv --doctest-modules --cov=pycantonese pycantonese docs
    $ flake8 pycantonese
    $ black --check --line-length=79 pycantonese
 

@@ -631,14 +631,8 @@
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; words = [&#39;我&#39;, &#39;噚日&#39;, &#39;買&#39;, &#39;嗰&#39;, &#39;對&#39;, &#39;鞋&#39;, &#39;。&#39;]</span>
 <span class="sd">    &gt;&gt;&gt; pos_tag(words)  # I bought those shoes yesterday.</span>
-<span class="sd">    [(&#39;我&#39;, &#39;PRON&#39;),</span>
-<span class="sd">     (&#39;噚日&#39;, &#39;ADV&#39;),</span>
-<span class="sd">     (&#39;買&#39;, &#39;VERB&#39;),</span>
-<span class="sd">     (&#39;嗰&#39;, &#39;PRON&#39;),</span>
-<span class="sd">     (&#39;對&#39;, &#39;NOUN&#39;),</span>
-<span class="sd">     (&#39;鞋&#39;, &#39;NOUN&#39;),</span>
-<span class="sd">     (&#39;。&#39;, &#39;PUNCT&#39;)]</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    [(&#39;我&#39;, &#39;PRON&#39;), (&#39;噚日&#39;, &#39;ADV&#39;), (&#39;買&#39;, &#39;VERB&#39;), (&#39;嗰&#39;, &#39;PRON&#39;), (&#39;對&#39;, &#39;ADP&#39;), (&#39;鞋&#39;, &#39;NOUN&#39;), (&#39;。&#39;, &#39;PUNCT&#39;)]</span>
+<span class="sd">    &quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
     <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">words</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;Input must be a list of segmented words, not a string: </span><span class="si">{</span><span class="n">words</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -658,7 +652,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on November 08, 2020
+        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on November 26, 2020
 
     </p>
   </div>

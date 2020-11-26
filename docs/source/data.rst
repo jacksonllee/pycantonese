@@ -53,7 +53,7 @@ is available for this purpose:
 .. code-block:: python
 
     >>> import pycantonese as pc
-    >>> corpus = pc.read_chat('path/to/files/*.cha')
+    >>> corpus = pc.read_chat('path/to/files/*.cha')  # doctest: +SKIP
 
 If your CHAT data files have the extension name ``.cha`` and are all in
 a single directory, then filename pattern matching with ``*`` can be used to

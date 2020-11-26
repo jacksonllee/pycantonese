@@ -15,7 +15,7 @@ the segmented version:
 .. code-block:: python
 
     >>> import pycantonese as pc
-    >>> pc.segment("廣東話容唔容易學？")  # "Is Cantonese easy to learn?"
+    >>> pc.segment("廣東話容唔容易學？")  # Is Cantonese easy to learn?
     ['廣東話', '容', '唔容易', '學', '？']
 
 Currently, the underlying word segmentation model is a simple longest string
@@ -54,8 +54,9 @@ for customizing in the following ways:
     >>> import pycantonese as pc
     >>> from pycantonese.word_segmentation import Segmenter
     >>> segmenter = Segmenter(disallow={"廣東話"})
+    >>> # 廣東 still exists as a word in the model, though 廣東話 is banned here.
     >>> pc.segment("廣東話容唔容易學？", cls=segmenter)
-    ['廣東', '話', '容', '唔容易', '學', '？']  # 廣東 still exists as a word in the model, though 廣東話 is banned here.
+    ['廣東', '話', '容', '唔容易', '學', '？']
 
 * To control the maximum word length (default: 5), pass an integer to the
   ``max_word_length`` keyword argument of :class:`~pycantonese.word_segmentation.Segmenter`::
@@ -64,7 +65,7 @@ for customizing in the following ways:
     >>> from pycantonese.word_segmentation import Segmenter
     >>> segmenter = Segmenter(max_word_length=2)
     >>> pc.segment("廣東話容唔容易學？", cls=segmenter)
-    ["廣東", "話", "容", "唔", "容易", "學", "？"]
+    ['廣東', '話', '容', '唔', '容易', '學', '？']
 
 The keyword arguments ``allow``, ``disallow``, and ``max_word_length``
 of the :class:`~pycantonese.word_segmentation.Segmenter` class

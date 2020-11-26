@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
      Universal Dependencies v2 tagset.
 * Word segmentation:
    - Improved segmentation quality by revising the underlying wordlist data.
+* The test suite now covers code snippets in both the docstrings and `.rst` doc files.
 
 ### Changed
 ### Deprecated

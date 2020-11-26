@@ -169,7 +169,7 @@ def hkcancor_to_ud(tag: str = None):
     Examples
     --------
     >>> hkcancor_to_ud("V")
-    "VERB"
+    'VERB'
     """
     if tag is None:
         return _MAP

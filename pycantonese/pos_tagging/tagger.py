@@ -359,14 +359,8 @@ def pos_tag(words):
     --------
     >>> words = ['我', '噚日', '買', '嗰', '對', '鞋', '。']
     >>> pos_tag(words)  # I bought those shoes yesterday.
-    [('我', 'PRON'),
-     ('噚日', 'ADV'),
-     ('買', 'VERB'),
-     ('嗰', 'PRON'),
-     ('對', 'NOUN'),
-     ('鞋', 'NOUN'),
-     ('。', 'PUNCT')]
-    """
+    [('我', 'PRON'), ('噚日', 'ADV'), ('買', 'VERB'), ('嗰', 'PRON'), ('對', 'ADP'), ('鞋', 'NOUN'), ('。', 'PUNCT')]
+    """  # noqa: E501
     if type(words) == str:
         raise TypeError(
             f"Input must be a list of segmented words, not a string: {words}"

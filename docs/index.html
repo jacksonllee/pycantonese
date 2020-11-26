@@ -275,8 +275,7 @@
   <div class="section" id="pycantonese-cantonese-linguistics-and-nlp-in-python">
 <span id="index"></span><h1>PyCantonese: Cantonese Linguistics and NLP in Python<a class="headerlink" href="#pycantonese-cantonese-linguistics-and-nlp-in-python" title="Permalink to this headline">¶</a></h1>
 <p>PyCantonese is a Python library for Cantonese linguistics and natural language
-processing (NLP).
-The goal is to provide general-purpose tools to work with Cantonese language data:</p>
+processing (NLP). Currently implemented features (more to come!):</p>
 <ul class="simple">
 <li><p>Accessing and searching corpus data</p></li>
 <li><p>Parsing and conversion tools for Jyutping romanization</p></li>
@@ -344,21 +343,6 @@ To download and install the stable, most recent version:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install --upgrade pycantonese
 </pre></div>
 </div>
-<p>For bug fixes and new features not yet available through a released version
-(they are documented under the “Unreleased” section of the changelog),
-you can get this (possibly unstable, still in development) version of PyCantonese
-by installing directly from the source code hosted on GitHub:</p>
-<ol class="arabic">
-<li><p>If you haven’t done so already, install <a class="reference external" href="https://git-lfs.github.com/">Git LFS</a>
-on your system. You only have to do this step once per system.
-Git LFS is to enable the proper fetching of model files stored differently
-due to its file size and/or binary nature.</p></li>
-<li><p>Download and install PyCantonese from the GitHub source:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install git+https://github.com/jacksonllee/pycantonese.git@master#egg<span class="o">=</span>pycantonese
-</pre></div>
-</div>
-</li>
-</ol>
 <p>To test your installation in the Python interpreter:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">__version__</span>  <span class="c1"># show version number</span>
@@ -507,7 +491,7 @@ in the GitHub source code for details.</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on November 08, 2020
+        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on November 26, 2020
 
     </p>
   </div>

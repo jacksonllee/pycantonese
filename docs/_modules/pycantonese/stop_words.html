@@ -398,18 +398,18 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; stop_words = stop_words()</span>
-<span class="sd">    &gt;&gt;&gt; len(stop_words)</span>
+<span class="sd">    &gt;&gt;&gt; stop_words_1 = stop_words()</span>
+<span class="sd">    &gt;&gt;&gt; len(stop_words_1)</span>
 <span class="sd">    104</span>
-<span class="sd">    &gt;&gt;&gt; &#39;香港&#39; in stop_words</span>
+<span class="sd">    &gt;&gt;&gt; &#39;香港&#39; in stop_words_1</span>
 <span class="sd">    False</span>
-<span class="sd">    &gt;&gt;&gt; stop_words</span>
+<span class="sd">    &gt;&gt;&gt; stop_words_1  # doctest: +SKIP</span>
 <span class="sd">    {&#39;一啲&#39;, &#39;一定&#39;, &#39;不如&#39;, &#39;不過&#39;, ...}</span>
 <span class="sd">    &gt;&gt;&gt;</span>
-<span class="sd">    &gt;&gt;&gt; stop_words_1 = stop_words(add=&#39;香港&#39;)</span>
-<span class="sd">    &gt;&gt;&gt; len(stop_words_1)</span>
+<span class="sd">    &gt;&gt;&gt; stop_words_2 = stop_words(add=&#39;香港&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; len(stop_words_2)</span>
 <span class="sd">    105</span>
-<span class="sd">    &gt;&gt;&gt; &#39;香港&#39; in stop_words_1</span>
+<span class="sd">    &gt;&gt;&gt; &#39;香港&#39; in stop_words_2</span>
 <span class="sd">    True</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">_stop_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">_STOP_WORDS</span><span class="p">)</span>
@@ -439,7 +439,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on November 08, 2020
+        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on November 26, 2020
 
     </p>
   </div>

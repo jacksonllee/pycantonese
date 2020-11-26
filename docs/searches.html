@@ -400,13 +400,13 @@ verbs which bear the part-of-speech tag “V” in HKCanCor
 can be accessed as follows:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">verbs</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="s1">&#39;V&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">verbs</span><span class="p">)</span>
-<span class="go">23768</span>
+<span class="go">29229</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="n">verbs</span><span class="p">[:</span> <span class="mi">5</span><span class="p">])</span>
 <span class="go">[(&#39;去&#39;, &#39;V&#39;, &#39;heoi3&#39;, &#39;&#39;),</span>
 <span class="go"> (&#39;去&#39;, &#39;V&#39;, &#39;heoi3&#39;, &#39;&#39;),</span>
-<span class="go"> (&#39;去&#39;, &#39;V&#39;, &#39;heoi3&#39;, &#39;&#39;),</span>
-<span class="go"> (&#39;係&#39;, &#39;V&#39;, &#39;hai6&#39;, &#39;&#39;),</span>
-<span class="go"> (&#39;係&#39;, &#39;V&#39;, &#39;hai6&#39;, &#39;&#39;)]</span>
+<span class="go"> (&#39;旅行&#39;, &#39;VN&#39;, &#39;leoi5hang4&#39;, &#39;&#39;),</span>
+<span class="go"> (&#39;有冇&#39;, &#39;V1&#39;, &#39;jau5mou5&#39;, &#39;&#39;),</span>
+<span class="go"> (&#39;要&#39;, &#39;VU&#39;, &#39;jiu3&#39;, &#39;&#39;)]</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">pos</span></code> parameter may take a regular expression. For instance,
@@ -482,7 +482,7 @@ cross sentence boundaries.</p>
 <p>For <code class="docutils literal notranslate"><span class="pre">sent_range</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">laa1</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">jyutping</span><span class="o">=</span><span class="s1">&#39;laa1&#39;</span><span class="p">,</span> <span class="n">sent_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">laa1</span><span class="p">)</span>
-<span class="go">1583</span>
+<span class="go">1601</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="n">laa1</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>  <span class="c1"># print the 1st result</span>
 <span class="go">[[(&#39;係&#39;, &#39;V&#39;, &#39;hai6&#39;, &#39;&#39;),</span>
 <span class="go">  (&#39;唔係&#39;, &#39;V&#39;, &#39;m4hai6&#39;, &#39;&#39;),</span>
@@ -565,7 +565,7 @@ containing a match word are in the output list. If <code class="docutils literal
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on November 08, 2020
+        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on November 26, 2020
 
     </p>
   </div>

@@ -363,8 +363,10 @@
 <span class="sd">    [&#39;gwóng&#39;, &#39;dūng&#39;, &#39;wá&#39;]</span>
 <span class="sd">    &gt;&gt;&gt; jyutping_to_yale(&quot;gwong2dung1waa2&quot;, as_list=False)</span>
 <span class="sd">    &#39;gwóngdūngwá&#39;</span>
+<span class="sd">    &gt;&gt;&gt;</span>
+<span class="sd">    &gt;&gt;&gt; # &#39;heihauh&#39; would be ambiguous between hei3hau6 and hei6au6.</span>
 <span class="sd">    &gt;&gt;&gt; jyutping_to_yale(&quot;hei3hau6&quot;, as_list=False)  # 氣候, climate</span>
-<span class="sd">    &#39;hei&#39;hauh&#39;  # &#39;heihauh&#39; would be ambiguous between hei3hau6 and hei6au6.</span>
+<span class="sd">    &quot;hei&#39;hauh&quot;</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">jp_parsed_list</span> <span class="o">=</span> <span class="n">parse_jyutping</span><span class="p">(</span><span class="n">jp_str</span><span class="p">)</span>
     <span class="n">yale_list</span> <span class="o">=</span> <span class="p">[]</span>
@@ -553,7 +555,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on November 08, 2020
+        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on November 26, 2020
 
     </p>
   </div>

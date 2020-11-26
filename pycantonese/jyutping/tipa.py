@@ -114,9 +114,9 @@ def jyutping_to_tipa(jp_str):
 
     Examples
     --------
-    >>> jyutping_to_tipa("gwong2dung1waa2")  # 廣東話, Cantonese
+    >>> jyutping_to_tipa("gwong2dung1waa2")  # 廣東話, Cantonese  # doctest: +SKIP
     ['k\\super w ON25', 'tUN55', 'wa25']
-    """
+    """  # noqa: E501
     jp_parsed_list = parse_jyutping(jp_str)
     tipa_list = []
 

@@ -22,6 +22,8 @@ Added
 
   * Improved segmentation quality by revising the underlying wordlist data.
 
+* The test suite now covers code snippets in both the docstrings and ``.rst`` doc files.
+
 Changed
 ^^^^^^^
 

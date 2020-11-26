@@ -364,11 +364,8 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; characters_to_jyutping(&quot;香港人講廣東話。&quot;)  # Hongkongers speak Cantonese.</span>
-<span class="sd">    [(&#39;香港人&#39;, &#39;hoeng1gong2jan4&#39;),</span>
-<span class="sd">     (&#39;講&#39;, &#39;gong2&#39;),</span>
-<span class="sd">     (&#39;廣東話&#39;, &#39;gwong2dung1waa2&#39;),</span>
-<span class="sd">     (&#39;。&#39;, None)]</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    [(&#39;香港人&#39;, &#39;hoeng1gong2jan4&#39;), (&#39;講&#39;, &#39;gong2&#39;), (&#39;廣東話&#39;, &#39;gwong2dung1waa2&#39;), (&#39;。&#39;, None)]</span>
+<span class="sd">    &quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">chars</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[]</span>
     <span class="n">words_to_jyutping</span><span class="p">,</span> <span class="n">chars_to_jyutping</span> <span class="o">=</span> <span class="n">_get_words_characters_to_jyutping</span><span class="p">()</span>
@@ -408,7 +405,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on November 08, 2020
+        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on November 26, 2020
 
     </p>
   </div>

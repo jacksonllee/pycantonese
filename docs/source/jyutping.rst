@@ -27,8 +27,8 @@ and returns its word-segmented version with Jyutping romanization:
 .. code-block:: python
 
     >>> import pycantonese as pc
-    >>> pc.characters_to_jyutping('香港人講廣東話')  # "Hongkongers speak Cantonese"
-    [("香港人", "hoeng1gong2jan4"), ("講", "gong2"), ("廣東話", "gwong2dung1waa2")]
+    >>> pc.characters_to_jyutping('香港人講廣東話')  # Hongkongers speak Cantonese
+    [('香港人', 'hoeng1gong2jan4'), ('講', 'gong2'), ('廣東話', 'gwong2dung1waa2')]
 
 The characters-to-Jyutping conversion model is based on two data sources:
 (i) the HKCanCor corpus data included in the PyCantonese library, and
@@ -50,10 +50,13 @@ the relevant tokens. Example:
 .. code-block:: python
 
     >>> import pycantonese as pc
+    >>> # The correct pronunciation of 蛋 is with tone 2 (high-rising) as a standalone word.
     >>> pc.characters_to_jyutping('蛋')  # egg
-    [("蛋", "daan2")]  # correct pronunciation of 蛋 with tone 2 (high-rising) as a standalone word
+    [('蛋', 'daan2')]
+    >>>
+    >>> # The correct pronunciation of 蛋 is with tone 6 (low-level) in 蛋糕.
     >>> pc.characters_to_jyutping('蛋糕')  # cake
-    [("蛋糕", "daan6gou1")]  # correct pronunciation of 蛋 with tone 6 (low-level) in this context
+    [('蛋糕', 'daan6gou1')]
 
 .. _parsing_jyutping_strings:
 
@@ -72,9 +75,9 @@ Chinese characters. The parsed romanization for a character is a 4-tuple of
 .. code-block:: python
 
     >>> import pycantonese as pc
-    >>> pc.parse_jyutping('hou2')  # 好
+    >>> pc.parse_jyutping('hou2')  # 好 good
     [('h', 'o', 'u', '2')]
-    >>> pc.parse_jyutping('gwong2dung1waa2')  # 廣東話
+    >>> pc.parse_jyutping('gwong2dung1waa2')  # 廣東話 Cantonese
     [('gw', 'o', 'ng', '2'), ('d', 'u', 'ng', '1'), ('w', 'aa', '', '2')]
 
 Syllabic nasals are treated as nuclei:
@@ -82,7 +85,7 @@ Syllabic nasals are treated as nuclei:
 .. code-block:: python
 
     >>> import pycantonese as pc
-    >>> pc.parse_jyutping('m4goi1')  # 唔該
+    >>> pc.parse_jyutping('m4goi1')  # 唔該 thank you / please
     [('', 'm', '', '4'), ('g', 'o', 'i', '1')]
 
 The function :func:`~pycantonese.parse_jyutping`
@@ -94,7 +97,7 @@ is able to detect invalid Jyutping romanization:
     >>> pc.parse_jyutping('hou7')
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
-      File "/usr/local/lib/python3.4/dist-packages/pycantonese/jyutping.py", line 197, in parse_jyutping
+      File "/usr/local/lib/python3.9/dist-packages/pycantonese/jyutping.py", line 197, in parse_jyutping
         raise ValueError('tone error -- ' + repr(jp))
     ValueError: tone error -- 'hou7'
 
@@ -110,9 +113,9 @@ function which reads a valid Jyutping string and returns the Yale equivalent:
 .. code-block:: python
 
     >>> import pycantonese as pc
-    >>> pc.jyutping_to_yale('m4goi1')
+    >>> pc.jyutping_to_yale('m4goi1')  # 唔該 thank you / please
     ['m̀h', 'gōi']
-    >>> pc.jyutping_to_yale('gwong2dung1waa2')
+    >>> pc.jyutping_to_yale('gwong2dung1waa2')  # 廣東話 Cantonese
     ['gwóng', 'dūng', 'wá']
 
 :func:`~pycantonese.jyutping_to_yale` has the keyword argument ``as_list``.
@@ -121,7 +124,7 @@ When set to be ``False``, it turns the returned value into a string.
 .. code-block:: python
 
     >>> import pycantonese as pc
-    >>> pc.jyutping_to_yale('gwong2dung1waa2', as_list=False)
+    >>> pc.jyutping_to_yale('gwong2dung1waa2', as_list=False)  # 廣東話 Cantonese
     'gwóngdūngwá'
 
 While getting a string instead of a list might seem trivial enough that
@@ -134,8 +137,9 @@ automatically adds the quote character ``'`` as a separator to disambiguate:
 .. code-block:: python
 
     >>> import pycantonese as pc
-    >>> pc.jyutping_to_yale('hei3hau6')  # 氣候, climate
-    'hei'hauh'  # 'heihauh' would be ambiguous between hei3hau6 and hei6au6.
+    >>> pc.jyutping_to_yale('hei3hau6', as_list=False)  # 氣候 climate
+    "hei'hauh"
+    >>> # 'heihauh' would be ambiguous between hei3hau6 and hei6au6.
 
 Jyutping-to-TIPA Conversion
 ---------------------------
@@ -144,9 +148,9 @@ PyCantonese also offers the :func:`~pycantonese.jyutping_to_tipa` function for t
 `LaTeX TIPA <https://www.ctan.org/pkg/tipa?lang=en>`_ users::
 
     >>> import pycantonese as pc
-    >>> pc.jyutping_to_tipa('m4goi1')
+    >>> pc.jyutping_to_tipa('m4goi1')  # 唔該 thank you / please
     ['\\s{m}21', 'kOY55']
-    >>> pc.jyutping_to_tipa('gwong2dung1waa2')
+    >>> pc.jyutping_to_tipa('gwong2dung1waa2')  # 廣東話 Cantonese
     ['k\\super w ON25', 'tUN55', 'wa25']
 
 Currently, tones are output as Chao tone letters (= the numbers from 1 to 5)

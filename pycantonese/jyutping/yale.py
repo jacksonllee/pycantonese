@@ -91,8 +91,10 @@ def jyutping_to_yale(jp_str, as_list=True):
     ['gwóng', 'dūng', 'wá']
     >>> jyutping_to_yale("gwong2dung1waa2", as_list=False)
     'gwóngdūngwá'
+    >>>
+    >>> # 'heihauh' would be ambiguous between hei3hau6 and hei6au6.
     >>> jyutping_to_yale("hei3hau6", as_list=False)  # 氣候, climate
-    'hei'hauh'  # 'heihauh' would be ambiguous between hei3hau6 and hei6au6.
+    "hei'hauh"
     """
     jp_parsed_list = parse_jyutping(jp_str)
     yale_list = []
