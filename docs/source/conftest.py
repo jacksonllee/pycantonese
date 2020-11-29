@@ -27,9 +27,7 @@ def tempdir():
 
 
 pytest_collect_file = Sybil(
-    # DocTestParser with the allow_tabs kwarg from my own fork's sybil package
-    # to ignore tabs in CHAT transcriptions
-    parsers=[DocTestParser(optionflags=ELLIPSIS, allow_tabs=True), skip],
+    parsers=[DocTestParser(optionflags=ELLIPSIS), skip],
     pattern="*.rst",
     fixtures=["tempdir"],
 ).pytest()
