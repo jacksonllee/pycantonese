@@ -6,7 +6,6 @@ from pycantonese.corpus import hkcancor
 from pycantonese.data.rime_cantonese import (
     CHARS_TO_JYUTPING,
     LETTERED,
-    MAPS,
 )
 from pycantonese.util import split_characters_with_alphanum
 
@@ -49,7 +48,6 @@ class Segmenter(LongestStringMatching):
         # Train with rime-cantonese data.
         self._words |= CHARS_TO_JYUTPING.keys()
         self._words |= LETTERED.keys()
-        self._words |= set(MAPS)
 
         # Adjust with the allowed and disallowed words.
         self._words |= allow or set()
@@ -102,7 +100,7 @@ def segment(unsegmented, cls=None):
     Examples
     --------
     >>> segment("廣東話容唔容易學？")  # "Is Cantonese easy to learn?"
-    ['廣東話', '容', '唔容易', '學', '？']
+    ['廣東話', '容', '唔', '容易', '學', '？']
     >>>
     >>> # Customizing the segmentation behavior.
     >>> from pycantonese.word_segmentation import Segmenter

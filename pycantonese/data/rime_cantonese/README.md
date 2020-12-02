@@ -18,4 +18,3 @@ and outputs JSON files used by PyCantonese during runtime.
 | ------------------------------- | ------------------------- | ------------------------- |
 | [`jyut6ping3.dict.yaml`](https://github.com/rime/rime-cantonese/blob/2020.09.09/jyut6ping3.dict.yaml) | `chars_to_jyutping.json` | Words mapped to Jyutping |
 | [`jyut6ping3.lettered.dict.yaml`](https://github.com/rime/rime-cantonese/blob/2020.09.09/jyut6ping3.lettered.dict.yaml) | `lettered.json` | Words with letters/numbers mapped to Jyutping |
-| [`jyut6ping3.maps.dict.yaml`](https://github.com/rime/rime-cantonese/blob/2020.09.09/jyut6ping3.phrase.dict.yaml) | `maps.json` | Street names |

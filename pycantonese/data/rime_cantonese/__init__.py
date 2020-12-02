@@ -11,6 +11,3 @@ with open(
 
 with open(os.path.join(_THIS_DIR, "lettered.json"), encoding="utf8") as f:
     LETTERED = json.load(f)
-
-with open(os.path.join(_THIS_DIR, "maps.json"), encoding="utf8") as f:
-    MAPS = json.load(f)

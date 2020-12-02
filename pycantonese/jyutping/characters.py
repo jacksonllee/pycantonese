@@ -40,21 +40,31 @@ def _get_words_characters_to_jyutping():
         characters_to_jyutping[character] = jp
 
     words_to_jyutping = {
-        **words_to_jyutping,
-        **{k: v for k, v in CHARS_TO_JYUTPING.items() if len(k) > 1},
+        # The ordering of the following dicts matters. The rime-cantonese
+        # data may contain what's been re-segmented by this repo, and may
+        # contain jyutping pronunciations for particular characters that
+        # are only used in those contexts. The data from HKCanCor should comes
+        # last to act as the default to override such cases.
         **{
             k: v
             for k, v in LETTERED.items()
             if len(split_characters_with_alphanum(k)) > 1
         },
+        **{k: v for k, v in CHARS_TO_JYUTPING.items() if len(k) > 1},
+        **words_to_jyutping,
     }
 
     # TODO: Extract characters from CHARS_TO_JYUTPING and LETTERED
     #    and add them to characters_to_jyutping
     characters_to_jyutping = {
-        **characters_to_jyutping,
-        **{k: v for k, v in CHARS_TO_JYUTPING.items() if len(k) == 1},
+        # The ordering of the following dicts matters. The rime-cantonese
+        # data may contain what's been re-segmented by this repo, and may
+        # contain jyutping pronunciations for particular characters that
+        # are only used in those contexts. The data from HKCanCor should comes
+        # last to act as the default to override such cases.
         **{k: v for k, v in LETTERED.items() if len(k) == 1},
+        **{k: v for k, v in CHARS_TO_JYUTPING.items() if len(k) == 1},
+        **characters_to_jyutping,
     }
 
     return words_to_jyutping, characters_to_jyutping

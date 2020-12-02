@@ -32,8 +32,11 @@ _CHARS_JYUTPING_FILES = (
     _DataFile("jyut6ping3.dict.yaml", "chars_to_jyutping.json"),
 )
 _CHARS_FILES = (
+    # Not yet using the "phrases" data.
     # _DataFile("jyut6ping3.phrase.dict.yaml", "phrases.json"),
-    _DataFile("jyut6ping3.maps.dict.yaml", "maps.json"),
+    # The "maps" data has the Open Data Commons Open Database License (ODbL)
+    # that has a share-alike clause -- PyCantonese can't use this data.
+    # _DataFile("jyut6ping3.maps.dict.yaml", "maps.json"),
 )
 _RESEGMENTED_FILENAME = "resegmented.txt"
 
