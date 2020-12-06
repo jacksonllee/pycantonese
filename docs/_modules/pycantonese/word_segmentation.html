@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pycantonese.word_segmentation &mdash; PyCantonese 3.1.0.dev2 documentation</title>
+  <title>pycantonese.word_segmentation &mdash; PyCantonese 3.1.0.dev3 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                3.1.0.dev2
+                3.1.0.dev3
               </div>
             
           
@@ -278,7 +278,6 @@
 <span class="kn">from</span> <span class="nn">pycantonese.data.rime_cantonese</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">CHARS_TO_JYUTPING</span><span class="p">,</span>
     <span class="n">LETTERED</span><span class="p">,</span>
-    <span class="n">MAPS</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span> <span class="nn">pycantonese.util</span> <span class="kn">import</span> <span class="n">split_characters_with_alphanum</span>
 
@@ -321,7 +320,6 @@
         <span class="c1"># Train with rime-cantonese data.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_words</span> <span class="o">|=</span> <span class="n">CHARS_TO_JYUTPING</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_words</span> <span class="o">|=</span> <span class="n">LETTERED</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_words</span> <span class="o">|=</span> <span class="nb">set</span><span class="p">(</span><span class="n">MAPS</span><span class="p">)</span>
 
         <span class="c1"># Adjust with the allowed and disallowed words.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_words</span> <span class="o">|=</span> <span class="n">allow</span> <span class="ow">or</span> <span class="nb">set</span><span class="p">()</span>
@@ -374,7 +372,7 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; segment(&quot;廣東話容唔容易學？&quot;)  # &quot;Is Cantonese easy to learn?&quot;</span>
-<span class="sd">    [&#39;廣東話&#39;, &#39;容&#39;, &#39;唔容易&#39;, &#39;學&#39;, &#39;？&#39;]</span>
+<span class="sd">    [&#39;廣東話&#39;, &#39;容&#39;, &#39;唔&#39;, &#39;容易&#39;, &#39;學&#39;, &#39;？&#39;]</span>
 <span class="sd">    &gt;&gt;&gt;</span>
 <span class="sd">    &gt;&gt;&gt; # Customizing the segmentation behavior.</span>
 <span class="sd">    &gt;&gt;&gt; from pycantonese.word_segmentation import Segmenter</span>
@@ -403,7 +401,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on November 26, 2020
+        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on December 05, 2020
 
     </p>
   </div>

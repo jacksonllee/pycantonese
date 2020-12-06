@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Word Segmentation &mdash; PyCantonese 3.1.0.dev2 documentation</title>
+  <title>Word Segmentation &mdash; PyCantonese 3.1.0.dev3 documentation</title>
   
 
   
@@ -68,7 +68,7 @@
             
             
               <div class="version">
-                3.1.0.dev2
+                3.1.0.dev3
               </div>
             
           
@@ -284,7 +284,7 @@ unsegmented string in Cantonese characters and returns
 the segmented version:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">segment</span><span class="p">(</span><span class="s2">&quot;廣東話容唔容易學？&quot;</span><span class="p">)</span>  <span class="c1"># Is Cantonese easy to learn?</span>
-<span class="go">[&#39;廣東話&#39;, &#39;容&#39;, &#39;唔容易&#39;, &#39;學&#39;, &#39;？&#39;]</span>
+<span class="go">[&#39;廣東話&#39;, &#39;容&#39;, &#39;唔&#39;, &#39;容易&#39;, &#39;學&#39;, &#39;？&#39;]</span>
 </pre></div>
 </div>
 <p>Currently, the underlying word segmentation model is a simple longest string
@@ -324,7 +324,7 @@ for customizing in the following ways:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">segmenter</span> <span class="o">=</span> <span class="n">Segmenter</span><span class="p">(</span><span class="n">disallow</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;廣東話&quot;</span><span class="p">})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># 廣東 still exists as a word in the model, though 廣東話 is banned here.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">segment</span><span class="p">(</span><span class="s2">&quot;廣東話容唔容易學？&quot;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="n">segmenter</span><span class="p">)</span>
-<span class="go">[&#39;廣東&#39;, &#39;話&#39;, &#39;容&#39;, &#39;唔容易&#39;, &#39;學&#39;, &#39;？&#39;]</span>
+<span class="go">[&#39;廣東&#39;, &#39;話&#39;, &#39;容&#39;, &#39;唔&#39;, &#39;容易&#39;, &#39;學&#39;, &#39;？&#39;]</span>
 </pre></div>
 </div>
 </li>
@@ -367,7 +367,7 @@ instance.</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on November 26, 2020
+        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on December 05, 2020
 
     </p>
   </div>

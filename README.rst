@@ -158,6 +158,12 @@ This data has a CC BY 4.0 license.
 Please see ``pycantonese/data/rime_cantonese/README.md``
 in the GitHub source code for details.
 
+Logo
+----
+
+The PyCantonese logo is the Chinese character 粵 meaning Cantonese,
+with artistic design by albino.snowman (Instagram handle).
+
 Acknowledgments
 ---------------
 
@@ -175,8 +181,6 @@ Individuals who have contributed feedback, bug reports, etc.
 - @rylanchiu
 - Stephan Stiller
 - Tsz-Him Tsui
-
-Logo design by albino.snowman (Instagram handle).
 
 .. end-sphinx-website-index-page
 

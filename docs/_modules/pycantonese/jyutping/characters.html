@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>pycantonese.jyutping.characters &mdash; PyCantonese 3.1.0.dev2 documentation</title>
+  <title>pycantonese.jyutping.characters &mdash; PyCantonese 3.1.0.dev3 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                3.1.0.dev2
+                3.1.0.dev3
               </div>
             
           
@@ -312,21 +312,31 @@
         <span class="n">characters_to_jyutping</span><span class="p">[</span><span class="n">character</span><span class="p">]</span> <span class="o">=</span> <span class="n">jp</span>
 
     <span class="n">words_to_jyutping</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="o">**</span><span class="n">words_to_jyutping</span><span class="p">,</span>
-        <span class="o">**</span><span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">CHARS_TO_JYUTPING</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">},</span>
+        <span class="c1"># The ordering of the following dicts matters. The rime-cantonese</span>
+        <span class="c1"># data may contain what&#39;s been re-segmented by this repo, and may</span>
+        <span class="c1"># contain jyutping pronunciations for particular characters that</span>
+        <span class="c1"># are only used in those contexts. The data from HKCanCor should comes</span>
+        <span class="c1"># last to act as the default to override such cases.</span>
         <span class="o">**</span><span class="p">{</span>
             <span class="n">k</span><span class="p">:</span> <span class="n">v</span>
             <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">LETTERED</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">split_characters_with_alphanum</span><span class="p">(</span><span class="n">k</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">1</span>
         <span class="p">},</span>
+        <span class="o">**</span><span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">CHARS_TO_JYUTPING</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">},</span>
+        <span class="o">**</span><span class="n">words_to_jyutping</span><span class="p">,</span>
     <span class="p">}</span>
 
     <span class="c1"># TODO: Extract characters from CHARS_TO_JYUTPING and LETTERED</span>
     <span class="c1">#    and add them to characters_to_jyutping</span>
     <span class="n">characters_to_jyutping</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="o">**</span><span class="n">characters_to_jyutping</span><span class="p">,</span>
-        <span class="o">**</span><span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">CHARS_TO_JYUTPING</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">},</span>
+        <span class="c1"># The ordering of the following dicts matters. The rime-cantonese</span>
+        <span class="c1"># data may contain what&#39;s been re-segmented by this repo, and may</span>
+        <span class="c1"># contain jyutping pronunciations for particular characters that</span>
+        <span class="c1"># are only used in those contexts. The data from HKCanCor should comes</span>
+        <span class="c1"># last to act as the default to override such cases.</span>
         <span class="o">**</span><span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">LETTERED</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">},</span>
+        <span class="o">**</span><span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">CHARS_TO_JYUTPING</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">},</span>
+        <span class="o">**</span><span class="n">characters_to_jyutping</span><span class="p">,</span>
     <span class="p">}</span>
 
     <span class="k">return</span> <span class="n">words_to_jyutping</span><span class="p">,</span> <span class="n">characters_to_jyutping</span>
@@ -405,7 +415,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on November 26, 2020
+        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on December 05, 2020
 
     </p>
   </div>
