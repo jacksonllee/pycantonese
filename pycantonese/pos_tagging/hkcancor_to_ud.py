@@ -32,6 +32,7 @@ _MAP = {
     "AN": "NOUN",  # HKCanCor: Adjective with Nominal Function
     "AND": "PROPN",  # In one instance of "Chilli and Pepper"
     "B": "ADJ",  # HKCanCor: Non-predicate Adjective
+    "BG": "ADJ",  # HKCanCor: Non-predicate Adjective Morpheme
     "BEAN0": "PROPN",  # In one instance of "Mr Bean"
     "C": "CCONJ",  # HKCanCor: Conjunction
     "CENTRE0": "NOUN",  # In one instance of "career centre"
@@ -42,6 +43,7 @@ _MAP = {
     "E": "INTJ",  # HKCanCor: Interjection
     "ECHO0": "PROPN",  # In one instance of "Big Echo"
     "F": "ADV",  # HKCanCor: Directional Locality
+    "G": "X",  # HKCanCor: Morpheme
     "G1": "V",  # The first A in the "A-not-AB" pattern, where AB is a verb.
     "G2": "ADJ",  # The first A in "A-not-AB", where AB is an adjective.
     "H": "PROPN",  # HKCanCor: Prefix (aa3 阿 followed by a person name)
@@ -65,6 +67,7 @@ _MAP = {
     "MONTY0": "PROPN",  # In "Full Monty"
     "MOUNTAIN0": "PROPN",  # In "Blue Mountain"
     "N": "NOUN",  # Common Noun
+    "N1": "DET",  # HKCanCor: only used for ne1 呢; determiner
     "NG": "NOUN",
     "NR": "PROPN",  # HKCanCor: Personal Name
     "NS": "PROPN",  # HKCanCor: Place Name
@@ -76,6 +79,7 @@ _MAP = {
     "P": "ADP",  # HKCanCor: Preposition
     "PEPPER0": "PROPN",  # In "Chilli and Pepper"
     "Q": "NOUN",  # HKCanCor: Classifier
+    "QG": "NOUN",  # HKCanCor: Classifier Morpheme
     "R": "PRON",  # HKCanCor: Pronoun
     "RG": "PRON",  # HKCanCor: Pronoun Morpheme
     "S": "NOUN",  # HKCanCor: Space Word
@@ -85,6 +89,7 @@ _MAP = {
     "TG": "ADV",  # HKCanCor: Time Word Morpheme
     "TOUCH0": "PROPN",  # In "Don't Touch" (a magazine)
     "U": "PART",  # HKCanCor: Auxiliary (e.g., ge3 嘅 after an attributive adj)
+    "UG": "PART",  # HKCanCor: Auxiliary Morpheme
     "U0": "PROPN",  # U as in "Hong Kong U" (= The University of Hong Kong)
     "V": "VERB",  # HKCanCor: Verb
     "V1": "VERB",
@@ -107,6 +112,7 @@ _MAP = {
     "XJNT": "PROPN",
     "XJNZ": "PROPN",
     "XJV": "VERB",
+    "XJA": "X",
     "XL1": "INTJ",
     "XM": "NUM",
     "XN": "NOUN",
@@ -116,6 +122,7 @@ _MAP = {
     "XNT": "PROPN",
     "XNX": "NOUN",
     "XNZ": "PROPN",
+    "XO": "X",
     "XP": "ADP",
     "XQ": "NOUN",
     "XR": "PRON",
@@ -126,6 +133,7 @@ _MAP = {
     "XVN": "NOUN",
     "XX": "X",
     "Y": "PART",  # HKCanCor: Modal Particle
+    "YG": "PART",  # HKCanCor: Modal Particle Morpheme
     "Y1": "PART",
     "Z": "ADJ",  # HKCanCor: Descriptive
 }
