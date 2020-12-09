@@ -172,6 +172,7 @@ Individuals who have contributed feedback, bug reports, etc.
 
 - @cathug
 - Litong Chen
+- Jenny Chim
 - @g-traveller
 - Rachel Han
 - Ryan Lai

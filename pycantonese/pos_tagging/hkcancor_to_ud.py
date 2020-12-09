@@ -67,7 +67,7 @@ _MAP = {
     "MONTY0": "PROPN",  # In "Full Monty"
     "MOUNTAIN0": "PROPN",  # In "Blue Mountain"
     "N": "NOUN",  # Common Noun
-    "N1": "DET",  # HKCanCor: only used for ne1 呢; determiner
+    "N1": "DET",  # HKCanCor: only used for ne1 呢 determiner in the upstream data https://github.com/fcbond/hkcancor/blob/41f0631acda4f6a45460483ae23cad880edaacc8/data/utf8/FC-035_v2#L3455  # noqa: E501
     "NG": "NOUN",
     "NR": "PROPN",  # HKCanCor: Personal Name
     "NS": "PROPN",  # HKCanCor: Place Name
@@ -112,7 +112,7 @@ _MAP = {
     "XJNT": "PROPN",
     "XJNZ": "PROPN",
     "XJV": "VERB",
-    "XJA": "X",
+    "XJA": "ADJ",  # HKCanCor: Only for "A" (= additional) as in "A Maths" in the upstream data https://github.com/fcbond/hkcancor/blob/41f0631acda4f6a45460483ae23cad880edaacc8/data/utf8/FC-027_v2#L4712  # noqa: E501
     "XL1": "INTJ",
     "XM": "NUM",
     "XN": "NOUN",
@@ -122,7 +122,7 @@ _MAP = {
     "XNT": "PROPN",
     "XNX": "NOUN",
     "XNZ": "PROPN",
-    "XO": "X",
+    "XO": "NOUN",  # HKCanCor: Only for Gik1lik1gu4 in the upstream data https://github.com/fcbond/hkcancor/blob/41f0631acda4f6a45460483ae23cad880edaacc8/data/utf8/FC-R006_v2#L881  # noqa: E501
     "XP": "ADP",
     "XQ": "NOUN",
     "XR": "PRON",
