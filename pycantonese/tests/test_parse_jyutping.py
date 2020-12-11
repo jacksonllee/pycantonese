@@ -24,6 +24,11 @@ def test_wrong_data_type():
         parse_jyutping(123)
 
 
+@pytest.mark.parametrize("input_", ["", None])
+def test_null_input(input_):
+    assert parse_jyutping(input_) == []
+
+
 def test_syllabic_nasals():
     # TODO assert parse_jyutping('hm4') == [('h', 'm', '', '4')]
     assert parse_jyutping("ng5") == [("", "ng", "", "5")]

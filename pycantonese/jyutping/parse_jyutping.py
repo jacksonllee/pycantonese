@@ -51,6 +51,9 @@ def parse_jyutping(jp_str):
     >>> parse_jyutping("gwong2dung1waa2")  # 廣東話, Cantonese
     [('gw', 'o', 'ng', '2'), ('d', 'u', 'ng', '1'), ('w', 'aa', '', '2')]
     """
+    if not jp_str:
+        return []
+
     # check jp_str as a valid argument string
     if not isinstance(jp_str, str):
         raise ValueError("argument needs to be a string -- " + repr(jp_str))
@@ -66,7 +69,7 @@ def parse_jyutping(jp_str):
             jp_current = ""
 
     if not jp_str[-1].isdigit():
-        # TODO: erro msg should be "no invalid tone detected" or something?
+        # TODO: error msg should be "no invalid tone detected" or something?
         raise ValueError("tone error -- " + repr(jp_str[-1]))
 
     jp_parsed_list = []

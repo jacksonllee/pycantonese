@@ -204,7 +204,9 @@ def jyutping_to_yale(jp_str, as_list=True):
     #   e.g., hei3hau6 'climate' --> heihauh
     #   (middle "h" for tone in 1st syllable or being onset of 2nd syllable?)
 
-    if len(yale_list) == 1:
+    if len(yale_list) == 0:
+        return ""
+    elif len(yale_list) == 1:
         return yale_list[0]
 
     ambiguous_consonants = {"h", "p", "t", "k", "m", "n", "ng"}
