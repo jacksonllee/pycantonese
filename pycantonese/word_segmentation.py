@@ -114,5 +114,7 @@ def segment(unsegmented, cls=None):
         cls = _get_default_segmenter()
     if type(cls) != Segmenter:
         raise TypeError(f"`segmenter` must be a Segmenter object: {cls}")
+    # Strip all whitespace.
+    unsegmented = "".join(unsegmented.split())
     segmented = list(cls.predict([unsegmented]))[0]
     return segmented

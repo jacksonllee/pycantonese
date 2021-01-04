@@ -25,6 +25,9 @@ from pycantonese.word_segmentation import Segmenter
         ),
         ("佢淨係識呃like", Segmenter(), ["佢", "淨係", "識", "呃like"]),
         ("個course超好grade", Segmenter(), ["個", "course", "超", "好", "grade"]),
+        # Whitespace in input string has no effect.
+        ("廣東 話容唔容 易學？ ", None, ["廣東話", "容", "唔", "容易", "學", "？"]),
+        ("\n 廣東話容唔容易學？ ", None, ["廣東話", "容", "唔", "容易", "學", "？"]),
     ],
 )
 def test_segment(chars, segmenter, expected):
