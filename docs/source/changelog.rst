@@ -39,6 +39,8 @@ Fixed
 
 * Fixed the issue of not opening text files with UTF-8 encoding
   (a possible issue on Windows).
+* ``jyutping_to_yale`` and ``parse_jyutping`` now return a null value
+  (rather than raise an error) when the input is null.
 
 Security
 ^^^^^^^^

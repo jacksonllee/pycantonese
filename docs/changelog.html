@@ -309,6 +309,8 @@ Universal Dependencies v2 tagset.</p></li>
 <ul class="simple">
 <li><p>Fixed the issue of not opening text files with UTF-8 encoding
 (a possible issue on Windows).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">jyutping_to_yale</span></code> and <code class="docutils literal notranslate"><span class="pre">parse_jyutping</span></code> now return a null value
+(rather than raise an error) when the input is null.</p></li>
 </ul>
 </div>
 <div class="section" id="security">
@@ -538,7 +540,7 @@ element-specific search functions from version 0.1.</p></li>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on December 05, 2020
+        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on January 03, 2021
 
     </p>
   </div>

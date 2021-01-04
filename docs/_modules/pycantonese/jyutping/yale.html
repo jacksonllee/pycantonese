@@ -476,7 +476,9 @@
     <span class="c1">#   e.g., hei3hau6 &#39;climate&#39; --&gt; heihauh</span>
     <span class="c1">#   (middle &quot;h&quot; for tone in 1st syllable or being onset of 2nd syllable?)</span>
 
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">yale_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">yale_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">yale_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">yale_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="n">ambiguous_consonants</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;h&quot;</span><span class="p">,</span> <span class="s2">&quot;p&quot;</span><span class="p">,</span> <span class="s2">&quot;t&quot;</span><span class="p">,</span> <span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="s2">&quot;ng&quot;</span><span class="p">}</span>
@@ -555,7 +557,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on December 05, 2020
+        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on January 03, 2021
 
     </p>
   </div>

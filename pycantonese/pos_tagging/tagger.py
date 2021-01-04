@@ -7,6 +7,9 @@ import random
 
 from typing import Dict
 
+from pycantonese.pos_tagging.punctuation_marks import _PUNCTUATION_MARKS
+from pycantonese.pos_tagging.hkcancor_to_ud import hkcancor_to_ud
+
 
 # Use the highest pickle protocol version that's compatible for all supported
 # Python versions.
@@ -17,35 +20,6 @@ _PICKLE_PROTOCOL = 4
 
 _THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 _PICKLE_PATH = os.path.join(_THIS_DIR, "tagger.pickle")
-
-# Reference: https://en.wikipedia.org/wiki/Chinese_punctuation
-_PUNCTUATIONS = """
-，
-。
-！
-？
-；
-：
-（
-）
-「
-」
-［
-］
-【
-】
-《
-》
-〈
-〉
-、
-‧
-…
-—
-～
-""".strip().strip(
-    "\n"
-)
 
 
 class _AveragedPerceptron:
@@ -159,7 +133,7 @@ class POSTagger:
         self.classes = set()
 
         # HKCanCor doesn't have the Chinese full-width punctuation marks.
-        self.tagdict.update({punct: "PUNCT" for punct in _PUNCTUATIONS})
+        self.tagdict.update({punct: punct for punct in _PUNCTUATION_MARKS})
 
     def tag(self, words):
         """Tag the words.
@@ -320,29 +294,32 @@ def _get_tagger():
     return tagger
 
 
-# TODO: Write tests.
-def pos_tag(words):
+def pos_tag(words, tagset="universal"):
     """Tag the words for their parts of speech.
 
-    The part-of-speech tagger is trained by the HKCanCor data.
-    While HKCanCor uses a part-of-speech tagset of over 100 tags (46 of which
-    are described at http://compling.hss.ntu.edu.sg/hkcancor/),
-    these tags have been mapped to the much smaller Universal Dependencies v2
-    tagset of 17 tags (https://universaldependencies.org/u/pos/index.html)
-    for training this POS tagger.
+    The part-of-speech tagger uses an averaged perceptron model,
+    and is trained by the HKCanCor data.
 
     .. versionadded:: 3.1.0
-
-    .. warning::
-        As of November 2020, PyCantonese v3.1.0 hasn't been released yet.
-        The availability and behavior of this function are subject to change
-        in the upcoming release.
 
     Parameters
     ----------
     words : list[str]
         A segmented sentence or phrase, where each word is a string of
         Cantonese characters.
+    tagset : str, {"universal", "hkcancor"}
+        The part-of-speech tagset that the returned tags are in.
+        Supported options:
+
+        * ``"hkcancor"``, for the tagset used by the original HKCanCor data.
+          There are 112 tags, 46 of which are described at
+          http://compling.hss.ntu.edu.sg/hkcancor/.
+        * ``"universal"`` (default option), for the Universal Dependencies v2
+          tagset. There are 17 tags; see
+          https://universaldependencies.org/u/pos/index.html.
+          Internally, this option applies
+          :func:`~pycantonese.pos_tagging.hkcancor_to_ud` to convert HKCanCor
+          tags to UD tags.
 
     Returns
     -------
@@ -354,16 +331,27 @@ def pos_tag(words):
     ------
     TypeError
         If the input is a string (e.g., an unsegmented string of Cantonese).
+    ValueError
+        If the ``tagset`` argument is not one of the allowed options from
+        ``{"universal", "hkcancor"}``.
 
     Examples
     --------
-    >>> words = ['我', '噚日', '買', '嗰', '對', '鞋', '。']
-    >>> pos_tag(words)  # I bought those shoes yesterday.
-    [('我', 'PRON'), ('噚日', 'ADV'), ('買', 'VERB'), ('嗰', 'PRON'), ('對', 'ADP'), ('鞋', 'NOUN'), ('。', 'PUNCT')]
+    >>> words = ['我', '噚日', '買', '嗰', '對', '鞋', '。']  # I bought those shoes yesterday.
+    >>> pos_tag(words)
+    [('我', 'PRON'), ('噚日', 'ADV'), ('買', 'VERB'), ('嗰', 'PRON'), ('對', 'NOUN'), ('鞋', 'NOUN'), ('。', 'PUNCT')]
+    >>> pos_tag(words, tagset="hkcancor")
+    [('我', 'R'), ('噚日', 'T'), ('買', 'V'), ('嗰', 'R'), ('對', 'Q'), ('鞋', 'N'), ('。', '。')]
     """  # noqa: E501
     if type(words) == str:
         raise TypeError(
             f"Input must be a list of segmented words, not a string: {words}"
         )
     tags = _get_tagger().tag(words)
+    if tagset == "universal":
+        tags = [hkcancor_to_ud(tag) for tag in tags]
+    elif tagset != "hkcancor":
+        raise ValueError(
+            f"tagset must be one of {{'universal', 'hkcancor'}}: {tagset}"
+        )
     return list(zip(words, tags))

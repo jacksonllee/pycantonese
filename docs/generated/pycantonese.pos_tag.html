@@ -277,28 +277,32 @@
 <h1>pycantonese.pos_tag<a class="headerlink" href="#pycantonese-pos-tag" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt id="pycantonese.pos_tag">
-<code class="sig-prename descclassname">pycantonese.</code><code class="sig-name descname">pos_tag</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">words</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycantonese/pos_tagging/tagger.html#pos_tag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycantonese.pos_tag" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pycantonese.</code><code class="sig-name descname">pos_tag</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">words</span></em>, <em class="sig-param"><span class="n">tagset</span><span class="o">=</span><span class="default_value">'universal'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycantonese/pos_tagging/tagger.html#pos_tag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycantonese.pos_tag" title="Permalink to this definition">¶</a></dt>
 <dd><p>Tag the words for their parts of speech.</p>
-<p>The part-of-speech tagger is trained by the HKCanCor data.
-While HKCanCor uses a part-of-speech tagset of over 100 tags (46 of which
-are described at <a class="reference external" href="http://compling.hss.ntu.edu.sg/hkcancor/">http://compling.hss.ntu.edu.sg/hkcancor/</a>),
-these tags have been mapped to the much smaller Universal Dependencies v2
-tagset of 17 tags (<a class="reference external" href="https://universaldependencies.org/u/pos/index.html">https://universaldependencies.org/u/pos/index.html</a>)
-for training this POS tagger.</p>
+<p>The part-of-speech tagger uses an averaged perceptron model,
+and is trained by the HKCanCor data.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 3.1.0.</span></p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>As of November 2020, PyCantonese v3.1.0 hasn’t been released yet.
-The availability and behavior of this function are subject to change
-in the upcoming release.</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>words</strong><span class="classifier">list[str]</span></dt><dd><p>A segmented sentence or phrase, where each word is a string of
 Cantonese characters.</p>
+</dd>
+<dt><strong>tagset</strong><span class="classifier">str, {“universal”, “hkcancor”}</span></dt><dd><p>The part-of-speech tagset that the returned tags are in.
+Supported options:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;hkcancor&quot;</span></code>, for the tagset used by the original HKCanCor data.
+There are 112 tags, 46 of which are described at
+<a class="reference external" href="http://compling.hss.ntu.edu.sg/hkcancor/">http://compling.hss.ntu.edu.sg/hkcancor/</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;universal&quot;</span></code> (default option), for the Universal Dependencies v2
+tagset. There are 17 tags; see
+<a class="reference external" href="https://universaldependencies.org/u/pos/index.html">https://universaldependencies.org/u/pos/index.html</a>.
+Internally, this option applies
+<a class="reference internal" href="pycantonese.pos_tagging.hkcancor_to_ud.html#pycantonese.pos_tagging.hkcancor_to_ud" title="pycantonese.pos_tagging.hkcancor_to_ud"><code class="xref py py-func docutils literal notranslate"><span class="pre">hkcancor_to_ud()</span></code></a> to convert HKCanCor
+tags to UD tags.</p></li>
+</ul>
 </dd>
 </dl>
 </dd>
@@ -313,13 +317,18 @@ predicted POS tag.</p>
 <dd class="field-odd"><dl class="simple">
 <dt>TypeError</dt><dd><p>If the input is a string (e.g., an unsegmented string of Cantonese).</p>
 </dd>
+<dt>ValueError</dt><dd><p>If the <code class="docutils literal notranslate"><span class="pre">tagset</span></code> argument is not one of the allowed options from
+<code class="docutils literal notranslate"><span class="pre">{&quot;universal&quot;,</span> <span class="pre">&quot;hkcancor&quot;}</span></code>.</p>
+</dd>
 </dl>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;我&#39;</span><span class="p">,</span> <span class="s1">&#39;噚日&#39;</span><span class="p">,</span> <span class="s1">&#39;買&#39;</span><span class="p">,</span> <span class="s1">&#39;嗰&#39;</span><span class="p">,</span> <span class="s1">&#39;對&#39;</span><span class="p">,</span> <span class="s1">&#39;鞋&#39;</span><span class="p">,</span> <span class="s1">&#39;。&#39;</span><span class="p">]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pos_tag</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>  <span class="c1"># I bought those shoes yesterday.</span>
-<span class="go">[(&#39;我&#39;, &#39;PRON&#39;), (&#39;噚日&#39;, &#39;ADV&#39;), (&#39;買&#39;, &#39;VERB&#39;), (&#39;嗰&#39;, &#39;PRON&#39;), (&#39;對&#39;, &#39;ADP&#39;), (&#39;鞋&#39;, &#39;NOUN&#39;), (&#39;。&#39;, &#39;PUNCT&#39;)]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;我&#39;</span><span class="p">,</span> <span class="s1">&#39;噚日&#39;</span><span class="p">,</span> <span class="s1">&#39;買&#39;</span><span class="p">,</span> <span class="s1">&#39;嗰&#39;</span><span class="p">,</span> <span class="s1">&#39;對&#39;</span><span class="p">,</span> <span class="s1">&#39;鞋&#39;</span><span class="p">,</span> <span class="s1">&#39;。&#39;</span><span class="p">]</span>  <span class="c1"># I bought those shoes yesterday.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pos_tag</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+<span class="go">[(&#39;我&#39;, &#39;PRON&#39;), (&#39;噚日&#39;, &#39;ADV&#39;), (&#39;買&#39;, &#39;VERB&#39;), (&#39;嗰&#39;, &#39;PRON&#39;), (&#39;對&#39;, &#39;NOUN&#39;), (&#39;鞋&#39;, &#39;NOUN&#39;), (&#39;。&#39;, &#39;PUNCT&#39;)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pos_tag</span><span class="p">(</span><span class="n">words</span><span class="p">,</span> <span class="n">tagset</span><span class="o">=</span><span class="s2">&quot;hkcancor&quot;</span><span class="p">)</span>
+<span class="go">[(&#39;我&#39;, &#39;R&#39;), (&#39;噚日&#39;, &#39;T&#39;), (&#39;買&#39;, &#39;V&#39;), (&#39;嗰&#39;, &#39;R&#39;), (&#39;對&#39;, &#39;Q&#39;), (&#39;鞋&#39;, &#39;N&#39;), (&#39;。&#39;, &#39;。&#39;)]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -347,7 +356,7 @@ predicted POS tag.</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on December 05, 2020
+        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on January 03, 2021
 
     </p>
   </div>

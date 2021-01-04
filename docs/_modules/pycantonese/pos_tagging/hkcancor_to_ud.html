@@ -272,6 +272,8 @@
   <h1>Source code for pycantonese.pos_tagging.hkcancor_to_ud</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;POS tagset mapping between HKCanCor and Universal Dependencies.&quot;&quot;&quot;</span>
 
+<span class="kn">from</span> <span class="nn">pycantonese.pos_tagging.punctuation_marks</span> <span class="kn">import</span> <span class="n">_PUNCTUATION_MARKS</span>
+
 
 <span class="c1"># The Python dictionary below maps the HKCanCor tagset to the Universal</span>
 <span class="c1"># Dependencies (UD) 2.0 tagset.</span>
@@ -304,6 +306,7 @@
     <span class="s2">&quot;AN&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Adjective with Nominal Function</span>
     <span class="s2">&quot;AND&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># In one instance of &quot;Chilli and Pepper&quot;</span>
     <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="s2">&quot;ADJ&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Non-predicate Adjective</span>
+    <span class="s2">&quot;BG&quot;</span><span class="p">:</span> <span class="s2">&quot;ADJ&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Non-predicate Adjective Morpheme</span>
     <span class="s2">&quot;BEAN0&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># In one instance of &quot;Mr Bean&quot;</span>
     <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="s2">&quot;CCONJ&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Conjunction</span>
     <span class="s2">&quot;CENTRE0&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>  <span class="c1"># In one instance of &quot;career centre&quot;</span>
@@ -314,6 +317,7 @@
     <span class="s2">&quot;E&quot;</span><span class="p">:</span> <span class="s2">&quot;INTJ&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Interjection</span>
     <span class="s2">&quot;ECHO0&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># In one instance of &quot;Big Echo&quot;</span>
     <span class="s2">&quot;F&quot;</span><span class="p">:</span> <span class="s2">&quot;ADV&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Directional Locality</span>
+    <span class="s2">&quot;G&quot;</span><span class="p">:</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Morpheme</span>
     <span class="s2">&quot;G1&quot;</span><span class="p">:</span> <span class="s2">&quot;V&quot;</span><span class="p">,</span>  <span class="c1"># The first A in the &quot;A-not-AB&quot; pattern, where AB is a verb.</span>
     <span class="s2">&quot;G2&quot;</span><span class="p">:</span> <span class="s2">&quot;ADJ&quot;</span><span class="p">,</span>  <span class="c1"># The first A in &quot;A-not-AB&quot;, where AB is an adjective.</span>
     <span class="s2">&quot;H&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Prefix (aa3 阿 followed by a person name)</span>
@@ -337,6 +341,7 @@
     <span class="s2">&quot;MONTY0&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># In &quot;Full Monty&quot;</span>
     <span class="s2">&quot;MOUNTAIN0&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># In &quot;Blue Mountain&quot;</span>
     <span class="s2">&quot;N&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>  <span class="c1"># Common Noun</span>
+    <span class="s2">&quot;N1&quot;</span><span class="p">:</span> <span class="s2">&quot;DET&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: only used for ne1 呢 determiner in the upstream data https://github.com/fcbond/hkcancor/blob/41f0631acda4f6a45460483ae23cad880edaacc8/data/utf8/FC-035_v2#L3455  # noqa: E501</span>
     <span class="s2">&quot;NG&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>
     <span class="s2">&quot;NR&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Personal Name</span>
     <span class="s2">&quot;NS&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Place Name</span>
@@ -348,6 +353,7 @@
     <span class="s2">&quot;P&quot;</span><span class="p">:</span> <span class="s2">&quot;ADP&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Preposition</span>
     <span class="s2">&quot;PEPPER0&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># In &quot;Chilli and Pepper&quot;</span>
     <span class="s2">&quot;Q&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Classifier</span>
+    <span class="s2">&quot;QG&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Classifier Morpheme</span>
     <span class="s2">&quot;R&quot;</span><span class="p">:</span> <span class="s2">&quot;PRON&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Pronoun</span>
     <span class="s2">&quot;RG&quot;</span><span class="p">:</span> <span class="s2">&quot;PRON&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Pronoun Morpheme</span>
     <span class="s2">&quot;S&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Space Word</span>
@@ -357,6 +363,7 @@
     <span class="s2">&quot;TG&quot;</span><span class="p">:</span> <span class="s2">&quot;ADV&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Time Word Morpheme</span>
     <span class="s2">&quot;TOUCH0&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># In &quot;Don&#39;t Touch&quot; (a magazine)</span>
     <span class="s2">&quot;U&quot;</span><span class="p">:</span> <span class="s2">&quot;PART&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Auxiliary (e.g., ge3 嘅 after an attributive adj)</span>
+    <span class="s2">&quot;UG&quot;</span><span class="p">:</span> <span class="s2">&quot;PART&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Auxiliary Morpheme</span>
     <span class="s2">&quot;U0&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>  <span class="c1"># U as in &quot;Hong Kong U&quot; (= The University of Hong Kong)</span>
     <span class="s2">&quot;V&quot;</span><span class="p">:</span> <span class="s2">&quot;VERB&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Verb</span>
     <span class="s2">&quot;V1&quot;</span><span class="p">:</span> <span class="s2">&quot;VERB&quot;</span><span class="p">,</span>
@@ -379,6 +386,7 @@
     <span class="s2">&quot;XJNT&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>
     <span class="s2">&quot;XJNZ&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>
     <span class="s2">&quot;XJV&quot;</span><span class="p">:</span> <span class="s2">&quot;VERB&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;XJA&quot;</span><span class="p">:</span> <span class="s2">&quot;ADJ&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Only for &quot;A&quot; (= additional) as in &quot;A Maths&quot; in the upstream data https://github.com/fcbond/hkcancor/blob/41f0631acda4f6a45460483ae23cad880edaacc8/data/utf8/FC-027_v2#L4712  # noqa: E501</span>
     <span class="s2">&quot;XL1&quot;</span><span class="p">:</span> <span class="s2">&quot;INTJ&quot;</span><span class="p">,</span>
     <span class="s2">&quot;XM&quot;</span><span class="p">:</span> <span class="s2">&quot;NUM&quot;</span><span class="p">,</span>
     <span class="s2">&quot;XN&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>
@@ -388,6 +396,7 @@
     <span class="s2">&quot;XNT&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>
     <span class="s2">&quot;XNX&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>
     <span class="s2">&quot;XNZ&quot;</span><span class="p">:</span> <span class="s2">&quot;PROPN&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;XO&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Only for Gik1lik1gu4 in the upstream data https://github.com/fcbond/hkcancor/blob/41f0631acda4f6a45460483ae23cad880edaacc8/data/utf8/FC-R006_v2#L881  # noqa: E501</span>
     <span class="s2">&quot;XP&quot;</span><span class="p">:</span> <span class="s2">&quot;ADP&quot;</span><span class="p">,</span>
     <span class="s2">&quot;XQ&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>
     <span class="s2">&quot;XR&quot;</span><span class="p">:</span> <span class="s2">&quot;PRON&quot;</span><span class="p">,</span>
@@ -398,9 +407,13 @@
     <span class="s2">&quot;XVN&quot;</span><span class="p">:</span> <span class="s2">&quot;NOUN&quot;</span><span class="p">,</span>
     <span class="s2">&quot;XX&quot;</span><span class="p">:</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span>
     <span class="s2">&quot;Y&quot;</span><span class="p">:</span> <span class="s2">&quot;PART&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Modal Particle</span>
+    <span class="s2">&quot;YG&quot;</span><span class="p">:</span> <span class="s2">&quot;PART&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Modal Particle Morpheme</span>
     <span class="s2">&quot;Y1&quot;</span><span class="p">:</span> <span class="s2">&quot;PART&quot;</span><span class="p">,</span>
     <span class="s2">&quot;Z&quot;</span><span class="p">:</span> <span class="s2">&quot;ADJ&quot;</span><span class="p">,</span>  <span class="c1"># HKCanCor: Descriptive</span>
 <span class="p">}</span>
+
+<span class="c1"># Add the Chinese full-length punctuation marks.</span>
+<span class="n">_MAP</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">_MAP</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="n">punct</span><span class="p">:</span> <span class="s2">&quot;PUNCT&quot;</span> <span class="k">for</span> <span class="n">punct</span> <span class="ow">in</span> <span class="n">_PUNCTUATION_MARKS</span><span class="p">}}</span>
 
 
 <div class="viewcode-block" id="hkcancor_to_ud"><a class="viewcode-back" href="../../../generated/pycantonese.pos_tagging.hkcancor_to_ud.html#pycantonese.pos_tagging.hkcancor_to_ud">[docs]</a><span class="k">def</span> <span class="nf">hkcancor_to_ud</span><span class="p">(</span><span class="n">tag</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
@@ -409,21 +422,14 @@
 <span class="sd">    HKCanCor uses a part-of-speech tagset of over 100 tags (46 of which</span>
 <span class="sd">    are described at http://compling.hss.ntu.edu.sg/hkcancor/).</span>
 <span class="sd">    For applications that would benefit from a less granular part-of-speech</span>
-<span class="sd">    tagset (e.g, part-of-speech tagging, especially when only major word</span>
-<span class="sd">    classes are of interest and/or when there&#39;s not sufficient annotated</span>
-<span class="sd">    data for training), we can map the HKCanCor tagset to</span>
-<span class="sd">    the Universal Dependencies v2 tagset with 17 tags</span>
-<span class="sd">    (https://universaldependencies.org/u/pos/index.html)</span>
+<span class="sd">    tagset (e.g., cross-linguistic natural language processing tasks),</span>
+<span class="sd">    we can map the HKCanCor tagset to the Universal Dependencies v2 tagset</span>
+<span class="sd">    with 17 tags (https://universaldependencies.org/u/pos/index.html)</span>
 <span class="sd">    -- the purpose of this function.</span>
 
 <span class="sd">    Any unrecognized tag is mapped to ``&quot;X&quot;``.</span>
 
 <span class="sd">    .. versionadded:: 3.1.0</span>
-
-<span class="sd">    .. warning::</span>
-<span class="sd">        As of November 2020, PyCantonese v3.1.0 hasn&#39;t been released yet.</span>
-<span class="sd">        The availability and behavior of this function are subject to change</span>
-<span class="sd">        in the upcoming release.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -460,7 +466,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on December 05, 2020
+        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on January 03, 2021
 
     </p>
   </div>

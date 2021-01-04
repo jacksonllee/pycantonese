@@ -323,6 +323,9 @@
 <span class="sd">    &gt;&gt;&gt; parse_jyutping(&quot;gwong2dung1waa2&quot;)  # 廣東話, Cantonese</span>
 <span class="sd">    [(&#39;gw&#39;, &#39;o&#39;, &#39;ng&#39;, &#39;2&#39;), (&#39;d&#39;, &#39;u&#39;, &#39;ng&#39;, &#39;1&#39;), (&#39;w&#39;, &#39;aa&#39;, &#39;&#39;, &#39;2&#39;)]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">jp_str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+
     <span class="c1"># check jp_str as a valid argument string</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">jp_str</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;argument needs to be a string -- &quot;</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="n">jp_str</span><span class="p">))</span>
@@ -338,7 +341,7 @@
             <span class="n">jp_current</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">jp_str</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">isdigit</span><span class="p">():</span>
-        <span class="c1"># TODO: erro msg should be &quot;no invalid tone detected&quot; or something?</span>
+        <span class="c1"># TODO: error msg should be &quot;no invalid tone detected&quot; or something?</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;tone error -- &quot;</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="n">jp_str</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
 
     <span class="n">jp_parsed_list</span> <span class="o">=</span> <span class="p">[]</span>
@@ -431,7 +434,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2020, Jackson L. Lee | Documentation last updated on December 05, 2020
+        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on January 03, 2021
 
     </p>
   </div>
