@@ -386,6 +386,8 @@
         <span class="bp">cls</span> <span class="o">=</span> <span class="n">_get_default_segmenter</span><span class="p">()</span>
     <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">!=</span> <span class="n">Segmenter</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;`segmenter` must be a Segmenter object: </span><span class="si">{</span><span class="bp">cls</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="c1"># Strip all whitespace.</span>
+    <span class="n">unsegmented</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">unsegmented</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
     <span class="n">segmented</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">unsegmented</span><span class="p">]))[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">segmented</span></div>
 </pre></div>
@@ -401,7 +403,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on January 03, 2021
+        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on February 15, 2021
 
     </p>
   </div>

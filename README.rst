@@ -212,7 +212,7 @@ To run tests and styling checks:
 
    $ pytest -vv --doctest-modules --cov=pycantonese pycantonese docs
    $ flake8 pycantonese
-   $ black --check --line-length=79 pycantonese
+   $ black --check pycantonese
 
 To build the documentation website files:
 

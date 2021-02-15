@@ -300,9 +300,7 @@
 <span class="sd">            the ``encoding`` kwarg is supported (default: &#39;utf8&#39;).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">encoding</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="n">ENCODING</span><span class="p">)</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">CantoneseCHATReader</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
-            <span class="o">*</span><span class="n">filenames</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span>
-        <span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CantoneseCHATReader</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">filenames</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="CantoneseCHATReader.concordance"><a class="viewcode-back" href="../../reader.html#pycantonese.corpus.CantoneseCHATReader.concordance">[docs]</a>    <span class="k">def</span> <span class="nf">concordance</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -371,9 +369,7 @@
         <span class="k">if</span> <span class="n">by_files</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">fn_to_jyutpings</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">ListFromIterables</span><span class="p">(</span>
-                <span class="o">*</span><span class="p">(</span><span class="n">v</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">fn_to_jyutpings</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
-            <span class="p">)</span></div>
+            <span class="k">return</span> <span class="n">ListFromIterables</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">v</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">fn_to_jyutpings</span><span class="o">.</span><span class="n">items</span><span class="p">())))</span></div>
 
 <div class="viewcode-block" id="CantoneseCHATReader.jyutping_sents"><a class="viewcode-back" href="../../reader.html#pycantonese.corpus.CantoneseCHATReader.jyutping_sents">[docs]</a>    <span class="k">def</span> <span class="nf">jyutping_sents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">participant</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">by_files</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the sentences in Jyutping romanization.</span>
@@ -401,9 +397,7 @@
         <span class="k">if</span> <span class="n">by_files</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">fn_to_jyutpings</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">ListFromIterables</span><span class="p">(</span>
-                <span class="o">*</span><span class="p">(</span><span class="n">v</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">fn_to_jyutpings</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
-            <span class="p">)</span></div>
+            <span class="k">return</span> <span class="n">ListFromIterables</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">v</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">fn_to_jyutpings</span><span class="o">.</span><span class="n">items</span><span class="p">())))</span></div>
 
     <span class="k">def</span> <span class="nf">_get_character_sents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">participant</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sents</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="n">fname_to_tagged_sents</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tagged_sents</span><span class="p">(</span>
@@ -465,9 +459,7 @@
         <span class="k">if</span> <span class="n">by_files</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">fn_to_characters</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">ListFromIterables</span><span class="p">(</span>
-                <span class="o">*</span><span class="p">(</span><span class="n">v</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">fn_to_characters</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
-            <span class="p">)</span></div>
+            <span class="k">return</span> <span class="n">ListFromIterables</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">v</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">fn_to_characters</span><span class="o">.</span><span class="n">items</span><span class="p">())))</span></div>
 
 <div class="viewcode-block" id="CantoneseCHATReader.character_sents"><a class="viewcode-back" href="../../reader.html#pycantonese.corpus.CantoneseCHATReader.character_sents">[docs]</a>    <span class="k">def</span> <span class="nf">character_sents</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">participant</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">by_files</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the data as sentences of individual Cantonese characters.</span>
@@ -495,9 +487,7 @@
         <span class="k">if</span> <span class="n">by_files</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">fn_to_characters</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">ListFromIterables</span><span class="p">(</span>
-                <span class="o">*</span><span class="p">(</span><span class="n">v</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">fn_to_characters</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
-            <span class="p">)</span></div>
+            <span class="k">return</span> <span class="n">ListFromIterables</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">v</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">fn_to_characters</span><span class="o">.</span><span class="n">items</span><span class="p">())))</span></div>
 
 <div class="viewcode-block" id="CantoneseCHATReader.search"><a class="viewcode-back" href="../../reader.html#pycantonese.corpus.CantoneseCHATReader.search">[docs]</a>    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -601,9 +591,7 @@
         <span class="k">if</span> <span class="n">by_files</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">fn_to_results</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">ListFromIterables</span><span class="p">(</span>
-                <span class="o">*</span><span class="p">(</span><span class="n">v</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">fn_to_results</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
-            <span class="p">)</span></div></div>
+            <span class="k">return</span> <span class="n">ListFromIterables</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">v</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">fn_to_results</span><span class="o">.</span><span class="n">items</span><span class="p">())))</span></div></div>
 
 
 <div class="viewcode-block" id="hkcancor"><a class="viewcode-back" href="../../generated/pycantonese.hkcancor.html#pycantonese.corpus.hkcancor">[docs]</a><span class="nd">@lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -614,9 +602,7 @@
 <span class="sd">    -------</span>
 <span class="sd">    :class:`~pycantonese.corpus.CantoneseCHATReader`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">data_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="s2">&quot;hkcancor&quot;</span><span class="p">,</span> <span class="s2">&quot;*.cha&quot;</span>
-    <span class="p">)</span>
+    <span class="n">data_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="s2">&quot;hkcancor&quot;</span><span class="p">,</span> <span class="s2">&quot;*.cha&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">CantoneseCHATReader</span><span class="p">(</span><span class="n">data_path</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf8&quot;</span><span class="p">)</span></div>
 
 
@@ -651,7 +637,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on January 03, 2021
+        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on February 15, 2021
 
     </p>
   </div>

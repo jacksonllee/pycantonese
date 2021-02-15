@@ -374,9 +374,7 @@
     <span class="n">START</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;-START-&quot;</span><span class="p">,</span> <span class="s2">&quot;-START2-&quot;</span><span class="p">]</span>
     <span class="n">END</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;-END-&quot;</span><span class="p">,</span> <span class="s2">&quot;-END2-&quot;</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">frequency_threshold</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">ambiguity_threshold</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">5</span>
-    <span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">frequency_threshold</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">ambiguity_threshold</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialize a part-of-speech tagger.</span>
 
 <span class="sd">        Parameters</span>
@@ -457,9 +455,7 @@
                     <span class="k">try</span><span class="p">:</span>
                         <span class="n">guess</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tagdict</span><span class="p">[</span><span class="n">word</span><span class="p">]</span>
                     <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-                        <span class="n">feats</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_features</span><span class="p">(</span>
-                            <span class="n">i</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">prev</span><span class="p">,</span> <span class="n">prev2</span>
-                        <span class="p">)</span>
+                        <span class="n">feats</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_features</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">word</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">prev</span><span class="p">,</span> <span class="n">prev2</span><span class="p">)</span>
                         <span class="n">guess</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">feats</span><span class="p">)</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">tag</span><span class="p">,</span> <span class="n">guess</span><span class="p">,</span> <span class="n">feats</span><span class="p">)</span>
                     <span class="n">prev2</span> <span class="o">=</span> <span class="n">prev</span>
@@ -554,9 +550,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">tagdict</span><span class="p">[</span><span class="n">word</span><span class="p">]</span> <span class="o">=</span> <span class="n">tag</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2"> unique words in the training data&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">))</span>
         <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2"> tags in this tagset&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes</span><span class="p">))</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-            <span class="s2">&quot;</span><span class="si">%d</span><span class="s2"> words are treated as having a unique tag&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tagdict</span><span class="p">)</span>
-        <span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2"> words are treated as having a unique tag&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tagdict</span><span class="p">))</span>
 
 
 <span class="nd">@functools</span><span class="o">.</span><span class="n">lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -623,9 +617,7 @@
     <span class="k">if</span> <span class="n">tagset</span> <span class="o">==</span> <span class="s2">&quot;universal&quot;</span><span class="p">:</span>
         <span class="n">tags</span> <span class="o">=</span> <span class="p">[</span><span class="n">hkcancor_to_ud</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span> <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">tags</span><span class="p">]</span>
     <span class="k">elif</span> <span class="n">tagset</span> <span class="o">!=</span> <span class="s2">&quot;hkcancor&quot;</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;tagset must be one of </span><span class="se">{{</span><span class="s2">&#39;universal&#39;, &#39;hkcancor&#39;</span><span class="se">}}</span><span class="s2">: </span><span class="si">{</span><span class="n">tagset</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;tagset must be one of </span><span class="se">{{</span><span class="s2">&#39;universal&#39;, &#39;hkcancor&#39;</span><span class="se">}}</span><span class="s2">: </span><span class="si">{</span><span class="n">tagset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">words</span><span class="p">,</span> <span class="n">tags</span><span class="p">))</span></div>
 </pre></div>
 
@@ -640,7 +632,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on January 03, 2021
+        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on February 15, 2021
 
     </p>
   </div>
