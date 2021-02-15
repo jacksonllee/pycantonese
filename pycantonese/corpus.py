@@ -28,9 +28,7 @@ class CantoneseCHATReader(Reader):
             the ``encoding`` kwarg is supported (default: 'utf8').
         """
         encoding = kwargs.get("encoding", ENCODING)
-        super(CantoneseCHATReader, self).__init__(
-            *filenames, encoding=encoding
-        )
+        super(CantoneseCHATReader, self).__init__(*filenames, encoding=encoding)
 
     def concordance(
         self,
@@ -99,9 +97,7 @@ class CantoneseCHATReader(Reader):
         if by_files:
             return fn_to_jyutpings
         else:
-            return ListFromIterables(
-                *(v for _, v in sorted(fn_to_jyutpings.items()))
-            )
+            return ListFromIterables(*(v for _, v in sorted(fn_to_jyutpings.items())))
 
     def jyutping_sents(self, participant=None, exclude=None, by_files=False):
         """Return the sentences in Jyutping romanization.
@@ -129,9 +125,7 @@ class CantoneseCHATReader(Reader):
         if by_files:
             return fn_to_jyutpings
         else:
-            return ListFromIterables(
-                *(v for _, v in sorted(fn_to_jyutpings.items()))
-            )
+            return ListFromIterables(*(v for _, v in sorted(fn_to_jyutpings.items())))
 
     def _get_character_sents(self, participant=None, exclude=None, sents=True):
         fname_to_tagged_sents = self.tagged_sents(
@@ -193,9 +187,7 @@ class CantoneseCHATReader(Reader):
         if by_files:
             return fn_to_characters
         else:
-            return ListFromIterables(
-                *(v for _, v in sorted(fn_to_characters.items()))
-            )
+            return ListFromIterables(*(v for _, v in sorted(fn_to_characters.items())))
 
     def character_sents(self, participant=None, exclude=None, by_files=False):
         """Return the data as sentences of individual Cantonese characters.
@@ -223,9 +215,7 @@ class CantoneseCHATReader(Reader):
         if by_files:
             return fn_to_characters
         else:
-            return ListFromIterables(
-                *(v for _, v in sorted(fn_to_characters.items()))
-            )
+            return ListFromIterables(*(v for _, v in sorted(fn_to_characters.items())))
 
     def search(
         self,
@@ -329,9 +319,7 @@ class CantoneseCHATReader(Reader):
         if by_files:
             return fn_to_results
         else:
-            return ListFromIterables(
-                *(v for _, v in sorted(fn_to_results.items()))
-            )
+            return ListFromIterables(*(v for _, v in sorted(fn_to_results.items())))
 
 
 @lru_cache(maxsize=1)
@@ -342,9 +330,7 @@ def hkcancor():
     -------
     :class:`~pycantonese.corpus.CantoneseCHATReader`
     """
-    data_path = os.path.join(
-        os.path.dirname(__file__), "data", "hkcancor", "*.cha"
-    )
+    data_path = os.path.join(os.path.dirname(__file__), "data", "hkcancor", "*.cha")
     return CantoneseCHATReader(data_path, encoding="utf8")
 
 

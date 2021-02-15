@@ -26,7 +26,7 @@ jobs:
           pip-dependency-file: << parameters.command-name >>-dev-requirements.txt
           cache-version: << parameters.command-name >>-v1
       - run:
-          working_directory: ~/
+          working_directory: ~/project/
           command: << parameters.command-run >>
 
   build-python:
@@ -91,11 +91,11 @@ workflows:
       - pre-build:
           name: flake8
           command-name: flake8
-          command-run: flake8 project/setup.py project/pycantonese
+          command-run: flake8 setup.py pycantonese
       - pre-build:
           name: black
           command-name: black
-          command-run: black --line-length=79 --check project/setup.py project/pycantonese
+          command-run: black --check setup.py pycantonese
       - build-python:
           requires:
             - flake8

@@ -85,13 +85,11 @@ def perform_search(
         # ensure compatible jyutping search elements
         if final and (nucleus or coda):
             raise ValueError(
-                "final cannot be used together with "
-                "either nucleus or coda (or both)"
+                "final cannot be used together with " "either nucleus or coda (or both)"
             )
         if jyutping and (onset or final or nucleus or coda or tone):
             raise ValueError(
-                "jyutping cannot be used together with other "
-                "Jyutping elements"
+                "jyutping cannot be used together with other " "Jyutping elements"
             )
         if (onset != initial) and onset and initial:
             raise ValueError("onset conflicts with initial")

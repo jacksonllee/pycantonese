@@ -51,9 +51,7 @@ def _download_chars_jyutping_data(yaml_filename, json_filename):
             f.write(response.content)
 
         with zipfile.ZipFile(zip_path) as zip_file:
-            data_path = os.path.join(
-                f"rime-cantonese-{_BRANCH}", yaml_filename
-            )
+            data_path = os.path.join(f"rime-cantonese-{_BRANCH}", yaml_filename)
             with zip_file.open(data_path) as data_file:
                 for line in io.TextIOWrapper(data_file, encoding="utf-8"):
                     line = line.strip()
@@ -96,9 +94,7 @@ def _download_chars_jyutping_data(yaml_filename, json_filename):
             )[0][0]
         chars_to_jyutping[chars] = jyutping
 
-    with open(
-        os.path.join(_THIS_DIR, json_filename), "w", encoding="utf8"
-    ) as f:
+    with open(os.path.join(_THIS_DIR, json_filename), "w", encoding="utf8") as f:
         json.dump(chars_to_jyutping, f, indent=4, ensure_ascii=False)
 
 
@@ -112,9 +108,7 @@ def _download_chars_data(yaml_filename, json_filename):
             f.write(response.content)
 
         with zipfile.ZipFile(zip_path) as zip_file:
-            data_path = os.path.join(
-                f"rime-cantonese-{_BRANCH}", yaml_filename
-            )
+            data_path = os.path.join(f"rime-cantonese-{_BRANCH}", yaml_filename)
             with zip_file.open(data_path) as data_file:
                 for line in io.TextIOWrapper(data_file, encoding="utf-8"):
                     line = line.strip()
@@ -128,9 +122,7 @@ def _download_chars_data(yaml_filename, json_filename):
                         continue
                     chars.append(line)
 
-    with open(
-        os.path.join(_THIS_DIR, json_filename), "w", encoding="utf8"
-    ) as f:
+    with open(os.path.join(_THIS_DIR, json_filename), "w", encoding="utf8") as f:
         json.dump(chars, f, indent=4, ensure_ascii=False)
 
 
@@ -140,9 +132,7 @@ def _resegment_chars_jyutping_data(json_filename):
     with open(json_path, encoding="utf8") as f:
         chars_to_jyutping = json.load(f)
 
-    with open(
-        os.path.join(_THIS_DIR, _RESEGMENTED_FILENAME), encoding="utf8"
-    ) as f:
+    with open(os.path.join(_THIS_DIR, _RESEGMENTED_FILENAME), encoding="utf8") as f:
         resegmented = {}
         for line in f:
             line = line.strip()
@@ -178,9 +168,7 @@ def _resegment_chars_jyutping_data(json_filename):
                         continue
 
                     new_jp_for_word = ""
-                    for _ in range(
-                        len(split_characters_with_alphanum(new_word))
-                    ):
+                    for _ in range(len(split_characters_with_alphanum(new_word))):
                         new_jp_for_word += "".join(jp_split[i])
                         i += 1
                     new_chars_to_jyutping[new_word] = new_jp_for_word

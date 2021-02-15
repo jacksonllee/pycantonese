@@ -102,9 +102,7 @@ class POSTagger:
     START = ["-START-", "-START2-"]
     END = ["-END-", "-END2-"]
 
-    def __init__(
-        self, *, frequency_threshold=10, ambiguity_threshold=0.95, n_iter=5
-    ):
+    def __init__(self, *, frequency_threshold=10, ambiguity_threshold=0.95, n_iter=5):
         """Initialize a part-of-speech tagger.
 
         Parameters
@@ -185,9 +183,7 @@ class POSTagger:
                     try:
                         guess = self.tagdict[word]
                     except KeyError:
-                        feats = self._get_features(
-                            i, word, context, prev, prev2
-                        )
+                        feats = self._get_features(i, word, context, prev, prev2)
                         guess = self.model.predict(feats)
                         self.model.update(tag, guess, feats)
                     prev2 = prev
@@ -282,9 +278,7 @@ class POSTagger:
                 self.tagdict[word] = tag
         logging.info("%d unique words in the training data", len(words))
         logging.info("%d tags in this tagset", len(self.classes))
-        logging.info(
-            "%d words are treated as having a unique tag", len(self.tagdict)
-        )
+        logging.info("%d words are treated as having a unique tag", len(self.tagdict))
 
 
 @functools.lru_cache(maxsize=1)
@@ -351,7 +345,5 @@ def pos_tag(words, tagset="universal"):
     if tagset == "universal":
         tags = [hkcancor_to_ud(tag) for tag in tags]
     elif tagset != "hkcancor":
-        raise ValueError(
-            f"tagset must be one of {{'universal', 'hkcancor'}}: {tagset}"
-        )
+        raise ValueError(f"tagset must be one of {{'universal', 'hkcancor'}}: {tagset}")
     return list(zip(words, tags))
