@@ -311,6 +311,8 @@ Universal Dependencies v2 tagset.</p></li>
 (a possible issue on Windows).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">jyutping_to_yale</span></code> and <code class="docutils literal notranslate"><span class="pre">parse_jyutping</span></code> now return a null value
 (rather than raise an error) when the input is null.</p></li>
+<li><p>The word segmentation function <code class="docutils literal notranslate"><span class="pre">segment</span></code> now strips all whitespace
+from the input unsegmented string before segmenting it.</p></li>
 </ul>
 </div>
 <div class="section" id="security">
@@ -540,7 +542,7 @@ element-specific search functions from version 0.1.</p></li>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on February 15, 2021
+        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on February 21, 2021
 
     </p>
   </div>

@@ -294,7 +294,7 @@ Cantonese characters.</p>
 Supported options:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;hkcancor&quot;</span></code>, for the tagset used by the original HKCanCor data.
-There are 112 tags, 46 of which are described at
+There are over 100 tags, 46 of which are described at
 <a class="reference external" href="http://compling.hss.ntu.edu.sg/hkcancor/">http://compling.hss.ntu.edu.sg/hkcancor/</a>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;universal&quot;</span></code> (default option), for the Universal Dependencies v2
 tagset. There are 17 tags; see
@@ -324,7 +324,7 @@ predicted POS tag.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;我&#39;</span><span class="p">,</span> <span class="s1">&#39;噚日&#39;</span><span class="p">,</span> <span class="s1">&#39;買&#39;</span><span class="p">,</span> <span class="s1">&#39;嗰&#39;</span><span class="p">,</span> <span class="s1">&#39;對&#39;</span><span class="p">,</span> <span class="s1">&#39;鞋&#39;</span><span class="p">,</span> <span class="s1">&#39;。&#39;</span><span class="p">]</span>  <span class="c1"># I bought those shoes yesterday.</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;我&#39;</span><span class="p">,</span> <span class="s1">&#39;噚日&#39;</span><span class="p">,</span> <span class="s1">&#39;買&#39;</span><span class="p">,</span> <span class="s1">&#39;嗰&#39;</span><span class="p">,</span> <span class="s1">&#39;對&#39;</span><span class="p">,</span> <span class="s1">&#39;鞋&#39;</span><span class="p">,</span> <span class="s1">&#39;。&#39;</span><span class="p">]</span>  <span class="c1"># I bought that pair of shoes yesterday.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pos_tag</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
 <span class="go">[(&#39;我&#39;, &#39;PRON&#39;), (&#39;噚日&#39;, &#39;ADV&#39;), (&#39;買&#39;, &#39;VERB&#39;), (&#39;嗰&#39;, &#39;PRON&#39;), (&#39;對&#39;, &#39;NOUN&#39;), (&#39;鞋&#39;, &#39;NOUN&#39;), (&#39;。&#39;, &#39;PUNCT&#39;)]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pos_tag</span><span class="p">(</span><span class="n">words</span><span class="p">,</span> <span class="n">tagset</span><span class="o">=</span><span class="s2">&quot;hkcancor&quot;</span><span class="p">)</span>
@@ -356,7 +356,7 @@ predicted POS tag.</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on February 15, 2021
+        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on February 21, 2021
 
     </p>
   </div>

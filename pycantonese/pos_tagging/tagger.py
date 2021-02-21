@@ -306,7 +306,7 @@ def pos_tag(words, tagset="universal"):
         Supported options:
 
         * ``"hkcancor"``, for the tagset used by the original HKCanCor data.
-          There are 112 tags, 46 of which are described at
+          There are over 100 tags, 46 of which are described at
           http://compling.hss.ntu.edu.sg/hkcancor/.
         * ``"universal"`` (default option), for the Universal Dependencies v2
           tagset. There are 17 tags; see
@@ -331,7 +331,7 @@ def pos_tag(words, tagset="universal"):
 
     Examples
     --------
-    >>> words = ['我', '噚日', '買', '嗰', '對', '鞋', '。']  # I bought those shoes yesterday.
+    >>> words = ['我', '噚日', '買', '嗰', '對', '鞋', '。']  # I bought that pair of shoes yesterday.
     >>> pos_tag(words)
     [('我', 'PRON'), ('噚日', 'ADV'), ('買', 'VERB'), ('嗰', 'PRON'), ('對', 'NOUN'), ('鞋', 'NOUN'), ('。', 'PUNCT')]
     >>> pos_tag(words, tagset="hkcancor")

@@ -161,7 +161,7 @@ def hkcancor_to_ud(tag: str = None):
 
     Parameters
     ----------
-    tag : str
+    tag : str, optional
         A tag from the original HKCanCor annotated data.
         If not provided or ``None``, this function returns the entire
         dictionary of the tagset mapping from HKCanCor to UD.

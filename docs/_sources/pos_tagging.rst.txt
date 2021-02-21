@@ -5,31 +5,51 @@ Part-of-Speech Tagging
 
 .. versionadded:: 3.1.0
 
-.. warning::
-    As of November 2020, PyCantonese v3.1.0 hasn't been released yet.
-    All functionality related to part-of-speech tagging
-    is available only through the GitHub repository for early testers.
-    Everything (what functions are provided, how they behave) is subject to
-    change while it is still under active development.
-    To download and install this (unstable) version of PyCantonese
-    (the ``--pre`` flag means a pre-release version):
+A basic part-of-speech tagger is provided by :func:`~pycantonese.pos_tag`,
+which takes a segmented phrase or sentence as the input:
 
-    .. code-block:: bash
+.. code-block:: python
 
-        $ pip install --pre --upgrade pycantonese
+    >>> import pycantonese as pc
+    >>> unsegmented = '我噚日買嗰對鞋。'  # I bought that pair of shoes yesterday.
+    >>> segmented = pc.segment(unsegmented)
+    ['我', '噚日', '買', '嗰', '對', '鞋', '。']
+    >>> pc.pos_tag(segmented)
+    [('我', 'PRON'), ('噚日', 'ADV'), ('買', 'VERB'), ('嗰', 'PRON'), ('對', 'NOUN'), ('鞋', 'NOUN'), ('。', 'PUNCT')]
 
-    Running ``import pycantonese as pc; print(pc.__version__)`` will show a
-    version number similar to ``3.1.0.dev2``.
+The part-of-speech tagger uses the averaged perceptron model trained on
+HKCanCor data.
+HKCanCor has already been tagged for part-of-speech tags,
+with a tagset of over 100 tags (46 of which are described at
+http://compling.hss.ntu.edu.sg/hkcancor/).
+By default, :func:`~pycantonese.pos_tag` maps the HKCanCor tagset to the
+Universal Dependencies v2 tagset
+(with 17 tags, https://universaldependencies.org/u/pos/index.html),
+for cross-linguistic natural language processing work.
+If you would like the original HKCanCor tagset,
+:func:`~pycantonese.pos_tag` accepts the keyword argument ``tagset``:
 
-    If you notice any issues, please don't hesitate to
-    `report them <https://pycantonese.org/#links>`_.
+.. code-block:: python
 
-    While the documentation below is minimal for now, it is going to be updated
-    and expanded once the part-of-speech tagging functionality is finalized
-    in a new PyCantonese release.
+    >>> pc.pos_tag(segmented, tagset="hkcancor")
+    [('我', 'R'), ('噚日', 'T'), ('買', 'V'), ('嗰', 'R'), ('對', 'Q'), ('鞋', 'N'), ('。', '。')]
 
-:func:`~pycantonese.pos_tag`
-tags words in a segmented sentence or phrase for their parts of speech.
+The helper function :func:`~pycantonese.pos_tagging.hkcancor_to_ud`
+exposes the tagset mapping from HKCanCor to Universal Dependencies.
 
-:func:`~pycantonese.pos_tagging.hkcancor_to_ud`
-maps a part-of-speech tag from HKCanCor to Universal Dependencies v2.
+Due to the statistical nature of part-of-speech tagging,
+the quality of results from :func:`~pycantonese.pos_tag` depends on
+(i) the training data,
+(ii) the quality of word segmentation, since the function expects a *segmented* input.
+Currently, a major limitation is the fact that HKCanCor is perhaps still
+the only Cantonese corpus with a permissive license that comes annotated
+with part-of-speech tags.
+Its relatively small size (about 150,000 tagged words) means that models
+more sophisticated than a standard averaged perceptron approach wouldn't be worth it.
+If you think the results from :func:`~pycantonese.pos_tag` are odd,
+it is potentially due to the HKCanCor training data
+(e.g., specific occurrences of word + tag combinations might have thrown off the tagger),
+or the quality of word segmentation, especially if your segmented input comes from
+:func:`~pycantonese.segment` (also trained by HKCanCor)
+-- please `get in touch <https://pycantonese.org/index.html#links>`_
+if you would like further investigation.

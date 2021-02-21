@@ -41,6 +41,8 @@ Fixed
   (a possible issue on Windows).
 * ``jyutping_to_yale`` and ``parse_jyutping`` now return a null value
   (rather than raise an error) when the input is null.
+* The word segmentation function ``segment`` now strips all whitespace
+  from the input unsegmented string before segmenting it.
 
 Security
 ^^^^^^^^

@@ -276,30 +276,49 @@
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 3.1.0.</span></p>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>As of November 2020, PyCantonese v3.1.0 hasn’t been released yet.
-All functionality related to part-of-speech tagging
-is available only through the GitHub repository for early testers.
-Everything (what functions are provided, how they behave) is subject to
-change while it is still under active development.
-To download and install this (unstable) version of PyCantonese
-(the <code class="docutils literal notranslate"><span class="pre">--pre</span></code> flag means a pre-release version):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install --pre --upgrade pycantonese
+<p>A basic part-of-speech tagger is provided by <a class="reference internal" href="generated/pycantonese.pos_tag.html#pycantonese.pos_tag" title="pycantonese.pos_tag"><code class="xref py py-func docutils literal notranslate"><span class="pre">pos_tag()</span></code></a>,
+which takes a segmented phrase or sentence as the input:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">unsegmented</span> <span class="o">=</span> <span class="s1">&#39;我噚日買嗰對鞋。&#39;</span>  <span class="c1"># I bought that pair of shoes yesterday.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">segmented</span> <span class="o">=</span> <span class="n">pc</span><span class="o">.</span><span class="n">segment</span><span class="p">(</span><span class="n">unsegmented</span><span class="p">)</span>
+<span class="go">[&#39;我&#39;, &#39;噚日&#39;, &#39;買&#39;, &#39;嗰&#39;, &#39;對&#39;, &#39;鞋&#39;, &#39;。&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">pos_tag</span><span class="p">(</span><span class="n">segmented</span><span class="p">)</span>
+<span class="go">[(&#39;我&#39;, &#39;PRON&#39;), (&#39;噚日&#39;, &#39;ADV&#39;), (&#39;買&#39;, &#39;VERB&#39;), (&#39;嗰&#39;, &#39;PRON&#39;), (&#39;對&#39;, &#39;NOUN&#39;), (&#39;鞋&#39;, &#39;NOUN&#39;), (&#39;。&#39;, &#39;PUNCT&#39;)]</span>
 </pre></div>
 </div>
-<p>Running <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">pycantonese</span> <span class="pre">as</span> <span class="pre">pc;</span> <span class="pre">print(pc.__version__)</span></code> will show a
-version number similar to <code class="docutils literal notranslate"><span class="pre">3.1.0.dev2</span></code>.</p>
-<p>If you notice any issues, please don’t hesitate to
-<a class="reference external" href="https://pycantonese.org/#links">report them</a>.</p>
-<p>While the documentation below is minimal for now, it is going to be updated
-and expanded once the part-of-speech tagging functionality is finalized
-in a new PyCantonese release.</p>
+<p>The part-of-speech tagger uses the averaged perceptron model trained on
+HKCanCor data.
+HKCanCor has already been tagged for part-of-speech tags,
+with a tagset of over 100 tags (46 of which are described at
+<a class="reference external" href="http://compling.hss.ntu.edu.sg/hkcancor/">http://compling.hss.ntu.edu.sg/hkcancor/</a>).
+By default, <a class="reference internal" href="generated/pycantonese.pos_tag.html#pycantonese.pos_tag" title="pycantonese.pos_tag"><code class="xref py py-func docutils literal notranslate"><span class="pre">pos_tag()</span></code></a> maps the HKCanCor tagset to the
+Universal Dependencies v2 tagset
+(with 17 tags, <a class="reference external" href="https://universaldependencies.org/u/pos/index.html">https://universaldependencies.org/u/pos/index.html</a>),
+for cross-linguistic natural language processing work.
+If you would like the original HKCanCor tagset,
+<a class="reference internal" href="generated/pycantonese.pos_tag.html#pycantonese.pos_tag" title="pycantonese.pos_tag"><code class="xref py py-func docutils literal notranslate"><span class="pre">pos_tag()</span></code></a> accepts the keyword argument <code class="docutils literal notranslate"><span class="pre">tagset</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pc</span><span class="o">.</span><span class="n">pos_tag</span><span class="p">(</span><span class="n">segmented</span><span class="p">,</span> <span class="n">tagset</span><span class="o">=</span><span class="s2">&quot;hkcancor&quot;</span><span class="p">)</span>
+<span class="go">[(&#39;我&#39;, &#39;R&#39;), (&#39;噚日&#39;, &#39;T&#39;), (&#39;買&#39;, &#39;V&#39;), (&#39;嗰&#39;, &#39;R&#39;), (&#39;對&#39;, &#39;Q&#39;), (&#39;鞋&#39;, &#39;N&#39;), (&#39;。&#39;, &#39;。&#39;)]</span>
+</pre></div>
 </div>
-<p><a class="reference internal" href="generated/pycantonese.pos_tag.html#pycantonese.pos_tag" title="pycantonese.pos_tag"><code class="xref py py-func docutils literal notranslate"><span class="pre">pos_tag()</span></code></a>
-tags words in a segmented sentence or phrase for their parts of speech.</p>
-<p><a class="reference internal" href="generated/pycantonese.pos_tagging.hkcancor_to_ud.html#pycantonese.pos_tagging.hkcancor_to_ud" title="pycantonese.pos_tagging.hkcancor_to_ud"><code class="xref py py-func docutils literal notranslate"><span class="pre">hkcancor_to_ud()</span></code></a>
-maps a part-of-speech tag from HKCanCor to Universal Dependencies v2.</p>
+<p>The helper function <a class="reference internal" href="generated/pycantonese.pos_tagging.hkcancor_to_ud.html#pycantonese.pos_tagging.hkcancor_to_ud" title="pycantonese.pos_tagging.hkcancor_to_ud"><code class="xref py py-func docutils literal notranslate"><span class="pre">hkcancor_to_ud()</span></code></a>
+exposes the tagset mapping from HKCanCor to Universal Dependencies.</p>
+<p>Due to the statistical nature of part-of-speech tagging,
+the quality of results from <a class="reference internal" href="generated/pycantonese.pos_tag.html#pycantonese.pos_tag" title="pycantonese.pos_tag"><code class="xref py py-func docutils literal notranslate"><span class="pre">pos_tag()</span></code></a> depends on
+(i) the training data,
+(ii) the quality of word segmentation, since the function expects a <em>segmented</em> input.
+Currently, a major limitation is the fact that HKCanCor is perhaps still
+the only Cantonese corpus with a permissive license that comes annotated
+with part-of-speech tags.
+Its relatively small size (about 150,000 tagged words) means that models
+more sophisticated than a standard averaged perceptron approach wouldn’t be worth it.
+If you think the results from <a class="reference internal" href="generated/pycantonese.pos_tag.html#pycantonese.pos_tag" title="pycantonese.pos_tag"><code class="xref py py-func docutils literal notranslate"><span class="pre">pos_tag()</span></code></a> are odd,
+it is potentially due to the HKCanCor training data
+(e.g., specific occurrences of word + tag combinations might have thrown off the tagger),
+or the quality of word segmentation, especially if your segmented input comes from
+<a class="reference internal" href="generated/pycantonese.segment.html#pycantonese.segment" title="pycantonese.segment"><code class="xref py py-func docutils literal notranslate"><span class="pre">segment()</span></code></a> (also trained by HKCanCor)
+– please <a class="reference external" href="https://pycantonese.org/index.html#links">get in touch</a>
+if you would like further investigation.</p>
 </div>
 
 
@@ -323,7 +342,7 @@ maps a part-of-speech tag from HKCanCor to Universal Dependencies v2.</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on February 15, 2021
+        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on February 21, 2021
 
     </p>
   </div>
