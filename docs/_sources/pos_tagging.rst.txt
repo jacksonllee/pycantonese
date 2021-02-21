@@ -13,6 +13,7 @@ which takes a segmented phrase or sentence as the input:
     >>> import pycantonese as pc
     >>> unsegmented = '我噚日買嗰對鞋。'  # I bought that pair of shoes yesterday.
     >>> segmented = pc.segment(unsegmented)
+    >>> segmented
     ['我', '噚日', '買', '嗰', '對', '鞋', '。']
     >>> pc.pos_tag(segmented)
     [('我', 'PRON'), ('噚日', 'ADV'), ('買', 'VERB'), ('嗰', 'PRON'), ('對', 'NOUN'), ('鞋', 'NOUN'), ('。', 'PUNCT')]
