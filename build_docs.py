@@ -53,6 +53,6 @@ def create_robots_txt():
 if __name__ == "__main__":
     logging.basicConfig(level="INFO")
     remove_generated_docs()
-    rebuild_docs()
     create_changelog_rst()
     create_robots_txt()
+    rebuild_docs()

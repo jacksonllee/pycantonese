@@ -9,6 +9,27 @@ Changelog
 Added
 ^^^^^
 
+Changed
+^^^^^^^
+
+Deprecated
+^^^^^^^^^^
+
+Removed
+^^^^^^^
+
+Fixed
+^^^^^
+
+Security
+^^^^^^^^
+
+[3.1.0] - 2021-02-21
+--------------------
+
+Added
+^^^^^
+
 
 * Part-of-speech tagging:
 
@@ -24,15 +45,6 @@ Added
 
 * The test suite now covers code snippets in both the docstrings and ``.rst`` doc files.
 
-Changed
-^^^^^^^
-
-Deprecated
-^^^^^^^^^^
-
-Removed
-^^^^^^^
-
 Fixed
 ^^^^^
 
@@ -43,9 +55,6 @@ Fixed
   (rather than raise an error) when the input is null.
 * The word segmentation function ``segment`` now strips all whitespace
   from the input unsegmented string before segmenting it.
-
-Security
-^^^^^^^^
 
 [3.0.0] - 2020-10-25
 --------------------
