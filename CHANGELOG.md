@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+## [3.1.0] - 2021-02-21
+
+### Added
 * Part-of-speech tagging:
    - Added the function `pos_tag` that takes a segmented sentence or phrase
      and returns its part-of-speech tags.
@@ -17,9 +26,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
    - Improved segmentation quality by revising the underlying wordlist data.
 * The test suite now covers code snippets in both the docstrings and `.rst` doc files.
 
-### Changed
-### Deprecated
-### Removed
 ### Fixed
 * Fixed the issue of not opening text files with UTF-8 encoding
   (a possible issue on Windows).
@@ -27,8 +33,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   (rather than raise an error) when the input is null.
 * The word segmentation function `segment` now strips all whitespace
   from the input unsegmented string before segmenting it.
-
-### Security
 
 ## [3.0.0] - 2020-10-25
 
