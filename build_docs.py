@@ -55,4 +55,5 @@ if __name__ == "__main__":
     remove_generated_docs()
     create_changelog_rst()
     create_robots_txt()
+    # Rebuilding docs has to be the final step.
     rebuild_docs()

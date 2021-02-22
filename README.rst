@@ -114,21 +114,9 @@ Links
 * Source code: https://github.com/jacksonllee/pycantonese
 * Bug tracker, feature requests: https://github.com/jacksonllee/pycantonese/issues
 * Email: Please contact `Jackson Lee <https://jacksonllee.com>`_.
-* Social media: Updates, tips, and more are posted on the Facebook page below.
-
-.. start-raw-directive
-
-.. raw:: html
-
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v8.0" nonce="4Dv3gcYx"></script>
-    <div class="fb-page" data-href="https://www.facebook.com/pycantonese/" data-tabs="timeline" data-width="" data-height="" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
-        <blockquote cite="https://www.facebook.com/pycantonese/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/pycantonese/">PyCantonese: Cantonese Linguistics and NLP in Python</a></blockquote>
-    </div>
-
-.. end-raw-directive
-
-|
+* Social media:
+  `Facebook <https://www.facebook.com/pycantonese>`_
+  and `Twitter <https://twitter.com/pycantonese>`_
 
 How to Cite
 -----------
