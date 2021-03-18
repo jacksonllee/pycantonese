@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Deprecated
 ### Removed
 ### Fixed
+* Pinned pylangacq at 0.12.0 (the new 0.13.0 has breaking changes).
+
 ### Security
 
 ## [3.1.0] - 2021-02-21
