@@ -170,6 +170,7 @@ Individuals who have contributed feedback, bug reports, etc.
 - @rylanchiu
 - Stephan Stiller
 - Tsz-Him Tsui
+- Robin Yuen
 
 .. end-sphinx-website-index-page
 
