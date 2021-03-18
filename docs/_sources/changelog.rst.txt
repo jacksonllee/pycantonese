@@ -24,6 +24,15 @@ Fixed
 Security
 ^^^^^^^^
 
+[3.1.1] - 2021-03-18
+--------------------
+
+Fixed
+^^^^^
+
+
+* Pinned pylangacq at 0.12.0 (the new 0.13.0 has breaking changes).
+
 [3.1.0] - 2021-02-21
 --------------------
 
