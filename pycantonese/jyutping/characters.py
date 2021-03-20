@@ -29,7 +29,7 @@ def _get_words_characters_to_jyutping():
             continue
         words_to_jyutping_counters[word][jyutping] += 1
         for char, jp in zip(word, parsed_jp):
-            characters_to_jyutping_counters[char]["".join(jp)] += 1
+            characters_to_jyutping_counters[char][str(jp)] += 1
 
     words_to_jyutping = {}
     for word, jyutping_counter in words_to_jyutping_counters.items():

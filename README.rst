@@ -72,30 +72,31 @@ With PyCantonese imported:
     >>> corpus = pycantonese.hkcancor() # get HKCanCor
     >>> all_verbs = corpus.search(pos='^V')
     >>> len(all_verbs)  # number of all verbs
-    29012
+    29726
     >>> all_verbs[:10]  # print 10 results
-    [('去', 'V', 'heoi3', ''),
-     ('去', 'V', 'heoi3', ''),
-     ('旅行', 'VN', 'leoi5hang4', ''),
-     ('有冇', 'V1', 'jau5mou5', ''),
-     ('要', 'VU', 'jiu3', ''),
-     ('有得', 'VU', 'jau5dak1', ''),
-     ('冇得', 'VU', 'mou5dak1', ''),
-     ('去', 'V', 'heoi3', ''),
-     ('係', 'V', 'hai6', ''),
-     ('係', 'V', 'hai6', '')]
+    [Token(word='去', pos='V', jyutping='heoi3', mor=None, gra=None),
+     Token(word='去', pos='V', jyutping='heoi3', mor=None, gra=None),
+     Token(word='旅行', pos='VN', jyutping='leoi5hang4', mor=None, gra=None),
+     Token(word='有冇', pos='V1', jyutping='jau5mou5', mor=None, gra=None),
+     Token(word='要', pos='VU', jyutping='jiu3', mor=None, gra=None),
+     Token(word='有得', pos='VU', jyutping='jau5dak1', mor=None, gra=None),
+     Token(word='冇得', pos='VU', jyutping='mou5dak1', mor=None, gra=None),
+     Token(word='去', pos='V', jyutping='heoi3', mor=None, gra=None),
+     Token(word='係', pos='V', jyutping='hai6', mor=None, gra=None),
+     Token(word='係', pos='V', jyutping='hai6', mor=None, gra=None)]
 
-4. Parsing Jyutping for (onset, nucleus, coda, tone)
+4. Parsing Jyutping for the onset, nucleus, coda, and tone
 
 .. code-block:: python
 
     >>> pycantonese.parse_jyutping('gwong2dung1waa2')  # 廣東話
-    [('gw', 'o', 'ng', '2'), ('d', 'u', 'ng', '1'), ('w', 'aa', '', '2')]
+    [Jyutping(onset='gw', nucleus='o', coda='ng', tone='2'),
+     Jyutping(onset='d', nucleus='u', coda='ng', tone='1'),
+     Jyutping(onset='w', nucleus='aa', coda='', tone='2')]
 
 Download and Install
 --------------------
 
-PyCantonese requires Python 3.6 or above.
 To download and install the stable, most recent version::
 
     $ pip install --upgrade pycantonese

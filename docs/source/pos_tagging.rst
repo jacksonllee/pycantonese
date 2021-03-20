@@ -3,8 +3,6 @@
 Part-of-Speech Tagging
 ======================
 
-.. versionadded:: 3.1.0
-
 A basic part-of-speech tagger is provided by :func:`~pycantonese.pos_tag`,
 which takes a segmented phrase or sentence as the input:
 

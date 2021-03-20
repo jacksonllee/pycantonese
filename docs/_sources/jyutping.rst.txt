@@ -18,8 +18,6 @@ PyCantonese provides tools for these use cases.
 Characters-to-Jyutping Conversion
 ---------------------------------
 
-.. versionadded:: 2.4.0
-
 The function :func:`~pycantonese.characters_to_jyutping`
 takes a string of Cantonese characters
 and returns its word-segmented version with Jyutping romanization:
@@ -66,17 +64,19 @@ the ability to parse Jyutping for the various phonological components
 (onset, nucleus, coda, and tone). To this end, PyCantonese exposes
 the function :func:`~pycantonese.parse_jyutping`
 which parses a string of Jyutping romanization
-and returns a list of tuples; the string may contain results for multiple
-Chinese characters. The parsed romanization for a character is a 4-tuple of
-(onset, nucleus, coda, tone):
+and returns a list of :class:`~pycantonese.jyutping.Jyutping` objects;
+the string may contain results for multiple
+Chinese characters.:
 
 .. code-block:: python
 
     >>> import pycantonese
     >>> pycantonese.parse_jyutping('hou2')  # 好 good
-    [('h', 'o', 'u', '2')]
+    [Jyutping(onset='h', nucleus='o', coda='u', tone='2')]
     >>> pycantonese.parse_jyutping('gwong2dung1waa2')  # 廣東話 Cantonese
-    [('gw', 'o', 'ng', '2'), ('d', 'u', 'ng', '1'), ('w', 'aa', '', '2')]
+    [Jyutping(onset='gw', nucleus='o', coda='ng', tone='2'),
+     Jyutping(onset='d', nucleus='u', coda='ng', tone='1'),
+     Jyutping(onset='w', nucleus='aa', coda='', tone='2')]
 
 Syllabic nasals are treated as nuclei:
 
@@ -84,7 +84,8 @@ Syllabic nasals are treated as nuclei:
 
     >>> import pycantonese
     >>> pycantonese.parse_jyutping('m4goi1')  # 唔該 thank you / please
-    [('', 'm', '', '4'), ('g', 'o', 'i', '1')]
+    [Jyutping(onset='', nucleus='m', coda='', tone='4'),
+     Jyutping(onset='g', nucleus='o', coda='i', tone='1')]
 
 The function :func:`~pycantonese.parse_jyutping`
 is able to detect invalid Jyutping romanization:
@@ -98,6 +99,30 @@ is able to detect invalid Jyutping romanization:
       File "/usr/local/lib/python3.9/dist-packages/pycantonese/jyutping.py", line 197, in parse_jyutping
         raise ValueError('tone error -- ' + repr(jp))
     ValueError: tone error -- 'hou7'
+
+
+The :class:`~pycantonese.jyutping.Jyutping` class makes it easy to access
+the onset, nucleus, coda, and tone using the attribute syntax.
+It is also straightforward to retrieve the string representation
+and final (= nucleus + coda; 韻母):
+
+.. code-block:: python
+
+    >>> from pycantonese.jyutping import Jyutping
+    >>> jp = Jyutping(onset="j", nucleus="yu", coda="t", tone="6")
+    >>> jp.onset
+    'j'
+    >>> jp.nucleus
+    'yu'
+    >>> jp.coda
+    't'
+    >>> jp.tone
+    '6'
+    >>> str(jp)
+    'jyut6'
+    >>> jp.final
+    'yut'
+
 
 Jyutping-to-Yale Conversion
 ---------------------------

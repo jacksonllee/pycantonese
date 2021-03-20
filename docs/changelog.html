@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Changelog &mdash; PyCantonese 3.1.1 documentation</title>
+  <title>Changelog &mdash; PyCantonese 3.2.0 documentation</title>
   
 
   
@@ -66,7 +66,7 @@
             
             
               <div class="version">
-                3.1.1
+                3.2.0
               </div>
             
           
@@ -159,6 +159,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#chatreader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHATReader</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#token"><code class="xref py py-class docutils literal notranslate"><span class="pre">Token</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#jyutping"><code class="xref py py-class docutils literal notranslate"><span class="pre">Jyutping</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Changelog</a><ul>
@@ -171,54 +172,61 @@
 <li class="toctree-l3"><a class="reference internal" href="#security">Security</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">[3.1.1] - 2021-03-18</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id3">Fixed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">[3.1.0] - 2021-02-21</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id5">Added</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">[3.2.0] - 2021-03-20</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Deprecated</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id6">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id7">[3.0.0] - 2020-10-25</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id8">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id9">Changed</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id7">[3.1.1] - 2021-03-18</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">[3.1.0] - 2021-02-21</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id12">[3.0.0] - 2020-10-25</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id13">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">Changed</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#api-breaking-changes">API-breaking Changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#non-api-breaking-changes">Non-API-breaking Changes</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id10">Deprecated</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id11">Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">Deprecated</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">Security</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id12">[2.4.1] - 2020-10-10</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id13">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id17">[2.4.1] - 2020-10-10</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id18">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id14">[2.4.0] - 2020-10-10</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id15">Added</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id16">[2.3.0] - 2020-07-24</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id17">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id18">Removed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id19">[2.2.0] - 2018-06-30</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id19">[2.4.0] - 2020-10-10</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id20">Added</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id21">[2.1.0] - 2018-06-11</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id21">[2.3.0] - 2020-07-24</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id22">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id23">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id23">Removed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id24">[2.0.0] - 2016-02-06</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id30">[1.0] - 2015-09-06</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id24">[2.2.0] - 2018-06-30</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id25">Added</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id26">[2.1.0] - 2018-06-11</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id27">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id28">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id29">[2.0.0] - 2016-02-06</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id35">[1.0] - 2015-09-06</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dev-2015-09-02">[1.0dev] - 2015-09-02</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id31">[0.2.1] - 2015-01-25</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id32">[0.2] - 2015-01-22</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id33">[0.1] - 2014-12-17</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id36">[0.2.1] - 2015-01-25</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id37">[0.2] - 2015-01-22</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id38">[0.1] - 2014-12-17</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="papers.html">Research Outputs</a></li>
@@ -289,22 +297,48 @@
 <span id="id1"></span><h1>Changelog<a class="headerlink" href="#changelog" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="unreleased">
 <h2>[Unreleased]<a class="headerlink" href="#unreleased" title="Permalink to this headline">¶</a></h2>
-<p>Note: The underlying CHAT parser, the PyLangAcq package, has been bumped to v0.13.0.
-All of the updates of PyLangAcq’s CHAT reader apply to this PyCantonese release
-as well. The details are in
-<a class="reference external" href="https://github.com/jacksonllee/pylangacq/releases/tag/v0.13.0">PyLangAcq’s changelog for v0.13.0</a>.
-The changelog entries below only document updates specific to PyCantonese.</p>
 <div class="section" id="added">
 <h3>Added<a class="headerlink" href="#added" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="changed">
 <h3>Changed<a class="headerlink" href="#changed" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p>Bumped the PyLangAcq dependency to v0.13.0.</p></li>
-</ul>
 </div>
 <div class="section" id="deprecated">
 <h3>Deprecated<a class="headerlink" href="#deprecated" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="removed">
+<h3>Removed<a class="headerlink" href="#removed" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="fixed">
+<h3>Fixed<a class="headerlink" href="#fixed" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="security">
+<h3>Security<a class="headerlink" href="#security" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>[3.2.0] - 2021-03-20<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>Note: The underlying CHAT parser, the PyLangAcq package, has been bumped to v0.13.0.
+All of the updates of PyLangAcq’s CHAT reader apply to this PyCantonese release
+as well. The details are in
+<a class="reference external" href="https://github.com/jacksonllee/pylangacq/releases/tag/v0.13.0">PyLangAcq’s changelog for v0.13.0</a>.
+The changelog entries below only document updates specific to PyCantonese.</p>
+<div class="section" id="id3">
+<h3>Added<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Defined the <code class="docutils literal notranslate"><span class="pre">Jyutping</span></code> class to better represent parsed Jyutping romanization.</p></li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h3>Changed<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Bumped the PyLangAcq dependency to v0.13.0.</p></li>
+<li><p>The function <code class="docutils literal notranslate"><span class="pre">parse_jyutping</span></code> now returns a list of <code class="docutils literal notranslate"><span class="pre">Jyutping</span></code> objects,
+rather than tuples of strings.</p></li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h3>Deprecated<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>The following methods in the <code class="docutils literal notranslate"><span class="pre">CHATReader</span></code> class have been deprecated:</p>
 <ul>
@@ -321,32 +355,26 @@ The changelog entries below only document updates specific to PyCantonese.</p>
 </li>
 </ul>
 </div>
-<div class="section" id="removed">
-<h3>Removed<a class="headerlink" href="#removed" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="fixed">
-<h3>Fixed<a class="headerlink" href="#fixed" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id6">
+<h3>Fixed<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Fixed the character issues in the built-in HKCanCor data: 𠺢, 𠺝, 𡁜, 𧕴, 𥊙, 𡃓, 𠴕, 𡀔</p></li>
 </ul>
 </div>
-<div class="section" id="security">
-<h3>Security<a class="headerlink" href="#security" title="Permalink to this headline">¶</a></h3>
 </div>
-</div>
-<div class="section" id="id2">
-<h2>[3.1.1] - 2021-03-18<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id3">
-<h3>Fixed<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id7">
+<h2>[3.1.1] - 2021-03-18<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id8">
+<h3>Fixed<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Pinned pylangacq at 0.12.0 (the new 0.13.0 has breaking changes).</p></li>
 </ul>
 </div>
 </div>
-<div class="section" id="id4">
-<h2>[3.1.0] - 2021-02-21<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id5">
-<h3>Added<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id9">
+<h2>[3.1.0] - 2021-02-21<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id10">
+<h3>Added<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Part-of-speech tagging:</p>
 <ul>
@@ -365,8 +393,8 @@ Universal Dependencies v2 tagset.</p></li>
 <li><p>The test suite now covers code snippets in both the docstrings and <code class="docutils literal notranslate"><span class="pre">.rst</span></code> doc files.</p></li>
 </ul>
 </div>
-<div class="section" id="id6">
-<h3>Fixed<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id11">
+<h3>Fixed<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Fixed the issue of not opening text files with UTF-8 encoding
 (a possible issue on Windows).</p></li>
@@ -377,10 +405,10 @@ from the input unsegmented string before segmenting it.</p></li>
 </ul>
 </div>
 </div>
-<div class="section" id="id7">
-<h2>[3.0.0] - 2020-10-25<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id8">
-<h3>Added<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id12">
+<h2>[3.0.0] - 2020-10-25<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id13">
+<h3>Added<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Word segmentation:</p>
 <ul>
@@ -411,8 +439,8 @@ from the input unsegmented string before segmenting it.</p></li>
 <li><p>Added support for Python 3.9.</p></li>
 </ul>
 </div>
-<div class="section" id="id9">
-<h3>Changed<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id14">
+<h3>Changed<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="api-breaking-changes">
 <h4>API-breaking Changes<a class="headerlink" href="#api-breaking-changes" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
@@ -433,8 +461,8 @@ Cantonese characters.</p></li>
 </ul>
 </div>
 </div>
-<div class="section" id="id10">
-<h3>Deprecated<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id15">
+<h3>Deprecated<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>The following <code class="docutils literal notranslate"><span class="pre">x2y</span></code> functions have been deprecated in favor of their
 equivalents named in the form of <code class="docutils literal notranslate"><span class="pre">x_to_y</span></code>.</p>
@@ -446,27 +474,27 @@ equivalents named in the form of <code class="docutils literal notranslate"><spa
 </li>
 </ul>
 </div>
-<div class="section" id="id11">
-<h3>Security<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id16">
+<h3>Security<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Turned on HTTPS for the pycantonese.org domain.</p></li>
 </ul>
 </div>
 </div>
-<div class="section" id="id12">
-<h2>[2.4.1] - 2020-10-10<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id13">
-<h3>Fixed<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id17">
+<h2>[2.4.1] - 2020-10-10<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id18">
+<h3>Fixed<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Switched to the <code class="docutils literal notranslate"><span class="pre">wordseg</span></code> dependency to a PyPI source instead of a
 GitHub direct link.</p></li>
 </ul>
 </div>
 </div>
-<div class="section" id="id14">
-<h2>[2.4.0] - 2020-10-10<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id15">
-<h3>Added<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id19">
+<h2>[2.4.0] - 2020-10-10<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id20">
+<h3>Added<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Added the <code class="docutils literal notranslate"><span class="pre">characters2jyutping()</span></code> function for converting
 Cantonese characters to Jyutping romanization.</p></li>
@@ -474,50 +502,50 @@ Cantonese characters to Jyutping romanization.</p></li>
 </ul>
 </div>
 </div>
-<div class="section" id="id16">
-<h2>[2.3.0] - 2020-07-24<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id17">
-<h3>Added<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id21">
+<h2>[2.3.0] - 2020-07-24<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id22">
+<h3>Added<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Added support for Python 3.7 and 3.8.</p></li>
 </ul>
 </div>
-<div class="section" id="id18">
-<h3>Removed<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id23">
+<h3>Removed<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Dropped support for Python 3.4 and 3.5 (supporting 3.6, 3.7, and 3.8 now).</p></li>
 </ul>
 </div>
 </div>
-<div class="section" id="id19">
-<h2>[2.2.0] - 2018-06-30<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id20">
-<h3>Added<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id24">
+<h2>[2.2.0] - 2018-06-30<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id25">
+<h3>Added<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>104 stop words.</p></li>
 </ul>
 </div>
 </div>
-<div class="section" id="id21">
-<h2>[2.1.0] - 2018-06-11<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id22">
-<h3>Added<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id26">
+<h2>[2.1.0] - 2018-06-11<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id27">
+<h3>Added<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Exposed the <code class="docutils literal notranslate"><span class="pre">exclude</span></code> parameter in various reader methods
 for excluding specific participants. This parameter was implemented at
 pylangacq v0.10.0.</p></li>
 </ul>
 </div>
-<div class="section" id="id23">
-<h3>Fixed<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id28">
+<h3>Fixed<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Allowed “n” to be a syllabic nasal.</p></li>
 <li><p>Fixed corpus reader not picking up the characters.</p></li>
 </ul>
 </div>
 </div>
-<div class="section" id="id24">
-<h2>[2.0.0] - 2016-02-06<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id29">
+<h2>[2.0.0] - 2016-02-06<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>PyCantonese now requires Python 3.4 or above.</p></li>
 <li><p>Adopted the CHAT corpus format, piggybacking on <a class="reference external" href="http://pylangacq.org/">PyLangAcq</a></p></li>
@@ -531,8 +559,8 @@ pylangacq v0.10.0.</p></li>
 <a class="reference external" href="https://github.com/pycantonese/pycantonese/issues/9">#9</a></p></li>
 </ul>
 </div>
-<div class="section" id="id30">
-<h2>[1.0] - 2015-09-06<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id35">
+<h2>[1.0] - 2015-09-06<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Fixed the Jyutping-Yale conversion issue with “yu”</p></li>
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">number_of_words()</span></code> and <code class="docutils literal notranslate"><span class="pre">number_of_characters()</span></code> for corpus access</p></li>
@@ -553,22 +581,22 @@ in caps, in line with the NLTK convention</p></li>
 <li><p>Disabled the function for reading a custom corpus dataset (it will come back)</p></li>
 </ul>
 </div>
-<div class="section" id="id31">
-<h2>[0.2.1] - 2015-01-25<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id36">
+<h2>[0.2.1] - 2015-01-25<a class="headerlink" href="#id36" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Fixed corpus access path issues</p></li>
 </ul>
 </div>
-<div class="section" id="id32">
-<h2>[0.2] - 2015-01-22<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id37">
+<h2>[0.2] - 2015-01-22<a class="headerlink" href="#id37" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="http://compling.hss.ntu.edu.sg/hkcancor/">The Hong Kong Cantonese Corpus</a> is included in the package.</p></li>
 <li><p>A general-purpose <code class="docutils literal notranslate"><span class="pre">search()</span></code> function is defined, replacing the
 element-specific search functions from version 0.1.</p></li>
 </ul>
 </div>
-<div class="section" id="id33">
-<h2>[0.1] - 2014-12-17<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id38">
+<h2>[0.1] - 2014-12-17<a class="headerlink" href="#id38" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Basic functions available, including…</p></li>
 <li><p>Parsing Jyutping romanization</p></li>
@@ -600,7 +628,7 @@ element-specific search functions from version 0.1.</p></li>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on March 19, 2021
+        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on March 20, 2021
 
     </p>
   </div>

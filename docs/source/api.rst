@@ -55,3 +55,11 @@ Natural Language Processing
 ----------------------------------
 
 .. autoclass:: pycantonese.corpus.Token
+
+
+:class:`~pycantonese.jyutping.Jyutping`
+---------------------------------------
+
+.. autoclass:: pycantonese.jyutping.Jyutping
+   :members:
+   :special-members:

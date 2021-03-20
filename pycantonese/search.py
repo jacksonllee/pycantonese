@@ -1,6 +1,7 @@
+import dataclasses
 import re
 
-from pycantonese.jyutping.parse_jyutping import parse_jyutping, parse_final
+from pycantonese.jyutping.parse_jyutping import parse_jyutping, _parse_final, Jyutping
 
 
 def _jp_element_match(search_element, current_element):
@@ -118,8 +119,8 @@ def _perform_search(
                 jp_search_tuple = jp_search_list[0]
         else:
             if final:
-                nucleus, coda = parse_final(final)
-            jp_search_tuple = (onset, nucleus, coda, tone)
+                nucleus, coda = _parse_final(final)
+            jp_search_tuple = Jyutping(onset, nucleus, coda, tone)
 
     result = []
 
@@ -167,7 +168,8 @@ def _perform_search(
                         booleans = [
                             _jp_element_match(search_, current_)
                             for search_, current_ in zip(
-                                jp_search_tuple, c_parsed_jyutping
+                                dataclasses.astuple(jp_search_tuple),
+                                dataclasses.astuple(c_parsed_jyutping),
                             )
                         ]
 

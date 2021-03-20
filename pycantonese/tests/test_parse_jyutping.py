@@ -9,13 +9,14 @@ If these tests fail, the documentation should probably be updated as well
 import pytest
 
 from pycantonese import parse_jyutping
+from pycantonese.jyutping.parse_jyutping import Jyutping
 
 
 def test_basic_case_gwong2dung1waa2():
     assert parse_jyutping("gwong2dung1waa2") == [
-        ("gw", "o", "ng", "2"),
-        ("d", "u", "ng", "1"),
-        ("w", "aa", "", "2"),
+        Jyutping("gw", "o", "ng", "2"),
+        Jyutping("d", "u", "ng", "1"),
+        Jyutping("w", "aa", "", "2"),
     ]
 
 
@@ -31,9 +32,9 @@ def test_null_input(input_):
 
 def test_syllabic_nasals():
     # TODO assert parse_jyutping('hm4') == [('h', 'm', '', '4')]
-    assert parse_jyutping("ng5") == [("", "ng", "", "5")]
-    assert parse_jyutping("m4") == [("", "m", "", "4")]
-    assert parse_jyutping("n3") == [("", "n", "", "3")]
+    assert parse_jyutping("ng5") == [Jyutping("", "ng", "", "5")]
+    assert parse_jyutping("m4") == [Jyutping("", "m", "", "4")]
+    assert parse_jyutping("n3") == [Jyutping("", "n", "", "3")]
 
 
 def test_invalid_tone():
@@ -73,8 +74,8 @@ def test_invalid_onset():
 
 
 def test_coda_ng():
-    assert parse_jyutping("hoeng1") == [("h", "oe", "ng", "1")]
+    assert parse_jyutping("hoeng1") == [Jyutping("h", "oe", "ng", "1")]
 
 
 def test_no_noda():
-    assert parse_jyutping("gaa1") == [("g", "aa", "", "1")]
+    assert parse_jyutping("gaa1") == [Jyutping("g", "aa", "", "1")]

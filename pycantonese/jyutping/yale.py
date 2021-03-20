@@ -100,10 +100,10 @@ def jyutping_to_yale(jp_str, as_list=True):
     yale_list = []
 
     for jp_parsed in jp_parsed_list:
-        onset = ONSETS_YALE[jp_parsed[0]]
-        nucleus = NUCLEI_YALE[jp_parsed[1]]
-        coda = CODAS_YALE[jp_parsed[2]]
-        tone = jp_parsed[3]  # still in parse_jyutping
+        onset = ONSETS_YALE[jp_parsed.onset]
+        nucleus = NUCLEI_YALE[jp_parsed.nucleus]
+        coda = CODAS_YALE[jp_parsed.coda]
+        tone = jp_parsed.tone  # still in parse_jyutping
 
         # jyutping2yale system uses "h" to mark the three low tones
         if tone in {"4", "5", "6"}:
@@ -169,12 +169,12 @@ def jyutping_to_yale(jp_str, as_list=True):
 
         # add back "y" if the nucleus is "yu"
         # ("y" was taken away for convenience in adding tone diacritic)
-        if jp_parsed[1] == "yu":
+        if jp_parsed.nucleus == "yu":
             nucleus = "y" + nucleus
 
         # add back "n" if the nucleus is "ng"
         # ('n' was taken away so that tone diacritic is on "g" but not "n")
-        if jp_parsed[1] == "ng":
+        if jp_parsed.nucleus == "ng":
             nucleus = "n" + nucleus
 
         # parse_jyutping final "eu" should be jyutping2yale "ew" (not "eu")
