@@ -21,8 +21,8 @@ Full Documentation: https://pycantonese.org
    :target: https://pypi.python.org/pypi/pycantonese
    :alt: Supported Python versions
 
-.. image:: https://circleci.com/gh/jacksonllee/pycantonese/tree/master.svg?style=svg
-   :target: https://circleci.com/gh/jacksonllee/pycantonese/tree/master
+.. image:: https://circleci.com/gh/jacksonllee/pycantonese/tree/main.svg?style=svg
+   :target: https://circleci.com/gh/jacksonllee/pycantonese/tree/main
    :alt: Build
 
 |
