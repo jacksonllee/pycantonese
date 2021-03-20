@@ -97,7 +97,6 @@ With PyCantonese imported:
 Download and Install
 --------------------
 
-PyCantonese requires Python 3.6 or above.
 To download and install the stable, most recent version::
 
     $ pip install --upgrade pycantonese

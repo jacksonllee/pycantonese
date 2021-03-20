@@ -132,12 +132,45 @@ at different levels of data structure:
     tokens
     utterances
 
-Words are just the usual text strings.
+Words are the usual text strings.
 Think of tokens as words but with annotations
 (part-of-speech tags, morphological information, etc).
 An utterance is a a list of tokens plus associated information
-(the participant of the utterance, time markers if there is associated
-audio-visual material, etc).
+(the participant of the utterance, time markers if there are associated
+audio-visual materials, etc).
+
+.. code-block:: python
+
+    >>> corpus.words()[:10]
+    ['喂', '遲', '啲', '去', '唔', '去', '旅行', '啊', '?', '你']
+    >>>
+    >>> corpus.tokens()[:10]
+    [Token(word='喂', pos='E', jyutping='wai3', mor=None, gra=None),
+     Token(word='遲', pos='A', jyutping='ci4', mor=None, gra=None),
+     Token(word='啲', pos='U', jyutping='di1', mor=None, gra=None),
+     Token(word='去', pos='V', jyutping='heoi3', mor=None, gra=None),
+     Token(word='唔', pos='D', jyutping='m4', mor=None, gra=None),
+     Token(word='去', pos='V', jyutping='heoi3', mor=None, gra=None),
+     Token(word='旅行', pos='VN', jyutping='leoi5hang4', mor=None, gra=None),
+     Token(word='啊', pos='Y', jyutping='aa3', mor=None, gra=None),
+     Token(word='?', pos='?', jyutping=None, mor=None, gra=None),
+     Token(word='你', pos='R', jyutping='nei5', mor=None, gra=None)]
+    >>>
+    >>> corpus.utterances()[:1]
+    [Utterance(participant='XXA',
+               tokens=[Token(word='喂', pos='E', jyutping='wai3', mor=None, gra=None),
+                       Token(word='遲', pos='A', jyutping='ci4', mor=None, gra=None),
+                       Token(word='啲', pos='U', jyutping='di1', mor=None, gra=None),
+                       Token(word='去', pos='V', jyutping='heoi3', mor=None, gra=None),
+                       Token(word='唔', pos='D', jyutping='m4', mor=None, gra=None),
+                       Token(word='去', pos='V', jyutping='heoi3', mor=None, gra=None),
+                       Token(word='旅行', pos='VN', jyutping='leoi5hang4', mor=None, gra=None),
+                       Token(word='啊', pos='Y', jyutping='aa3', mor=None, gra=None),
+                       Token(word='?', pos='?', jyutping=None, mor=None, gra=None)],
+               time_marks=None,
+               tiers={'XXA': '喂 遲 啲 去 唔 去 旅行 啊 ?',
+                      '%mor': 'e|wai3 a|ci4 u|di1 v|heoi3 d|m4 v|heoi3 vn|leoi5hang4 y|aa3 ?'})]
+
 
 PyCantonese has an augmented representation of tokens,
 where Jyutping romanization has its own dedicated spot.
