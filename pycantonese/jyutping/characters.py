@@ -67,7 +67,7 @@ def _get_words_characters_to_jyutping():
     return words_to_jyutping, characters_to_jyutping
 
 
-def characters_to_jyutping(chars):
+def characters_to_jyutping(chars, segmenter=None):
     """Convert Cantonese characters into Jyutping romanization.
 
     The conversion model is based on the HKCanCor corpus and rime-cantonese
@@ -91,6 +91,10 @@ def characters_to_jyutping(chars):
     ----------
     chars : str
         A string of Cantonese characters.
+    segmenter : :class:`~pycantonese.word_segmentation.Segmenter`, optional
+        If ``None`` (default value) or not provided, the default word segmenter
+        is used. For custom behavior, pass in a segmenter with specified allowed and/or
+        disallowed potential words.
 
     Returns
     -------
@@ -105,7 +109,7 @@ def characters_to_jyutping(chars):
         return []
     words_to_jyutping, chars_to_jyutping = _get_words_characters_to_jyutping()
     result = []
-    for word in segment(chars):
+    for word in segment(chars, cls=segmenter):
         try:
             jp = words_to_jyutping[word]
         except KeyError:

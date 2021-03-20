@@ -334,6 +334,17 @@ class CHATReader(Reader):
         else:
             return self._flatten(list, result_by_files)
 
+    def _to_strs(self):
+        strs = []
+        for f in self._files:
+            chat_str = ""
+            for u in f.utterances:
+                for mark, tier in u.tiers.items():
+                    mark = mark if mark.startswith("%") else f"*{mark}"
+                    chat_str += f"{mark}:\t{tier}\n"
+            strs.append(chat_str)
+        return strs
+
 
 class _HKCanCorReader(CHATReader):
     """Corpus reader for HKCanCor specifically.
