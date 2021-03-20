@@ -1,14 +1,11 @@
 from collections import Counter, defaultdict
 from functools import lru_cache
 
-from pycantonese.corpus import hkcancor
-from pycantonese.data.rime_cantonese import (
-    CHARS_TO_JYUTPING,
-    LETTERED,
-)
+from pycantonese.corpus import hkcancor, Token
+from pycantonese.data.rime_cantonese import CHARS_TO_JYUTPING, LETTERED
 from pycantonese.jyutping.parse_jyutping import parse_jyutping
 from pycantonese.word_segmentation import segment
-from pycantonese.util import split_characters_with_alphanum, _deprecate
+from pycantonese.util import _split_chars_with_alphanum, _deprecate
 
 
 @lru_cache(maxsize=1)
@@ -17,7 +14,11 @@ def _get_words_characters_to_jyutping():
     words_to_jyutping_counters = defaultdict(Counter)
     characters_to_jyutping_counters = defaultdict(Counter)
 
-    for word, _, jyutping, _ in corpus.tagged_words():
+    for token in corpus.tokens(by_utterances=False):
+        token: Token
+        word = token.word
+        jyutping = token.jyutping
+
         if not jyutping or not word:
             continue
         try:
@@ -45,11 +46,7 @@ def _get_words_characters_to_jyutping():
         # contain jyutping pronunciations for particular characters that
         # are only used in those contexts. The data from HKCanCor should comes
         # last to act as the default to override such cases.
-        **{
-            k: v
-            for k, v in LETTERED.items()
-            if len(split_characters_with_alphanum(k)) > 1
-        },
+        **{k: v for k, v in LETTERED.items() if len(_split_chars_with_alphanum(k)) > 1},
         **{k: v for k, v in CHARS_TO_JYUTPING.items() if len(k) > 1},
         **words_to_jyutping,
     }

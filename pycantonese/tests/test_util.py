@@ -1,6 +1,6 @@
 import pytest
 
-from pycantonese.util import split_characters_with_alphanum
+from pycantonese.util import _split_chars_with_alphanum
 
 
 @pytest.mark.parametrize(
@@ -15,4 +15,4 @@ from pycantonese.util import split_characters_with_alphanum
     ],
 )
 def test_split_characters_with_english(chars, expected):
-    assert split_characters_with_alphanum(chars) == expected
+    assert _split_chars_with_alphanum(chars) == expected

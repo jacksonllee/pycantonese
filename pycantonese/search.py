@@ -1,6 +1,5 @@
 import re
 
-from pycantonese.util import get_jyutping_from_mor
 from pycantonese.jyutping.parse_jyutping import parse_jyutping, parse_final
 
 
@@ -11,8 +10,8 @@ def _jp_element_match(search_element, current_element):
         return False
 
 
-def perform_search(
-    fn_to_tagged_sents,
+def _perform_search(
+    tagged_sents,
     onset=None,
     nucleus=None,
     coda=None,
@@ -23,9 +22,9 @@ def perform_search(
     character=None,
     pos=None,
     word_range=(0, 0),
-    sent_range=(0, 0),
-    tagged=True,
-    sents=False,
+    utterance_range=(0, 0),
+    by_tokens=True,
+    by_utterances=False,
 ):
     """
     overall strategy: deal with jp (and all jp-related elements) first, and
@@ -44,11 +43,11 @@ def perform_search(
     elements
     """
     # ensure tuple type: word_range and sent_range
-    if not (type(word_range) == type(sent_range) == tuple):
+    if not (type(word_range) == type(utterance_range) == tuple):
         raise ValueError("word_range and sent_range must be tuples")
 
     words_left, words_right = word_range
-    sents_left, sents_right = sent_range
+    sents_left, sents_right = utterance_range
 
     # ensure int type: words_left, words_right, sents_left, sents_right
     if not (
@@ -61,7 +60,16 @@ def perform_search(
         raise ValueError("int required for {words, sents}_{left, right}")
 
     if sents_left > 0 or sents_right > 0:
-        sents = True
+        by_utterances = True
+
+    if tone is None:
+        pass
+    elif str(tone) not in "123456":
+        raise ValueError(
+            f"tone is used, but it's not one of {{1, 2, 3, 4, 5, 6}}: {tone}"
+        )
+    else:
+        tone = str(tone)
 
     # determine what kinds of search we are doing
     character_search = False
@@ -85,11 +93,11 @@ def perform_search(
         # ensure compatible jyutping search elements
         if final and (nucleus or coda):
             raise ValueError(
-                "final cannot be used together with " "either nucleus or coda (or both)"
+                "final cannot be used together with either nucleus or coda (or both)"
             )
         if jyutping and (onset or final or nucleus or coda or tone):
             raise ValueError(
-                "jyutping cannot be used together with other " "Jyutping elements"
+                "jyutping cannot be used together with other Jyutping elements"
             )
         if (onset != initial) and onset and initial:
             raise ValueError("onset conflicts with initial")
@@ -113,16 +121,17 @@ def perform_search(
                 nucleus, coda = parse_final(final)
             jp_search_tuple = (onset, nucleus, coda, tone)
 
-    fn_to_results = {}
+    result = []
 
-    for fn, tagged_sents in fn_to_tagged_sents.items():
+    for tagged_sents_for_file in tagged_sents:
         sent_word_index_pairs = []
 
-        for i_sent, tagged_sent in enumerate(tagged_sents):
+        for i_sent, tagged_sent in enumerate(tagged_sents_for_file):
 
             for i_word, tagged_word in enumerate(tagged_sent):
-                c_characters, c_pos, c_mor, _ = tagged_word  # c = current
-                c_jyutping = get_jyutping_from_mor(c_mor)
+                c_characters = tagged_word.word
+                c_pos = tagged_word.pos
+                c_jyutping = tagged_word.jyutping
 
                 # determine character_search and pos_search
                 if character_search:
@@ -172,8 +181,8 @@ def perform_search(
         results_list = []
 
         for i_sent, i_word in sent_word_index_pairs:
-            if not sents:
-                tagged_sent = tagged_sents[i_sent]
+            if not by_utterances:
+                tagged_sent = tagged_sents_for_file[i_sent]
                 i_word_start = i_word - words_left
                 i_word_end = i_word + words_right + 1
 
@@ -184,7 +193,7 @@ def perform_search(
 
                 words_wanted = tagged_sent[i_word_start:i_word_end]
 
-                if not tagged:
+                if not by_tokens:
                     words_wanted = [x[0] for x in words_wanted]
 
                 if len(words_wanted) == 1:
@@ -197,12 +206,12 @@ def perform_search(
 
                 if i_sent_start < 0:
                     i_sent_start = 0
-                if i_sent_end > len(tagged_sents):
-                    i_sent_end = len(tagged_sents)
+                if i_sent_end > len(tagged_sents_for_file):
+                    i_sent_end = len(tagged_sents_for_file)
 
-                sents_wanted = tagged_sents[i_sent_start:i_sent_end]
+                sents_wanted = tagged_sents_for_file[i_sent_start:i_sent_end]
 
-                if not tagged:
+                if not by_tokens:
                     for i, sent in enumerate(sents_wanted[:]):
                         sents_wanted[i] = [x[0] for x in sent]
 
@@ -211,6 +220,6 @@ def perform_search(
 
                 results_list.append(sents_wanted)
 
-        fn_to_results[fn] = results_list
+        result.append(results_list)
 
-    return fn_to_results
+    return result

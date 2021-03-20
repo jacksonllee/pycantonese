@@ -6,11 +6,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+Note: The underlying CHAT parser, the PyLangAcq package, has been bumped to v0.13.0.
+All of the updates of PyLangAcq's CHAT reader apply to this PyCantonese release
+as well. The details are in
+[PyLangAcq's changelog for v0.13.0](https://github.com/jacksonllee/pylangacq/releases/tag/v0.13.0).
+The changelog entries below only document updates specific to PyCantonese.
+
 ### Added
 ### Changed
+* Bumped the PyLangAcq dependency to v0.13.0.
+
 ### Deprecated
+
+* The following methods in the ``CHATReader`` class have been deprecated:
+  - `character_sents` (use `characters` with `by_utterances=True` instead)
+  - `jyutping_sents` (use `jyutping` with `by_utterances=True` instead)
+
+* The following arguments of the ``search`` method of ``CHATReader`` have been deprecated:
+  - `sent_range` (use `utterance_range` instead)
+  - `tagged` (use `by_tokens` instead)
+  - `sents` (use `by_utterances` instead)
+
 ### Removed
 ### Fixed
+* Fixed the character issues in the built-in HKCanCor data: 𠺢, 𠺝, 𡁜, 𧕴, 𥊙, 𡃓, 𠴕, 𡀔
+
 ### Security
 
 ## [3.1.1] - 2021-03-18

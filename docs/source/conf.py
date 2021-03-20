@@ -45,6 +45,7 @@ extensions = [
     "sphinx_rtd_theme",
     "numpydoc.numpydoc",
     "sphinx_sitemap",
+    "sphinx.ext.intersphinx",
 ]
 
 # See https://pypi.org/project/sphinx-sitemap/2.2.0/
@@ -139,7 +140,6 @@ html_theme = 'sphinx_rtd_theme'
 # documentation.
 html_theme_options = {
     "collapse_navigation": False,
-    "canonical_url": "https://pycantonese.org/",
     "analytics_id": "UA-181803559",
 }
 

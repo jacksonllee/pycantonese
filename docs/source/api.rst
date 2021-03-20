@@ -5,36 +5,53 @@ API Reference
 
 .. currentmodule:: pycantonese
 
+
 Corpus Data
 -----------
 
 .. autosummary::
-   :toctree: generated
+    :toctree: generated
 
     read_chat
     hkcancor
-    corpus.CantoneseCHATReader
-    corpus.CantoneseCHATReader.search
+    CHATReader
+    CHATReader.search
+
 
 Jyutping Romanization
 ---------------------
 
 .. autosummary::
-   :toctree: generated
+    :toctree: generated
 
     characters_to_jyutping
     parse_jyutping
     jyutping_to_yale
     jyutping_to_tipa
 
+
 Natural Language Processing
 ---------------------------
 
 .. autosummary::
-   :toctree: generated
+    :toctree: generated
 
     stop_words
     segment
     word_segmentation.Segmenter
     pos_tag
     pos_tagging.hkcancor_to_ud
+
+
+:class:`~pycantonese.CHATReader`
+--------------------------------
+
+.. autoclass:: pycantonese.CHATReader
+   :members:
+   :inherited-members:
+
+
+:class:`~pycantonese.corpus.Token`
+----------------------------------
+
+.. autoclass:: pycantonese.corpus.Token

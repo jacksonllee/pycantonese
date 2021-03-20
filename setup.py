@@ -49,7 +49,11 @@ def main():
         ],
         python_requires=">=3.6",
         setup_requires="setuptools>=39",
-        install_requires=["pylangacq==0.12.0", "wordseg==0.0.2"],
+        install_requires=[
+            "dataclasses ; python_version < '3.7'",
+            "pylangacq==0.13.0",
+            "wordseg==0.0.2",
+        ],
         package_data={
             "pycantonese": [
                 "data/hkcancor/*",

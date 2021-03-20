@@ -1,7 +1,7 @@
 import unicodedata
 
 from pycantonese.jyutping.parse_jyutping import parse_jyutping
-from pycantonese.util import endswithoneof, startswithoneof, _deprecate
+from pycantonese.util import _deprecate
 
 
 ONSETS_YALE = {
@@ -242,7 +242,7 @@ def jyutping_to_yale(jp_str, as_list=True):
         ambiguous = False
 
         # test case 1:
-        if endswithoneof(yale1, ambiguous_consonants) and startswithoneof(
+        if _endswithoneof(yale1, ambiguous_consonants) and _startswithoneof(
             yale2, vowel_letters
         ):
             ambiguous = True
@@ -250,8 +250,8 @@ def jyutping_to_yale(jp_str, as_list=True):
         # test case 2:
         if (
             not ambiguous
-            and not endswithoneof(yale1, ambiguous_consonants)
-            and startswithoneof(yale2, ambiguous_consonants)
+            and not _endswithoneof(yale1, ambiguous_consonants)
+            and _startswithoneof(yale2, ambiguous_consonants)
         ):
             ambiguous = True
 
@@ -272,3 +272,45 @@ def jyutping2yale(*args, **kwargs):
     .. deprecated:: 3.0.0
     """
     return jyutping_to_yale(*args, **kwargs)
+
+
+def _startswithoneof(inputstr, seq):
+    """
+    Check if *inputstr* starts with one of the items in seq. If it does, return
+        the item that it starts with. If it doe not, return ``None``.
+
+    :param inputstr: input string
+
+    :param seq: sequences of items to check
+
+    :return: the item the the input string starts with (``None`` if not found)
+
+    :rtype: str or None
+    """
+    seq = set(seq)
+    for item in seq:
+        if inputstr.startswith(item):
+            return item
+    else:
+        return None
+
+
+def _endswithoneof(inputstr, seq):
+    """
+    Check if *inputstr* ends with one of the items in seq. If it does, return
+        the item that it ends with. If it doe not, return ``None``.
+
+    :param inputstr: input string
+
+    :param seq: sequences of items to check
+
+    :return: the item the the input string ends with (``None`` if not found)
+
+    :rtype: str or None
+    """
+    seq = set(seq)
+    for item in seq:
+        if inputstr.endswith(item):
+            return item
+    else:
+        return None

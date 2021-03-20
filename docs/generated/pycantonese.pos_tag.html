@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>pycantonese.pos_tag &mdash; PyCantonese 3.1.1 documentation</title>
   
@@ -18,12 +18,8 @@
   
     <link rel="shortcut icon" href="../_static/pycantonese-logo.ico"/>
   
-
   
   
-
-  
-    <link rel="canonical" href="https://pycantonese.org/generated/pycantonese.pos_tag.html" />
 
   
   <!--[if lt IE 9]>
@@ -57,7 +53,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> PyCantonese
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> PyCantonese
           
 
           
@@ -97,22 +93,27 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../data.html">Corpus Data</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../data.html#the-chat-transcription-format">The CHAT Transcription Format</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../data.html#accessing-built-in-data">Accessing Built-in Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../data.html#accessing-custom-data">Accessing Custom Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data.html#chat-format">CHAT Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data.html#built-in-data">Built-in Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data.html#childes-and-talkbank-data">CHILDES and TalkBank Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data.html#custom-data">Custom Data</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../reader.html">Corpus Reader Methods</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../reader.html#the-representation-of-words">The Representation of “Words”</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../reader.html#a-note-on-the-access-methods">A Note on the Access Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../reader.html#full-reader-api">Full Reader API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reader.html#headers">Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reader.html#transcriptions-and-annotations">Transcriptions and Annotations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reader.html#jyutping-romanization">Jyutping Romanization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reader.html#chinese-characters">Chinese Characters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reader.html#word-frequencies-and-ngrams">Word Frequencies and Ngrams</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../searches.html">Corpus Search Queries</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../searches.html#searching-by-a-jyutping-element">Searching by a Jyutping Element</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../searches.html#searching-by-a-chinese-character">Searching by a Chinese Character</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../searches.html#searching-by-a-part-of-speech-tag">Searching by a Part-of-speech Tag</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../searches.html#searching-by-a-word-or-sentence-range">Searching by a Word or Sentence Range</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../searches.html#searching-by-a-word-or-utterance-range">Searching by a Word or Utterance Range</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../searches.html#searching-by-multiple-criteria">Searching by Multiple Criteria</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../searches.html#output-format-of-search-results">Output Format of Search Results</a></li>
 </ul>
@@ -134,11 +135,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../api.html#corpus-data">Corpus Data</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pycantonese.read_chat.html">pycantonese.read_chat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pycantonese.hkcancor.html">pycantonese.hkcancor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pycantonese.corpus.CantoneseCHATReader.html">pycantonese.corpus.CantoneseCHATReader</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="pycantonese.corpus.CantoneseCHATReader.search.html">pycantonese.corpus.CantoneseCHATReader.search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycantonese.CHATReader.html">pycantonese.CHATReader</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycantonese.CHATReader.search.html">pycantonese.CHATReader.search</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="pycantonese.corpus.CantoneseCHATReader.search.html">pycantonese.corpus.CantoneseCHATReader.search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycantonese.CHATReader.search.html">pycantonese.CHATReader.search</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#jyutping-romanization">Jyutping Romanization</a><ul>
@@ -156,6 +157,8 @@
 <li class="toctree-l3"><a class="reference internal" href="pycantonese.pos_tagging.hkcancor_to_ud.html">pycantonese.pos_tagging.hkcancor_to_ud</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#chatreader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHATReader</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#token"><code class="xref py py-class docutils literal notranslate"><span class="pre">Token</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a><ul>
@@ -259,8 +262,6 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -274,7 +275,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
         
       </li>
     
@@ -353,29 +354,37 @@ predicted POS tag.</p>
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="pycantonese.pos_tagging.hkcancor_to_ud.html" class="btn btn-neutral float-right" title="pycantonese.pos_tagging.hkcancor_to_ud" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="pycantonese.word_segmentation.Segmenter.html" class="btn btn-neutral float-left" title="pycantonese.word_segmentation.Segmenter" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+        <a href="pycantonese.pos_tagging.hkcancor_to_ud.html" class="btn btn-neutral float-right" title="pycantonese.pos_tagging.hkcancor_to_ud" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pycantonese.word_segmentation.Segmenter.html" class="btn btn-neutral float-left" title="pycantonese.word_segmentation.Segmenter" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on March 18, 2021.
+        
+        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on March 19, 2021
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 
@@ -401,7 +410,6 @@ predicted POS tag.</p>
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-181803559', 'auto');
-    
     ga('send', 'pageview');
     </script>
 

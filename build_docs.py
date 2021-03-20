@@ -15,13 +15,14 @@ _DOCS_SOURCE = os.path.join(_DOCS, "source")
 
 def remove_generated_docs():
     logging.info("Removing generated docs")
+    os.system(f"rm {os.path.join(_DOCS, '.buildinfo')}")
     os.system(f"rm {os.path.join(_DOCS, '*.html')}")
     os.system(f"rm -rf {os.path.join(_DOCS, '_sources')}")
     os.system(f"rm -rf {os.path.join(_DOCS, '_modules')}")
     os.system(f"rm -rf {os.path.join(_DOCS, '_static')}")
     os.system(f"rm -rf {os.path.join(_DOCS, '.doctrees')}")
-    os.system(f"rm -rf {os.path.join(_DOCS, '_generated')}")
-    os.system(f"rm -rf {os.path.join(_DOCS_SOURCE, '_generated')}")
+    os.system(f"rm -rf {os.path.join(_DOCS, 'generated')}")
+    os.system(f"rm -rf {os.path.join(_DOCS_SOURCE, 'generated')}")
 
 
 def rebuild_docs():

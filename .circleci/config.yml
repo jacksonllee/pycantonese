@@ -81,6 +81,7 @@ jobs:
           # Avoid being able to import pycantonese by relative import.
           # Test code by importing the *installed* pycantonese in site-packages.
           command: pytest -vv --doctest-modules --cov=project/pycantonese --junitxml=/tmp/testxml/report.xml project/pycantonese project/docs
+          no_output_timeout: 20m
       - store_test_results:
           path: /tmp/testxml/
 

@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Corpus Reader Methods &mdash; PyCantonese 3.1.1 documentation</title>
   
@@ -18,12 +18,8 @@
   
     <link rel="shortcut icon" href="_static/pycantonese-logo.ico"/>
   
-
   
   
-
-  
-    <link rel="canonical" href="https://pycantonese.org/reader.html" />
 
   
   <!--[if lt IE 9]>
@@ -57,7 +53,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> PyCantonese
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> PyCantonese
           
 
           
@@ -97,22 +93,27 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="data.html">Corpus Data</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="data.html#the-chat-transcription-format">The CHAT Transcription Format</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data.html#accessing-built-in-data">Accessing Built-in Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data.html#accessing-custom-data">Accessing Custom Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#chat-format">CHAT Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#built-in-data">Built-in Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#childes-and-talkbank-data">CHILDES and TalkBank Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#custom-data">Custom Data</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Corpus Reader Methods</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#the-representation-of-words">The Representation of “Words”</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#a-note-on-the-access-methods">A Note on the Access Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#full-reader-api">Full Reader API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#headers">Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transcriptions-and-annotations">Transcriptions and Annotations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#jyutping-romanization">Jyutping Romanization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#chinese-characters">Chinese Characters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#word-frequencies-and-ngrams">Word Frequencies and Ngrams</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="searches.html">Corpus Search Queries</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-a-jyutping-element">Searching by a Jyutping Element</a></li>
 <li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-a-chinese-character">Searching by a Chinese Character</a></li>
 <li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-a-part-of-speech-tag">Searching by a Part-of-speech Tag</a></li>
-<li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-a-word-or-sentence-range">Searching by a Word or Sentence Range</a></li>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-a-word-or-utterance-range">Searching by a Word or Utterance Range</a></li>
 <li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-multiple-criteria">Searching by Multiple Criteria</a></li>
 <li class="toctree-l2"><a class="reference internal" href="searches.html#output-format-of-search-results">Output Format of Search Results</a></li>
 </ul>
@@ -134,11 +135,11 @@
 <li class="toctree-l2"><a class="reference internal" href="api.html#corpus-data">Corpus Data</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.read_chat.html">pycantonese.read_chat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.hkcancor.html">pycantonese.hkcancor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.corpus.CantoneseCHATReader.html">pycantonese.corpus.CantoneseCHATReader</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="generated/pycantonese.corpus.CantoneseCHATReader.search.html">pycantonese.corpus.CantoneseCHATReader.search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.CHATReader.html">pycantonese.CHATReader</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/pycantonese.CHATReader.search.html">pycantonese.CHATReader.search</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.corpus.CantoneseCHATReader.search.html">pycantonese.corpus.CantoneseCHATReader.search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.CHATReader.search.html">pycantonese.CHATReader.search</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#jyutping-romanization">Jyutping Romanization</a><ul>
@@ -156,6 +157,8 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.pos_tagging.hkcancor_to_ud.html">pycantonese.pos_tagging.hkcancor_to_ud</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#chatreader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHATReader</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#token"><code class="xref py py-class docutils literal notranslate"><span class="pre">Token</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a><ul>
@@ -259,8 +262,6 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -272,7 +273,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
         
       </li>
     
@@ -286,1038 +287,243 @@
             
   <div class="section" id="corpus-reader-methods">
 <span id="reader"></span><h1>Corpus Reader Methods<a class="headerlink" href="#corpus-reader-methods" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="the-representation-of-words">
-<span id="represent-words"></span><h2>The Representation of “Words”<a class="headerlink" href="#the-representation-of-words" title="Permalink to this headline">¶</a></h2>
-<p>The representation of “words” in PyCantonese comes in two flavors
-(similar to NLTK):</p>
-<ol class="arabic">
-<li><p>The “simple” representation as a <strong>string</strong>,
-which is what appears as a word token (in Chinese characters)
-in a transcription line
-starting with <code class="docutils literal notranslate"><span class="pre">*</span></code> in the CHAT transcript.</p></li>
-<li><p>The “tagged” representation as a <strong>tuple</strong> of
-(<em>word</em>, <em>pos</em>, <em>jyutping</em>, <em>rel</em>),
-which contains information from the transcription line and its <code class="docutils literal notranslate"><span class="pre">%</span></code>-tiers:</p>
-<p><em>word</em> (str) – Chinese character(s)</p>
-<p><em>pos</em> (str) – part-of-speech tag from <code class="docutils literal notranslate"><span class="pre">%mor</span></code> (All PoS tags are rendered in uppercase.)</p>
-<p><em>jyutping</em> (str) – Jyutping romanization from <code class="docutils literal notranslate"><span class="pre">%mor</span></code>
-(plus inflectional information, if any)</p>
-<p><em>rel</em> – dependency and grammatical relation from <code class="docutils literal notranslate"><span class="pre">%gra</span></code>
-(no known datasets have made used of <code class="docutils literal notranslate"><span class="pre">%gra</span></code> yet)</p>
-</li>
-</ol>
-<p>To illustrate, let us consider the following CHAT utterance with its <code class="docutils literal notranslate"><span class="pre">%mor</span></code>
-tier:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>*XXA:       喂 遲 啲 去 唔 去 旅行 啊 ?
-%mor:       e|wai3 a|ci4 u|di1 v|heoi3 d|m4 v|heoi3 vn|leoi5hang4 y|aa3 ?
+<p>After you have created a corpus reader (see <a class="reference internal" href="data.html#data"><span class="std std-ref">Corpus Data</span></a>),
+the headers, transcriptions, and annotations are all accessible through
+the methods of the corpus reader object.</p>
+<p>Let’s say we have a corpus reader with the built-in HKCanCor data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span> <span class="o">=</span> <span class="n">pycantonese</span><span class="o">.</span><span class="n">hkcancor</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>The list of “simple” words from this utterance are the list of word token
-strings:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;喂&#39;</span><span class="p">,</span> <span class="s1">&#39;遲&#39;</span><span class="p">,</span> <span class="s1">&#39;啲&#39;</span><span class="p">,</span> <span class="s1">&#39;去&#39;</span><span class="p">,</span> <span class="s1">&#39;唔&#39;</span><span class="p">,</span> <span class="s1">&#39;去&#39;</span><span class="p">,</span> <span class="s1">&#39;旅行&#39;</span><span class="p">,</span> <span class="s1">&#39;啊&#39;</span><span class="p">,</span> <span class="s1">&#39;?&#39;</span><span class="p">]</span>
+<div class="section" id="headers">
+<h2>Headers<a class="headerlink" href="#headers" title="Permalink to this headline">¶</a></h2>
+<p>A CHAT data file typically has metadata around the top of the file,
+with lines that begin with <code class="docutils literal notranslate"><span class="pre">&#64;</span></code>.
+The metadata include participants’ demographics (age, gender, etc),
+date of recording, and languages used in the data.</p>
+<p>Specifically for HKCanCor, the participants in all the data files are anonymous.
+In PyCantonese’s rendition of HKCanCor,
+their names are simply placeholders such as <code class="docutils literal notranslate"><span class="pre">A</span></code>, <code class="docutils literal notranslate"><span class="pre">B</span></code>, etc, and their
+corresponding three-letter codes are <code class="docutils literal notranslate"><span class="pre">XXA</span></code>, <code class="docutils literal notranslate"><span class="pre">XXB</span></code>, etc.
+In contrast, many CHILDES and TalkBank datasets have their participants identified.
+By convention, the target child’s code is <code class="docutils literal notranslate"><span class="pre">CHI</span></code>, the child’s mother’s <code class="docutils literal notranslate"><span class="pre">MOT</span></code>,
+and the child’s father’s <code class="docutils literal notranslate"><span class="pre">FAT</span></code>.</p>
+<p>Since PyCantonese uses PyLangAcq to parse CHAT data files,
+the way in which header information is accessed is identical between the
+two packages. Please see <a class="reference external" href="https://pylangacq.org/headers.html">PyLangAcq’s documentation on headers</a>.</p>
+<p>To see how a header from HKCanCor translates
+to its representation in PyCantonese,
+here is the header from <code class="docutils literal notranslate"><span class="pre">FC-001_v2.cha</span></code>, the first (by filename) of the 58 CHAT files:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@UTF8</span>
+<span class="nd">@Begin</span>
+<span class="nd">@Languages</span><span class="p">:</span> <span class="n">yue</span> <span class="p">,</span> <span class="n">eng</span>
+<span class="nd">@Participants</span><span class="p">:</span>      <span class="n">XXA</span> <span class="n">A</span> <span class="n">Adult</span> <span class="p">,</span> <span class="n">XXB</span> <span class="n">B</span> <span class="n">Adult</span>
+<span class="nd">@ID</span><span class="p">:</span>        <span class="n">yue</span> <span class="p">,</span> <span class="n">eng</span><span class="o">|</span><span class="n">HKCanCor</span><span class="o">|</span><span class="n">XXA</span><span class="o">|</span><span class="mi">34</span><span class="p">;</span><span class="o">|</span><span class="n">female</span><span class="o">|||</span><span class="n">Adult</span><span class="o">||</span><span class="n">origin</span><span class="p">:</span><span class="n">HK</span><span class="o">|</span>
+<span class="nd">@ID</span><span class="p">:</span>        <span class="n">yue</span> <span class="p">,</span> <span class="n">eng</span><span class="o">|</span><span class="n">HKCanCor</span><span class="o">|</span><span class="n">XXB</span><span class="o">|</span><span class="mi">37</span><span class="p">;</span><span class="o">|</span><span class="n">female</span><span class="o">|||</span><span class="n">Adult</span><span class="o">||</span><span class="n">origin</span><span class="p">:</span><span class="n">HK</span><span class="o">|</span>
+<span class="nd">@Date</span><span class="p">:</span>      <span class="mi">30</span><span class="o">-</span><span class="n">APR</span><span class="o">-</span><span class="mi">1997</span>
+<span class="nd">@Tape</span> <span class="n">Number</span><span class="p">:</span>       <span class="mi">001</span>
 </pre></div>
 </div>
-<p>The list of “tagged” words from this utterance are a list of 4-tuples:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[(</span><span class="s1">&#39;喂&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;wai3&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
- <span class="p">(</span><span class="s1">&#39;遲&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;ci4&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
- <span class="p">(</span><span class="s1">&#39;啲&#39;</span><span class="p">,</span> <span class="s1">&#39;U&#39;</span><span class="p">,</span> <span class="s1">&#39;di1&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
- <span class="p">(</span><span class="s1">&#39;去&#39;</span><span class="p">,</span> <span class="s1">&#39;V&#39;</span><span class="p">,</span> <span class="s1">&#39;heoi3&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
- <span class="p">(</span><span class="s1">&#39;唔&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;m4&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
- <span class="p">(</span><span class="s1">&#39;去&#39;</span><span class="p">,</span> <span class="s1">&#39;V&#39;</span><span class="p">,</span> <span class="s1">&#39;heoi3&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
- <span class="p">(</span><span class="s1">&#39;旅行&#39;</span><span class="p">,</span> <span class="s1">&#39;VN&#39;</span><span class="p">,</span> <span class="s1">&#39;leoi5hang4&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
- <span class="p">(</span><span class="s1">&#39;啊&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;aa3&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span>
- <span class="p">(</span><span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)]</span>
+<p>In this example, this recording session was between two Hong Kong female speakers
+(ages 34 and 37), recorded on April 30th, 1997. The languages in this data file
+are both Cantonese and English (in that order of usage frequency;
+the ordering in <code class="docutils literal notranslate"><span class="pre">yue</span> <span class="pre">,</span> <span class="pre">eng</span></code> is meaningful).</p>
+<p>Through the corpus reader object <code class="docutils literal notranslate"><span class="pre">corpus</span></code> we’ve just created,
+we see the same information by calling the method <a class="reference internal" href="api.html#pycantonese.CHATReader.headers" title="pycantonese.CHATReader.headers"><code class="xref py py-func docutils literal notranslate"><span class="pre">headers()</span></code></a>
+(which returns a list of dicts; <code class="docutils literal notranslate"><span class="pre">[0]</span></code> gets the first dict that
+corresponds to <code class="docutils literal notranslate"><span class="pre">FC-001_v2.cha</span></code>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span><span class="o">.</span><span class="n">headers</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">{&#39;Date&#39;: {datetime.date(1997, 4, 30)},</span>
+<span class="go"> &#39;Participants&#39;: {&#39;XXA&#39;: {&#39;name&#39;: &#39;A&#39;,</span>
+<span class="go">                          &#39;language&#39;: &#39;yue , eng&#39;,</span>
+<span class="go">                          &#39;corpus&#39;: &#39;HKCanCor&#39;,</span>
+<span class="go">                          &#39;age&#39;: &#39;34;&#39;,</span>
+<span class="go">                          &#39;sex&#39;: &#39;female&#39;,</span>
+<span class="go">                          &#39;group&#39;: &#39;&#39;,</span>
+<span class="go">                          &#39;ses&#39;: &#39;&#39;,</span>
+<span class="go">                          &#39;role&#39;: &#39;Adult&#39;,</span>
+<span class="go">                          &#39;education&#39;: &#39;&#39;,</span>
+<span class="go">                          &#39;custom&#39;: &#39;origin:HK&#39;},</span>
+<span class="go">                  &#39;XXB&#39;: {&#39;name&#39;: &#39;B&#39;,</span>
+<span class="go">                          &#39;language&#39;: &#39;yue , eng&#39;,</span>
+<span class="go">                          &#39;corpus&#39;: &#39;HKCanCor&#39;,</span>
+<span class="go">                          &#39;age&#39;: &#39;37;&#39;,</span>
+<span class="go">                          &#39;sex&#39;: &#39;female&#39;,</span>
+<span class="go">                          &#39;group&#39;: &#39;&#39;,</span>
+<span class="go">                          &#39;ses&#39;: &#39;&#39;,</span>
+<span class="go">                          &#39;role&#39;: &#39;Adult&#39;,</span>
+<span class="go">                          &#39;education&#39;: &#39;&#39;,</span>
+<span class="go">                          &#39;custom&#39;: &#39;origin:HK&#39;}},</span>
+<span class="go"> &#39;UTF8&#39;: &#39;&#39;,</span>
+<span class="go"> &#39;Languages&#39;: [&#39;yue&#39;, &#39;eng&#39;],</span>
+<span class="go"> &#39;Tape Number&#39;: &#39;001&#39;}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="a-note-on-the-access-methods">
-<span id="note-on-methods"></span><h2>A Note on the Access Methods<a class="headerlink" href="#a-note-on-the-access-methods" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span> <span class="o">=</span> <span class="n">pc</span><span class="o">.</span><span class="n">hkcancor</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>A corpus object, such as <code class="docutils literal notranslate"><span class="pre">corpus</span></code> as shown just above, has an array of
-methods X(). An example is <code class="docutils literal notranslate"><span class="pre">number_of_files()</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span><span class="o">.</span><span class="n">number_of_files</span><span class="p">()</span>
-<span class="go">58</span>
-</pre></div>
-</div>
-<p>Many of these methods together with their documentation notes are
-programmatically inherited from the library PyLangAcq for
-language acquisition research. A few remarks here are necessary to
-avoid confusion.</p>
-<p>Many methods have the optional parameter <code class="docutils literal notranslate"><span class="pre">participant</span></code>, which may safely be
-ignored in PyCantonese. The parameter <code class="docutils literal notranslate"><span class="pre">participant</span></code> specifies
-which participant(s) are of interest. This is important in the context of
-language acquisition: <code class="docutils literal notranslate"><span class="pre">'CHI'</span></code> for the target child, <code class="docutils literal notranslate"><span class="pre">'MOT'</span></code> for the mother,
-and so forth. In the CHAT format of HKCanCor that PyCantonese includes, the
-participants are rendered as codes such <code class="docutils literal notranslate"><span class="pre">'XXA'</span></code>, <code class="docutils literal notranslate"><span class="pre">'XXB'</span></code> etc based on
-the original HKCanCor files. When <code class="docutils literal notranslate"><span class="pre">participant</span></code> is not specified,
-all participants are automatically included.</p>
-<p>Another optional parameter of interest is <code class="docutils literal notranslate"><span class="pre">by_files</span></code>. Typically, a corpus
-comes in the form of multiple CHAT files. If a method X() has <code class="docutils literal notranslate"><span class="pre">by_files</span></code>,
-this parameter is set to be <code class="docutils literal notranslate"><span class="pre">False</span></code> by default, so that X() returns whatever
-it is for all the files <em>without</em> the file structure. If you are interested
-in results for individual files, set <code class="docutils literal notranslate"><span class="pre">by_files</span></code> to be <code class="docutils literal notranslate"><span class="pre">True</span></code> and the return
-object is dict(absolute-path filename: X() for that file) instead.</p>
-</div>
-<div class="section" id="full-reader-api">
-<h2>Full Reader API<a class="headerlink" href="#full-reader-api" title="Permalink to this headline">¶</a></h2>
-<dl class="py class">
-<dt id="pycantonese.corpus.CantoneseCHATReader">
-<em class="property">class </em><code class="sig-prename descclassname">pycantonese.corpus.</code><code class="sig-name descname">CantoneseCHATReader</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">filenames</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycantonese/corpus.html#CantoneseCHATReader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader" title="Permalink to this definition">¶</a></dt>
-<dd><p>A reader for Cantonese CHAT corpus files.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Some of the methods are inherited from the parent class
-<code class="docutils literal notranslate"><span class="pre">pylangacq.chat.Reader</span></code> for language acquisition,
-which may or may not be applicable to your use case.</p>
-</div>
-<p class="rubric">Methods</p>
+<p>Here are the currently implemented methods for header information:</p>
 <table class="longtable docutils align-default">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.IPSyn" title="pycantonese.corpus.CantoneseCHATReader.IPSyn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IPSyn</span></code></a>([participant])</p></td>
-<td><p>Return a map from a file path to the file’s IPSyn.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api.html#pycantonese.CHATReader.ages" title="pycantonese.CHATReader.ages"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ages</span></code></a>([participant, months])</p></td>
+<td><p>Return the ages of the given participant in the data.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.MLU" title="pycantonese.corpus.CantoneseCHATReader.MLU"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MLU</span></code></a>([participant])</p></td>
-<td><p>Return a map from a file path to the file’s MLU by morphemes.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api.html#pycantonese.CHATReader.dates_of_recording" title="pycantonese.CHATReader.dates_of_recording"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dates_of_recording</span></code></a>([by_files])</p></td>
+<td><p>Return the dates of recording.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.MLUm" title="pycantonese.corpus.CantoneseCHATReader.MLUm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MLUm</span></code></a>([participant])</p></td>
-<td><p>Return a map from a file path to the file’s MLU by morphemes.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api.html#pycantonese.CHATReader.headers" title="pycantonese.CHATReader.headers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">headers</span></code></a>()</p></td>
+<td><p>Return the headers.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.MLUw" title="pycantonese.corpus.CantoneseCHATReader.MLUw"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MLUw</span></code></a>([participant])</p></td>
-<td><p>Return a map from a file path to the file’s MLU by words.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="api.html#pycantonese.CHATReader.languages" title="pycantonese.CHATReader.languages"><code class="xref py py-obj docutils literal notranslate"><span class="pre">languages</span></code></a>([by_files])</p></td>
+<td><p>Return the languages in the data.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.TTR" title="pycantonese.corpus.CantoneseCHATReader.TTR"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TTR</span></code></a>([participant])</p></td>
-<td><p>Return a map from a file path to the file’s TTR.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.abspath" title="pycantonese.corpus.CantoneseCHATReader.abspath"><code class="xref py py-obj docutils literal notranslate"><span class="pre">abspath</span></code></a>(basename)</p></td>
-<td><p>Return the absolute path of <code class="docutils literal notranslate"><span class="pre">basename</span></code>.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.add" title="pycantonese.corpus.CantoneseCHATReader.add"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add</span></code></a>(*filenames)</p></td>
-<td><p>Add one or more CHAT <code class="docutils literal notranslate"><span class="pre">filenames</span></code> to the current reader.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.age" title="pycantonese.corpus.CantoneseCHATReader.age"><code class="xref py py-obj docutils literal notranslate"><span class="pre">age</span></code></a>([participant, months])</p></td>
-<td><p>Return a map from a file path to the <em>participant</em>’s age.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.character_sents" title="pycantonese.corpus.CantoneseCHATReader.character_sents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">character_sents</span></code></a>([participant, exclude, by_files])</p></td>
-<td><p>Return the data as sentences of individual Cantonese characters.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.characters" title="pycantonese.corpus.CantoneseCHATReader.characters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">characters</span></code></a>([participant, exclude, by_files])</p></td>
-<td><p>Return the data split in individual Cantonese characters.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.clear" title="pycantonese.corpus.CantoneseCHATReader.clear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code></a>()</p></td>
-<td><p>Clear everything and reset as an empty Reader instance.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.concordance" title="pycantonese.corpus.CantoneseCHATReader.concordance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">concordance</span></code></a>(search_item[, participant, …])</p></td>
-<td><p>Return a list of utterances with <em>search_item</em> for <em>participant</em>.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.date_of_birth" title="pycantonese.corpus.CantoneseCHATReader.date_of_birth"><code class="xref py py-obj docutils literal notranslate"><span class="pre">date_of_birth</span></code></a>()</p></td>
-<td><p>Return a map from a file path to the date of birth.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.dates_of_recording" title="pycantonese.corpus.CantoneseCHATReader.dates_of_recording"><code class="xref py py-obj docutils literal notranslate"><span class="pre">dates_of_recording</span></code></a>()</p></td>
-<td><p>Return a map from a file path to the date of recording.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.filenames" title="pycantonese.corpus.CantoneseCHATReader.filenames"><code class="xref py py-obj docutils literal notranslate"><span class="pre">filenames</span></code></a>([sorted_by_age])</p></td>
-<td><p>Return the set of absolute-path filenames.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.from_chat_files" title="pycantonese.corpus.CantoneseCHATReader.from_chat_files"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_chat_files</span></code></a>(*filenames, **kwargs)</p></td>
-<td><p>Create a <code class="docutils literal notranslate"><span class="pre">Reader</span></code> object with CHAT data files.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.from_chat_str" title="pycantonese.corpus.CantoneseCHATReader.from_chat_str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_chat_str</span></code></a>(chat_str[, encoding])</p></td>
-<td><p>Create a <code class="docutils literal notranslate"><span class="pre">Reader</span></code> object with CHAT data as a string.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.headers" title="pycantonese.corpus.CantoneseCHATReader.headers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">headers</span></code></a>()</p></td>
-<td><p>Return a dict mapping a file path to the headers of that file.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.index_to_tiers" title="pycantonese.corpus.CantoneseCHATReader.index_to_tiers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">index_to_tiers</span></code></a>()</p></td>
-<td><p>Return a dict mapping a file path to the file’s index_to_tiers dict.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.jyutping_sents" title="pycantonese.corpus.CantoneseCHATReader.jyutping_sents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">jyutping_sents</span></code></a>([participant, exclude, by_files])</p></td>
-<td><p>Return the sentences in Jyutping romanization.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.jyutpings" title="pycantonese.corpus.CantoneseCHATReader.jyutpings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">jyutpings</span></code></a>([participant, exclude, by_files])</p></td>
-<td><p>Return the words in Jyutping romanization.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.languages" title="pycantonese.corpus.CantoneseCHATReader.languages"><code class="xref py py-obj docutils literal notranslate"><span class="pre">languages</span></code></a>()</p></td>
-<td><p>Return a map from a file path to the languages used.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.number_of_files" title="pycantonese.corpus.CantoneseCHATReader.number_of_files"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_files</span></code></a>()</p></td>
-<td><p>Return the number of files.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.number_of_utterances" title="pycantonese.corpus.CantoneseCHATReader.number_of_utterances"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_utterances</span></code></a>([participant, exclude, …])</p></td>
-<td><p>Return the number of utterances for <em>participant</em> in all files.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.part_of_speech_tags" title="pycantonese.corpus.CantoneseCHATReader.part_of_speech_tags"><code class="xref py py-obj docutils literal notranslate"><span class="pre">part_of_speech_tags</span></code></a>([participant, exclude, …])</p></td>
-<td><p>Return the part-of-speech tags in the data for <em>participant</em>.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.participant_codes" title="pycantonese.corpus.CantoneseCHATReader.participant_codes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">participant_codes</span></code></a>([by_files])</p></td>
-<td><p>Return the participant codes (e.g., <code class="docutils literal notranslate"><span class="pre">{'CHI',</span> <span class="pre">'MOT'}</span></code>).</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.participants" title="pycantonese.corpus.CantoneseCHATReader.participants"><code class="xref py py-obj docutils literal notranslate"><span class="pre">participants</span></code></a>()</p></td>
-<td><p>Return a dict mapping a file path to the file’s participant info.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.remove" title="pycantonese.corpus.CantoneseCHATReader.remove"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove</span></code></a>(*filenames)</p></td>
-<td><p>Remove one or more CHAT <code class="docutils literal notranslate"><span class="pre">filenames</span></code> from the current reader.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.search" title="pycantonese.corpus.CantoneseCHATReader.search"><code class="xref py py-obj docutils literal notranslate"><span class="pre">search</span></code></a>(*[, onset, nucleus, coda, tone, …])</p></td>
-<td><p>Search the data for the given criteria.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.sents" title="pycantonese.corpus.CantoneseCHATReader.sents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sents</span></code></a>([participant, exclude, by_files])</p></td>
-<td><p>Return a list of sents by <em>participant</em> in all files.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.tagged_sents" title="pycantonese.corpus.CantoneseCHATReader.tagged_sents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tagged_sents</span></code></a>([participant, exclude, by_files])</p></td>
-<td><p>Return a list of tagged sents by <em>participant</em> in all files.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.tagged_words" title="pycantonese.corpus.CantoneseCHATReader.tagged_words"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tagged_words</span></code></a>([participant, exclude, by_files])</p></td>
-<td><p>Return a list of tagged words by <em>participant</em> in all files.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.update" title="pycantonese.corpus.CantoneseCHATReader.update"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update</span></code></a>(reader)</p></td>
-<td><p>Combine the current CHAT Reader instance with <code class="docutils literal notranslate"><span class="pre">reader</span></code>.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.utterances" title="pycantonese.corpus.CantoneseCHATReader.utterances"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utterances</span></code></a>([participant, exclude, clean, …])</p></td>
-<td><p>Return a list of (<em>participant</em>, utterance) pairs from all files.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.word_frequency" title="pycantonese.corpus.CantoneseCHATReader.word_frequency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">word_frequency</span></code></a>([participant, exclude, …])</p></td>
-<td><p>Return a word frequency counter for <em>participant</em> in all files.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.word_ngrams" title="pycantonese.corpus.CantoneseCHATReader.word_ngrams"><code class="xref py py-obj docutils literal notranslate"><span class="pre">word_ngrams</span></code></a>(n[, participant, exclude, …])</p></td>
-<td><p>Return a word <code class="docutils literal notranslate"><span class="pre">n</span></code>-gram counter by <code class="docutils literal notranslate"><span class="pre">participant</span></code> in all files. participant : str or iterable of str, optional     Participants of interest. If unspecified or <code class="docutils literal notranslate"><span class="pre">None</span></code>, all participants are included. exclude : str or iterable of str, optional     Participants to exclude. If unspecified or <code class="docutils literal notranslate"><span class="pre">None</span></code>, no participants are excluded. by_files : bool, optional     If <code class="docutils literal notranslate"><span class="pre">True</span></code>, return dict(absolute-path filename: X for that file)     instead of X for all files altogether. keep_case : bool, optional     If <code class="docutils literal notranslate"><span class="pre">True</span></code> (the default), case distinctions are kept, e.g.,     word tokens like “the” and “The” are treated as distinct. If <code class="docutils literal notranslate"><span class="pre">False</span></code>, all word tokens are forced to be in lowercase.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pycantonese.corpus.CantoneseCHATReader.words" title="pycantonese.corpus.CantoneseCHATReader.words"><code class="xref py py-obj docutils literal notranslate"><span class="pre">words</span></code></a>([participant, exclude, by_files])</p></td>
-<td><p>Return a list of words by <em>participant</em> in all files.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="api.html#pycantonese.CHATReader.participants" title="pycantonese.CHATReader.participants"><code class="xref py py-obj docutils literal notranslate"><span class="pre">participants</span></code></a>([by_files])</p></td>
+<td><p>Return the participants (e.g., CHI, MOT).</p></td>
 </tr>
 </tbody>
 </table>
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.IPSyn">
-<code class="sig-name descname">IPSyn</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">participant</span><span class="o">=</span><span class="default_value">'CHI'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.IPSyn" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a map from a file path to the file’s IPSyn.</p>
-<p>IPSyn = index of productive syntax</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>participant</strong><span class="classifier">str, optional</span></dt><dd><p>The specified participant (default to <code class="docutils literal notranslate"><span class="pre">'CHI'</span></code>).</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>dict(str: int)</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.MLU">
-<code class="sig-name descname">MLU</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">participant</span><span class="o">=</span><span class="default_value">'CHI'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.MLU" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a map from a file path to the file’s MLU by morphemes.</p>
-<p>MLU = mean length of utterance. This method is identical to <code class="docutils literal notranslate"><span class="pre">MLUm</span></code>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>participant</strong><span class="classifier">str, optional</span></dt><dd><p>The specified participant (default to <code class="docutils literal notranslate"><span class="pre">'CHI'</span></code>).</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>dict(str: float)</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.MLUm">
-<code class="sig-name descname">MLUm</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">participant</span><span class="o">=</span><span class="default_value">'CHI'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.MLUm" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a map from a file path to the file’s MLU by morphemes.</p>
-<p>MLU = mean length of utterance. This method is identical to <code class="docutils literal notranslate"><span class="pre">MLUm</span></code>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>participant</strong><span class="classifier">str, optional</span></dt><dd><p>The specified participant (default to <code class="docutils literal notranslate"><span class="pre">'CHI'</span></code>).</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>dict(str: float)</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.MLUw">
-<code class="sig-name descname">MLUw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">participant</span><span class="o">=</span><span class="default_value">'CHI'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.MLUw" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a map from a file path to the file’s MLU by words.</p>
-<p>MLU = mean length of utterance.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>participant</strong><span class="classifier">str, optional</span></dt><dd><p>The specified participant (default to <code class="docutils literal notranslate"><span class="pre">'CHI'</span></code>).</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>dict(str: float)</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.TTR">
-<code class="sig-name descname">TTR</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">participant</span><span class="o">=</span><span class="default_value">'CHI'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.TTR" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a map from a file path to the file’s TTR.</p>
-<p>TTR = type-token ratio</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>participant</strong><span class="classifier">str, optional</span></dt><dd><p>The specified participant (default to <code class="docutils literal notranslate"><span class="pre">'CHI'</span></code>).</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>dict(str: float)</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.abspath">
-<code class="sig-name descname">abspath</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">basename</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.abspath" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the absolute path of <code class="docutils literal notranslate"><span class="pre">basename</span></code>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>basename</strong><span class="classifier">str</span></dt><dd><p>The basename (e.g., “foobar.cha”) of the desired data file.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>str</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.add">
-<code class="sig-name descname">add</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">filenames</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.add" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add one or more CHAT <code class="docutils literal notranslate"><span class="pre">filenames</span></code> to the current reader.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>*filenames</strong></dt><dd><p>Filenames may take glob patterns with wildcards <code class="docutils literal notranslate"><span class="pre">*</span></code> and <code class="docutils literal notranslate"><span class="pre">?</span></code>.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.age">
-<code class="sig-name descname">age</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">participant</span><span class="o">=</span><span class="default_value">'CHI'</span></em>, <em class="sig-param"><span class="n">months</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.age" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a map from a file path to the <em>participant</em>’s age.</p>
-<p>The age is in the form of (years, months, days).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>participant</strong><span class="classifier">str, optional</span></dt><dd><p>The specified participant</p>
-</dd>
-<dt><strong>months</strong><span class="classifier">bool, optional</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, age is in months.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>dict(str: tuple(int, int, int)) or dict(str: float)</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.character_sents">
-<code class="sig-name descname">character_sents</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">participant</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">by_files</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycantonese/corpus.html#CantoneseCHATReader.character_sents"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.character_sents" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the data as sentences of individual Cantonese characters.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>participant</strong><span class="classifier">str or iterable[str], optional</span></dt><dd><p>One or more participants to include the data for.
-If unspecified, all participants are included.</p>
-</dd>
-<dt><strong>exclude</strong><span class="classifier">str or iterable[str], optional</span></dt><dd><p>One or more participants to exclude the data for.
-If unspecified, no participants are excluded.</p>
-</dd>
-<dt><strong>by_files</strong><span class="classifier">bool, optional</span></dt><dd><p>If True (default: False), return data organized by the
-individual file paths.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>list[list[str]], or dict[str, list[list[str]]] if by_files is True</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.characters">
-<code class="sig-name descname">characters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">participant</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">by_files</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycantonese/corpus.html#CantoneseCHATReader.characters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.characters" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the data split in individual Cantonese characters.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>participant</strong><span class="classifier">str or iterable[str], optional</span></dt><dd><p>One or more participants to include the data for.
-If unspecified, all participants are included.</p>
-</dd>
-<dt><strong>exclude</strong><span class="classifier">str or iterable[str], optional</span></dt><dd><p>One or more participants to exclude the data for.
-If unspecified, no participants are excluded.</p>
-</dd>
-<dt><strong>by_files</strong><span class="classifier">bool, optional</span></dt><dd><p>If True (default: False), return data organized by the
-individual file paths.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>list[str], or dict[str, list[str]] if by_files is True</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.clear">
-<code class="sig-name descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.clear" title="Permalink to this definition">¶</a></dt>
-<dd><p>Clear everything and reset as an empty Reader instance.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.concordance">
-<code class="sig-name descname">concordance</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">search_item</span></em>, <em class="sig-param"><span class="n">participant</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">match_entire_word</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">lemma</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">by_files</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycantonese/corpus.html#CantoneseCHATReader.concordance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.concordance" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a list of utterances with <em>search_item</em> for <em>participant</em>.</p>
-<p>All strings are aligned for <em>search_item</em> by space
-padding to create the word concordance effect.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>search_item</strong><span class="classifier">str</span></dt><dd><p>Word or lemma to search for.</p>
-</dd>
-<dt><strong>match_entire_word</strong><span class="classifier">bool, optional</span></dt><dd><p>If False (default: True), substring matching is performed.</p>
-</dd>
-<dt><strong>lemma</strong><span class="classifier">bool, optional</span></dt><dd><p>If True (default: False), <em>search_item</em> refers to the
-lemma (from “mor” in the tagged word) instead.</p>
-</dd>
-<dt><strong>participant</strong><span class="classifier">str or iterable of str, optional</span></dt><dd><p>Participants of interest.
-If unspecified or <code class="docutils literal notranslate"><span class="pre">None</span></code>, all participants are included.</p>
-</dd>
-<dt><strong>exclude</strong><span class="classifier">str or iterable of str, optional</span></dt><dd><p>Participants to exclude.
-If unspecified or <code class="docutils literal notranslate"><span class="pre">None</span></code>, no participants are excluded.</p>
-</dd>
-<dt><strong>by_files</strong><span class="classifier">bool, optional</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, return dict(absolute-path filename: X for that file)
-instead of X for all files altogether.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>list, or dict(str: list)</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.date_of_birth">
-<code class="sig-name descname">date_of_birth</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.date_of_birth" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a map from a file path to the date of birth.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><dl class="simple">
-<dt>dict(str: dict(str: tuple(int, int, int)))</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.dates_of_recording">
-<code class="sig-name descname">dates_of_recording</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.dates_of_recording" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a map from a file path to the date of recording.</p>
-<p>The date of recording is in the form of (year, month, day).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><dl class="simple">
-<dt>dict(str: list(tuple(int, int, int)))</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.filenames">
-<code class="sig-name descname">filenames</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sorted_by_age</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.filenames" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the set of absolute-path filenames.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>sorted_by_age</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to return the filenames as a list sorted by the target
-child’s age.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>set of str or list of str</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.from_chat_files">
-<em class="property">classmethod </em><code class="sig-name descname">from_chat_files</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">filenames</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.from_chat_files" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a <code class="docutils literal notranslate"><span class="pre">Reader</span></code> object with CHAT data files.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>filenames</strong><span class="classifier">str or iterable or str, optional</span></dt><dd><p>One or more filenames. A filename may match exactly a CHAT file
-(e.g., <code class="docutils literal notranslate"><span class="pre">'eve01.cha'</span></code>) or matches multiple files by glob patterns
-(e.g., <code class="docutils literal notranslate"><span class="pre">'eve*.cha'</span></code>, for <code class="docutils literal notranslate"><span class="pre">'eve01.cha'</span></code>, <code class="docutils literal notranslate"><span class="pre">'eve02.cha'</span></code>, etc.).
-<code class="docutils literal notranslate"><span class="pre">*</span></code> matches any number (including zero) of characters, while
-<code class="docutils literal notranslate"><span class="pre">?</span></code> matches exactly one character.
-A filename can be either an absolute or relative path. If
-no <em>filenames</em> are provided, an empty Reader instance is created.</p>
-</dd>
-<dt><strong>kwargs</strong></dt><dd><p>Only the keyword <code class="docutils literal notranslate"><span class="pre">encoding</span></code> is recognized, which defaults
-to ‘utf8’. (New in version 0.9)</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>Reader</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Notes</p>
-<p>Because CHAT data most likely comes as files on disk,
-an equivalent library top-level function <code class="docutils literal notranslate"><span class="pre">pylangacq.read_chat</span></code>
-is defined for convenience.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.from_chat_str">
-<em class="property">classmethod </em><code class="sig-name descname">from_chat_str</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">chat_str</span></em>, <em class="sig-param"><span class="n">encoding</span><span class="o">=</span><span class="default_value">'utf8'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.from_chat_str" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a <code class="docutils literal notranslate"><span class="pre">Reader</span></code> object with CHAT data as a string.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>chat_str</strong><span class="classifier">str</span></dt><dd><p>CHAT data as an in-memory string. It would be what a single
-CHAT data file contains.</p>
-</dd>
-<dt><strong>encoding</strong></dt><dd><p>Encoding of the CHAT data</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>Reader</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.headers">
-<code class="sig-name descname">headers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.headers" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a dict mapping a file path to the headers of that file.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><dl class="simple">
-<dt>dict(str: dict)</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.index_to_tiers">
-<code class="sig-name descname">index_to_tiers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.index_to_tiers" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a dict mapping a file path to the file’s index_to_tiers dict.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><dl class="simple">
-<dt>dict(str: dict)</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.jyutping_sents">
-<code class="sig-name descname">jyutping_sents</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">participant</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">by_files</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycantonese/corpus.html#CantoneseCHATReader.jyutping_sents"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.jyutping_sents" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the sentences in Jyutping romanization.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>participant</strong><span class="classifier">str or iterable[str], optional</span></dt><dd><p>One or more participants to include the data for.
-If unspecified, all participants are included.</p>
-</dd>
-<dt><strong>exclude</strong><span class="classifier">str or iterable[str], optional</span></dt><dd><p>One or more participants to exclude the data for.
-If unspecified, no participants are excluded.</p>
-</dd>
-<dt><strong>by_files</strong><span class="classifier">bool, optional</span></dt><dd><p>If True (default: False), return data organized by the
-individual file paths.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>list[list[str]], or dict[str, list[list[str]]] if by_files is True</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.jyutpings">
-<code class="sig-name descname">jyutpings</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">participant</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">by_files</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycantonese/corpus.html#CantoneseCHATReader.jyutpings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.jyutpings" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the words in Jyutping romanization.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>participant</strong><span class="classifier">str or iterable[str], optional</span></dt><dd><p>One or more participants to include the data for.
-If unspecified, all participants are included.</p>
-</dd>
-<dt><strong>exclude</strong><span class="classifier">str or iterable[str], optional</span></dt><dd><p>One or more participants to exclude the data for.
-If unspecified, no participants are excluded.</p>
-</dd>
-<dt><strong>by_files</strong><span class="classifier">bool, optional</span></dt><dd><p>If True (default: False), return data organized by the
-individual file paths.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>list[str], or dict[str, list[str]] if by_files is True</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.languages">
-<code class="sig-name descname">languages</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.languages" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a map from a file path to the languages used.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><dl class="simple">
-<dt>dict(str: list(str))</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.number_of_files">
-<code class="sig-name descname">number_of_files</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.number_of_files" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the number of files.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><dl class="simple">
-<dt>int</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.number_of_utterances">
-<code class="sig-name descname">number_of_utterances</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">participant</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">by_files</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.number_of_utterances" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the number of utterances for <em>participant</em> in all files.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>participant</strong><span class="classifier">str or iterable of str, optional</span></dt><dd><p>Participants of interest.
-If unspecified or <code class="docutils literal notranslate"><span class="pre">None</span></code>, all participants are included.</p>
-</dd>
-<dt><strong>exclude</strong><span class="classifier">str or iterable of str, optional</span></dt><dd><p>Participants to exclude.
-If unspecified or <code class="docutils literal notranslate"><span class="pre">None</span></code>, no participants are excluded.</p>
-</dd>
-<dt><strong>by_files</strong><span class="classifier">bool, optional</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, return dict(absolute-path filename: X for that file)
-instead of X for all files altogether.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>int or dict(str: int)</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.part_of_speech_tags">
-<code class="sig-name descname">part_of_speech_tags</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">participant</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">by_files</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.part_of_speech_tags" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the part-of-speech tags in the data for <em>participant</em>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>participant</strong><span class="classifier">str or iterable of str, optional</span></dt><dd><p>Participants of interest.
-If unspecified or <code class="docutils literal notranslate"><span class="pre">None</span></code>, all participants are included.</p>
-</dd>
-<dt><strong>exclude</strong><span class="classifier">str or iterable of str, optional</span></dt><dd><p>Participants to exclude.
-If unspecified or <code class="docutils literal notranslate"><span class="pre">None</span></code>, no participants are excluded.</p>
-</dd>
-<dt><strong>by_files</strong><span class="classifier">bool, optional</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, return dict(absolute-path filename: X for that file)
-instead of X for all files altogether.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>set or dict(str: set)</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.participant_codes">
-<code class="sig-name descname">participant_codes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">by_files</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.participant_codes" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the participant codes (e.g., <code class="docutils literal notranslate"><span class="pre">{'CHI',</span> <span class="pre">'MOT'}</span></code>).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>by_files</strong><span class="classifier">bool, optional</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, return dict(absolute-path filename: X for that file)
-instead of X for all files altogether.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>set(str) or dict(str: set(str))</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.participants">
-<code class="sig-name descname">participants</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.participants" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a dict mapping a file path to the file’s participant info.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><dl class="simple">
-<dt>dict(str: dict)</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.remove">
-<code class="sig-name descname">remove</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">filenames</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.remove" title="Permalink to this definition">¶</a></dt>
-<dd><p>Remove one or more CHAT <code class="docutils literal notranslate"><span class="pre">filenames</span></code> from the current reader.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>*filenames</strong></dt><dd><p>Filenames may take glob patterns with wildcards <code class="docutils literal notranslate"><span class="pre">*</span></code> and <code class="docutils literal notranslate"><span class="pre">?</span></code>.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.search">
-<code class="sig-name descname">search</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">onset</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">nucleus</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">coda</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tone</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">initial</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">final</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">jyutping</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">character</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">pos</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">word_range</span><span class="o">=</span><span class="default_value">0, 0</span></em>, <em class="sig-param"><span class="n">sent_range</span><span class="o">=</span><span class="default_value">0, 0</span></em>, <em class="sig-param"><span class="n">tagged</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">sents</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">participant</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">by_files</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycantonese/corpus.html#CantoneseCHATReader.search"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.search" title="Permalink to this definition">¶</a></dt>
-<dd><p>Search the data for the given criteria.</p>
-<p>For examples, please see <a class="reference external" href="https://pycantonese.org/searches.html">https://pycantonese.org/searches.html</a>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>onset</strong><span class="classifier">str, optional</span></dt><dd><p>Onset to search for. A regex is supported.</p>
-</dd>
-<dt><strong>nucleus</strong><span class="classifier">str, optional</span></dt><dd><p>Nucleus to search for. A regex is supported.</p>
-</dd>
-<dt><strong>coda</strong><span class="classifier">str, optional</span></dt><dd><p>Coda to search for. A regex is supported.</p>
-</dd>
-<dt><strong>tone</strong><span class="classifier">str, optional</span></dt><dd><p>Tone to search for. A regex is supported.</p>
-</dd>
-<dt><strong>initial</strong><span class="classifier">str, optional</span></dt><dd><p>Initial to search for. A regex is supported.
-An initial, a term more prevalent in traditional Chinese
-phonology, is the equivalent of an onset.</p>
-</dd>
-<dt><strong>final</strong><span class="classifier">str, optional</span></dt><dd><p>Final to search for.
-A final, a term more prevalent in traditional Chinese
-phonology, is the equivalent of a nucleus plus a coda.</p>
-</dd>
-<dt><strong>jyutping</strong><span class="classifier">str, optional</span></dt><dd><p>Jyutping romanization of one Cantonese character to search for.
-If the romanization contains more than one character, a ValueError
-is raised.</p>
-</dd>
-<dt><strong>character</strong><span class="classifier">str, optional</span></dt><dd><p>One or more Cantonese characters (within a segmented word) to
-search for.</p>
-</dd>
-<dt><strong>pos</strong><span class="classifier">str, optional</span></dt><dd><p>A part-of-speech tag to search for. A regex is supported.</p>
-</dd>
-<dt><strong>word_range</strong><span class="classifier">tuple[int, int], optional</span></dt><dd><p>Span of words to the left and right of a matching word to include
-in the output. The default is <cite>(0, 0)</cite> to disable a range.
-If <cite>sent_range</cite> is used, <cite>word_range</cite> is ignored.</p>
-</dd>
-<dt><strong>sent_range</strong><span class="classifier">tuple[int, int], optional</span></dt><dd><p>Span of sentences before and after a sentence containing a matching
-word to include in the output. The default is <cite>(0, 0)</cite> to disable
-a range. If <cite>sent_range</cite> is used, <cite>word_range</cite> is ignored.</p>
-</dd>
-<dt><strong>tagged</strong><span class="classifier">bool, optional</span></dt><dd><p>If True (the default), words in the output are in the tagged form.
-Otherwise just word token strings are returned.</p>
-</dd>
-<dt><strong>sents</strong><span class="classifier">bool, optional</span></dt><dd><p>If True (default is False), sentences containing matching words
-are returned. Otherwise, only matching words are returned.</p>
-</dd>
-<dt><strong>participant</strong><span class="classifier">str or iterable[str], optional</span></dt><dd><p>One or more participants to include in the search.
-If unspecified, all participants are included.</p>
-</dd>
-<dt><strong>exclude</strong><span class="classifier">str or iterable[str], optional</span></dt><dd><p>One or more participants to exclude in the search.
-If unspecified, no participants are excluded.</p>
-</dd>
-<dt><strong>by_files</strong><span class="classifier">bool, optional</span></dt><dd><p>If True (default: False), return data organized by the
-individual file paths.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>list</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.sents">
-<code class="sig-name descname">sents</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">participant</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">by_files</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.sents" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a list of sents by <em>participant</em> in all files.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>participant</strong><span class="classifier">str or iterable of str, optional</span></dt><dd><p>Participants of interest.
-If unspecified or <code class="docutils literal notranslate"><span class="pre">None</span></code>, all participants are included.</p>
-</dd>
-<dt><strong>exclude</strong><span class="classifier">str or iterable of str, optional</span></dt><dd><p>Participants to exclude.
-If unspecified or <code class="docutils literal notranslate"><span class="pre">None</span></code>, no participants are excluded.</p>
-</dd>
-<dt><strong>by_files</strong><span class="classifier">bool, optional</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, return dict(absolute-path filename: X for that file)
-instead of X for all files altogether.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>list(list(str)) or dict(str: list(list(str)))</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.tagged_sents">
-<code class="sig-name descname">tagged_sents</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">participant</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">by_files</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.tagged_sents" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a list of tagged sents by <em>participant</em> in all files.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>participant</strong><span class="classifier">str or iterable of str, optional</span></dt><dd><p>Participants of interest.
-If unspecified or <code class="docutils literal notranslate"><span class="pre">None</span></code>, all participants are included.</p>
-</dd>
-<dt><strong>exclude</strong><span class="classifier">str or iterable of str, optional</span></dt><dd><p>Participants to exclude.
-If unspecified or <code class="docutils literal notranslate"><span class="pre">None</span></code>, no participants are excluded.</p>
-</dd>
-<dt><strong>by_files</strong><span class="classifier">bool, optional</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, return dict(absolute-path filename: X for that file)
-instead of X for all files altogether.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>list(list(tuple)) or dict(str: list(list(tuple)))</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.tagged_words">
-<code class="sig-name descname">tagged_words</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">participant</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">by_files</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.tagged_words" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a list of tagged words by <em>participant</em> in all files.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>participant</strong><span class="classifier">str or iterable of str, optional</span></dt><dd><p>Participants of interest.
-If unspecified or <code class="docutils literal notranslate"><span class="pre">None</span></code>, all participants are included.</p>
-</dd>
-<dt><strong>exclude</strong><span class="classifier">str or iterable of str, optional</span></dt><dd><p>Participants to exclude.
-If unspecified or <code class="docutils literal notranslate"><span class="pre">None</span></code>, no participants are excluded.</p>
-</dd>
-<dt><strong>by_files</strong><span class="classifier">bool, optional</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, return dict(absolute-path filename: X for that file)
-instead of X for all files altogether.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>list(tuple) or dict(str: list(tuple))</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.update">
-<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">reader</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.update" title="Permalink to this definition">¶</a></dt>
-<dd><p>Combine the current CHAT Reader instance with <code class="docutils literal notranslate"><span class="pre">reader</span></code>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>reader</strong><span class="classifier">Reader</span></dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.utterances">
-<code class="sig-name descname">utterances</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">participant</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">clean</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">by_files</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.utterances" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a list of (<em>participant</em>, utterance) pairs from all files.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>clean</strong><span class="classifier">bool, optional</span></dt><dd><p>Whether to filter away the CHAT annotations in the utterance.</p>
-</dd>
-<dt><strong>participant</strong><span class="classifier">str or iterable of str, optional</span></dt><dd><p>Participants of interest.
-If unspecified or <code class="docutils literal notranslate"><span class="pre">None</span></code>, all participants are included.</p>
-</dd>
-<dt><strong>exclude</strong><span class="classifier">str or iterable of str, optional</span></dt><dd><p>Participants to exclude.
-If unspecified or <code class="docutils literal notranslate"><span class="pre">None</span></code>, no participants are excluded.</p>
-</dd>
-<dt><strong>by_files</strong><span class="classifier">bool, optional</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, return dict(absolute-path filename: X for that file)
-instead of X for all files altogether.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>list(str) or dict(str: list(str))</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.word_frequency">
-<code class="sig-name descname">word_frequency</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">participant</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">keep_case</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">by_files</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.word_frequency" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a word frequency counter for <em>participant</em> in all files.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>participant</strong><span class="classifier">str or iterable of str, optional</span></dt><dd><p>Participants of interest.
-If unspecified or <code class="docutils literal notranslate"><span class="pre">None</span></code>, all participants are included.</p>
-</dd>
-<dt><strong>exclude</strong><span class="classifier">str or iterable of str, optional</span></dt><dd><p>Participants to exclude.
-If unspecified or <code class="docutils literal notranslate"><span class="pre">None</span></code>, no participants are excluded.</p>
-</dd>
-<dt><strong>by_files</strong><span class="classifier">bool, optional</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, return dict(absolute-path filename: X for that file)
-instead of X for all files altogether.</p>
-</dd>
-<dt><strong>keep_case</strong><span class="classifier">bool, optional</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code> (the default), case distinctions are kept, e.g.,
-word tokens like “the” and “The” are treated as distinct.
-If <code class="docutils literal notranslate"><span class="pre">False</span></code>, all word tokens are forced to be in lowercase.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>Counter, or dict(str: Counter)</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.word_ngrams">
-<code class="sig-name descname">word_ngrams</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">participant</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">keep_case</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">by_files</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.word_ngrams" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a word <code class="docutils literal notranslate"><span class="pre">n</span></code>-gram counter by <code class="docutils literal notranslate"><span class="pre">participant</span></code> in all files.
-participant : str or iterable of str, optional</p>
-<blockquote>
-<div><p>Participants of interest.
-If unspecified or <code class="docutils literal notranslate"><span class="pre">None</span></code>, all participants are included.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>exclude<span class="classifier">str or iterable of str, optional</span></dt><dd><p>Participants to exclude.
-If unspecified or <code class="docutils literal notranslate"><span class="pre">None</span></code>, no participants are excluded.</p>
-</dd>
-<dt>by_files<span class="classifier">bool, optional</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, return dict(absolute-path filename: X for that file)
-instead of X for all files altogether.</p>
-</dd>
-<dt>keep_case<span class="classifier">bool, optional</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code> (the default), case distinctions are kept, e.g.,
-word tokens like “the” and “The” are treated as distinct.
-If <code class="docutils literal notranslate"><span class="pre">False</span></code>, all word tokens are forced to be in lowercase.</p>
-</dd>
-</dl>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><dl class="simple">
-<dt>Counter, or dict(str: Counter)</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="pycantonese.corpus.CantoneseCHATReader.words">
-<code class="sig-name descname">words</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">participant</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">by_files</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.corpus.CantoneseCHATReader.words" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a list of words by <em>participant</em> in all files.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>participant</strong><span class="classifier">str or iterable of str, optional</span></dt><dd><p>Participants of interest.
-If unspecified or <code class="docutils literal notranslate"><span class="pre">None</span></code>, all participants are included.</p>
-</dd>
-<dt><strong>exclude</strong><span class="classifier">str or iterable of str, optional</span></dt><dd><p>Participants to exclude.
-If unspecified or <code class="docutils literal notranslate"><span class="pre">None</span></code>, no participants are excluded.</p>
-</dd>
-<dt><strong>by_files</strong><span class="classifier">bool, optional</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, return dict(absolute-path filename: X for that file)
-instead of X for all files altogether.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>list(str) or dict(str: list(str))</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+<p>Whenever it is appropriate, these header information methods, as well as
+the data access methods to be introduced below, have optional arguments
+to (i) control the output data structure (<code class="docutils literal notranslate"><span class="pre">by_utterances</span></code> and <code class="docutils literal notranslate"><span class="pre">by_files</span></code>)
+and (ii) filter by participants (<code class="docutils literal notranslate"><span class="pre">participants</span></code> and <code class="docutils literal notranslate"><span class="pre">exclude</span></code>).
+The methods’ hyperlinks point to more detailed documentation.</p>
+</div>
+<div class="section" id="transcriptions-and-annotations">
+<h2>Transcriptions and Annotations<a class="headerlink" href="#transcriptions-and-annotations" title="Permalink to this headline">¶</a></h2>
+<p>A PyCantonese corpus reader is an instance of the <a class="reference internal" href="generated/pycantonese.CHATReader.html#pycantonese.CHATReader" title="pycantonese.CHATReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHATReader</span></code></a> class.
+While this class inherits the CHAT handling capabilities from the underlying
+PyLangAcq package, <a class="reference internal" href="generated/pycantonese.CHATReader.html#pycantonese.CHATReader" title="pycantonese.CHATReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHATReader</span></code></a> has several
+additional functionality to deal with Cantonese-specific elements,
+particularly Jyutping romanization and Chinese characters.</p>
+<p>Here are the major <a class="reference internal" href="generated/pycantonese.CHATReader.html#pycantonese.CHATReader" title="pycantonese.CHATReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHATReader</span></code></a> methods to access data
+at different levels of data structure:</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="api.html#pycantonese.CHATReader.words" title="pycantonese.CHATReader.words"><code class="xref py py-obj docutils literal notranslate"><span class="pre">words</span></code></a>([participants, exclude, …])</p></td>
+<td><p>Return the words.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api.html#pycantonese.CHATReader.tokens" title="pycantonese.CHATReader.tokens"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tokens</span></code></a>([participants, exclude, …])</p></td>
+<td><p>Return the tokens.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api.html#pycantonese.CHATReader.utterances" title="pycantonese.CHATReader.utterances"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utterances</span></code></a>([participants, exclude, by_files])</p></td>
+<td><p>Return the utterances.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Words are just the usual text strings.
+Think of tokens as words but with annotations
+(part-of-speech tags, morphological information, etc).
+An utterance is a a list of tokens plus associated information
+(the participant of the utterance, time markers if there is associated
+audio-visual material, etc).</p>
+<p>PyCantonese has an augmented representation of tokens,
+where Jyutping romanization has its own dedicated spot.</p>
+<div class="section" id="jyutping-romanization">
+<span id="jyutping-from-reader"></span><h3>Jyutping Romanization<a class="headerlink" href="#jyutping-romanization" title="Permalink to this headline">¶</a></h3>
+<p>Tokens, as annotated words, are instances of the <a class="reference internal" href="api.html#pycantonese.corpus.Token" title="pycantonese.corpus.Token"><code class="xref py py-class docutils literal notranslate"><span class="pre">Token</span></code></a> class.
+A <a class="reference internal" href="api.html#pycantonese.corpus.Token" title="pycantonese.corpus.Token"><code class="xref py py-class docutils literal notranslate"><span class="pre">Token</span></code></a> instance has the PyCantonese-specific attribute
+<code class="docutils literal notranslate"><span class="pre">jyutping</span></code> to accommodate Jyutping romanization.</p>
+<p>To illustrate, below is the first utterance in <code class="docutils literal notranslate"><span class="pre">FC-001_v2.cha</span></code>,
+where Jyutping romanization is found in the <code class="docutils literal notranslate"><span class="pre">%mor</span></code> tier:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>*XXA:       喂 遲 啲 去 唔 去 旅行 啊 ?
+%mor:       e|wai3 a|ci4 u|di1 v|heoi3 d|m4 v|heoi3 vn|leoi5hang4 y|aa3 ?
+</pre></div>
+</div>
+<p>Here are the corresponding tokens from PyCantonese,
+where the data in CHAT format has been parsed into <a class="reference internal" href="api.html#pycantonese.corpus.Token" title="pycantonese.corpus.Token"><code class="xref py py-class docutils literal notranslate"><span class="pre">Token</span></code></a>
+objects, with the attribute <code class="docutils literal notranslate"><span class="pre">jyutping</span></code> storing Jyutping romanization:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">some_tokens</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">tokens</span><span class="p">(</span><span class="n">by_utterances</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">some_tokens</span>
+<span class="go">[Token(word=&#39;喂&#39;, pos=&#39;E&#39;, jyutping=&#39;wai3&#39;, mor=None, gra=None),</span>
+<span class="go"> Token(word=&#39;遲&#39;, pos=&#39;A&#39;, jyutping=&#39;ci4&#39;, mor=None, gra=None),</span>
+<span class="go"> Token(word=&#39;啲&#39;, pos=&#39;U&#39;, jyutping=&#39;di1&#39;, mor=None, gra=None),</span>
+<span class="go"> Token(word=&#39;去&#39;, pos=&#39;V&#39;, jyutping=&#39;heoi3&#39;, mor=None, gra=None),</span>
+<span class="go"> Token(word=&#39;唔&#39;, pos=&#39;D&#39;, jyutping=&#39;m4&#39;, mor=None, gra=None),</span>
+<span class="go"> Token(word=&#39;去&#39;, pos=&#39;V&#39;, jyutping=&#39;heoi3&#39;, mor=None, gra=None),</span>
+<span class="go"> Token(word=&#39;旅行&#39;, pos=&#39;VN&#39;, jyutping=&#39;leoi5hang4&#39;, mor=None, gra=None),</span>
+<span class="go"> Token(word=&#39;啊&#39;, pos=&#39;Y&#39;, jyutping=&#39;aa3&#39;, mor=None, gra=None),</span>
+<span class="go"> Token(word=&#39;?&#39;, pos=&#39;?&#39;, jyutping=None, mor=None, gra=None)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">some_tokens</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">token</span><span class="o">.</span><span class="n">jyutping</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">wai3</span>
+<span class="go">ci4</span>
+<span class="go">di1</span>
+<span class="go">heoi3</span>
+<span class="go">m4</span>
+<span class="go">heoi3</span>
+<span class="go">leoi5hang4</span>
+<span class="go">aa3</span>
+<span class="go">None</span>
+</pre></div>
+</div>
+<p>Given the ubiquitous status of Jyutping in the study of Cantonese,
+the <a class="reference internal" href="api.html#pycantonese.CHATReader.jyutping" title="pycantonese.CHATReader.jyutping"><code class="xref py py-func docutils literal notranslate"><span class="pre">jyutping()</span></code></a> method is also defined for convenience:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span><span class="o">.</span><span class="n">jyutping</span><span class="p">(</span><span class="n">by_utterances</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">[&#39;wai3&#39;, &#39;ci4&#39;, &#39;di1&#39;, &#39;heoi3&#39;, &#39;m4&#39;, &#39;heoi3&#39;, &#39;leoi5hang4&#39;, &#39;aa3&#39;, None]</span>
+</pre></div>
+</div>
+<p>For further processing Jyutping romanization, please see the <a class="reference internal" href="jyutping.html#jyutping"><span class="std std-ref">Jyutping Romanization</span></a> page.</p>
+</div>
+<div class="section" id="chinese-characters">
+<h3>Chinese Characters<a class="headerlink" href="#chinese-characters" title="Permalink to this headline">¶</a></h3>
+<p>Corpus data in the CHAT format is word-segmented,
+and the same word segmentation is preserved in the output of
+the <a class="reference internal" href="generated/pycantonese.CHATReader.html#pycantonese.CHATReader" title="pycantonese.CHATReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHATReader</span></code></a> methods
+<a class="reference internal" href="api.html#pycantonese.CHATReader.words" title="pycantonese.CHATReader.words"><code class="xref py py-func docutils literal notranslate"><span class="pre">words()</span></code></a>,
+<a class="reference internal" href="api.html#pycantonese.CHATReader.tokens" title="pycantonese.CHATReader.tokens"><code class="xref py py-func docutils literal notranslate"><span class="pre">tokens()</span></code></a>,
+and <a class="reference internal" href="api.html#pycantonese.CHATReader.utterances" title="pycantonese.CHATReader.utterances"><code class="xref py py-func docutils literal notranslate"><span class="pre">utterances()</span></code></a>.
+For Cantonese data, a (segmented) word can be, say, 廣東話 (“Cantonese”) with
+three Chinese characters.
+To work with data at the character level, <a class="reference internal" href="api.html#pycantonese.CHATReader.characters" title="pycantonese.CHATReader.characters"><code class="xref py py-func docutils literal notranslate"><span class="pre">characters()</span></code></a>
+is available:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span><span class="o">.</span><span class="n">characters</span><span class="p">(</span><span class="n">by_utterances</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">[&#39;喂&#39;, &#39;遲&#39;, &#39;啲&#39;, &#39;去&#39;, &#39;唔&#39;, &#39;去&#39;, &#39;旅&#39;, &#39;行&#39;, &#39;啊&#39;, &#39;?&#39;]</span>
+</pre></div>
+</div>
+<p>If you independently have Cantonese data in Chinese characters,
+PyCantonese has tools for
+<a class="reference internal" href="word_segmentation.html#word-segmentation"><span class="std std-ref">word segmentation</span></a> and
+<a class="reference internal" href="pos_tagging.html#pos-tagging"><span class="std std-ref">part-of-speech tagging</span></a>.</p>
+</div>
+</div>
+<div class="section" id="word-frequencies-and-ngrams">
+<h2>Word Frequencies and Ngrams<a class="headerlink" href="#word-frequencies-and-ngrams" title="Permalink to this headline">¶</a></h2>
+<p>For word counts in various flavors, use the methods
+<a class="reference internal" href="api.html#pycantonese.CHATReader.word_frequencies" title="pycantonese.CHATReader.word_frequencies"><code class="xref py py-func docutils literal notranslate"><span class="pre">word_frequencies()</span></code></a> and
+<a class="reference internal" href="api.html#pycantonese.CHATReader.word_ngrams" title="pycantonese.CHATReader.word_ngrams"><code class="xref py py-func docutils literal notranslate"><span class="pre">word_ngrams()</span></code></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">word_freq</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">word_frequencies</span><span class="p">()</span>  <span class="c1"># A collections.Counter object</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">word_freq</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="go">[(&#39;.&#39;, 13251),</span>
+<span class="go"> (&#39;,&#39;, 9282),</span>
+<span class="go"> (&#39;係&#39;, 5019),</span>
+<span class="go"> (&#39;啊&#39;, 4110),</span>
+<span class="go"> (&#39;?&#39;, 2911),</span>
+<span class="go"> (&#39;我&#39;, 2755),</span>
+<span class="go"> (&#39;噉&#39;, 2741),</span>
+<span class="go"> (&#39;呢&#39;, 2734),</span>
+<span class="go"> (&#39;你&#39;, 2570),</span>
+<span class="go"> (&#39;佢&#39;, 2259)]</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trigrams</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">word_ngrams</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># A collections.Counter object</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trigrams</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="go">[((&#39;係&#39;, &#39;啊&#39;, &#39;.&#39;), 527),</span>
+<span class="go"> ((&#39;,&#39;, &#39;誒&#39;, &#39;,&#39;), 520),</span>
+<span class="go"> ((&#39;呢&#39;, &#39;,&#39;, &#39;就&#39;), 219),</span>
+<span class="go"> ((&#39;係&#39;, &#39;啊&#39;, &#39;,&#39;), 209),</span>
+<span class="go"> ((&#39;係&#39;, &#39;囖&#39;, &#39;.&#39;), 202),</span>
+<span class="go"> ((&#39;吖&#39;, &#39;嗎&#39;, &#39;.&#39;), 202),</span>
+<span class="go"> ((&#39;𡃉&#39;, &#39;喎&#39;, &#39;.&#39;), 186),</span>
+<span class="go"> ((&#39;𠺢&#39;, &#39;嗎&#39;, &#39;.&#39;), 167),</span>
+<span class="go"> ((&#39;係&#39;, &#39;喇&#39;, &#39;.&#39;), 140),</span>
+<span class="go"> ((&#39;係&#39;, &#39;喇&#39;, &#39;,&#39;), 134)]</span>
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -1326,29 +532,37 @@ instead of X for all files altogether.</p>
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="searches.html" class="btn btn-neutral float-right" title="Corpus Search Queries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="data.html" class="btn btn-neutral float-left" title="Corpus Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+        <a href="searches.html" class="btn btn-neutral float-right" title="Corpus Search Queries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="data.html" class="btn btn-neutral float-left" title="Corpus Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on March 18, 2021.
+        
+        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on March 19, 2021
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 
@@ -1374,7 +588,6 @@ instead of X for all files altogether.</p>
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-181803559', 'auto');
-    
     ga('send', 'pageview');
     </script>
 

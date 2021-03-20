@@ -36,9 +36,7 @@ is well-documented, rich for annotations, and designed mainly for
 conversational data.
 
 The version of HKCanCor incorporated in PyCantonese is in the CHAT format,
-in compliance with the latest CHAT manual
-(http://childes.psy.cmu.edu/manuals/CHAT.pdf)
-dated 2015-09-22.
+in compliance with the [CHAT manual](https://talkbank.org/manuals/CHAT.pdf).
 The following notes explain how this version differs from the source.
 
 HKCanCor comes with 58 data files, which have been rendered as `.cha` files.
@@ -46,7 +44,7 @@ Following CHAT, each file has:
 
 * headers (= lines beginning with `@`) for metadata
 * transcriptions (= lines beginning with `*` for the
-utterance and the accompanying annotations in the `@mor` tiers).
+utterance and the accompanying annotations in the `%mor` tiers).
 
 As an example, the data file `FC-001_v2.cha` begins as follows
 (headers plus the first three utterances):

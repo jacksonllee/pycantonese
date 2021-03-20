@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Corpus Data &mdash; PyCantonese 3.1.1 documentation</title>
   
@@ -18,12 +18,8 @@
   
     <link rel="shortcut icon" href="_static/pycantonese-logo.ico"/>
   
-
   
   
-
-  
-    <link rel="canonical" href="https://pycantonese.org/data.html" />
 
   
   <!--[if lt IE 9]>
@@ -57,7 +53,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> PyCantonese
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> PyCantonese
           
 
           
@@ -97,22 +93,27 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Corpus Data</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#the-chat-transcription-format">The CHAT Transcription Format</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#accessing-built-in-data">Accessing Built-in Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#accessing-custom-data">Accessing Custom Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#chat-format">CHAT Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#built-in-data">Built-in Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#childes-and-talkbank-data">CHILDES and TalkBank Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#custom-data">Custom Data</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="reader.html">Corpus Reader Methods</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="reader.html#the-representation-of-words">The Representation of “Words”</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reader.html#a-note-on-the-access-methods">A Note on the Access Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reader.html#full-reader-api">Full Reader API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reader.html#headers">Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reader.html#transcriptions-and-annotations">Transcriptions and Annotations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reader.html#jyutping-romanization">Jyutping Romanization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reader.html#chinese-characters">Chinese Characters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reader.html#word-frequencies-and-ngrams">Word Frequencies and Ngrams</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="searches.html">Corpus Search Queries</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-a-jyutping-element">Searching by a Jyutping Element</a></li>
 <li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-a-chinese-character">Searching by a Chinese Character</a></li>
 <li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-a-part-of-speech-tag">Searching by a Part-of-speech Tag</a></li>
-<li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-a-word-or-sentence-range">Searching by a Word or Sentence Range</a></li>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-a-word-or-utterance-range">Searching by a Word or Utterance Range</a></li>
 <li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-multiple-criteria">Searching by Multiple Criteria</a></li>
 <li class="toctree-l2"><a class="reference internal" href="searches.html#output-format-of-search-results">Output Format of Search Results</a></li>
 </ul>
@@ -134,11 +135,11 @@
 <li class="toctree-l2"><a class="reference internal" href="api.html#corpus-data">Corpus Data</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.read_chat.html">pycantonese.read_chat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.hkcancor.html">pycantonese.hkcancor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.corpus.CantoneseCHATReader.html">pycantonese.corpus.CantoneseCHATReader</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="generated/pycantonese.corpus.CantoneseCHATReader.search.html">pycantonese.corpus.CantoneseCHATReader.search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.CHATReader.html">pycantonese.CHATReader</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/pycantonese.CHATReader.search.html">pycantonese.CHATReader.search</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.corpus.CantoneseCHATReader.search.html">pycantonese.corpus.CantoneseCHATReader.search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.CHATReader.search.html">pycantonese.CHATReader.search</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#jyutping-romanization">Jyutping Romanization</a><ul>
@@ -156,6 +157,8 @@
 <li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.pos_tagging.hkcancor_to_ud.html">pycantonese.pos_tagging.hkcancor_to_ud</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#chatreader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHATReader</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#token"><code class="xref py py-class docutils literal notranslate"><span class="pre">Token</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a><ul>
@@ -259,8 +262,6 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -272,7 +273,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
         
       </li>
     
@@ -286,58 +287,139 @@
             
   <div class="section" id="corpus-data">
 <span id="data"></span><h1>Corpus Data<a class="headerlink" href="#corpus-data" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="the-chat-transcription-format">
-<h2>The CHAT Transcription Format<a class="headerlink" href="#the-chat-transcription-format" title="Permalink to this headline">¶</a></h2>
-<p>PyCantonese adopts the CHAT format (as used in the CHILDES database for
-language acquisition research) as the standard corpus format.
-The choice is motivated by the fact that CHAT is widely used, well-documented,
-and rich for linguistic annotations.</p>
-<p>All built-in corpus datasets of PyCantonese are in the CHAT format.
-Underlyingly, PyCantonese uses the Python library
+<div class="section" id="chat-format">
+<h2>CHAT Format<a class="headerlink" href="#chat-format" title="Permalink to this headline">¶</a></h2>
+<p>For a corpus dataset to be useful for modeling work beyond search queries,
+its source data has to be available in a machine-readable format.
+For Cantonese, several corpora that meet this criterion
+are those from CHILDES and TalkBank,
+thanks to research on Cantonese language acquisition in recent years.
+More generally, given the nature of Cantonese, many of its corpora are transcribed data
+from naturalistic speech.
+For these reasons, PyCantonese adopts the <a class="reference external" href="https://talkbank.org/manuals/CHAT.pdf">CHAT</a>
+corpus format from CHILDES and TalkBank.
+CHAT is widely used, well-documented, and rich for linguistic annotations.
+PyCantonese uses the Python library
 <a class="reference external" href="https://pylangacq.org/">PyLangAcq</a> to parse CHAT data files.
-For the bare minimum of the CHAT format that PyCantonese assumes,
-see <a class="reference external" href="https://pylangacq.org/read.html#chat-format">here</a>.</p>
+For a primer on CHAT, please see
+<a class="reference external" href="https://pylangacq.org/transcriptions.html#chat-format">here</a>.</p>
 </div>
-<div class="section" id="accessing-built-in-data">
-<h2>Accessing Built-in Data<a class="headerlink" href="#accessing-built-in-data" title="Permalink to this headline">¶</a></h2>
-<p>Currently, PyCantonese comes with one built-in Cantonese corpus, the
-150,000-word <a class="reference external" href="http://compling.hss.ntu.edu.sg/hkcancor/">Hong
-Kong Cantonese Corpus</a> (HKCanCor)
-by Kang Kwong Luke, via <a class="reference internal" href="generated/pycantonese.hkcancor.html#pycantonese.hkcancor" title="pycantonese.hkcancor"><code class="xref py py-func docutils literal notranslate"><span class="pre">hkcancor()</span></code></a>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span> <span class="o">=</span> <span class="n">pc</span><span class="o">.</span><span class="n">hkcancor</span><span class="p">()</span>
+<div class="section" id="built-in-data">
+<h2>Built-in Data<a class="headerlink" href="#built-in-data" title="Permalink to this headline">¶</a></h2>
+<p>Currently, PyCantonese comes with one built-in corpus, the
+<a class="reference external" href="http://compling.hss.ntu.edu.sg/hkcancor/">Hong Kong Cantonese Corpus</a>
+(HKCanCor; license: CC BY), via the function <a class="reference internal" href="generated/pycantonese.hkcancor.html#pycantonese.hkcancor" title="pycantonese.hkcancor"><code class="xref py py-func docutils literal notranslate"><span class="pre">hkcancor()</span></code></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hkcancor</span> <span class="o">=</span> <span class="n">pycantonese</span><span class="o">.</span><span class="n">hkcancor</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hkcancor</span><span class="o">.</span><span class="n">n_files</span><span class="p">()</span>  <span class="c1"># number of data files</span>
+<span class="go">58</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">hkcancor</span><span class="o">.</span><span class="n">words</span><span class="p">())</span> <span class="c1"># number of words as segmented from all the utterances</span>
+<span class="go">153654</span>
 </pre></div>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>HKCanCor is released under a CC BY license.
-If this corpus is used, the following should be cited:</p>
-<p>K. K. Luke and May L.Y. Wong (2015) The Hong Kong Cantonese Corpus:
-Design and Uses. <em>Journal of Chinese Linguistics</em> (to appear).</p>
-</div>
-<p>On the CHAT format of HKCanCor incorporated in PyCantonese,
-please consult this
+<p>HKCanCor is word-segmented and annotated for both Jyutping romanization
+and part-of-speech tags.</p>
+<p>The original HKCanCor source files are in an XML format.
+They have been converted to CHAT for incorporation into PyCantonese.
+On the format conversion, please consult this
 <a class="reference external" href="https://github.com/jacksonllee/pycantonese/blob/master/pycantonese/data/hkcancor/README.md">readme</a>.</p>
 </div>
-<div class="section" id="accessing-custom-data">
-<h2>Accessing Custom Data<a class="headerlink" href="#accessing-custom-data" title="Permalink to this headline">¶</a></h2>
-<p>If you have a Cantonese corpus in the CHAT format in your local drive and would
-like to use PyCantonese to handle it, the function <a class="reference internal" href="generated/pycantonese.read_chat.html#pycantonese.read_chat" title="pycantonese.read_chat"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_chat()</span></code></a>
-is available for this purpose:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span> <span class="k">as</span> <span class="nn">pc</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span> <span class="o">=</span> <span class="n">pc</span><span class="o">.</span><span class="n">read_chat</span><span class="p">(</span><span class="s1">&#39;path/to/files/*.cha&#39;</span><span class="p">)</span>  
+<div class="section" id="childes-and-talkbank-data">
+<h2>CHILDES and TalkBank Data<a class="headerlink" href="#childes-and-talkbank-data" title="Permalink to this headline">¶</a></h2>
+<p>For corpora other than HKCanCor, PyCantonese provides the function <a class="reference internal" href="generated/pycantonese.read_chat.html#pycantonese.read_chat" title="pycantonese.read_chat"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_chat()</span></code></a>
+to read in Cantonese data in the CHAT format.</p>
+<p><a class="reference internal" href="generated/pycantonese.read_chat.html#pycantonese.read_chat" title="pycantonese.read_chat"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_chat()</span></code></a> is designed to be able to read in CHAT data
+from a URL that points to a ZIP file containing <code class="docutils literal notranslate"><span class="pre">.cha</span></code> CHAT files.
+The availability of Cantonese CHAT data from CHILDES and TalkBank
+means that it is possible to conveniently obtain and work with such data right from
+your own Python code, without having to manually download or unzip anything.</p>
+<p>All publicly available CHILDES and TalkBank datasets are associated with
+the CC BY-NC-SA 3.0 license.</p>
+<p>As of March 2021, the following Cantonese-related datasets are
+available from CHILDES and TalkBank (in alphabetical order):</p>
+<ul>
+<li><p><a class="reference external" href="https://childes.talkbank.org/access/Chinese/Cantonese/HKU.html">HKU-70 Corpus</a></p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://childes.talkbank.org/data/Chinese/Cantonese/HKU.zip&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span> <span class="o">=</span> <span class="n">pycantonese</span><span class="o">.</span><span class="n">read_chat</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span><span class="o">.</span><span class="n">n_files</span><span class="p">()</span>
+<span class="go">70</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">corpus</span><span class="o">.</span><span class="n">words</span><span class="p">())</span>
+<span class="go">178270</span>
 </pre></div>
 </div>
-<p>If your CHAT data files have the extension name <code class="docutils literal notranslate"><span class="pre">.cha</span></code> and are all in
-a single directory, then filename pattern matching with <code class="docutils literal notranslate"><span class="pre">*</span></code> can be used to
-match all CHAT files in the specified directory.</p>
-<p><a class="reference internal" href="generated/pycantonese.read_chat.html#pycantonese.read_chat" title="pycantonese.read_chat"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_chat()</span></code></a> has the optional parameter <code class="docutils literal notranslate"><span class="pre">encoding</span></code> which defaults to
-<code class="docutils literal notranslate"><span class="pre">utf8</span></code> for UTF-8 and can be overridden for another encoding if necessary.</p>
-<p>If you are aware of other Cantonese corpora that could be incorporated into
-PyCantonese for open access,
-or if you are the owner of a Cantonese corpus and
-would like to make it accessible
-through PyCantonese, please contact <a class="reference external" href="https://jacksonllee.com">Jackson Lee</a>.</p>
+</div></blockquote>
+</li>
+</ul>
+<ul>
+<li><p><a class="reference external" href="https://childes.talkbank.org/access/Chinese/Cantonese/LeeWongLeung.html">Lee-Wong-Leung Corpus</a></p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://childes.talkbank.org/data/Chinese/Cantonese/LeeWongLeung.zip&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span> <span class="o">=</span> <span class="n">pycantonese</span><span class="o">.</span><span class="n">read_chat</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span><span class="o">.</span><span class="n">n_files</span><span class="p">()</span>
+<span class="go">161</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">corpus</span><span class="o">.</span><span class="n">words</span><span class="p">())</span>
+<span class="go">1177307</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><a class="reference external" href="https://childes.talkbank.org/access/Biling/Leo.html">Leo Corpus</a></p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://childes.talkbank.org/data/Biling/Leo.zip&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span> <span class="o">=</span> <span class="n">pycantonese</span><span class="o">.</span><span class="n">read_chat</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span><span class="o">.</span><span class="n">n_files</span><span class="p">()</span>
+<span class="go">54</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">corpus</span><span class="o">.</span><span class="n">words</span><span class="p">())</span>
+<span class="go">223415</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><a class="reference external" href="https://phonbank.talkbank.org/access/Chinese/Cantonese/PaidoCantonese.html">Paidologos Corpus: Cantonese</a></p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://phonbank.talkbank.org/data/Chinese/Cantonese/PaidoCantonese.zip&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span> <span class="o">=</span> <span class="n">pycantonese</span><span class="o">.</span><span class="n">read_chat</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span><span class="o">.</span><span class="n">n_files</span><span class="p">()</span>
+<span class="go">160</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">corpus</span><span class="o">.</span><span class="n">words</span><span class="p">())</span>
+<span class="go">16730</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><a class="reference external" href="https://childes.talkbank.org/access/Biling/YipMatthews.html">Yip-Matthews Bilingual Corpus</a></p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://childes.talkbank.org/data/Biling/YipMatthews.zip&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span> <span class="o">=</span> <span class="n">pycantonese</span><span class="o">.</span><span class="n">read_chat</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span><span class="o">.</span><span class="n">n_files</span><span class="p">()</span>
+<span class="go">501</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">corpus</span><span class="o">.</span><span class="n">words</span><span class="p">())</span>
+<span class="go">1949480</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="custom-data">
+<h2>Custom Data<a class="headerlink" href="#custom-data" title="Permalink to this headline">¶</a></h2>
+<p>If you have a Cantonese corpus in the CHAT format in your local drive and would
+like to use PyCantonese to handle it, <a class="reference internal" href="generated/pycantonese.read_chat.html#pycantonese.read_chat" title="pycantonese.read_chat"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_chat()</span></code></a>
+takes a path that can be a ZIP file, a local directory, or a single CHAT file.</p>
+<p>If more fine-grained control is needed when reading data, please check out
+<a class="reference internal" href="generated/pycantonese.CHATReader.html#pycantonese.CHATReader" title="pycantonese.CHATReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHATReader</span></code></a>, particularly the following classmethods:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="api.html#pycantonese.CHATReader.from_zip" title="pycantonese.CHATReader.from_zip"><code class="xref py py-func docutils literal notranslate"><span class="pre">from_zip()</span></code></a></p></li>
+<li><p><a class="reference internal" href="api.html#pycantonese.CHATReader.from_dir" title="pycantonese.CHATReader.from_dir"><code class="xref py py-func docutils literal notranslate"><span class="pre">from_dir()</span></code></a></p></li>
+<li><p><a class="reference internal" href="api.html#pycantonese.CHATReader.from_files" title="pycantonese.CHATReader.from_files"><code class="xref py py-func docutils literal notranslate"><span class="pre">from_files()</span></code></a></p></li>
+<li><p><a class="reference internal" href="api.html#pycantonese.CHATReader.from_strs" title="pycantonese.CHATReader.from_strs"><code class="xref py py-func docutils literal notranslate"><span class="pre">from_strs()</span></code></a></p></li>
+</ul>
+<p>Since PyCantonese uses PyLangAcq for CHAT data reading and parsing under the hood,
+PyCantonese’s <a class="reference internal" href="generated/pycantonese.read_chat.html#pycantonese.read_chat" title="pycantonese.read_chat"><code class="xref py py-func docutils literal notranslate"><span class="pre">read_chat()</span></code></a> and <a class="reference internal" href="generated/pycantonese.CHATReader.html#pycantonese.CHATReader" title="pycantonese.CHATReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHATReader</span></code></a>
+function the same way as their counterparts in PyLangAcq.
+For more on reading CHAT data in general, please see
+<a class="reference external" href="https://pylangacq.org/read.html">PyLangAcq’s documentation</a>.</p>
 </div>
 </div>
 
@@ -346,29 +428,37 @@ through PyCantonese, please contact <a class="reference external" href="https://
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="reader.html" class="btn btn-neutral float-right" title="Corpus Reader Methods" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="index.html" class="btn btn-neutral float-left" title="PyCantonese: Cantonese Linguistics and NLP in Python" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+        <a href="reader.html" class="btn btn-neutral float-right" title="Corpus Reader Methods" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="PyCantonese: Cantonese Linguistics and NLP in Python" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on March 18, 2021.
+        
+        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on March 19, 2021
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 
@@ -394,7 +484,6 @@ through PyCantonese, please contact <a class="reference external" href="https://
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-181803559', 'auto');
-    
     ga('send', 'pageview');
     </script>
 

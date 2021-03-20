@@ -3,11 +3,8 @@ from functools import lru_cache
 from wordseg import LongestStringMatching
 
 from pycantonese.corpus import hkcancor
-from pycantonese.data.rime_cantonese import (
-    CHARS_TO_JYUTPING,
-    LETTERED,
-)
-from pycantonese.util import split_characters_with_alphanum
+from pycantonese.data.rime_cantonese import CHARS_TO_JYUTPING, LETTERED
+from pycantonese.util import _split_chars_with_alphanum
 
 
 _MAX_WORD_LENGTH = 5
@@ -43,7 +40,7 @@ class Segmenter(LongestStringMatching):
         super(Segmenter, self).__init__(max_word_length=max_word_length)
 
         # Train with HKCanCor data.
-        self.fit(hkcancor().sents())
+        self.fit(hkcancor().words(by_utterances=True))
 
         # Train with rime-cantonese data.
         self._words |= CHARS_TO_JYUTPING.keys()
@@ -54,10 +51,10 @@ class Segmenter(LongestStringMatching):
         self._words -= disallow or set()
 
         # Turn everything from strings to tuples due to alphanumeric chars.
-        self._words = {split_characters_with_alphanum(x) for x in self._words}
+        self._words = {_split_chars_with_alphanum(x) for x in self._words}
 
     def _predict_sent(self, sent_str):
-        chars = split_characters_with_alphanum(sent_str)
+        chars = _split_chars_with_alphanum(sent_str)
         segmented = super(Segmenter, self)._predict_sent(chars)
         # Turn the result back from tuples to strings.
         segmented = ["".join(x) for x in segmented]

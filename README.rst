@@ -45,20 +45,20 @@ With PyCantonese imported:
 
 .. code-block:: python
 
-    >>> import pycantonese as pc
+    >>> import pycantonese
 
 1. Word segmentation
 
 .. code-block:: python
 
-    >>> pc.segment("廣東話好難學？")  # Is Cantonese difficult to learn?
+    >>> pycantonese.segment("廣東話好難學？")  # Is Cantonese difficult to learn?
     ['廣東話', '好', '難', '學', '？']
 
 2. Conversion from Cantonese characters to Jyutping
 
 .. code-block:: python
 
-    >>> pc.characters_to_jyutping('香港人講廣東話')  # Hongkongers speak Cantonese
+    >>> pycantonese.characters_to_jyutping('香港人講廣東話')  # Hongkongers speak Cantonese
     [("香港人", "hoeng1gong2jan4"), ("講", "gong2"), ("廣東話", "gwong2dung1waa2")]
 
 3. Finding all verbs in the HKCanCor corpus
@@ -69,12 +69,11 @@ With PyCantonese imported:
 
 .. code-block:: python
 
-    >>> corpus = pc.hkcancor() # get HKCanCor
+    >>> corpus = pycantonese.hkcancor() # get HKCanCor
     >>> all_verbs = corpus.search(pos='^V')
     >>> len(all_verbs)  # number of all verbs
     29012
-    >>> from pprint import pprint
-    >>> pprint(all_verbs[:10])  # print 10 results
+    >>> all_verbs[:10]  # print 10 results
     [('去', 'V', 'heoi3', ''),
      ('去', 'V', 'heoi3', ''),
      ('旅行', 'VN', 'leoi5hang4', ''),
@@ -90,7 +89,7 @@ With PyCantonese imported:
 
 .. code-block:: python
 
-    >>> pc.parse_jyutping('gwong2dung1waa2')  # 廣東話
+    >>> pycantonese.parse_jyutping('gwong2dung1waa2')  # 廣東話
     [('gw', 'o', 'ng', '2'), ('d', 'u', 'ng', '1'), ('w', 'aa', '', '2')]
 
 Download and Install
@@ -105,8 +104,8 @@ To test your installation in the Python interpreter:
 
 .. code-block:: python
 
-    >>> import pycantonese as pc
-    >>> pc.__version__  # show version number
+    >>> import pycantonese
+    >>> pycantonese.__version__  # show version number
 
 Links
 -----
@@ -155,8 +154,13 @@ with artistic design by albino.snowman (Instagram handle).
 Acknowledgments
 ---------------
 
+Wonderful resources with a permissive license that have been incorporated into PyCantonese:
+
+- HKCanCor
+- rime-cantonese
+
 Individuals who have contributed feedback, bug reports, etc.
-(in alphabetical order of last names if known):
+(in alphabetical order of last names):
 
 - @cathug
 - Litong Chen

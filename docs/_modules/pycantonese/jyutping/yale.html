@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>pycantonese.jyutping.yale &mdash; PyCantonese 3.1.1 documentation</title>
   
@@ -18,12 +18,8 @@
   
     <link rel="shortcut icon" href="../../../_static/pycantonese-logo.ico"/>
   
-
   
   
-
-  
-    <link rel="canonical" href="https://pycantonese.org/_modules/pycantonese/jyutping/yale.html" />
 
   
   <!--[if lt IE 9]>
@@ -55,7 +51,7 @@
           
 
           
-            <a href="../../../index.html" class="icon icon-home"> PyCantonese
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> PyCantonese
           
 
           
@@ -95,22 +91,27 @@
             
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../data.html">Corpus Data</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../data.html#the-chat-transcription-format">The CHAT Transcription Format</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../data.html#accessing-built-in-data">Accessing Built-in Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../data.html#accessing-custom-data">Accessing Custom Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data.html#chat-format">CHAT Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data.html#built-in-data">Built-in Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data.html#childes-and-talkbank-data">CHILDES and TalkBank Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data.html#custom-data">Custom Data</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../reader.html">Corpus Reader Methods</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../reader.html#the-representation-of-words">The Representation of “Words”</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../reader.html#a-note-on-the-access-methods">A Note on the Access Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../reader.html#full-reader-api">Full Reader API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reader.html#headers">Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reader.html#transcriptions-and-annotations">Transcriptions and Annotations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../reader.html#jyutping-romanization">Jyutping Romanization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reader.html#chinese-characters">Chinese Characters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reader.html#word-frequencies-and-ngrams">Word Frequencies and Ngrams</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../searches.html">Corpus Search Queries</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../searches.html#searching-by-a-jyutping-element">Searching by a Jyutping Element</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../searches.html#searching-by-a-chinese-character">Searching by a Chinese Character</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../searches.html#searching-by-a-part-of-speech-tag">Searching by a Part-of-speech Tag</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#searching-by-a-word-or-sentence-range">Searching by a Word or Sentence Range</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../searches.html#searching-by-a-word-or-utterance-range">Searching by a Word or Utterance Range</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../searches.html#searching-by-multiple-criteria">Searching by Multiple Criteria</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../searches.html#output-format-of-search-results">Output Format of Search Results</a></li>
 </ul>
@@ -132,11 +133,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../api.html#corpus-data">Corpus Data</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.read_chat.html">pycantonese.read_chat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.hkcancor.html">pycantonese.hkcancor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.corpus.CantoneseCHATReader.html">pycantonese.corpus.CantoneseCHATReader</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../generated/pycantonese.corpus.CantoneseCHATReader.search.html">pycantonese.corpus.CantoneseCHATReader.search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.CHATReader.html">pycantonese.CHATReader</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../generated/pycantonese.CHATReader.search.html">pycantonese.CHATReader.search</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.corpus.CantoneseCHATReader.search.html">pycantonese.corpus.CantoneseCHATReader.search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.CHATReader.search.html">pycantonese.CHATReader.search</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api.html#jyutping-romanization">Jyutping Romanization</a><ul>
@@ -154,6 +155,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../generated/pycantonese.pos_tagging.hkcancor_to_ud.html">pycantonese.pos_tagging.hkcancor_to_ud</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#chatreader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHATReader</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#token"><code class="xref py py-class docutils literal notranslate"><span class="pre">Token</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a><ul>
@@ -257,8 +260,6 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -286,7 +287,7 @@
 <span></span><span class="kn">import</span> <span class="nn">unicodedata</span>
 
 <span class="kn">from</span> <span class="nn">pycantonese.jyutping.parse_jyutping</span> <span class="kn">import</span> <span class="n">parse_jyutping</span>
-<span class="kn">from</span> <span class="nn">pycantonese.util</span> <span class="kn">import</span> <span class="n">endswithoneof</span><span class="p">,</span> <span class="n">startswithoneof</span><span class="p">,</span> <span class="n">_deprecate</span>
+<span class="kn">from</span> <span class="nn">pycantonese.util</span> <span class="kn">import</span> <span class="n">_deprecate</span>
 
 
 <span class="n">ONSETS_YALE</span> <span class="o">=</span> <span class="p">{</span>
@@ -527,7 +528,7 @@
         <span class="n">ambiguous</span> <span class="o">=</span> <span class="kc">False</span>
 
         <span class="c1"># test case 1:</span>
-        <span class="k">if</span> <span class="n">endswithoneof</span><span class="p">(</span><span class="n">yale1</span><span class="p">,</span> <span class="n">ambiguous_consonants</span><span class="p">)</span> <span class="ow">and</span> <span class="n">startswithoneof</span><span class="p">(</span>
+        <span class="k">if</span> <span class="n">_endswithoneof</span><span class="p">(</span><span class="n">yale1</span><span class="p">,</span> <span class="n">ambiguous_consonants</span><span class="p">)</span> <span class="ow">and</span> <span class="n">_startswithoneof</span><span class="p">(</span>
             <span class="n">yale2</span><span class="p">,</span> <span class="n">vowel_letters</span>
         <span class="p">):</span>
             <span class="n">ambiguous</span> <span class="o">=</span> <span class="kc">True</span>
@@ -535,8 +536,8 @@
         <span class="c1"># test case 2:</span>
         <span class="k">if</span> <span class="p">(</span>
             <span class="ow">not</span> <span class="n">ambiguous</span>
-            <span class="ow">and</span> <span class="ow">not</span> <span class="n">endswithoneof</span><span class="p">(</span><span class="n">yale1</span><span class="p">,</span> <span class="n">ambiguous_consonants</span><span class="p">)</span>
-            <span class="ow">and</span> <span class="n">startswithoneof</span><span class="p">(</span><span class="n">yale2</span><span class="p">,</span> <span class="n">ambiguous_consonants</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="ow">not</span> <span class="n">_endswithoneof</span><span class="p">(</span><span class="n">yale1</span><span class="p">,</span> <span class="n">ambiguous_consonants</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="n">_startswithoneof</span><span class="p">(</span><span class="n">yale2</span><span class="p">,</span> <span class="n">ambiguous_consonants</span><span class="p">)</span>
         <span class="p">):</span>
             <span class="n">ambiguous</span> <span class="o">=</span> <span class="kc">True</span>
 
@@ -557,31 +558,76 @@
 <span class="sd">    .. deprecated:: 3.0.0</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">jyutping_to_yale</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_startswithoneof</span><span class="p">(</span><span class="n">inputstr</span><span class="p">,</span> <span class="n">seq</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check if *inputstr* starts with one of the items in seq. If it does, return</span>
+<span class="sd">        the item that it starts with. If it doe not, return ``None``.</span>
+
+<span class="sd">    :param inputstr: input string</span>
+
+<span class="sd">    :param seq: sequences of items to check</span>
+
+<span class="sd">    :return: the item the the input string starts with (``None`` if not found)</span>
+
+<span class="sd">    :rtype: str or None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">seq</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">seq</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">inputstr</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">item</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+
+<span class="k">def</span> <span class="nf">_endswithoneof</span><span class="p">(</span><span class="n">inputstr</span><span class="p">,</span> <span class="n">seq</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Check if *inputstr* ends with one of the items in seq. If it does, return</span>
+<span class="sd">        the item that it ends with. If it doe not, return ``None``.</span>
+
+<span class="sd">    :param inputstr: input string</span>
+
+<span class="sd">    :param seq: sequences of items to check</span>
+
+<span class="sd">    :return: the item the the input string ends with (``None`` if not found)</span>
+
+<span class="sd">    :rtype: str or None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">seq</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">seq</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">inputstr</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">item</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">item</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
 </pre></div>
 
            </div>
            
           </div>
           <footer>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on March 18, 2021.
+        
+        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on March 19, 2021
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 
@@ -607,7 +653,6 @@
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-181803559', 'auto');
-    
     ga('send', 'pageview');
     </script>
 

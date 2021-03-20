@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>pycantonese.read_chat &mdash; PyCantonese 3.1.1 documentation</title>
   
@@ -18,12 +18,8 @@
   
     <link rel="shortcut icon" href="../_static/pycantonese-logo.ico"/>
   
-
   
   
-
-  
-    <link rel="canonical" href="https://pycantonese.org/generated/pycantonese.read_chat.html" />
 
   
   <!--[if lt IE 9]>
@@ -57,7 +53,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> PyCantonese
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> PyCantonese
           
 
           
@@ -97,22 +93,27 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../data.html">Corpus Data</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../data.html#the-chat-transcription-format">The CHAT Transcription Format</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../data.html#accessing-built-in-data">Accessing Built-in Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../data.html#accessing-custom-data">Accessing Custom Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data.html#chat-format">CHAT Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data.html#built-in-data">Built-in Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data.html#childes-and-talkbank-data">CHILDES and TalkBank Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data.html#custom-data">Custom Data</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../reader.html">Corpus Reader Methods</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../reader.html#the-representation-of-words">The Representation of “Words”</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../reader.html#a-note-on-the-access-methods">A Note on the Access Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../reader.html#full-reader-api">Full Reader API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reader.html#headers">Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reader.html#transcriptions-and-annotations">Transcriptions and Annotations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reader.html#jyutping-romanization">Jyutping Romanization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reader.html#chinese-characters">Chinese Characters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reader.html#word-frequencies-and-ngrams">Word Frequencies and Ngrams</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../searches.html">Corpus Search Queries</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../searches.html#searching-by-a-jyutping-element">Searching by a Jyutping Element</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../searches.html#searching-by-a-chinese-character">Searching by a Chinese Character</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../searches.html#searching-by-a-part-of-speech-tag">Searching by a Part-of-speech Tag</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../searches.html#searching-by-a-word-or-sentence-range">Searching by a Word or Sentence Range</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../searches.html#searching-by-a-word-or-utterance-range">Searching by a Word or Utterance Range</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../searches.html#searching-by-multiple-criteria">Searching by Multiple Criteria</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../searches.html#output-format-of-search-results">Output Format of Search Results</a></li>
 </ul>
@@ -134,11 +135,11 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../api.html#corpus-data">Corpus Data</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">pycantonese.read_chat</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pycantonese.hkcancor.html">pycantonese.hkcancor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pycantonese.corpus.CantoneseCHATReader.html">pycantonese.corpus.CantoneseCHATReader</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="pycantonese.corpus.CantoneseCHATReader.search.html">pycantonese.corpus.CantoneseCHATReader.search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycantonese.CHATReader.html">pycantonese.CHATReader</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pycantonese.CHATReader.search.html">pycantonese.CHATReader.search</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="pycantonese.corpus.CantoneseCHATReader.search.html">pycantonese.corpus.CantoneseCHATReader.search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycantonese.CHATReader.search.html">pycantonese.CHATReader.search</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#jyutping-romanization">Jyutping Romanization</a><ul>
@@ -156,6 +157,8 @@
 <li class="toctree-l3"><a class="reference internal" href="pycantonese.pos_tagging.hkcancor_to_ud.html">pycantonese.pos_tagging.hkcancor_to_ud</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#chatreader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHATReader</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#token"><code class="xref py py-class docutils literal notranslate"><span class="pre">Token</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a><ul>
@@ -259,8 +262,6 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -274,7 +275,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
         
       </li>
     
@@ -290,22 +291,41 @@
 <h1>pycantonese.read_chat<a class="headerlink" href="#pycantonese-read-chat" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt id="pycantonese.read_chat">
-<code class="sig-prename descclassname">pycantonese.</code><code class="sig-name descname">read_chat</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">filenames</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycantonese/corpus.html#read_chat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycantonese.read_chat" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read Cantonese CHAT data files into a reader object.</p>
+<code class="sig-prename descclassname">pycantonese.</code><code class="sig-name descname">read_chat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="n">match</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">exclude</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">encoding</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">'utf-8'</span></em><span class="sig-paren">)</span> &#x2192; pycantonese.corpus.CHATReader<a class="reference internal" href="../_modules/pycantonese/corpus.html#read_chat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycantonese.read_chat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read Cantonese CHAT data files.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>*filenames</strong><span class="classifier">iterable[str]</span></dt><dd><p>File paths to Cantonese CHAT data files. Glob filename matching
-is supported.</p>
+<dt><strong>path</strong><span class="classifier">str</span></dt><dd><p>A path that points to one of the following:</p>
+<ul class="simple">
+<li><p>ZIP file. Either a local <code class="docutils literal notranslate"><span class="pre">.zip</span></code> file path or a URL (one that begins with
+<code class="docutils literal notranslate"><span class="pre">&quot;https://&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;http://&quot;</span></code>).
+URL example: <code class="docutils literal notranslate"><span class="pre">&quot;https://childes.talkbank.org/data/Biling/YipMatthews.zip&quot;</span></code></p></li>
+<li><p>A local directory, for files under this directory recursively.</p></li>
+<li><p>A single <code class="docutils literal notranslate"><span class="pre">.cha</span></code> CHAT file.</p></li>
+</ul>
 </dd>
-<dt><strong>**kwargs</strong></dt><dd><p>Keyword arguments passed to CantoneseCHATReader.
-Currently, only the <code class="docutils literal notranslate"><span class="pre">encoding</span></code> kwarg is supported (default: ‘utf8’).</p>
+<dt><strong>match</strong><span class="classifier">str, optional</span></dt><dd><p>If provided, only the file paths that match this string
+(by regular expression matching) are read and parsed.
+For example, to work with the American English dataset Brown (containing
+data for the children Adam, Eve, and Sarah),
+you can pass in <code class="docutils literal notranslate"><span class="pre">&quot;Eve&quot;</span></code> here to only handle the data for Eve, since
+the unzipped Brown data from CHILDES is in a directory structure of
+<code class="docutils literal notranslate"><span class="pre">Brown/Eve/xxx.cha</span></code> for Eve’s data.
+If this parameter is not specified or <code class="docutils literal notranslate"><span class="pre">None</span></code> is passed in (the default),
+such file path filtering does not apply.</p>
+</dd>
+<dt><strong>exclude</strong><span class="classifier">str, optional</span></dt><dd><p>If provided, the file paths that match this string (by regular expression
+matching) are excluded for reading and parsing.</p>
+</dd>
+<dt><strong>encoding</strong><span class="classifier">str, optional</span></dt><dd><p>Text encoding to parse the CHAT data. The default value is <code class="docutils literal notranslate"><span class="pre">&quot;utf-8&quot;</span></code>
+for Unicode UTF-8.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><a class="reference internal" href="../reader.html#pycantonese.corpus.CantoneseCHATReader" title="pycantonese.corpus.CantoneseCHATReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CantoneseCHATReader</span></code></a></dt><dd></dd>
+<dt><a class="reference internal" href="pycantonese.CHATReader.html#pycantonese.CHATReader" title="pycantonese.CHATReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHATReader</span></code></a></dt><dd></dd>
 </dl>
 </dd>
 </dl>
@@ -318,29 +338,37 @@ Currently, only the <code class="docutils literal notranslate"><span class="pre"
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="pycantonese.hkcancor.html" class="btn btn-neutral float-right" title="pycantonese.hkcancor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="../api.html" class="btn btn-neutral float-left" title="API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+        <a href="pycantonese.hkcancor.html" class="btn btn-neutral float-right" title="pycantonese.hkcancor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../api.html" class="btn btn-neutral float-left" title="API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on March 18, 2021.
+        
+        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on March 19, 2021
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 
@@ -366,7 +394,6 @@ Currently, only the <code class="docutils literal notranslate"><span class="pre"
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-181803559', 'auto');
-    
     ga('send', 'pageview');
     </script>
 

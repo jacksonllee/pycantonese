@@ -10,29 +10,29 @@ which takes a segmented phrase or sentence as the input:
 
 .. code-block:: python
 
-    >>> import pycantonese as pc
+    >>> import pycantonese
     >>> unsegmented = '我噚日買嗰對鞋。'  # I bought that pair of shoes yesterday.
-    >>> segmented = pc.segment(unsegmented)
+    >>> segmented = pycantonese.segment(unsegmented)
     >>> segmented
     ['我', '噚日', '買', '嗰', '對', '鞋', '。']
-    >>> pc.pos_tag(segmented)
+    >>> pycantonese.pos_tag(segmented)
     [('我', 'PRON'), ('噚日', 'ADV'), ('買', 'VERB'), ('嗰', 'PRON'), ('對', 'NOUN'), ('鞋', 'NOUN'), ('。', 'PUNCT')]
 
 The part-of-speech tagger uses the averaged perceptron model trained on
 HKCanCor data.
-HKCanCor has already been tagged for part-of-speech tags,
-with a tagset of over 100 tags (46 of which are described at
-http://compling.hss.ntu.edu.sg/hkcancor/).
+HKCanCor has already been annotated for part-of-speech tags,
+with a tagset of over 100 tags
+(`46 of which are described <http://compling.hss.ntu.edu.sg/hkcancor/>`_).
 By default, :func:`~pycantonese.pos_tag` maps the HKCanCor tagset to the
 Universal Dependencies v2 tagset
-(with 17 tags, https://universaldependencies.org/u/pos/index.html),
+(`with 17 tags <https://universaldependencies.org/u/pos/index.html>`_),
 for cross-linguistic natural language processing work.
 If you would like the original HKCanCor tagset,
 :func:`~pycantonese.pos_tag` accepts the keyword argument ``tagset``:
 
 .. code-block:: python
 
-    >>> pc.pos_tag(segmented, tagset="hkcancor")
+    >>> pycantonese.pos_tag(segmented, tagset="hkcancor")
     [('我', 'R'), ('噚日', 'T'), ('買', 'V'), ('嗰', 'R'), ('對', 'Q'), ('鞋', 'N'), ('。', '。')]
 
 The helper function :func:`~pycantonese.pos_tagging.hkcancor_to_ud`
@@ -51,6 +51,6 @@ If you think the results from :func:`~pycantonese.pos_tag` are odd,
 it is potentially due to the HKCanCor training data
 (e.g., specific occurrences of word + tag combinations might have thrown off the tagger),
 or the quality of word segmentation, especially if your segmented input comes from
-:func:`~pycantonese.segment` (also trained by HKCanCor)
+:func:`~pycantonese.segment`
 -- please `get in touch <https://pycantonese.org/index.html#links>`_
 if you would like further investigation.

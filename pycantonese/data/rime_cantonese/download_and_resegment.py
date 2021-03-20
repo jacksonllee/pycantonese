@@ -9,7 +9,7 @@ import tempfile
 import zipfile
 
 from pycantonese.jyutping.parse_jyutping import parse_jyutping
-from pycantonese.util import split_characters_with_alphanum
+from pycantonese.util import _split_chars_with_alphanum
 
 
 try:
@@ -144,7 +144,7 @@ def _resegment_chars_jyutping_data(json_filename):
 
     for chars, jp in chars_to_jyutping.items():
         if chars in resegmented:
-            chars_split = split_characters_with_alphanum(chars)
+            chars_split = _split_chars_with_alphanum(chars)
             jp_split = parse_jyutping(jp)
 
             # Don't bother if we can't match each jyutping syllable
@@ -164,11 +164,11 @@ def _resegment_chars_jyutping_data(json_filename):
                     # pronunciations, and we've already chosen the more
                     # frequent one according to the rime-cantonese source).
                     if new_word in chars_to_jyutping:
-                        i += len(split_characters_with_alphanum(new_word))
+                        i += len(_split_chars_with_alphanum(new_word))
                         continue
 
                     new_jp_for_word = ""
-                    for _ in range(len(split_characters_with_alphanum(new_word))):
+                    for _ in range(len(_split_chars_with_alphanum(new_word))):
                         new_jp_for_word += "".join(jp_split[i])
                         i += 1
                     new_chars_to_jyutping[new_word] = new_jp_for_word

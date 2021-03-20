@@ -1,6 +1,6 @@
 import pkg_resources
 
-from pycantonese.corpus import hkcancor, read_chat
+from pycantonese.corpus import hkcancor, read_chat, CHATReader
 from pycantonese.jyutping.characters import (
     characters_to_jyutping,
     characters2jyutping,
@@ -17,6 +17,7 @@ __version__ = pkg_resources.get_distribution("pycantonese").version
 
 __all__ = [
     "__version__",
+    "CHATReader",
     "characters_to_jyutping",
     "characters2jyutping",
     "hkcancor",

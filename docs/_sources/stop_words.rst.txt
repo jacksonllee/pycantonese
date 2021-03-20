@@ -13,8 +13,8 @@ that returns a set of about 100 Cantonese stop words:
 
 .. code-block:: python
 
-    >>> import pycantonese as pc
-    >>> stop_words = pc.stop_words()
+    >>> import pycantonese
+    >>> stop_words = pycantonese.stop_words()
     >>> len(stop_words)
     104
     >>> stop_words  # doctest: +SKIP
@@ -30,13 +30,13 @@ data is all about Hong Kong) or an iterable of strings:
 
 .. code-block:: python
 
-    >>> import pycantonese as pc
-    >>> stop_words_1 = pc.stop_words(add='香港')
+    >>> import pycantonese
+    >>> stop_words_1 = pycantonese.stop_words(add='香港')
     >>> len(stop_words_1)
     105
     >>> '香港' in stop_words_1
     True
-    >>> stop_words_2 = pc.stop_words(add=['香港島', '九龍', '新界'])  # Hong Kong Island, Kowloon, the New Territories
+    >>> stop_words_2 = pycantonese.stop_words(add=['香港島', '九龍', '新界'])  # Hong Kong Island, Kowloon, the New Territories
     >>> len(stop_words_2)
     107
     >>> {'香港島', '九龍', '新界'}.issubset(stop_words_2)

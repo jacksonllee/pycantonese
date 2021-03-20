@@ -34,8 +34,8 @@ _FIX_HKCANCOR_TAGS = {
 
 def _get_tagged_sents():
     return [
-        [(word, _FIX_HKCANCOR_TAGS.get(tag, tag)) for word, tag, _, _ in tagged_sent]
-        for tagged_sent in hkcancor().tagged_sents()
+        [(token.word, _FIX_HKCANCOR_TAGS.get(token.pos, token.pos)) for token in tokens]
+        for tokens in hkcancor().tokens(by_utterances=True)
     ]
 
 
