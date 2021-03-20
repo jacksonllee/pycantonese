@@ -1,3 +1,7 @@
+import dataclasses
+from typing import List
+
+
 ONSETS = {
     "b",
     "d",
@@ -28,7 +32,39 @@ CODAS = {"p", "t", "k", "m", "n", "ng", "i", "u", ""}
 TONES = {"1", "2", "3", "4", "5", "6"}
 
 
-def parse_jyutping(jp_str):
+@dataclasses.dataclass
+class Jyutping:
+    """Jyutping representation of a Chinese/Cantonese character.
+
+    Attributes
+    ----------
+    onset : str
+        Onset
+    nucleus : str
+        Nucleus
+    coda : str
+        Coda
+    tone : str
+        Tone
+    """
+
+    __slots__ = ("onset", "nucleus", "coda", "tone")
+    onset: str
+    nucleus: str
+    coda: str
+    tone: str
+
+    def __str__(self):
+        """Combine onset + nucleus + coda + tone."""
+        return f"{self.onset}{self.nucleus}{self.coda}{self.tone}"
+
+    @property
+    def final(self):
+        """Return the final (= nucleus + coda)."""
+        return f"{self.nucleus}{self.coda}"
+
+
+def parse_jyutping(jp_str) -> List[Jyutping]:
     """Parse Jyutping romanization into onset, nucleus, code, and tone.
 
     Parameters
@@ -38,7 +74,7 @@ def parse_jyutping(jp_str):
 
     Returns
     -------
-    list[tuple[str]]
+    List[Jyutping]
 
     Raises
     ------
@@ -49,7 +85,9 @@ def parse_jyutping(jp_str):
     Examples
     --------
     >>> parse_jyutping("gwong2dung1waa2")  # 廣東話, Cantonese
-    [('gw', 'o', 'ng', '2'), ('d', 'u', 'ng', '1'), ('w', 'aa', '', '2')]
+    [Jyutping(onset='gw', nucleus='o', coda='ng', tone='2'),
+     Jyutping(onset='d', nucleus='u', coda='ng', tone='1'),
+     Jyutping(onset='w', nucleus='aa', coda='', tone='2')]
     """
     if not jp_str:
         return []
@@ -93,7 +131,7 @@ def parse_jyutping(jp_str):
             raise ValueError("coda error -- " + repr(jp))
 
         if cvc in ["m", "n", "ng", "i", "e", "aa", "o", "u"]:
-            jp_parsed_list.append(("", cvc, "", tone))
+            jp_parsed_list.append(Jyutping("", cvc, "", tone))
             continue
         elif cvc[-2:] == "ng":
             coda = "ng"
@@ -126,12 +164,12 @@ def parse_jyutping(jp_str):
         if onset not in ONSETS:
             raise ValueError("onset error -- " + repr(jp))
 
-        jp_parsed_list.append((onset, nucleus, coda, tone))
+        jp_parsed_list.append(Jyutping(onset, nucleus, coda, tone))
 
     return jp_parsed_list
 
 
-def parse_final(final):
+def _parse_final(final):
     """Parse a final into its nucleus and coda.
 
     Parameters

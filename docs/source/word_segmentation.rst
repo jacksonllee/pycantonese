@@ -3,8 +3,6 @@
 Word Segmentation
 =================
 
-.. versionadded:: 2.4.0
-
 By convention, Cantonese is not written with word boundaries (like spaces in English).
 However, in many natural language processing tasks, it is often necessary to
 work with a segmented form of Cantonese data.
@@ -27,8 +25,6 @@ contain no more than five characters.
 
 Customizing Segmentation
 ------------------------
-
-.. versionadded:: 3.0.0
 
 Because the current implementation of word segmentation depends entirely on
 whether a potential word is found in the training data,

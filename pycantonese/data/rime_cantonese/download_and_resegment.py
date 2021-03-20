@@ -169,7 +169,7 @@ def _resegment_chars_jyutping_data(json_filename):
 
                     new_jp_for_word = ""
                     for _ in range(len(_split_chars_with_alphanum(new_word))):
-                        new_jp_for_word += "".join(jp_split[i])
+                        new_jp_for_word += str(jp_split[i])
                         i += 1
                     new_chars_to_jyutping[new_word] = new_jp_for_word
         else:

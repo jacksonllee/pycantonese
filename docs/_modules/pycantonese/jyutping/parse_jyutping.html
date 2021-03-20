@@ -157,6 +157,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api.html#chatreader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHATReader</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api.html#token"><code class="xref py py-class docutils literal notranslate"><span class="pre">Token</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api.html#jyutping"><code class="xref py py-class docutils literal notranslate"><span class="pre">Jyutping</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a><ul>
@@ -284,7 +285,11 @@
            <div itemprop="articleBody">
             
   <h1>Source code for pycantonese.jyutping.parse_jyutping</h1><div class="highlight"><pre>
-<span></span><span class="n">ONSETS</span> <span class="o">=</span> <span class="p">{</span>
+<span></span><span class="kn">import</span> <span class="nn">dataclasses</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+
+<span class="n">ONSETS</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;b&quot;</span><span class="p">,</span>
     <span class="s2">&quot;d&quot;</span><span class="p">,</span>
     <span class="s2">&quot;g&quot;</span><span class="p">,</span>
@@ -314,7 +319,38 @@
 <span class="n">TONES</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="s2">&quot;3&quot;</span><span class="p">,</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span> <span class="s2">&quot;5&quot;</span><span class="p">,</span> <span class="s2">&quot;6&quot;</span><span class="p">}</span>
 
 
-<div class="viewcode-block" id="parse_jyutping"><a class="viewcode-back" href="../../../generated/pycantonese.parse_jyutping.html#pycantonese.parse_jyutping">[docs]</a><span class="k">def</span> <span class="nf">parse_jyutping</span><span class="p">(</span><span class="n">jp_str</span><span class="p">):</span>
+<div class="viewcode-block" id="Jyutping"><a class="viewcode-back" href="../../../api.html#pycantonese.jyutping.Jyutping">[docs]</a><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
+<span class="k">class</span> <span class="nc">Jyutping</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Jyutping representation of a Chinese/Cantonese character.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    onset : str</span>
+<span class="sd">        Onset</span>
+<span class="sd">    nucleus : str</span>
+<span class="sd">        Nucleus</span>
+<span class="sd">    coda : str</span>
+<span class="sd">        Coda</span>
+<span class="sd">    tone : str</span>
+<span class="sd">        Tone</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;onset&quot;</span><span class="p">,</span> <span class="s2">&quot;nucleus&quot;</span><span class="p">,</span> <span class="s2">&quot;coda&quot;</span><span class="p">,</span> <span class="s2">&quot;tone&quot;</span><span class="p">)</span>
+    <span class="n">onset</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">nucleus</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">coda</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">tone</span><span class="p">:</span> <span class="nb">str</span>
+
+<div class="viewcode-block" id="Jyutping.__str__"><a class="viewcode-back" href="../../../api.html#pycantonese.jyutping.Jyutping.__str__">[docs]</a>    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Combine onset + nucleus + coda + tone.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">onset</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">nucleus</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">coda</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">tone</span><span class="si">}</span><span class="s2">&quot;</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">final</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the final (= nucleus + coda).&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">nucleus</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">coda</span><span class="si">}</span><span class="s2">&quot;</span></div>
+
+
+<div class="viewcode-block" id="parse_jyutping"><a class="viewcode-back" href="../../../generated/pycantonese.parse_jyutping.html#pycantonese.jyutping.parse_jyutping">[docs]</a><span class="k">def</span> <span class="nf">parse_jyutping</span><span class="p">(</span><span class="n">jp_str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Jyutping</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;Parse Jyutping romanization into onset, nucleus, code, and tone.</span>
 
 <span class="sd">    Parameters</span>
@@ -324,7 +360,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    list[tuple[str]]</span>
+<span class="sd">    List[Jyutping]</span>
 
 <span class="sd">    Raises</span>
 <span class="sd">    ------</span>
@@ -335,7 +371,9 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; parse_jyutping(&quot;gwong2dung1waa2&quot;)  # 廣東話, Cantonese</span>
-<span class="sd">    [(&#39;gw&#39;, &#39;o&#39;, &#39;ng&#39;, &#39;2&#39;), (&#39;d&#39;, &#39;u&#39;, &#39;ng&#39;, &#39;1&#39;), (&#39;w&#39;, &#39;aa&#39;, &#39;&#39;, &#39;2&#39;)]</span>
+<span class="sd">    [Jyutping(onset=&#39;gw&#39;, nucleus=&#39;o&#39;, coda=&#39;ng&#39;, tone=&#39;2&#39;),</span>
+<span class="sd">     Jyutping(onset=&#39;d&#39;, nucleus=&#39;u&#39;, coda=&#39;ng&#39;, tone=&#39;1&#39;),</span>
+<span class="sd">     Jyutping(onset=&#39;w&#39;, nucleus=&#39;aa&#39;, coda=&#39;&#39;, tone=&#39;2&#39;)]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">jp_str</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[]</span>
@@ -379,7 +417,7 @@
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;coda error -- &quot;</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="n">jp</span><span class="p">))</span>
 
         <span class="k">if</span> <span class="n">cvc</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;m&quot;</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="s2">&quot;ng&quot;</span><span class="p">,</span> <span class="s2">&quot;i&quot;</span><span class="p">,</span> <span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="s2">&quot;aa&quot;</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="s2">&quot;u&quot;</span><span class="p">]:</span>
-            <span class="n">jp_parsed_list</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">cvc</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">tone</span><span class="p">))</span>
+            <span class="n">jp_parsed_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Jyutping</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">cvc</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">tone</span><span class="p">))</span>
             <span class="k">continue</span>
         <span class="k">elif</span> <span class="n">cvc</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span> <span class="o">==</span> <span class="s2">&quot;ng&quot;</span><span class="p">:</span>
             <span class="n">coda</span> <span class="o">=</span> <span class="s2">&quot;ng&quot;</span>
@@ -412,12 +450,12 @@
         <span class="k">if</span> <span class="n">onset</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ONSETS</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;onset error -- &quot;</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="n">jp</span><span class="p">))</span>
 
-        <span class="n">jp_parsed_list</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">onset</span><span class="p">,</span> <span class="n">nucleus</span><span class="p">,</span> <span class="n">coda</span><span class="p">,</span> <span class="n">tone</span><span class="p">))</span>
+        <span class="n">jp_parsed_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Jyutping</span><span class="p">(</span><span class="n">onset</span><span class="p">,</span> <span class="n">nucleus</span><span class="p">,</span> <span class="n">coda</span><span class="p">,</span> <span class="n">tone</span><span class="p">))</span>
 
     <span class="k">return</span> <span class="n">jp_parsed_list</span></div>
 
 
-<span class="k">def</span> <span class="nf">parse_final</span><span class="p">(</span><span class="n">final</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_parse_final</span><span class="p">(</span><span class="n">final</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Parse a final into its nucleus and coda.</span>
 
 <span class="sd">    Parameters</span>
@@ -448,7 +486,7 @@
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on March 19, 2021
+        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on March 20, 2021
 
     </p>
   </div>

@@ -159,6 +159,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#chatreader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHATReader</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#token"><code class="xref py py-class docutils literal notranslate"><span class="pre">Token</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#jyutping"><code class="xref py py-class docutils literal notranslate"><span class="pre">Jyutping</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a><ul>
@@ -1531,6 +1532,41 @@ distinction just described for when <code class="docutils literal notranslate"><
 </dd></dl>
 
 </div>
+<div class="section" id="jyutping">
+<h2><a class="reference internal" href="#pycantonese.jyutping.Jyutping" title="pycantonese.jyutping.Jyutping"><code class="xref py py-class docutils literal notranslate"><span class="pre">Jyutping</span></code></a><a class="headerlink" href="#jyutping" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="pycantonese.jyutping.Jyutping">
+<em class="property">class </em><code class="sig-prename descclassname">pycantonese.jyutping.</code><code class="sig-name descname">Jyutping</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">onset</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="n">nucleus</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="n">coda</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="n">tone</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycantonese/jyutping/parse_jyutping.html#Jyutping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycantonese.jyutping.Jyutping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Jyutping representation of a Chinese/Cantonese character.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>onset</strong><span class="classifier">str</span></dt><dd><p>Onset</p>
+</dd>
+<dt><strong>nucleus</strong><span class="classifier">str</span></dt><dd><p>Nucleus</p>
+</dd>
+<dt><strong>coda</strong><span class="classifier">str</span></dt><dd><p>Coda</p>
+</dd>
+<dt><strong>tone</strong><span class="classifier">str</span></dt><dd><p>Tone</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="pycantonese.jyutping.Jyutping.__str__">
+<code class="sig-name descname">__str__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pycantonese/jyutping/parse_jyutping.html#Jyutping.__str__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycantonese.jyutping.Jyutping.__str__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Combine onset + nucleus + coda + tone.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pycantonese.jyutping.Jyutping.final">
+<em class="property">property </em><code class="sig-name descname">final</code><a class="headerlink" href="#pycantonese.jyutping.Jyutping.final" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the final (= nucleus + coda).</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 </div>
 
 
@@ -1554,7 +1590,7 @@ distinction just described for when <code class="docutils literal notranslate"><
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on March 19, 2021
+        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on March 20, 2021
 
     </p>
   </div>

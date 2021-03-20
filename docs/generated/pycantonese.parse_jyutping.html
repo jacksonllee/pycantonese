@@ -159,6 +159,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#chatreader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHATReader</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#token"><code class="xref py py-class docutils literal notranslate"><span class="pre">Token</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api.html#jyutping"><code class="xref py py-class docutils literal notranslate"><span class="pre">Jyutping</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a><ul>
@@ -291,7 +292,7 @@
 <h1>pycantonese.parse_jyutping<a class="headerlink" href="#pycantonese-parse-jyutping" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt id="pycantonese.parse_jyutping">
-<code class="sig-prename descclassname">pycantonese.</code><code class="sig-name descname">parse_jyutping</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">jp_str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pycantonese/jyutping/parse_jyutping.html#parse_jyutping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycantonese.parse_jyutping" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pycantonese.</code><code class="sig-name descname">parse_jyutping</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">jp_str</span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span>pycantonese.jyutping.parse_jyutping.Jyutping<span class="p">]</span><a class="reference internal" href="../_modules/pycantonese/jyutping/parse_jyutping.html#parse_jyutping"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycantonese.parse_jyutping" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse Jyutping romanization into onset, nucleus, code, and tone.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -302,7 +303,7 @@
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>list[tuple[str]]</dt><dd></dd>
+<dt>List[Jyutping]</dt><dd></dd>
 </dl>
 </dd>
 <dt class="field-odd">Raises</dt>
@@ -315,7 +316,9 @@ elements).</p>
 </dl>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">parse_jyutping</span><span class="p">(</span><span class="s2">&quot;gwong2dung1waa2&quot;</span><span class="p">)</span>  <span class="c1"># 廣東話, Cantonese</span>
-<span class="go">[(&#39;gw&#39;, &#39;o&#39;, &#39;ng&#39;, &#39;2&#39;), (&#39;d&#39;, &#39;u&#39;, &#39;ng&#39;, &#39;1&#39;), (&#39;w&#39;, &#39;aa&#39;, &#39;&#39;, &#39;2&#39;)]</span>
+<span class="go">[Jyutping(onset=&#39;gw&#39;, nucleus=&#39;o&#39;, coda=&#39;ng&#39;, tone=&#39;2&#39;),</span>
+<span class="go"> Jyutping(onset=&#39;d&#39;, nucleus=&#39;u&#39;, coda=&#39;ng&#39;, tone=&#39;1&#39;),</span>
+<span class="go"> Jyutping(onset=&#39;w&#39;, nucleus=&#39;aa&#39;, coda=&#39;&#39;, tone=&#39;2&#39;)]</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -343,7 +346,7 @@ elements).</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on March 19, 2021
+        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on March 20, 2021
 
     </p>
   </div>

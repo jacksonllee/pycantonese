@@ -159,6 +159,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#chatreader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHATReader</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#token"><code class="xref py py-class docutils literal notranslate"><span class="pre">Token</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#jyutping"><code class="xref py py-class docutils literal notranslate"><span class="pre">Jyutping</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Changelog</a><ul>
@@ -296,11 +297,16 @@ as well. The details are in
 The changelog entries below only document updates specific to PyCantonese.</p>
 <div class="section" id="added">
 <h3>Added<a class="headerlink" href="#added" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Defined the <code class="docutils literal notranslate"><span class="pre">Jyutping</span></code> class to better represent parsed Jyutping romanization.</p></li>
+</ul>
 </div>
 <div class="section" id="changed">
 <h3>Changed<a class="headerlink" href="#changed" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Bumped the PyLangAcq dependency to v0.13.0.</p></li>
+<li><p>The function <code class="docutils literal notranslate"><span class="pre">parse_jyutping</span></code> now returns a list of <code class="docutils literal notranslate"><span class="pre">Jyutping</span></code> objects,
+rather than tuples of strings.</p></li>
 </ul>
 </div>
 <div class="section" id="deprecated">
@@ -600,7 +606,7 @@ element-specific search functions from version 0.1.</p></li>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on March 19, 2021
+        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on March 20, 2021
 
     </p>
   </div>

@@ -15,11 +15,16 @@ The changelog entries below only document updates specific to PyCantonese.
 Added
 ^^^^^
 
+
+* Defined the ``Jyutping`` class to better represent parsed Jyutping romanization.
+
 Changed
 ^^^^^^^
 
 
 * Bumped the PyLangAcq dependency to v0.13.0.
+* The function ``parse_jyutping`` now returns a list of ``Jyutping`` objects,
+  rather than tuples of strings.
 
 Deprecated
 ^^^^^^^^^^

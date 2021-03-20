@@ -121,12 +121,9 @@ def jyutping_to_tipa(jp_str):
     tipa_list = []
 
     for jp_parsed in jp_parsed_list:
-        onset = jp_parsed[0]
         # TODO: Separate "final" as "nucleus" and "coda" instead?
-        final = jp_parsed[1] + jp_parsed[2]
-        tone = jp_parsed[3]
-        tipa = ONSETS_TIPA[onset] + FINALS_TIPA[final]
-        tipa = tipa.strip() + TONES_TIPA[tone]
+        tipa = ONSETS_TIPA[jp_parsed.onset] + FINALS_TIPA[jp_parsed.final]
+        tipa = tipa.strip() + TONES_TIPA[jp_parsed.tone]
         tipa_list.append(tipa)
 
     return tipa_list

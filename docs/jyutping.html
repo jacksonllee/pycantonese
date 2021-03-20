@@ -159,6 +159,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#chatreader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHATReader</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#token"><code class="xref py py-class docutils literal notranslate"><span class="pre">Token</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#jyutping"><code class="xref py py-class docutils literal notranslate"><span class="pre">Jyutping</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a><ul>
@@ -297,9 +298,6 @@ or you have independently ingested Jyutping as Python strings,
 PyCantonese provides tools for these use cases.</p>
 <div class="section" id="characters-to-jyutping-conversion">
 <span id="chars-to-jp"></span><h2>Characters-to-Jyutping Conversion<a class="headerlink" href="#characters-to-jyutping-conversion" title="Permalink to this headline">¶</a></h2>
-<div class="versionadded">
-<p><span class="versionmodified added">New in version 2.4.0.</span></p>
-</div>
 <p>The function <a class="reference internal" href="generated/pycantonese.characters_to_jyutping.html#pycantonese.characters_to_jyutping" title="pycantonese.characters_to_jyutping"><code class="xref py py-func docutils literal notranslate"><span class="pre">characters_to_jyutping()</span></code></a>
 takes a string of Cantonese characters
 and returns its word-segmented version with Jyutping romanization:</p>
@@ -338,20 +336,23 @@ the ability to parse Jyutping for the various phonological components
 (onset, nucleus, coda, and tone). To this end, PyCantonese exposes
 the function <a class="reference internal" href="generated/pycantonese.parse_jyutping.html#pycantonese.parse_jyutping" title="pycantonese.parse_jyutping"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_jyutping()</span></code></a>
 which parses a string of Jyutping romanization
-and returns a list of tuples; the string may contain results for multiple
-Chinese characters. The parsed romanization for a character is a 4-tuple of
-(onset, nucleus, coda, tone):</p>
+and returns a list of <a class="reference internal" href="api.html#pycantonese.jyutping.Jyutping" title="pycantonese.jyutping.Jyutping"><code class="xref py py-class docutils literal notranslate"><span class="pre">Jyutping</span></code></a> objects;
+the string may contain results for multiple
+Chinese characters.:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pycantonese</span><span class="o">.</span><span class="n">parse_jyutping</span><span class="p">(</span><span class="s1">&#39;hou2&#39;</span><span class="p">)</span>  <span class="c1"># 好 good</span>
-<span class="go">[(&#39;h&#39;, &#39;o&#39;, &#39;u&#39;, &#39;2&#39;)]</span>
+<span class="go">[Jyutping(onset=&#39;h&#39;, nucleus=&#39;o&#39;, coda=&#39;u&#39;, tone=&#39;2&#39;)]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pycantonese</span><span class="o">.</span><span class="n">parse_jyutping</span><span class="p">(</span><span class="s1">&#39;gwong2dung1waa2&#39;</span><span class="p">)</span>  <span class="c1"># 廣東話 Cantonese</span>
-<span class="go">[(&#39;gw&#39;, &#39;o&#39;, &#39;ng&#39;, &#39;2&#39;), (&#39;d&#39;, &#39;u&#39;, &#39;ng&#39;, &#39;1&#39;), (&#39;w&#39;, &#39;aa&#39;, &#39;&#39;, &#39;2&#39;)]</span>
+<span class="go">[Jyutping(onset=&#39;gw&#39;, nucleus=&#39;o&#39;, coda=&#39;ng&#39;, tone=&#39;2&#39;),</span>
+<span class="go"> Jyutping(onset=&#39;d&#39;, nucleus=&#39;u&#39;, coda=&#39;ng&#39;, tone=&#39;1&#39;),</span>
+<span class="go"> Jyutping(onset=&#39;w&#39;, nucleus=&#39;aa&#39;, coda=&#39;&#39;, tone=&#39;2&#39;)]</span>
 </pre></div>
 </div>
 <p>Syllabic nasals are treated as nuclei:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">pycantonese</span><span class="o">.</span><span class="n">parse_jyutping</span><span class="p">(</span><span class="s1">&#39;m4goi1&#39;</span><span class="p">)</span>  <span class="c1"># 唔該 thank you / please</span>
-<span class="go">[(&#39;&#39;, &#39;m&#39;, &#39;&#39;, &#39;4&#39;), (&#39;g&#39;, &#39;o&#39;, &#39;i&#39;, &#39;1&#39;)]</span>
+<span class="go">[Jyutping(onset=&#39;&#39;, nucleus=&#39;m&#39;, coda=&#39;&#39;, tone=&#39;4&#39;),</span>
+<span class="go"> Jyutping(onset=&#39;g&#39;, nucleus=&#39;o&#39;, coda=&#39;i&#39;, tone=&#39;1&#39;)]</span>
 </pre></div>
 </div>
 <p>The function <a class="reference internal" href="generated/pycantonese.parse_jyutping.html#pycantonese.parse_jyutping" title="pycantonese.parse_jyutping"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_jyutping()</span></code></a>
@@ -363,6 +364,26 @@ is able to detect invalid Jyutping romanization:</p>
   File <span class="nb">&quot;/usr/local/lib/python3.9/dist-packages/pycantonese/jyutping.py&quot;</span>, line <span class="m">197</span>, in <span class="n">parse_jyutping</span>
     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;tone error -- &#39;</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="n">jp</span><span class="p">))</span>
 <span class="gr">ValueError</span>: <span class="n">tone error -- &#39;hou7&#39;</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="api.html#pycantonese.jyutping.Jyutping" title="pycantonese.jyutping.Jyutping"><code class="xref py py-class docutils literal notranslate"><span class="pre">Jyutping</span></code></a> class makes it easy to access
+the onset, nucleus, coda, and tone using the attribute syntax.
+It is also straightforward to retrieve the string representation
+and final (= nucleus + coda; 韻母):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pycantonese.jyutping</span> <span class="kn">import</span> <span class="n">Jyutping</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">jp</span> <span class="o">=</span> <span class="n">Jyutping</span><span class="p">(</span><span class="n">onset</span><span class="o">=</span><span class="s2">&quot;j&quot;</span><span class="p">,</span> <span class="n">nucleus</span><span class="o">=</span><span class="s2">&quot;yu&quot;</span><span class="p">,</span> <span class="n">coda</span><span class="o">=</span><span class="s2">&quot;t&quot;</span><span class="p">,</span> <span class="n">tone</span><span class="o">=</span><span class="s2">&quot;6&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">jp</span><span class="o">.</span><span class="n">onset</span>
+<span class="go">&#39;j&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">jp</span><span class="o">.</span><span class="n">nucleus</span>
+<span class="go">&#39;yu&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">jp</span><span class="o">.</span><span class="n">coda</span>
+<span class="go">&#39;t&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">jp</span><span class="o">.</span><span class="n">tone</span>
+<span class="go">&#39;6&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">jp</span><span class="p">)</span>
+<span class="go">&#39;jyut6&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">jp</span><span class="o">.</span><span class="n">final</span>
+<span class="go">&#39;yut&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -439,7 +460,7 @@ release if this behavior proves to be inconvenient.)</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on March 19, 2021
+        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on March 20, 2021
 
     </p>
   </div>
