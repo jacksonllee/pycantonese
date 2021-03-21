@@ -44,7 +44,7 @@ and part-of-speech tags.
 The original HKCanCor source files are in an XML format.
 They have been converted to CHAT for incorporation into PyCantonese.
 On the format conversion, please consult this
-`readme <https://github.com/jacksonllee/pycantonese/blob/master/pycantonese/data/hkcancor/README.md>`_.
+`readme <https://github.com/jacksonllee/pycantonese/blob/main/pycantonese/data/hkcancor/README.md>`_.
 
 
 CHILDES and TalkBank Data

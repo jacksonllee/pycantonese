@@ -13,6 +13,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Fixed
 ### Security
 
+## [3.2.1] - 2021-03-21
+
+### Fixed
+* Fixed character issues in the built-in HKCanCor data: 𠮩𠹌, 𠻗
+
 ## [3.2.0] - 2021-03-20
 
 Note: The underlying CHAT parser, the PyLangAcq package, has been bumped to v0.13.0.
