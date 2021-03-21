@@ -216,11 +216,13 @@ class POSTagger:
         except:  # noqa
             raise EnvironmentError(
                 f"A file is detected at {path}, but it cannot be read as a "
-                "a tagger model. The likely cause is that you do not have "
-                "Git LFS installed on your system -- please install it "
-                "(https://git-lfs.github.com/) and re-install pycantonese "
-                "with this command: "
-                "pip install git+https://github.com/jacksonllee/pycantonese.git@master#egg=pycantonese"  # noqa: E501
+                "a tagger model. "
+                "Either the tagger model file object is corrupted for some reason, "
+                "or - perhaps more likely - you're running pycantonese from a local "
+                "git repo (e.g., when you are doing dev work) and that you do not have "
+                "Git LFS installed on your system. "
+                "In the latter case, please install Git LFS "
+                "(https://git-lfs.github.com/) and re-install pycantonese."
             )
         self.model.weights, self.tagdict, self.classes = w_td_c
         self.model.classes = self.classes
