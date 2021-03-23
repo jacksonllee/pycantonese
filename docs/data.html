@@ -350,6 +350,30 @@ the CC BY-NC-SA 3.0 license.</p>
 <p>As of March 2021, the following Cantonese-related datasets are
 available from CHILDES and TalkBank (in alphabetical order):</p>
 <ul>
+<li><p><a class="reference external" href="https://childes.talkbank.org/access/Biling/CHCC.html">Child Heritage Chinese Corpus</a></p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://childes.talkbank.org/data/Biling/CHCC.zip&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span> <span class="o">=</span> <span class="n">pycantonese</span><span class="o">.</span><span class="n">read_chat</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span><span class="o">.</span><span class="n">n_files</span><span class="p">()</span>
+<span class="go">190</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">corpus</span><span class="o">.</span><span class="n">words</span><span class="p">())</span>
+<span class="go">533877</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><a class="reference external" href="https://childes.talkbank.org/access/Biling/Guthrie.html">Guthrie Bilingual Corpus</a></p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://childes.talkbank.org/data/Biling/Guthrie.zip&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span> <span class="o">=</span> <span class="n">pycantonese</span><span class="o">.</span><span class="n">read_chat</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span><span class="o">.</span><span class="n">n_files</span><span class="p">()</span>
+<span class="go">36</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">corpus</span><span class="o">.</span><span class="n">words</span><span class="p">())</span>
+<span class="go">70438</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
 <li><p><a class="reference external" href="https://childes.talkbank.org/access/Chinese/Cantonese/HKU.html">HKU-70 Corpus</a></p>
 <blockquote>
 <div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://childes.talkbank.org/data/Chinese/Cantonese/HKU.zip&quot;</span>
@@ -362,8 +386,6 @@ available from CHILDES and TalkBank (in alphabetical order):</p>
 </div>
 </div></blockquote>
 </li>
-</ul>
-<ul>
 <li><p><a class="reference external" href="https://childes.talkbank.org/access/Chinese/Cantonese/LeeWongLeung.html">Lee-Wong-Leung Corpus</a></p>
 <blockquote>
 <div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://childes.talkbank.org/data/Chinese/Cantonese/LeeWongLeung.zip&quot;</span>
@@ -456,7 +478,7 @@ For more on reading CHAT data in general, please see
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on March 21, 2021
+        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on March 23, 2021
 
     </p>
   </div>

@@ -65,6 +65,34 @@ the CC BY-NC-SA 3.0 license.
 As of March 2021, the following Cantonese-related datasets are
 available from CHILDES and TalkBank (in alphabetical order):
 
+.. invisible-code-block: python
+
+    >>> import os
+
+.. skip: start if(os.getenv("CI") == "true", reason="certain CHILDES data pulls fail in some but not all python versions for unknown reasons")
+
+* `Child Heritage Chinese Corpus <https://childes.talkbank.org/access/Biling/CHCC.html>`_
+
+    .. code-block:: python
+
+        >>> url = "https://childes.talkbank.org/data/Biling/CHCC.zip"
+        >>> corpus = pycantonese.read_chat(url)
+        >>> corpus.n_files()
+        190
+        >>> len(corpus.words())
+        533877
+
+* `Guthrie Bilingual Corpus <https://childes.talkbank.org/access/Biling/Guthrie.html>`_
+
+    .. code-block:: python
+
+        >>> url = "https://childes.talkbank.org/data/Biling/Guthrie.zip"
+        >>> corpus = pycantonese.read_chat(url)
+        >>> corpus.n_files()
+        36
+        >>> len(corpus.words())
+        70438
+
 * `HKU-70 Corpus <https://childes.talkbank.org/access/Chinese/Cantonese/HKU.html>`_
 
     .. code-block:: python
@@ -75,12 +103,6 @@ available from CHILDES and TalkBank (in alphabetical order):
         70
         >>> len(corpus.words())
         178270
-
-.. invisible-code-block: python
-
-    >>> import os
-
-.. skip: start if(os.getenv("CI") == "true", reason="certain CHILDES data pulls fail in some but not all python versions for unknown reasons")
 
 * `Lee-Wong-Leung Corpus <https://childes.talkbank.org/access/Chinese/Cantonese/LeeWongLeung.html>`_
 
