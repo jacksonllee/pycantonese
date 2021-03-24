@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 _THIS_DIR = os.path.dirname(__file__)
 
-_VERSION = "3.2.1"
+_VERSION = "3.2.2"
 
 
 def _get_long_description():
@@ -51,7 +51,7 @@ def main():
         setup_requires="setuptools>=39",
         install_requires=[
             "dataclasses ; python_version < '3.7'",
-            "pylangacq==0.13.0",
+            "pylangacq==0.13.1",
             "wordseg==0.0.2",
         ],
         package_data={

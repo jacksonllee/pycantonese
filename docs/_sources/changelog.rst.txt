@@ -24,6 +24,16 @@ Fixed
 Security
 ^^^^^^^^
 
+[3.2.2] - 2021-03-23
+--------------------
+
+Fixed
+^^^^^
+
+
+* Fixed a CHAT parsing issue when correction and repetition are combined,
+  by bumping the pylangacq dependency from v0.13.0 to v0.13.1.
+
 [3.2.1] - 2021-03-21
 --------------------
 
