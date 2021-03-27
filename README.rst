@@ -38,6 +38,13 @@ processing (NLP). Currently implemented features (more to come!):
 - Word segmentation
 - Part-of-speech tagging
 
+Download and Install
+--------------------
+
+To download and install the stable, most recent version::
+
+    $ pip install --upgrade pycantonese
+
 Quick Examples
 --------------
 
@@ -94,34 +101,26 @@ With PyCantonese imported:
      Jyutping(onset='d', nucleus='u', coda='ng', tone='1'),
      Jyutping(onset='w', nucleus='aa', coda='', tone='2')]
 
-Download and Install
---------------------
-
-To download and install the stable, most recent version::
-
-    $ pip install --upgrade pycantonese
-
-To test your installation in the Python interpreter:
-
-.. code-block:: python
-
-    >>> import pycantonese
-    >>> pycantonese.__version__  # show version number
-
 Links
 -----
 
 * Source code: https://github.com/jacksonllee/pycantonese
-* Bug tracker, feature requests: https://github.com/jacksonllee/pycantonese/issues
-* Email: Please contact `Jackson Lee <https://jacksonllee.com>`_.
+* Bug tracker: https://github.com/jacksonllee/pycantonese/issues
 * Social media:
   `Facebook <https://www.facebook.com/pycantonese>`_
   and `Twitter <https://twitter.com/pycantonese>`_
 
+Consulting
+----------
+
+If you team would like professional assistance in using PyCantonese,
+technical consulting and training services are available.
+Please email `Jackson Lee <https://jacksonllee.com>`_.
+
 How to Cite
 -----------
 
-PyCantonese is authored and mainteined by `Jackson L. Lee <https://jacksonllee.com>`_.
+PyCantonese is authored and maintained by `Jackson L. Lee <https://jacksonllee.com>`_.
 
 A talk introducing PyCantonese:
 

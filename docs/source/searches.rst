@@ -24,7 +24,7 @@ to iterate through the data and keep track of whatever is of your interest.
 For example, if you are to find all instances of [verb + verb particles]
 because you'd like to study verb particles and their distribution with
 particular verbs, then you can loop through the tokens
-(from :func:`~pycantonese.CHATReader.search`) with a two-token sliding window and
+(from :func:`~pycantonese.CHATReader.tokens`) with a two-token sliding window and
 keep instances where the first token is a verb and the second a particle
 (tokens give you the part-of-speech information).
 
