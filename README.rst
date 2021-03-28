@@ -113,9 +113,9 @@ Links
 Consulting
 ----------
 
-If you team would like professional assistance in using PyCantonese,
+If your team would like professional assistance in using PyCantonese,
 technical consulting and training services are available.
-Please email `Jackson Lee <https://jacksonllee.com>`_.
+Please email `Jackson L. Lee <https://jacksonllee.com>`_.
 
 How to Cite
 -----------
