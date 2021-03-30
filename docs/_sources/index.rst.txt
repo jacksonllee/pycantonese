@@ -37,4 +37,4 @@ Table of Contents
     pos_tagging
     api
     changelog
-    papers
+    archives
