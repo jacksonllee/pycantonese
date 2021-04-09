@@ -21,9 +21,9 @@ Full Documentation: https://pycantonese.org
    :target: https://pypi.python.org/pypi/pycantonese
    :alt: Supported Python versions
 
-.. image:: https://circleci.com/gh/jacksonllee/pycantonese/tree/main.svg?style=svg
-   :target: https://circleci.com/gh/jacksonllee/pycantonese/tree/main
-   :alt: Build
+.. image:: https://circleci.com/gh/jacksonllee/pycantonese.svg?style=shield
+   :target: https://circleci.com/gh/jacksonllee/pycantonese
+   :alt: CircleCI Builds
 
 |
 
@@ -113,9 +113,9 @@ Links
 Consulting
 ----------
 
-If you team would like professional assistance in using PyCantonese,
+If your team would like professional assistance in using PyCantonese,
 technical consulting and training services are available.
-Please email `Jackson Lee <https://jacksonllee.com>`_.
+Please email `Jackson L. Lee <https://jacksonllee.com>`_.
 
 How to Cite
 -----------
@@ -169,6 +169,7 @@ Individuals who have contributed feedback, bug reports, etc.
 - Rachel Han
 - Ryan Lai
 - Charles Lam
+- Chaak Ming Lau
 - Hill Ma
 - @richielo
 - @rylanchiu
@@ -203,7 +204,7 @@ To run tests and styling checks:
 
 .. code-block:: bash
 
-   $ pytest -vv --doctest-modules --cov=pycantonese pycantonese docs
+   $ pytest -vv --doctest-modules --cov=pycantonese pycantonese docs/source
    $ flake8 pycantonese
    $ black --check pycantonese
 

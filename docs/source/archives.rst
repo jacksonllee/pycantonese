@@ -1,7 +1,10 @@
-.. _papers:
+.. _archives:
+
+Archives
+========
 
 Research Outputs
-================
+----------------
 
 Talks introducing PyCantonese:
 
@@ -15,3 +18,8 @@ Jackson L. Lee. 2015. PyCantonese: Cantonese linguistic research in the age of b
 Talk at the Childhood Bilingualism Research Centre, Chinese University of Hong Kong.
 September 15. 2015.
 `[Notes+slides] <https://pycantonese.org/papers/Lee-pycantonese-2015.html>`_
+
+Tutorials
+---------
+
+`Basic Python for Linguists in 10 Minutes <https://github.com/jacksonllee/pycantonese/blob/main/docs/tutorials/lee-python-2021-april.ipynb>`_ (April 2021)

@@ -17,7 +17,7 @@ import requests
         "https://pylangacq.org/headers.html",
         "https://docs.python.org/3/library/re.html",
         "https://www.lshk.org/jyutping",
-        "https://www.ctan.org/pkg/tipa?lang=en",
+        # "https://www.ctan.org/pkg/tipa?lang=en",  # TODO Switch to something else?
         "https://pycantonese.org/papers/lee-chen-tsui-wicl3-slides-2016-03-12.pdf",
         "https://pycantonese.org/papers/lee-chen-tsui-wicl3-handout-2016-03-12.pdf",
         "https://pycantonese.org/papers/Lee-pycantonese-2015.html",
