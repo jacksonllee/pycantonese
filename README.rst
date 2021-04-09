@@ -169,6 +169,7 @@ Individuals who have contributed feedback, bug reports, etc.
 - Rachel Han
 - Ryan Lai
 - Charles Lam
+- Chaak Ming Lau
 - Hill Ma
 - @richielo
 - @rylanchiu
