@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Word Segmentation &mdash; PyCantonese 3.2.2 documentation</title>
+  <title>Quickstart &mdash; PyCantonese 3.2.2 documentation</title>
   
 
   
@@ -38,8 +38,8 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Part-of-Speech Tagging" href="pos_tagging.html" />
-    <link rel="prev" title="Stop Words" href="stop_words.html" /> 
+    <link rel="next" title="Corpus Data" href="data.html" />
+    <link rel="prev" title="PyCantonese: Cantonese Linguistics and NLP in Python" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -92,7 +92,7 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data.html">Corpus Data</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="data.html#chat-format">CHAT Format</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data.html#built-in-data">Built-in Data</a></li>
@@ -127,8 +127,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="stop_words.html">Stop Words</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Word Segmentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#customizing-segmentation">Customizing Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="word_segmentation.html">Word Segmentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="word_segmentation.html#customizing-segmentation">Customizing Segmentation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="pos_tagging.html">Part-of-Speech Tagging</a></li>
@@ -289,7 +289,7 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Word Segmentation</li>
+      <li>Quickstart</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -306,79 +306,63 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="word-segmentation">
-<span id="id1"></span><h1>Word Segmentation<a class="headerlink" href="#word-segmentation" title="Permalink to this headline">¶</a></h1>
-<p>By convention, Cantonese is not written with word boundaries (like spaces in English).
-However, in many natural language processing tasks, it is often necessary to
-work with a segmented form of Cantonese data.
-PyCantonese provides the function <a class="reference internal" href="generated/pycantonese.segment.html#pycantonese.segment" title="pycantonese.segment"><code class="xref py py-func docutils literal notranslate"><span class="pre">segment()</span></code></a> that takes an
-unsegmented text string in Cantonese characters and returns
-the segmented version:</p>
+  <div class="section" id="quickstart">
+<span id="id1"></span><h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h1>
+<p>After you have downloaded and installed PyCantonese (see <a class="reference internal" href="index.html#download-install"><span class="std std-ref">Download and Install</span></a>),
+import the package <code class="docutils literal notranslate"><span class="pre">pycantonese</span></code> in your Python interpreter:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pycantonese</span><span class="o">.</span><span class="n">segment</span><span class="p">(</span><span class="s2">&quot;廣東話容唔容易學？&quot;</span><span class="p">)</span>  <span class="c1"># Is Cantonese easy to learn?</span>
-<span class="go">[&#39;廣東話&#39;, &#39;容&#39;, &#39;唔&#39;, &#39;容易&#39;, &#39;學&#39;, &#39;？&#39;]</span>
 </pre></div>
 </div>
-<p>Currently, the underlying word segmentation model is a simple longest string
-matching algorithm, trained by
-(i) the HKCanCor corpus data included in this library and
-(ii) the rime-cantonese data (the 2020.09.09 release, CC BY 4.0 license).
-The segmentation is constrained such that the resulting words
-contain no more than five characters.</p>
-<div class="section" id="customizing-segmentation">
-<h2>Customizing Segmentation<a class="headerlink" href="#customizing-segmentation" title="Permalink to this headline">¶</a></h2>
-<p>Because the current implementation of word segmentation depends entirely on
-whether a potential word is found in the training data,
-there are situations where you would like to explicitly allow or disallow
-certain potential words.
-To this end, the <a class="reference internal" href="generated/pycantonese.segment.html#pycantonese.segment" title="pycantonese.segment"><code class="xref py py-func docutils literal notranslate"><span class="pre">segment()</span></code></a> function has the <code class="docutils literal notranslate"><span class="pre">cls</span></code> keyword argument
-(think: the <code class="docutils literal notranslate"><span class="pre">cls</span></code> kwarg for <code class="docutils literal notranslate"><span class="pre">json.load</span></code>)
-that takes a <a class="reference internal" href="generated/pycantonese.word_segmentation.Segmenter.html#pycantonese.word_segmentation.Segmenter" title="pycantonese.word_segmentation.Segmenter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Segmenter</span></code></a> object
-for customizing in the following ways:</p>
-<ul>
-<li><p>To specify words to allow, pass an iterable of word strings to the
-<code class="docutils literal notranslate"><span class="pre">allow</span></code> keyword argument of <a class="reference internal" href="generated/pycantonese.word_segmentation.Segmenter.html#pycantonese.word_segmentation.Segmenter" title="pycantonese.word_segmentation.Segmenter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Segmenter</span></code></a>:</p>
-<blockquote>
-<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pycantonese.word_segmentation</span> <span class="kn">import</span> <span class="n">Segmenter</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">segmenter</span> <span class="o">=</span> <span class="n">Segmenter</span><span class="p">(</span><span class="n">allow</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;容唔容易&quot;</span><span class="p">})</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pycantonese</span><span class="o">.</span><span class="n">segment</span><span class="p">(</span><span class="s2">&quot;廣東話容唔容易學？&quot;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="n">segmenter</span><span class="p">)</span>
-<span class="go">[&#39;廣東話&#39;, &#39;容唔容易&#39;, &#39;學&#39;, &#39;？&#39;]</span>
+<p>No errors? Great! Now you’re ready to proceed.</p>
+<ol class="arabic simple">
+<li><p>Word segmentation</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pycantonese</span><span class="o">.</span><span class="n">segment</span><span class="p">(</span><span class="s2">&quot;廣東話好難學？&quot;</span><span class="p">)</span>  <span class="c1"># Is Cantonese difficult to learn?</span>
+<span class="go">[&#39;廣東話&#39;, &#39;好&#39;, &#39;難&#39;, &#39;學&#39;, &#39;？&#39;]</span>
 </pre></div>
 </div>
-</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>Conversion from Cantonese characters to Jyutping</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pycantonese</span><span class="o">.</span><span class="n">characters_to_jyutping</span><span class="p">(</span><span class="s1">&#39;香港人講廣東話&#39;</span><span class="p">)</span>  <span class="c1"># Hongkongers speak Cantonese</span>
+<span class="go">[(&#39;香港人&#39;, &#39;hoeng1gong2jan4&#39;), (&#39;講&#39;, &#39;gong2&#39;), (&#39;廣東話&#39;, &#39;gwong2dung1waa2&#39;)]</span>
+</pre></div>
+</div>
+<ol class="arabic" start="3">
+<li><p>Finding all verbs in the HKCanCor corpus</p>
+<p>In this example,
+we search for the regular expression <code class="docutils literal notranslate"><span class="pre">'^V'</span></code> for all words whose
+part-of-speech tag begins with “V” in the original HKCanCor annotations:</p>
 </li>
-<li><p>To specify words to disallow, pass an iterable of word strings to the
-<code class="docutils literal notranslate"><span class="pre">disallow</span></code> keyword argument of <a class="reference internal" href="generated/pycantonese.word_segmentation.Segmenter.html#pycantonese.word_segmentation.Segmenter" title="pycantonese.word_segmentation.Segmenter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Segmenter</span></code></a>:</p>
-<blockquote>
-<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pycantonese.word_segmentation</span> <span class="kn">import</span> <span class="n">Segmenter</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">segmenter</span> <span class="o">=</span> <span class="n">Segmenter</span><span class="p">(</span><span class="n">disallow</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;廣東話&quot;</span><span class="p">})</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># 廣東 still exists as a word in the model, though 廣東話 is banned here.</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pycantonese</span><span class="o">.</span><span class="n">segment</span><span class="p">(</span><span class="s2">&quot;廣東話容唔容易學？&quot;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="n">segmenter</span><span class="p">)</span>
-<span class="go">[&#39;廣東&#39;, &#39;話&#39;, &#39;容&#39;, &#39;唔&#39;, &#39;容易&#39;, &#39;學&#39;, &#39;？&#39;]</span>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span> <span class="o">=</span> <span class="n">pycantonese</span><span class="o">.</span><span class="n">hkcancor</span><span class="p">()</span> <span class="c1"># get HKCanCor</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">all_verbs</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="s1">&#39;^V&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">all_verbs</span><span class="p">)</span>  <span class="c1"># number of all verbs</span>
+<span class="go">29726</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">all_verbs</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>  <span class="c1"># print 10 results</span>
+<span class="go">[Token(word=&#39;去&#39;, pos=&#39;V&#39;, jyutping=&#39;heoi3&#39;, mor=None, gra=None),</span>
+<span class="go"> Token(word=&#39;去&#39;, pos=&#39;V&#39;, jyutping=&#39;heoi3&#39;, mor=None, gra=None),</span>
+<span class="go"> Token(word=&#39;旅行&#39;, pos=&#39;VN&#39;, jyutping=&#39;leoi5hang4&#39;, mor=None, gra=None),</span>
+<span class="go"> Token(word=&#39;有冇&#39;, pos=&#39;V1&#39;, jyutping=&#39;jau5mou5&#39;, mor=None, gra=None),</span>
+<span class="go"> Token(word=&#39;要&#39;, pos=&#39;VU&#39;, jyutping=&#39;jiu3&#39;, mor=None, gra=None),</span>
+<span class="go"> Token(word=&#39;有得&#39;, pos=&#39;VU&#39;, jyutping=&#39;jau5dak1&#39;, mor=None, gra=None),</span>
+<span class="go"> Token(word=&#39;冇得&#39;, pos=&#39;VU&#39;, jyutping=&#39;mou5dak1&#39;, mor=None, gra=None),</span>
+<span class="go"> Token(word=&#39;去&#39;, pos=&#39;V&#39;, jyutping=&#39;heoi3&#39;, mor=None, gra=None),</span>
+<span class="go"> Token(word=&#39;係&#39;, pos=&#39;V&#39;, jyutping=&#39;hai6&#39;, mor=None, gra=None),</span>
+<span class="go"> Token(word=&#39;係&#39;, pos=&#39;V&#39;, jyutping=&#39;hai6&#39;, mor=None, gra=None)]</span>
 </pre></div>
 </div>
-</div></blockquote>
-</li>
-<li><p>To control the maximum word length (default: 5), pass an integer to the
-<code class="docutils literal notranslate"><span class="pre">max_word_length</span></code> keyword argument of <a class="reference internal" href="generated/pycantonese.word_segmentation.Segmenter.html#pycantonese.word_segmentation.Segmenter" title="pycantonese.word_segmentation.Segmenter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Segmenter</span></code></a>:</p>
-<blockquote>
-<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pycantonese.word_segmentation</span> <span class="kn">import</span> <span class="n">Segmenter</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">segmenter</span> <span class="o">=</span> <span class="n">Segmenter</span><span class="p">(</span><span class="n">max_word_length</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">pycantonese</span><span class="o">.</span><span class="n">segment</span><span class="p">(</span><span class="s2">&quot;廣東話容唔容易學？&quot;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="n">segmenter</span><span class="p">)</span>
-<span class="go">[&#39;廣東&#39;, &#39;話&#39;, &#39;容&#39;, &#39;唔&#39;, &#39;容易&#39;, &#39;學&#39;, &#39;？&#39;]</span>
+<ol class="arabic simple" start="4">
+<li><p>Parsing Jyutping for the onset, nucleus, coda, and tone</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pycantonese</span><span class="o">.</span><span class="n">parse_jyutping</span><span class="p">(</span><span class="s1">&#39;gwong2dung1waa2&#39;</span><span class="p">)</span>  <span class="c1"># 廣東話</span>
+<span class="go">[Jyutping(onset=&#39;gw&#39;, nucleus=&#39;o&#39;, coda=&#39;ng&#39;, tone=&#39;2&#39;),</span>
+<span class="go"> Jyutping(onset=&#39;d&#39;, nucleus=&#39;u&#39;, coda=&#39;ng&#39;, tone=&#39;1&#39;),</span>
+<span class="go"> Jyutping(onset=&#39;w&#39;, nucleus=&#39;aa&#39;, coda=&#39;&#39;, tone=&#39;2&#39;)]</span>
 </pre></div>
 </div>
-</div></blockquote>
-</li>
-</ul>
-<p>The keyword arguments <code class="docutils literal notranslate"><span class="pre">allow</span></code>, <code class="docutils literal notranslate"><span class="pre">disallow</span></code>, and <code class="docutils literal notranslate"><span class="pre">max_word_length</span></code>
-of the <a class="reference internal" href="generated/pycantonese.word_segmentation.Segmenter.html#pycantonese.word_segmentation.Segmenter" title="pycantonese.word_segmentation.Segmenter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Segmenter</span></code></a> class
-can be concurrently used in the same <a class="reference internal" href="generated/pycantonese.word_segmentation.Segmenter.html#pycantonese.word_segmentation.Segmenter" title="pycantonese.word_segmentation.Segmenter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Segmenter</span></code></a>
-instance.</p>
-</div>
+<p>Looking for more functionality?
+Please use the documentation menu on the left.</p>
 </div>
 
 
@@ -389,10 +373,10 @@ instance.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="pos_tagging.html" class="btn btn-neutral float-right" title="Part-of-Speech Tagging" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="data.html" class="btn btn-neutral float-right" title="Corpus Data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="stop_words.html" class="btn btn-neutral float-left" title="Stop Words" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="PyCantonese: Cantonese Linguistics and NLP in Python" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

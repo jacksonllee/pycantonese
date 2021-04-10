@@ -28,6 +28,7 @@ Table of Contents
 ..  toctree::
     :maxdepth: 1
 
+    quickstart
     data
     reader
     searches
