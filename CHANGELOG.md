@@ -11,9 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Deprecated
 ### Removed
 ### Fixed
-* Fixed character issues in the built-in HKCanCor data: 𥄫
-
 ### Security
+
+## [3.2.3] - 2021-04-12
+
+### Fixed
+* Fixed character issues in the built-in HKCanCor data: 𥄫
 
 ## [3.2.2] - 2021-03-23
 
