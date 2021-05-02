@@ -167,4 +167,4 @@ To build the documentation website files:
 
 .. code-block:: bash
 
-    $ python build_docs.py
+    $ python docs/source/build_docs.py

@@ -8,9 +8,9 @@ import os
 import m2r
 
 
-_THIS_DIR = os.path.dirname(os.path.abspath(__file__))
-_DOCS = os.path.join(_THIS_DIR, "docs")
-_DOCS_SOURCE = os.path.join(_DOCS, "source")
+_DOCS_SOURCE = os.path.dirname(os.path.abspath(__file__))
+_DOCS = os.path.dirname(_DOCS_SOURCE)
+_REPO_ROOT = os.path.dirname(_DOCS)
 
 
 def remove_generated_docs():
@@ -32,12 +32,12 @@ def rebuild_docs():
 
 def create_changelog_rst():
     logging.info("Creating changelog.rst")
-    with open(os.path.join(_THIS_DIR, "CHANGELOG.md"), encoding="utf8") as f:
+    with open(os.path.join(_REPO_ROOT, "CHANGELOG.md"), encoding="utf8") as f:
         changelog_md = f.read()
     changelog_rst = (
         ".. _changelog:\n\n"
         + "Changelog\n=========\n"
-        + m2r.convert(changelog_md[changelog_md.index("## [Unreleased]"):])
+        + m2r.convert(changelog_md[changelog_md.index("## [Unreleased]") :])
     )
     with open(os.path.join(_DOCS_SOURCE, "changelog.rst"), "w", encoding="utf8") as f:
         f.write(changelog_rst)
@@ -46,9 +46,7 @@ def create_changelog_rst():
 def create_robots_txt():
     logging.info("Creating robots.txt")
     with open(os.path.join(_DOCS, "robots.txt"), "w", encoding="utf8") as f:
-        f.write(
-            "User-agent: *\n\nSitemap: https://pycantonese.org/sitemap.xml\n"
-        )
+        f.write("User-agent: *\n\nSitemap: https://pycantonese.org/sitemap.xml\n")
 
 
 if __name__ == "__main__":
