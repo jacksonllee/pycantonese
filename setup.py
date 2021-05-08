@@ -51,7 +51,7 @@ def main():
         setup_requires="setuptools>=39",
         install_requires=[
             "dataclasses ; python_version < '3.7'",
-            "pylangacq==0.13.1",
+            "pylangacq>=0.13.3,==0.13.*",
             "wordseg==0.0.2",
         ],
         package_data={
