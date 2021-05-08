@@ -345,6 +345,8 @@
 <li><p>Fixed the previously inoperational methods <code class="docutils literal notranslate"><span class="pre">append</span></code>, <code class="docutils literal notranslate"><span class="pre">append_left</span></code>, <code class="docutils literal notranslate"><span class="pre">extend</span></code>, and <code class="docutils literal notranslate"><span class="pre">extend_left</span></code>
 of the class <code class="docutils literal notranslate"><span class="pre">CHATReader</span></code> through the upstream PyLangAcq package.</p></li>
 <li><p>Retrained the part-of-speech tagger, after the minor character fix from v3.2.3.</p></li>
+<li><p>Raised <code class="docutils literal notranslate"><span class="pre">NotImplementedError</span></code> for the method <code class="docutils literal notranslate"><span class="pre">ipsyn</span></code> of <code class="docutils literal notranslate"><span class="pre">CHATReader</span></code>,
+since the upstream method works only for English.</p></li>
 </ul>
 </div>
 </div>

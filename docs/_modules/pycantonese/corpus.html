@@ -365,6 +365,13 @@
 <span class="sd">        which may or may not be applicable to your use case.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
+<div class="viewcode-block" id="CHATReader.ipsyn"><a class="viewcode-back" href="../../api.html#pycantonese.CHATReader.ipsyn">[docs]</a>    <span class="k">def</span> <span class="nf">ipsyn</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;(Not implemented - the upstream ``ipsyn`` method works for English only.)&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+            <span class="s2">&quot;The upstream `ipsyn` method works for English only. &quot;</span>
+            <span class="s2">&quot;There isn&#39;t yet a Cantonese version of IPSyn.&quot;</span>
+        <span class="p">)</span></div>
+
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_preprocess_token</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Token</span><span class="p">:</span>
         <span class="c1"># Examples from the CHILDES LeeWongLeung corpus, child mhz</span>

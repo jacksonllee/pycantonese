@@ -50,6 +50,13 @@ class CHATReader(Reader):
         which may or may not be applicable to your use case.
     """
 
+    def ipsyn(self):
+        """(Not implemented - the upstream ``ipsyn`` method works for English only.)"""
+        raise NotImplementedError(
+            "The upstream `ipsyn` method works for English only. "
+            "There isn't yet a Cantonese version of IPSyn."
+        )
+
     @staticmethod
     def _preprocess_token(t) -> Token:
         # Examples from the CHILDES LeeWongLeung corpus, child mhz
