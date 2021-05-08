@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Fixed
 - Fixed the previously inoperational methods `append`, `append_left`, `extend`, and `extend_left`
   of the class `CHATReader` through the upstream PyLangAcq package.
+- Retrained the part-of-speech tagger, after the minor character fix from v3.2.3.
 
 ### Security
 
