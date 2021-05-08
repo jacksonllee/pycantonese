@@ -24,6 +24,17 @@ Fixed
 Security
 ^^^^^^^^
 
+[3.2.4] - 2021-05-07
+--------------------
+
+Fixed
+^^^^^
+
+
+* Fixed the previously inoperational methods ``append``\ , ``append_left``\ , ``extend``\ , and ``extend_left``
+  of the class ``CHATReader`` through the upstream PyLangAcq package.
+* Retrained the part-of-speech tagger, after the minor character fix from v3.2.3.
+
 [3.2.3] - 2021-04-12
 --------------------
 
