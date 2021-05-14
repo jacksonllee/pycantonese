@@ -22,4 +22,6 @@ September 15. 2015.
 Tutorials
 ---------
 
-`Basic Python for Linguists in 10 Minutes <https://github.com/jacksonllee/pycantonese/blob/main/docs/tutorials/lee-python-2021-april.ipynb>`_ (April 2021)
+`Accessing and Searching Cantonese Corpora in PyCantonese <https://github.com/jacksonllee/pycantonese/blob/main/docs/tutorials/lee-pycantonese-2021-05-16.ipynb>`_ (May 16, 2021)
+
+`Basic Python for Linguists <https://github.com/jacksonllee/pycantonese/blob/main/docs/tutorials/lee-python-2021-april.ipynb>`_ (April 2021)
