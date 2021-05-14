@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Deprecated
 ### Removed
 ### Fixed
-- The `search` method of `CHATReader` now correctly uses the `Token` objects.
+- Fixed the `search` method of `CHATReader` when `by_tokens` is `False`.
 
 ### Security
 
