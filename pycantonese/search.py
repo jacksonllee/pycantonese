@@ -196,7 +196,7 @@ def _perform_search(
                 words_wanted = tagged_sent[i_word_start:i_word_end]
 
                 if not by_tokens:
-                    words_wanted = [x[0] for x in words_wanted]
+                    words_wanted = [x.word for x in words_wanted]
 
                 if len(words_wanted) == 1:
                     words_wanted = words_wanted[0]
