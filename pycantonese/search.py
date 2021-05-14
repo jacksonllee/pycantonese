@@ -215,7 +215,7 @@ def _perform_search(
 
                 if not by_tokens:
                     for i, sent in enumerate(sents_wanted[:]):
-                        sents_wanted[i] = [x[0] for x in sent]
+                        sents_wanted[i] = [x.word for x in sent]
 
                 if len(sents_wanted) == 1:
                     sents_wanted = sents_wanted[0]
