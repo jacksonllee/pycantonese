@@ -8,14 +8,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 ### Changed
-- Allow PyLangAcq v0.14.*.
-
 ### Deprecated
 ### Removed
 ### Fixed
-- Fixed the `search` method of `CHATReader` when `by_tokens` is `False`.
-
 ### Security
+
+## [3.3.0] - 2021-05-14
+
+### Changed
+- Allow PyLangAcq v0.14.*, adding the new features of the `filter` method to `CHATReader`
+  and optional parallelization for CHAT data processing.
+
+### Fixed
+- Fixed the `search` method of `CHATReader` when `by_tokens` is `False`.
 
 ## [3.2.4] - 2021-05-07
 
