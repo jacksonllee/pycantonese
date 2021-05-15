@@ -11,9 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Deprecated
 ### Removed
 ### Fixed
-- Allowed PyLangAcq v0.14.* for real.
-
 ### Security
+
+## [3.3.1] - 2021-05-14
+
+### Fixed
+- Allowed PyLangAcq v0.14.* for real.
 
 ## [3.3.0] - 2021-05-14
 
