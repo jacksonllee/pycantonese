@@ -11,12 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Deprecated
 ### Removed
 ### Fixed
+- Allowed PyLangAcq v0.14.* for real.
+
 ### Security
 
 ## [3.3.0] - 2021-05-14
 
 ### Changed
-- Allow PyLangAcq v0.14.*, thereby adding the new features of the `filter` method to `CHATReader`
+- Allowed PyLangAcq v0.14.*, thereby adding the new features of the `filter` method to `CHATReader`
   and optional parallelization for CHAT data processing.
 
 ### Fixed
