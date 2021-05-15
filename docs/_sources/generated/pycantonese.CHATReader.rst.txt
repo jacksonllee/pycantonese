@@ -24,6 +24,7 @@
       ~CHATReader.extend
       ~CHATReader.extend_left
       ~CHATReader.file_paths
+      ~CHATReader.filter
       ~CHATReader.from_dir
       ~CHATReader.from_files
       ~CHATReader.from_strs

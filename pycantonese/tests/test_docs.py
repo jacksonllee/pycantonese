@@ -17,12 +17,15 @@ import requests
         "https://pylangacq.org/headers.html",
         "https://docs.python.org/3/library/re.html",
         "https://www.lshk.org/jyutping",
-        # "https://www.ctan.org/pkg/tipa?lang=en",  # TODO Switch to something else?
+        "https://www.tug.org/TUGboat/tb17-2/tb51rei.pdf",
+        "https://universaldependencies.org/u/pos/index.html",
+        "https://pycantonese.org/index.html#links",
+        # Archives
         "https://pycantonese.org/papers/lee-chen-tsui-wicl3-slides-2016-03-12.pdf",
         "https://pycantonese.org/papers/lee-chen-tsui-wicl3-handout-2016-03-12.pdf",
         "https://pycantonese.org/papers/Lee-pycantonese-2015.html",
-        "https://universaldependencies.org/u/pos/index.html",
-        "https://pycantonese.org/index.html#links",
+        "https://github.com/jacksonllee/pycantonese/blob/main/docs/tutorials/lee-pycantonese-2021-05-16.ipynb",  # noqa: E501
+        "https://github.com/jacksonllee/pycantonese/blob/main/docs/tutorials/lee-python-2021-april.ipynb",  # noqa: E501
     ],
 )
 def test_urls_work(url):

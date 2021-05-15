@@ -38,6 +38,8 @@ processing (NLP). Currently implemented features (more to come!):
 - Word segmentation
 - Part-of-speech tagging
 
+.. _download_install:
+
 Download and Install
 --------------------
 
@@ -45,61 +47,21 @@ To download and install the stable, most recent version::
 
     $ pip install --upgrade pycantonese
 
-Quick Examples
---------------
+Ready for more?
+Check out the `Quickstart <https://pycantonese.org/quickstart.html>`_ page.
 
-With PyCantonese imported:
+Consulting
+----------
 
-.. code-block:: python
+If your team would like professional assistance in using PyCantonese,
+technical consulting and training services are available.
+Please email `Jackson L. Lee <https://jacksonllee.com>`_.
 
-    >>> import pycantonese
+Support
+-------
 
-1. Word segmentation
-
-.. code-block:: python
-
-    >>> pycantonese.segment("廣東話好難學？")  # Is Cantonese difficult to learn?
-    ['廣東話', '好', '難', '學', '？']
-
-2. Conversion from Cantonese characters to Jyutping
-
-.. code-block:: python
-
-    >>> pycantonese.characters_to_jyutping('香港人講廣東話')  # Hongkongers speak Cantonese
-    [("香港人", "hoeng1gong2jan4"), ("講", "gong2"), ("廣東話", "gwong2dung1waa2")]
-
-3. Finding all verbs in the HKCanCor corpus
-
-   In this example,
-   we search for the regular expression ``'^V'`` for all words whose
-   part-of-speech tag begins with "V" in the original HKCanCor annotations:
-
-.. code-block:: python
-
-    >>> corpus = pycantonese.hkcancor() # get HKCanCor
-    >>> all_verbs = corpus.search(pos='^V')
-    >>> len(all_verbs)  # number of all verbs
-    29726
-    >>> all_verbs[:10]  # print 10 results
-    [Token(word='去', pos='V', jyutping='heoi3', mor=None, gra=None),
-     Token(word='去', pos='V', jyutping='heoi3', mor=None, gra=None),
-     Token(word='旅行', pos='VN', jyutping='leoi5hang4', mor=None, gra=None),
-     Token(word='有冇', pos='V1', jyutping='jau5mou5', mor=None, gra=None),
-     Token(word='要', pos='VU', jyutping='jiu3', mor=None, gra=None),
-     Token(word='有得', pos='VU', jyutping='jau5dak1', mor=None, gra=None),
-     Token(word='冇得', pos='VU', jyutping='mou5dak1', mor=None, gra=None),
-     Token(word='去', pos='V', jyutping='heoi3', mor=None, gra=None),
-     Token(word='係', pos='V', jyutping='hai6', mor=None, gra=None),
-     Token(word='係', pos='V', jyutping='hai6', mor=None, gra=None)]
-
-4. Parsing Jyutping for the onset, nucleus, coda, and tone
-
-.. code-block:: python
-
-    >>> pycantonese.parse_jyutping('gwong2dung1waa2')  # 廣東話
-    [Jyutping(onset='gw', nucleus='o', coda='ng', tone='2'),
-     Jyutping(onset='d', nucleus='u', coda='ng', tone='1'),
-     Jyutping(onset='w', nucleus='aa', coda='', tone='2')]
+If you have found PyCantonese useful and would like to offer support,
+`buying me a coffee <https://www.buymeacoffee.com/pycantonese>`_ would go a long way!
 
 Links
 -----
@@ -109,13 +71,6 @@ Links
 * Social media:
   `Facebook <https://www.facebook.com/pycantonese>`_
   and `Twitter <https://twitter.com/pycantonese>`_
-
-Consulting
-----------
-
-If your team would like professional assistance in using PyCantonese,
-technical consulting and training services are available.
-Please email `Jackson L. Lee <https://jacksonllee.com>`_.
 
 How to Cite
 -----------
@@ -212,4 +167,4 @@ To build the documentation website files:
 
 .. code-block:: bash
 
-    $ python build_docs.py
+    $ python docs/source/build_docs.py

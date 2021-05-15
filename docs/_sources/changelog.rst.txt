@@ -24,6 +24,53 @@ Fixed
 Security
 ^^^^^^^^
 
+[3.3.1] - 2021-05-14
+--------------------
+
+Fixed
+^^^^^
+
+
+* Allowed PyLangAcq v0.14.* for real.
+
+[3.3.0] - 2021-05-14
+--------------------
+
+Changed
+^^^^^^^
+
+
+* Allowed PyLangAcq v0.14.*, thereby adding the new features of the ``filter`` method to ``CHATReader``
+  and optional parallelization for CHAT data processing.
+
+Fixed
+^^^^^
+
+
+* Fixed the ``search`` method of ``CHATReader`` when ``by_tokens`` is ``False``.
+
+[3.2.4] - 2021-05-07
+--------------------
+
+Fixed
+^^^^^
+
+
+* Fixed the previously inoperational methods ``append``\ , ``append_left``\ , ``extend``\ , and ``extend_left``
+  of the class ``CHATReader`` through the upstream PyLangAcq package.
+* Retrained the part-of-speech tagger, after the minor character fix from v3.2.3.
+* Raised ``NotImplementedError`` for the method ``ipsyn`` of ``CHATReader``\ ,
+  since the upstream method works only for English.
+
+[3.2.3] - 2021-04-12
+--------------------
+
+Fixed
+^^^^^
+
+
+* Fixed character issues in the built-in HKCanCor data: 𥄫
+
 [3.2.2] - 2021-03-23
 --------------------
 

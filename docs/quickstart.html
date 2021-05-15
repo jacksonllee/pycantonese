@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Archives &mdash; PyCantonese 3.3.1 documentation</title>
+  <title>Quickstart &mdash; PyCantonese 3.3.1 documentation</title>
   
 
   
@@ -38,7 +38,8 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Changelog" href="changelog.html" /> 
+    <link rel="next" title="Corpus Data" href="data.html" />
+    <link rel="prev" title="PyCantonese: Cantonese Linguistics and NLP in Python" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -91,7 +92,7 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data.html">Corpus Data</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="data.html#chat-format">CHAT Format</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data.html#built-in-data">Built-in Data</a></li>
@@ -254,9 +255,9 @@
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#id51">[0.1] - 2014-12-17</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Archives</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#research-outputs">Research Outputs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#tutorials">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="archives.html">Archives</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="archives.html#research-outputs">Research Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="archives.html#tutorials">Tutorials</a></li>
 </ul>
 </li>
 </ul>
@@ -305,7 +306,7 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Archives</li>
+      <li>Quickstart</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -322,26 +323,63 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="archives">
-<span id="id1"></span><h1>Archives<a class="headerlink" href="#archives" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="research-outputs">
-<h2>Research Outputs<a class="headerlink" href="#research-outputs" title="Permalink to this headline">¶</a></h2>
-<p>Talks introducing PyCantonese:</p>
-<p>Jackson L. Lee, Litong Chen, and Tsz-Him Tsui. 2016. PyCantonese: Developing computational tools for Cantonese linguistics.
-Talk at the 3rd Workshop on Innovations in Cantonese Linguistics, The Ohio State University.
-March 12. 2016.
-<a class="reference external" href="https://pycantonese.org/papers/lee-chen-tsui-wicl3-slides-2016-03-12.pdf">[Slides]</a>
-<a class="reference external" href="https://pycantonese.org/papers/lee-chen-tsui-wicl3-handout-2016-03-12.pdf">[Handout]</a></p>
-<p>Jackson L. Lee. 2015. PyCantonese: Cantonese linguistic research in the age of big data.
-Talk at the Childhood Bilingualism Research Centre, Chinese University of Hong Kong.
-September 15. 2015.
-<a class="reference external" href="https://pycantonese.org/papers/Lee-pycantonese-2015.html">[Notes+slides]</a></p>
+  <div class="section" id="quickstart">
+<span id="id1"></span><h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h1>
+<p>After you have downloaded and installed PyCantonese (see <a class="reference internal" href="index.html#download-install"><span class="std std-ref">Download and Install</span></a>),
+import the package <code class="docutils literal notranslate"><span class="pre">pycantonese</span></code> in your Python interpreter:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span>
+</pre></div>
 </div>
-<div class="section" id="tutorials">
-<h2>Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://github.com/jacksonllee/pycantonese/blob/main/docs/tutorials/lee-pycantonese-2021-05-16.ipynb">Accessing and Searching Cantonese Corpora in PyCantonese</a> (May 16, 2021)</p>
-<p><a class="reference external" href="https://github.com/jacksonllee/pycantonese/blob/main/docs/tutorials/lee-python-2021-april.ipynb">Basic Python for Linguists</a> (April 2021)</p>
+<p>No errors? Great! Now you’re ready to proceed.</p>
+<ol class="arabic simple">
+<li><p>Word segmentation</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pycantonese</span><span class="o">.</span><span class="n">segment</span><span class="p">(</span><span class="s2">&quot;廣東話好難學？&quot;</span><span class="p">)</span>  <span class="c1"># Is Cantonese difficult to learn?</span>
+<span class="go">[&#39;廣東話&#39;, &#39;好&#39;, &#39;難&#39;, &#39;學&#39;, &#39;？&#39;]</span>
+</pre></div>
 </div>
+<ol class="arabic simple" start="2">
+<li><p>Conversion from Cantonese characters to Jyutping</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pycantonese</span><span class="o">.</span><span class="n">characters_to_jyutping</span><span class="p">(</span><span class="s1">&#39;香港人講廣東話&#39;</span><span class="p">)</span>  <span class="c1"># Hongkongers speak Cantonese</span>
+<span class="go">[(&#39;香港人&#39;, &#39;hoeng1gong2jan4&#39;), (&#39;講&#39;, &#39;gong2&#39;), (&#39;廣東話&#39;, &#39;gwong2dung1waa2&#39;)]</span>
+</pre></div>
+</div>
+<ol class="arabic" start="3">
+<li><p>Finding all verbs in the HKCanCor corpus</p>
+<p>In this example,
+we search for the regular expression <code class="docutils literal notranslate"><span class="pre">'^V'</span></code> for all words whose
+part-of-speech tag begins with “V” in the original HKCanCor annotations:</p>
+</li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span> <span class="o">=</span> <span class="n">pycantonese</span><span class="o">.</span><span class="n">hkcancor</span><span class="p">()</span> <span class="c1"># get HKCanCor</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">all_verbs</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="s1">&#39;^V&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">all_verbs</span><span class="p">)</span>  <span class="c1"># number of all verbs</span>
+<span class="go">29726</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">all_verbs</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>  <span class="c1"># print 10 results</span>
+<span class="go">[Token(word=&#39;去&#39;, pos=&#39;V&#39;, jyutping=&#39;heoi3&#39;, mor=None, gra=None),</span>
+<span class="go"> Token(word=&#39;去&#39;, pos=&#39;V&#39;, jyutping=&#39;heoi3&#39;, mor=None, gra=None),</span>
+<span class="go"> Token(word=&#39;旅行&#39;, pos=&#39;VN&#39;, jyutping=&#39;leoi5hang4&#39;, mor=None, gra=None),</span>
+<span class="go"> Token(word=&#39;有冇&#39;, pos=&#39;V1&#39;, jyutping=&#39;jau5mou5&#39;, mor=None, gra=None),</span>
+<span class="go"> Token(word=&#39;要&#39;, pos=&#39;VU&#39;, jyutping=&#39;jiu3&#39;, mor=None, gra=None),</span>
+<span class="go"> Token(word=&#39;有得&#39;, pos=&#39;VU&#39;, jyutping=&#39;jau5dak1&#39;, mor=None, gra=None),</span>
+<span class="go"> Token(word=&#39;冇得&#39;, pos=&#39;VU&#39;, jyutping=&#39;mou5dak1&#39;, mor=None, gra=None),</span>
+<span class="go"> Token(word=&#39;去&#39;, pos=&#39;V&#39;, jyutping=&#39;heoi3&#39;, mor=None, gra=None),</span>
+<span class="go"> Token(word=&#39;係&#39;, pos=&#39;V&#39;, jyutping=&#39;hai6&#39;, mor=None, gra=None),</span>
+<span class="go"> Token(word=&#39;係&#39;, pos=&#39;V&#39;, jyutping=&#39;hai6&#39;, mor=None, gra=None)]</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Parsing Jyutping for the onset, nucleus, coda, and tone</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pycantonese</span><span class="o">.</span><span class="n">parse_jyutping</span><span class="p">(</span><span class="s1">&#39;gwong2dung1waa2&#39;</span><span class="p">)</span>  <span class="c1"># 廣東話</span>
+<span class="go">[Jyutping(onset=&#39;gw&#39;, nucleus=&#39;o&#39;, coda=&#39;ng&#39;, tone=&#39;2&#39;),</span>
+<span class="go"> Jyutping(onset=&#39;d&#39;, nucleus=&#39;u&#39;, coda=&#39;ng&#39;, tone=&#39;1&#39;),</span>
+<span class="go"> Jyutping(onset=&#39;w&#39;, nucleus=&#39;aa&#39;, coda=&#39;&#39;, tone=&#39;2&#39;)]</span>
+</pre></div>
+</div>
+<p>Looking for more functionality?
+Please use the documentation menu on the left.</p>
 </div>
 
 
@@ -352,8 +390,10 @@ September 15. 2015.
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="data.html" class="btn btn-neutral float-right" title="Corpus Data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-        <a href="changelog.html" class="btn btn-neutral float-left" title="Changelog" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="PyCantonese: Cantonese Linguistics and NLP in Python" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
