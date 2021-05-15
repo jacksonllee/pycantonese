@@ -24,6 +24,15 @@ Fixed
 Security
 ^^^^^^^^
 
+[3.3.1] - 2021-05-14
+--------------------
+
+Fixed
+^^^^^
+
+
+* Allowed PyLangAcq v0.14.* for real.
+
 [3.3.0] - 2021-05-14
 --------------------
 
@@ -31,7 +40,7 @@ Changed
 ^^^^^^^
 
 
-* Allow PyLangAcq v0.14.*, thereby adding the new features of the ``filter`` method to ``CHATReader``
+* Allowed PyLangAcq v0.14.*, thereby adding the new features of the ``filter`` method to ``CHATReader``
   and optional parallelization for CHAT data processing.
 
 Fixed
