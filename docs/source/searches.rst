@@ -18,16 +18,6 @@ around the match word. This is
 useful for a wide variety of purposes, e.g., syntax,
 semantics, word collocation, discourse analysis, conversation analysis, etc.
 
-By design, :func:`~pycantonese.CHATReader.search` targets a *single* match word.
-If your use case needs to involve more, you'll have to write your custom code
-to iterate through the data and keep track of whatever is of your interest.
-For example, if you are to find all instances of [verb + verb particles]
-because you'd like to study verb particles and their distribution with
-particular verbs, then you can loop through the tokens
-(from :func:`~pycantonese.CHATReader.tokens`) with a two-token sliding window and
-keep instances where the first token is a verb and the second a particle
-(tokens give you the part-of-speech information).
-
 The following examples show how
 :func:`~pycantonese.CHATReader.search`
 works using its parameters.
@@ -37,9 +27,6 @@ We'll use the built-in HKCanCor corpus.
 
     >>> import pycantonese
     >>> corpus = pycantonese.hkcancor()
-
-
-.. _search_jyutping:
 
 Searching by a Jyutping Element
 -------------------------------
@@ -115,8 +102,6 @@ call, with the following constraints:
 * If ``jyutping`` is used, no other Jyutping search parameters can be used.
 * If ``final`` is used, neither ``nucleus`` nor ``coda`` can be used.
 
-.. _search_character:
-
 Searching by a Chinese Character
 --------------------------------
 
@@ -134,8 +119,6 @@ parameter:
      Token(word='機票', pos='N', jyutping='gei1piu3', mor=None, gra=None),
      Token(word='飛機', pos='N', jyutping='fei1gei1', mor=None, gra=None),
      Token(word='機', pos='NG', jyutping='gei1', mor=None, gra=None)]
-
-.. _search_pos:
 
 Searching by a Part-of-speech Tag
 ---------------------------------
@@ -192,8 +175,6 @@ For regular expressions in Python, see
 `here <https://docs.python.org/3/library/re.html>`_.
 
 For the part-of-speech tagset used by HKCanCor, see `here <http://compling.hss.ntu.edu.sg/hkcancor/>`_.
-
-.. _search_range:
 
 Searching by a Word or Utterance Range
 --------------------------------------
@@ -265,8 +246,6 @@ preceding the utterance containing the match word and zero utterances following 
 If ``utterance_range`` is not ``(0, 0)``, ``word_range`` is ignored since full
 utterances are already in the output.
 
-.. _search_combination:
-
 Searching by Multiple Criteria
 ------------------------------
 
@@ -293,8 +272,6 @@ we may be interested in all words with coda {p, t, k} plus tone 2 (high-rising):
      Token(word='碟形', pos='N', jyutping='dip2jing4', mor=None, gra=None),
      Token(word='碟', pos='N', jyutping='dip2', mor=None, gra=None)]
 
-.. _search_format:
-
 Output Format of Search Results
 -------------------------------
 
@@ -312,3 +289,17 @@ If ``by_utterances`` is ``False`` (default), the elements in the output list are
 (or spans of words when ``word_range`` is used). Otherwise, all utterances
 containing a match word are in the output list. If ``utterance_range`` is used,
 ``by_utterances`` is automatically ``True``.
+
+Complex Searches
+----------------
+
+By design, :func:`~pycantonese.CHATReader.search` targets a *single* match word.
+If your use case needs to involve more, you'll have to write your custom code
+to iterate through the data and keep track of whatever is of your interest.
+As you have complete control over the search logic,
+the search can be as customized as desired,
+to the extent that what you're after can be formulated in terms of
+what the corpus data and annotations provide.
+
+For examples of complex searches,
+please check out the tutorials from :ref:`archives`.
