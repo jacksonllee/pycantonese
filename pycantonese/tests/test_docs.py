@@ -26,6 +26,8 @@ import requests
         "https://pycantonese.org/papers/Lee-pycantonese-2015.html",
         "https://github.com/jacksonllee/pycantonese/blob/main/docs/tutorials/lee-pycantonese-2021-05-16.ipynb",  # noqa: E501
         "https://github.com/jacksonllee/pycantonese/blob/main/docs/tutorials/lee-python-2021-april.ipynb",  # noqa: E501
+        "https://github.com/chaaklau/school-of-cantonese-2021-materials/blob/main/chaak_sfp_2021_05_16.ipynb",  # noqa: E501
+        "https://github.com/charlestklam/school-of-cantonese-studies-2021/blob/main/Multiword_Expressions_Discontinuous_Constructions.ipynb",  # noqa: E501
     ],
 )
 def test_urls_work(url):

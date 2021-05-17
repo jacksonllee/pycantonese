@@ -3,6 +3,17 @@
 Archives
 ========
 
+Tutorials
+---------
+
+`Accessing and Searching Cantonese Corpora in PyCantonese <https://github.com/jacksonllee/pycantonese/blob/main/docs/tutorials/lee-pycantonese-2021-05-16.ipynb>`_ (Jackson Lee, May 16, 2021)
+
+`Sentence-Final Particles <https://github.com/chaaklau/school-of-cantonese-2021-materials/blob/main/chaak_sfp_2021_05_16.ipynb>`_ (Chaak-Ming Lau, May 16, 2021)
+
+`Multiword Expressions / Discontinuous Constructions <https://github.com/charlestklam/school-of-cantonese-studies-2021/blob/main/Multiword_Expressions_Discontinuous_Constructions.ipynb>`_ (Charles Lam, May 16, 2021)
+
+`Basic Python for Linguists <https://github.com/jacksonllee/pycantonese/blob/main/docs/tutorials/lee-python-2021-april.ipynb>`_ (Jackson Lee, April 2021)
+
 Research Outputs
 ----------------
 
@@ -18,10 +29,3 @@ Jackson L. Lee. 2015. PyCantonese: Cantonese linguistic research in the age of b
 Talk at the Childhood Bilingualism Research Centre, Chinese University of Hong Kong.
 September 15. 2015.
 `[Notes+slides] <https://pycantonese.org/papers/Lee-pycantonese-2015.html>`_
-
-Tutorials
----------
-
-`Accessing and Searching Cantonese Corpora in PyCantonese <https://github.com/jacksonllee/pycantonese/blob/main/docs/tutorials/lee-pycantonese-2021-05-16.ipynb>`_ (May 16, 2021)
-
-`Basic Python for Linguists <https://github.com/jacksonllee/pycantonese/blob/main/docs/tutorials/lee-python-2021-april.ipynb>`_ (April 2021)

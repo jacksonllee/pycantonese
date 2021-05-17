@@ -117,6 +117,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#searching-by-a-word-or-utterance-range">Searching by a Word or Utterance Range</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#searching-by-multiple-criteria">Searching by Multiple Criteria</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#output-format-of-search-results">Output Format of Search Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#complex-searches">Complex Searches</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="jyutping.html">Jyutping Romanization</a><ul>
@@ -256,8 +257,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="archives.html">Archives</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="archives.html#research-outputs">Research Outputs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="archives.html#tutorials">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="archives.html#research-outputs">Research Outputs</a></li>
 </ul>
 </li>
 </ul>
@@ -338,15 +339,6 @@ neighboring words and utterances
 around the match word. This is
 useful for a wide variety of purposes, e.g., syntax,
 semantics, word collocation, discourse analysis, conversation analysis, etc.</p>
-<p>By design, <a class="reference internal" href="generated/pycantonese.CHATReader.search.html#pycantonese.CHATReader.search" title="pycantonese.CHATReader.search"><code class="xref py py-func docutils literal notranslate"><span class="pre">search()</span></code></a> targets a <em>single</em> match word.
-If your use case needs to involve more, you’ll have to write your custom code
-to iterate through the data and keep track of whatever is of your interest.
-For example, if you are to find all instances of [verb + verb particles]
-because you’d like to study verb particles and their distribution with
-particular verbs, then you can loop through the tokens
-(from <a class="reference internal" href="api.html#pycantonese.CHATReader.tokens" title="pycantonese.CHATReader.tokens"><code class="xref py py-func docutils literal notranslate"><span class="pre">tokens()</span></code></a>) with a two-token sliding window and
-keep instances where the first token is a verb and the second a particle
-(tokens give you the part-of-speech information).</p>
 <p>The following examples show how
 <a class="reference internal" href="generated/pycantonese.CHATReader.search.html#pycantonese.CHATReader.search" title="pycantonese.CHATReader.search"><code class="xref py py-func docutils literal notranslate"><span class="pre">search()</span></code></a>
 works using its parameters.
@@ -356,7 +348,7 @@ We’ll use the built-in HKCanCor corpus.</p>
 </pre></div>
 </div>
 <div class="section" id="searching-by-a-jyutping-element">
-<span id="search-jyutping"></span><h2>Searching by a Jyutping Element<a class="headerlink" href="#searching-by-a-jyutping-element" title="Permalink to this headline">¶</a></h2>
+<h2>Searching by a Jyutping Element<a class="headerlink" href="#searching-by-a-jyutping-element" title="Permalink to this headline">¶</a></h2>
 <p>Search queries
 by various parsed Jyutping elements are possible by specifying a Jyutping parameter
 in the
@@ -422,7 +414,7 @@ call, with the following constraints:</p>
 </ul>
 </div>
 <div class="section" id="searching-by-a-chinese-character">
-<span id="search-character"></span><h2>Searching by a Chinese Character<a class="headerlink" href="#searching-by-a-chinese-character" title="Permalink to this headline">¶</a></h2>
+<h2>Searching by a Chinese Character<a class="headerlink" href="#searching-by-a-chinese-character" title="Permalink to this headline">¶</a></h2>
 <p>Search queries for a given Chinese character are performed by the <code class="docutils literal notranslate"><span class="pre">character</span></code>
 parameter:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">machine</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">character</span><span class="o">=</span><span class="s1">&#39;機&#39;</span><span class="p">)</span>
@@ -438,7 +430,7 @@ parameter:</p>
 </div>
 </div>
 <div class="section" id="searching-by-a-part-of-speech-tag">
-<span id="search-pos"></span><h2>Searching by a Part-of-speech Tag<a class="headerlink" href="#searching-by-a-part-of-speech-tag" title="Permalink to this headline">¶</a></h2>
+<h2>Searching by a Part-of-speech Tag<a class="headerlink" href="#searching-by-a-part-of-speech-tag" title="Permalink to this headline">¶</a></h2>
 <p>With the parameter <code class="docutils literal notranslate"><span class="pre">pos</span></code> in
 <a class="reference internal" href="generated/pycantonese.CHATReader.search.html#pycantonese.CHATReader.search" title="pycantonese.CHATReader.search"><code class="xref py py-func docutils literal notranslate"><span class="pre">search()</span></code></a>,
 verbs which bear the part-of-speech tag “V” in HKCanCor
@@ -488,7 +480,7 @@ different kinds of verbs annotated in HKCanCor:</p>
 <p>For the part-of-speech tagset used by HKCanCor, see <a class="reference external" href="http://compling.hss.ntu.edu.sg/hkcancor/">here</a>.</p>
 </div>
 <div class="section" id="searching-by-a-word-or-utterance-range">
-<span id="search-range"></span><h2>Searching by a Word or Utterance Range<a class="headerlink" href="#searching-by-a-word-or-utterance-range" title="Permalink to this headline">¶</a></h2>
+<h2>Searching by a Word or Utterance Range<a class="headerlink" href="#searching-by-a-word-or-utterance-range" title="Permalink to this headline">¶</a></h2>
 <p>It is possible to include in search results the neighboring words and utterances
 around a match word. This functionality is useful for syntax,
 semantics, and discourse-level research.</p>
@@ -549,7 +541,7 @@ preceding the utterance containing the match word and zero utterances following 
 utterances are already in the output.</p>
 </div>
 <div class="section" id="searching-by-multiple-criteria">
-<span id="search-combination"></span><h2>Searching by Multiple Criteria<a class="headerlink" href="#searching-by-multiple-criteria" title="Permalink to this headline">¶</a></h2>
+<h2>Searching by Multiple Criteria<a class="headerlink" href="#searching-by-multiple-criteria" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference internal" href="generated/pycantonese.CHATReader.search.html#pycantonese.CHATReader.search" title="pycantonese.CHATReader.search"><code class="xref py py-func docutils literal notranslate"><span class="pre">search()</span></code></a>
 is flexible and allows multiple parameters described
 above to be specified at the same time.
@@ -573,7 +565,7 @@ we may be interested in all words with coda {p, t, k} plus tone 2 (high-rising):
 </div>
 </div>
 <div class="section" id="output-format-of-search-results">
-<span id="search-format"></span><h2>Output Format of Search Results<a class="headerlink" href="#output-format-of-search-results" title="Permalink to this headline">¶</a></h2>
+<h2>Output Format of Search Results<a class="headerlink" href="#output-format-of-search-results" title="Permalink to this headline">¶</a></h2>
 <p>While
 <a class="reference internal" href="generated/pycantonese.CHATReader.search.html#pycantonese.CHATReader.search" title="pycantonese.CHATReader.search"><code class="xref py py-func docutils literal notranslate"><span class="pre">search()</span></code></a>
 always returns a list, the format of the elements in the list
@@ -586,6 +578,18 @@ Chinese characters only.</p>
 (or spans of words when <code class="docutils literal notranslate"><span class="pre">word_range</span></code> is used). Otherwise, all utterances
 containing a match word are in the output list. If <code class="docutils literal notranslate"><span class="pre">utterance_range</span></code> is used,
 <code class="docutils literal notranslate"><span class="pre">by_utterances</span></code> is automatically <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+</div>
+<div class="section" id="complex-searches">
+<h2>Complex Searches<a class="headerlink" href="#complex-searches" title="Permalink to this headline">¶</a></h2>
+<p>By design, <a class="reference internal" href="generated/pycantonese.CHATReader.search.html#pycantonese.CHATReader.search" title="pycantonese.CHATReader.search"><code class="xref py py-func docutils literal notranslate"><span class="pre">search()</span></code></a> targets a <em>single</em> match word.
+If your use case needs to involve more, you’ll have to write your custom code
+to iterate through the data and keep track of whatever is of your interest.
+As you have complete control over the search logic,
+the search can be as customized as desired,
+to the extent that what you’re after can be formulated in terms of
+what the corpus data and annotations provide.</p>
+<p>For examples of complex searches,
+please check out the tutorials from <a class="reference internal" href="archives.html#archives"><span class="std std-ref">Archives</span></a>.</p>
 </div>
 </div>
 
@@ -610,7 +614,7 @@ containing a match word are in the output list. If <code class="docutils literal
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on May 14, 2021
+        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on May 16, 2021
 
     </p>
   </div>
