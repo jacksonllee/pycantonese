@@ -1,5 +1,6 @@
 import collections
 import uuid
+from string import ascii_uppercase
 
 from pylangacq.chat import _File, Utterance
 
@@ -10,6 +11,7 @@ from pycantonese.pos_tagging.tagger import pos_tag
 
 # Punctuation marks for sentence segmentation.
 _SENT_PUNCT_MARKS = frozenset(("。", "！", "？"))
+_ASCII_UPPERCASE = frozenset(ascii_uppercase)
 
 
 def _analyze_text(text, segmenter, tagset):
@@ -73,8 +75,12 @@ def _create_chat(data, segmenter=None, tagset="universal") -> CHATReader:
             tiers={
                 # TODO: Convert punct to CHAT-styled punct.
                 "*XXX": " ".join(words),
-                # TODO: Show punct as itself instead of PUNCT|X.
-                "%mor": " ".join(f"{pos}|{jp or ''}" for pos, jp in zip(tags, jps)),
+                "%mor": " ".join(
+                    word
+                    if pos == "PUNCT" or pos[0] not in _ASCII_UPPERCASE
+                    else f"{pos}|{jp or ''}"
+                    for word, pos, jp in zip(words, tags, jps)
+                ),
             },
         )
         utterances.append(u)
