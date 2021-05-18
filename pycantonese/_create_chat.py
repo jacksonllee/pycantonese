@@ -73,11 +73,11 @@ def _create_chat(data, segmenter=None, tagset="universal") -> CHATReader:
             tokens=tokens,
             time_marks=None,
             tiers={
-                # TODO: Convert punct to CHAT-styled punct.
+                # TODO: Convert punct to CHAT-styled punct? Could be an optional arg.
                 "*XXX": " ".join(words),
                 "%mor": " ".join(
                     word
-                    if pos == "PUNCT" or pos[0] not in _ASCII_UPPERCASE
+                    if pos == "PUNCT" or pos[0].upper() not in _ASCII_UPPERCASE
                     else f"{pos}|{jp or ''}"
                     for word, pos, jp in zip(words, tags, jps)
                 ),
