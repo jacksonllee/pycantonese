@@ -8,7 +8,8 @@ from pycantonese.jyutping.characters import characters_to_jyutping
 from pycantonese.pos_tagging.tagger import pos_tag
 
 
-_PUNCTUATION_MARKS = frozenset(("。", "！", "？"))
+# Punctuation marks for sentence segmentation.
+_SENT_PUNCT_MARKS = frozenset(("。", "！", "？"))
 
 
 def _analyze_text(text, segmenter, tagset):
@@ -22,11 +23,39 @@ def _analyze_text(text, segmenter, tagset):
 
 
 def _create_chat(data, segmenter=None, tagset="universal") -> CHATReader:
+    """Create a CHAT reader by analyzing raw Cantonese text.
 
-    data = "".join(data.split())
-    for punct in _PUNCTUATION_MARKS:
-        data = data.replace(punct, f"{punct}\n")
-    input_strs = data.split("\n")
+    Parameters
+    ----------
+    data : str or Iterable[str]
+        Raw Cantonese text data.
+        If it's a string, simple sentence segmentation is applied
+        (by {"。", "！", "？"}),
+        and that each segmented sentence is treated as an utterance in the resulting
+        CHAT reader.
+        If it's not a string, it's assumed to be an iterable of strings,
+        each of which is treated as a resulting utterance.
+    segmenter : pycantonese.word_segmentation.Segmenter, optional
+        If not provided or if ``None`` is given, the default word segmentation behavior.
+        For custom behavior, pass in a custom
+        :class:`~pycantonese.word_segmentation.Segmenter` object.
+    tagset : str, {"universal", "hkcancor"}, optional
+        The part-of-speech tagset that the returned tags are in.
+        This is the same argument for :func:`~pycantonese.pos_tag`.
+
+    Returns
+    -------
+    :class:`~pycantonese.CHATReader`
+    """
+
+    if issubclass(type(data), str):
+        # Perform simple sentence segmentation.
+        for punct in _SENT_PUNCT_MARKS:
+            data = data.replace(punct, f"{punct}\n")
+        input_strs = data.split("\n")
+    else:
+        # Assume sentence segmentation is given: `data` is an iterable of strings.
+        input_strs = data
 
     utterances = []
 

@@ -11,6 +11,7 @@ from pycantonese.jyutping.yale import jyutping_to_yale, jyutping2yale
 from pycantonese.pos_tagging.tagger import pos_tag
 from pycantonese.stop_words import stop_words
 from pycantonese.word_segmentation import segment
+from pycantonese._create_chat import _create_chat
 
 
 __version__ = pkg_resources.get_distribution("pycantonese").version
