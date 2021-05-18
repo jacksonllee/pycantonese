@@ -18,6 +18,7 @@ __version__ = pkg_resources.get_distribution("pycantonese").version
 
 __all__ = [
     "__version__",
+    "_create_chat",
     "CHATReader",
     "characters_to_jyutping",
     "characters2jyutping",
