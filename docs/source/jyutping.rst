@@ -30,7 +30,7 @@ and returns its word-segmented version with Jyutping romanization:
 
 The characters-to-Jyutping conversion model is based on two data sources:
 (i) the HKCanCor corpus data included in the PyCantonese library, and
-(ii) the rime-cantonese data (the 2020.09.09 release, CC BY 4.0 license).
+(ii) the rime-cantonese data (the 2021.05.16 release, CC BY 4.0 license).
 Any unseen character, Cantonese or otherwise, is represented by ``None`` in the output.
 
 To further process the Jyutping strings,
@@ -53,6 +53,12 @@ the underlying data contains the relevant tokens. Example:
     >>> # The correct pronunciation of 蛋 is with tone 6 (low-level) in 蛋糕.
     >>> pycantonese.characters_to_jyutping('蛋糕')  # cake
     [('蛋糕', 'daan6gou1')]
+
+Because :func:`~pycantonese.characters_to_jyutping` performs word segmentation
+under the hood (via :func:`~pycantonese.segment`),
+it is possible to customize word segmentation by passing in a
+:class:`~pycantonese.word_segmentation.Segmenter` instance to the ``segmenter``
+keyword argument of :func:`~pycantonese.characters_to_jyutping`.
 
 .. _parsing_jyutping_strings:
 

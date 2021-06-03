@@ -91,7 +91,7 @@ available from CHILDES and TalkBank (in alphabetical order):
         >>> corpus.n_files()
         36
         >>> len(corpus.words())
-        70438
+        84233
 
 * `HKU-70 Corpus <https://childes.talkbank.org/access/Chinese/Cantonese/HKU.html>`_
 

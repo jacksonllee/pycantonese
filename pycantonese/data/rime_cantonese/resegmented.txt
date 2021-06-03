@@ -1,5 +1,5 @@
 # This list contains all the keys from the original jyut6ping3.dict.yaml and
-# jyut6ping3.lettered.dict.yaml data files from rime-cantonese (release 2020.09.09).
+# jyut6ping3.lettered.dict.yaml data files from rime-cantonese (release 2021.05.16).
 
 # Keys in this list that have spaces indicate re-segmentation.
 # Keys that don't have spaces are left here for comparison;

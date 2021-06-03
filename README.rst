@@ -93,7 +93,7 @@ its source in terms of format. The original dataset has a CC BY license.
 Please see ``pycantonese/data/hkcancor/README.md``
 in the GitHub source code for details.
 
-The rime-cantonese data (release 2020.09.09) is
+The rime-cantonese data (release 2021.05.16) is
 incorporated into PyCantonese for word segmentation and
 characters-to-Jyutping conversion.
 This data has a CC BY 4.0 license.

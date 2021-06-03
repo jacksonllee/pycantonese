@@ -1,4 +1,5 @@
 from functools import lru_cache
+from typing import List
 
 from wordseg import LongestStringMatching
 
@@ -66,7 +67,7 @@ def _get_default_segmenter():
     return Segmenter()
 
 
-def segment(unsegmented, cls=None):
+def segment(unsegmented: str, cls: Segmenter = None) -> List[str]:
     """Segment the unsegmented input.
 
     The word segmentation model is the longest string matching approach,
@@ -75,24 +76,20 @@ def segment(unsegmented, cls=None):
     The segmented sentence does not contain words longer than five
     characters.
 
-    .. versionadded:: 2.4.0
-
-    .. versionchanged:: 3.0.0
-        Added the keyword argument ``cls`` to allow a customized segmenter.
-
     Parameters
     ----------
     unsegmented : str
         Unsegmented input.
     cls: Segmenter, optional
-        A custom `Segmenter` class object for setting the maximal
+        A custom :class:`~pycantonese.word_segmentation.Segmenter` instance
+        for setting the maximal
         word length (default = 5) and words to allow or disallow.
         If not provided, a default segmenter is used, with maximum word
         length = 5.
 
     Returns
     -------
-    list[str]
+    List[str]
 
     Examples
     --------
