@@ -7,7 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- Characters-to-Jyutping conversion:
+  The `characters_to_jyutping` function now has the `segmenter` kwarg for
+  customizing word segmentation.
+
 ### Changed
+- Characters-to-Jyutping conversion:
+    For the `characters_to_jyutping` function,
+    in case rime-cantonese and HKCanCor don't agree,
+    rime-cantonese data (more accurate) is preferred.
+- Updated the rime-cantonese data to the latest `2021.05.16` release,
+  improving both characters-to-Jyutping conversion and word segmentation.
+
 ### Deprecated
 ### Removed
 ### Fixed
