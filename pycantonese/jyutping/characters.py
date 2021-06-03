@@ -35,36 +35,30 @@ def _get_words_characters_to_jyutping():
     for word, jyutping_counter in words_to_jyutping_counters.items():
         jp = jyutping_counter.most_common(1)[0][0]
         words_to_jyutping[word] = jp
-    characters_to_jyutping = {}
+    chars_to_jp = {}
     for character, jyutping_counter in characters_to_jyutping_counters.items():
         jp = jyutping_counter.most_common(1)[0][0]
-        characters_to_jyutping[character] = jp
+        chars_to_jp[character] = jp
 
     words_to_jyutping = {
-        # The ordering of the following dicts matters. The rime-cantonese
-        # data may contain what's been re-segmented by this repo, and may
-        # contain jyutping pronunciations for particular characters that
-        # are only used in those contexts. The data from HKCanCor should comes
-        # last to act as the default to override such cases.
+        # The ordering of the following dicts matters.
+        # rime-cantonese (more accurate data) overrides HKCanCor if they don't agree.
+        **words_to_jyutping,
         **{k: v for k, v in LETTERED.items() if len(_split_chars_with_alphanum(k)) > 1},
         **{k: v for k, v in CHARS_TO_JYUTPING.items() if len(k) > 1},
-        **words_to_jyutping,
     }
 
     # TODO: Extract characters from CHARS_TO_JYUTPING and LETTERED
     #    and add them to characters_to_jyutping
-    characters_to_jyutping = {
-        # The ordering of the following dicts matters. The rime-cantonese
-        # data may contain what's been re-segmented by this repo, and may
-        # contain jyutping pronunciations for particular characters that
-        # are only used in those contexts. The data from HKCanCor should comes
-        # last to act as the default to override such cases.
+    chars_to_jp = {
+        # The ordering of the following dicts matters.
+        # rime-cantonese (more accurate data) overrides HKCanCor if they don't agree.
+        **chars_to_jp,
         **{k: v for k, v in LETTERED.items() if len(k) == 1},
         **{k: v for k, v in CHARS_TO_JYUTPING.items() if len(k) == 1},
-        **characters_to_jyutping,
     }
 
-    return words_to_jyutping, characters_to_jyutping
+    return words_to_jyutping, chars_to_jp
 
 
 def characters_to_jyutping(chars):

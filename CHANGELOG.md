@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 ### Changed
+- Characters-to-Jyutping conversion:
+    - In case rime-cantonese and HKCanCor don't agree,
+      rime-cantonese data (more accurate) is preferred.
+
 ### Deprecated
 ### Removed
 ### Fixed
