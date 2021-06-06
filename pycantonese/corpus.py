@@ -1,12 +1,13 @@
 import dataclasses
 import functools
 import os
-from typing import List, Optional, Union
+from typing import List, Optional, Union, Tuple
 
 from pylangacq.chat import Reader, _params_in_docstring
 from pylangacq.chat import read_chat as pylangacq_read_chat
 from pylangacq.objects import Gra
 
+from pycantonese._punctuation_marks import _PUNCTUATION_MARKS
 from pycantonese.jyutping.parse_jyutping import parse_jyutping
 from pycantonese.search import _perform_search
 from pycantonese.util import _deprecate
@@ -29,17 +30,37 @@ class Token:
         Jyutping romanization
     mor : str
         Morphological information
+    gloss : str
+        Gloss in English
     gra : Gra
         Grammatical relation
     """
 
-    __slots__ = ("word", "pos", "jyutping", "mor", "gra")
+    __slots__ = ("word", "pos", "jyutping", "mor", "gloss", "gra")
 
     word: str
     pos: Optional[str]
     jyutping: Optional[str]
     mor: Optional[str]
+    gloss: Optional[str]
     gra: Optional[Gra]
+
+    def to_mor_tier(self) -> str:
+        if self.word in _PUNCTUATION_MARKS:
+            return self.word
+        result = ""
+        if self.pos:
+            result += f"{self.pos}|"
+        if self.jyutping:
+            result += self.jyutping
+        if self.mor:
+            result += self.mor
+        if self.gloss:
+            result += f"={self.gloss}"
+        return result
+
+    def to_gra_tier(self) -> str:
+        return f"{self.gra.dep}|{self.gra.head}|{self.gra.rel}"
 
 
 class CHATReader(Reader):
@@ -58,32 +79,35 @@ class CHATReader(Reader):
         )
 
     @staticmethod
-    def _preprocess_token(t) -> Token:
+    def _partition_maybe_none(x: str, sep: str) -> Tuple[str, str]:
+        if x is None:
+            return None, None
+        if sep not in x:
+            return x, None
+        new1, _, new2 = x.partition(sep)
+        return new1, new2
+
+    def _preprocess_token(self, t) -> Token:
         # Examples from the CHILDES LeeWongLeung corpus, child mhz
         # e.g., mor is suk1&DIM=uncle, word is 叔叔
-        # e.g., mor is ngo5-PL=I, word i 我
+        # e.g., mor is ngo5-PL=I, word is 我
 
-        try:
-            jyutping_mor, _, eng = t.mor.partition("=")
-        except AttributeError:
-            return Token(t.word, t.pos, None, t.mor, t.gra)
+        jyutping_mor, gloss = self._partition_maybe_none(t.mor, "=")
+        jyutping_mor, mor2 = self._partition_maybe_none(jyutping_mor, "-")
+        jyutping, mor1 = self._partition_maybe_none(jyutping_mor, "&")
 
-        if "-" in jyutping_mor:
-            jyutping, _, mor = jyutping_mor.partition("-")
-        elif "&" in jyutping_mor:
-            jyutping, _, mor = jyutping_mor.partition("&")
-        else:
-            jyutping = jyutping_mor
-            mor = ""
-
-        mor = f"{mor}={eng}" if eng else mor
+        mor = ""
+        if mor1:
+            mor += f"&{mor1}"
+        if mor2:
+            mor += f"-{mor2}"
 
         try:
             parse_jyutping(jyutping)
         except ValueError:
             jyutping = None
 
-        return Token(t.word, t.pos, jyutping or None, mor or None, t.gra)
+        return Token(t.word, t.pos, jyutping or None, mor or None, gloss or None, t.gra)
 
     @_params_in_docstring("participants", "exclude", "by_utterances", "by_files")
     def jyutping(
@@ -340,17 +364,6 @@ class CHATReader(Reader):
             return result_by_files
         else:
             return self._flatten(list, result_by_files)
-
-    def _to_strs(self):
-        strs = []
-        for f in self._files:
-            chat_str = ""
-            for u in f.utterances:
-                for mark, tier in u.tiers.items():
-                    mark = mark if mark.startswith("%") else f"*{mark}"
-                    chat_str += f"{mark}:\t{tier}\n"
-            strs.append(chat_str)
-        return strs
 
 
 class _HKCanCorReader(CHATReader):

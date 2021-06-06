@@ -8,7 +8,8 @@ import pycantonese
 
 skip_because_tokens_are_different = pytest.mark.skip(
     reason=(
-        "PyCantonese's Token class has the extra ``jyutping`` attribute and "
+        "PyCantonese's Token class has the extra ``jyutping`` and ``gloss``"
+        "attributes and "
         "turns meaningless ``mor`` into ``None`` (not done at ``pylangacq.Reader``)."
     ),
 )

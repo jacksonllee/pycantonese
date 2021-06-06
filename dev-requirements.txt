@@ -3,12 +3,12 @@ dataclasses==0.8 ; python_version < '3.7'
 pylangacq==0.15.0
 wordseg==0.0.2
 # For tests, style checks, and deployment
-black==20.8b1
-flake8==3.8.4
-pytest==6.1.1
-pytest-cov==2.10.1
-twine==3.2.0
+black==21.9b0
+flake8==3.9.2
+pytest==6.2.5
+pytest-cov==2.12.1
 sybil==2.0.1
+twine==3.4.2
 #
 # For docs
 m2r==0.2.1
@@ -18,4 +18,4 @@ sphinx-rtd-theme==0.5.0
 sphinx-sitemap==2.2.0
 #
 # For data
-requests==2.24.0
+requests==2.26.0

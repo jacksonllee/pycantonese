@@ -5,8 +5,6 @@ from setuptools import setup, find_packages
 
 _THIS_DIR = os.path.dirname(__file__)
 
-_VERSION = "3.3.1"
-
 
 def _get_long_description():
     with open(os.path.join(_THIS_DIR, "README.rst"), encoding="utf8") as f:
@@ -18,10 +16,19 @@ def _get_long_description():
     return long_description
 
 
+def _get_version():
+    version = open(os.path.join(_THIS_DIR, "pycantonese", "_version.py"), "r").read()
+    regex = r"(?P<major>\d+)(.(?P<minor>\d+))?(.(?P<patch>\d+))?"
+    match = re.search(regex, version)
+    if not match:
+        raise RuntimeError("Unable to find version string.")
+    return f'{match.group("major")}.{match.group("minor")}.{match.group("patch")}'
+
+
 def main():
     setup(
         name="pycantonese",
-        version=_VERSION,
+        version=_get_version(),
         description="PyCantonese: Cantonese Linguistics and NLP in Python",
         long_description=_get_long_description(),
         long_description_content_type="text/x-rst",

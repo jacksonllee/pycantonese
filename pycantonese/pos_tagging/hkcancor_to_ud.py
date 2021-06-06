@@ -1,6 +1,6 @@
 """POS tagset mapping between HKCanCor and Universal Dependencies."""
 
-from pycantonese.pos_tagging.punctuation_marks import _PUNCTUATION_MARKS
+from pycantonese._punctuation_marks import _PUNCTUATION_MARKS
 
 
 # The Python dictionary below maps the HKCanCor tagset to the Universal

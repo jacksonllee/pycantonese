@@ -7,7 +7,7 @@ import random
 
 from typing import Dict
 
-from pycantonese.pos_tagging.punctuation_marks import _PUNCTUATION_MARKS
+from pycantonese._punctuation_marks import _PUNCTUATION_MARKS
 from pycantonese.pos_tagging.hkcancor_to_ud import hkcancor_to_ud
 
 
