@@ -18,6 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
     rime-cantonese data (more accurate) is preferred.
 - Updated the rime-cantonese data to the latest `2021.05.16` release,
   improving both characters-to-Jyutping conversion and word segmentation.
+- Updated the PyLangAcq dependency to v0.15.0, allowing PyCantonese's `CHATReader`
+  to use the new methods `to_strs` and `to_chat`.
 
 ### Deprecated
 ### Removed
