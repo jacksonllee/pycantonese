@@ -1,6 +1,6 @@
 # Core dependencies pinned at their latest versions for tests and dev
 dataclasses==0.8 ; python_version < '3.7'
-pylangacq==0.14.1
+pylangacq==0.15.0
 wordseg==0.0.2
 # For tests, style checks, and deployment
 black==20.8b1
