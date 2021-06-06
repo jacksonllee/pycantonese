@@ -67,7 +67,8 @@ corresponds to ``FC-001_v2.cha``):
 .. code-block:: python
 
     >>> corpus.headers()[0]
-    {'Date': {datetime.date(1997, 4, 30)},
+    {'UTF8': '',
+     'Languages': ['yue', 'eng'],
      'Participants': {'XXA': {'name': 'A',
                               'language': 'yue , eng',
                               'corpus': 'HKCanCor',
@@ -88,8 +89,7 @@ corresponds to ``FC-001_v2.cha``):
                               'role': 'Adult',
                               'education': '',
                               'custom': 'origin:HK'}},
-     'UTF8': '',
-     'Languages': ['yue', 'eng'],
+     'Date': {datetime.date(1997, 4, 30)},
      'Tape Number': '001'}
 
 
