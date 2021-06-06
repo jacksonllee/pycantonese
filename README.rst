@@ -144,7 +144,9 @@ Setting up a Development Environment
 
 The latest code under development is available on Github at
 `jacksonllee/pycantonese <https://github.com/jacksonllee/pycantonese>`_.
-You need to have `Git LFS <https://git-lfs.github.com/>`_ installed on your system.
+You need to have `Git LFS <https://git-lfs.github.com/>`_ installed on your system
+(run `brew install git-lfs` if you have Homebrew installed on MacOS,
+or run `sudo apt-get install git-lfs` if you're on Ubuntu).
 To obtain this version for experimental features or for development:
 
 .. code-block:: bash
