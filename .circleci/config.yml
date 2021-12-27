@@ -1,30 +1,22 @@
 version: 2.1
 
 orbs:
-  python: circleci/python@1.2.0
+  win: circleci/windows@2.2.0
 
 jobs:
   pre-build:
-    description: Install and run a Python standalone package
+    description: A check that needs to be done on only one supported Python version
     parameters:
-      command-name:
-        type: string
       command-run:
         type: string
     docker:
+      # Pick the highest Python 3.x version that pycantonese is known to support
       - image: cimg/python:3.9
         #auth:
         #  username: $DOCKERHUB_USERNAME
         #  password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
-      - run:
-          name: Create custom requirements
-          command: grep << parameters.command-name >> dev-requirements.txt > << parameters.command-name >>-dev-requirements.txt
-      - python/install-packages:
-          pkg-manager: pip
-          pip-dependency-file: << parameters.command-name >>-dev-requirements.txt
-          cache-version: << parameters.command-name >>-v1
       - run:
           working_directory: ~/project/
           command: << parameters.command-run >>
@@ -58,20 +50,16 @@ jobs:
           key: v1-my-cache-key-{{ checksum ".assets-id" }}
           paths:
             - .git/lfs
-      - python/install-packages:
-          pkg-manager: pip
-          pip-dependency-file: dev-requirements.txt
-          pre-install-steps:
-              - run:
-                  name: Build source distribution and install package from it
-                  command: |
-                      pip install --progress-bar off --upgrade pip setuptools
-                      python setup.py sdist
-                      pip install dist/*.tar.gz
       - run:
-          name: Check for PyPI compliance via twine
+          # Test that we can build a source distribution that can correctly
+          # install from clean slate.
+          # "python -m build" creates dist/pycantonese-x.y.z.tar.gz and dist/pycantonese-x.y.z-py3-none-any.whl
+          name: Build source distribution and install package from it
           working_directory: ~/project/
-          command: twine check dist/`ls dist/ | grep .tar.gz`
+          command: |
+              pip install -r dev-requirements.txt && \
+              python -m build && \
+              pip install dist/`ls dist/ | grep .whl`
       - run:
           name: Show installed Python packages
           command: pip list -v
@@ -80,10 +68,32 @@ jobs:
           working_directory: ~/
           # Avoid being able to import pycantonese by relative import.
           # Test code by importing the *installed* pycantonese in site-packages.
-          command: pytest -vv --doctest-modules --cov=project/pycantonese --junitxml=/tmp/testxml/report.xml project/pycantonese project/docs
+          command: pytest -vv --durations=0 --doctest-modules --cov=project/pycantonese --junitxml=/tmp/testxml/report.xml project/pycantonese project/docs
           no_output_timeout: 20m
       - store_test_results:
           path: /tmp/testxml/
+
+  build-python-win:
+    executor:
+      name: win/default
+      shell: powershell.exe
+    steps:
+      - checkout
+      - run: systeminfo
+      - run:
+          name: Run tests on Windows
+          shell: bash.exe
+          # The codebase is available at c:\users\circleci\project,
+          # We run commands at one directory above, so that we avoid being able to
+          # import pycantonese by relative import when running the test suite.
+          working_directory: c:\users\circleci
+          command: |
+            python --version && \
+            pip install -r project/dev-requirements.txt && \
+            pip install project/. && \
+            pip list && \
+            pytest -vv project/pycantonese && \
+            pytest -vv project/docs/source
 
 workflows:
   version: 2
@@ -91,16 +101,31 @@ workflows:
     jobs:
       - pre-build:
           name: flake8
-          command-name: flake8
-          command-run: flake8 setup.py pycantonese
+          command-run: |
+            pip install -r dev-requirements.txt && \
+            flake8 --config=setup.cfg pycantonese
       - pre-build:
           name: black
-          command-name: black
-          command-run: black --check setup.py pycantonese
+          command-run:  |
+            pip install -r dev-requirements.txt && \
+            black --check pycantonese
+      - pre-build:
+          name: twine
+          command-run: |
+            pip install -r dev-requirements.txt && \
+            python -m build && \
+            twine check dist/`ls dist/ | grep .tar.gz` && \
+            twine check dist/`ls dist/ | grep .whl`
       - build-python:
           requires:
             - flake8
             - black
+            - twine
           matrix:
             parameters:
               python-version: ["3.6", "3.7", "3.8", "3.9"]
+      - build-python-win:
+          requires:
+            - flake8
+            - black
+            - twine

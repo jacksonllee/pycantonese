@@ -73,7 +73,7 @@ If you would like to help avoid wasting free Internet resources
 you can run pytest/flake8/black checks locally before pushing commits:
 
 ```bash
-flake8 setup.py pycantonese
-black --check setup.py pycantonese
+flake8 pycantonese
+black --check pycantonese
 pytest -vv pycantonese docs/source
 ```
