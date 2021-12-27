@@ -1,7 +1,7 @@
 PyCantonese: Cantonese Linguistics and NLP in Python
 ====================================================
 
-.. images:: https://jacksonllee.com/logos/pycantonese-logo.png
+.. image:: https://jacksonllee.com/logos/pycantonese-logo.png
    :width: 250px
 
 Full Documentation: https://pycantonese.org

@@ -2,7 +2,7 @@ import collections
 import functools
 import logging
 import os
-import pickle
+import pickle  # nosec
 import random
 
 from typing import Dict
@@ -210,7 +210,7 @@ class POSTagger:
             The path where the pickled model is located.
         """
         try:
-            w_td_c = pickle.load(open(path, "rb"))
+            w_td_c = pickle.load(open(path, "rb"))  # nosec
         except IOError:
             raise FileNotFoundError(f"Can't locate tagger model {path}")
         except:  # noqa

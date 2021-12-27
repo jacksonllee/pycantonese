@@ -116,11 +116,26 @@ workflows:
             python -m build && \
             twine check dist/`ls dist/ | grep .tar.gz` && \
             twine check dist/`ls dist/ | grep .whl`
+      - pre-build:
+          name: safety
+          command-run: |
+            pip install -e . && \
+            pip install --upgrade safety && \
+            safety --version && \
+            pip freeze | safety check --stdin
+      - pre-build:
+          name: bandit
+          command-run: |
+            pip install --upgrade bandit && \
+            bandit --version && \
+            bandit -r pycantonese -x pycantonese/tests
       - build-python:
           requires:
             - flake8
             - black
             - twine
+            - safety
+            - bandit
           matrix:
             parameters:
               python-version: ["3.6", "3.7", "3.8", "3.9"]
@@ -129,3 +144,5 @@ workflows:
             - flake8
             - black
             - twine
+            - safety
+            - bandit

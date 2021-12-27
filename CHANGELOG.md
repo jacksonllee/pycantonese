@@ -22,7 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   improving both characters-to-Jyutping conversion and word segmentation.
 - Updated the PyLangAcq dependency to v0.15.0, allowing PyCantonese's `CHATReader`
   to use the new methods `to_strs` and `to_chat`.
-* Switched to `setup.cfg` to fully specify build metadata and options,
+- Switched to `setup.cfg` to fully specify build metadata and options,
   while keeping a minimal `setup.py` for backward compatibility.
   Related to the new `pyproject.toml`.
 
@@ -30,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Removed
 ### Fixed
 ### Security
+- Turned on `safety` and `bandit` checks at CircleCI builds.
 
 ## [3.3.1] - 2021-05-14
 
