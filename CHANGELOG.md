@@ -25,9 +25,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Switched to `setup.cfg` to fully specify build metadata and options,
   while keeping a minimal `setup.py` for backward compatibility.
   Related to the new `pyproject.toml`.
+- Added support for Python 3.10.
 
 ### Deprecated
 ### Removed
+- Dropped support for Python 3.6.
+
 ### Fixed
 ### Security
 - Turned on `safety` and `bandit` checks at CircleCI builds.
