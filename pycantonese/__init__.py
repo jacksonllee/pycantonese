@@ -1,3 +1,9 @@
+try:
+    from importlib.metadata import version
+except ModuleNotFoundError:
+    # For Python < 3.8
+    from importlib_metadata import version
+
 from pycantonese.corpus import hkcancor, read_chat, CHATReader
 from pycantonese.jyutping.characters import (
     characters_to_jyutping,
@@ -10,8 +16,9 @@ from pycantonese.pos_tagging.tagger import pos_tag
 from pycantonese.stop_words import stop_words
 from pycantonese.word_segmentation import segment
 from pycantonese.parsing import parse_text
-from pycantonese._version import __version__
 
+
+__version__ = version("pycantonese")
 
 __all__ = [
     "__version__",

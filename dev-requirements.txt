@@ -1,20 +1,17 @@
-# Core dependencies pinned at their latest versions for tests and dev
-dataclasses==0.8 ; python_version < '3.7'
-pylangacq==0.15.0
-wordseg==0.0.2
 # For tests, style checks, and deployment
-black==21.9b0
-flake8==3.9.2
+black==21.12b0
+build==0.7.0
+flake8==4.0.1
 pytest==6.2.5
-pytest-cov==2.12.1
-sybil==2.0.1
-twine==3.4.2
+pytest-cov==3.0.0
+sybil==3.0.0
+twine==3.7.1
 #
 # For docs
 m2r==0.2.1
 numpydoc==1.1.0
-Sphinx==3.2.1
-sphinx-rtd-theme==0.5.0
+Sphinx==4.3.2
+sphinx-rtd-theme==1.0.0
 sphinx-sitemap==2.2.0
 #
 # For data

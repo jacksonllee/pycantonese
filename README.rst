@@ -1,13 +1,8 @@
 PyCantonese: Cantonese Linguistics and NLP in Python
 ====================================================
 
-.. start-raw-directive
-
-.. raw:: html
-
-    <img src="https://jacksonllee.com/logos/pycantonese-logo.png" width="250px">
-
-.. end-raw-directive
+.. images:: https://jacksonllee.com/logos/pycantonese-logo.png
+   :width: 250px
 
 Full Documentation: https://pycantonese.org
 
