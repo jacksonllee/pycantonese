@@ -58,8 +58,6 @@ jobs:
           name: Build source distribution and install package from it
           working_directory: ~/project/
           command: |
-              # TODO: Remove pip-installing pylangacq from source
-              pip install --quiet "git+https://github.com/jacksonllee/pylangacq.git@main#egg=pylangacq" && \
               pip install -r dev-requirements.txt && \
               python -m build && \
               pip install dist/`ls dist/ | grep .whl`
@@ -91,8 +89,6 @@ jobs:
           # import pycantonese by relative import when running the test suite.
           working_directory: c:\users\circleci
           command: |
-            # TODO: Remove pip-installing pylangacq from source
-            pip install --quiet "git+https://github.com/jacksonllee/pylangacq.git@main#egg=pylangacq" && \
             python --version && \
             pip install -r project/dev-requirements.txt && \
             pip install project/. && \
