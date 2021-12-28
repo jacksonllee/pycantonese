@@ -29,7 +29,9 @@
       ~CHATReader.from_files
       ~CHATReader.from_strs
       ~CHATReader.from_zip
+      ~CHATReader.head
       ~CHATReader.headers
+      ~CHATReader.info
       ~CHATReader.ipsyn
       ~CHATReader.jyutping
       ~CHATReader.jyutping_sents
@@ -46,6 +48,9 @@
       ~CHATReader.sents
       ~CHATReader.tagged_sents
       ~CHATReader.tagged_words
+      ~CHATReader.tail
+      ~CHATReader.to_chat
+      ~CHATReader.to_strs
       ~CHATReader.tokens
       ~CHATReader.ttr
       ~CHATReader.utterances

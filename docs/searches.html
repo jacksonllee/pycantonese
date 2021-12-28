@@ -1,77 +1,40 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Corpus Search Queries &mdash; PyCantonese 3.3.1 documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Corpus Search Queries &mdash; PyCantonese 3.4.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
     <link rel="shortcut icon" href="_static/pycantonese-logo.ico"/>
-  
-  
-  
-
-  
+    <link rel="canonical" href="https://pycantonese.org/searches.html" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Jyutping Romanization" href="jyutping.html" />
+    <link rel="next" title="Parsing Cantonese Text" href="parsing.html" />
     <link rel="prev" title="Corpus Reader Methods" href="reader.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> PyCantonese
-          
-
-          
-            
+            <a href="index.html" class="icon icon-home"> PyCantonese
             <img src="_static/pycantonese-logo-white.svg" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                3.3.1
+                3.4.0
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -79,18 +42,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data.html">Corpus Data</a><ul>
@@ -118,6 +70,16 @@
 <li class="toctree-l2"><a class="reference internal" href="#searching-by-multiple-criteria">Searching by Multiple Criteria</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#output-format-of-search-results">Output Format of Search Results</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#complex-searches">Complex Searches</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parsing.html">Parsing Cantonese Text</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#input-1-a-plain-string">Input 1: A Plain String</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#input-2-a-list-of-strings">Input 2: A List of Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#input-3-a-list-of-tuples-of-strings">Input 3: A List of Tuples of Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#customizing-word-segmentation">Customizing Word Segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#customizing-part-of-speech-tagging">Customizing Part-of-Speech Tagging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#outputting-chat-data">Outputting CHAT Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#more-customization">More Customization</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="jyutping.html">Jyutping Romanization</a><ul>
@@ -153,6 +115,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#natural-language-processing">Natural Language Processing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.stop_words.html">pycantonese.stop_words</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.parse_text.html">pycantonese.parse_text</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.segment.html">pycantonese.segment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.word_segmentation.Segmenter.html">pycantonese.word_segmentation.Segmenter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.pos_tag.html">pycantonese.pos_tag</a></li>
@@ -174,86 +137,93 @@
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#security">Security</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id2">[3.3.1] - 2021-05-14</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id3">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id2">[3.4.0] - 2021-12-28</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id3">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id4">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id5">Removed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id6">Security</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id4">[3.3.0] - 2021-05-14</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id5">Changed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id6">Fixed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id7">[3.2.4] - 2021-05-07</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id7">[3.3.1] - 2021-05-14</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#id8">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id9">[3.2.3] - 2021-04-12</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id10">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id9">[3.3.0] - 2021-05-14</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id10">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id11">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id11">[3.2.2] - 2021-03-23</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id12">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id12">[3.2.4] - 2021-05-07</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id13">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id13">[3.2.1] - 2021-03-21</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id14">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id14">[3.2.3] - 2021-04-12</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id15">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id15">[3.2.0] - 2021-03-20</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id16">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id17">Changed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id18">Deprecated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id16">[3.2.2] - 2021-03-23</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id17">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id18">[3.2.1] - 2021-03-21</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#id19">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id20">[3.1.1] - 2021-03-18</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id21">Fixed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id22">[3.1.0] - 2021-02-21</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id23">Added</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id20">[3.2.0] - 2021-03-20</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id21">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id22">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id23">Deprecated</a></li>
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#id24">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id25">[3.0.0] - 2020-10-25</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id26">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id27">Changed</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id25">[3.1.1] - 2021-03-18</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id26">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id27">[3.1.0] - 2021-02-21</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id28">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id29">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id30">[3.0.0] - 2020-10-25</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id31">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id32">Changed</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="changelog.html#api-breaking-changes">API-breaking Changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changelog.html#non-api-breaking-changes">Non-API-breaking Changes</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id28">Deprecated</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id29">Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id33">Deprecated</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id34">Security</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id30">[2.4.1] - 2020-10-10</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id31">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id35">[2.4.1] - 2020-10-10</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id36">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id32">[2.4.0] - 2020-10-10</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id33">Added</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id34">[2.3.0] - 2020-07-24</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id35">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id36">Removed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id37">[2.2.0] - 2018-06-30</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id37">[2.4.0] - 2020-10-10</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#id38">Added</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id39">[2.1.0] - 2018-06-11</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id39">[2.3.0] - 2020-07-24</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#id40">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id41">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id41">Removed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id42">[2.0.0] - 2016-02-06</a></li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id48">[1.0] - 2015-09-06</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id42">[2.2.0] - 2018-06-30</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id43">Added</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id44">[2.1.0] - 2018-06-11</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id45">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id46">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id47">[2.0.0] - 2016-02-06</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id53">[1.0] - 2015-09-06</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#dev-2015-09-02">[1.0dev] - 2015-09-02</a></li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id49">[0.2.1] - 2015-01-25</a></li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id50">[0.2] - 2015-01-22</a></li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id51">[0.1] - 2014-12-17</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id54">[0.2.1] - 2015-01-25</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id55">[0.2] - 2015-01-22</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id56">[0.1] - 2014-12-17</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="archives.html">Archives</a><ul>
@@ -263,69 +233,31 @@
 </li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">PyCantonese</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Corpus Search Queries</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="corpus-search-queries">
-<span id="searches"></span><h1>Corpus Search Queries<a class="headerlink" href="#corpus-search-queries" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="corpus-search-queries">
+<span id="searches"></span><h1>Corpus Search Queries<a class="headerlink" href="#corpus-search-queries" title="Permalink to this headline"></a></h1>
 <p>A common task in corpus-based linguistic work
 is to search for specific elements of interest.
 PyCantonese provides the general-purpose
@@ -347,8 +279,8 @@ We’ll use the built-in HKCanCor corpus.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span> <span class="o">=</span> <span class="n">pycantonese</span><span class="o">.</span><span class="n">hkcancor</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="section" id="searching-by-a-jyutping-element">
-<h2>Searching by a Jyutping Element<a class="headerlink" href="#searching-by-a-jyutping-element" title="Permalink to this headline">¶</a></h2>
+<section id="searching-by-a-jyutping-element">
+<h2>Searching by a Jyutping Element<a class="headerlink" href="#searching-by-a-jyutping-element" title="Permalink to this headline"></a></h2>
 <p>Search queries
 by various parsed Jyutping elements are possible by specifying a Jyutping parameter
 in the
@@ -368,11 +300,11 @@ in the
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">aa</span><span class="p">)</span>  <span class="c1"># number of matching results found</span>
 <span class="go">22328</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">aa</span><span class="p">[:</span> <span class="mi">5</span><span class="p">]</span>  <span class="c1"># show first 5 results</span>
-<span class="go">[Token(word=&#39;啊&#39;, pos=&#39;Y&#39;, jyutping=&#39;aa3&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;啊&#39;, pos=&#39;Y&#39;, jyutping=&#39;aa3&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;淡季&#39;, pos=&#39;AN&#39;, jyutping=&#39;daam6gwai3&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;𡃉&#39;, pos=&#39;Y&#39;, jyutping=&#39;gaa3&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;嗱&#39;, pos=&#39;Y&#39;, jyutping=&#39;laa4&#39;, mor=None, gra=None)]</span>
+<span class="go">[Token(word=&#39;啊&#39;, pos=&#39;Y&#39;, jyutping=&#39;aa3&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;啊&#39;, pos=&#39;Y&#39;, jyutping=&#39;aa3&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;淡季&#39;, pos=&#39;AN&#39;, jyutping=&#39;daam6gwai3&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;𡃉&#39;, pos=&#39;Y&#39;, jyutping=&#39;gaa3&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;嗱&#39;, pos=&#39;Y&#39;, jyutping=&#39;laa4&#39;, mor=None, gloss=None, gra=None)]</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">tone</span></code> parameter:</p>
@@ -380,11 +312,11 @@ in the
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">tone2</span><span class="p">)</span>
 <span class="go">21167</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">tone2</span><span class="p">[:</span> <span class="mi">5</span><span class="p">]</span>
-<span class="go">[Token(word=&#39;講&#39;, pos=&#39;V&#39;, jyutping=&#39;gong2&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;嗰個&#39;, pos=&#39;R&#39;, jyutping=&#39;go2go3&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;嗰個&#39;, pos=&#39;R&#39;, jyutping=&#39;go2go3&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;好&#39;, pos=&#39;D&#39;, jyutping=&#39;hou2&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;抵&#39;, pos=&#39;A&#39;, jyutping=&#39;dai2&#39;, mor=None, gra=None)]</span>
+<span class="go">[Token(word=&#39;講&#39;, pos=&#39;V&#39;, jyutping=&#39;gong2&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;嗰個&#39;, pos=&#39;R&#39;, jyutping=&#39;go2go3&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;嗰個&#39;, pos=&#39;R&#39;, jyutping=&#39;go2go3&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;好&#39;, pos=&#39;D&#39;, jyutping=&#39;hou2&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;抵&#39;, pos=&#39;A&#39;, jyutping=&#39;dai2&#39;, mor=None, gloss=None, gra=None)]</span>
 </pre></div>
 </div>
 <p>The parameters <code class="docutils literal notranslate"><span class="pre">onset</span></code>, <code class="docutils literal notranslate"><span class="pre">nucleus</span></code>, <code class="docutils literal notranslate"><span class="pre">coda</span></code>, <code class="docutils literal notranslate"><span class="pre">tone</span></code>, and <code class="docutils literal notranslate"><span class="pre">initial</span></code>
@@ -392,15 +324,15 @@ may take a regular expression for more powerful search queries.
 For instance, we may ask for all words that contain any of the codas {p, t, k}.
 <code class="docutils literal notranslate"><span class="pre">[ptk]</span></code> as regex means to match any of these letters,
 and we set it to be the value of the <code class="docutils literal notranslate"><span class="pre">coda</span></code> parameter:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">codas_ptk</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">coda</span><span class="o">=</span><span class="s1">&#39;[ptk]&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">codas_ptk</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">coda</span><span class="o">=</span><span class="s1">&#39;[ptk]&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">codas_ptk</span><span class="p">)</span>
 <span class="go">12715</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">codas_ptk</span><span class="p">[:</span> <span class="mi">5</span><span class="p">]</span>
-<span class="go">[Token(word=&#39;迪士尼&#39;, pos=&#39;NT&#39;, jyutping=&#39;dik6si6nei4&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;直程&#39;, pos=&#39;D&#39;, jyutping=&#39;zik6cing4&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;七&#39;, pos=&#39;M&#39;, jyutping=&#39;cat1&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;八月&#39;, pos=&#39;T&#39;, jyutping=&#39;baat3jyut6&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;日&#39;, pos=&#39;Q&#39;, jyutping=&#39;jat6&#39;, mor=None, gra=None)]</span>
+<span class="go">[Token(word=&#39;迪士尼&#39;, pos=&#39;NT&#39;, jyutping=&#39;dik6si6nei4&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;直程&#39;, pos=&#39;D&#39;, jyutping=&#39;zik6cing4&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;七&#39;, pos=&#39;M&#39;, jyutping=&#39;cat1&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;八月&#39;, pos=&#39;T&#39;, jyutping=&#39;baat3jyut6&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;日&#39;, pos=&#39;Q&#39;, jyutping=&#39;jat6&#39;, mor=None, gloss=None, gra=None)]</span>
 </pre></div>
 </div>
 <p>For regular expressions in Python, see
@@ -412,25 +344,25 @@ call, with the following constraints:</p>
 <li><p>If <code class="docutils literal notranslate"><span class="pre">jyutping</span></code> is used, no other Jyutping search parameters can be used.</p></li>
 <li><p>If <code class="docutils literal notranslate"><span class="pre">final</span></code> is used, neither <code class="docutils literal notranslate"><span class="pre">nucleus</span></code> nor <code class="docutils literal notranslate"><span class="pre">coda</span></code> can be used.</p></li>
 </ul>
-</div>
-<div class="section" id="searching-by-a-chinese-character">
-<h2>Searching by a Chinese Character<a class="headerlink" href="#searching-by-a-chinese-character" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="searching-by-a-chinese-character">
+<h2>Searching by a Chinese Character<a class="headerlink" href="#searching-by-a-chinese-character" title="Permalink to this headline"></a></h2>
 <p>Search queries for a given Chinese character are performed by the <code class="docutils literal notranslate"><span class="pre">character</span></code>
 parameter:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">machine</span> <span class="o">=</span> <span class="n">corpus</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">character</span><span class="o">=</span><span class="s1">&#39;機&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">machine</span><span class="p">)</span>
 <span class="go">195</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">machine</span><span class="p">[:</span> <span class="mi">5</span><span class="p">]</span>
-<span class="go">[Token(word=&#39;機票&#39;, pos=&#39;N&#39;, jyutping=&#39;gei1piu3&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;機票&#39;, pos=&#39;N&#39;, jyutping=&#39;gei1piu3&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;機票&#39;, pos=&#39;N&#39;, jyutping=&#39;gei1piu3&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;飛機&#39;, pos=&#39;N&#39;, jyutping=&#39;fei1gei1&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;機&#39;, pos=&#39;NG&#39;, jyutping=&#39;gei1&#39;, mor=None, gra=None)]</span>
+<span class="go">[Token(word=&#39;機票&#39;, pos=&#39;N&#39;, jyutping=&#39;gei1piu3&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;機票&#39;, pos=&#39;N&#39;, jyutping=&#39;gei1piu3&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;機票&#39;, pos=&#39;N&#39;, jyutping=&#39;gei1piu3&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;飛機&#39;, pos=&#39;N&#39;, jyutping=&#39;fei1gei1&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;機&#39;, pos=&#39;NG&#39;, jyutping=&#39;gei1&#39;, mor=None, gloss=None, gra=None)]</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="searching-by-a-part-of-speech-tag">
-<h2>Searching by a Part-of-speech Tag<a class="headerlink" href="#searching-by-a-part-of-speech-tag" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="searching-by-a-part-of-speech-tag">
+<h2>Searching by a Part-of-speech Tag<a class="headerlink" href="#searching-by-a-part-of-speech-tag" title="Permalink to this headline"></a></h2>
 <p>With the parameter <code class="docutils literal notranslate"><span class="pre">pos</span></code> in
 <a class="reference internal" href="generated/pycantonese.CHATReader.search.html#pycantonese.CHATReader.search" title="pycantonese.CHATReader.search"><code class="xref py py-func docutils literal notranslate"><span class="pre">search()</span></code></a>,
 verbs which bear the part-of-speech tag “V” in HKCanCor
@@ -439,11 +371,11 @@ can be accessed as follows:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">verbs</span><span class="p">)</span>
 <span class="go">29954</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">verbs</span><span class="p">[:</span> <span class="mi">5</span><span class="p">]</span>
-<span class="go">[Token(word=&#39;去&#39;, pos=&#39;V&#39;, jyutping=&#39;heoi3&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;去&#39;, pos=&#39;V&#39;, jyutping=&#39;heoi3&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;旅行&#39;, pos=&#39;VN&#39;, jyutping=&#39;leoi5hang4&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;有冇&#39;, pos=&#39;V1&#39;, jyutping=&#39;jau5mou5&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;要&#39;, pos=&#39;VU&#39;, jyutping=&#39;jiu3&#39;, mor=None, gra=None)]</span>
+<span class="go">[Token(word=&#39;去&#39;, pos=&#39;V&#39;, jyutping=&#39;heoi3&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;去&#39;, pos=&#39;V&#39;, jyutping=&#39;heoi3&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;旅行&#39;, pos=&#39;VN&#39;, jyutping=&#39;leoi5hang4&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;有冇&#39;, pos=&#39;V1&#39;, jyutping=&#39;jau5mou5&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;要&#39;, pos=&#39;VU&#39;, jyutping=&#39;jiu3&#39;, mor=None, gloss=None, gra=None)]</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">pos</span></code> parameter may take a regular expression. For instance,
@@ -453,34 +385,34 @@ different kinds of verbs annotated in HKCanCor:</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">all_verbs</span><span class="p">)</span>  <span class="c1"># number of all verbs -- more than just &quot;V&quot; alone above</span>
 <span class="go">29726</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">all_verbs</span><span class="p">[:</span><span class="mi">20</span><span class="p">]</span>  <span class="c1"># printing the first 20 results</span>
-<span class="go">[Token(word=&#39;去&#39;, pos=&#39;V&#39;, jyutping=&#39;heoi3&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;去&#39;, pos=&#39;V&#39;, jyutping=&#39;heoi3&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;旅行&#39;, pos=&#39;VN&#39;, jyutping=&#39;leoi5hang4&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;有冇&#39;, pos=&#39;V1&#39;, jyutping=&#39;jau5mou5&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;要&#39;, pos=&#39;VU&#39;, jyutping=&#39;jiu3&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;有得&#39;, pos=&#39;VU&#39;, jyutping=&#39;jau5dak1&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;冇得&#39;, pos=&#39;VU&#39;, jyutping=&#39;mou5dak1&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;去&#39;, pos=&#39;V&#39;, jyutping=&#39;heoi3&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;係&#39;, pos=&#39;V&#39;, jyutping=&#39;hai6&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;係&#39;, pos=&#39;V&#39;, jyutping=&#39;hai6&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;聽&#39;, pos=&#39;V&#39;, jyutping=&#39;teng1&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;講&#39;, pos=&#39;V&#39;, jyutping=&#39;gong2&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;話&#39;, pos=&#39;V&#39;, jyutping=&#39;waa6&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;去&#39;, pos=&#39;V&#39;, jyutping=&#39;heoi3&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;玩&#39;, pos=&#39;V&#39;, jyutping=&#39;waan2&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;可以&#39;, pos=&#39;VU&#39;, jyutping=&#39;ho2ji5&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;住&#39;, pos=&#39;V&#39;, jyutping=&#39;zyu6&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;話&#39;, pos=&#39;V&#39;, jyutping=&#39;waa6&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;跟&#39;, pos=&#39;V&#39;, jyutping=&#39;gan1&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;去&#39;, pos=&#39;V&#39;, jyutping=&#39;heoi3&#39;, mor=None, gra=None)]</span>
+<span class="go">[Token(word=&#39;去&#39;, pos=&#39;V&#39;, jyutping=&#39;heoi3&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;去&#39;, pos=&#39;V&#39;, jyutping=&#39;heoi3&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;旅行&#39;, pos=&#39;VN&#39;, jyutping=&#39;leoi5hang4&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;有冇&#39;, pos=&#39;V1&#39;, jyutping=&#39;jau5mou5&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;要&#39;, pos=&#39;VU&#39;, jyutping=&#39;jiu3&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;有得&#39;, pos=&#39;VU&#39;, jyutping=&#39;jau5dak1&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;冇得&#39;, pos=&#39;VU&#39;, jyutping=&#39;mou5dak1&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;去&#39;, pos=&#39;V&#39;, jyutping=&#39;heoi3&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;係&#39;, pos=&#39;V&#39;, jyutping=&#39;hai6&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;係&#39;, pos=&#39;V&#39;, jyutping=&#39;hai6&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;聽&#39;, pos=&#39;V&#39;, jyutping=&#39;teng1&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;講&#39;, pos=&#39;V&#39;, jyutping=&#39;gong2&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;話&#39;, pos=&#39;V&#39;, jyutping=&#39;waa6&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;去&#39;, pos=&#39;V&#39;, jyutping=&#39;heoi3&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;玩&#39;, pos=&#39;V&#39;, jyutping=&#39;waan2&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;可以&#39;, pos=&#39;VU&#39;, jyutping=&#39;ho2ji5&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;住&#39;, pos=&#39;V&#39;, jyutping=&#39;zyu6&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;話&#39;, pos=&#39;V&#39;, jyutping=&#39;waa6&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;跟&#39;, pos=&#39;V&#39;, jyutping=&#39;gan1&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;去&#39;, pos=&#39;V&#39;, jyutping=&#39;heoi3&#39;, mor=None, gloss=None, gra=None)]</span>
 </pre></div>
 </div>
 <p>For regular expressions in Python, see
 <a class="reference external" href="https://docs.python.org/3/library/re.html">here</a>.</p>
 <p>For the part-of-speech tagset used by HKCanCor, see <a class="reference external" href="http://compling.hss.ntu.edu.sg/hkcancor/">here</a>.</p>
-</div>
-<div class="section" id="searching-by-a-word-or-utterance-range">
-<h2>Searching by a Word or Utterance Range<a class="headerlink" href="#searching-by-a-word-or-utterance-range" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="searching-by-a-word-or-utterance-range">
+<h2>Searching by a Word or Utterance Range<a class="headerlink" href="#searching-by-a-word-or-utterance-range" title="Permalink to this headline"></a></h2>
 <p>It is possible to include in search results the neighboring words and utterances
 around a match word. This functionality is useful for syntax,
 semantics, and discourse-level research.</p>
@@ -496,24 +428,24 @@ preceding the utterance containing the match word and zero utterances following 
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">gwo3</span><span class="p">)</span>
 <span class="go">705</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">gwo3</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
-<span class="go">[[Token(word=&#39;去&#39;, pos=&#39;V&#39;, jyutping=&#39;heoi3&#39;, mor=None, gra=None),</span>
-<span class="go">  Token(word=&#39;過&#39;, pos=&#39;U&#39;, jyutping=&#39;gwo3&#39;, mor=None, gra=None),</span>
-<span class="go">  Token(word=&#39;喇&#39;, pos=&#39;Y&#39;, jyutping=&#39;laa1&#39;, mor=None, gra=None),</span>
-<span class="go">  Token(word=&#39;.&#39;, pos=&#39;.&#39;, jyutping=None, mor=None, gra=None)],</span>
-<span class="go"> [Token(word=&#39;不過&#39;, pos=&#39;C&#39;, jyutping=&#39;bat1gwo3&#39;, mor=None, gra=None),</span>
-<span class="go">  Token(word=&#39;幾&#39;, pos=&#39;M&#39;, jyutping=&#39;gei2&#39;, mor=None, gra=None),</span>
-<span class="go">  Token(word=&#39;日&#39;, pos=&#39;Q&#39;, jyutping=&#39;jat6&#39;, mor=None, gra=None)],</span>
-<span class="go"> [Token(word=&#39;去&#39;, pos=&#39;VK&#39;, jyutping=&#39;heoi3&#39;, mor=None, gra=None),</span>
-<span class="go">  Token(word=&#39;過&#39;, pos=&#39;V&#39;, jyutping=&#39;gwo3&#39;, mor=None, gra=None),</span>
-<span class="go">  Token(word=&#39;嗰邊&#39;, pos=&#39;R&#39;, jyutping=&#39;go2bin1&#39;, mor=None, gra=None),</span>
-<span class="go">  Token(word=&#39;瞓覺&#39;, pos=&#39;V&#39;, jyutping=&#39;fan3gaau3&#39;, mor=None, gra=None)],</span>
-<span class="go"> [Token(word=&#39;不過&#39;, pos=&#39;C&#39;, jyutping=&#39;bat1gwo3&#39;, mor=None, gra=None),</span>
-<span class="go">  Token(word=&#39;都&#39;, pos=&#39;D&#39;, jyutping=&#39;dou1&#39;, mor=None, gra=None),</span>
-<span class="go">  Token(word=&#39;,&#39;, pos=&#39;,&#39;, jyutping=None, mor=None, gra=None)],</span>
-<span class="go"> [Token(word=&#39;,&#39;, pos=&#39;,&#39;, jyutping=None, mor=None, gra=None),</span>
-<span class="go">  Token(word=&#39;不過&#39;, pos=&#39;C&#39;, jyutping=&#39;bat1gwo3&#39;, mor=None, gra=None),</span>
-<span class="go">  Token(word=&#39;真係&#39;, pos=&#39;D&#39;, jyutping=&#39;zan1hai6&#39;, mor=None, gra=None),</span>
-<span class="go">  Token(word=&#39;好&#39;, pos=&#39;D&#39;, jyutping=&#39;hou2&#39;, mor=None, gra=None)]]</span>
+<span class="go">[[Token(word=&#39;去&#39;, pos=&#39;V&#39;, jyutping=&#39;heoi3&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go">  Token(word=&#39;過&#39;, pos=&#39;U&#39;, jyutping=&#39;gwo3&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go">  Token(word=&#39;喇&#39;, pos=&#39;Y&#39;, jyutping=&#39;laa1&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go">  Token(word=&#39;.&#39;, pos=&#39;.&#39;, jyutping=None, mor=None, gloss=None, gra=None)],</span>
+<span class="go"> [Token(word=&#39;不過&#39;, pos=&#39;C&#39;, jyutping=&#39;bat1gwo3&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go">  Token(word=&#39;幾&#39;, pos=&#39;M&#39;, jyutping=&#39;gei2&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go">  Token(word=&#39;日&#39;, pos=&#39;Q&#39;, jyutping=&#39;jat6&#39;, mor=None, gloss=None, gra=None)],</span>
+<span class="go"> [Token(word=&#39;去&#39;, pos=&#39;VK&#39;, jyutping=&#39;heoi3&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go">  Token(word=&#39;過&#39;, pos=&#39;V&#39;, jyutping=&#39;gwo3&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go">  Token(word=&#39;嗰邊&#39;, pos=&#39;R&#39;, jyutping=&#39;go2bin1&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go">  Token(word=&#39;瞓覺&#39;, pos=&#39;V&#39;, jyutping=&#39;fan3gaau3&#39;, mor=None, gloss=None, gra=None)],</span>
+<span class="go"> [Token(word=&#39;不過&#39;, pos=&#39;C&#39;, jyutping=&#39;bat1gwo3&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go">  Token(word=&#39;都&#39;, pos=&#39;D&#39;, jyutping=&#39;dou1&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go">  Token(word=&#39;,&#39;, pos=&#39;,&#39;, jyutping=None, mor=None, gloss=None, gra=None)],</span>
+<span class="go"> [Token(word=&#39;,&#39;, pos=&#39;,&#39;, jyutping=None, mor=None, gloss=None, gra=None),</span>
+<span class="go">  Token(word=&#39;不過&#39;, pos=&#39;C&#39;, jyutping=&#39;bat1gwo3&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go">  Token(word=&#39;真係&#39;, pos=&#39;D&#39;, jyutping=&#39;zan1hai6&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go">  Token(word=&#39;好&#39;, pos=&#39;D&#39;, jyutping=&#39;hou2&#39;, mor=None, gloss=None, gra=None)]]</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">utterance_range</span></code>:</p>
@@ -521,27 +453,27 @@ preceding the utterance containing the match word and zero utterances following 
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">laa1</span><span class="p">)</span>
 <span class="go">1681</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">laa1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># print the 1st result</span>
-<span class="go">[[Token(word=&#39;係&#39;, pos=&#39;V&#39;, jyutping=&#39;hai6&#39;, mor=None, gra=None),</span>
-<span class="go">  Token(word=&#39;唔係&#39;, pos=&#39;V&#39;, jyutping=&#39;m4hai6&#39;, mor=None, gra=None),</span>
-<span class="go">  Token(word=&#39;啊&#39;, pos=&#39;Y&#39;, jyutping=&#39;aa3&#39;, mor=None, gra=None),</span>
-<span class="go">  Token(word=&#39;?&#39;, pos=&#39;?&#39;, jyutping=None, mor=None, gra=None)],</span>
-<span class="go"> [Token(word=&#39;你&#39;, pos=&#39;R&#39;, jyutping=&#39;nei5&#39;, mor=None, gra=None),</span>
-<span class="go">  Token(word=&#39;都&#39;, pos=&#39;D&#39;, jyutping=&#39;dou1&#39;, mor=None, gra=None),</span>
-<span class="go">  Token(word=&#39;去&#39;, pos=&#39;V&#39;, jyutping=&#39;heoi3&#39;, mor=None, gra=None),</span>
-<span class="go">  Token(word=&#39;過&#39;, pos=&#39;U&#39;, jyutping=&#39;gwo3&#39;, mor=None, gra=None),</span>
-<span class="go">  Token(word=&#39;喇&#39;, pos=&#39;Y&#39;, jyutping=&#39;laa1&#39;, mor=None, gra=None),</span>
-<span class="go">  Token(word=&#39;.&#39;, pos=&#39;.&#39;, jyutping=None, mor=None, gra=None)],</span>
-<span class="go"> [Token(word=&#39;咪&#39;, pos=&#39;C&#39;, jyutping=&#39;mai6&#39;, mor=None, gra=None),</span>
-<span class="go">  Token(word=&#39;係&#39;, pos=&#39;V&#39;, jyutping=&#39;hai6&#39;, mor=None, gra=None),</span>
-<span class="go">  Token(word=&#39;囖&#39;, pos=&#39;Y&#39;, jyutping=&#39;lo1&#39;, mor=None, gra=None),</span>
-<span class="go">  Token(word=&#39;.&#39;, pos=&#39;.&#39;, jyutping=None, mor=None, gra=None)]]</span>
+<span class="go">[[Token(word=&#39;係&#39;, pos=&#39;V&#39;, jyutping=&#39;hai6&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go">  Token(word=&#39;唔係&#39;, pos=&#39;V&#39;, jyutping=&#39;m4hai6&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go">  Token(word=&#39;啊&#39;, pos=&#39;Y&#39;, jyutping=&#39;aa3&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go">  Token(word=&#39;?&#39;, pos=&#39;?&#39;, jyutping=None, mor=None, gloss=None, gra=None)],</span>
+<span class="go"> [Token(word=&#39;你&#39;, pos=&#39;R&#39;, jyutping=&#39;nei5&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go">  Token(word=&#39;都&#39;, pos=&#39;D&#39;, jyutping=&#39;dou1&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go">  Token(word=&#39;去&#39;, pos=&#39;V&#39;, jyutping=&#39;heoi3&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go">  Token(word=&#39;過&#39;, pos=&#39;U&#39;, jyutping=&#39;gwo3&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go">  Token(word=&#39;喇&#39;, pos=&#39;Y&#39;, jyutping=&#39;laa1&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go">  Token(word=&#39;.&#39;, pos=&#39;.&#39;, jyutping=None, mor=None, gloss=None, gra=None)],</span>
+<span class="go"> [Token(word=&#39;咪&#39;, pos=&#39;C&#39;, jyutping=&#39;mai6&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go">  Token(word=&#39;係&#39;, pos=&#39;V&#39;, jyutping=&#39;hai6&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go">  Token(word=&#39;囖&#39;, pos=&#39;Y&#39;, jyutping=&#39;lo1&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go">  Token(word=&#39;.&#39;, pos=&#39;.&#39;, jyutping=None, mor=None, gloss=None, gra=None)]]</span>
 </pre></div>
 </div>
 <p>If <code class="docutils literal notranslate"><span class="pre">utterance_range</span></code> is not <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">0)</span></code>, <code class="docutils literal notranslate"><span class="pre">word_range</span></code> is ignored since full
 utterances are already in the output.</p>
-</div>
-<div class="section" id="searching-by-multiple-criteria">
-<h2>Searching by Multiple Criteria<a class="headerlink" href="#searching-by-multiple-criteria" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="searching-by-multiple-criteria">
+<h2>Searching by Multiple Criteria<a class="headerlink" href="#searching-by-multiple-criteria" title="Permalink to this headline"></a></h2>
 <p><a class="reference internal" href="generated/pycantonese.CHATReader.search.html#pycantonese.CHATReader.search" title="pycantonese.CHATReader.search"><code class="xref py py-func docutils literal notranslate"><span class="pre">search()</span></code></a>
 is flexible and allows multiple parameters described
 above to be specified at the same time.
@@ -551,21 +483,21 @@ we may be interested in all words with coda {p, t, k} plus tone 2 (high-rising):
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">ptk_tone2</span><span class="p">)</span>
 <span class="go">71</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ptk_tone2</span><span class="p">[:</span> <span class="mi">10</span><span class="p">]</span>
-<span class="go">[Token(word=&#39;雀&#39;, pos=&#39;N&#39;, jyutping=&#39;zoek2&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;雀&#39;, pos=&#39;N&#39;, jyutping=&#39;zoek2&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;綠&#39;, pos=&#39;A&#39;, jyutping=&#39;luk2&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;賊&#39;, pos=&#39;N&#39;, jyutping=&#39;caak2&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;dut2&#39;, pos=&#39;O&#39;, jyutping=&#39;dut2&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;碟&#39;, pos=&#39;N&#39;, jyutping=&#39;dip2&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;碟&#39;, pos=&#39;N&#39;, jyutping=&#39;dip2&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;碟&#39;, pos=&#39;N&#39;, jyutping=&#39;dip2&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;碟形&#39;, pos=&#39;N&#39;, jyutping=&#39;dip2jing4&#39;, mor=None, gra=None),</span>
-<span class="go"> Token(word=&#39;碟&#39;, pos=&#39;N&#39;, jyutping=&#39;dip2&#39;, mor=None, gra=None)]</span>
+<span class="go">[Token(word=&#39;雀&#39;, pos=&#39;N&#39;, jyutping=&#39;zoek2&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;雀&#39;, pos=&#39;N&#39;, jyutping=&#39;zoek2&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;綠&#39;, pos=&#39;A&#39;, jyutping=&#39;luk2&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;賊&#39;, pos=&#39;N&#39;, jyutping=&#39;caak2&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;dut2&#39;, pos=&#39;O&#39;, jyutping=&#39;dut2&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;碟&#39;, pos=&#39;N&#39;, jyutping=&#39;dip2&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;碟&#39;, pos=&#39;N&#39;, jyutping=&#39;dip2&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;碟&#39;, pos=&#39;N&#39;, jyutping=&#39;dip2&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;碟形&#39;, pos=&#39;N&#39;, jyutping=&#39;dip2jing4&#39;, mor=None, gloss=None, gra=None),</span>
+<span class="go"> Token(word=&#39;碟&#39;, pos=&#39;N&#39;, jyutping=&#39;dip2&#39;, mor=None, gloss=None, gra=None)]</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="output-format-of-search-results">
-<h2>Output Format of Search Results<a class="headerlink" href="#output-format-of-search-results" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="output-format-of-search-results">
+<h2>Output Format of Search Results<a class="headerlink" href="#output-format-of-search-results" title="Permalink to this headline"></a></h2>
 <p>While
 <a class="reference internal" href="generated/pycantonese.CHATReader.search.html#pycantonese.CHATReader.search" title="pycantonese.CHATReader.search"><code class="xref py py-func docutils literal notranslate"><span class="pre">search()</span></code></a>
 always returns a list, the format of the elements in the list
@@ -578,9 +510,9 @@ Chinese characters only.</p>
 (or spans of words when <code class="docutils literal notranslate"><span class="pre">word_range</span></code> is used). Otherwise, all utterances
 containing a match word are in the output list. If <code class="docutils literal notranslate"><span class="pre">utterance_range</span></code> is used,
 <code class="docutils literal notranslate"><span class="pre">by_utterances</span></code> is automatically <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
-</div>
-<div class="section" id="complex-searches">
-<h2>Complex Searches<a class="headerlink" href="#complex-searches" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="complex-searches">
+<h2>Complex Searches<a class="headerlink" href="#complex-searches" title="Permalink to this headline"></a></h2>
 <p>By design, <a class="reference internal" href="generated/pycantonese.CHATReader.search.html#pycantonese.CHATReader.search" title="pycantonese.CHATReader.search"><code class="xref py py-func docutils literal notranslate"><span class="pre">search()</span></code></a> targets a <em>single</em> match word.
 If your use case needs to involve more, you’ll have to write your custom code
 to iterate through the data and keep track of whatever is of your interest.
@@ -590,75 +522,49 @@ to the extent that what you’re after can be formulated in terms of
 what the corpus data and annotations provide.</p>
 <p>For examples of complex searches,
 please check out the tutorials from <a class="reference internal" href="archives.html#archives"><span class="std std-ref">Archives</span></a>.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="jyutping.html" class="btn btn-neutral float-right" title="Jyutping Romanization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="reader.html" class="btn btn-neutral float-left" title="Corpus Reader Methods" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="reader.html" class="btn btn-neutral float-left" title="Corpus Reader Methods" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="parsing.html" class="btn btn-neutral float-right" title="Parsing Cantonese Text" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        
-        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on May 16, 2021
-
-    </p>
+    <p>&#169; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on December 28, 2021.</p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-
-  
-  
-    
     <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-181803559"></script>
     <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-    ga('create', 'UA-181803559', 'auto');
-    ga('send', 'pageview');
-    </script>
-
-    
-   
+      gtag('config', 'UA-181803559', {
+          'anonymize_ip': false,
+      });
+    </script> 
 
 </body>
 </html>

@@ -7,9 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+## [3.4.0] - 2021-12-28
+
+### Added
+- Added the `parse_text` for analyzing Cantonese text data.
 - Characters-to-Jyutping conversion:
   The `characters_to_jyutping` function now has the `segmenter` kwarg for
   customizing word segmentation.
+- Added support for Python 3.10.
+- Turned on Windows testing on CircleCI.
 - Added `pyproject.toml`. Related to preferring `setup.cfg` for specifying
   build metadata and options.
 
@@ -20,18 +32,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
     rime-cantonese data (more accurate) is preferred.
 - Updated the rime-cantonese data to the latest `2021.05.16` release,
   improving both characters-to-Jyutping conversion and word segmentation.
-- Updated the PyLangAcq dependency to v0.15.0, allowing PyCantonese's `CHATReader`
-  to use the new methods `to_strs` and `to_chat`.
+- Updated the PyLangAcq dependency to v0.16.0, allowing PyCantonese's `CHATReader`
+  to use the new methods `to_chat`, `to_strs`, `info`, `head`, and `tail`.
 - Switched to `setup.cfg` to fully specify build metadata and options,
   while keeping a minimal `setup.py` for backward compatibility.
   Related to the new `pyproject.toml`.
-- Added support for Python 3.10.
 
-### Deprecated
 ### Removed
 - Dropped support for Python 3.6.
 
-### Fixed
 ### Security
 - Turned on `safety` and `bandit` checks at CircleCI builds.
 

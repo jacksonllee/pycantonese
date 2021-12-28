@@ -2,6 +2,10 @@
 
 Thank you for your interest in contributing to the `pycantonese` codebase!
 
+If you would like to add or update a feature in `pycantonese`,
+it is recommended that you first file a GitHub issue to discuss your proposed changes
+and check their compatibility with the rest of the package before making a pull request.
+
 This page assumes that you have already created a fork of the `pycantonese` repo
 under your GitHub account and have the codebase available locally for
 development work. If you have followed
@@ -65,11 +69,11 @@ by the author before merging is possible.
 
 Work in progress is more than welcome.
 If you aren't sure how to, say, add tests to go with your proposed changes,
-make pytest/flake8/black pass on CI, please still feel free to create a pull request.
+please still feel free to create a pull request.
 We will guide you to polish up your pull request.
 
 If you would like to help avoid wasting free Internet resources
-(every push of new commits to an open pull request triggers new CI autobuilds),
+(every push of new commits to an open pull request triggers new CI builds),
 you can run pytest/flake8/black checks locally before pushing commits:
 
 ```bash

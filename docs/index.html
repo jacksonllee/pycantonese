@@ -1,78 +1,41 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta content="PyCantonese: Cantonese Linguistics and NLP in Python" name="description" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<meta content="PyCantonese: Cantonese Linguistics and NLP in Python" name="description" />
 <meta content="pycantonese, cantonese, python, linguistics, language, computational linguistics, natural language processing, nlp, jyutping, stop words, word segmentation, part-of-speech tagging, 廣東話, 粵語, 粵拼, 語言學, 自然語言處理, 停用詞, 分詞, 詞性標注, 广东话, 粤语, 粤拼, 语言学, 自然语言处理, 停用词, 分词, 词性标注" name="keywords" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>PyCantonese: Cantonese Linguistics and NLP in Python &mdash; PyCantonese 3.3.1 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PyCantonese: Cantonese Linguistics and NLP in Python &mdash; PyCantonese 3.4.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
     <link rel="shortcut icon" href="_static/pycantonese-logo.ico"/>
-  
-  
-  
-
-  
+    <link rel="canonical" href="https://pycantonese.org/index.html" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Quickstart" href="quickstart.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
-            <a href="#" class="icon icon-home" alt="Documentation Home"> PyCantonese
-          
-
-          
-            
+            <a href="#" class="icon icon-home"> PyCantonese
             <img src="_static/pycantonese-logo-white.svg" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                3.3.1
+                3.4.0
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -80,18 +43,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data.html">Corpus Data</a><ul>
@@ -119,6 +71,16 @@
 <li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-multiple-criteria">Searching by Multiple Criteria</a></li>
 <li class="toctree-l2"><a class="reference internal" href="searches.html#output-format-of-search-results">Output Format of Search Results</a></li>
 <li class="toctree-l2"><a class="reference internal" href="searches.html#complex-searches">Complex Searches</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parsing.html">Parsing Cantonese Text</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#input-1-a-plain-string">Input 1: A Plain String</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#input-2-a-list-of-strings">Input 2: A List of Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#input-3-a-list-of-tuples-of-strings">Input 3: A List of Tuples of Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#customizing-word-segmentation">Customizing Word Segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#customizing-part-of-speech-tagging">Customizing Part-of-Speech Tagging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#outputting-chat-data">Outputting CHAT Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#more-customization">More Customization</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="jyutping.html">Jyutping Romanization</a><ul>
@@ -154,6 +116,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#natural-language-processing">Natural Language Processing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.stop_words.html">pycantonese.stop_words</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.parse_text.html">pycantonese.parse_text</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.segment.html">pycantonese.segment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.word_segmentation.Segmenter.html">pycantonese.word_segmentation.Segmenter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.pos_tag.html">pycantonese.pos_tag</a></li>
@@ -175,86 +138,93 @@
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#security">Security</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id2">[3.3.1] - 2021-05-14</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id3">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id2">[3.4.0] - 2021-12-28</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id3">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id4">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id5">Removed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id6">Security</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id4">[3.3.0] - 2021-05-14</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id5">Changed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id6">Fixed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id7">[3.2.4] - 2021-05-07</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id7">[3.3.1] - 2021-05-14</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#id8">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id9">[3.2.3] - 2021-04-12</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id10">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id9">[3.3.0] - 2021-05-14</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id10">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id11">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id11">[3.2.2] - 2021-03-23</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id12">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id12">[3.2.4] - 2021-05-07</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id13">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id13">[3.2.1] - 2021-03-21</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id14">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id14">[3.2.3] - 2021-04-12</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id15">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id15">[3.2.0] - 2021-03-20</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id16">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id17">Changed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id18">Deprecated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id16">[3.2.2] - 2021-03-23</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id17">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id18">[3.2.1] - 2021-03-21</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#id19">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id20">[3.1.1] - 2021-03-18</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id21">Fixed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id22">[3.1.0] - 2021-02-21</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id23">Added</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id20">[3.2.0] - 2021-03-20</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id21">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id22">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id23">Deprecated</a></li>
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#id24">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id25">[3.0.0] - 2020-10-25</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id26">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id27">Changed</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id25">[3.1.1] - 2021-03-18</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id26">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id27">[3.1.0] - 2021-02-21</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id28">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id29">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id30">[3.0.0] - 2020-10-25</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id31">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id32">Changed</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="changelog.html#api-breaking-changes">API-breaking Changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changelog.html#non-api-breaking-changes">Non-API-breaking Changes</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id28">Deprecated</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id29">Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id33">Deprecated</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id34">Security</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id30">[2.4.1] - 2020-10-10</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id31">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id35">[2.4.1] - 2020-10-10</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id36">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id32">[2.4.0] - 2020-10-10</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id33">Added</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id34">[2.3.0] - 2020-07-24</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id35">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id36">Removed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id37">[2.2.0] - 2018-06-30</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id37">[2.4.0] - 2020-10-10</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#id38">Added</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id39">[2.1.0] - 2018-06-11</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id39">[2.3.0] - 2020-07-24</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#id40">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id41">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id41">Removed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id42">[2.0.0] - 2016-02-06</a></li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id48">[1.0] - 2015-09-06</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id42">[2.2.0] - 2018-06-30</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id43">Added</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id44">[2.1.0] - 2018-06-11</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id45">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id46">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id47">[2.0.0] - 2016-02-06</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id53">[1.0] - 2015-09-06</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#dev-2015-09-02">[1.0dev] - 2015-09-02</a></li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id49">[0.2.1] - 2015-01-25</a></li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id50">[0.2] - 2015-01-22</a></li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id51">[0.1] - 2014-12-17</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id54">[0.2.1] - 2015-01-25</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id55">[0.2] - 2015-01-22</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id56">[0.1] - 2014-12-17</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="archives.html">Archives</a><ul>
@@ -264,100 +234,63 @@
 </li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="#">PyCantonese</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="#" class="icon icon-home"></a> &raquo;</li>
-        
       <li>PyCantonese: Cantonese Linguistics and NLP in Python</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="pycantonese-cantonese-linguistics-and-nlp-in-python">
-<span id="index"></span><h1>PyCantonese: Cantonese Linguistics and NLP in Python<a class="headerlink" href="#pycantonese-cantonese-linguistics-and-nlp-in-python" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="pycantonese-cantonese-linguistics-and-nlp-in-python">
+<span id="index"></span><h1>PyCantonese: Cantonese Linguistics and NLP in Python<a class="headerlink" href="#pycantonese-cantonese-linguistics-and-nlp-in-python" title="Permalink to this headline"></a></h1>
 <p>PyCantonese is a Python library for Cantonese linguistics and natural language
 processing (NLP). Currently implemented features (more to come!):</p>
 <ul class="simple">
 <li><p>Accessing and searching corpus data</p></li>
 <li><p>Parsing and conversion tools for Jyutping romanization</p></li>
+<li><p>Parsing Cantonese text</p></li>
 <li><p>Stop words</p></li>
 <li><p>Word segmentation</p></li>
 <li><p>Part-of-speech tagging</p></li>
 </ul>
-<div class="section" id="download-and-install">
-<span id="download-install"></span><h2>Download and Install<a class="headerlink" href="#download-and-install" title="Permalink to this headline">¶</a></h2>
+<section id="download-and-install">
+<span id="download-install"></span><h2>Download and Install<a class="headerlink" href="#download-and-install" title="Permalink to this headline"></a></h2>
 <p>To download and install the stable, most recent version:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install --upgrade pycantonese
 </pre></div>
 </div>
 <p>Ready for more?
 Check out the <a class="reference external" href="https://pycantonese.org/quickstart.html">Quickstart</a> page.</p>
-</div>
-<div class="section" id="consulting">
-<h2>Consulting<a class="headerlink" href="#consulting" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="consulting">
+<h2>Consulting<a class="headerlink" href="#consulting" title="Permalink to this headline"></a></h2>
 <p>If your team would like professional assistance in using PyCantonese,
-technical consulting and training services are available.
+freelance consulting and training services are available for both academic and commercial groups.
 Please email <a class="reference external" href="https://jacksonllee.com">Jackson L. Lee</a>.</p>
-</div>
-<div class="section" id="support">
-<h2>Support<a class="headerlink" href="#support" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="support">
+<h2>Support<a class="headerlink" href="#support" title="Permalink to this headline"></a></h2>
 <p>If you have found PyCantonese useful and would like to offer support,
 <a class="reference external" href="https://www.buymeacoffee.com/pycantonese">buying me a coffee</a> would go a long way!</p>
-</div>
-<div class="section" id="links">
-<h2>Links<a class="headerlink" href="#links" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="links">
+<h2>Links<a class="headerlink" href="#links" title="Permalink to this headline"></a></h2>
 <ul class="simple">
 <li><p>Source code: <a class="reference external" href="https://github.com/jacksonllee/pycantonese">https://github.com/jacksonllee/pycantonese</a></p></li>
 <li><p>Bug tracker: <a class="reference external" href="https://github.com/jacksonllee/pycantonese/issues">https://github.com/jacksonllee/pycantonese/issues</a></p></li>
@@ -365,36 +298,36 @@ Please email <a class="reference external" href="https://jacksonllee.com">Jackso
 <a class="reference external" href="https://www.facebook.com/pycantonese">Facebook</a>
 and <a class="reference external" href="https://twitter.com/pycantonese">Twitter</a></p></li>
 </ul>
-</div>
-<div class="section" id="how-to-cite">
-<h2>How to Cite<a class="headerlink" href="#how-to-cite" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="how-to-cite">
+<h2>How to Cite<a class="headerlink" href="#how-to-cite" title="Permalink to this headline"></a></h2>
 <p>PyCantonese is authored and maintained by <a class="reference external" href="https://jacksonllee.com">Jackson L. Lee</a>.</p>
 <p>A talk introducing PyCantonese:</p>
 <p>Lee, Jackson L. 2015. PyCantonese: Cantonese linguistic research in the age of big data.
 Talk at the Childhood Bilingualism Research Centre, Chinese University of Hong Kong. September 15. 2015.
 <a class="reference external" href="https://pycantonese.org/papers/Lee-pycantonese-2015.html">Notes+slides</a></p>
-</div>
-<div class="section" id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline"></a></h2>
 <p>MIT License. Please see <code class="docutils literal notranslate"><span class="pre">LICENSE.txt</span></code> in the GitHub source code for details.</p>
 <p>The HKCanCor dataset included in PyCantonese is substantially modified from
 its source in terms of format. The original dataset has a CC BY license.
 Please see <code class="docutils literal notranslate"><span class="pre">pycantonese/data/hkcancor/README.md</span></code>
 in the GitHub source code for details.</p>
-<p>The rime-cantonese data (release 2020.09.09) is
+<p>The rime-cantonese data (release 2021.05.16) is
 incorporated into PyCantonese for word segmentation and
 characters-to-Jyutping conversion.
 This data has a CC BY 4.0 license.
 Please see <code class="docutils literal notranslate"><span class="pre">pycantonese/data/rime_cantonese/README.md</span></code>
 in the GitHub source code for details.</p>
-</div>
-<div class="section" id="logo">
-<h2>Logo<a class="headerlink" href="#logo" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="logo">
+<h2>Logo<a class="headerlink" href="#logo" title="Permalink to this headline"></a></h2>
 <p>The PyCantonese logo is the Chinese character 粵 meaning Cantonese,
 with artistic design by albino.snowman (Instagram handle).</p>
-</div>
-<div class="section" id="acknowledgments">
-<h2>Acknowledgments<a class="headerlink" href="#acknowledgments" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="acknowledgments">
+<h2>Acknowledgments<a class="headerlink" href="#acknowledgments" title="Permalink to this headline"></a></h2>
 <p>Wonderful resources with a permissive license that have been incorporated into PyCantonese:</p>
 <ul class="simple">
 <li><p>HKCanCor</p></li>
@@ -418,91 +351,142 @@ with artistic design by albino.snowman (Instagram handle).</p>
 <li><p>Tsz-Him Tsui</p></li>
 <li><p>Robin Yuen</p></li>
 </ul>
-</div>
-<div class="section" id="table-of-contents">
-<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline"></a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data.html">Corpus Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="reader.html">Corpus Reader Methods</a></li>
-<li class="toctree-l1"><a class="reference internal" href="searches.html">Corpus Search Queries</a></li>
-<li class="toctree-l1"><a class="reference internal" href="jyutping.html">Jyutping Romanization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Corpus Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data.html#chat-format">CHAT Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#built-in-data">Built-in Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#childes-and-talkbank-data">CHILDES and TalkBank Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#custom-data">Custom Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reader.html">Corpus Reader Methods</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reader.html#headers">Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reader.html#transcriptions-and-annotations">Transcriptions and Annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reader.html#word-frequencies-and-ngrams">Word Frequencies and Ngrams</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="searches.html">Corpus Search Queries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-a-jyutping-element">Searching by a Jyutping Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-a-chinese-character">Searching by a Chinese Character</a></li>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-a-part-of-speech-tag">Searching by a Part-of-speech Tag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-a-word-or-utterance-range">Searching by a Word or Utterance Range</a></li>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-multiple-criteria">Searching by Multiple Criteria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#output-format-of-search-results">Output Format of Search Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#complex-searches">Complex Searches</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parsing.html">Parsing Cantonese Text</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#input-1-a-plain-string">Input 1: A Plain String</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#input-2-a-list-of-strings">Input 2: A List of Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#input-3-a-list-of-tuples-of-strings">Input 3: A List of Tuples of Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#customizing-word-segmentation">Customizing Word Segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#customizing-part-of-speech-tagging">Customizing Part-of-Speech Tagging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#outputting-chat-data">Outputting CHAT Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#more-customization">More Customization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="jyutping.html">Jyutping Romanization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="jyutping.html#characters-to-jyutping-conversion">Characters-to-Jyutping Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jyutping.html#parsing-jyutping-strings">Parsing Jyutping Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jyutping.html#jyutping-to-yale-conversion">Jyutping-to-Yale Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jyutping.html#jyutping-to-tipa-conversion">Jyutping-to-TIPA Conversion</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="stop_words.html">Stop Words</a></li>
-<li class="toctree-l1"><a class="reference internal" href="word_segmentation.html">Word Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="word_segmentation.html">Word Segmentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="word_segmentation.html#customizing-segmentation">Customizing Segmentation</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="pos_tagging.html">Part-of-Speech Tagging</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
-<li class="toctree-l1"><a class="reference internal" href="archives.html">Archives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#corpus-data">Corpus Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#jyutping-romanization">Jyutping Romanization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#natural-language-processing">Natural Language Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#chatreader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHATReader</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#token"><code class="xref py py-class docutils literal notranslate"><span class="pre">Token</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#jyutping"><code class="xref py py-class docutils literal notranslate"><span class="pre">Jyutping</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#unreleased">[Unreleased]</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id2">[3.4.0] - 2021-12-28</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id7">[3.3.1] - 2021-05-14</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id9">[3.3.0] - 2021-05-14</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id12">[3.2.4] - 2021-05-07</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id14">[3.2.3] - 2021-04-12</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id16">[3.2.2] - 2021-03-23</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id18">[3.2.1] - 2021-03-21</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id20">[3.2.0] - 2021-03-20</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id25">[3.1.1] - 2021-03-18</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id27">[3.1.0] - 2021-02-21</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id30">[3.0.0] - 2020-10-25</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id35">[2.4.1] - 2020-10-10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id37">[2.4.0] - 2020-10-10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id39">[2.3.0] - 2020-07-24</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id42">[2.2.0] - 2018-06-30</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id44">[2.1.0] - 2018-06-11</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id47">[2.0.0] - 2016-02-06</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id53">[1.0] - 2015-09-06</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#dev-2015-09-02">[1.0dev] - 2015-09-02</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id54">[0.2.1] - 2015-01-25</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id55">[0.2] - 2015-01-22</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id56">[0.1] - 2014-12-17</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="archives.html">Archives</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="archives.html#tutorials">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="archives.html#research-outputs">Research Outputs</a></li>
+</ul>
+</li>
 </ul>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="quickstart.html" class="btn btn-neutral float-right" title="Quickstart" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="quickstart.html" class="btn btn-neutral float-right" title="Quickstart" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        
-        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on May 16, 2021
-
-    </p>
+    <p>&#169; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on December 28, 2021.</p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-
-  
-  
-    
     <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-181803559"></script>
     <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-    ga('create', 'UA-181803559', 'auto');
-    ga('send', 'pageview');
-    </script>
-
-    
-   
+      gtag('config', 'UA-181803559', {
+          'anonymize_ip': false,
+      });
+    </script> 
 
 </body>
 </html>

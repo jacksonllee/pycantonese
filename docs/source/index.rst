@@ -26,12 +26,13 @@ Table of Contents
 -----------------
 
 ..  toctree::
-    :maxdepth: 1
+    :maxdepth: 2
 
     quickstart
     data
     reader
     searches
+    parsing
     jyutping
     stop_words
     word_segmentation

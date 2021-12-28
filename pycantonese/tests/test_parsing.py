@@ -5,19 +5,29 @@ from pycantonese.word_segmentation import Segmenter
 
 
 @pytest.mark.parametrize(
-    "text, segment_kwargs, pos_tag_kwargs, expected",
+    "text, segment_kwargs, pos_tag_kwargs, participant, expected",
     [
-        ("", None, None, "*X:\t\n"),
+        ("", None, None, None, "*X:\t\n"),
         (
             # The canonical case
             "學廣東話",
             None,
             None,
+            None,
             "*X:    學         廣東話\n%mor:  VERB|hok6  NOUN|gwong2dung1waa2\n",
+        ),
+        (
+            # Custom participant
+            "學廣東話",
+            None,
+            None,
+            "Foo",
+            "*Foo:  學         廣東話\n%mor:  VERB|hok6  NOUN|gwong2dung1waa2\n",
         ),
         (
             # Unseen "word", so no jyutping in the output
             "135",
+            None,
             None,
             None,
             "*X:    135\n%mor:  VERB|\n",
@@ -27,12 +37,14 @@ from pycantonese.word_segmentation import Segmenter
             "學廣東話",
             None,
             {"tagset": "hkcancor"},
+            None,
             "*X:    學      廣東話\n%mor:  V|hok6  NG|gwong2dung1waa2\n",
         ),
         (
             # Custom word segmentation
             "學廣東話",
             {"segmenter": Segmenter(disallow={"廣東話"})},
+            None,
             None,
             (
                 "*X:    學         廣東               話\n"
@@ -42,6 +54,7 @@ from pycantonese.word_segmentation import Segmenter
         (
             # Extra whitespace characters should be ignored
             "學廣東話\n\n\n\n\n\n學廣東話",
+            None,
             None,
             None,
             (
@@ -56,6 +69,7 @@ from pycantonese.word_segmentation import Segmenter
             "廣東話好難學？都唔係吖！",
             None,
             None,
+            None,
             (
                 "*X:    廣東話                 好        難         學         ？\n"
                 "%mor:  PROPN|gwong2dung1waa2  ADV|hou2  ADJ|naan4  VERB|hok6  ？\n"
@@ -68,6 +82,7 @@ from pycantonese.word_segmentation import Segmenter
             ["廣東話好難學？都唔係吖！"],
             None,
             None,
+            None,
             (
                 "*X:    廣東話                 好        難         學         ？  都        唔係         吖        ！\n"  # noqa: E501
                 "%mor:  PROPN|gwong2dung1waa2  ADV|hou2  ADJ|naan4  VERB|hok6  ？  ADV|dou1  VERB|m4hai6  PART|aa1  ！\n"  # noqa: E501
@@ -76,6 +91,7 @@ from pycantonese.word_segmentation import Segmenter
         (
             # User-specified participants
             [("小芬", "你食咗飯未呀？"), ("小明", "我食咗喇。")],
+            None,
             None,
             None,
             (
@@ -87,9 +103,12 @@ from pycantonese.word_segmentation import Segmenter
         ),
     ],
 )
-def test_parse_text(text, segment_kwargs, pos_tag_kwargs, expected):
+def test_parse_text(text, segment_kwargs, pos_tag_kwargs, participant, expected):
     corpus = parse_text(
-        text, segment_kwargs=segment_kwargs, pos_tag_kwargs=pos_tag_kwargs
+        text,
+        segment_kwargs=segment_kwargs,
+        pos_tag_kwargs=pos_tag_kwargs,
+        participant=participant,
     )
     actual = "\n".join(corpus.to_strs())
     assert actual == expected

@@ -60,6 +60,19 @@ it is possible to customize word segmentation by passing in a
 :class:`~pycantonese.word_segmentation.Segmenter` instance to the ``segmenter``
 keyword argument of :func:`~pycantonese.characters_to_jyutping`.
 
+.. code-block:: python
+
+    >>> import pycantonese
+    >>> from pycantonese.word_segmentation import Segmenter
+    >>> # Create a `Segmenter` class instance.
+    >>> # See its documentation for what customization it allows.
+    >>> # As an example, the `disallow` parameter can take an iterable of strings
+    >>> # that represent words that you don't want to treat as words.
+    >>> # Here, let's pretend that you don't want 蛋糕 to be segmented as a single word.
+    >>> my_segmenter = Segmenter(disallow={"蛋糕"})
+    >>> pycantonese.characters_to_jyutping("蛋糕", segmenter=my_segmenter)
+    [('蛋', 'daan2'), ('糕', 'gou1')]
+
 .. _parsing_jyutping_strings:
 
 Parsing Jyutping Strings

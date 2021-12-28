@@ -33,25 +33,33 @@ def _parse_text(text: str, segment_kwargs, pos_tag_kwargs):
     return segmented, tags, jyutping
 
 
-def _get_utterance(unparsed_sent, segment_kwargs, pos_tag_kwargs) -> Utterance:
-    if isinstance(unparsed_sent, str):
+def _get_utterance(
+    unparsed_sent, segment_kwargs, pos_tag_kwargs, participant
+) -> Utterance:
+    if participant is not None:
+        pass
+    elif isinstance(unparsed_sent, str):
         participant = _UNKNOWN_PARTICIPANT
     elif isinstance(unparsed_sent, tuple):
         participant, unparsed_sent, *_ = unparsed_sent
     else:
         raise TypeError(
-            f"Utterance must be either a string or "
+            "Utterance must be either a string or "
             f"a tuple of (participant, utterance): {unparsed_sent}"
         )
+    participant = str(participant)
+
     if not unparsed_sent:
         return Utterance(
             participant=participant, tokens=[], time_marks=None, tiers={participant: ""}
         )
     words, tags, jps = _parse_text(unparsed_sent, segment_kwargs, pos_tag_kwargs)
+
     tokens = [
         Token(word, pos, jp, None, None, None)
         for word, pos, jp in zip(words, tags, jps)
     ]
+
     return Utterance(
         participant=participant,
         tokens=tokens,
@@ -69,9 +77,13 @@ def _get_utterance(unparsed_sent, segment_kwargs, pos_tag_kwargs) -> Utterance:
     )
 
 
-# TODO: Write docs.
 def parse_text(
-    data, *, segment_kwargs=None, pos_tag_kwargs=None, parallel=True
+    data,
+    *,
+    segment_kwargs=None,
+    pos_tag_kwargs=None,
+    participant: str = None,
+    parallel: bool = True,
 ) -> CHATReader:
     """Parse raw Cantonese text.
 
@@ -83,8 +95,8 @@ def parse_text(
         - A single string, e.g.,
           ``"廣東話好難學？都唔係吖！"`` (which would be two utterances).
           Basic utterance segmentation
-          (i.e., splitting by the end-of-line character "\n"
-          or one of the punctuation marks from {"。", "！", "？"})
+          (i.e., splitting by the end-of-line character ``\\n``
+          or one of the Chinese full-width punctuation marks from {"。", "！", "？"})
           will be applied to this string, and
           each segmented utterance will be an utterance in the resulting CHAT reader.
         - An iterable of strings, e.g.,
@@ -103,6 +115,12 @@ def parse_text(
         To customize part-of-speech tagging,
         provide a dictionary here which would then be passed as keyword arguments to
         :func:`~pycantonese.pos_tag`.
+    participant : str, optional
+        If provided, this will be the participant in the output CHAT-formatted data
+        (and will override all the particpants if your input to ``data`` is an iterable
+        of tuples).
+        If not provided, a default dummy participant ``"X"`` is used when your ``data``
+        is either a single string or an iterable of strings.
     parallel : bool, optional
         If ``True`` (the default), this function attempts to parallelize parsing
         for speed-up.
@@ -143,12 +161,14 @@ def parse_text(
             _get_utterance,
             segment_kwargs=segment_kwargs,
             pos_tag_kwargs=pos_tag_kwargs,
+            participant=participant,
         )
         with cf.ProcessPoolExecutor() as executor:
             utterances = list(executor.map(func, data, chunksize=_CHUNK_SIZE))
     else:
         utterances = [
-            _get_utterance(sent, segment_kwargs, pos_tag_kwargs) for sent in data
+            _get_utterance(sent, segment_kwargs, pos_tag_kwargs, participant)
+            for sent in data
         ]
 
     f = _File(

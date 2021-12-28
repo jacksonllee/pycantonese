@@ -55,11 +55,11 @@ For example, for the nucleus "aa":
     >>> len(aa)  # number of matching results found
     22328
     >>> aa[: 5]  # show first 5 results
-    [Token(word='啊', pos='Y', jyutping='aa3', mor=None, gra=None),
-     Token(word='啊', pos='Y', jyutping='aa3', mor=None, gra=None),
-     Token(word='淡季', pos='AN', jyutping='daam6gwai3', mor=None, gra=None),
-     Token(word='𡃉', pos='Y', jyutping='gaa3', mor=None, gra=None),
-     Token(word='嗱', pos='Y', jyutping='laa4', mor=None, gra=None)]
+    [Token(word='啊', pos='Y', jyutping='aa3', mor=None, gloss=None, gra=None),
+     Token(word='啊', pos='Y', jyutping='aa3', mor=None, gloss=None, gra=None),
+     Token(word='淡季', pos='AN', jyutping='daam6gwai3', mor=None, gloss=None, gra=None),
+     Token(word='𡃉', pos='Y', jyutping='gaa3', mor=None, gloss=None, gra=None),
+     Token(word='嗱', pos='Y', jyutping='laa4', mor=None, gloss=None, gra=None)]
 
 The ``tone`` parameter:
 
@@ -69,11 +69,11 @@ The ``tone`` parameter:
     >>> len(tone2)
     21167
     >>> tone2[: 5]
-    [Token(word='講', pos='V', jyutping='gong2', mor=None, gra=None),
-     Token(word='嗰個', pos='R', jyutping='go2go3', mor=None, gra=None),
-     Token(word='嗰個', pos='R', jyutping='go2go3', mor=None, gra=None),
-     Token(word='好', pos='D', jyutping='hou2', mor=None, gra=None),
-     Token(word='抵', pos='A', jyutping='dai2', mor=None, gra=None)]
+    [Token(word='講', pos='V', jyutping='gong2', mor=None, gloss=None, gra=None),
+     Token(word='嗰個', pos='R', jyutping='go2go3', mor=None, gloss=None, gra=None),
+     Token(word='嗰個', pos='R', jyutping='go2go3', mor=None, gloss=None, gra=None),
+     Token(word='好', pos='D', jyutping='hou2', mor=None, gloss=None, gra=None),
+     Token(word='抵', pos='A', jyutping='dai2', mor=None, gloss=None, gra=None)]
 
 The parameters ``onset``, ``nucleus``, ``coda``, ``tone``, and ``initial``
 may take a regular expression for more powerful search queries.
@@ -81,15 +81,17 @@ For instance, we may ask for all words that contain any of the codas {p, t, k}.
 ``[ptk]`` as regex means to match any of these letters,
 and we set it to be the value of the ``coda`` parameter:
 
+.. code-block:: python
+
     >>> codas_ptk = corpus.search(coda='[ptk]')
     >>> len(codas_ptk)
     12715
     >>> codas_ptk[: 5]
-    [Token(word='迪士尼', pos='NT', jyutping='dik6si6nei4', mor=None, gra=None),
-     Token(word='直程', pos='D', jyutping='zik6cing4', mor=None, gra=None),
-     Token(word='七', pos='M', jyutping='cat1', mor=None, gra=None),
-     Token(word='八月', pos='T', jyutping='baat3jyut6', mor=None, gra=None),
-     Token(word='日', pos='Q', jyutping='jat6', mor=None, gra=None)]
+    [Token(word='迪士尼', pos='NT', jyutping='dik6si6nei4', mor=None, gloss=None, gra=None),
+     Token(word='直程', pos='D', jyutping='zik6cing4', mor=None, gloss=None, gra=None),
+     Token(word='七', pos='M', jyutping='cat1', mor=None, gloss=None, gra=None),
+     Token(word='八月', pos='T', jyutping='baat3jyut6', mor=None, gloss=None, gra=None),
+     Token(word='日', pos='Q', jyutping='jat6', mor=None, gloss=None, gra=None)]
 
 For regular expressions in Python, see
 `here <https://docs.python.org/3/library/re.html>`_.
@@ -114,11 +116,11 @@ parameter:
     >>> len(machine)
     195
     >>> machine[: 5]
-    [Token(word='機票', pos='N', jyutping='gei1piu3', mor=None, gra=None),
-     Token(word='機票', pos='N', jyutping='gei1piu3', mor=None, gra=None),
-     Token(word='機票', pos='N', jyutping='gei1piu3', mor=None, gra=None),
-     Token(word='飛機', pos='N', jyutping='fei1gei1', mor=None, gra=None),
-     Token(word='機', pos='NG', jyutping='gei1', mor=None, gra=None)]
+    [Token(word='機票', pos='N', jyutping='gei1piu3', mor=None, gloss=None, gra=None),
+     Token(word='機票', pos='N', jyutping='gei1piu3', mor=None, gloss=None, gra=None),
+     Token(word='機票', pos='N', jyutping='gei1piu3', mor=None, gloss=None, gra=None),
+     Token(word='飛機', pos='N', jyutping='fei1gei1', mor=None, gloss=None, gra=None),
+     Token(word='機', pos='NG', jyutping='gei1', mor=None, gloss=None, gra=None)]
 
 Searching by a Part-of-speech Tag
 ---------------------------------
@@ -134,11 +136,11 @@ can be accessed as follows:
     >>> len(verbs)
     29954
     >>> verbs[: 5]
-    [Token(word='去', pos='V', jyutping='heoi3', mor=None, gra=None),
-     Token(word='去', pos='V', jyutping='heoi3', mor=None, gra=None),
-     Token(word='旅行', pos='VN', jyutping='leoi5hang4', mor=None, gra=None),
-     Token(word='有冇', pos='V1', jyutping='jau5mou5', mor=None, gra=None),
-     Token(word='要', pos='VU', jyutping='jiu3', mor=None, gra=None)]
+    [Token(word='去', pos='V', jyutping='heoi3', mor=None, gloss=None, gra=None),
+     Token(word='去', pos='V', jyutping='heoi3', mor=None, gloss=None, gra=None),
+     Token(word='旅行', pos='VN', jyutping='leoi5hang4', mor=None, gloss=None, gra=None),
+     Token(word='有冇', pos='V1', jyutping='jau5mou5', mor=None, gloss=None, gra=None),
+     Token(word='要', pos='VU', jyutping='jiu3', mor=None, gloss=None, gra=None)]
 
 The ``pos`` parameter may take a regular expression. For instance,
 we can use ``'^V'`` to match any part-of-speech tags that begin with "V" for
@@ -150,26 +152,26 @@ different kinds of verbs annotated in HKCanCor:
     >>> len(all_verbs)  # number of all verbs -- more than just "V" alone above
     29726
     >>> all_verbs[:20]  # printing the first 20 results
-    [Token(word='去', pos='V', jyutping='heoi3', mor=None, gra=None),
-     Token(word='去', pos='V', jyutping='heoi3', mor=None, gra=None),
-     Token(word='旅行', pos='VN', jyutping='leoi5hang4', mor=None, gra=None),
-     Token(word='有冇', pos='V1', jyutping='jau5mou5', mor=None, gra=None),
-     Token(word='要', pos='VU', jyutping='jiu3', mor=None, gra=None),
-     Token(word='有得', pos='VU', jyutping='jau5dak1', mor=None, gra=None),
-     Token(word='冇得', pos='VU', jyutping='mou5dak1', mor=None, gra=None),
-     Token(word='去', pos='V', jyutping='heoi3', mor=None, gra=None),
-     Token(word='係', pos='V', jyutping='hai6', mor=None, gra=None),
-     Token(word='係', pos='V', jyutping='hai6', mor=None, gra=None),
-     Token(word='聽', pos='V', jyutping='teng1', mor=None, gra=None),
-     Token(word='講', pos='V', jyutping='gong2', mor=None, gra=None),
-     Token(word='話', pos='V', jyutping='waa6', mor=None, gra=None),
-     Token(word='去', pos='V', jyutping='heoi3', mor=None, gra=None),
-     Token(word='玩', pos='V', jyutping='waan2', mor=None, gra=None),
-     Token(word='可以', pos='VU', jyutping='ho2ji5', mor=None, gra=None),
-     Token(word='住', pos='V', jyutping='zyu6', mor=None, gra=None),
-     Token(word='話', pos='V', jyutping='waa6', mor=None, gra=None),
-     Token(word='跟', pos='V', jyutping='gan1', mor=None, gra=None),
-     Token(word='去', pos='V', jyutping='heoi3', mor=None, gra=None)]
+    [Token(word='去', pos='V', jyutping='heoi3', mor=None, gloss=None, gra=None),
+     Token(word='去', pos='V', jyutping='heoi3', mor=None, gloss=None, gra=None),
+     Token(word='旅行', pos='VN', jyutping='leoi5hang4', mor=None, gloss=None, gra=None),
+     Token(word='有冇', pos='V1', jyutping='jau5mou5', mor=None, gloss=None, gra=None),
+     Token(word='要', pos='VU', jyutping='jiu3', mor=None, gloss=None, gra=None),
+     Token(word='有得', pos='VU', jyutping='jau5dak1', mor=None, gloss=None, gra=None),
+     Token(word='冇得', pos='VU', jyutping='mou5dak1', mor=None, gloss=None, gra=None),
+     Token(word='去', pos='V', jyutping='heoi3', mor=None, gloss=None, gra=None),
+     Token(word='係', pos='V', jyutping='hai6', mor=None, gloss=None, gra=None),
+     Token(word='係', pos='V', jyutping='hai6', mor=None, gloss=None, gra=None),
+     Token(word='聽', pos='V', jyutping='teng1', mor=None, gloss=None, gra=None),
+     Token(word='講', pos='V', jyutping='gong2', mor=None, gloss=None, gra=None),
+     Token(word='話', pos='V', jyutping='waa6', mor=None, gloss=None, gra=None),
+     Token(word='去', pos='V', jyutping='heoi3', mor=None, gloss=None, gra=None),
+     Token(word='玩', pos='V', jyutping='waan2', mor=None, gloss=None, gra=None),
+     Token(word='可以', pos='VU', jyutping='ho2ji5', mor=None, gloss=None, gra=None),
+     Token(word='住', pos='V', jyutping='zyu6', mor=None, gloss=None, gra=None),
+     Token(word='話', pos='V', jyutping='waa6', mor=None, gloss=None, gra=None),
+     Token(word='跟', pos='V', jyutping='gan1', mor=None, gloss=None, gra=None),
+     Token(word='去', pos='V', jyutping='heoi3', mor=None, gloss=None, gra=None)]
 
 For regular expressions in Python, see
 `here <https://docs.python.org/3/library/re.html>`_.
@@ -200,24 +202,24 @@ preceding the utterance containing the match word and zero utterances following 
     >>> len(gwo3)
     705
     >>> gwo3[:5]
-    [[Token(word='去', pos='V', jyutping='heoi3', mor=None, gra=None),
-      Token(word='過', pos='U', jyutping='gwo3', mor=None, gra=None),
-      Token(word='喇', pos='Y', jyutping='laa1', mor=None, gra=None),
-      Token(word='.', pos='.', jyutping=None, mor=None, gra=None)],
-     [Token(word='不過', pos='C', jyutping='bat1gwo3', mor=None, gra=None),
-      Token(word='幾', pos='M', jyutping='gei2', mor=None, gra=None),
-      Token(word='日', pos='Q', jyutping='jat6', mor=None, gra=None)],
-     [Token(word='去', pos='VK', jyutping='heoi3', mor=None, gra=None),
-      Token(word='過', pos='V', jyutping='gwo3', mor=None, gra=None),
-      Token(word='嗰邊', pos='R', jyutping='go2bin1', mor=None, gra=None),
-      Token(word='瞓覺', pos='V', jyutping='fan3gaau3', mor=None, gra=None)],
-     [Token(word='不過', pos='C', jyutping='bat1gwo3', mor=None, gra=None),
-      Token(word='都', pos='D', jyutping='dou1', mor=None, gra=None),
-      Token(word=',', pos=',', jyutping=None, mor=None, gra=None)],
-     [Token(word=',', pos=',', jyutping=None, mor=None, gra=None),
-      Token(word='不過', pos='C', jyutping='bat1gwo3', mor=None, gra=None),
-      Token(word='真係', pos='D', jyutping='zan1hai6', mor=None, gra=None),
-      Token(word='好', pos='D', jyutping='hou2', mor=None, gra=None)]]
+    [[Token(word='去', pos='V', jyutping='heoi3', mor=None, gloss=None, gra=None),
+      Token(word='過', pos='U', jyutping='gwo3', mor=None, gloss=None, gra=None),
+      Token(word='喇', pos='Y', jyutping='laa1', mor=None, gloss=None, gra=None),
+      Token(word='.', pos='.', jyutping=None, mor=None, gloss=None, gra=None)],
+     [Token(word='不過', pos='C', jyutping='bat1gwo3', mor=None, gloss=None, gra=None),
+      Token(word='幾', pos='M', jyutping='gei2', mor=None, gloss=None, gra=None),
+      Token(word='日', pos='Q', jyutping='jat6', mor=None, gloss=None, gra=None)],
+     [Token(word='去', pos='VK', jyutping='heoi3', mor=None, gloss=None, gra=None),
+      Token(word='過', pos='V', jyutping='gwo3', mor=None, gloss=None, gra=None),
+      Token(word='嗰邊', pos='R', jyutping='go2bin1', mor=None, gloss=None, gra=None),
+      Token(word='瞓覺', pos='V', jyutping='fan3gaau3', mor=None, gloss=None, gra=None)],
+     [Token(word='不過', pos='C', jyutping='bat1gwo3', mor=None, gloss=None, gra=None),
+      Token(word='都', pos='D', jyutping='dou1', mor=None, gloss=None, gra=None),
+      Token(word=',', pos=',', jyutping=None, mor=None, gloss=None, gra=None)],
+     [Token(word=',', pos=',', jyutping=None, mor=None, gloss=None, gra=None),
+      Token(word='不過', pos='C', jyutping='bat1gwo3', mor=None, gloss=None, gra=None),
+      Token(word='真係', pos='D', jyutping='zan1hai6', mor=None, gloss=None, gra=None),
+      Token(word='好', pos='D', jyutping='hou2', mor=None, gloss=None, gra=None)]]
 
 ``utterance_range``:
 
@@ -227,20 +229,20 @@ preceding the utterance containing the match word and zero utterances following 
     >>> len(laa1)
     1681
     >>> laa1[0]  # print the 1st result
-    [[Token(word='係', pos='V', jyutping='hai6', mor=None, gra=None),
-      Token(word='唔係', pos='V', jyutping='m4hai6', mor=None, gra=None),
-      Token(word='啊', pos='Y', jyutping='aa3', mor=None, gra=None),
-      Token(word='?', pos='?', jyutping=None, mor=None, gra=None)],
-     [Token(word='你', pos='R', jyutping='nei5', mor=None, gra=None),
-      Token(word='都', pos='D', jyutping='dou1', mor=None, gra=None),
-      Token(word='去', pos='V', jyutping='heoi3', mor=None, gra=None),
-      Token(word='過', pos='U', jyutping='gwo3', mor=None, gra=None),
-      Token(word='喇', pos='Y', jyutping='laa1', mor=None, gra=None),
-      Token(word='.', pos='.', jyutping=None, mor=None, gra=None)],
-     [Token(word='咪', pos='C', jyutping='mai6', mor=None, gra=None),
-      Token(word='係', pos='V', jyutping='hai6', mor=None, gra=None),
-      Token(word='囖', pos='Y', jyutping='lo1', mor=None, gra=None),
-      Token(word='.', pos='.', jyutping=None, mor=None, gra=None)]]
+    [[Token(word='係', pos='V', jyutping='hai6', mor=None, gloss=None, gra=None),
+      Token(word='唔係', pos='V', jyutping='m4hai6', mor=None, gloss=None, gra=None),
+      Token(word='啊', pos='Y', jyutping='aa3', mor=None, gloss=None, gra=None),
+      Token(word='?', pos='?', jyutping=None, mor=None, gloss=None, gra=None)],
+     [Token(word='你', pos='R', jyutping='nei5', mor=None, gloss=None, gra=None),
+      Token(word='都', pos='D', jyutping='dou1', mor=None, gloss=None, gra=None),
+      Token(word='去', pos='V', jyutping='heoi3', mor=None, gloss=None, gra=None),
+      Token(word='過', pos='U', jyutping='gwo3', mor=None, gloss=None, gra=None),
+      Token(word='喇', pos='Y', jyutping='laa1', mor=None, gloss=None, gra=None),
+      Token(word='.', pos='.', jyutping=None, mor=None, gloss=None, gra=None)],
+     [Token(word='咪', pos='C', jyutping='mai6', mor=None, gloss=None, gra=None),
+      Token(word='係', pos='V', jyutping='hai6', mor=None, gloss=None, gra=None),
+      Token(word='囖', pos='Y', jyutping='lo1', mor=None, gloss=None, gra=None),
+      Token(word='.', pos='.', jyutping=None, mor=None, gloss=None, gra=None)]]
 
 
 If ``utterance_range`` is not ``(0, 0)``, ``word_range`` is ignored since full
@@ -261,16 +263,16 @@ we may be interested in all words with coda {p, t, k} plus tone 2 (high-rising):
     >>> len(ptk_tone2)
     71
     >>> ptk_tone2[: 10]
-    [Token(word='雀', pos='N', jyutping='zoek2', mor=None, gra=None),
-     Token(word='雀', pos='N', jyutping='zoek2', mor=None, gra=None),
-     Token(word='綠', pos='A', jyutping='luk2', mor=None, gra=None),
-     Token(word='賊', pos='N', jyutping='caak2', mor=None, gra=None),
-     Token(word='dut2', pos='O', jyutping='dut2', mor=None, gra=None),
-     Token(word='碟', pos='N', jyutping='dip2', mor=None, gra=None),
-     Token(word='碟', pos='N', jyutping='dip2', mor=None, gra=None),
-     Token(word='碟', pos='N', jyutping='dip2', mor=None, gra=None),
-     Token(word='碟形', pos='N', jyutping='dip2jing4', mor=None, gra=None),
-     Token(word='碟', pos='N', jyutping='dip2', mor=None, gra=None)]
+    [Token(word='雀', pos='N', jyutping='zoek2', mor=None, gloss=None, gra=None),
+     Token(word='雀', pos='N', jyutping='zoek2', mor=None, gloss=None, gra=None),
+     Token(word='綠', pos='A', jyutping='luk2', mor=None, gloss=None, gra=None),
+     Token(word='賊', pos='N', jyutping='caak2', mor=None, gloss=None, gra=None),
+     Token(word='dut2', pos='O', jyutping='dut2', mor=None, gloss=None, gra=None),
+     Token(word='碟', pos='N', jyutping='dip2', mor=None, gloss=None, gra=None),
+     Token(word='碟', pos='N', jyutping='dip2', mor=None, gloss=None, gra=None),
+     Token(word='碟', pos='N', jyutping='dip2', mor=None, gloss=None, gra=None),
+     Token(word='碟形', pos='N', jyutping='dip2jing4', mor=None, gloss=None, gra=None),
+     Token(word='碟', pos='N', jyutping='dip2', mor=None, gloss=None, gra=None)]
 
 Output Format of Search Results
 -------------------------------

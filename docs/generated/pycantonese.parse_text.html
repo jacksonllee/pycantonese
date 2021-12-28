@@ -4,11 +4,11 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>pycantonese.parse_jyutping &mdash; PyCantonese 3.4.0 documentation</title>
+  <title>pycantonese.parse_text &mdash; PyCantonese 3.4.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/pycantonese-logo.ico"/>
-    <link rel="canonical" href="https://pycantonese.org/generated/pycantonese.parse_jyutping.html" />
+    <link rel="canonical" href="https://pycantonese.org/generated/pycantonese.parse_text.html" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -20,8 +20,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="pycantonese.jyutping_to_yale" href="pycantonese.jyutping_to_yale.html" />
-    <link rel="prev" title="pycantonese.characters_to_jyutping" href="pycantonese.characters_to_jyutping.html" /> 
+    <link rel="next" title="pycantonese.segment" href="pycantonese.segment.html" />
+    <link rel="prev" title="pycantonese.stop_words" href="pycantonese.stop_words.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -106,16 +106,16 @@
 <li class="toctree-l3"><a class="reference internal" href="pycantonese.CHATReader.search.html">pycantonese.CHATReader.search</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="reference internal" href="../api.html#jyutping-romanization">Jyutping Romanization</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../api.html#jyutping-romanization">Jyutping Romanization</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pycantonese.characters_to_jyutping.html">pycantonese.characters_to_jyutping</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">pycantonese.parse_jyutping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycantonese.parse_jyutping.html">pycantonese.parse_jyutping</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pycantonese.jyutping_to_yale.html">pycantonese.jyutping_to_yale</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pycantonese.jyutping_to_tipa.html">pycantonese.jyutping_to_tipa</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../api.html#natural-language-processing">Natural Language Processing</a><ul>
+<li class="toctree-l2 current"><a class="reference internal" href="../api.html#natural-language-processing">Natural Language Processing</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="pycantonese.stop_words.html">pycantonese.stop_words</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pycantonese.parse_text.html">pycantonese.parse_text</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">pycantonese.parse_text</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pycantonese.segment.html">pycantonese.segment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pycantonese.word_segmentation.Segmenter.html">pycantonese.word_segmentation.Segmenter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pycantonese.pos_tag.html">pycantonese.pos_tag</a></li>
@@ -248,7 +248,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../api.html">API Reference</a> &raquo;</li>
-      <li>pycantonese.parse_jyutping</li>
+      <li>pycantonese.parse_text</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -257,39 +257,63 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="pycantonese-parse-jyutping">
-<h1>pycantonese.parse_jyutping<a class="headerlink" href="#pycantonese-parse-jyutping" title="Permalink to this headline"></a></h1>
+  <section id="pycantonese-parse-text">
+<h1>pycantonese.parse_text<a class="headerlink" href="#pycantonese-parse-text" title="Permalink to this headline"></a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="pycantonese.parse_jyutping">
-<span class="sig-prename descclassname"><span class="pre">pycantonese.</span></span><span class="sig-name descname"><span class="pre">parse_jyutping</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">jp_str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../api.html#pycantonese.jyutping.Jyutping" title="pycantonese.jyutping.parse_jyutping.Jyutping"><span class="pre">pycantonese.jyutping.parse_jyutping.Jyutping</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/pycantonese/jyutping/parse_jyutping.html#parse_jyutping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycantonese.parse_jyutping" title="Permalink to this definition"></a></dt>
-<dd><p>Parse Jyutping romanization into onset, nucleus, code, and tone.</p>
+<dt class="sig sig-object py" id="pycantonese.parse_text">
+<span class="sig-prename descclassname"><span class="pre">pycantonese.</span></span><span class="sig-name descname"><span class="pre">parse_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">segment_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos_tag_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">participant</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parallel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="pycantonese.CHATReader.html#pycantonese.CHATReader" title="pycantonese.corpus.CHATReader"><span class="pre">pycantonese.corpus.CHATReader</span></a></span></span><a class="reference internal" href="../_modules/pycantonese/parsing.html#parse_text"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycantonese.parse_text" title="Permalink to this definition"></a></dt>
+<dd><p>Parse raw Cantonese text.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>jp_str</strong><span class="classifier">str</span></dt><dd><p>Jyutping romanization for one or multiple characters.</p>
+<dt><strong>data</strong><span class="classifier">str or Iterable[str] or Iterable[Tuple[str, str]]</span></dt><dd><p>Raw Cantonese text data, in one of the following formats:</p>
+<ul class="simple">
+<li><p>A single string, e.g.,
+<code class="docutils literal notranslate"><span class="pre">&quot;廣東話好難學？都唔係吖！&quot;</span></code> (which would be two utterances).
+Basic utterance segmentation
+(i.e., splitting by the end-of-line character <code class="docutils literal notranslate"><span class="pre">\n</span></code>
+or one of the Chinese full-width punctuation marks from {”。”, “！”, “？”})
+will be applied to this string, and
+each segmented utterance will be an utterance in the resulting CHAT reader.</p></li>
+<li><p>An iterable of strings, e.g.,
+<code class="docutils literal notranslate"><span class="pre">[&quot;廣東話好難學？&quot;,</span> <span class="pre">&quot;都唔係吖！&quot;]</span></code>.
+No utterance segmentation will be done. Use this
+option to pass in data that’s utterance-segmented to your liking.</p></li>
+<li><p>An iterable of tuples, where each tuple has two strings, one for the
+participant and the other for the utterance, e.g.,
+<code class="docutils literal notranslate"><span class="pre">[(&quot;小芬&quot;,</span> <span class="pre">&quot;你食咗飯未呀？&quot;),</span> <span class="pre">(&quot;小明&quot;,</span> <span class="pre">&quot;我食咗喇。&quot;)]</span></code>.</p></li>
+</ul>
+</dd>
+<dt><strong>segment_kwargs</strong><span class="classifier">dict, optional</span></dt><dd><p>To customize word segmentation,
+provide a dictionary here which would then be passed as keyword arguments to
+<a class="reference internal" href="pycantonese.segment.html#pycantonese.segment" title="pycantonese.segment"><code class="xref py py-func docutils literal notranslate"><span class="pre">segment()</span></code></a>.</p>
+</dd>
+<dt><strong>pos_tag_kwargs</strong><span class="classifier">dict, optional</span></dt><dd><p>To customize part-of-speech tagging,
+provide a dictionary here which would then be passed as keyword arguments to
+<a class="reference internal" href="pycantonese.pos_tag.html#pycantonese.pos_tag" title="pycantonese.pos_tag"><code class="xref py py-func docutils literal notranslate"><span class="pre">pos_tag()</span></code></a>.</p>
+</dd>
+<dt><strong>participant</strong><span class="classifier">str, optional</span></dt><dd><p>If provided, this will be the participant in the output CHAT-formatted data
+(and will override all the particpants if your input to <code class="docutils literal notranslate"><span class="pre">data</span></code> is an iterable
+of tuples).
+If not provided, a default dummy participant <code class="docutils literal notranslate"><span class="pre">&quot;X&quot;</span></code> is used when your <code class="docutils literal notranslate"><span class="pre">data</span></code>
+is either a single string or an iterable of strings.</p>
+</dd>
+<dt><strong>parallel</strong><span class="classifier">bool, optional</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code> (the default), this function attempts to parallelize parsing
+for speed-up.
+(In case the data volume is very small, the parsing is not parallelized
+even if you pass in <code class="docutils literal notranslate"><span class="pre">True</span></code>.)
+Under certain circumstances (e.g., your application is already parallelized and
+further parallelization from within this function might be undesirable),
+you may like to consider setting this parameter to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>List[Jyutping]</dt><dd></dd>
-</dl>
-</dd>
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><dl class="simple">
-<dt>ValueError</dt><dd><p>If the Jyutping romanization is illegal (e.g., with unrecognized
-elements).</p>
-</dd>
+<dt><a class="reference internal" href="pycantonese.CHATReader.html#pycantonese.CHATReader" title="pycantonese.CHATReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHATReader</span></code></a></dt><dd></dd>
 </dl>
 </dd>
 </dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">parse_jyutping</span><span class="p">(</span><span class="s2">&quot;gwong2dung1waa2&quot;</span><span class="p">)</span>  <span class="c1"># 廣東話, Cantonese</span>
-<span class="go">[Jyutping(onset=&#39;gw&#39;, nucleus=&#39;o&#39;, coda=&#39;ng&#39;, tone=&#39;2&#39;),</span>
-<span class="go"> Jyutping(onset=&#39;d&#39;, nucleus=&#39;u&#39;, coda=&#39;ng&#39;, tone=&#39;1&#39;),</span>
-<span class="go"> Jyutping(onset=&#39;w&#39;, nucleus=&#39;aa&#39;, coda=&#39;&#39;, tone=&#39;2&#39;)]</span>
-</pre></div>
-</div>
 </dd></dl>
 
 </section>
@@ -298,8 +322,8 @@ elements).</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="pycantonese.characters_to_jyutping.html" class="btn btn-neutral float-left" title="pycantonese.characters_to_jyutping" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="pycantonese.jyutping_to_yale.html" class="btn btn-neutral float-right" title="pycantonese.jyutping_to_yale" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="pycantonese.stop_words.html" class="btn btn-neutral float-left" title="pycantonese.stop_words" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pycantonese.segment.html" class="btn btn-neutral float-right" title="pycantonese.segment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

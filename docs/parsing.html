@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parsing Cantonese Text &mdash; PyCantonese 3.4.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/pycantonese-logo.ico"/>
+    <link rel="canonical" href="https://pycantonese.org/parsing.html" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Jyutping Romanization" href="jyutping.html" />
+    <link rel="prev" title="Corpus Search Queries" href="searches.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> PyCantonese
+            <img src="_static/pycantonese-logo-white.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.4.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data.html">Corpus Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data.html#chat-format">CHAT Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#built-in-data">Built-in Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#childes-and-talkbank-data">CHILDES and TalkBank Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data.html#custom-data">Custom Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="reader.html">Corpus Reader Methods</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reader.html#headers">Headers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reader.html#transcriptions-and-annotations">Transcriptions and Annotations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="reader.html#jyutping-romanization">Jyutping Romanization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reader.html#chinese-characters">Chinese Characters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reader.html#word-frequencies-and-ngrams">Word Frequencies and Ngrams</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="searches.html">Corpus Search Queries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-a-jyutping-element">Searching by a Jyutping Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-a-chinese-character">Searching by a Chinese Character</a></li>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-a-part-of-speech-tag">Searching by a Part-of-speech Tag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-a-word-or-utterance-range">Searching by a Word or Utterance Range</a></li>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-multiple-criteria">Searching by Multiple Criteria</a></li>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#output-format-of-search-results">Output Format of Search Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="searches.html#complex-searches">Complex Searches</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Parsing Cantonese Text</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#input-1-a-plain-string">Input 1: A Plain String</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#input-2-a-list-of-strings">Input 2: A List of Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#input-3-a-list-of-tuples-of-strings">Input 3: A List of Tuples of Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#customizing-word-segmentation">Customizing Word Segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#customizing-part-of-speech-tagging">Customizing Part-of-Speech Tagging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#outputting-chat-data">Outputting CHAT Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#more-customization">More Customization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="jyutping.html">Jyutping Romanization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="jyutping.html#characters-to-jyutping-conversion">Characters-to-Jyutping Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jyutping.html#parsing-jyutping-strings">Parsing Jyutping Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jyutping.html#jyutping-to-yale-conversion">Jyutping-to-Yale Conversion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="jyutping.html#jyutping-to-tipa-conversion">Jyutping-to-TIPA Conversion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="stop_words.html">Stop Words</a></li>
+<li class="toctree-l1"><a class="reference internal" href="word_segmentation.html">Word Segmentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="word_segmentation.html#customizing-segmentation">Customizing Segmentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pos_tagging.html">Part-of-Speech Tagging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#corpus-data">Corpus Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.read_chat.html">pycantonese.read_chat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.hkcancor.html">pycantonese.hkcancor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.CHATReader.html">pycantonese.CHATReader</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/pycantonese.CHATReader.search.html">pycantonese.CHATReader.search</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.CHATReader.search.html">pycantonese.CHATReader.search</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#jyutping-romanization">Jyutping Romanization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.characters_to_jyutping.html">pycantonese.characters_to_jyutping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.parse_jyutping.html">pycantonese.parse_jyutping</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.jyutping_to_yale.html">pycantonese.jyutping_to_yale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.jyutping_to_tipa.html">pycantonese.jyutping_to_tipa</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#natural-language-processing">Natural Language Processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.stop_words.html">pycantonese.stop_words</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.parse_text.html">pycantonese.parse_text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.segment.html">pycantonese.segment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.word_segmentation.Segmenter.html">pycantonese.word_segmentation.Segmenter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.pos_tag.html">pycantonese.pos_tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.pos_tagging.hkcancor_to_ud.html">pycantonese.pos_tagging.hkcancor_to_ud</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#chatreader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHATReader</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#token"><code class="xref py py-class docutils literal notranslate"><span class="pre">Token</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#jyutping"><code class="xref py py-class docutils literal notranslate"><span class="pre">Jyutping</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#unreleased">[Unreleased]</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#added">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#changed">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#deprecated">Deprecated</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#removed">Removed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#fixed">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#security">Security</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id2">[3.4.0] - 2021-12-28</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id3">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id4">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id5">Removed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id6">Security</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id7">[3.3.1] - 2021-05-14</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id8">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id9">[3.3.0] - 2021-05-14</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id10">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id11">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id12">[3.2.4] - 2021-05-07</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id13">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id14">[3.2.3] - 2021-04-12</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id15">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id16">[3.2.2] - 2021-03-23</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id17">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id18">[3.2.1] - 2021-03-21</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id19">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id20">[3.2.0] - 2021-03-20</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id21">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id22">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id23">Deprecated</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id24">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id25">[3.1.1] - 2021-03-18</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id26">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id27">[3.1.0] - 2021-02-21</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id28">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id29">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id30">[3.0.0] - 2020-10-25</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id31">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id32">Changed</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="changelog.html#api-breaking-changes">API-breaking Changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="changelog.html#non-api-breaking-changes">Non-API-breaking Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id33">Deprecated</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id34">Security</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id35">[2.4.1] - 2020-10-10</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id36">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id37">[2.4.0] - 2020-10-10</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id38">Added</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id39">[2.3.0] - 2020-07-24</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id40">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id41">Removed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id42">[2.2.0] - 2018-06-30</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id43">Added</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id44">[2.1.0] - 2018-06-11</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id45">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id46">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id47">[2.0.0] - 2016-02-06</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id53">[1.0] - 2015-09-06</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#dev-2015-09-02">[1.0dev] - 2015-09-02</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id54">[0.2.1] - 2015-01-25</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id55">[0.2] - 2015-01-22</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id56">[0.1] - 2014-12-17</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="archives.html">Archives</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="archives.html#tutorials">Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="archives.html#research-outputs">Research Outputs</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">PyCantonese</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Parsing Cantonese Text</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="parsing-cantonese-text">
+<span id="parsing"></span><h1>Parsing Cantonese Text<a class="headerlink" href="#parsing-cantonese-text" title="Permalink to this headline"></a></h1>
+<p>To take advantage of the myriad of functions offered by <a class="reference internal" href="generated/pycantonese.CHATReader.html#pycantonese.CHATReader" title="pycantonese.CHATReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHATReader</span></code></a>,
+the previous documentation pages (<a class="reference internal" href="data.html#data"><span class="std std-ref">Corpus Data</span></a>, <a class="reference internal" href="reader.html#reader"><span class="std std-ref">Corpus Reader Methods</span></a>, <a class="reference internal" href="searches.html#searches"><span class="std std-ref">Corpus Search Queries</span></a>) assume that
+you have CHAT-formatted data that is already processed for word segmentation,
+characters-to-Jyutping conversion, and part-of-speech tagging.
+What if you have your own unprocessed Cantonese data?
+This is where the <a class="reference internal" href="generated/pycantonese.parse_text.html#pycantonese.parse_text" title="pycantonese.parse_text"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_text()</span></code></a> function comes in handy.
+<a class="reference internal" href="generated/pycantonese.parse_text.html#pycantonese.parse_text" title="pycantonese.parse_text"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_text()</span></code></a> takes raw Cantonese text as input
+and returns a <a class="reference internal" href="generated/pycantonese.CHATReader.html#pycantonese.CHATReader" title="pycantonese.CHATReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHATReader</span></code></a> object containing the processed data.</p>
+<section id="input-1-a-plain-string">
+<h2>Input 1: A Plain String<a class="headerlink" href="#input-1-a-plain-string" title="Permalink to this headline"></a></h2>
+<p>If you have unprocessed Cantonese text (prose, conversational data, etc.),
+then you can simply pass in a plain Python string to <a class="reference internal" href="generated/pycantonese.parse_text.html#pycantonese.parse_text" title="pycantonese.parse_text"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_text()</span></code></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="s2">&quot;你食咗飯未呀？食咗喇！你聽日得唔得閒呀？&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span> <span class="o">=</span> <span class="n">pycantonese</span><span class="o">.</span><span class="n">parse_text</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="go">*X:    你         食         咗        飯          未        呀        ？</span>
+<span class="go">%mor:  PRON|nei5  VERB|sik6  PART|zo2  NOUN|faan6  ADV|mei6  PART|aa4  ？</span>
+
+<span class="go">*X:    食         咗        喇         ！</span>
+<span class="go">%mor:  VERB|sik6  PART|zo2  PART|laa1  ！</span>
+
+<span class="go">*X:    你         聽日           得         唔      得閒           呀        ？</span>
+<span class="go">%mor:  PRON|nei5  ADV|ting1jat6  VERB|dak1  ADV|m4  ADJ|dak1haan4  PART|aa4  ？</span>
+</pre></div>
+</div>
+<p>Note:</p>
+<ul class="simple">
+<li><p>Because the output of <a class="reference internal" href="generated/pycantonese.parse_text.html#pycantonese.parse_text" title="pycantonese.parse_text"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_text()</span></code></a> is a <a class="reference internal" href="generated/pycantonese.CHATReader.html#pycantonese.CHATReader" title="pycantonese.CHATReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHATReader</span></code></a> object,
+all methods and attributes for <a class="reference internal" href="generated/pycantonese.CHATReader.html#pycantonese.CHATReader" title="pycantonese.CHATReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHATReader</span></code></a> will work
+(<a class="reference internal" href="api.html#pycantonese.CHATReader.words" title="pycantonese.CHATReader.words"><code class="xref py py-func docutils literal notranslate"><span class="pre">words()</span></code></a>, <a class="reference internal" href="api.html#pycantonese.CHATReader.tokens" title="pycantonese.CHATReader.tokens"><code class="xref py py-func docutils literal notranslate"><span class="pre">tokens()</span></code></a>,
+<a class="reference internal" href="api.html#pycantonese.CHATReader.utterances" title="pycantonese.CHATReader.utterances"><code class="xref py py-func docutils literal notranslate"><span class="pre">utterances()</span></code></a>, <a class="reference internal" href="generated/pycantonese.CHATReader.search.html#pycantonese.CHATReader.search" title="pycantonese.CHATReader.search"><code class="xref py py-func docutils literal notranslate"><span class="pre">search()</span></code></a>, etc).</p></li>
+<li><p>Since CHAT is designed for conversational data and your input data is a string,
+<a class="reference internal" href="generated/pycantonese.parse_text.html#pycantonese.parse_text" title="pycantonese.parse_text"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_text()</span></code></a> attempts simple utterance segmentation
+(by the Chinese full-width punctuation marks <code class="docutils literal notranslate"><span class="pre">{&quot;，&quot;,</span> <span class="pre">&quot;！&quot;,</span> <span class="pre">&quot;。&quot;}</span></code>
+as well as the end-of-line character <code class="docutils literal notranslate"><span class="pre">&quot;\n&quot;</span></code>).</p></li>
+<li><p>By default, a dummy participant <code class="docutils literal notranslate"><span class="pre">&quot;X&quot;</span></code> is assigned to each utterance.
+To provide your own participant, pass it to the <code class="docutils literal notranslate"><span class="pre">participant</span></code> keyword argument of
+<a class="reference internal" href="generated/pycantonese.parse_text.html#pycantonese.parse_text" title="pycantonese.parse_text"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_text()</span></code></a>.</p></li>
+</ul>
+<p>Since the input string data is a vanilla Python string,
+we can also pipe raw Cantonese text from a local file into the <a class="reference internal" href="generated/pycantonese.parse_text.html#pycantonese.parse_text" title="pycantonese.parse_text"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_text()</span></code></a> function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pycantonese</span>
+<span class="c1"># Suppose you have Cantonese text in data.txt.</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;data.txt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">corpus</span> <span class="o">=</span> <span class="n">pycantonese</span><span class="o">.</span><span class="n">parse_text</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="input-2-a-list-of-strings">
+<h2>Input 2: A List of Strings<a class="headerlink" href="#input-2-a-list-of-strings" title="Permalink to this headline"></a></h2>
+<p>If you want to control utterance segmentation on your own,
+you can provide <a class="reference internal" href="generated/pycantonese.parse_text.html#pycantonese.parse_text" title="pycantonese.parse_text"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_text()</span></code></a> with a list of strings instead of a single string.
+Each string in the list will be treated as an utterance:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;你食咗飯未呀？&quot;</span><span class="p">,</span> <span class="s2">&quot;食咗喇！你聽日得唔得閒呀？&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span> <span class="o">=</span> <span class="n">pycantonese</span><span class="o">.</span><span class="n">parse_text</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="go">*X:    你         食         咗        飯          未        呀        ？</span>
+<span class="go">%mor:  PRON|nei5  VERB|sik6  PART|zo2  NOUN|faan6  ADV|mei6  PART|aa4  ？</span>
+
+<span class="go">*X:    食         咗        喇         ！  你         聽日           得         唔      得閒           呀        ？</span>
+<span class="go">%mor:  VERB|sik6  PART|zo2  PART|laa1  ！  PRON|nei5  ADV|ting1jat6  VERB|dak1  ADV|m4  ADJ|dak1haan4  PART|aa4  ？</span>
+</pre></div>
+</div>
+<p>See how the input <code class="docutils literal notranslate"><span class="pre">&quot;食咗喇！你聽日得唔得閒呀？&quot;</span></code> was treated as an utterance,
+without utterance segmentation due to the exclamation point <code class="docutils literal notranslate"><span class="pre">&quot;！&quot;</span></code> in the middle.</p>
+</section>
+<section id="input-3-a-list-of-tuples-of-strings">
+<h2>Input 3: A List of Tuples of Strings<a class="headerlink" href="#input-3-a-list-of-tuples-of-strings" title="Permalink to this headline"></a></h2>
+<p>If your data has multiple participants (e.g., a dialog, a play or drama script)
+and you would like to encode such participant information for downstream analysis,
+then you can provide <a class="reference internal" href="generated/pycantonese.parse_text.html#pycantonese.parse_text" title="pycantonese.parse_text"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_text()</span></code></a> with a list of tuples of strings.
+In each tuple, the first element is the participant,
+and the second one is the unparsed utterance string:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="s2">&quot;小麗&quot;</span><span class="p">,</span> <span class="s2">&quot;你食咗飯未呀？&quot;</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="s2">&quot;小怡&quot;</span><span class="p">,</span> <span class="s2">&quot;食咗喇！你聽日得唔得閒呀？&quot;</span><span class="p">),</span>
+<span class="gp">... </span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span> <span class="o">=</span> <span class="n">pycantonese</span><span class="o">.</span><span class="n">parse_text</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="go">*小麗:  你         食         咗        飯          未        呀        ？</span>
+<span class="go">%mor:   PRON|nei5  VERB|sik6  PART|zo2  NOUN|faan6  ADV|mei6  PART|aa4  ？</span>
+
+<span class="go">*小怡:  食         咗        喇         ！  你         聽日           得         唔      得閒           呀        ？</span>
+<span class="go">%mor:   VERB|sik6  PART|zo2  PART|laa1  ！  PRON|nei5  ADV|ting1jat6  VERB|dak1  ADV|m4  ADJ|dak1haan4  PART|aa4  ？</span>
+</pre></div>
+</div>
+</section>
+<section id="customizing-word-segmentation">
+<h2>Customizing Word Segmentation<a class="headerlink" href="#customizing-word-segmentation" title="Permalink to this headline"></a></h2>
+<p><a class="reference internal" href="generated/pycantonese.parse_text.html#pycantonese.parse_text" title="pycantonese.parse_text"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_text()</span></code></a> has an optional argument called <code class="docutils literal notranslate"><span class="pre">segment_kwargs</span></code>.
+You can pass in a dictionary here to customize the behavior of word segmentation.
+The key-value pairs in this dictionary are passed as keyword arguments to the underlying
+<a class="reference internal" href="generated/pycantonese.segment.html#pycantonese.segment" title="pycantonese.segment"><code class="xref py py-func docutils literal notranslate"><span class="pre">segment()</span></code></a> function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pycantonese.word_segmentation</span> <span class="kn">import</span> <span class="n">Segmenter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># The ``Segmenter`` class can take an &quot;allow&quot; or &quot;disallow&quot; list of words.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># The example below shows the use of an &quot;allow&quot; list that happens to be</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># a hard-coded set of strings (with only one string: ``&quot;得唔得閒&quot;``).</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># You can create your own allow/disallow list so long as the list is a container</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># of strings (e.g., from memory, from a local file).</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_segmenter</span> <span class="o">=</span> <span class="n">Segmenter</span><span class="p">(</span><span class="n">allow</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;得唔得閒&quot;</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="s2">&quot;小麗&quot;</span><span class="p">,</span> <span class="s2">&quot;你食咗飯未呀？&quot;</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="s2">&quot;小明&quot;</span><span class="p">,</span> <span class="s2">&quot;食咗喇！你聽日得唔得閒呀？&quot;</span><span class="p">),</span>
+<span class="gp">... </span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># The pycantonese.segment function takes the `cls` kwarg for a custom segmenter,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># which is why we can pass in ``{&quot;cls&quot;: my_segmenter}`` to ``segment_kwargs``.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span> <span class="o">=</span> <span class="n">pycantonese</span><span class="o">.</span><span class="n">parse_text</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">segment_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;cls&quot;</span><span class="p">:</span> <span class="n">my_segmenter</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="go">*小麗:  你         食         咗        飯          未        呀        ？</span>
+<span class="go">%mor:   PRON|nei5  VERB|sik6  PART|zo2  NOUN|faan6  ADV|mei6  PART|aa4  ？</span>
+
+<span class="go">*小明:  食         咗        喇         ！  你         聽日           得唔得閒              呀        ？</span>
+<span class="go">%mor:   VERB|sik6  PART|zo2  PART|laa1  ！  PRON|nei5  ADV|ting1jat6  VERB|dak1m4dak1haan4  PART|aa4  ？</span>
+</pre></div>
+</div>
+<p>Note the difference in the way <code class="docutils literal notranslate"><span class="pre">&quot;得唔得閒&quot;</span></code> is segmented between here and previous examples.</p>
+</section>
+<section id="customizing-part-of-speech-tagging">
+<h2>Customizing Part-of-Speech Tagging<a class="headerlink" href="#customizing-part-of-speech-tagging" title="Permalink to this headline"></a></h2>
+<p><a class="reference internal" href="generated/pycantonese.parse_text.html#pycantonese.parse_text" title="pycantonese.parse_text"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_text()</span></code></a> has an optional argument called <code class="docutils literal notranslate"><span class="pre">pos_tag_kwargs</span></code>.
+You can pass in a dictionary here to customize the behavior of part-of-speech tagging.
+The key-value pairs in this dictionary are passed as keyword arguments to the underlying
+<a class="reference internal" href="generated/pycantonese.pos_tag.html#pycantonese.pos_tag" title="pycantonese.pos_tag"><code class="xref py py-func docutils literal notranslate"><span class="pre">pos_tag()</span></code></a> function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="s2">&quot;小麗&quot;</span><span class="p">,</span> <span class="s2">&quot;你食咗飯未呀？&quot;</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="p">(</span><span class="s2">&quot;小明&quot;</span><span class="p">,</span> <span class="s2">&quot;食咗喇！你聽日得唔得閒呀？&quot;</span><span class="p">),</span>
+<span class="gp">... </span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span> <span class="o">=</span> <span class="n">pycantonese</span><span class="o">.</span><span class="n">parse_text</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">pos_tag_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;tagset&quot;</span><span class="p">:</span> <span class="s2">&quot;hkcancor&quot;</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">corpus</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="go">*小麗:  你      食      咗     飯       未      呀     ？</span>
+<span class="go">%mor:   R|nei5  V|sik6  U|zo2  N|faan6  D|mei6  Y|aa4  ？</span>
+
+<span class="go">*小明:  食      咗     喇      ！  你      聽日         得      唔    得閒         呀     ？</span>
+<span class="go">%mor:   V|sik6  U|zo2  Y|laa1  ！  R|nei5  T|ting1jat6  V|dak1  D|m4  A|dak1haan4  Y|aa4  ？</span>
+</pre></div>
+</div>
+</section>
+<section id="outputting-chat-data">
+<h2>Outputting CHAT Data<a class="headerlink" href="#outputting-chat-data" title="Permalink to this headline"></a></h2>
+<p>Once you have created a <a class="reference internal" href="generated/pycantonese.CHATReader.html#pycantonese.CHATReader" title="pycantonese.CHATReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHATReader</span></code></a> object using your own data,
+you may like to export the CHAT-formatted data to a local file.
+This way, you can more easily share the processed data with your colleagues,
+reload the data (see <a class="reference internal" href="data.html#data"><span class="std std-ref">Corpus Data</span></a>) for further processing and analysis in your workflow,
+and so forth.</p>
+<p>With a <a class="reference internal" href="generated/pycantonese.CHATReader.html#pycantonese.CHATReader" title="pycantonese.CHATReader"><code class="xref py py-class docutils literal notranslate"><span class="pre">CHATReader</span></code></a> object, simply call the <a class="reference internal" href="api.html#pycantonese.CHATReader.to_chat" title="pycantonese.CHATReader.to_chat"><code class="xref py py-func docutils literal notranslate"><span class="pre">to_chat()</span></code></a>
+method with a local file path.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">file_path</span> <span class="o">=</span> <span class="s2">&quot;result.cha&quot;</span>
+<span class="n">corpus</span><span class="o">.</span><span class="n">to_chat</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="more-customization">
+<h2>More Customization<a class="headerlink" href="#more-customization" title="Permalink to this headline"></a></h2>
+<p>Under the hood, <a class="reference internal" href="generated/pycantonese.parse_text.html#pycantonese.parse_text" title="pycantonese.parse_text"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_text()</span></code></a> calls the existing functions
+from PyCantonese.
+While <a class="reference internal" href="generated/pycantonese.parse_text.html#pycantonese.parse_text" title="pycantonese.parse_text"><code class="xref py py-func docutils literal notranslate"><span class="pre">parse_text()</span></code></a> is designed to cover the basic use cases
+with limited customization, a more custom workflow may require you to put
+the various pieces together in your own way.
+Please see the individual documentation pages for details
+(<a class="reference internal" href="jyutping.html#jyutping"><span class="std std-ref">Jyutping Romanization</span></a>, <a class="reference internal" href="word_segmentation.html#word-segmentation"><span class="std std-ref">Word Segmentation</span></a>, <a class="reference internal" href="pos_tagging.html#pos-tagging"><span class="std std-ref">Part-of-Speech Tagging</span></a>).</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="searches.html" class="btn btn-neutral float-left" title="Corpus Search Queries" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="jyutping.html" class="btn btn-neutral float-right" title="Jyutping Romanization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on December 28, 2021.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+    <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-181803559"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-181803559', {
+          'anonymize_ip': false,
+      });
+    </script> 
+
+</body>
+</html>

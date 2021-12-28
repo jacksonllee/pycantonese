@@ -1,77 +1,40 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>Jyutping Romanization &mdash; PyCantonese 3.3.1 documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jyutping Romanization &mdash; PyCantonese 3.4.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
     <link rel="shortcut icon" href="_static/pycantonese-logo.ico"/>
-  
-  
-  
-
-  
+    <link rel="canonical" href="https://pycantonese.org/jyutping.html" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Stop Words" href="stop_words.html" />
-    <link rel="prev" title="Corpus Search Queries" href="searches.html" /> 
+    <link rel="prev" title="Parsing Cantonese Text" href="parsing.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> PyCantonese
-          
-
-          
-            
+            <a href="index.html" class="icon icon-home"> PyCantonese
             <img src="_static/pycantonese-logo-white.svg" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                3.3.1
+                3.4.0
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -79,18 +42,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data.html">Corpus Data</a><ul>
@@ -118,6 +70,16 @@
 <li class="toctree-l2"><a class="reference internal" href="searches.html#searching-by-multiple-criteria">Searching by Multiple Criteria</a></li>
 <li class="toctree-l2"><a class="reference internal" href="searches.html#output-format-of-search-results">Output Format of Search Results</a></li>
 <li class="toctree-l2"><a class="reference internal" href="searches.html#complex-searches">Complex Searches</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parsing.html">Parsing Cantonese Text</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#input-1-a-plain-string">Input 1: A Plain String</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#input-2-a-list-of-strings">Input 2: A List of Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#input-3-a-list-of-tuples-of-strings">Input 3: A List of Tuples of Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#customizing-word-segmentation">Customizing Word Segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#customizing-part-of-speech-tagging">Customizing Part-of-Speech Tagging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#outputting-chat-data">Outputting CHAT Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html#more-customization">More Customization</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Jyutping Romanization</a><ul>
@@ -153,6 +115,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="api.html#natural-language-processing">Natural Language Processing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.stop_words.html">pycantonese.stop_words</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.parse_text.html">pycantonese.parse_text</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.segment.html">pycantonese.segment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.word_segmentation.Segmenter.html">pycantonese.word_segmentation.Segmenter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/pycantonese.pos_tag.html">pycantonese.pos_tag</a></li>
@@ -174,86 +137,93 @@
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#security">Security</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id2">[3.3.1] - 2021-05-14</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id3">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id2">[3.4.0] - 2021-12-28</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id3">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id4">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id5">Removed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id6">Security</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id4">[3.3.0] - 2021-05-14</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id5">Changed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id6">Fixed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id7">[3.2.4] - 2021-05-07</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id7">[3.3.1] - 2021-05-14</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#id8">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id9">[3.2.3] - 2021-04-12</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id10">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id9">[3.3.0] - 2021-05-14</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id10">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id11">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id11">[3.2.2] - 2021-03-23</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id12">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id12">[3.2.4] - 2021-05-07</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id13">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id13">[3.2.1] - 2021-03-21</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id14">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id14">[3.2.3] - 2021-04-12</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id15">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id15">[3.2.0] - 2021-03-20</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id16">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id17">Changed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id18">Deprecated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id16">[3.2.2] - 2021-03-23</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id17">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id18">[3.2.1] - 2021-03-21</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#id19">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id20">[3.1.1] - 2021-03-18</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id21">Fixed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id22">[3.1.0] - 2021-02-21</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id23">Added</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id20">[3.2.0] - 2021-03-20</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id21">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id22">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id23">Deprecated</a></li>
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#id24">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id25">[3.0.0] - 2020-10-25</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id26">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id27">Changed</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id25">[3.1.1] - 2021-03-18</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id26">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id27">[3.1.0] - 2021-02-21</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id28">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id29">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id30">[3.0.0] - 2020-10-25</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id31">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id32">Changed</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="changelog.html#api-breaking-changes">API-breaking Changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="changelog.html#non-api-breaking-changes">Non-API-breaking Changes</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id28">Deprecated</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id29">Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id33">Deprecated</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id34">Security</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id30">[2.4.1] - 2020-10-10</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id31">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id35">[2.4.1] - 2020-10-10</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id36">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id32">[2.4.0] - 2020-10-10</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id33">Added</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id34">[2.3.0] - 2020-07-24</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id35">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id36">Removed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id37">[2.2.0] - 2018-06-30</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id37">[2.4.0] - 2020-10-10</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#id38">Added</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id39">[2.1.0] - 2018-06-11</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id39">[2.3.0] - 2020-07-24</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="changelog.html#id40">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changelog.html#id41">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id41">Removed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id42">[2.0.0] - 2016-02-06</a></li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id48">[1.0] - 2015-09-06</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id42">[2.2.0] - 2018-06-30</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id43">Added</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id44">[2.1.0] - 2018-06-11</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id45">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changelog.html#id46">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id47">[2.0.0] - 2016-02-06</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id53">[1.0] - 2015-09-06</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#dev-2015-09-02">[1.0dev] - 2015-09-02</a></li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id49">[0.2.1] - 2015-01-25</a></li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id50">[0.2] - 2015-01-22</a></li>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#id51">[0.1] - 2014-12-17</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id54">[0.2.1] - 2015-01-25</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id55">[0.2] - 2015-01-22</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#id56">[0.1] - 2014-12-17</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="archives.html">Archives</a><ul>
@@ -263,69 +233,31 @@
 </li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">PyCantonese</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Jyutping Romanization</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="jyutping-romanization">
-<span id="jyutping"></span><h1>Jyutping Romanization<a class="headerlink" href="#jyutping-romanization" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="jyutping-romanization">
+<span id="jyutping"></span><h1>Jyutping Romanization<a class="headerlink" href="#jyutping-romanization" title="Permalink to this headline"></a></h1>
 <p>Among the most common tasks in handling Cantonese corpus data are those that
 involve the processing of <a class="reference external" href="https://www.lshk.org/jyutping">Jyutping romanization</a>.
 A common need is to convert Cantonese characters to Jyutping romanization.
@@ -334,8 +266,8 @@ other romanization schemes still used today.
 Whether you have <a class="reference internal" href="reader.html#jyutping-from-reader"><span class="std std-ref">data in Jyutping from a corpus reader</span></a>
 or you have independently ingested Jyutping as Python strings,
 PyCantonese provides tools for these use cases.</p>
-<div class="section" id="characters-to-jyutping-conversion">
-<span id="chars-to-jp"></span><h2>Characters-to-Jyutping Conversion<a class="headerlink" href="#characters-to-jyutping-conversion" title="Permalink to this headline">¶</a></h2>
+<section id="characters-to-jyutping-conversion">
+<span id="chars-to-jp"></span><h2>Characters-to-Jyutping Conversion<a class="headerlink" href="#characters-to-jyutping-conversion" title="Permalink to this headline"></a></h2>
 <p>The function <a class="reference internal" href="generated/pycantonese.characters_to_jyutping.html#pycantonese.characters_to_jyutping" title="pycantonese.characters_to_jyutping"><code class="xref py py-func docutils literal notranslate"><span class="pre">characters_to_jyutping()</span></code></a>
 takes a string of Cantonese characters
 and returns its word-segmented version with Jyutping romanization:</p>
@@ -346,7 +278,7 @@ and returns its word-segmented version with Jyutping romanization:</p>
 </div>
 <p>The characters-to-Jyutping conversion model is based on two data sources:
 (i) the HKCanCor corpus data included in the PyCantonese library, and
-(ii) the rime-cantonese data (the 2020.09.09 release, CC BY 4.0 license).
+(ii) the rime-cantonese data (the 2021.05.16 release, CC BY 4.0 license).
 Any unseen character, Cantonese or otherwise, is represented by <code class="docutils literal notranslate"><span class="pre">None</span></code> in the output.</p>
 <p>To further process the Jyutping strings,
 please see <a class="reference internal" href="#parsing-jyutping-strings">Parsing Jyutping Strings</a>.</p>
@@ -366,9 +298,26 @@ the underlying data contains the relevant tokens. Example:</p>
 <span class="go">[(&#39;蛋糕&#39;, &#39;daan6gou1&#39;)]</span>
 </pre></div>
 </div>
+<p>Because <a class="reference internal" href="generated/pycantonese.characters_to_jyutping.html#pycantonese.characters_to_jyutping" title="pycantonese.characters_to_jyutping"><code class="xref py py-func docutils literal notranslate"><span class="pre">characters_to_jyutping()</span></code></a> performs word segmentation
+under the hood (via <a class="reference internal" href="generated/pycantonese.segment.html#pycantonese.segment" title="pycantonese.segment"><code class="xref py py-func docutils literal notranslate"><span class="pre">segment()</span></code></a>),
+it is possible to customize word segmentation by passing in a
+<a class="reference internal" href="generated/pycantonese.word_segmentation.Segmenter.html#pycantonese.word_segmentation.Segmenter" title="pycantonese.word_segmentation.Segmenter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Segmenter</span></code></a> instance to the <code class="docutils literal notranslate"><span class="pre">segmenter</span></code>
+keyword argument of <a class="reference internal" href="generated/pycantonese.characters_to_jyutping.html#pycantonese.characters_to_jyutping" title="pycantonese.characters_to_jyutping"><code class="xref py py-func docutils literal notranslate"><span class="pre">characters_to_jyutping()</span></code></a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pycantonese.word_segmentation</span> <span class="kn">import</span> <span class="n">Segmenter</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Create a `Segmenter` class instance.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># See its documentation for what customization it allows.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># As an example, the `disallow` parameter can take an iterable of strings</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># that represent words that you don&#39;t want to treat as words.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Here, let&#39;s pretend that you don&#39;t want 蛋糕 to be segmented as a single word.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_segmenter</span> <span class="o">=</span> <span class="n">Segmenter</span><span class="p">(</span><span class="n">disallow</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;蛋糕&quot;</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pycantonese</span><span class="o">.</span><span class="n">characters_to_jyutping</span><span class="p">(</span><span class="s2">&quot;蛋糕&quot;</span><span class="p">,</span> <span class="n">segmenter</span><span class="o">=</span><span class="n">my_segmenter</span><span class="p">)</span>
+<span class="go">[(&#39;蛋&#39;, &#39;daan2&#39;), (&#39;糕&#39;, &#39;gou1&#39;)]</span>
+</pre></div>
 </div>
-<div class="section" id="parsing-jyutping-strings">
-<span id="id2"></span><h2>Parsing Jyutping Strings<a class="headerlink" href="#parsing-jyutping-strings" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="parsing-jyutping-strings">
+<span id="id2"></span><h2>Parsing Jyutping Strings<a class="headerlink" href="#parsing-jyutping-strings" title="Permalink to this headline"></a></h2>
 <p>Converting Jyutping to other romanization schemes necessitates
 the ability to parse Jyutping for the various phonological components
 (onset, nucleus, coda, and tone). To this end, PyCantonese exposes
@@ -424,9 +373,9 @@ and final (= nucleus + coda; 韻母):</p>
 <span class="go">&#39;yut&#39;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="jyutping-to-yale-conversion">
-<h2>Jyutping-to-Yale Conversion<a class="headerlink" href="#jyutping-to-yale-conversion" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="jyutping-to-yale-conversion">
+<h2>Jyutping-to-Yale Conversion<a class="headerlink" href="#jyutping-to-yale-conversion" title="Permalink to this headline"></a></h2>
 <p>The Yale romanization is still a commonly used system, particularly in numerous
 dictionaries and
 Cantonese language teaching resources. PyCantonese provides the
@@ -458,9 +407,9 @@ automatically adds the quote character <code class="docutils literal notranslate
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># &#39;heihauh&#39; would be ambiguous between hei3hau6 and hei6au6.</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="jyutping-to-tipa-conversion">
-<h2>Jyutping-to-TIPA Conversion<a class="headerlink" href="#jyutping-to-tipa-conversion" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="jyutping-to-tipa-conversion">
+<h2>Jyutping-to-TIPA Conversion<a class="headerlink" href="#jyutping-to-tipa-conversion" title="Permalink to this headline"></a></h2>
 <p>PyCantonese also offers the <a class="reference internal" href="generated/pycantonese.jyutping_to_tipa.html#pycantonese.jyutping_to_tipa" title="pycantonese.jyutping_to_tipa"><code class="xref py py-func docutils literal notranslate"><span class="pre">jyutping_to_tipa()</span></code></a> function for the
 <a class="reference external" href="https://www.ctan.org/pkg/tipa?lang=en">LaTeX TIPA</a> users:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pycantonese</span>
@@ -474,75 +423,49 @@ automatically adds the quote character <code class="docutils literal notranslate
 directly suffixed to the individual syllable string.
 (This may change in a future
 release if this behavior proves to be inconvenient.)</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="stop_words.html" class="btn btn-neutral float-right" title="Stop Words" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="searches.html" class="btn btn-neutral float-left" title="Corpus Search Queries" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="parsing.html" class="btn btn-neutral float-left" title="Parsing Cantonese Text" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="stop_words.html" class="btn btn-neutral float-right" title="Stop Words" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        
-        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on May 16, 2021
-
-    </p>
+    <p>&#169; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on December 28, 2021.</p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-
-  
-  
-    
     <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-181803559"></script>
     <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-    ga('create', 'UA-181803559', 'auto');
-    ga('send', 'pageview');
-    </script>
-
-    
-   
+      gtag('config', 'UA-181803559', {
+          'anonymize_ip': false,
+      });
+    </script> 
 
 </body>
 </html>

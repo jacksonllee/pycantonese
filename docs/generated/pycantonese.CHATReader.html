@@ -1,77 +1,40 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>pycantonese.CHATReader &mdash; PyCantonese 3.3.1 documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-
-  
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pycantonese.CHATReader &mdash; PyCantonese 3.4.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/pycantonese-logo.ico"/>
-  
-  
-  
-
-  
+    <link rel="canonical" href="https://pycantonese.org/generated/pycantonese.CHATReader.html" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="pycantonese.CHATReader.search" href="pycantonese.CHATReader.search.html" />
     <link rel="prev" title="pycantonese.hkcancor" href="pycantonese.hkcancor.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> PyCantonese
-          
-
-          
-            
+            <a href="../index.html" class="icon icon-home"> PyCantonese
             <img src="../_static/pycantonese-logo-white.svg" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
               <div class="version">
-                3.3.1
+                3.4.0
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -79,18 +42,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../data.html">Corpus Data</a><ul>
@@ -118,6 +70,16 @@
 <li class="toctree-l2"><a class="reference internal" href="../searches.html#searching-by-multiple-criteria">Searching by Multiple Criteria</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../searches.html#output-format-of-search-results">Output Format of Search Results</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../searches.html#complex-searches">Complex Searches</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../parsing.html">Parsing Cantonese Text</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../parsing.html#input-1-a-plain-string">Input 1: A Plain String</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parsing.html#input-2-a-list-of-strings">Input 2: A List of Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parsing.html#input-3-a-list-of-tuples-of-strings">Input 3: A List of Tuples of Strings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parsing.html#customizing-word-segmentation">Customizing Word Segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parsing.html#customizing-part-of-speech-tagging">Customizing Part-of-Speech Tagging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parsing.html#outputting-chat-data">Outputting CHAT Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../parsing.html#more-customization">More Customization</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../jyutping.html">Jyutping Romanization</a><ul>
@@ -153,6 +115,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../api.html#natural-language-processing">Natural Language Processing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="pycantonese.stop_words.html">pycantonese.stop_words</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pycantonese.parse_text.html">pycantonese.parse_text</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pycantonese.segment.html">pycantonese.segment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pycantonese.word_segmentation.Segmenter.html">pycantonese.word_segmentation.Segmenter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pycantonese.pos_tag.html">pycantonese.pos_tag</a></li>
@@ -174,86 +137,93 @@
 <li class="toctree-l3"><a class="reference internal" href="../changelog.html#security">Security</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id2">[3.3.1] - 2021-05-14</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id3">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id2">[3.4.0] - 2021-12-28</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id3">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id4">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id5">Removed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id6">Security</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id4">[3.3.0] - 2021-05-14</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id5">Changed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id6">Fixed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id7">[3.2.4] - 2021-05-07</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id7">[3.3.1] - 2021-05-14</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../changelog.html#id8">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id9">[3.2.3] - 2021-04-12</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id10">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id9">[3.3.0] - 2021-05-14</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id10">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id11">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id11">[3.2.2] - 2021-03-23</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id12">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id12">[3.2.4] - 2021-05-07</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id13">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id13">[3.2.1] - 2021-03-21</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id14">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id14">[3.2.3] - 2021-04-12</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id15">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id15">[3.2.0] - 2021-03-20</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id16">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id17">Changed</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id18">Deprecated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id16">[3.2.2] - 2021-03-23</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id17">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id18">[3.2.1] - 2021-03-21</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../changelog.html#id19">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id20">[3.1.1] - 2021-03-18</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id21">Fixed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id22">[3.1.0] - 2021-02-21</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id23">Added</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id20">[3.2.0] - 2021-03-20</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id21">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id22">Changed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id23">Deprecated</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../changelog.html#id24">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id25">[3.0.0] - 2020-10-25</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id26">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id27">Changed</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id25">[3.1.1] - 2021-03-18</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id26">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id27">[3.1.0] - 2021-02-21</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id28">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id29">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id30">[3.0.0] - 2020-10-25</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id31">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id32">Changed</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../changelog.html#api-breaking-changes">API-breaking Changes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../changelog.html#non-api-breaking-changes">Non-API-breaking Changes</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id28">Deprecated</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id29">Security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id33">Deprecated</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id34">Security</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id30">[2.4.1] - 2020-10-10</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id31">Fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id35">[2.4.1] - 2020-10-10</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id36">Fixed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id32">[2.4.0] - 2020-10-10</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id33">Added</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id34">[2.3.0] - 2020-07-24</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id35">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id36">Removed</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id37">[2.2.0] - 2018-06-30</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id37">[2.4.0] - 2020-10-10</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../changelog.html#id38">Added</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id39">[2.1.0] - 2018-06-11</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id39">[2.3.0] - 2020-07-24</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../changelog.html#id40">Added</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id41">Fixed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id41">Removed</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id42">[2.0.0] - 2016-02-06</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id48">[1.0] - 2015-09-06</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id42">[2.2.0] - 2018-06-30</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id43">Added</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id44">[2.1.0] - 2018-06-11</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id45">Added</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../changelog.html#id46">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id47">[2.0.0] - 2016-02-06</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id53">[1.0] - 2015-09-06</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html#dev-2015-09-02">[1.0dev] - 2015-09-02</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id49">[0.2.1] - 2015-01-25</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id50">[0.2] - 2015-01-22</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id51">[0.1] - 2014-12-17</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id54">[0.2.1] - 2015-01-25</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id55">[0.2] - 2015-01-22</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html#id56">[0.1] - 2014-12-17</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../archives.html">Archives</a><ul>
@@ -263,79 +233,40 @@
 </li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">PyCantonese</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
           <li><a href="../api.html">API Reference</a> &raquo;</li>
-        
       <li>pycantonese.CHATReader</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="pycantonese-chatreader">
-<h1>pycantonese.CHATReader<a class="headerlink" href="#pycantonese-chatreader" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="pycantonese-chatreader">
+<h1>pycantonese.CHATReader<a class="headerlink" href="#pycantonese-chatreader" title="Permalink to this headline"></a></h1>
 <dl class="py class">
-<dt id="pycantonese.CHATReader">
-<em class="property">class </em><code class="sig-prename descclassname">pycantonese.</code><code class="sig-name descname">CHATReader</code><a class="reference internal" href="../_modules/pycantonese/corpus.html#CHATReader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pycantonese.CHATReader" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pycantonese.CHATReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pycantonese.</span></span><span class="sig-name descname"><span class="pre">CHATReader</span></span><a class="reference internal" href="../_modules/pycantonese/corpus.html#CHATReader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pycantonese.CHATReader" title="Permalink to this definition"></a></dt>
 <dd><p>A reader for Cantonese CHAT corpus files.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Some of the methods are inherited from the parent class
-<a class="reference external" href="https://pylangacq.org/api.html#pylangacq.Reader" title="(in PyLangAcq v0.14.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reader</span></code></a> for language acquisition,
+<a class="reference external" href="https://pylangacq.org/api.html#pylangacq.Reader" title="(in PyLangAcq v0.16.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reader</span></code></a> for language acquisition,
 which may or may not be applicable to your use case.</p>
 </div>
 <p class="rubric">Methods</p>
@@ -354,7 +285,7 @@ which may or may not be applicable to your use case.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.append_left" title="pycantonese.CHATReader.append_left"><code class="xref py py-obj docutils literal notranslate"><span class="pre">append_left</span></code></a>(reader)</p></td>
 <td><p>Left-append data from another reader.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.characters" title="pycantonese.CHATReader.characters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">characters</span></code></a>([participants, exclude, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.characters" title="pycantonese.CHATReader.characters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">characters</span></code></a>([participants, exclude, ...])</p></td>
 <td><p>Return the data in individual Chinese characters.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.clear" title="pycantonese.CHATReader.clear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code></a>()</p></td>
@@ -375,25 +306,31 @@ which may or may not be applicable to your use case.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.filter" title="pycantonese.CHATReader.filter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">filter</span></code></a>([match, exclude])</p></td>
 <td><p>Return a new reader filtered by file paths.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.from_dir" title="pycantonese.CHATReader.from_dir"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_dir</span></code></a>(path[, match, exclude, extension, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.from_dir" title="pycantonese.CHATReader.from_dir"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_dir</span></code></a>(path[, match, exclude, extension, ...])</p></td>
 <td><p>Instantiate a reader from a local directory with CHAT data files.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.from_files" title="pycantonese.CHATReader.from_files"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_files</span></code></a>(paths[, match, exclude, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.from_files" title="pycantonese.CHATReader.from_files"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_files</span></code></a>(paths[, match, exclude, ...])</p></td>
 <td><p>Instantiate a reader from local CHAT data files.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.from_strs" title="pycantonese.CHATReader.from_strs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_strs</span></code></a>(strs[, ids, parallel])</p></td>
 <td><p>Instantiate a reader from in-memory CHAT data strings.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.from_zip" title="pycantonese.CHATReader.from_zip"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_zip</span></code></a>(path[, match, exclude, extension, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.from_zip" title="pycantonese.CHATReader.from_zip"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_zip</span></code></a>(path[, match, exclude, extension, ...])</p></td>
 <td><p>Instantiate a reader from a local or remote ZIP file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.headers" title="pycantonese.CHATReader.headers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">headers</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.head" title="pycantonese.CHATReader.head"><code class="xref py py-obj docutils literal notranslate"><span class="pre">head</span></code></a>([n, participants, exclude])</p></td>
+<td><p>Return the first several utterances.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.headers" title="pycantonese.CHATReader.headers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">headers</span></code></a>()</p></td>
 <td><p>Return the headers.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.info" title="pycantonese.CHATReader.info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">info</span></code></a>([verbose])</p></td>
+<td><p>Print a summary of this Reader's data.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.ipsyn" title="pycantonese.CHATReader.ipsyn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ipsyn</span></code></a>()</p></td>
 <td><p>(Not implemented - the upstream <code class="docutils literal notranslate"><span class="pre">ipsyn</span></code> method works for English only.)</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.jyutping" title="pycantonese.CHATReader.jyutping"><code class="xref py py-obj docutils literal notranslate"><span class="pre">jyutping</span></code></a>([participants, exclude, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.jyutping" title="pycantonese.CHATReader.jyutping"><code class="xref py py-obj docutils literal notranslate"><span class="pre">jyutping</span></code></a>([participants, exclude, ...])</p></td>
 <td><p>Return the data in Jyutping romanization.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.languages" title="pycantonese.CHATReader.languages"><code class="xref py py-obj docutils literal notranslate"><span class="pre">languages</span></code></a>([by_files])</p></td>
@@ -420,7 +357,7 @@ which may or may not be applicable to your use case.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.pop_left" title="pycantonese.CHATReader.pop_left"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pop_left</span></code></a>()</p></td>
 <td><p>Drop the first data file from the reader and return it as a reader.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pycantonese.CHATReader.search.html#pycantonese.CHATReader.search" title="pycantonese.CHATReader.search"><code class="xref py py-obj docutils literal notranslate"><span class="pre">search</span></code></a>(*[, onset, nucleus, coda, tone, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pycantonese.CHATReader.search.html#pycantonese.CHATReader.search" title="pycantonese.CHATReader.search"><code class="xref py py-obj docutils literal notranslate"><span class="pre">search</span></code></a>(*[, onset, nucleus, coda, tone, ...])</p></td>
 <td><p>Search the data for the given criteria.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.sents" title="pycantonese.CHATReader.sents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sents</span></code></a>([participants, exclude, by_files])</p></td>
@@ -432,22 +369,31 @@ which may or may not be applicable to your use case.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.tagged_words" title="pycantonese.CHATReader.tagged_words"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tagged_words</span></code></a>([participants, exclude, by_files])</p></td>
 <td><p>Return the tagged words.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.tokens" title="pycantonese.CHATReader.tokens"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tokens</span></code></a>([participants, exclude, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.tail" title="pycantonese.CHATReader.tail"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tail</span></code></a>([n, participants, exclude])</p></td>
+<td><p>Return the last several utterances.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.to_chat" title="pycantonese.CHATReader.to_chat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_chat</span></code></a>(path[, is_dir, filenames, tabular, ...])</p></td>
+<td><p>Export to CHAT data files.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.to_strs" title="pycantonese.CHATReader.to_strs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_strs</span></code></a>([tabular])</p></td>
+<td><p>Yield CHAT data strings.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.tokens" title="pycantonese.CHATReader.tokens"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tokens</span></code></a>([participants, exclude, ...])</p></td>
 <td><p>Return the tokens.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.ttr" title="pycantonese.CHATReader.ttr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ttr</span></code></a>([keep_case, participant])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.ttr" title="pycantonese.CHATReader.ttr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ttr</span></code></a>([keep_case, participant])</p></td>
 <td><p>Return the type-token ratios (TTR).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.utterances" title="pycantonese.CHATReader.utterances"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utterances</span></code></a>([participants, exclude, by_files])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.utterances" title="pycantonese.CHATReader.utterances"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utterances</span></code></a>([participants, exclude, by_files])</p></td>
 <td><p>Return the utterances.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.word_frequencies" title="pycantonese.CHATReader.word_frequencies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">word_frequencies</span></code></a>([keep_case, participants, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.word_frequencies" title="pycantonese.CHATReader.word_frequencies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">word_frequencies</span></code></a>([keep_case, participants, ...])</p></td>
 <td><p>Return word frequencies.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.word_ngrams" title="pycantonese.CHATReader.word_ngrams"><code class="xref py py-obj docutils literal notranslate"><span class="pre">word_ngrams</span></code></a>(n[, keep_case, participants, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.word_ngrams" title="pycantonese.CHATReader.word_ngrams"><code class="xref py py-obj docutils literal notranslate"><span class="pre">word_ngrams</span></code></a>(n[, keep_case, participants, ...])</p></td>
 <td><p>Return word ngrams.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.words" title="pycantonese.CHATReader.words"><code class="xref py py-obj docutils literal notranslate"><span class="pre">words</span></code></a>([participants, exclude, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.words" title="pycantonese.CHATReader.words"><code class="xref py py-obj docutils literal notranslate"><span class="pre">words</span></code></a>([participants, exclude, ...])</p></td>
 <td><p>Return the words.</p></td>
 </tr>
 </tbody>
@@ -470,8 +416,8 @@ which may or may not be applicable to your use case.</p>
 </tbody>
 </table>
 <dl class="py method">
-<dt id="pycantonese.CHATReader.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.CHATReader.__init__" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pycantonese.CHATReader.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pycantonese.CHATReader.__init__" title="Permalink to this definition"></a></dt>
 <dd><p>Initialize an empty reader.</p>
 </dd></dl>
 
@@ -494,10 +440,10 @@ which may or may not be applicable to your use case.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.append_left" title="pycantonese.CHATReader.append_left"><code class="xref py py-obj docutils literal notranslate"><span class="pre">append_left</span></code></a>(reader)</p></td>
 <td><p>Left-append data from another reader.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">character_sents</span></code>([participants, exclude, …])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">character_sents</span></code>([participants, exclude, ...])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.characters" title="pycantonese.CHATReader.characters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">characters</span></code></a>([participants, exclude, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.characters" title="pycantonese.CHATReader.characters"><code class="xref py py-obj docutils literal notranslate"><span class="pre">characters</span></code></a>([participants, exclude, ...])</p></td>
 <td><p>Return the data in individual Chinese characters.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.clear" title="pycantonese.CHATReader.clear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear</span></code></a>()</p></td>
@@ -518,31 +464,37 @@ which may or may not be applicable to your use case.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.filter" title="pycantonese.CHATReader.filter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">filter</span></code></a>([match, exclude])</p></td>
 <td><p>Return a new reader filtered by file paths.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.from_dir" title="pycantonese.CHATReader.from_dir"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_dir</span></code></a>(path[, match, exclude, extension, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.from_dir" title="pycantonese.CHATReader.from_dir"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_dir</span></code></a>(path[, match, exclude, extension, ...])</p></td>
 <td><p>Instantiate a reader from a local directory with CHAT data files.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.from_files" title="pycantonese.CHATReader.from_files"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_files</span></code></a>(paths[, match, exclude, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.from_files" title="pycantonese.CHATReader.from_files"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_files</span></code></a>(paths[, match, exclude, ...])</p></td>
 <td><p>Instantiate a reader from local CHAT data files.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.from_strs" title="pycantonese.CHATReader.from_strs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_strs</span></code></a>(strs[, ids, parallel])</p></td>
 <td><p>Instantiate a reader from in-memory CHAT data strings.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.from_zip" title="pycantonese.CHATReader.from_zip"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_zip</span></code></a>(path[, match, exclude, extension, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.from_zip" title="pycantonese.CHATReader.from_zip"><code class="xref py py-obj docutils literal notranslate"><span class="pre">from_zip</span></code></a>(path[, match, exclude, extension, ...])</p></td>
 <td><p>Instantiate a reader from a local or remote ZIP file.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.headers" title="pycantonese.CHATReader.headers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">headers</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.head" title="pycantonese.CHATReader.head"><code class="xref py py-obj docutils literal notranslate"><span class="pre">head</span></code></a>([n, participants, exclude])</p></td>
+<td><p>Return the first several utterances.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.headers" title="pycantonese.CHATReader.headers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">headers</span></code></a>()</p></td>
 <td><p>Return the headers.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.info" title="pycantonese.CHATReader.info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">info</span></code></a>([verbose])</p></td>
+<td><p>Print a summary of this Reader's data.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.ipsyn" title="pycantonese.CHATReader.ipsyn"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ipsyn</span></code></a>()</p></td>
 <td><p>(Not implemented - the upstream <code class="docutils literal notranslate"><span class="pre">ipsyn</span></code> method works for English only.)</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.jyutping" title="pycantonese.CHATReader.jyutping"><code class="xref py py-obj docutils literal notranslate"><span class="pre">jyutping</span></code></a>([participants, exclude, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.jyutping" title="pycantonese.CHATReader.jyutping"><code class="xref py py-obj docutils literal notranslate"><span class="pre">jyutping</span></code></a>([participants, exclude, ...])</p></td>
 <td><p>Return the data in Jyutping romanization.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">jyutping_sents</span></code>([participants, exclude, by_files])</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">jyutpings</span></code>([participants, exclude, …])</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">jyutpings</span></code>([participants, exclude, ...])</p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.languages" title="pycantonese.CHATReader.languages"><code class="xref py py-obj docutils literal notranslate"><span class="pre">languages</span></code></a>([by_files])</p></td>
@@ -569,7 +521,7 @@ which may or may not be applicable to your use case.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.pop_left" title="pycantonese.CHATReader.pop_left"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pop_left</span></code></a>()</p></td>
 <td><p>Drop the first data file from the reader and return it as a reader.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="pycantonese.CHATReader.search.html#pycantonese.CHATReader.search" title="pycantonese.CHATReader.search"><code class="xref py py-obj docutils literal notranslate"><span class="pre">search</span></code></a>(*[, onset, nucleus, coda, tone, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="pycantonese.CHATReader.search.html#pycantonese.CHATReader.search" title="pycantonese.CHATReader.search"><code class="xref py py-obj docutils literal notranslate"><span class="pre">search</span></code></a>(*[, onset, nucleus, coda, tone, ...])</p></td>
 <td><p>Search the data for the given criteria.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.sents" title="pycantonese.CHATReader.sents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sents</span></code></a>([participants, exclude, by_files])</p></td>
@@ -581,96 +533,79 @@ which may or may not be applicable to your use case.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.tagged_words" title="pycantonese.CHATReader.tagged_words"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tagged_words</span></code></a>([participants, exclude, by_files])</p></td>
 <td><p>Return the tagged words.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.tokens" title="pycantonese.CHATReader.tokens"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tokens</span></code></a>([participants, exclude, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.tail" title="pycantonese.CHATReader.tail"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tail</span></code></a>([n, participants, exclude])</p></td>
+<td><p>Return the last several utterances.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.to_chat" title="pycantonese.CHATReader.to_chat"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_chat</span></code></a>(path[, is_dir, filenames, tabular, ...])</p></td>
+<td><p>Export to CHAT data files.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.to_strs" title="pycantonese.CHATReader.to_strs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_strs</span></code></a>([tabular])</p></td>
+<td><p>Yield CHAT data strings.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.tokens" title="pycantonese.CHATReader.tokens"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tokens</span></code></a>([participants, exclude, ...])</p></td>
 <td><p>Return the tokens.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.ttr" title="pycantonese.CHATReader.ttr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ttr</span></code></a>([keep_case, participant])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.ttr" title="pycantonese.CHATReader.ttr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ttr</span></code></a>([keep_case, participant])</p></td>
 <td><p>Return the type-token ratios (TTR).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.utterances" title="pycantonese.CHATReader.utterances"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utterances</span></code></a>([participants, exclude, by_files])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.utterances" title="pycantonese.CHATReader.utterances"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utterances</span></code></a>([participants, exclude, by_files])</p></td>
 <td><p>Return the utterances.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.word_frequencies" title="pycantonese.CHATReader.word_frequencies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">word_frequencies</span></code></a>([keep_case, participants, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.word_frequencies" title="pycantonese.CHATReader.word_frequencies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">word_frequencies</span></code></a>([keep_case, participants, ...])</p></td>
 <td><p>Return word frequencies.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.word_ngrams" title="pycantonese.CHATReader.word_ngrams"><code class="xref py py-obj docutils literal notranslate"><span class="pre">word_ngrams</span></code></a>(n[, keep_case, participants, …])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.word_ngrams" title="pycantonese.CHATReader.word_ngrams"><code class="xref py py-obj docutils literal notranslate"><span class="pre">word_ngrams</span></code></a>(n[, keep_case, participants, ...])</p></td>
 <td><p>Return word ngrams.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.words" title="pycantonese.CHATReader.words"><code class="xref py py-obj docutils literal notranslate"><span class="pre">words</span></code></a>([participants, exclude, …])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.words" title="pycantonese.CHATReader.words"><code class="xref py py-obj docutils literal notranslate"><span class="pre">words</span></code></a>([participants, exclude, ...])</p></td>
 <td><p>Return the words.</p></td>
 </tr>
 </tbody>
 </table>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="pycantonese.CHATReader.search.html" class="btn btn-neutral float-right" title="pycantonese.CHATReader.search" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="pycantonese.hkcancor.html" class="btn btn-neutral float-left" title="pycantonese.hkcancor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pycantonese.hkcancor.html" class="btn btn-neutral float-left" title="pycantonese.hkcancor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pycantonese.CHATReader.search.html" class="btn btn-neutral float-right" title="pycantonese.CHATReader.search" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        
-        &copy; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on May 16, 2021
-
-    </p>
+    <p>&#169; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on December 28, 2021.</p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-
-  
-  
-    
     <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-181803559"></script>
     <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-    ga('create', 'UA-181803559', 'auto');
-    ga('send', 'pageview');
-    </script>
-
-    
-   
+      gtag('config', 'UA-181803559', {
+          'anonymize_ip': false,
+      });
+    </script> 
 
 </body>
 </html>

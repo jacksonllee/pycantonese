@@ -30,7 +30,7 @@ and returns its word-segmented version with Jyutping romanization:
 
 The characters-to-Jyutping conversion model is based on two data sources:
 (i) the HKCanCor corpus data included in the PyCantonese library, and
-(ii) the rime-cantonese data (the 2020.09.09 release, CC BY 4.0 license).
+(ii) the rime-cantonese data (the 2021.05.16 release, CC BY 4.0 license).
 Any unseen character, Cantonese or otherwise, is represented by ``None`` in the output.
 
 To further process the Jyutping strings,
@@ -53,6 +53,25 @@ the underlying data contains the relevant tokens. Example:
     >>> # The correct pronunciation of 蛋 is with tone 6 (low-level) in 蛋糕.
     >>> pycantonese.characters_to_jyutping('蛋糕')  # cake
     [('蛋糕', 'daan6gou1')]
+
+Because :func:`~pycantonese.characters_to_jyutping` performs word segmentation
+under the hood (via :func:`~pycantonese.segment`),
+it is possible to customize word segmentation by passing in a
+:class:`~pycantonese.word_segmentation.Segmenter` instance to the ``segmenter``
+keyword argument of :func:`~pycantonese.characters_to_jyutping`.
+
+.. code-block:: python
+
+    >>> import pycantonese
+    >>> from pycantonese.word_segmentation import Segmenter
+    >>> # Create a `Segmenter` class instance.
+    >>> # See its documentation for what customization it allows.
+    >>> # As an example, the `disallow` parameter can take an iterable of strings
+    >>> # that represent words that you don't want to treat as words.
+    >>> # Here, let's pretend that you don't want 蛋糕 to be segmented as a single word.
+    >>> my_segmenter = Segmenter(disallow={"蛋糕"})
+    >>> pycantonese.characters_to_jyutping("蛋糕", segmenter=my_segmenter)
+    [('蛋', 'daan2'), ('糕', 'gou1')]
 
 .. _parsing_jyutping_strings:
 

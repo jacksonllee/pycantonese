@@ -29,6 +29,7 @@ processing (NLP). Currently implemented features (more to come!):
 
 - Accessing and searching corpus data
 - Parsing and conversion tools for Jyutping romanization
+- Parsing Cantonese text
 - Stop words
 - Word segmentation
 - Part-of-speech tagging
@@ -49,7 +50,7 @@ Consulting
 ----------
 
 If your team would like professional assistance in using PyCantonese,
-technical consulting and training services are available.
+freelance consulting and training services are available for both academic and commercial groups.
 Please email `Jackson L. Lee <https://jacksonllee.com>`_.
 
 Support

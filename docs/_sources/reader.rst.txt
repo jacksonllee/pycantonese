@@ -67,7 +67,8 @@ corresponds to ``FC-001_v2.cha``):
 .. code-block:: python
 
     >>> corpus.headers()[0]
-    {'Date': {datetime.date(1997, 4, 30)},
+    {'UTF8': '',
+     'Languages': ['yue', 'eng'],
      'Participants': {'XXA': {'name': 'A',
                               'language': 'yue , eng',
                               'corpus': 'HKCanCor',
@@ -88,8 +89,7 @@ corresponds to ``FC-001_v2.cha``):
                               'role': 'Adult',
                               'education': '',
                               'custom': 'origin:HK'}},
-     'UTF8': '',
-     'Languages': ['yue', 'eng'],
+     'Date': {datetime.date(1997, 4, 30)},
      'Tape Number': '001'}
 
 
@@ -121,6 +121,52 @@ PyLangAcq package, :class:`~pycantonese.CHATReader` has several
 additional functionality to deal with Cantonese-specific elements,
 particularly Jyutping romanization and Chinese characters.
 
+:class:`~pycantonese.CHATReader` has convenience methods to give you an overview
+of the data in the reader.
+
+.. currentmodule:: pycantonese.CHATReader
+
+.. autosummary::
+
+    info
+    head
+    tail
+
+.. code-block:: python
+
+    >>> corpus.info()
+    58 files
+    16162 utterances
+    153654 words
+          Utterance Count    Word Count  File Path
+    --  -----------------  ------------  --------------
+    #1                245          1998  FC-001_v2.cha
+    #2                134          2581  FC-005a_v2.cha
+    #3                172          2721  FC-005b_v2.cha
+    #4                111          1208  FC-009b_v.cha
+    #5                139          1308  FC-011_v.cha
+    ...
+    (set `verbose` to True for all the files)
+
+.. code-block:: python
+
+    >>> corpus.head()
+    *XXA:  喂      遲     啲     去       唔    去       旅行           啊     ?
+    %mor:  E|wai3  A|ci4  U|di1  V|heoi3  D|m4  V|heoi3  VN|leoi5hang4  Y|aa3  ?
+    <BLANKLINE>
+    *XXA:  你      老公         有冇         平       機票        啊     ?
+    %mor:  R|nei5  N|lou5gung1  V1|jau5mou5  A|peng4  N|gei1piu3  Y|aa3  ?
+    <BLANKLINE>
+    *XXB:  平       機票        要       淡季           先      有得         平       𡃉      喎     .
+    %mor:  A|peng4  N|gei1piu3  VU|jiu3  AN|daam6gwai3  D|sin1  VU|jau5dak1  A|peng4  Y|gaa3  Y|wo3  .
+    <BLANKLINE>
+    *XXB:  而家       旺       -   .
+    %mor:  T|ji4gaa1  A|wong6  -|  .
+    <BLANKLINE>
+    *XXA:  冇得         去       嗱      .
+    %mor:  VU|mou5dak1  V|heoi3  Y|laa4  .
+    <BLANKLINE>
+
 Here are the major :class:`~pycantonese.CHATReader` methods to access data
 at different levels of data structure:
 
@@ -145,35 +191,35 @@ audio-visual materials, etc).
     ['喂', '遲', '啲', '去', '唔', '去', '旅行', '啊', '?', '你']
     >>>
     >>> corpus.tokens()[:10]
-    [Token(word='喂', pos='E', jyutping='wai3', mor=None, gra=None),
-     Token(word='遲', pos='A', jyutping='ci4', mor=None, gra=None),
-     Token(word='啲', pos='U', jyutping='di1', mor=None, gra=None),
-     Token(word='去', pos='V', jyutping='heoi3', mor=None, gra=None),
-     Token(word='唔', pos='D', jyutping='m4', mor=None, gra=None),
-     Token(word='去', pos='V', jyutping='heoi3', mor=None, gra=None),
-     Token(word='旅行', pos='VN', jyutping='leoi5hang4', mor=None, gra=None),
-     Token(word='啊', pos='Y', jyutping='aa3', mor=None, gra=None),
-     Token(word='?', pos='?', jyutping=None, mor=None, gra=None),
-     Token(word='你', pos='R', jyutping='nei5', mor=None, gra=None)]
+    [Token(word='喂', pos='E', jyutping='wai3', mor=None, gloss=None, gra=None),
+     Token(word='遲', pos='A', jyutping='ci4', mor=None, gloss=None, gra=None),
+     Token(word='啲', pos='U', jyutping='di1', mor=None, gloss=None, gra=None),
+     Token(word='去', pos='V', jyutping='heoi3', mor=None, gloss=None, gra=None),
+     Token(word='唔', pos='D', jyutping='m4', mor=None, gloss=None, gra=None),
+     Token(word='去', pos='V', jyutping='heoi3', mor=None, gloss=None, gra=None),
+     Token(word='旅行', pos='VN', jyutping='leoi5hang4', mor=None, gloss=None, gra=None),
+     Token(word='啊', pos='Y', jyutping='aa3', mor=None, gloss=None, gra=None),
+     Token(word='?', pos='?', jyutping=None, mor=None, gloss=None, gra=None),
+     Token(word='你', pos='R', jyutping='nei5', mor=None, gloss=None, gra=None)]
     >>>
     >>> corpus.utterances()[:1]
     [Utterance(participant='XXA',
-               tokens=[Token(word='喂', pos='E', jyutping='wai3', mor=None, gra=None),
-                       Token(word='遲', pos='A', jyutping='ci4', mor=None, gra=None),
-                       Token(word='啲', pos='U', jyutping='di1', mor=None, gra=None),
-                       Token(word='去', pos='V', jyutping='heoi3', mor=None, gra=None),
-                       Token(word='唔', pos='D', jyutping='m4', mor=None, gra=None),
-                       Token(word='去', pos='V', jyutping='heoi3', mor=None, gra=None),
-                       Token(word='旅行', pos='VN', jyutping='leoi5hang4', mor=None, gra=None),
-                       Token(word='啊', pos='Y', jyutping='aa3', mor=None, gra=None),
-                       Token(word='?', pos='?', jyutping=None, mor=None, gra=None)],
+               tokens=[Token(word='喂', pos='E', jyutping='wai3', mor=None, gloss=None, gra=None),
+                       Token(word='遲', pos='A', jyutping='ci4', mor=None, gloss=None, gra=None),
+                       Token(word='啲', pos='U', jyutping='di1', mor=None, gloss=None, gra=None),
+                       Token(word='去', pos='V', jyutping='heoi3', mor=None, gloss=None, gra=None),
+                       Token(word='唔', pos='D', jyutping='m4', mor=None, gloss=None, gra=None),
+                       Token(word='去', pos='V', jyutping='heoi3', mor=None, gloss=None, gra=None),
+                       Token(word='旅行', pos='VN', jyutping='leoi5hang4', mor=None, gloss=None, gra=None),
+                       Token(word='啊', pos='Y', jyutping='aa3', mor=None, gloss=None, gra=None),
+                       Token(word='?', pos='?', jyutping=None, mor=None, gloss=None, gra=None)],
                time_marks=None,
                tiers={'XXA': '喂 遲 啲 去 唔 去 旅行 啊 ?',
                       '%mor': 'e|wai3 a|ci4 u|di1 v|heoi3 d|m4 v|heoi3 vn|leoi5hang4 y|aa3 ?'})]
 
 
 PyCantonese has an augmented representation of tokens,
-where Jyutping romanization has its own dedicated spot.
+where Jyutping romanization and glosses have their own dedicated attributes.
 
 
 .. _jyutping_from_reader:
@@ -205,15 +251,15 @@ objects, with the attribute ``jyutping`` storing Jyutping romanization:
 
     >>> some_tokens = corpus.tokens(by_utterances=True)[0]
     >>> some_tokens
-    [Token(word='喂', pos='E', jyutping='wai3', mor=None, gra=None),
-     Token(word='遲', pos='A', jyutping='ci4', mor=None, gra=None),
-     Token(word='啲', pos='U', jyutping='di1', mor=None, gra=None),
-     Token(word='去', pos='V', jyutping='heoi3', mor=None, gra=None),
-     Token(word='唔', pos='D', jyutping='m4', mor=None, gra=None),
-     Token(word='去', pos='V', jyutping='heoi3', mor=None, gra=None),
-     Token(word='旅行', pos='VN', jyutping='leoi5hang4', mor=None, gra=None),
-     Token(word='啊', pos='Y', jyutping='aa3', mor=None, gra=None),
-     Token(word='?', pos='?', jyutping=None, mor=None, gra=None)]
+    [Token(word='喂', pos='E', jyutping='wai3', mor=None, gloss=None, gra=None),
+     Token(word='遲', pos='A', jyutping='ci4', mor=None, gloss=None, gra=None),
+     Token(word='啲', pos='U', jyutping='di1', mor=None, gloss=None, gra=None),
+     Token(word='去', pos='V', jyutping='heoi3', mor=None, gloss=None, gra=None),
+     Token(word='唔', pos='D', jyutping='m4', mor=None, gloss=None, gra=None),
+     Token(word='去', pos='V', jyutping='heoi3', mor=None, gloss=None, gra=None),
+     Token(word='旅行', pos='VN', jyutping='leoi5hang4', mor=None, gloss=None, gra=None),
+     Token(word='啊', pos='Y', jyutping='aa3', mor=None, gloss=None, gra=None),
+     Token(word='?', pos='?', jyutping=None, mor=None, gloss=None, gra=None)]
     >>> for token in some_tokens:
     ...     print(token.jyutping)
     ...

@@ -37,6 +37,7 @@ Natural Language Processing
     :toctree: generated
 
     stop_words
+    parse_text
     segment
     word_segmentation.Segmenter
     pos_tag

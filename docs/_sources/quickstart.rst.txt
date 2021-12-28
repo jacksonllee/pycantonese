@@ -39,16 +39,16 @@ No errors? Great! Now you're ready to proceed.
     >>> len(all_verbs)  # number of all verbs
     29726
     >>> all_verbs[:10]  # print 10 results
-    [Token(word='去', pos='V', jyutping='heoi3', mor=None, gra=None),
-     Token(word='去', pos='V', jyutping='heoi3', mor=None, gra=None),
-     Token(word='旅行', pos='VN', jyutping='leoi5hang4', mor=None, gra=None),
-     Token(word='有冇', pos='V1', jyutping='jau5mou5', mor=None, gra=None),
-     Token(word='要', pos='VU', jyutping='jiu3', mor=None, gra=None),
-     Token(word='有得', pos='VU', jyutping='jau5dak1', mor=None, gra=None),
-     Token(word='冇得', pos='VU', jyutping='mou5dak1', mor=None, gra=None),
-     Token(word='去', pos='V', jyutping='heoi3', mor=None, gra=None),
-     Token(word='係', pos='V', jyutping='hai6', mor=None, gra=None),
-     Token(word='係', pos='V', jyutping='hai6', mor=None, gra=None)]
+    [Token(word='去', pos='V', jyutping='heoi3', mor=None, gloss=None, gra=None),
+     Token(word='去', pos='V', jyutping='heoi3', mor=None, gloss=None, gra=None),
+     Token(word='旅行', pos='VN', jyutping='leoi5hang4', mor=None, gloss=None, gra=None),
+     Token(word='有冇', pos='V1', jyutping='jau5mou5', mor=None, gloss=None, gra=None),
+     Token(word='要', pos='VU', jyutping='jiu3', mor=None, gloss=None, gra=None),
+     Token(word='有得', pos='VU', jyutping='jau5dak1', mor=None, gloss=None, gra=None),
+     Token(word='冇得', pos='VU', jyutping='mou5dak1', mor=None, gloss=None, gra=None),
+     Token(word='去', pos='V', jyutping='heoi3', mor=None, gloss=None, gra=None),
+     Token(word='係', pos='V', jyutping='hai6', mor=None, gloss=None, gra=None),
+     Token(word='係', pos='V', jyutping='hai6', mor=None, gloss=None, gra=None)]
 
 4. Parsing Jyutping for the onset, nucleus, coda, and tone
 
