@@ -264,6 +264,14 @@ import the package <code class="docutils literal notranslate"><span class="pre">
 </pre></div>
 </div>
 <p>No errors? Great! Now you’re ready to proceed.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>PyCantonese uses parallelized code to speed things up.
+Especially for Windows users, you may need to put your code under the
+<code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;:</span></code> idiom in a script to avoid running into an error.
+For reference, please see the <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.html#the-spawn-and-forkserver-start-methods">“safe importing of main module” section</a>
+for parallelization from the official Python documentation.</p>
+</div>
 <ol class="arabic simple">
 <li><p>Word segmentation</p></li>
 </ol>
@@ -326,7 +334,7 @@ Please use the documentation menu on the left.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on December 28, 2021.</p>
+    <p>&#169; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on December 29, 2021.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

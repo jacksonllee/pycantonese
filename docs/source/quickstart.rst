@@ -12,6 +12,14 @@ import the package ``pycantonese`` in your Python interpreter:
 
 No errors? Great! Now you're ready to proceed.
 
+.. caution::
+    PyCantonese uses parallelized code to speed things up.
+    For Windows users, you may need to put your code under the
+    ``if __name__ == "__main__":`` idiom in a script to avoid running into an error.
+    For reference, please see the `"safe importing of main module" section
+    <https://docs.python.org/3/library/multiprocessing.html#the-spawn-and-forkserver-start-methods>`_
+    for parallelization from the official Python documentation.
+
 1. Word segmentation
 
 .. code-block:: python
