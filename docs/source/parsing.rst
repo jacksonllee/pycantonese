@@ -190,6 +190,11 @@ method with a local file path.
     file_path = "result.cha"
     corpus.to_chat(file_path)
 
+    # If you're running code on Google Colab,
+    # you can download the file like this:
+    from google.colab import files
+    files.download(file_path)
+
 .. skip: end
 
 More Customization

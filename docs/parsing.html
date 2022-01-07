@@ -411,6 +411,11 @@ and so forth.</p>
 method with a local file path.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">file_path</span> <span class="o">=</span> <span class="s2">&quot;result.cha&quot;</span>
 <span class="n">corpus</span><span class="o">.</span><span class="n">to_chat</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+
+<span class="c1"># If you&#39;re running code on Google Colab,</span>
+<span class="c1"># you can download the file like this:</span>
+<span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">files</span>
+<span class="n">files</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -437,7 +442,7 @@ Please see the individual documentation pages for details
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2014-2021, Jackson L. Lee | Documentation last updated on December 29, 2021.</p>
+    <p>&#169; Copyright 2014-2022, Jackson L. Lee | Documentation last updated on January 06, 2022.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
