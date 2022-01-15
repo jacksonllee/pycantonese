@@ -18,6 +18,9 @@ Deprecated
 Removed
 ^^^^^^^
 
+
+* Removed ``setup.py``.
+
 Fixed
 ^^^^^
 

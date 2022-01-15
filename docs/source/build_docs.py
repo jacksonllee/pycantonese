@@ -5,7 +5,7 @@
 import logging
 import os
 
-import m2r
+import m2r2
 
 
 _DOCS_SOURCE = os.path.dirname(os.path.abspath(__file__))
@@ -37,7 +37,7 @@ def create_changelog_rst():
     changelog_rst = (
         ".. _changelog:\n\n"
         + "Changelog\n=========\n"
-        + m2r.convert(changelog_md[changelog_md.index("## [Unreleased]") :])
+        + m2r2.convert(changelog_md[changelog_md.index("## [Unreleased]") :])
     )
     with open(os.path.join(_DOCS_SOURCE, "changelog.rst"), "w", encoding="utf8") as f:
         f.write(changelog_rst)
