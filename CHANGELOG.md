@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Changed
 ### Deprecated
 ### Removed
+- Removed `setup.py`.
+
 ### Fixed
 ### Security
 
