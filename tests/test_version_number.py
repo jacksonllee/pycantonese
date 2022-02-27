@@ -2,7 +2,9 @@ import os
 import re
 
 import pycantonese
-from pycantonese.tests import REPO_DIR
+
+
+REPO_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
 def test_version_number_match_with_changelog():

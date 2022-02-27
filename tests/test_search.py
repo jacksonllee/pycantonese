@@ -1,12 +1,14 @@
+import pycantonese
 from pycantonese.corpus import Token
-from pycantonese.tests.test_corpus import HKCANCOR
 
 
 _NONES = {"mor": None, "gloss": None, "gra": None}
 
+_HKCANCOR = pycantonese.hkcancor()
+
 
 def test_find_verbs_in_hkcancor():
-    all_verbs = HKCANCOR.search(pos="^V")
+    all_verbs = _HKCANCOR.search(pos="^V")
     assert len(all_verbs) == 29726
     assert all_verbs[:10] == [
         Token(word="去", pos="V", jyutping="heoi3", **_NONES),
@@ -23,14 +25,14 @@ def test_find_verbs_in_hkcancor():
 
 
 def test_by_tokens_false():
-    all_verbs = HKCANCOR.search(pos="^V", by_tokens=False)
+    all_verbs = _HKCANCOR.search(pos="^V", by_tokens=False)
     assert len(all_verbs) == 29726
     expected = ["去", "去", "旅行", "有冇", "要", "有得", "冇得", "去", "係", "係"]
     assert all_verbs[:10] == expected
 
 
 def test_by_utterances_true():
-    all_verbs = HKCANCOR.search(pos="^V", by_utterances=True)
+    all_verbs = _HKCANCOR.search(pos="^V", by_utterances=True)
     assert len(all_verbs) == 29726
     print(all_verbs[:2])
     assert all_verbs[:2] == [
@@ -60,7 +62,7 @@ def test_by_utterances_true():
 
 
 def test_word_range():
-    all_verbs = HKCANCOR.search(pos="^V", word_range=(1, 2))
+    all_verbs = _HKCANCOR.search(pos="^V", word_range=(1, 2))
     assert len(all_verbs) == 29726
     assert all_verbs[:2] == [
         [
@@ -79,7 +81,7 @@ def test_word_range():
 
 
 def test_utterance_range():
-    all_verbs = HKCANCOR.search(pos="^V", utterance_range=(0, 1))
+    all_verbs = _HKCANCOR.search(pos="^V", utterance_range=(0, 1))
     assert len(all_verbs) == 29726
     assert all_verbs[:2] == [
         [

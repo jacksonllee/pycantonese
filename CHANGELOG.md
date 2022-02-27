@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 ### Changed
+- Restructured the repository to use top-level `src/` and `tests/` directories.
+
 ### Deprecated
 ### Removed
 - Removed `setup.py`.

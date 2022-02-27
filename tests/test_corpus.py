@@ -6,6 +6,8 @@ from pylangacq.tests.test_chat import BaseTestCHATReader
 import pycantonese
 
 
+_HKCANCOR = pycantonese.hkcancor()
+
 skip_because_tokens_are_different = pytest.mark.skip(
     reason=(
         "PyCantonese's Token class has the extra ``jyutping`` and ``gloss``"
@@ -13,6 +15,14 @@ skip_because_tokens_are_different = pytest.mark.skip(
         "turns meaningless ``mor`` into ``None`` (not done at ``pylangacq.Reader``)."
     ),
 )
+
+
+def test_hkcancor_word_count():
+    assert len(_HKCANCOR.words()) == 153_654
+
+
+def test_hkcancor_character_count():
+    assert len(_HKCANCOR.characters()) == 191_851
 
 
 class TestPyCantoneseCHATReader(BaseTestCHATReader, unittest.TestCase):

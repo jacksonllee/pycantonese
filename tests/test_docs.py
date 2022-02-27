@@ -11,7 +11,7 @@ import requests
         "https://talkbank.org/manuals/CHAT.pdf",
         "https://pylangacq.org/",
         "http://compling.hss.ntu.edu.sg/hkcancor/",
-        "https://github.com/jacksonllee/pycantonese/blob/main/pycantonese/data/hkcancor/README.md",  # noqa: E501
+        "https://github.com/jacksonllee/pycantonese/blob/main/src/pycantonese/data/hkcancor/README.md",  # noqa: E501
         "https://childes.talkbank.org/data/Biling/YipMatthews.zip",
         "https://pylangacq.org/read.html",
         "https://pylangacq.org/headers.html",

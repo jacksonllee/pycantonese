@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  win: circleci/windows@2.2.0
+  win: circleci/windows@2.4.1
 
 jobs:
   pre-build:
@@ -18,7 +18,6 @@ jobs:
     steps:
       - checkout
       - run:
-          working_directory: ~/project/
           command: << parameters.command-run >>
 
   build-python:
@@ -54,9 +53,9 @@ jobs:
       - run:
           # Test that we can build a source distribution that can correctly
           # install from clean slate.
-          # "python -m build" creates dist/pycantonese-x.y.z.tar.gz and dist/pycantonese-x.y.z-py3-none-any.whl
+          # "python -m build" creates
+          # dist/<pkg-name>-x.y.z.tar.gz and dist/<pkg-name>-x.y.z-py3-none-any.whl
           name: Build source distribution and install package from it
-          working_directory: ~/project/
           command: |
               pip install -r dev-requirements.txt && \
               python -m build && \
@@ -66,10 +65,7 @@ jobs:
           command: pip list -v
       - run:
           name: Run python tests
-          working_directory: ~/
-          # Avoid being able to import pycantonese by relative import.
-          # Test code by importing the *installed* pycantonese in site-packages.
-          command: pytest -vv --durations=0 --doctest-modules --cov=project/pycantonese --junitxml=/tmp/testxml/report.xml project/pycantonese project/docs
+          command: pytest -vv --durations=0 --doctest-modules --junitxml=/tmp/testxml/report.xml tests docs
           no_output_timeout: 20m
       - store_test_results:
           path: /tmp/testxml/
@@ -84,17 +80,12 @@ jobs:
       - run:
           name: Run tests on Windows
           shell: bash.exe
-          # The codebase is available at c:\users\circleci\project,
-          # We run commands at one directory above, so that we avoid being able to
-          # import pycantonese by relative import when running the test suite.
-          working_directory: c:\users\circleci
           command: |
             python --version && \
-            pip install -r project/dev-requirements.txt && \
-            pip install project/. && \
+            pip install -r dev-requirements.txt && \
+            pip install . && \
             pip list && \
-            pytest -vv project/pycantonese && \
-            pytest -vv project/docs/source
+            pytest
 
 workflows:
   version: 2
@@ -104,12 +95,12 @@ workflows:
           name: flake8
           command-run: |
             pip install -r dev-requirements.txt && \
-            flake8 --config=setup.cfg pycantonese
+            flake8 src tests
       - pre-build:
           name: black
           command-run:  |
             pip install -r dev-requirements.txt && \
-            black --check pycantonese
+            black --check src tests
       - pre-build:
           name: twine
           command-run: |
@@ -129,7 +120,7 @@ workflows:
           command-run: |
             pip install --upgrade bandit && \
             bandit --version && \
-            bandit -r pycantonese -x pycantonese/tests
+            bandit -r src -x tests
       - build-python:
           requires:
             - flake8

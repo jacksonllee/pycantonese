@@ -1,6 +1,7 @@
 import os
 
-from pycantonese.tests import REPO_DIR
+
+REPO_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
 def test_changelog_has_unreleased_section():
