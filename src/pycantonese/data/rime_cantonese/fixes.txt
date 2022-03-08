@@ -1,0 +1,6 @@
+# These fixes may or may not be present in the upstream rime-cantonese GitHub repository,
+# but if they are there, then they are in this present file because the fixes haven't
+# made their way to a new release yet.
+
+窗邊 coeng1bin1
+窗口位 coeng1hau2wai2

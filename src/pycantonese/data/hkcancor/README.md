@@ -19,8 +19,7 @@ HKCanCor is released under a CC BY license. A copy of the license
 from the HKCanCor source
 ([here](http://compling.hss.ntu.edu.sg/hkcancor/data/LICENSE),
 accessed October 2017) is included
-at `pycantonese/data/hkcancor/LICENSE.txt` (path from the PyCantonese
-repository root).
+at `src/pycantonese/data/hkcancor/LICENSE.txt` (path from the PyCantonese repository root).
 
 If this corpus is used, the following publication should be cited:
 

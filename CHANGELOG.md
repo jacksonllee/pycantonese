@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Removed `setup.py`.
 
 ### Fixed
+- Fixed known issues in the rime-cantonese data.
+
 ### Security
 
 ## [3.4.0] - 2021-12-28

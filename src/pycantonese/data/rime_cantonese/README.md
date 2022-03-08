@@ -7,11 +7,13 @@ characters-to-Jyutping conversion.
 
 Data source: https://github.com/rime/rime-cantonese/tree/2021.05.16
 
-License: CC BY 4.0. A copy is included at `pycantonese/data/rime_cantonese/LICENSE.txt` (path from the PyCantonese
-repository root).
+License: CC BY 4.0. A copy is included at
+`src/pycantonese/data/rime_cantonese/LICENSE.txt` (path from the PyCantonese repository root).
 
-The script `download_and_resegment.py` downloads the rime-cantonese data files
-listed below, resegments the data to improve quality according to `resegmented.txt`,
+The script `download_and_postprocess.py` downloads the rime-cantonese data files
+listed below,
+resegments the data to improve quality according to `resegmented.txt`,
+fixes the known issues according to `fixes.txt`,
 and outputs JSON files used by PyCantonese during runtime.
 
 | Source file from rime-cantonese | JSON file in PyCantonese  | Contents in the JSON file |
