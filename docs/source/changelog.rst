@@ -12,6 +12,9 @@ Added
 Changed
 ^^^^^^^
 
+
+* Restructured the repository to use top-level ``src/`` and ``tests/`` directories.
+
 Deprecated
 ^^^^^^^^^^
 
@@ -23,6 +26,9 @@ Removed
 
 Fixed
 ^^^^^
+
+
+* Fixed known issues in the rime-cantonese data.
 
 Security
 ^^^^^^^^
