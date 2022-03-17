@@ -10,9 +10,6 @@ from pycantonese.util import _split_chars_with_alphanum
 
 _MAX_WORD_LENGTH = 5
 
-_ALLOWED_WORDS = None
-_DISALLOWED_WORDS = None
-
 
 class Segmenter(LongestStringMatching):
     """A customizable word segmentation model.
@@ -33,8 +30,13 @@ class Segmenter(LongestStringMatching):
         ----------
         max_word_length : int, optional
             Maximum word length this model allows.
-        allow : iterable[str], optional
+        allow : iterable[str] or Dict[str, str], optional
             Words to allow in word segmentation.
+            If you pass in a dict, each key is a word to allow
+            and its corresponding value is the desired Jyutping romanization.
+            Passing in a dict is useful when you use :func:`~pycantonese.parse_text`
+            or :func:`~pycantonese.characters_to_jyutping` and want
+            to supply your own Jyutping.
         disallow : iterable[str], optional
             Words to disallow in word segmentation.
         """
@@ -48,7 +50,13 @@ class Segmenter(LongestStringMatching):
         self._words |= LETTERED.keys()
 
         # Adjust with the allowed and disallowed words.
-        self._words |= allow or set()
+        if isinstance(allow, dict):
+            allow_words = set(allow.keys())
+            self._allow_words_to_jp = allow
+        else:
+            allow_words = set(allow or [])
+            self._allow_words_to_jp = None
+        self._words |= allow_words or set()
         self._words -= disallow or set()
 
         # Turn everything from strings to tuples due to alphanumeric chars.

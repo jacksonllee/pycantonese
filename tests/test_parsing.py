@@ -43,7 +43,7 @@ from pycantonese.word_segmentation import Segmenter
         (
             # Custom word segmentation
             "學廣東話",
-            {"segmenter": Segmenter(disallow={"廣東話"})},
+            {"cls": Segmenter(disallow={"廣東話"})},
             None,
             None,
             (
@@ -99,6 +99,28 @@ from pycantonese.word_segmentation import Segmenter
                 "%mor:   PRON|nei5  VERB|sik6  PART|zo2  NOUN|faan6  ADV|mei6  PART|aa4  ？\n"  # noqa: E501
                 "*小明:  我         食         咗        喇         。\n"
                 "%mor:   PRON|ngo5  VERB|sik6  PART|zo2  PART|laa1  。\n"
+            ),
+        ),
+        (
+            # Custom word segmentation plus custom Jyutping conversion (absent)
+            "上6次噉樣嘅2",
+            None,
+            None,
+            None,
+            (
+                "*X:    上          6     次        噉樣             嘅        2\n"
+                "%mor:  ADV|soeng5  NUM|  NOUN|ci3  PRON|gam2joeng2  PART|ge3  NOUN|ji6\n"  # noqa: E501
+            ),
+        ),
+        (
+            # Custom word segmentation plus custom Jyutping conversion (present)
+            "上6次噉樣嘅2",
+            {"cls": Segmenter(allow={"上6次": "soeng6ci3", "嘅2": "ge2"})},
+            None,
+            None,
+            (
+                "*X:    上6次            噉樣              嘅2\n"
+                "%mor:  PROPN|soeng6ci3  CCONJ|gam2joeng2  PART|ge2\n"
             ),
         ),
     ],
