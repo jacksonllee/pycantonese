@@ -102,7 +102,10 @@ def characters_to_jyutping(
     result = []
     if segmenter is None:
         segmenter = _get_default_segmenter()
-    words_to_jyutping.update(segmenter._allow_words_to_jp or {})
+    for w, jp in (segmenter._allow_words_to_jp or {}).items():
+        if not jp:
+            continue
+        words_to_jyutping[w] = jp
     for word in segment(chars, cls=segmenter):
         try:
             jp = words_to_jyutping[word]
