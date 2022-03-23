@@ -9,7 +9,10 @@ from string import ascii_uppercase
 from pylangacq.chat import _File, Utterance
 
 from pycantonese.corpus import CHATReader, Token
-from pycantonese.jyutping.characters import characters_to_jyutping
+from pycantonese.jyutping.characters import (
+    characters_to_jyutping,
+    _get_words_characters_to_jyutping,
+)
 from pycantonese.pos_tagging.tagger import pos_tag
 
 
@@ -24,6 +27,10 @@ _CHUNK_SIZE = 4
 
 
 def _parse_text(text: str, segment_kwargs, pos_tag_kwargs):
+    # Force a refresh of the words_to_jyutping dict internal to characters_to_jyutping,
+    # to avoid bugs due to previously a cached but updated (by a custom segmenter)
+    # words_to_jyutping.
+    _get_words_characters_to_jyutping.cache_clear()
     chars_jps = characters_to_jyutping(text, **(segment_kwargs or {}))
     segmented, jyutping = [], []
     for chars, jps in chars_jps:
