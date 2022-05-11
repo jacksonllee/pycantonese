@@ -73,11 +73,25 @@ How to Cite
 
 PyCantonese is authored and maintained by `Jackson L. Lee <https://jacksonllee.com>`_.
 
-A talk introducing PyCantonese:
+Lee, Jackson L., Litong Chen, Charles Lam, Chaak Ming Lau, and Tsz-Him Tsui. 2022.
+`PyCantonese: Cantonese Linguistics and NLP in Python <https://jacksonllee.com/papers/pycantonese_lrec_2022-05-06.pdf>`_.
+*Proceedings of the 13th Language Resources and Evaluation Conference*.
 
-Lee, Jackson L. 2015. PyCantonese: Cantonese linguistic research in the age of big data.
-Talk at the Childhood Bilingualism Research Centre, Chinese University of Hong Kong. September 15. 2015.
-`Notes+slides <https://pycantonese.org/papers/Lee-pycantonese-2015.html>`_
+.. code-block:: latex
+
+      @inproceedings{lee-etal-2022-pycantonese,
+         title = "PyCantonese: Cantonese Linguistics and NLP in Python",
+         author = "Lee, Jackson L.  and
+            Chen, Litong  and
+            Lam, Charles  and
+            Lau, Chaak Ming  and
+            Tsui, Tsz-Him",
+         booktitle = "Proceedings of The 13th Language Resources and Evaluation Conference",
+         month = june,
+         year = "2022",
+         publisher = "European Language Resources Association",
+         language = "English",
+      }
 
 License
 -------
@@ -114,18 +128,14 @@ Individuals who have contributed feedback, bug reports, etc.
 (in alphabetical order of last names):
 
 - @cathug
-- Litong Chen
 - Jenny Chim
 - @g-traveller
 - Rachel Han
 - Ryan Lai
-- Charles Lam
-- Chaak Ming Lau
 - Hill Ma
 - @richielo
 - @rylanchiu
 - Stephan Stiller
-- Tsz-Him Tsui
 - Robin Yuen
 
 .. end-sphinx-website-index-page

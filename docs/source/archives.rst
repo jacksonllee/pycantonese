@@ -17,7 +17,13 @@ Tutorials
 Research Outputs
 ----------------
 
-Talks introducing PyCantonese:
+Official paper:
+
+Jackson L. Lee, Litong Chen, Charles Lam, Chaak Ming Lau, and Tsz-Him Tsui. 2022.
+`PyCantonese: Cantonese Linguistics and NLP in Python <https://jacksonllee.com/papers/pycantonese_lrec_2022-05-06.pdf>`_.
+*Proceedings of the 13th Language Resources and Evaluation Conference*.
+
+Earlier talks introducing PyCantonese:
 
 Jackson L. Lee, Litong Chen, and Tsz-Him Tsui. 2016. PyCantonese: Developing computational tools for Cantonese linguistics.
 Talk at the 3rd Workshop on Innovations in Cantonese Linguistics, The Ohio State University.
