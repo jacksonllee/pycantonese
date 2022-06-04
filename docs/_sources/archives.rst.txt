@@ -6,6 +6,8 @@ Archives
 Tutorials
 ---------
 
+`Working with Cantonese CHILDES Data <https://github.com/jacksonllee/pycantonese/blob/main/docs/tutorials/lee-cantonese-childes-2022-05-27.ipynb>`_ (Jackson Lee, May 27, 2022)
+
 `Accessing and Searching Cantonese Corpora in PyCantonese <https://github.com/jacksonllee/pycantonese/blob/main/docs/tutorials/lee-pycantonese-2021-05-16.ipynb>`_ (Jackson Lee, May 16, 2021)
 
 `Sentence-Final Particles <https://github.com/chaaklau/school-of-cantonese-2021-materials/blob/main/chaak_sfp_2021_05_16.ipynb>`_ (Chaak-Ming Lau, May 16, 2021)

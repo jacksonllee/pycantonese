@@ -1548,7 +1548,7 @@ for the target child.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycantonese.CHATReader.utterances">
-<span class="sig-name descname"><span class="pre">utterances</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">participants</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by_files</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://pylangacq.org/api.html#pylangacq.objects.Utterance" title="(in PyLangAcq v0.16.2)"><span class="pre">pylangacq.objects.Utterance</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://pylangacq.org/api.html#pylangacq.objects.Utterance" title="(in PyLangAcq v0.16.2)"><span class="pre">pylangacq.objects.Utterance</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pycantonese.CHATReader.utterances" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">utterances</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">participants</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by_files</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">pylangacq.chat._ListUtterances</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">pylangacq.chat._ListUtterances</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pycantonese.CHATReader.utterances" title="Permalink to this definition"></a></dt>
 <dd><p>Return the utterances.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1578,7 +1578,7 @@ distinction just described for when <code class="docutils literal notranslate"><
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>List[Utterance] if <code class="docutils literal notranslate"><span class="pre">by_files</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, otherwise List[List[Utterance]]</dt><dd></dd>
+<dt>_ListUtterances if <code class="docutils literal notranslate"><span class="pre">by_files</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, otherwise List[_ListUtterances]</dt><dd></dd>
 </dl>
 </dd>
 </dl>
@@ -1841,7 +1841,7 @@ distinction just described for when <code class="docutils literal notranslate"><
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2014-2022, Jackson L. Lee | Documentation last updated on May 26, 2022.</p>
+    <p>&#169; Copyright 2014-2022, Jackson L. Lee | Documentation last updated on June 04, 2022.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
