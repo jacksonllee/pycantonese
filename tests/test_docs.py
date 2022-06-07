@@ -30,6 +30,8 @@ import requests
         "https://github.com/charlestklam/school-of-cantonese-studies-2021/blob/main/Multiword_Expressions_Discontinuous_Constructions.ipynb",  # noqa: E501
         "https://jacksonllee.com/papers/pycantonese_lrec_2022-05-06.pdf",
         "https://github.com/jacksonllee/pycantonese/blob/main/docs/tutorials/lee-cantonese-childes-2022-05-27.ipynb",  # noqa: E501
+        "https://charles-lam.net/presentations/wicl6.html#/",
+        "https://gist.github.com/chaaklau/74444ef3b0c56c720148b730025fd57f",
     ],
 )
 def test_urls_work(url):

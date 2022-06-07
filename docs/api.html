@@ -421,7 +421,7 @@ which may or may not be applicable to your use case.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#pycantonese.CHATReader.mlum" title="pycantonese.CHATReader.mlum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mlum</span></code></a>([participant])</p></td>
 <td><p>Return the mean lengths of utterance by morphemes.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pycantonese.CHATReader.mluw" title="pycantonese.CHATReader.mluw"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mluw</span></code></a>([participant])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pycantonese.CHATReader.mluw" title="pycantonese.CHATReader.mluw"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mluw</span></code></a>([participant, exclude_switch])</p></td>
 <td><p>Return the mean lengths of utterance by words.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#pycantonese.CHATReader.n_files" title="pycantonese.CHATReader.n_files"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_files</span></code></a>()</p></td>
@@ -1084,13 +1084,17 @@ for the target child.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycantonese.CHATReader.mluw">
-<span class="sig-name descname"><span class="pre">mluw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">participant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'CHI'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pycantonese.CHATReader.mluw" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">mluw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">participant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'CHI'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude_switch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pycantonese.CHATReader.mluw" title="Permalink to this definition"></a></dt>
 <dd><p>Return the mean lengths of utterance by words.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>participant</strong><span class="classifier">str, optional</span></dt><dd><p>Participant of interest, which defaults to the typical use case of <code class="docutils literal notranslate"><span class="pre">&quot;CHI&quot;</span></code>
 for the target child.</p>
+</dd>
+<dt><strong>exclude_switch</strong><span class="classifier">bool, optional</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">True</span></code>, words with the suffix “&#64;s” for switching to another
+language (not uncommon in code-mixing or multilingual acquisition)
+are excluded. The default is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
 </dd>
 </dl>
 </dd>
@@ -1548,7 +1552,7 @@ for the target child.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pycantonese.CHATReader.utterances">
-<span class="sig-name descname"><span class="pre">utterances</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">participants</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by_files</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">pylangacq.chat._ListUtterances</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">pylangacq.chat._ListUtterances</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pycantonese.CHATReader.utterances" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">utterances</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">participants</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by_files</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://pylangacq.org/api.html#pylangacq.objects.Utterance" title="(in PyLangAcq v0.16.2)"><span class="pre">pylangacq.objects.Utterance</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://pylangacq.org/api.html#pylangacq.objects.Utterance" title="(in PyLangAcq v0.16.2)"><span class="pre">pylangacq.objects.Utterance</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pycantonese.CHATReader.utterances" title="Permalink to this definition"></a></dt>
 <dd><p>Return the utterances.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1578,7 +1582,7 @@ distinction just described for when <code class="docutils literal notranslate"><
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>_ListUtterances if <code class="docutils literal notranslate"><span class="pre">by_files</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, otherwise List[_ListUtterances]</dt><dd></dd>
+<dt>List[Utterance] if <code class="docutils literal notranslate"><span class="pre">by_files</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>, otherwise List[List[Utterance]]</dt><dd></dd>
 </dl>
 </dd>
 </dl>
@@ -1841,7 +1845,7 @@ distinction just described for when <code class="docutils literal notranslate"><
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2014-2022, Jackson L. Lee | Documentation last updated on June 04, 2022.</p>
+    <p>&#169; Copyright 2014-2022, Jackson L. Lee | Documentation last updated on June 06, 2022.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
