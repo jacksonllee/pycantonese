@@ -60,7 +60,7 @@ To work on a feature or bug fix:
 
 The `pycantonese` repo has continuous integration (CI) turned on,
 with autobuilds running pytest
-(for the test suite in [`pycantonese/tests/`](pycantonese/tests) and
+(for the test suite in [`tests/`](tests) and
 documentation code examples in [`docs/source/`](docs/source))
 as well as `black` and `flake8` for consistent code styling.
 If an autobuild at an open pull request fails,
@@ -77,7 +77,7 @@ If you would like to help avoid wasting free Internet resources
 you can run pytest/flake8/black checks locally before pushing commits:
 
 ```bash
-flake8 pycantonese
-black --check pycantonese
-pytest -vv pycantonese docs/source
+flake8 src tests
+black --check src tests
+pytest
 ```

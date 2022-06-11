@@ -1,11 +1,78 @@
 [build-system]
-requires = ["setuptools >= 42.0.0", "wheel"]
+requires = ["setuptools >= 61.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "pycantonese"
+version = "3.4.0"
+description = "Cantonese Linguistics and NLP in Python"
+readme = "README.rst"
+requires-python = ">= 3.7.*"
+license = { text = "MIT License" }
+authors = [ { name = "Jackson L. Lee", email = "jacksonlunlee@gmail.com" } ]
+keywords = [
+    "computational linguistics",
+    "natural language processing",
+    "NLP",
+    "Cantonese",
+    "linguistics",
+    "corpora",
+    "speech",
+    "language",
+    "Chinese",
+    "Jyutping",
+]
+dependencies = [
+    'importlib-metadata >= 1.0; python_version < "3.8"',
+    'pylangacq >= 0.17.0',
+    'wordseg >= 0.0.3',
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: Chinese (Traditional)",
+    "Natural Language :: Cantonese",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Human Machine Interfaces",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Text Processing",
+    "Topic :: Text Processing :: General",
+    "Topic :: Text Processing :: Indexing",
+    "Topic :: Text Processing :: Linguistic",
+]
+
+[project.urls]
+Homepage = "https://pycantonese.org"
+Source = "https://github.com/jacksonllee/pycantonese"
+
+[tool.setuptools]
+zip-safe = false
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = [ "src" ]
+
+[tool.setuptools.package-data]
+pycantonese = [
+    "data/hkcancor/*",
+    "data/rime_cantonese/*",
+    "pos_tagging/*.pickle",
+]
 
 [tool.pytest.ini_options]
 # Adding -p no:doctest to disable pytest's own doctest,
 # which may interfere with Sybil's doctest parsers.
 addopts = "-vv --durations=0 --strict-markers -p no:doctest"
-testpaths = [
-    "tests",
-]
+testpaths = ["tests", "docs"]

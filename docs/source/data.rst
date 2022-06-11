@@ -63,7 +63,7 @@ your own Python code, without having to manually download or unzip anything.
     All publicly available CHILDES and TalkBank datasets are associated with
     the CC BY-NC-SA 3.0 license.
 
-As of March 2021, the following Cantonese-related datasets are
+As of May 2022, the following Cantonese-related datasets are
 available from CHILDES and TalkBank (in alphabetical order):
 
 .. invisible-code-block: python
