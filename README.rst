@@ -167,9 +167,9 @@ To run tests and styling checks:
 
 .. code-block:: bash
 
-   $ pytest -vv --doctest-modules --cov=pycantonese pycantonese docs/source
-   $ flake8 pycantonese
-   $ black --check pycantonese
+   $ pytest
+   $ flake8 src tests
+   $ black --check src tests
 
 To build the documentation website files:
 
