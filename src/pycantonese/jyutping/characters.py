@@ -1,12 +1,12 @@
 from collections import Counter, defaultdict
 from functools import lru_cache
-from typing import List, Tuple
+from typing import List, Tuple, Union
 
-from pycantonese.corpus import hkcancor, Token
-from pycantonese.data.rime_cantonese import CHARS_TO_JYUTPING, LETTERED
-from pycantonese.jyutping.parse_jyutping import parse_jyutping
-from pycantonese.word_segmentation import _get_default_segmenter, segment, Segmenter
-from pycantonese.util import _split_chars_with_alphanum, _deprecate
+from ..corpus import hkcancor, Token
+from ..data.rime_cantonese import CHARS_TO_JYUTPING, LETTERED
+from ..jyutping.parse_jyutping import parse_jyutping
+from ..word_segmentation import _get_default_segmenter, segment, Segmenter
+from ..util import _split_chars_with_alphanum, _deprecate
 
 
 @lru_cache(maxsize=1)
@@ -63,7 +63,7 @@ def _get_words_characters_to_jyutping():
 
 
 def characters_to_jyutping(
-    chars: str, segmenter: Segmenter = None
+    chars: Union[str, List[str]], segmenter: Segmenter = None
 ) -> List[Tuple[str, str]]:
     """Convert Cantonese characters into Jyutping romanization.
 
@@ -71,14 +71,18 @@ def characters_to_jyutping(
     data. Any unseen Cantonese character (or punctuation mark,
     for that matter) is represented by `None` in the output.
 
-    This function also performs word segmentation, in order to resolve potential
-    ambiguity in mapping characters to Jyutping.
-
     Parameters
     ----------
-    chars : str
-        A string of Cantonese characters.
+    chars : str or List[str]
+        A string of Cantonese characters, in which case word segmentation is also
+        run on this input string (by :func:`~pycantonese.segment`)
+        in order to resolve potential ambiguity in
+        mapping characters to Jyutping.
+        If you don't want word segmentaiton to be done, then provide a list of strings
+        instead with your desired segmentation.
     segmenter : Segmenter, optional
+        (Not used if ``chars`` is a list of strings for user-provided word
+        segmentation.)
         A :class:`~pycantonese.word_segmentation.Segmenter` instance to customize
         word segmentation.
         If specified, this segmenter is passed to the ``cls`` keyword argument of
@@ -98,11 +102,16 @@ def characters_to_jyutping(
     """  # noqa: E501
     if not chars:
         return []
+    if isinstance(chars, list):
+        segmented = chars
+    else:
+        # Assume `chars` is a str.
+        if segmenter is None:
+            segmenter = _get_default_segmenter()
+        segmented = segment(chars, cls=segmenter)
     words_to_jyutping, chars_to_jyutping = _get_words_characters_to_jyutping()
     result = []
-    if segmenter is None:
-        segmenter = _get_default_segmenter()
-    for word in segment(chars, cls=segmenter):
+    for word in segmented:
         try:
             jp = words_to_jyutping[word]
         except KeyError:
