@@ -16,6 +16,17 @@ from pycantonese import characters_to_jyutping
             ],
         ),
         (
+            ["香港", "人", "講", "廣東", "話", "。"],
+            [
+                ("香港", "hoeng1gong2"),
+                ("人", "jan4"),
+                ("講", "gong2"),
+                ("廣東", "gwong2dung1"),
+                ("話", "waa6"),
+                ("。", None),
+            ],
+        ),
+        (
             "佢成日呃like",
             [("佢", "keoi5"), ("成日", "seng4jat6"), ("呃like", "aak1lai1")],
         ),
