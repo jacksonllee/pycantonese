@@ -107,6 +107,8 @@ def parse_text(
           participant and the other for the utterance, e.g.,
           ``[("小芬", "你食咗飯未呀？"), ("小明", "我食咗喇。")]``.
 
+        if an empty input or ``None`` is provided, then ``None`` is returned.
+
     segment_kwargs : dict, optional
         To customize word segmentation,
         provide a dictionary here which would then be passed as keyword arguments to
@@ -134,6 +136,9 @@ def parse_text(
     -------
     :class:`~pycantonese.CHATReader`
     """
+
+    if not data:
+        return None
 
     if isinstance(data, str):
         # Perform basic sentence segmentation.
