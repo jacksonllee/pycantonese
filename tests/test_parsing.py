@@ -7,8 +7,8 @@ from pycantonese.word_segmentation import Segmenter
 @pytest.mark.parametrize(
     "text, segment_kwargs, pos_tag_kwargs, participant, expected",
     [
-        ("", None, None, None, None),
-        (None, None, None, None, None),
+        ("", None, None, None, ""),
+        (None, None, None, None, ""),
         (
             # The canonical case
             "學廣東話",
@@ -111,8 +111,5 @@ def test_parse_text(text, segment_kwargs, pos_tag_kwargs, participant, expected)
         pos_tag_kwargs=pos_tag_kwargs,
         participant=participant,
     )
-    if not text:
-        assert corpus is None
-    else:
-        actual = "\n".join(corpus.to_strs())
-        assert actual == expected
+    actual = "\n".join(corpus.to_strs())
+    assert actual == expected
