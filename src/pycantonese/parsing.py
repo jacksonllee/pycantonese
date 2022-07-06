@@ -36,23 +36,19 @@ def _parse_text(text: str, segment_kwargs, pos_tag_kwargs):
 def _get_utterance(
     unparsed_sent, segment_kwargs, pos_tag_kwargs, participant
 ) -> Utterance:
-    if participant is not None:
-        pass
-    elif isinstance(unparsed_sent, str):
+    if participant is None:
         participant = _UNKNOWN_PARTICIPANT
-    elif isinstance(unparsed_sent, tuple):
-        participant, unparsed_sent, *_ = unparsed_sent
-    else:
-        raise TypeError(
-            "Utterance must be either a string or "
-            f"a tuple of (participant, utterance): {unparsed_sent}"
-        )
-    participant = str(participant)
 
     if not unparsed_sent:
         return Utterance(
             participant=participant, tokens=[], time_marks=None, tiers={participant: ""}
         )
+
+    if isinstance(unparsed_sent, tuple):
+        participant, unparsed_sent, *_ = unparsed_sent
+
+    participant = str(participant)
+
     words, tags, jps = _parse_text(unparsed_sent, segment_kwargs, pos_tag_kwargs)
 
     tokens = [

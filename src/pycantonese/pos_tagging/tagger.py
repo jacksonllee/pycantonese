@@ -149,6 +149,8 @@ class POSTagger:
         """
         prev, prev2 = self.START
         tags = []
+        if not words:
+            return tags
         context = self.START + words + self.END
         for i, word in enumerate(words):
             tag = self.tagdict.get(word)
