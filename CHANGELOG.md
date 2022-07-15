@@ -18,6 +18,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Removed
 ### Fixed
 - Fixed known issues in the rime-cantonese data.
+- If `parse_text` is given an empty input or `None`,
+  now an empty `CHATReader` instance is returned.
+- If `parse_text` is given a non-empty list of utterances,
+  then any empty utterance (e.g., `None`, `""`)
+  will now be represented by an empty `Utterance` instance inside the resulting `CHATReader` output.
 
 ### Security
 

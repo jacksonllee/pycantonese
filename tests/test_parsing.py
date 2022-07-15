@@ -7,7 +7,8 @@ from pycantonese.word_segmentation import Segmenter
 @pytest.mark.parametrize(
     "text, segment_kwargs, pos_tag_kwargs, participant, expected",
     [
-        ("", None, None, None, "*X:\t\n"),
+        ("", None, None, None, ""),
+        (None, None, None, None, ""),
         (
             # The canonical case
             "學廣東話",
@@ -86,6 +87,18 @@ from pycantonese.word_segmentation import Segmenter
             (
                 "*X:    廣東話                 好        難         學         ？  都        唔係         吖        ！\n"  # noqa: E501
                 "%mor:  PROPN|gwong2dung1waa2  ADV|hou2  ADJ|naan4  VERB|hok6  ？  ADV|dou1  VERB|m4hai6  PART|aa1  ！\n"  # noqa: E501
+            ),
+        ),
+        (
+            # User-specified utterance segmentation with a list, with an empty utterance
+            ["廣東話好難學？都唔係吖！", None],
+            None,
+            None,
+            None,
+            (
+                "*X:    廣東話                 好        難         學         ？  都        唔係         吖        ！\n"  # noqa: E501
+                "%mor:  PROPN|gwong2dung1waa2  ADV|hou2  ADJ|naan4  VERB|hok6  ？  ADV|dou1  VERB|m4hai6  PART|aa1  ！\n"  # noqa: E501
+                "*X:\t\n"
             ),
         ),
         (

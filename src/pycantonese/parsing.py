@@ -43,23 +43,19 @@ def _parse_text(text: str, segment_kwargs, pos_tag_kwargs):
 def _get_utterance(
     unparsed_sent, segment_kwargs, pos_tag_kwargs, participant
 ) -> Utterance:
-    if participant is not None:
-        pass
-    elif isinstance(unparsed_sent, str):
+    if participant is None:
         participant = _UNKNOWN_PARTICIPANT
-    elif isinstance(unparsed_sent, tuple):
-        participant, unparsed_sent, *_ = unparsed_sent
-    else:
-        raise TypeError(
-            "Utterance must be either a string or "
-            f"a tuple of (participant, utterance): {unparsed_sent}"
-        )
-    participant = str(participant)
 
     if not unparsed_sent:
         return Utterance(
             participant=participant, tokens=[], time_marks=None, tiers={participant: ""}
         )
+
+    if isinstance(unparsed_sent, tuple):
+        participant, unparsed_sent, *_ = unparsed_sent
+
+    participant = str(participant)
+
     words, tags, jps = _parse_text(unparsed_sent, segment_kwargs, pos_tag_kwargs)
 
     tokens = [
@@ -114,6 +110,9 @@ def parse_text(
           participant and the other for the utterance, e.g.,
           ``[("小芬", "你食咗飯未呀？"), ("小明", "我食咗喇。")]``.
 
+        if an empty input or ``None`` is provided,
+        then an empty :class:`~pycantonese.CHATReader` instance is returned.
+
     segment_kwargs : dict, optional
         To customize word segmentation,
         provide a dictionary here which would then be passed as keyword arguments to
@@ -141,6 +140,10 @@ def parse_text(
     -------
     :class:`~pycantonese.CHATReader`
     """
+
+    reader = CHATReader()
+    if not data:
+        return reader
 
     if isinstance(data, str):
         # Perform basic sentence segmentation.
@@ -183,6 +186,5 @@ def parse_text(
         header={},
         utterances=utterances,
     )
-    reader = CHATReader()
     reader._files = collections.deque([f])
     return reader
