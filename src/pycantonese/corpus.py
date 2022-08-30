@@ -7,10 +7,10 @@ from pylangacq.chat import Reader, _params_in_docstring
 from pylangacq.chat import read_chat as pylangacq_read_chat
 from pylangacq.objects import Gra
 
-from pycantonese._punctuation_marks import _PUNCTUATION_MARKS
-from pycantonese.jyutping.parse_jyutping import parse_jyutping
-from pycantonese.search import _perform_search
-from pycantonese.util import _deprecate
+from ._punctuation_marks import _PUNCTUATION_MARKS
+from .jyutping.parse_jyutping import parse_jyutping
+from .search import _perform_search
+from .util import _deprecate
 
 
 _ENCODING = "utf-8"

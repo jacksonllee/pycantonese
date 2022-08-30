@@ -8,8 +8,8 @@ from string import ascii_uppercase
 
 from pylangacq.chat import _File, Utterance
 
-from pycantonese.corpus import CHATReader, Token
-from pycantonese.jyutping.characters import (
+from .corpus import CHATReader, Token
+from .jyutping.characters import (
     characters_to_jyutping,
     _get_words_characters_to_jyutping,
 )

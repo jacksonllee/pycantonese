@@ -3,9 +3,9 @@ from typing import List
 
 from wordseg import LongestStringMatching
 
-from pycantonese.corpus import hkcancor
-from pycantonese.data.rime_cantonese import CHARS_TO_JYUTPING, LETTERED
-from pycantonese.util import _split_chars_with_alphanum
+from .corpus import hkcancor
+from .data.rime_cantonese import CHARS_TO_JYUTPING, LETTERED
+from .util import _split_chars_with_alphanum
 
 
 _MAX_WORD_LENGTH = 5

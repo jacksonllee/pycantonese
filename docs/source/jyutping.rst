@@ -50,9 +50,14 @@ the underlying data contains the relevant tokens. Example:
     >>> pycantonese.characters_to_jyutping('蛋')  # egg
     [('蛋', 'daan2')]
     >>>
-    >>> # The correct pronunciation of 蛋 is with tone 6 (low-level) in 蛋糕.
+    >>> # However, in 蛋糕, the correct pronunciation of 蛋 is with tone 6 (low-level) instead.
     >>> pycantonese.characters_to_jyutping('蛋糕')  # cake
     [('蛋糕', 'daan6gou1')]
+
+.. _chars_to_jp_customize_word_seg:
+
+Customizing Word Segmentation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Because :func:`~pycantonese.characters_to_jyutping` performs word segmentation
 under the hood (via :func:`~pycantonese.segment`),
@@ -73,9 +78,46 @@ keyword argument of :func:`~pycantonese.characters_to_jyutping`.
     >>> pycantonese.characters_to_jyutping("蛋糕", segmenter=my_segmenter)
     [('蛋', 'daan2'), ('糕', 'gou1')]
 
-If you don't want :func:`~pycantonese.characters_to_jyutping` to perform
-word segmentation, then provide a list of strings instead with your desired
-segmentation.
+Customizing Jyutping
+^^^^^^^^^^^^^^^^^^^^
+
+It is also possible to customize Jyutping romanization
+in :func:`~pycantonese.characters_to_jyutping`.
+To do so, pass in a :class:`~pycantonese.word_segmentation.Segmenter` instance
+to the ``segmenter`` kwarg,
+just like how you would :ref:`customize word segmentation<_chars_to_jp_customize_word_seg>`.
+
+.. code-block:: python
+
+    >>> import pycantonese
+    >>> from pycantonese.word_segmentation import Segmenter
+    >>> # See its documentation for what customization it allows.
+    >>> # As an example, the `disallow` parameter can take an iterable of strings
+    >>> # that represent words that you don't want to treat as words.
+    >>> # Here, let's pretend that you don't want 蛋糕 to be segmented as a single word.
+    >>> my_segmenter = Segmenter(allow={"廣東話": "gong2dung1waa2"})
+    >>> pycantonese.characters_to_jyutping("講廣東話", segmenter=my_segmenter)
+    [('講', 'gong2'), ('廣東話', 'gong2dung1waa2')]
+
+The rationale behind this design is that
+
+
+This is useful when you want to override the Jyutping romanization from the internal
+dictionary, or when you
+
+Providing a Word-Segmented Input
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+What if your input is already word-segmented
+and therefore you don't want
+:func:`~pycantonese.characters_to_jyutping` to perform
+word segmentation?
+Simply provide your word-segmented input as a list of strings
+instead with your desired segmentation.
+
+    >>> import pycantonese
+    >>> pycantonese.characters_to_jyutping(["蛋", "糕"])
+    [('蛋', 'daan2'), ('糕', 'gou1')]
 
 .. _parsing_jyutping_strings:
 

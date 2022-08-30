@@ -4,18 +4,15 @@ except ModuleNotFoundError:
     # For Python < 3.8
     from importlib_metadata import version
 
-from pycantonese.corpus import hkcancor, read_chat, CHATReader
-from pycantonese.jyutping.characters import (
-    characters_to_jyutping,
-    characters2jyutping,
-)
-from pycantonese.jyutping.parse_jyutping import parse_jyutping
-from pycantonese.jyutping.tipa import jyutping_to_tipa, jyutping2tipa
-from pycantonese.jyutping.yale import jyutping_to_yale, jyutping2yale
-from pycantonese.pos_tagging.tagger import pos_tag
-from pycantonese.stop_words import stop_words
-from pycantonese.word_segmentation import segment
-from pycantonese.parsing import parse_text
+from .corpus import hkcancor, read_chat, CHATReader
+from .jyutping.characters import characters_to_jyutping, characters2jyutping
+from .jyutping.parse_jyutping import parse_jyutping
+from .jyutping.tipa import jyutping_to_tipa, jyutping2tipa
+from .jyutping.yale import jyutping_to_yale, jyutping2yale
+from .pos_tagging.tagger import pos_tag
+from .stop_words import stop_words
+from .word_segmentation import segment
+from .parsing import parse_text
 
 
 __version__ = version("pycantonese")

@@ -1,6 +1,7 @@
 import pytest
 
 from pycantonese import characters_to_jyutping
+from pycantonese.word_segmentation import Segmenter
 
 
 @pytest.mark.parametrize(
@@ -36,4 +37,20 @@ from pycantonese import characters_to_jyutping
 )
 def test_characters_to_jyutping(chars, expected):
     actual = characters_to_jyutping(chars)
+    assert actual == expected
+
+
+@pytest.mark.parametrize(
+    "chars, segmenter, expected",
+    [
+        ("噉樣嘅2", Segmenter(allow={"嘅2": "ge2"}), [("噉樣", "gam2joeng2"), ("嘅2", "ge2")]),
+        (
+            "講廣東話",
+            Segmenter(allow={"廣東話": "gong2dung1waa2"}),
+            [("講", "gong2"), ("廣東話", "gong2dung1waa2")],
+        ),
+    ],
+)
+def test_characters_to_jyutping_with_segmenter(chars, segmenter, expected):
+    actual = characters_to_jyutping(chars, segmenter=segmenter)
     assert actual == expected

@@ -148,11 +148,16 @@ Please see ``CHANGELOG.md``.
 Setting up a Development Environment
 ------------------------------------
 
-The latest code under development is available on Github at
-`jacksonllee/pycantonese <https://github.com/jacksonllee/pycantonese>`_.
+This section is only relevant
+if you would like to mess with the PyCantonese source code itself.
+Most users of PyCantonese shouldn't need this section, and should find
+``pip install --upgrade pycantonese`` sufficient as a way to install PyCantonese.
+
+The latest code under development is available on GitHub at
+https://github.com/jacksonllee/pycantonese.
 You need to have `Git LFS <https://git-lfs.github.com/>`_ installed on your system
-(run `brew install git-lfs` if you have Homebrew installed on MacOS,
-or run `sudo apt-get install git-lfs` if you're on Ubuntu).
+(e.g., run ``brew install git-lfs`` if you have Homebrew installed on MacOS,
+or run ``sudo apt-get install git-lfs`` if you're on Ubuntu).
 To obtain this version for experimental features or for development:
 
 .. code-block:: bash

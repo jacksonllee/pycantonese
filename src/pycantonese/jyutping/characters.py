@@ -110,10 +110,13 @@ def characters_to_jyutping(
         # Assume `chars` is a str.
         segmented = segment(chars, cls=segmenter)
     words_to_jyutping, chars_to_jyutping = _get_words_characters_to_jyutping()
-    for w, jp in (getattr(segmenter, "_allow_words_to_jp", {}) or {}).items():
-        if not jp:
-            continue
-        words_to_jyutping[w] = jp
+    if hasattr(segmenter, "_allow_words_to_jp") and segmenter._allow_words_to_jp:
+        # Don't contaminate the original `words_to_jyutping`.
+        words_to_jyutping = words_to_jyutping.copy()
+        for w, jp in segmenter._allow_words_to_jp.items():
+            if not jp:
+                continue
+            words_to_jyutping[w] = jp
     result = []
     for word in segmented:
         try:

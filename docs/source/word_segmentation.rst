@@ -23,6 +23,8 @@ matching algorithm, trained by
 The segmentation is constrained such that the resulting words
 contain no more than five characters.
 
+.. _customize_word_segmentation:
+
 Customizing Segmentation
 ------------------------
 

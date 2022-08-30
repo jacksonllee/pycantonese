@@ -1,7 +1,7 @@
 import dataclasses
 import re
 
-from pycantonese.jyutping.parse_jyutping import parse_jyutping, _parse_final, Jyutping
+from .jyutping.parse_jyutping import parse_jyutping, _parse_final, Jyutping
 
 
 def _jp_element_match(search_element, current_element):
