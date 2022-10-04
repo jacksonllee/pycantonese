@@ -15,7 +15,7 @@ from pycantonese.word_segmentation import Segmenter
             None,
             None,
             None,
-            "*X:    學         廣東話\n%mor:  VERB|hok6  NOUN|gwong2dung1waa2\n",
+            "*X:    學         廣東話\n%mor:  VERB|hok6  PROPN|gwong2dung1waa2\n",
         ),
         (
             # Custom participant
@@ -23,7 +23,7 @@ from pycantonese.word_segmentation import Segmenter
             None,
             None,
             "Foo",
-            "*Foo:  學         廣東話\n%mor:  VERB|hok6  NOUN|gwong2dung1waa2\n",
+            "*Foo:  學         廣東話\n%mor:  VERB|hok6  PROPN|gwong2dung1waa2\n",
         ),
         (
             # Unseen "word", so no jyutping in the output
@@ -31,7 +31,7 @@ from pycantonese.word_segmentation import Segmenter
             None,
             None,
             None,
-            "*X:    135\n%mor:  VERB|\n",
+            "*X:    135\n%mor:  X|\n",
         ),
         (
             # Custom POS tagging
@@ -39,7 +39,7 @@ from pycantonese.word_segmentation import Segmenter
             None,
             {"tagset": "hkcancor"},
             None,
-            "*X:    學      廣東話\n%mor:  V|hok6  NG|gwong2dung1waa2\n",
+            "*X:    學      廣東話\n%mor:  V|hok6  NZ|gwong2dung1waa2\n",
         ),
         (
             # Custom word segmentation
@@ -60,9 +60,9 @@ from pycantonese.word_segmentation import Segmenter
             None,
             (
                 "*X:    學         廣東話\n"
-                "%mor:  VERB|hok6  NOUN|gwong2dung1waa2\n"
+                "%mor:  VERB|hok6  PROPN|gwong2dung1waa2\n"
                 "*X:    學         廣東話\n"
-                "%mor:  VERB|hok6  NOUN|gwong2dung1waa2\n"
+                "%mor:  VERB|hok6  PROPN|gwong2dung1waa2\n"
             ),
         ),
         (

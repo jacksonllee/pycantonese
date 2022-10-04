@@ -132,6 +132,7 @@ Individuals who have contributed feedback, bug reports, etc.
 - @g-traveller
 - Rachel Han
 - Ryan Lai
+- @ZhanruiLiang
 - Hill Ma
 - @richielo
 - @rylanchiu
