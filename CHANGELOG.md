@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Deprecated
 ### Removed
 ### Fixed
+- Fixed word segmentation so that spaces between English words
+  in the user input are now honored as word boundaries.
 - Fixed feature extraction in part-of-speech tagging.
 - Fixed known issues in the rime-cantonese data.
 - If `parse_text` is given an empty input or `None`,
