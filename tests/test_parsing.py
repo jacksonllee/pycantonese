@@ -132,7 +132,7 @@ from pycantonese.word_segmentation import Segmenter
             None,
             None,
             (
-                "*X:    上6次            噉樣              嘅2\n"
+                "*X:    上6次           噉樣              嘅2\n"
                 "%mor:  VERB|soeng6ci3  CCONJ|gam2joeng2  PART|ge2\n"
             ),
         ),
