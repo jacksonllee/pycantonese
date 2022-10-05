@@ -112,7 +112,7 @@ workflows:
           name: safety
           command-run: |
             pip install -e . && \
-            pip install --upgrade safety && \
+            pip install safety==2.2.0 && \
             safety --version && \
             pip freeze | safety check --stdin
       - pre-build:
