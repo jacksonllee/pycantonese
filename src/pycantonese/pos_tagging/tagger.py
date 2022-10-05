@@ -259,8 +259,8 @@ class POSTagger:
         add("i+1 word's first char", context[i + 1][0])
         add("i+1 word's final char", context[i + 1][-1])
 
-        add("i+2 word's first char", context[i - 2][0])
-        add("i+2 word's final char", context[i - 2][-1])
+        add("i+2 word's first char", context[i + 2][0])
+        add("i+2 word's final char", context[i + 2][-1])
 
         return features
 
