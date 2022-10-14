@@ -1,6 +1,7 @@
 """This script trains a part-of-speech tagger."""
 
 import logging
+import random
 
 from pycantonese import hkcancor
 from pycantonese.pos_tagging import POSTagger
@@ -10,7 +11,7 @@ from pycantonese.pos_tagging.tagger import _PICKLE_PATH
 _TAGGER_PARAMETERS = {
     "frequency_threshold": 10,
     "ambiguity_threshold": 0.9,
-    "n_iter": 10,
+    "n_iter": 50,
 }
 
 # Several POS tags in HKCanCor are odd ones for proper nouns.
@@ -42,4 +43,5 @@ def _get_tagged_sents():
 if __name__ == "__main__":
     logging.basicConfig(level="INFO")
     tagger = POSTagger(**_TAGGER_PARAMETERS)
+    random.seed(123456)
     tagger.train(_get_tagged_sents(), save=_PICKLE_PATH)
