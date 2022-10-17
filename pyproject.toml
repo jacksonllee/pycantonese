@@ -25,6 +25,7 @@ keywords = [
 dependencies = [
     'importlib-metadata >= 1.0; python_version < "3.8"',
     'pylangacq >= 0.17.0',
+    'numpy >= 1.23.0',
     'wordseg >= 0.0.3',
 ]
 classifiers = [
