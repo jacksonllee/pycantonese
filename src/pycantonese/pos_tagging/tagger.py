@@ -69,14 +69,15 @@ class _AveragedPerceptron:
         self.i = 0
 
     def rescope(self, features: Iterable[Hashable], classes: Iterable[str]):
-        """"Change the features and classes.
+        """ "Change the features and classes.
 
         Assume they won't change until next call.
         """
         self.features = list(features)
         self.classes = sorted(classes)
         self._weights = numpy.zeros(
-            (len(self.classes), len(self.features)), dtype=numpy.float64)
+            (len(self.classes), len(self.features)), dtype=numpy.float64
+        )
         self._totals = self._weights.copy()
         self._tstamps = numpy.zeros(self._weights.shape, dtype=numpy.int32)
         self._feature_to_index = {f: i for i, f in enumerate(self.features)}
@@ -88,8 +89,7 @@ class _AveragedPerceptron:
         It's computed based on the dot-product between the features and
         current weights.
         """
-        fs, vs = zip(*(i for i in features.items()
-                       if i[0] in self._feature_to_index))
+        fs, vs = zip(*(i for i in features.items() if i[0] in self._feature_to_index))
         # The feature values vector.
         fvec = numpy.array(vs)
         weights = self._weights[:, [self._feature_to_index[f] for f in fs]]
@@ -99,8 +99,8 @@ class _AveragedPerceptron:
         """Update the feature weights."""
 
         def upd_feat(ci: int, fi: int, v: float):
-            self._totals[ci, fi] += (
-                self.i - self._tstamps[ci, fi]) * self._weights[ci, fi]
+            w = self._weights[ci, fi]
+            self._totals[ci, fi] += (self.i - self._tstamps[ci, fi]) * w
             self._tstamps[ci, fi] = self.i
             self._weights[ci, fi] += v
 
