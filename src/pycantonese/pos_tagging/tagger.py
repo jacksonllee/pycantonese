@@ -5,7 +5,7 @@ import os
 import pickle  # nosec
 import random
 
-from typing import Dict, Iterable, List, Set, Hashable
+from typing import Dict, Iterable, List, Hashable
 
 import numpy
 
@@ -99,7 +99,8 @@ class _AveragedPerceptron:
         """Update the feature weights."""
 
         def upd_feat(ci: int, fi: int, v: float):
-            self._totals[ci, fi] += (self.i - self._tstamps[ci, fi]) * self._weights[ci, fi]
+            self._totals[ci, fi] += (
+                self.i - self._tstamps[ci, fi]) * self._weights[ci, fi]
             self._tstamps[ci, fi] = self.i
             self._weights[ci, fi] += v
 
