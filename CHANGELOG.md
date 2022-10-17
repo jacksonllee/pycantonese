@@ -11,13 +11,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   with user-provided word segmentation.
 
 ### Changed
-- Updated versions of the dependencies: `pylangacq >= 0.17.0` and `wordseg >= 0.0.3`.
+- Updated versions of the dependencies: `pylangacq >= 0.17.0` and `wordseg >= 0.0.4`.
 - Restructured the repository to use top-level `src/` and `tests/` directories.
 - Rewrite some math logic of tagger using numpy to gain ~3x performance.
 
 ### Deprecated
 ### Removed
 ### Fixed
+- Fixed word segmentation so that spaces between English words
+  in the user input are now honored as word boundaries.
 - Fixed feature extraction in part-of-speech tagging.
 - Fixed known issues in the rime-cantonese data.
 - If `parse_text` is given an empty input or `None`,

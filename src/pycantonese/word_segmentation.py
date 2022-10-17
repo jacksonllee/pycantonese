@@ -1,4 +1,6 @@
+import re
 from functools import lru_cache
+from itertools import chain
 from typing import List
 
 from wordseg import LongestStringMatching
@@ -10,8 +12,7 @@ from pycantonese.util import _split_chars_with_alphanum
 
 _MAX_WORD_LENGTH = 5
 
-_ALLOWED_WORDS = None
-_DISALLOWED_WORDS = None
+_WHITESPACE_AROUND_ALPHANUM_REGEX = re.compile(r"(?<=[a-z0-9-])\s+|\s+(?=[a-z0-9-])")
 
 
 class Segmenter(LongestStringMatching):
@@ -58,8 +59,7 @@ class Segmenter(LongestStringMatching):
         chars = _split_chars_with_alphanum(sent_str)
         segmented = super(Segmenter, self)._predict_sent(chars)
         # Turn the result back from tuples to strings.
-        segmented = ["".join(x) for x in segmented]
-        return segmented
+        return map("".join, segmented)
 
 
 @lru_cache(maxsize=1)
@@ -108,7 +108,10 @@ def segment(unsegmented: str, cls: Segmenter = None) -> List[str]:
         cls = _get_default_segmenter()
     elif type(cls) != Segmenter:
         raise TypeError(f"`segmenter` must be a Segmenter object: {cls}")
-    # Strip all whitespace.
-    unsegmented = "".join(unsegmented.split())
-    segmented = list(cls.predict([unsegmented]))[0]
-    return segmented
+    parts_to_segment = map(
+        lambda x: x.replace(" ", ""),
+        _WHITESPACE_AROUND_ALPHANUM_REGEX.split(unsegmented.strip()),
+    )
+    return list(
+        chain.from_iterable(map(lambda x: next(cls.predict([x])), parts_to_segment))
+    )

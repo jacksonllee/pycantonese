@@ -130,8 +130,10 @@ Individuals who have contributed feedback, bug reports, etc.
 - @cathug
 - Jenny Chim
 - @g-traveller
+- @graphemecluster
 - Rachel Han
 - Ryan Lai
+- @laubonghaudoi
 - @ZhanruiLiang
 - Hill Ma
 - @richielo
