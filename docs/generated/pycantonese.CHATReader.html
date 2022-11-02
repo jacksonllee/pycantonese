@@ -269,7 +269,7 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Some of the methods are inherited from the parent class
-<a class="reference external" href="https://pylangacq.org/api.html#pylangacq.Reader" title="(in PyLangAcq v0.16.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reader</span></code></a> for language acquisition,
+<a class="reference external" href="https://pylangacq.org/api.html#pylangacq.Reader" title="(in PyLangAcq v0.17.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Reader</span></code></a> for language acquisition,
 which may or may not be applicable to your use case.</p>
 </div>
 <p class="rubric">Methods</p>
@@ -339,14 +339,14 @@ which may or may not be applicable to your use case.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.languages" title="pycantonese.CHATReader.languages"><code class="xref py py-obj docutils literal notranslate"><span class="pre">languages</span></code></a>([by_files])</p></td>
 <td><p>Return the languages in the data.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.mlu" title="pycantonese.CHATReader.mlu"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mlu</span></code></a>([participant])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.mlu" title="pycantonese.CHATReader.mlu"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mlu</span></code></a>([participant, exclude_switch])</p></td>
 <td><p>Return the mean lengths of utterance (MLU).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.mlum" title="pycantonese.CHATReader.mlum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mlum</span></code></a>([participant])</p></td>
-<td><p>Return the mean lengths of utterance by morphemes.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.mlum" title="pycantonese.CHATReader.mlum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mlum</span></code></a>([participant, exclude_switch])</p></td>
+<td><p>Return the mean lengths of utterance in morphemes.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.mluw" title="pycantonese.CHATReader.mluw"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mluw</span></code></a>([participant, exclude_switch])</p></td>
-<td><p>Return the mean lengths of utterance by words.</p></td>
+<td><p>Return the mean lengths of utterance in words.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.n_files" title="pycantonese.CHATReader.n_files"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_files</span></code></a>()</p></td>
 <td><p>Return the number of files.</p></td>
@@ -503,14 +503,14 @@ which may or may not be applicable to your use case.</p>
 <tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.languages" title="pycantonese.CHATReader.languages"><code class="xref py py-obj docutils literal notranslate"><span class="pre">languages</span></code></a>([by_files])</p></td>
 <td><p>Return the languages in the data.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.mlu" title="pycantonese.CHATReader.mlu"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mlu</span></code></a>([participant])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.mlu" title="pycantonese.CHATReader.mlu"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mlu</span></code></a>([participant, exclude_switch])</p></td>
 <td><p>Return the mean lengths of utterance (MLU).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.mlum" title="pycantonese.CHATReader.mlum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mlum</span></code></a>([participant])</p></td>
-<td><p>Return the mean lengths of utterance by morphemes.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.mlum" title="pycantonese.CHATReader.mlum"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mlum</span></code></a>([participant, exclude_switch])</p></td>
+<td><p>Return the mean lengths of utterance in morphemes.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.mluw" title="pycantonese.CHATReader.mluw"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mluw</span></code></a>([participant, exclude_switch])</p></td>
-<td><p>Return the mean lengths of utterance by words.</p></td>
+<td><p>Return the mean lengths of utterance in words.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="../api.html#pycantonese.CHATReader.n_files" title="pycantonese.CHATReader.n_files"><code class="xref py py-obj docutils literal notranslate"><span class="pre">n_files</span></code></a>()</p></td>
 <td><p>Return the number of files.</p></td>
@@ -580,7 +580,7 @@ which may or may not be applicable to your use case.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2014-2022, Jackson L. Lee | Documentation last updated on June 06, 2022.</p>
+    <p>&#169; Copyright 2014-2022, Jackson L. Lee | Documentation last updated on November 01, 2022.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

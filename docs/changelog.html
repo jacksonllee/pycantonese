@@ -265,10 +265,15 @@
 <h2>[Unreleased]<a class="headerlink" href="#unreleased" title="Permalink to this headline"></a></h2>
 <section id="added">
 <h3>Added<a class="headerlink" href="#added" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">characters_to_jyutping</span></code> function can now take a list of strings as input
+with user-provided word segmentation.</p></li>
+</ul>
 </section>
 <section id="changed">
 <h3>Changed<a class="headerlink" href="#changed" title="Permalink to this headline"></a></h3>
 <ul class="simple">
+<li><p>Updated versions of the dependencies: <code class="docutils literal notranslate"><span class="pre">pylangacq</span> <span class="pre">&gt;=</span> <span class="pre">0.17.0</span></code> and <code class="docutils literal notranslate"><span class="pre">wordseg</span> <span class="pre">&gt;=</span> <span class="pre">0.0.4</span></code>.</p></li>
 <li><p>Restructured the repository to use top-level <code class="docutils literal notranslate"><span class="pre">src/</span></code> and <code class="docutils literal notranslate"><span class="pre">tests/</span></code> directories.</p></li>
 </ul>
 </section>
@@ -277,14 +282,19 @@
 </section>
 <section id="removed">
 <h3>Removed<a class="headerlink" href="#removed" title="Permalink to this headline"></a></h3>
-<ul class="simple">
-<li><p>Removed <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>.</p></li>
-</ul>
 </section>
 <section id="fixed">
 <h3>Fixed<a class="headerlink" href="#fixed" title="Permalink to this headline"></a></h3>
 <ul class="simple">
+<li><p>Fixed word segmentation so that spaces between English words
+in the user input are now honored as word boundaries.</p></li>
+<li><p>Fixed feature extraction in part-of-speech tagging.</p></li>
 <li><p>Fixed known issues in the rime-cantonese data.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">parse_text</span></code> is given an empty input or <code class="docutils literal notranslate"><span class="pre">None</span></code>,
+now an empty <code class="docutils literal notranslate"><span class="pre">CHATReader</span></code> instance is returned.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">parse_text</span></code> is given a non-empty list of utterances,
+then any empty utterance (e.g., <code class="docutils literal notranslate"><span class="pre">None</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>)
+will now be represented by an empty <code class="docutils literal notranslate"><span class="pre">Utterance</span></code> instance inside the resulting <code class="docutils literal notranslate"><span class="pre">CHATReader</span></code> output.</p></li>
 </ul>
 </section>
 <section id="security">
@@ -706,7 +716,7 @@ element-specific search functions from version 0.1.</p></li>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2014-2022, Jackson L. Lee | Documentation last updated on June 06, 2022.</p>
+    <p>&#169; Copyright 2014-2022, Jackson L. Lee | Documentation last updated on November 01, 2022.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -73,6 +73,10 @@ keyword argument of :func:`~pycantonese.characters_to_jyutping`.
     >>> pycantonese.characters_to_jyutping("蛋糕", segmenter=my_segmenter)
     [('蛋', 'daan2'), ('糕', 'gou1')]
 
+If you don't want :func:`~pycantonese.characters_to_jyutping` to perform
+word segmentation, then provide a list of strings instead with your desired
+segmentation.
+
 .. _parsing_jyutping_strings:
 
 Parsing Jyutping Strings

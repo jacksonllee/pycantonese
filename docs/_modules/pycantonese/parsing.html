@@ -296,23 +296,19 @@
 <span class="k">def</span> <span class="nf">_get_utterance</span><span class="p">(</span>
     <span class="n">unparsed_sent</span><span class="p">,</span> <span class="n">segment_kwargs</span><span class="p">,</span> <span class="n">pos_tag_kwargs</span><span class="p">,</span> <span class="n">participant</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Utterance</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">participant</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">pass</span>
-    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">unparsed_sent</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">participant</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">participant</span> <span class="o">=</span> <span class="n">_UNKNOWN_PARTICIPANT</span>
-    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">unparsed_sent</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
-        <span class="n">participant</span><span class="p">,</span> <span class="n">unparsed_sent</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="o">=</span> <span class="n">unparsed_sent</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
-            <span class="s2">&quot;Utterance must be either a string or &quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;a tuple of (participant, utterance): </span><span class="si">{</span><span class="n">unparsed_sent</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="p">)</span>
-    <span class="n">participant</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">participant</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">unparsed_sent</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">Utterance</span><span class="p">(</span>
             <span class="n">participant</span><span class="o">=</span><span class="n">participant</span><span class="p">,</span> <span class="n">tokens</span><span class="o">=</span><span class="p">[],</span> <span class="n">time_marks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">tiers</span><span class="o">=</span><span class="p">{</span><span class="n">participant</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">}</span>
         <span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">unparsed_sent</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+        <span class="n">participant</span><span class="p">,</span> <span class="n">unparsed_sent</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="o">=</span> <span class="n">unparsed_sent</span>
+
+    <span class="n">participant</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">participant</span><span class="p">)</span>
+
     <span class="n">words</span><span class="p">,</span> <span class="n">tags</span><span class="p">,</span> <span class="n">jps</span> <span class="o">=</span> <span class="n">_parse_text</span><span class="p">(</span><span class="n">unparsed_sent</span><span class="p">,</span> <span class="n">segment_kwargs</span><span class="p">,</span> <span class="n">pos_tag_kwargs</span><span class="p">)</span>
 
     <span class="n">tokens</span> <span class="o">=</span> <span class="p">[</span>
@@ -367,6 +363,9 @@
 <span class="sd">          participant and the other for the utterance, e.g.,</span>
 <span class="sd">          ``[(&quot;小芬&quot;, &quot;你食咗飯未呀？&quot;), (&quot;小明&quot;, &quot;我食咗喇。&quot;)]``.</span>
 
+<span class="sd">        if an empty input or ``None`` is provided,</span>
+<span class="sd">        then an empty :class:`~pycantonese.CHATReader` instance is returned.</span>
+
 <span class="sd">    segment_kwargs : dict, optional</span>
 <span class="sd">        To customize word segmentation,</span>
 <span class="sd">        provide a dictionary here which would then be passed as keyword arguments to</span>
@@ -394,6 +393,10 @@
 <span class="sd">    -------</span>
 <span class="sd">    :class:`~pycantonese.CHATReader`</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">reader</span> <span class="o">=</span> <span class="n">CHATReader</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">reader</span>
 
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
         <span class="c1"># Perform basic sentence segmentation.</span>
@@ -436,7 +439,6 @@
         <span class="n">header</span><span class="o">=</span><span class="p">{},</span>
         <span class="n">utterances</span><span class="o">=</span><span class="n">utterances</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">reader</span> <span class="o">=</span> <span class="n">CHATReader</span><span class="p">()</span>
     <span class="n">reader</span><span class="o">.</span><span class="n">_files</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">deque</span><span class="p">([</span><span class="n">f</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">reader</span></div>
 </pre></div>
@@ -448,7 +450,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2014-2022, Jackson L. Lee | Documentation last updated on June 06, 2022.</p>
+    <p>&#169; Copyright 2014-2022, Jackson L. Lee | Documentation last updated on November 01, 2022.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

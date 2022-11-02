@@ -9,10 +9,15 @@ Changelog
 Added
 ^^^^^
 
+
+* The ``characters_to_jyutping`` function can now take a list of strings as input
+  with user-provided word segmentation.
+
 Changed
 ^^^^^^^
 
 
+* Updated versions of the dependencies: ``pylangacq >= 0.17.0`` and ``wordseg >= 0.0.4``.
 * Restructured the repository to use top-level ``src/`` and ``tests/`` directories.
 
 Deprecated
@@ -21,14 +26,19 @@ Deprecated
 Removed
 ^^^^^^^
 
-
-* Removed ``setup.py``.
-
 Fixed
 ^^^^^
 
 
+* Fixed word segmentation so that spaces between English words
+  in the user input are now honored as word boundaries.
+* Fixed feature extraction in part-of-speech tagging.
 * Fixed known issues in the rime-cantonese data.
+* If ``parse_text`` is given an empty input or ``None``\ ,
+  now an empty ``CHATReader`` instance is returned.
+* If ``parse_text`` is given a non-empty list of utterances,
+  then any empty utterance (e.g., ``None``\ , ``""``\ )
+  will now be represented by an empty ``Utterance`` instance inside the resulting ``CHATReader`` output.
 
 Security
 ^^^^^^^^
