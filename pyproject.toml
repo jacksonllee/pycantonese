@@ -68,7 +68,7 @@ where = [ "src" ]
 pycantonese = [
     "data/hkcancor/*",
     "data/rime_cantonese/*",
-    "pos_tagging/*.pickle",
+    "pos_tagging/*.json",
 ]
 
 [tool.pytest.ini_options]
