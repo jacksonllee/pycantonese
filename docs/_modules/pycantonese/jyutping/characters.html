@@ -260,13 +260,13 @@
   <h1>Source code for pycantonese.jyutping.characters</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span><span class="p">,</span> <span class="n">defaultdict</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">lru_cache</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
 
-<span class="kn">from</span> <span class="nn">..corpus</span> <span class="kn">import</span> <span class="n">hkcancor</span><span class="p">,</span> <span class="n">Token</span>
-<span class="kn">from</span> <span class="nn">..data.rime_cantonese</span> <span class="kn">import</span> <span class="n">CHARS_TO_JYUTPING</span><span class="p">,</span> <span class="n">LETTERED</span>
-<span class="kn">from</span> <span class="nn">..jyutping.parse_jyutping</span> <span class="kn">import</span> <span class="n">parse_jyutping</span>
-<span class="kn">from</span> <span class="nn">..word_segmentation</span> <span class="kn">import</span> <span class="n">_get_default_segmenter</span><span class="p">,</span> <span class="n">segment</span><span class="p">,</span> <span class="n">Segmenter</span>
-<span class="kn">from</span> <span class="nn">..util</span> <span class="kn">import</span> <span class="n">_split_chars_with_alphanum</span><span class="p">,</span> <span class="n">_deprecate</span>
+<span class="kn">from</span> <span class="nn">pycantonese.corpus</span> <span class="kn">import</span> <span class="n">hkcancor</span><span class="p">,</span> <span class="n">Token</span>
+<span class="kn">from</span> <span class="nn">pycantonese.data.rime_cantonese</span> <span class="kn">import</span> <span class="n">CHARS_TO_JYUTPING</span><span class="p">,</span> <span class="n">LETTERED</span>
+<span class="kn">from</span> <span class="nn">pycantonese.jyutping.parse_jyutping</span> <span class="kn">import</span> <span class="n">parse_jyutping</span>
+<span class="kn">from</span> <span class="nn">pycantonese.word_segmentation</span> <span class="kn">import</span> <span class="n">_get_default_segmenter</span><span class="p">,</span> <span class="n">segment</span><span class="p">,</span> <span class="n">Segmenter</span>
+<span class="kn">from</span> <span class="nn">pycantonese.util</span> <span class="kn">import</span> <span class="n">_split_chars_with_alphanum</span><span class="p">,</span> <span class="n">_deprecate</span>
 
 
 <span class="nd">@lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -323,7 +323,7 @@
 
 
 <div class="viewcode-block" id="characters_to_jyutping"><a class="viewcode-back" href="../../../generated/pycantonese.characters_to_jyutping.html#pycantonese.characters_to_jyutping">[docs]</a><span class="k">def</span> <span class="nf">characters_to_jyutping</span><span class="p">(</span>
-    <span class="n">chars</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]],</span> <span class="n">segmenter</span><span class="p">:</span> <span class="n">Segmenter</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">chars</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">segmenter</span><span class="p">:</span> <span class="n">Segmenter</span> <span class="o">=</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
     <span class="sd">&quot;&quot;&quot;Convert Cantonese characters into Jyutping romanization.</span>
 
@@ -331,18 +331,14 @@
 <span class="sd">    data. Any unseen Cantonese character (or punctuation mark,</span>
 <span class="sd">    for that matter) is represented by `None` in the output.</span>
 
+<span class="sd">    This function also performs word segmentation, in order to resolve potential</span>
+<span class="sd">    ambiguity in mapping characters to Jyutping.</span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    chars : str or List[str]</span>
-<span class="sd">        A string of Cantonese characters, in which case word segmentation is also</span>
-<span class="sd">        run on this input string (by :func:`~pycantonese.segment`)</span>
-<span class="sd">        in order to resolve potential ambiguity in</span>
-<span class="sd">        mapping characters to Jyutping.</span>
-<span class="sd">        If you don&#39;t want word segmentaiton to be done, then provide a list of strings</span>
-<span class="sd">        instead with your desired segmentation.</span>
+<span class="sd">    chars : str</span>
+<span class="sd">        A string of Cantonese characters.</span>
 <span class="sd">    segmenter : Segmenter, optional</span>
-<span class="sd">        (Not used if ``chars`` is a list of strings for user-provided word</span>
-<span class="sd">        segmentation.)</span>
 <span class="sd">        A :class:`~pycantonese.word_segmentation.Segmenter` instance to customize</span>
 <span class="sd">        word segmentation.</span>
 <span class="sd">        If specified, this segmenter is passed to the ``cls`` keyword argument of</span>
@@ -362,16 +358,11 @@
 <span class="sd">    &quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">chars</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[]</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">chars</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
-        <span class="n">segmented</span> <span class="o">=</span> <span class="n">chars</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="c1"># Assume `chars` is a str.</span>
-        <span class="k">if</span> <span class="n">segmenter</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">segmenter</span> <span class="o">=</span> <span class="n">_get_default_segmenter</span><span class="p">()</span>
-        <span class="n">segmented</span> <span class="o">=</span> <span class="n">segment</span><span class="p">(</span><span class="n">chars</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="n">segmenter</span><span class="p">)</span>
     <span class="n">words_to_jyutping</span><span class="p">,</span> <span class="n">chars_to_jyutping</span> <span class="o">=</span> <span class="n">_get_words_characters_to_jyutping</span><span class="p">()</span>
     <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">segmented</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">segmenter</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">segmenter</span> <span class="o">=</span> <span class="n">_get_default_segmenter</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">segment</span><span class="p">(</span><span class="n">chars</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="n">segmenter</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">jp</span> <span class="o">=</span> <span class="n">words_to_jyutping</span><span class="p">[</span><span class="n">word</span><span class="p">]</span>
         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
@@ -402,7 +393,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2014-2022, Jackson L. Lee | Documentation last updated on November 01, 2022.</p>
+    <p>&#169; Copyright 2014-2022, Jackson L. Lee | Documentation last updated on June 06, 2022.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
