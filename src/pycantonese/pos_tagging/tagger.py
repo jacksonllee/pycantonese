@@ -1,8 +1,8 @@
 import collections
 import functools
+import json
 import logging
 import os
-import pickle  # nosec
 import random
 
 from typing import Dict, Iterable, List, Hashable
@@ -13,15 +13,8 @@ from pycantonese._punctuation_marks import _PUNCTUATION_MARKS
 from pycantonese.pos_tagging.hkcancor_to_ud import hkcancor_to_ud
 
 
-# Use the highest pickle protocol version that's compatible for all supported
-# Python versions.
-# Protocol version 4 was added in Python 3.4.
-# Protocol version 5 was added in Python 3.8.
-# Reference: https://docs.python.org/3/library/pickle.html#data-stream-format
-_PICKLE_PROTOCOL = 4
-
 _THIS_DIR = os.path.dirname(os.path.abspath(__file__))
-_PICKLE_PATH = os.path.join(_THIS_DIR, "tagger.pickle")
+_JSON_PATH = os.path.join(_THIS_DIR, "tagger.json")
 
 # Features prefixes.
 _F_BIAS = "bias"
@@ -201,7 +194,7 @@ class POSTagger:
         tagged_sents : list[list[tuple[str, str]]]
             A list of segmented and tagged sentences for training.
         save : str, optional
-            If given, save the trained model as a pickle at this path.
+            If given, save the trained model as a JSON file at this path.
         """
         self._make_tagdict(tagged_sents)
         model = self.model
@@ -228,36 +221,41 @@ class POSTagger:
         model.average_weights()
 
         if save is not None:
-            pickle.dump(
-                (self.tagdict, model._weights, model.classes, model.features),
-                open(save, "wb"),
-                protocol=_PICKLE_PROTOCOL,
+            json.dump(
+                {
+                    "weights": model._weights,
+                    "tagdict": self.tagdict,
+                    "classes": model.classes,
+                    "features": model.features,
+                },
+                open(save, "w", encoding="utf-8"),
+                ensure_ascii=False,
+                indent=2,
+                sort_keys=True,
             )
 
     def load(self, path):
-        """Load a pickled model.
+        """Load a model from a JSON file.
 
         Parameters
         ----------
         path : str
-            The path where the pickled model is located.
+            The path where the model, stored as a JSON file, is located.
         """
         try:
-            data = pickle.load(open(path, "rb"))  # nosec
+            data = json.load(open(path, "r", encoding="utf-8"))
         except IOError:
             raise FileNotFoundError(f"Can't locate tagger model {path}")
         except:  # noqa
             raise EnvironmentError(
                 f"A file is detected at {path}, but it cannot be read as a "
                 "a tagger model. "
-                "Either the tagger model file object is corrupted for some reason, "
-                "or - perhaps more likely - you're running pycantonese from a local "
-                "git repo (e.g., when you are doing dev work) and that you do not have "
-                "Git LFS installed on your system. "
-                "In the latter case, please install Git LFS "
-                "(https://git-lfs.github.com/) and re-install pycantonese."
+                "The tagger model JSON file may be corrupted for some reason."
             )
-        self.tagdict, weights, classes, features = data
+        self.tagdict = data['tagdict']
+        weights = data['weights']
+        classes = data['classes']
+        features = data['features']
         self.classes = set(classes)
         self.features = set(features)
         self.model.rescope(features, classes)
@@ -346,7 +344,7 @@ class POSTagger:
 @functools.lru_cache(maxsize=1)
 def _get_tagger():
     tagger = POSTagger()
-    tagger.load(_PICKLE_PATH)
+    tagger.load(_JSON_PATH)
     return tagger
 
 

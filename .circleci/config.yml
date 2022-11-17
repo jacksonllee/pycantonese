@@ -11,7 +11,7 @@ jobs:
         type: string
     docker:
       # Pick the highest Python 3.x version that pycantonese is known to support
-      - image: cimg/python:3.10
+      - image: cimg/python:3.11
         #auth:
         #  username: $DOCKERHUB_USERNAME
         #  password: $DOCKERHUB_PASSWORD
@@ -29,27 +29,8 @@ jobs:
         #auth:
         #  username: $DOCKERHUB_USERNAME
         #  password: $DOCKERHUB_PASSWORD
-    resource_class: medium+
     steps:
       - checkout
-      - run:
-          name: Install Git LFS
-          command: |
-            curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
-            sudo apt-get -y install git-lfs
-            git lfs install
-      - run:
-          name: Create an asset id file of Git LFS files
-          command: git lfs ls-files -l | cut -d' ' -f1 | sort > .assets-id
-      - restore_cache:
-          key: v1-my-cache-key-{{ checksum ".assets-id" }}
-      - run:
-          name: Fetch the files under Git LFS
-          command: git lfs pull
-      - save_cache:
-          key: v1-my-cache-key-{{ checksum ".assets-id" }}
-          paths:
-            - .git/lfs
       - run:
           # Test that we can build a source distribution that can correctly
           # install from clean slate.
@@ -112,7 +93,7 @@ workflows:
           name: safety
           command-run: |
             pip install -e . && \
-            pip install safety==2.2.0 && \
+            pip install safety && \
             safety --version && \
             pip freeze | safety check --stdin
       - pre-build:
@@ -130,7 +111,7 @@ workflows:
             - bandit
           matrix:
             parameters:
-              python-version: ["3.7", "3.8", "3.9", "3.10"]
+              python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
       - build-python-win:
           requires:
             - flake8

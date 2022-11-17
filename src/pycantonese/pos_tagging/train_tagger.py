@@ -5,7 +5,7 @@ import random
 
 from pycantonese import hkcancor
 from pycantonese.pos_tagging import POSTagger
-from pycantonese.pos_tagging.tagger import _PICKLE_PATH
+from pycantonese.pos_tagging.tagger import _JSON_PATH
 
 
 _TAGGER_PARAMETERS = {
@@ -44,4 +44,4 @@ if __name__ == "__main__":
     logging.basicConfig(level="INFO")
     tagger = POSTagger(**_TAGGER_PARAMETERS)
     random.seed(123456)
-    tagger.train(_get_tagged_sents(), save=_PICKLE_PATH)
+    tagger.train(_get_tagged_sents(), save=_JSON_PATH)

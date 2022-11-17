@@ -44,6 +44,7 @@ classifiers = [
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
     "Topic :: Scientific/Engineering",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
     "Topic :: Scientific/Engineering :: Human Machine Interfaces",
@@ -69,7 +70,7 @@ where = [ "src" ]
 pycantonese = [
     "data/hkcancor/*",
     "data/rime_cantonese/*",
-    "pos_tagging/*.pickle",
+    "pos_tagging/*.json",
 ]
 
 [tool.pytest.ini_options]

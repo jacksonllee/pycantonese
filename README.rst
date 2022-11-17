@@ -124,11 +124,12 @@ Wonderful resources with a permissive license that have been incorporated into P
 - HKCanCor
 - rime-cantonese
 
-Individuals who have contributed feedback, bug reports, etc.
+Individuals who have contributed pull requests, bug reports, and other feedback
 (in alphabetical order of last names):
 
 - @cathug
 - Jenny Chim
+- Eric Dong
 - @g-traveller
 - @graphemecluster
 - Rachel Han
@@ -153,16 +154,12 @@ Setting up a Development Environment
 
 The latest code under development is available on Github at
 `jacksonllee/pycantonese <https://github.com/jacksonllee/pycantonese>`_.
-You need to have `Git LFS <https://git-lfs.github.com/>`_ installed on your system
-(run `brew install git-lfs` if you have Homebrew installed on MacOS,
-or run `sudo apt-get install git-lfs` if you're on Ubuntu).
 To obtain this version for experimental features or for development:
 
 .. code-block:: bash
 
    $ git clone https://github.com/jacksonllee/pycantonese.git
    $ cd pycantonese
-   $ git lfs pull
    $ pip install -r dev-requirements.txt
    $ pip install -e .
 
