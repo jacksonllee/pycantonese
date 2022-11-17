@@ -1,3 +1,5 @@
+import base64
+import bz2
 import collections
 import functools
 import json
@@ -69,8 +71,7 @@ class _AveragedPerceptron:
         self.features = list(features)
         self.classes = sorted(classes)
         self._weights = numpy.zeros(
-            (len(self.classes), len(self.features)), dtype=numpy.float64
-        )
+            (len(self.classes), len(self.features)), dtype=numpy.float32)
         self._totals = self._weights.copy()
         self._tstamps = numpy.zeros(self._weights.shape, dtype=numpy.int32)
         self._feature_to_index = {f: i for i, f in enumerate(self.features)}
@@ -223,7 +224,7 @@ class POSTagger:
         if save is not None:
             json.dump(
                 {
-                    "weights": model._weights,
+                    "weights": base64.b85encode(bz2.compress(model._weights.tobytes())).decode(),
                     "tagdict": self.tagdict,
                     "classes": model.classes,
                     "features": model.features,
@@ -253,13 +254,14 @@ class POSTagger:
                 "The tagger model JSON file may be corrupted for some reason."
             )
         self.tagdict = data['tagdict']
-        weights = data['weights']
         classes = data['classes']
         features = data['features']
         self.classes = set(classes)
         self.features = set(features)
         self.model.rescope(features, classes)
-        self.model._weights = weights
+        array = numpy.frombuffer(bz2.decompress(
+            base64.b85decode(data['weights'])), numpy.float32)
+        self.model._weights = array.reshape(len(classes), len(features))
         self.model._totals = None
         self.model._tstamps = None
 
