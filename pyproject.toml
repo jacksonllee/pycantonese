@@ -7,7 +7,7 @@ name = "pycantonese"
 version = "3.4.0"
 description = "Cantonese Linguistics and NLP in Python"
 readme = "README.rst"
-requires-python = ">= 3.7.*"
+requires-python = ">= 3.7"
 license = { text = "MIT License" }
 authors = [ { name = "Jackson L. Lee", email = "jacksonlunlee@gmail.com" } ]
 keywords = [
