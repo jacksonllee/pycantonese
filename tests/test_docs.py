@@ -16,7 +16,7 @@ import requests
         "https://pylangacq.org/read.html",
         "https://pylangacq.org/headers.html",
         "https://docs.python.org/3/library/re.html",
-        # "https://www.lshk.org/jyutping",  # TODO: Update doc for the new URL https://lshk.org/jyutping-scheme/
+        # "https://www.lshk.org/jyutping",  # TODO: Update doc for the new URL https://lshk.org/jyutping-scheme/  # noqa: E501
         "https://www.tug.org/TUGboat/tb17-2/tb51rei.pdf",
         "https://universaldependencies.org/u/pos/index.html",
         "https://pycantonese.org/index.html#links",
