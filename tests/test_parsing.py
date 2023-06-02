@@ -27,11 +27,11 @@ from pycantonese.word_segmentation import Segmenter
         ),
         (
             # Unseen "word", so no jyutping in the output
-            "135",
+            "136",
             None,
             None,
             None,
-            "*X:    135\n%mor:  X|\n",
+            "*X:    136\n%mor:  X|\n",
         ),
         (
             # Custom POS tagging
