@@ -10,6 +10,7 @@ from pycantonese.jyutping.characters import (
     characters2jyutping,
 )
 from pycantonese.jyutping.parse_jyutping import parse_jyutping
+from pycantonese.jyutping.ipa import jyutping_to_ipa
 from pycantonese.jyutping.tipa import jyutping_to_tipa, jyutping2tipa
 from pycantonese.jyutping.yale import jyutping_to_yale, jyutping2yale
 from pycantonese.pos_tagging.tagger import pos_tag
@@ -27,6 +28,7 @@ __all__ = [
     "characters_to_jyutping",
     "characters2jyutping",
     "hkcancor",
+    "jyutping_to_ipa",
     "jyutping_to_tipa",
     "jyutping_to_yale",
     "jyutping2tipa",
