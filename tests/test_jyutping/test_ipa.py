@@ -23,5 +23,21 @@ from pycantonese.jyutping.ipa import jyutping_to_ipa
         ("geok3", "kɵk̚33"),
     ],
 )
-def test_jyutping_to_ipa(jp_str, expected):
+def test_jyutping_to_ipa__base_cases(jp_str, expected):
     assert jyutping_to_ipa(jp_str, as_list=False) == expected
+
+
+def test_jyutping_to_ipa__custom_onsets():
+    assert jyutping_to_ipa("ci1", as_list=False, onsets={"c": "tʃ'"}) == "tʃ'i55"
+
+
+def test_jyutping_to_ipa__custom_nuclei():
+    assert jyutping_to_ipa("ci1", as_list=False, nuclei={"i": "iː"}) == "tsʰiː55"
+
+
+def test_jyutping_to_ipa__cusstom_tones():
+    assert jyutping_to_ipa("ci2", as_list=False, tones={"2": "35"}) == "tsʰi35"
+
+
+def test_jyutping_to_ipa__custom_codas():
+    assert jyutping_to_ipa("sip3", as_list=False, codas={"p": "p"}) == "sip33"

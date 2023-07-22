@@ -72,7 +72,6 @@ def _replace(current, parsed, part_to_match, matches, default):
         return current
 
 
-@lru_cache
 def jyutping_to_ipa(
     jp_str: str,
     as_list: bool = True,
