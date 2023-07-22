@@ -1,4 +1,5 @@
 import unicodedata
+from functools import lru_cache
 
 from pycantonese.jyutping.parse_jyutping import parse_jyutping
 from pycantonese.util import _deprecate
@@ -54,6 +55,7 @@ CODAS_YALE = {
 }
 
 
+@lru_cache
 def jyutping_to_yale(jp_str, as_list=True):
     """Convert Jyutping romanization into Yale romanization.
 

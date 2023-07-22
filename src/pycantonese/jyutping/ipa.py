@@ -1,3 +1,4 @@
+from functools import lru_cache
 from typing import Dict, List, Optional, Union
 
 from .parse_jyutping import parse_jyutping
@@ -29,13 +30,13 @@ _ONSETS = {
 _NUCLEI = {
     "aa": "aː",
     "a": "ɐ",
-    "i": "i",  # TODO ɪ before ng, k
+    "i": "i",  # ɪ before ng, k
     "yu": "y",
-    "u": "u",  # TODO ʊ before ng, k
+    "u": "u",  # ʊ before ng, k
     "oe": "œ",
-    "e": "ɛ",  # TODO e before i
+    "e": "ɛ",  # e before i
     "eo": "ɵ",
-    "o": "ɔ",  # TODO o before u
+    "o": "ɔ",  # o before u
     "m": "m",
     "n": "n",
     "ng": "ŋ",
@@ -48,7 +49,7 @@ _CODAS = {
     "m": "m",
     "n": "n",
     "ng": "ŋ",
-    "i": "i",  # TODO y after eo, u, o
+    "i": "i",  # y after eo, u, o
     "u": "u",
     "": "",
 }
@@ -63,6 +64,15 @@ _TONES = {
 }
 
 
+@lru_cache
+def _replace(current, parsed, part_to_match, matches, default):
+    if getattr(parsed, part_to_match) in matches:
+        return default
+    else:
+        return current
+
+
+@lru_cache
 def jyutping_to_ipa(
     jp_str: str,
     as_list: bool = True,
@@ -70,7 +80,7 @@ def jyutping_to_ipa(
     onsets: Optional[Dict[str, str]] = None,
     nuclei: Optional[Dict[str, str]] = None,
     codas: Optional[Dict[str, str]] = None,
-    tones: Optional[Dict[str, str]] = None
+    tones: Optional[Dict[str, str]] = None,
 ) -> Union[List[str], str]:
     jp_parsed_list = parse_jyutping(jp_str)
     ipa_list = []
@@ -80,6 +90,23 @@ def jyutping_to_ipa(
         nucleus = _NUCLEI[jp_parsed.nucleus]
         coda = _CODAS[jp_parsed.coda]
         tone = _TONES[jp_parsed.tone]
+
+        if (n := jp_parsed.nucleus) == "i":
+            nucleus = _replace(nucleus, jp_parsed, "coda", ("ng", "k"), "ɪ")
+        elif n == "u":
+            nucleus = _replace(nucleus, jp_parsed, "coda", ("ng", "k"), "ʊ")
+        elif n == "e":
+            nucleus = _replace(nucleus, jp_parsed, "coda", ("i",), "e")
+        elif n == "o":
+            nucleus = _replace(nucleus, jp_parsed, "coda", ("u",), "o")
+
+        if jp_parsed.coda == "i":
+            coda = _replace(coda, jp_parsed, "nucleus", ("eo", "u", "o"), "y")
+
+        onset = (onsets or {}).get(jp_parsed.onset, onset)
+        nucleus = (nuclei or {}).get(jp_parsed.nucleus, nucleus)
+        coda = (codas or {}).get(jp_parsed.coda, coda)
+        tone = (tones or {}).get(jp_parsed.tone, tone)
 
         ipa_list.append(onset + nucleus + coda + tone)
 

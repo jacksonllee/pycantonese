@@ -58,6 +58,9 @@ class Jyutping:
         """Combine onset + nucleus + coda + tone."""
         return f"{self.onset}{self.nucleus}{self.coda}{self.tone}"
 
+    def __hash__(self):
+        return hash(self.__str__())
+
     @property
     def final(self):
         """Return the final (= nucleus + coda)."""
