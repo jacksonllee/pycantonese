@@ -19,6 +19,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Deprecated
 ### Removed
+- Dropped support for Python 3.7.
+
 ### Fixed
 - Fixed word segmentation so that spaces between English words
   in the user input are now honored as word boundaries.

@@ -7,7 +7,7 @@ name = "pycantonese"
 version = "3.4.0"
 description = "Cantonese Linguistics and NLP in Python"
 readme = "README.rst"
-requires-python = ">= 3.7"
+requires-python = ">= 3.8"
 license = { text = "MIT License" }
 authors = [ { name = "Jackson L. Lee", email = "jacksonlunlee@gmail.com" } ]
 keywords = [
@@ -23,7 +23,6 @@ keywords = [
     "Jyutping",
 ]
 dependencies = [
-    'importlib-metadata >= 1.0; python_version < "3.8"',
     'pylangacq >= 0.17.0',
     'wordseg >= 0.0.4',
 ]
@@ -39,7 +38,6 @@ classifiers = [
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",

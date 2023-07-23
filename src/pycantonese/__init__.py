@@ -1,8 +1,4 @@
-try:
-    from importlib.metadata import version
-except ModuleNotFoundError:
-    # For Python < 3.8
-    from importlib_metadata import version
+from importlib.metadata import version
 
 from pycantonese.corpus import hkcancor, read_chat, CHATReader
 from pycantonese.jyutping.characters import (
