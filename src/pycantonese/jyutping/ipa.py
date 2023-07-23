@@ -81,6 +81,55 @@ def jyutping_to_ipa(
     codas: Optional[Dict[str, str]] = None,
     tones: Optional[Dict[str, str]] = None,
 ) -> Union[List[str], str]:
+    """Convert Jyutping romanization into IPA.
+
+    The Jyutping-to-IPA mapping is based on Matthews and Yip (2011: 461-463).
+
+    Parameters
+    ----------
+    jp_str : str
+        Jyutping romanization for one or multiple characters
+    as_list : bool, optional
+        If ``True`` (the default), the returned value is a list of strings
+        where each string is the IPA representation of each Cantonese / Chinese
+        character based on the input Jyutping.
+    onsets : dict[str, str], optional
+        If provided, it must be a dictionary that maps Jyutping onsets to
+        the desired IPA symbols for customization. For example, Jyutping "z"
+        maps to IPA /ts/ by default. Passing in ``{"z": "tʃ"}`` would map
+        "z" to /tʃ/ instead.
+    nuclei : dict[str, str], optional
+        If provided, it must be a dictionary that maps Jyutping nuclei to
+        the desired IPA symbols for customization. For example, Jyutping "i"
+        maps to IPA /i/ by default. Passing in ``{"i": "iː"}`` would map
+        "i" to /iː/ instead.
+    codas : dict[str, str], optional
+        If provided, it must be a dictionary that maps Jyutping codas to
+        the desired IPA symbols for customization. For example, Jyutping "p"
+        maps to IPA /p̚/ by default. Passing in ``{"p": "p"}`` would map
+        "p" to /p/ instead.
+    tones : dict[str, str], optional
+        If provided, it must be a dictionary that maps Jyutping tones to
+        the desired IPA symbols for customization. For example, Jyutping "2"
+        (high-rising tone)
+        maps to IPA /25/ by default. Passing in ``{"2": "35"}`` would map
+        Jyutping "2" to /35/ instead.
+
+    Returns
+    -------
+    list[str] | str
+
+    Examples
+    --------
+    >>> jyutping_to_ipa('gwong2dung1waa2')  # 廣東話 Cantonese
+    ['kʷɔŋ25', 'tʊŋ55', 'waː25']
+    >>> jyutping_to_ipa('gwong2dung1waa2', as_list=False)
+    'kʷɔŋ25 tʊŋ55 waː25'
+    >>> jyutping_to_ipa('ci1', onsets={'c': "tʃ'"})
+    ["tʃ'i55"]
+    >>> jyutping_to_ipa('ci1', tones={'1': "˥"})
+    ['tsʰi˥']
+    """
     jp_parsed_list = parse_jyutping(jp_str)
     ipa_list = []
 

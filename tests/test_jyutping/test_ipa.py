@@ -35,7 +35,7 @@ def test_jyutping_to_ipa__custom_nuclei():
     assert jyutping_to_ipa("ci1", as_list=False, nuclei={"i": "iː"}) == "tsʰiː55"
 
 
-def test_jyutping_to_ipa__cusstom_tones():
+def test_jyutping_to_ipa__custom_tones():
     assert jyutping_to_ipa("ci2", as_list=False, tones={"2": "35"}) == "tsʰi35"
 
 
