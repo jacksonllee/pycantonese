@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - If `parse_text` is given a non-empty list of utterances,
   then any empty utterance (e.g., `None`, `""`)
   will now be represented by an empty `Utterance` instance inside the resulting `CHATReader` output.
+- Fixed the HKCanCor-to-UD mapping for `G1` mapped to `VERB` not `V`.
 
 ### Security
 

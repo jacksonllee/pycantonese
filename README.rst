@@ -135,6 +135,7 @@ Individuals who have contributed pull requests, bug reports, and other feedback
 - Rachel Han
 - Ryan Lai
 - @laubonghaudoi
+- Kevin Li
 - @ZhanruiLiang
 - Hill Ma
 - @richielo
