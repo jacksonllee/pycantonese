@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools >= 65.3.0", "wheel"]
+requires = ["setuptools >= 70.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -36,12 +36,14 @@ classifiers = [
     "Natural Language :: Chinese (Traditional)",
     "Natural Language :: Cantonese",
     "Operating System :: OS Independent",
+    "Programming Language :: Python",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "Topic :: Scientific/Engineering",
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
     "Topic :: Scientific/Engineering :: Human Machine Interfaces",
@@ -55,6 +57,25 @@ classifiers = [
 [project.urls]
 Homepage = "https://pycantonese.org"
 Source = "https://github.com/jacksonllee/pycantonese"
+
+[project.optional-dependencies]
+dev = [
+    "black == 24.4.2",
+    "build == 1.2.1",
+    "flake8 == 7.0.0",
+    "pytest == 8.2.0",
+    "requests == 2.32.1",
+    "sybil == 6.1.1",
+    "twine == 5.0.0",
+]
+docs = [
+    "m2r2 == 0.3.2",
+    "numpydoc == 1.7.0",
+    "Sphinx == 7.3.7",
+    "sphinx-copybutton == 0.5.2",
+    "sphinx-rtd-theme == 2.0.0",
+    "sphinx-sitemap == 2.6.0",
+]
 
 [tool.setuptools]
 zip-safe = false
@@ -73,5 +94,5 @@ pycantonese = [
 [tool.pytest.ini_options]
 # Adding -p no:doctest to disable pytest's own doctest,
 # which may interfere with Sybil's doctest parsers.
-addopts = "-vv --durations=0 --strict-markers -p no:doctest"
+addopts = "-vv --strict-markers -p no:doctest --doctest-modules"
 testpaths = ["tests", "docs"]

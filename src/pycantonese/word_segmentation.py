@@ -106,7 +106,7 @@ def segment(unsegmented: str, cls: Segmenter = None) -> List[str]:
         return []
     if cls is None:
         cls = _get_default_segmenter()
-    elif type(cls) != Segmenter:
+    elif not isinstance(cls, Segmenter):
         raise TypeError(f"`segmenter` must be a Segmenter object: {cls}")
     parts_to_segment = map(
         lambda x: x.replace(" ", ""),

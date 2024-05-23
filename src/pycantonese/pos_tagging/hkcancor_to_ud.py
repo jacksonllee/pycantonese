@@ -46,7 +46,7 @@ _MAP = {
     "ECHO0": "PROPN",  # In one instance of "Big Echo"
     "F": "ADV",  # HKCanCor: Directional Locality
     "G": "X",  # HKCanCor: Morpheme
-    "G1": "V",  # The first A in the "A-not-AB" pattern, where AB is a verb.
+    "G1": "VERB",  # The first A in the "A-not-AB" pattern, where AB is a verb.
     "G2": "ADJ",  # The first A in "A-not-AB", where AB is an adjective.
     "H": "PROPN",  # HKCanCor: Prefix (aa3 阿 followed by a person name)
     "HILL0": "PROPN",  # In "Benny Hill"

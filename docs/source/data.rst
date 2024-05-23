@@ -127,17 +127,6 @@ available from CHILDES and TalkBank (in alphabetical order):
         >>> len(corpus.words())
         223515
 
-* `Paidologos Corpus: Cantonese <https://phonbank.talkbank.org/access/Chinese/Cantonese/PaidoCantonese.html>`_
-
-    .. code-block:: python
-
-        >>> url = "https://phonbank.talkbank.org/data/Chinese/Cantonese/PaidoCantonese.zip"
-        >>> corpus = pycantonese.read_chat(url)
-        >>> corpus.n_files()
-        160
-        >>> len(corpus.words())
-        16730
-
 * `Yip-Matthews Bilingual Corpus <https://childes.talkbank.org/access/Biling/YipMatthews.html>`_
 
     .. code-block:: python

@@ -11,10 +11,7 @@ jobs:
         type: string
     docker:
       # Pick the highest Python 3.x version that pycantonese is known to support
-      - image: cimg/python:3.11
-        #auth:
-        #  username: $DOCKERHUB_USERNAME
-        #  password: $DOCKERHUB_PASSWORD
+      - image: cimg/python:3.12
     steps:
       - checkout
       - run:
@@ -26,27 +23,16 @@ jobs:
         type: string
     docker:
       - image: cimg/python:<< parameters.python-version >>
-        #auth:
-        #  username: $DOCKERHUB_USERNAME
-        #  password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
       - run:
-          # Test that we can build a source distribution that can correctly
-          # install from clean slate.
-          # "python -m build" creates
-          # dist/<pkg-name>-x.y.z.tar.gz and dist/<pkg-name>-x.y.z-py3-none-any.whl
-          name: Build source distribution and install package from it
+          name: Install the package and dev dependencies
           command: |
-              pip install -r dev-requirements.txt && \
-              python -m build && \
-              pip install dist/`ls dist/ | grep .whl`
-      - run:
-          name: Show installed Python packages
-          command: pip list -v
+              pip install --progress-bar off -e ".[dev]" && \
+              pip list -v
       - run:
           name: Run python tests
-          command: pytest -vv --durations=0 --doctest-modules --junitxml=/tmp/testxml/report.xml tests docs
+          command: pytest --durations=0 --junitxml=/tmp/testxml/report.xml
           no_output_timeout: 20m
       - store_test_results:
           path: /tmp/testxml/
@@ -63,8 +49,7 @@ jobs:
           shell: bash.exe
           command: |
             python --version && \
-            pip install -r dev-requirements.txt && \
-            pip install . && \
+            pip install --progress-bar off ".[dev]" && \
             pip list && \
             pytest
 
@@ -75,31 +60,31 @@ workflows:
       - pre-build:
           name: flake8
           command-run: |
-            pip install -r dev-requirements.txt && \
+            pip install --progress-bar off -e ".[dev]" && \
             flake8 src tests
       - pre-build:
           name: black
           command-run:  |
-            pip install -r dev-requirements.txt && \
+            pip install --progress-bar off -e ".[dev]" && \
             black --check src tests
       - pre-build:
           name: twine
           command-run: |
-            pip install -r dev-requirements.txt && \
+            pip install --progress-bar off -e ".[dev]" && \
             python -m build && \
             twine check dist/`ls dist/ | grep .tar.gz` && \
             twine check dist/`ls dist/ | grep .whl`
       - pre-build:
           name: safety
           command-run: |
-            pip install -e . && \
-            pip install safety && \
+            pip install --progress-bar off -e . && \
+            pip install --progress-bar off safety && \
             safety --version && \
             pip freeze | safety check --stdin
       - pre-build:
           name: bandit
           command-run: |
-            pip install --upgrade bandit && \
+            pip install --progress-bar off bandit && \
             bandit --version && \
             bandit -r src -x tests
       - build-python:
@@ -111,7 +96,7 @@ workflows:
             - bandit
           matrix:
             parameters:
-              python-version: ["3.8", "3.9", "3.10", "3.11"]
+              python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
       - build-python-win:
           requires:
             - flake8

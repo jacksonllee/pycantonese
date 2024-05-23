@@ -5,7 +5,6 @@ If these tests fail, the documentation should probably be updated as well
 (and the bugs should be fixed, if any).
 """
 
-
 import pytest
 
 from pycantonese import parse_jyutping

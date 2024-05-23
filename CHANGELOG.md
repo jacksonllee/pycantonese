@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Added the new function `jyutping_to_ipa` for Jyutping-to-IPA conversion.
 - The `characters_to_jyutping` function can now take a list of strings as input
   with user-provided word segmentation.
-- Added support for Python 3.11.
+- Added support for Python 3.11 and 3.12.
 
 ### Changed
 - Updated versions of the dependencies: `pylangacq >= 0.17.0` and `wordseg >= 0.0.4`.
@@ -31,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - If `parse_text` is given a non-empty list of utterances,
   then any empty utterance (e.g., `None`, `""`)
   will now be represented by an empty `Utterance` instance inside the resulting `CHATReader` output.
+- Fixed the HKCanCor-to-UD mapping for `G1` mapped to `VERB` not `V`.
 
 ### Security
 

@@ -135,6 +135,7 @@ Individuals who have contributed pull requests, bug reports, and other feedback
 - Rachel Han
 - Ryan Lai
 - @laubonghaudoi
+- Kevin Li
 - @ZhanruiLiang
 - Hill Ma
 - @richielo
@@ -152,7 +153,7 @@ Please see ``CHANGELOG.md``.
 Setting up a Development Environment
 ------------------------------------
 
-The latest code under development is available on Github at
+The latest code under development is available on GitHub at
 `jacksonllee/pycantonese <https://github.com/jacksonllee/pycantonese>`_.
 To obtain this version for experimental features or for development:
 
@@ -160,8 +161,7 @@ To obtain this version for experimental features or for development:
 
    $ git clone https://github.com/jacksonllee/pycantonese.git
    $ cd pycantonese
-   $ pip install -r dev-requirements.txt
-   $ pip install -e .
+   $ pip install -e ".[dev]"
 
 To run tests and styling checks:
 
