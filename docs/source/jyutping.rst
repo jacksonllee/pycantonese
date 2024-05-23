@@ -8,7 +8,7 @@ involve the processing of `Jyutping romanization
 <https://www.lshk.org/jyutping>`_.
 A common need is to convert Cantonese characters to Jyutping romanization.
 Another functionality of interest is the ability to convert Jyutping into
-other romanization schemes still used today.
+IPA or another romanization scheme.
 Whether you have :ref:`data in Jyutping from a corpus reader<jyutping_from_reader>`
 or you have independently ingested Jyutping as Python strings,
 PyCantonese provides tools for these use cases.
@@ -145,6 +145,38 @@ and final (= nucleus + coda; 韻母):
     'jyut6'
     >>> jp.final
     'yut'
+
+
+Jyutping-to-IPA Conversion
+--------------------------
+
+:func:`~pycantonese.jyutping_to_ipa` converts Jyutping into IPA
+(International Phonetic Alphabet), the standard representation of speech sounds
+in phonetics and phonology:
+
+.. code-block:: python
+
+    >>> import pycantonese
+    >>> pycantonese.jyutping_to_ipa('gwong2dung1waa2')  # 廣東話 Cantonese
+    ['kʷɔŋ25', 'tʊŋ55', 'waː25']
+    >>> pycantonese.jyutping_to_ipa('gwong2dung1waa2', as_list=False)
+    'kʷɔŋ25 tʊŋ55 waː25'
+
+The mapping from Jyutping to IPA symbols is based on Matthews and Yip (2011: 461-463).
+If you'd like to customize the mapping of specific symbols,
+:func:`~pycantonese.jyutping_to_ipa` accepts keyword arguments
+``onsets``, ``nuclei``, ``codas``, and ``tones``, each of which
+takes a dictionary that maps a Jyutping sound to your desired symbol:
+
+.. code-block:: python
+
+    >>> import pycantonese
+    >>> pycantonese.jyutping_to_ipa('ci1')
+    ['tsʰi55']
+    >>> pycantonese.jyutping_to_ipa('ci1', onsets={'c': "tʃ'"})
+    ["tʃ'i55"]
+    >>> pycantonese.jyutping_to_ipa('ci1', tones={'1': "˥"})
+    ['tsʰi˥']
 
 
 Jyutping-to-Yale Conversion

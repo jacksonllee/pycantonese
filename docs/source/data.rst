@@ -114,7 +114,7 @@ available from CHILDES and TalkBank (in alphabetical order):
         >>> corpus.n_files()
         161
         >>> len(corpus.words())
-        1177307
+        1177971
 
 * `Leo Corpus <https://childes.talkbank.org/access/Biling/Leo.html>`_
 

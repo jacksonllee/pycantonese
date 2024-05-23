@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- Added the new function `jyutping_to_ipa` for Jyutping-to-IPA conversion.
 - The `characters_to_jyutping` function can now take a list of strings as input
   with user-provided word segmentation.
 - Added support for Python 3.11 and 3.12.
