@@ -13,11 +13,11 @@ HKCanCor as included in PyCantonese has been substantially modified from its
 source in terms of data format. Please read below for details.
 
 The HKCanCor source is here:
-http://compling.hss.ntu.edu.sg/hkcancor/
+https://github.com/fcbond/hkcancor
 
 HKCanCor is released under a CC BY license. A copy of the license
 from the HKCanCor source
-([here](http://compling.hss.ntu.edu.sg/hkcancor/data/LICENSE),
+([here](https://github.com/fcbond/hkcancor/blob/master/data/LICENSE),
 accessed October 2017) is included
 at `src/pycantonese/data/hkcancor/LICENSE.txt` (path from the PyCantonese repository root).
 

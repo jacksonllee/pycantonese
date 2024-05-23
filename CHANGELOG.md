@@ -281,7 +281,7 @@ The changelog entries below only document updates specific to PyCantonese.
 
 ## [0.2] - 2015-01-22
 
-* [The Hong Kong Cantonese Corpus](http://compling.hss.ntu.edu.sg/hkcancor/) is included in the package.
+* [The Hong Kong Cantonese Corpus](https://github.com/fcbond/hkcancor) is included in the package.
 * A general-purpose ``search()`` function is defined, replacing the
   element-specific search functions from version 0.1.
 

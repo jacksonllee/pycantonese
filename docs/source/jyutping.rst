@@ -5,7 +5,7 @@ Jyutping Romanization
 
 Among the most common tasks in handling Cantonese corpus data are those that
 involve the processing of `Jyutping romanization
-<https://www.lshk.org/jyutping>`_.
+<https://lshk.org/jyutping-scheme/>`_.
 A common need is to convert Cantonese characters to Jyutping romanization.
 Another functionality of interest is the ability to convert Jyutping into
 IPA or another romanization scheme.

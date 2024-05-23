@@ -20,7 +20,7 @@ The part-of-speech tagger uses the averaged perceptron model trained on
 HKCanCor data.
 HKCanCor has already been annotated for part-of-speech tags,
 with a tagset of over 100 tags
-(`46 of which are described <http://compling.hss.ntu.edu.sg/hkcancor/>`_).
+(`46 of which are described <https://github.com/fcbond/hkcancor>`_).
 By default, :func:`~pycantonese.pos_tag` maps the HKCanCor tagset to the
 Universal Dependencies v2 tagset
 (`with 17 tags <https://universaldependencies.org/u/pos/index.html>`_),

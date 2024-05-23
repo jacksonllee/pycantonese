@@ -128,6 +128,7 @@ Individuals who have contributed pull requests, bug reports, and other feedback
 (in alphabetical order of last names):
 
 - @cathug
+- Francis Bond
 - Jenny Chim
 - Eric Dong
 - @g-traveller
@@ -135,6 +136,7 @@ Individuals who have contributed pull requests, bug reports, and other feedback
 - Rachel Han
 - Ryan Lai
 - @laubonghaudoi
+- Katrina Li
 - Kevin Li
 - @ZhanruiLiang
 - Hill Ma

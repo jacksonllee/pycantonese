@@ -26,7 +26,7 @@ Built-in Data
 -------------
 
 Currently, PyCantonese comes with one built-in corpus, the
-`Hong Kong Cantonese Corpus <http://compling.hss.ntu.edu.sg/hkcancor/>`_
+`Hong Kong Cantonese Corpus <https://github.com/fcbond/hkcancor>`_
 (HKCanCor; license: CC BY), via the function :func:`~pycantonese.hkcancor`:
 
 .. code-block:: python

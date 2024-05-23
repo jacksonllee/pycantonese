@@ -176,7 +176,7 @@ different kinds of verbs annotated in HKCanCor:
 For regular expressions in Python, see
 `here <https://docs.python.org/3/library/re.html>`_.
 
-For the part-of-speech tagset used by HKCanCor, see `here <http://compling.hss.ntu.edu.sg/hkcancor/>`_.
+For the part-of-speech tagset used by HKCanCor, see `here <https://github.com/fcbond/hkcancor>`_.
 
 Searching by a Word or Utterance Range
 --------------------------------------

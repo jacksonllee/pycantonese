@@ -307,7 +307,7 @@ def pos_tag(words, tagset="universal"):
 
         * ``"hkcancor"``, for the tagset used by the original HKCanCor data.
           There are over 100 tags, 46 of which are described at
-          http://compling.hss.ntu.edu.sg/hkcancor/.
+          https://github.com/fcbond/hkcancor.
         * ``"universal"`` (default option), for the Universal Dependencies v2
           tagset. There are 17 tags; see
           https://universaldependencies.org/u/pos/index.html.

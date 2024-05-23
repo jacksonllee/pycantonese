@@ -6,7 +6,7 @@ from pycantonese._punctuation_marks import _PUNCTUATION_MARKS
 # The Python dictionary below maps the HKCanCor tagset to the Universal
 # Dependencies (UD) 2.0 tagset.
 #
-# HKCanCor tagset: http://compling.hss.ntu.edu.sg/hkcancor/
+# HKCanCor tagset: https://github.com/fcbond/hkcancor
 # UD 2.0 tagset: https://universaldependencies.org/u/pos/index.html
 #
 # The HKCanCor paper describes 46 tags in its tagset, but the
@@ -148,7 +148,7 @@ def hkcancor_to_ud(tag: str = None):
     """Map a part-of-speech tag from HKCanCor to Universal Dependencies.
 
     HKCanCor uses a part-of-speech tagset of over 100 tags (46 of which
-    are described at http://compling.hss.ntu.edu.sg/hkcancor/).
+    are described at https://github.com/fcbond/hkcancor).
     For applications that would benefit from a less granular part-of-speech
     tagset (e.g., cross-linguistic natural language processing tasks),
     we can map the HKCanCor tagset to the Universal Dependencies v2 tagset
