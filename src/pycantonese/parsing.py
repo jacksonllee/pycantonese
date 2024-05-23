@@ -64,9 +64,11 @@ def _get_utterance(
             # TODO or question: Convert full-width punct to CHAT-styled punct?
             participant: " ".join(words),
             "%mor": " ".join(
-                word
-                if pos == "PUNCT" or pos[0].upper() not in _ASCII_UPPERCASE
-                else f"{pos}|{jp or ''}"
+                (
+                    word
+                    if pos == "PUNCT" or pos[0].upper() not in _ASCII_UPPERCASE
+                    else f"{pos}|{jp or ''}"
+                )
                 for word, pos, jp in zip(words, tags, jps)
             ),
         },

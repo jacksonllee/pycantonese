@@ -337,7 +337,7 @@ def pos_tag(words, tagset="universal"):
     >>> pos_tag(words, tagset="hkcancor")
     [('我', 'R'), ('噚日', 'T'), ('買', 'V'), ('嗰', 'R'), ('對', 'Q'), ('鞋', 'N'), ('。', '。')]
     """  # noqa: E501
-    if type(words) == str:
+    if isinstance(words, str):
         raise TypeError(
             f"Input must be a list of segmented words, not a string: {words}"
         )

@@ -81,7 +81,7 @@ available from CHILDES and TalkBank (in alphabetical order):
         >>> corpus.n_files()
         190
         >>> len(corpus.words())
-        533877
+        533910
 
 * `Guthrie Bilingual Corpus <https://childes.talkbank.org/access/Biling/Guthrie.html>`_
 
@@ -92,7 +92,7 @@ available from CHILDES and TalkBank (in alphabetical order):
         >>> corpus.n_files()
         36
         >>> len(corpus.words())
-        84233
+        84040
 
 * `HKU-70 Corpus <https://childes.talkbank.org/access/Chinese/Cantonese/HKU.html>`_
 
@@ -125,18 +125,7 @@ available from CHILDES and TalkBank (in alphabetical order):
         >>> corpus.n_files()
         54
         >>> len(corpus.words())
-        223415
-
-* `Paidologos Corpus: Cantonese <https://phonbank.talkbank.org/access/Chinese/Cantonese/PaidoCantonese.html>`_
-
-    .. code-block:: python
-
-        >>> url = "https://phonbank.talkbank.org/data/Chinese/Cantonese/PaidoCantonese.zip"
-        >>> corpus = pycantonese.read_chat(url)
-        >>> corpus.n_files()
-        160
-        >>> len(corpus.words())
-        16730
+        223515
 
 * `Yip-Matthews Bilingual Corpus <https://childes.talkbank.org/access/Biling/YipMatthews.html>`_
 
@@ -147,7 +136,7 @@ available from CHILDES and TalkBank (in alphabetical order):
         >>> corpus.n_files()
         501
         >>> len(corpus.words())
-        1949480
+        1949095
 
 .. skip: end
 

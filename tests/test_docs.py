@@ -1,6 +1,5 @@
 """Tests related to the documentation."""
 
-
 import pytest
 import requests
 

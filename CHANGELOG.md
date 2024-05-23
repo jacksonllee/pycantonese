@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Added
 - The `characters_to_jyutping` function can now take a list of strings as input
   with user-provided word segmentation.
-- Added support for Python 3.11.
+- Added support for Python 3.11 and 3.12.
 
 ### Changed
 - Updated versions of the dependencies: `pylangacq >= 0.17.0` and `wordseg >= 0.0.4`.
@@ -18,6 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Deprecated
 ### Removed
+- Dropped support for Python 3.7.
+
 ### Fixed
 - Fixed word segmentation so that spaces between English words
   in the user input are now honored as word boundaries.

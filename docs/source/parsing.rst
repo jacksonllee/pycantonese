@@ -51,7 +51,7 @@ Note:
 Since the input string data is a vanilla Python string,
 we can also pipe raw Cantonese text from a local file into the :func:`~pycantonese.parse_text` function:
 
-.. skip: next
+.. skip: start
 
 .. code-block:: python
 
@@ -67,7 +67,8 @@ If you want to control utterance segmentation on your own,
 you can provide :func:`~pycantonese.parse_text` with a list of strings instead of a single string.
 Each string in the list will be treated as an utterance:
 
-.. skip: start  # not sure why *only* in testing the `data` would be treated as three (not two) utterances?
+..
+   Not sure why *only* in testing the `data` would be treated as three (not two) utterances?
 
 .. code-block:: python
 

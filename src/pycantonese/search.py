@@ -44,14 +44,14 @@ def _perform_search(
     elements
     """
     # ensure tuple type: word_range and sent_range
-    if not (type(word_range) == type(utterance_range) == tuple):
+    if not (type(word_range) == type(utterance_range) == tuple):  # noqa: E721
         raise ValueError("word_range and sent_range must be tuples")
 
     words_left, words_right = word_range
     sents_left, sents_right = utterance_range
 
     # ensure int type: words_left, words_right, sents_left, sents_right
-    if not (
+    if not (  # noqa: E721
         type(words_left)
         == type(words_right)
         == type(sents_left)
