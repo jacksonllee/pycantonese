@@ -24,6 +24,7 @@ keywords = [
 ]
 dependencies = [
     'pylangacq >= 0.17.0',
+    'numpy >= 1.23.0',
     'wordseg >= 0.0.4',
 ]
 classifiers = [

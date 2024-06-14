@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Updated versions of the dependencies: `pylangacq >= 0.17.0` and `wordseg >= 0.0.4`.
 - Restructured the repository to use top-level `src/` and `tests/` directories.
 - Replaced tagger.pickle with tagger.json.
+- Rewrite some math logic of tagger using numpy to gain ~3x performance.
 
 ### Deprecated
 ### Removed
