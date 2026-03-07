@@ -25,11 +25,11 @@ import requests
         "https://lshk.org/jyutping-scheme/",
         "https://www.ctan.org/pkg/tipa?lang=en",
         "https://universaldependencies.org/u/pos/index.html",
-        "https://pycantonese.org/index.html#links",
+        "https://docs.pycantonese.org/index.html#links",
         # Archives
-        "https://pycantonese.org/papers/lee-chen-tsui-wicl3-slides-2016-03-12.pdf",
-        "https://pycantonese.org/papers/lee-chen-tsui-wicl3-handout-2016-03-12.pdf",
-        "https://pycantonese.org/papers/Lee-pycantonese-2015.html",
+        "https://docs.pycantonese.org/papers/lee-chen-tsui-wicl3-slides-2016-03-12.pdf",
+        "https://docs.pycantonese.org/papers/lee-chen-tsui-wicl3-handout-2016-03-12.pdf",  # noqa: E501
+        "https://docs.pycantonese.org/papers/Lee-pycantonese-2015.html",
         "https://jacksonllee.com/papers/pycantonese_lrec_2022-05-06.pdf",
     ],
 )
