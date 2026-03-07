@@ -16,16 +16,16 @@ Full Documentation: https://pycantonese.org
    :target: https://pypi.python.org/pypi/pycantonese
    :alt: Supported Python versions
 
-.. image:: https://circleci.com/gh/jacksonllee/pycantonese.svg?style=shield
-   :target: https://circleci.com/gh/jacksonllee/pycantonese
-   :alt: CircleCI Builds
+.. image:: https://anaconda.org/conda-forge/pycantonese/badges/version.svg
+   :target: https://anaconda.org/conda-forge/pycantonese
+   :alt: Conda version
 
 |
 
 .. start-sphinx-website-index-page
 
 PyCantonese is a Python library for Cantonese linguistics and natural language
-processing (NLP). Currently implemented features (more to come!):
+processing (NLP). Currently implemented features:
 
 - Accessing and searching corpus data
 - Parsing and conversion tools for Jyutping romanization
@@ -34,6 +34,10 @@ processing (NLP). Currently implemented features (more to come!):
 - Word segmentation
 - Part-of-speech tagging
 
+The design of PyCantonese prioritizes ease of use and linguistic knowledge.
+It has been successfully used by both academic and commercial organizations,
+including major US tech companies.
+
 .. _download_install:
 
 Download and Install
@@ -41,37 +45,29 @@ Download and Install
 
 To download and install the stable, most recent version::
 
-    $ pip install --upgrade pycantonese
+   # Through pip
+   pip install --upgrade pycantonese
+
+   # Through conda-forge
+   conda install -c conda-forge pycantonese
+
+For Pyodide users, PyCantonese now ships a WASM wheel, attached to a
+`GitHub release <https://github.com/jacksonllee/pycantonese/releases>`_
+(find the ``.whl`` with ``emscripten`` in the name).
 
 Ready for more?
 Check out the `Quickstart <https://pycantonese.org/quickstart.html>`_ page.
 
-Consulting
-----------
-
-If your team would like professional assistance in using PyCantonese,
-freelance consulting and training services are available for both academic and commercial groups.
-Please email `Jackson L. Lee <https://jacksonllee.com>`_.
-
-Support
--------
-
-If you have found PyCantonese useful and would like to offer support,
-`buying me a coffee <https://www.buymeacoffee.com/pycantonese>`_ would go a long way!
-
 Links
 -----
 
+* Author: `Jackson L. Lee <https://jacksonllee.com>`_
 * Source code: https://github.com/jacksonllee/pycantonese
-* Bug tracker: https://github.com/jacksonllee/pycantonese/issues
 * Social media:
   `Facebook <https://www.facebook.com/pycantonese>`_
-  and `Twitter <https://twitter.com/pycantonese>`_
 
 How to Cite
 -----------
-
-PyCantonese is authored and maintained by `Jackson L. Lee <https://jacksonllee.com>`_.
 
 Lee, Jackson L., Litong Chen, Charles Lam, Chaak Ming Lau, and Tsz-Him Tsui. 2022.
 `PyCantonese: Cantonese Linguistics and NLP in Python <https://jacksonllee.com/papers/pycantonese_lrec_2022-05-06.pdf>`_.
@@ -87,10 +83,9 @@ Lee, Jackson L., Litong Chen, Charles Lam, Chaak Ming Lau, and Tsz-Him Tsui. 202
             Lau, Chaak Ming  and
             Tsui, Tsz-Him",
          booktitle = "Proceedings of The 13th Language Resources and Evaluation Conference",
-         month = june,
+         month = jun,
          year = "2022",
          publisher = "European Language Resources Association",
-         language = "English",
       }
 
 License
@@ -98,52 +93,20 @@ License
 
 MIT License. Please see ``LICENSE.txt`` in the GitHub source code for details.
 
-The HKCanCor dataset included in PyCantonese is substantially modified from
-its source in terms of format. The original dataset has a CC BY license.
-Please see ``pycantonese/data/hkcancor/README.md``
-in the GitHub source code for details.
+PyCantonese includes data from the following sources
+(please see `src/pycantonese/data <https://github.com/jacksonllee/pycantonese/tree/main/src/pycantonese/data>`_
+for details):
 
-The rime-cantonese data (release 2021.05.16) is
-incorporated into PyCantonese for word segmentation and
-characters-to-Jyutping conversion.
-This data has a CC BY 4.0 license.
-Please see ``pycantonese/data/rime_cantonese/README.md``
-in the GitHub source code for details.
+- Hong Kong Cantonese Corpus (CC BY)
+- rime-cantonese (CC BY 4.0)
+- Common Voice Cantonese (Mozilla Public License 2.0)
+- Cantonese-Traditional Chinese Parallel Corpus (CC0 1.0 Universal)
 
 Logo
 ----
 
 The PyCantonese logo is the Chinese character 粵 meaning Cantonese,
 with artistic design by albino.snowman (Instagram handle).
-
-Acknowledgments
----------------
-
-Wonderful resources with a permissive license that have been incorporated into PyCantonese:
-
-- HKCanCor
-- rime-cantonese
-
-Individuals who have contributed pull requests, bug reports, and other feedback
-(in alphabetical order of last names):
-
-- @cathug
-- Francis Bond
-- Jenny Chim
-- Eric Dong
-- @g-traveller
-- @graphemecluster
-- Rachel Han
-- Ryan Lai
-- @laubonghaudoi
-- Katrina Li
-- Kevin Li
-- @ZhanruiLiang
-- Hill Ma
-- @richielo
-- @rylanchiu
-- Stephan Stiller
-- Robin Yuen
 
 .. end-sphinx-website-index-page
 
@@ -161,20 +124,20 @@ To obtain this version for experimental features or for development:
 
 .. code-block:: bash
 
-   $ git clone https://github.com/jacksonllee/pycantonese.git
-   $ cd pycantonese
-   $ pip install -e ".[dev]"
+   git clone https://github.com/jacksonllee/pycantonese.git
+   cd pycantonese
+   pip install -e ".[dev]"
 
 To run tests and styling checks:
 
 .. code-block:: bash
 
-   $ pytest
-   $ flake8 src tests
-   $ black --check src tests
+   pytest
+   flake8 src tests
+   black --check src tests
 
 To build the documentation website files:
 
 .. code-block:: bash
 
-    $ python docs/source/build_docs.py
+    cd docs && make clean && make html

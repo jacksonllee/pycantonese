@@ -1,178 +1,256 @@
-import dataclasses
+from __future__ import annotations
+
 import functools
+import itertools
 import os
-from typing import List, Optional, Union, Tuple
+import re
+import sys
+from collections.abc import Sequence
+from typing import cast
 
-from pylangacq.chat import Reader, _params_in_docstring
-from pylangacq.chat import read_chat as pylangacq_read_chat
-from pylangacq.objects import Gra
-
-from pycantonese._punctuation_marks import _PUNCTUATION_MARKS
-from pycantonese.jyutping.parse_jyutping import parse_jyutping
+from pycantonese._rust import Chat as _RustChat, Token, Utterance
 from pycantonese.search import _perform_search
-from pycantonese.util import _deprecate
+
+_IS_WASM = sys.platform == "emscripten"
 
 
-_ENCODING = "utf-8"
+def _flatten(iterable):
+    """Flatten one level of nesting."""
+    return list(itertools.chain.from_iterable(iterable))
 
 
-@dataclasses.dataclass
-class Token:
-    """Token with attributes as parsed from a CHAT utterance.
+class CHAT:
+    """A reader for Cantonese CHAT corpus data.
 
-    Attributes
-    ----------
-    word : str
-        Word form of the token
-    pos : str
-        Part-of-speech tag
-    jyutping : str
-        Jyutping romanization
-    mor : str
-        Morphological information
-    gloss : str
-        Gloss in English
-    gra : Gra
-        Grammatical relation
+    This class wraps a Rust-backed CHAT parser and provides
+    Cantonese-specific functionality such as Jyutping extraction,
+    character-level access, and corpus search.
     """
 
-    __slots__ = ("word", "pos", "jyutping", "mor", "gloss", "gra")
+    def __init__(
+        self,
+        chat: _RustChat | None = None,
+    ):
+        self._chat = chat if chat is not None else _RustChat()
 
-    word: str
-    pos: Optional[str]
-    jyutping: Optional[str]
-    mor: Optional[str]
-    gloss: Optional[str]
-    gra: Optional[Gra]
+    @classmethod
+    def from_zip(
+        cls,
+        path: str | os.PathLike[str],
+        *,
+        match: str | None = None,
+        extension=".cha",
+        parallel=True,
+        strict=True,
+    ):
+        """Read CHAT data from a ZIP file.
 
-    def to_mor_tier(self) -> str:
-        if self.word in _PUNCTUATION_MARKS:
-            return self.word
-        result = ""
-        if self.pos:
-            result += f"{self.pos}|"
-        if self.jyutping:
-            result += self.jyutping
-        if self.mor:
-            result += self.mor
-        if self.gloss:
-            result += f"={self.gloss}"
-        return result
+        Parameters
+        ----------
+        path : str or os.PathLike[str]
+            Path to the ZIP file.
+        match : str, optional
+            Glob pattern to match filenames within the ZIP.
+        extension : str, optional
+            File extension to match. Default is ``".cha"``.
+        parallel : bool, optional
+            If True, parse files in parallel.
+        strict : bool, optional
+            If True, enforce strict parsing.
 
-    def to_gra_tier(self) -> str:
-        return f"{self.gra.dep}|{self.gra.head}|{self.gra.rel}"
-
-
-class CHATReader(Reader):
-    """A reader for Cantonese CHAT corpus files.
-
-    .. note:: Some of the methods are inherited from the parent class
-        :class:`~pylangacq.Reader` for language acquisition,
-        which may or may not be applicable to your use case.
-    """
-
-    def ipsyn(self):
-        """(Not implemented - the upstream ``ipsyn`` method works for English only.)"""
-        raise NotImplementedError(
-            "The upstream `ipsyn` method works for English only. "
-            "There isn't yet a Cantonese version of IPSyn."
+        Returns
+        -------
+        :class:`~pycantonese.CHAT`
+        """
+        return cls(
+            _RustChat.from_zip(
+                os.fspath(path),
+                match=match,
+                extension=extension,
+                parallel=parallel,
+                strict=strict,
+            )
         )
 
-    @staticmethod
-    def _partition_maybe_none(x: str, sep: str) -> Tuple[str, str]:
-        if x is None:
-            return None, None
-        if sep not in x:
-            return x, None
-        new1, _, new2 = x.partition(sep)
-        return new1, new2
+    @classmethod
+    def from_dir(
+        cls,
+        path: str | os.PathLike[str],
+        *,
+        match: str | None = None,
+        extension=".cha",
+        parallel=True,
+        strict=True,
+    ):
+        """Read CHAT data from a directory.
 
-    def _preprocess_token(self, t) -> Token:
-        # Examples from the CHILDES LeeWongLeung corpus, child mhz
-        # e.g., mor is suk1&DIM=uncle, word is 叔叔
-        # e.g., mor is ngo5-PL=I, word is 我
+        Parameters
+        ----------
+        path : str or os.PathLike[str]
+            Path to the directory.
+        match : str, optional
+            Glob pattern to match filenames within the directory.
+        extension : str, optional
+            File extension to match. Default is ``".cha"``.
+        parallel : bool, optional
+            If True, parse files in parallel.
+        strict : bool, optional
+            If True, enforce strict parsing.
 
-        jyutping_mor, gloss = self._partition_maybe_none(t.mor, "=")
-        jyutping_mor, mor2 = self._partition_maybe_none(jyutping_mor, "-")
-        jyutping, mor1 = self._partition_maybe_none(jyutping_mor, "&")
+        Returns
+        -------
+        :class:`~pycantonese.CHAT`
+        """
+        return cls(
+            _RustChat.from_dir(
+                os.fspath(path),
+                match=match,
+                extension=extension,
+                parallel=parallel,
+                strict=strict,
+            )
+        )
 
-        mor = ""
-        if mor1:
-            mor += f"&{mor1}"
-        if mor2:
-            mor += f"-{mor2}"
+    @classmethod
+    def from_files(
+        cls,
+        paths: Sequence[str | os.PathLike[str]],
+        *,
+        parallel=True,
+        strict=True,
+    ):
+        """Read CHAT data from file paths.
 
-        try:
-            parse_jyutping(jyutping)
-        except ValueError:
-            jyutping = None
+        Parameters
+        ----------
+        paths : Sequence[str | os.PathLike[str]]
+            Paths to CHAT files.
+        parallel : bool, optional
+            If True, parse files in parallel.
+        strict : bool, optional
+            If True, enforce strict parsing.
 
-        return Token(t.word, t.pos, jyutping or None, mor or None, gloss or None, t.gra)
+        Returns
+        -------
+        :class:`~pycantonese.CHAT`
+        """
+        return cls(
+            _RustChat.from_files(
+                [os.fspath(p) for p in paths], parallel=parallel, strict=strict
+            )
+        )
 
-    @_params_in_docstring("participants", "exclude", "by_utterances", "by_files")
+    @classmethod
+    def from_strs(cls, strs, *, ids=None, parallel=True, strict=True):
+        """Read CHAT data from strings.
+
+        Parameters
+        ----------
+        strs : list[str]
+            CHAT-formatted strings.
+        ids : list[str], optional
+            Identifiers for each string.
+        parallel : bool, optional
+            If True, parse strings in parallel.
+        strict : bool, optional
+            If True, enforce strict parsing.
+
+        Returns
+        -------
+        :class:`~pycantonese.CHAT`
+        """
+        return cls(_RustChat.from_strs(strs, ids=ids, parallel=parallel, strict=strict))
+
+    @classmethod
+    def from_utterances(cls, utterances):
+        """Construct a CHAT reader from a list of utterances.
+
+        Creates a new reader containing a single virtual file with the given
+        utterances. Useful for splitting a reader into sub-readers based on
+        utterance boundaries.
+
+        Parameters
+        ----------
+        utterances : Sequence[Utterance]
+            Utterance objects to include.
+
+        Returns
+        -------
+        :class:`~pycantonese.CHAT`
+        """
+        return cls(_RustChat.from_utterances(utterances))
+
+    def __getattr__(self, name):
+        return getattr(self._chat, name)
+
+    def tokens(
+        self,
+        *,
+        by_utterance=False,
+        by_file=False,
+    ) -> list[Token] | list[list[Token]] | list[list[list[Token]]]:
+        """Return the tokens.
+
+        Parameters
+        ----------
+        by_utterance : bool, optional
+            If True, return tokens grouped by utterance.
+        by_file : bool, optional
+            If True, return tokens grouped by file.
+
+        Returns
+        -------
+        list
+        """
+        return self._chat.tokens(
+            by_utterance=by_utterance,
+            by_file=by_file,
+        )
+
+    def words(
+        self,
+        *,
+        by_utterance=False,
+        by_file=False,
+    ) -> list[str] | list[list[str]] | list[list[list[str]]]:
+        """Return the words.
+
+        Parameters
+        ----------
+        by_utterance : bool, optional
+            If True, return words grouped by utterance.
+        by_file : bool, optional
+            If True, return words grouped by file.
+
+        Returns
+        -------
+        list
+        """
+        return self._chat.words(by_utterance=by_utterance, by_file=by_file)
+
     def jyutping(
-        self, participants=None, exclude=None, by_utterances=False, by_files=False
-    ) -> Union[List[str], List[List[str]], List[List[List[str]]]]:
+        self,
+        *,
+        by_utterance=False,
+        by_file=False,
+    ) -> list[str | None] | list[list[str | None]] | list[list[list[str | None]]]:
         """Return the data in Jyutping romanization.
 
         Parameters
         ----------
+        by_utterance : bool, optional
+            If True, return Jyutping grouped by utterance.
+        by_file : bool, optional
+            If True, return Jyutping grouped by file.
 
         Returns
         -------
-        List[List[List[str]]] if both by_utterances and by_files are True
-        List[List[str]] if by_utterances is True and by_files is False
-        List[List[str]] if by_utterances is False and by_files is True
-        List[str] if both by_utterances and by_files are False
+        list
         """
-        tagged_sents = self.tokens(
-            participants=participants,
-            exclude=exclude,
-            by_utterances=True,
-            by_files=True,
-        )
-        result = [
-            [
-                [tagged_word.jyutping for tagged_word in tagged_sent]
-                for tagged_sent in tagged_sents_for_file
-            ]
-            for tagged_sents_for_file in tagged_sents
-        ]
-        if by_files and by_utterances:
-            pass
-        elif by_files and not by_utterances:
-            result = [self._flatten(list, f) for f in result]
-        elif not by_files and by_utterances:
-            result = self._flatten(list, result)
-        else:
-            # not by_files and not by_utterances
-            result = self._flatten(list, (self._flatten(list, f) for f in result))
-        return result
-
-    def jyutping_sents(self, participants=None, exclude=None, by_files=False):
-        _deprecate(
-            "jyutping_sents", "jyutping with by_utterances=True", "3.2.0", "4.0.0"
-        )
-        return self.jyutping(
-            participants=participants,
-            exclude=exclude,
-            by_utterances=True,
-            by_files=by_files,
-        )
-
-    def jyutpings(
-        self, participants=None, exclude=None, by_utterances=False, by_files=False
-    ):
-        _deprecate("jyutpings", "jyutping", "3.2.0", "4.0.0")
-        return self.jyutping(
-            participants=participants,
-            exclude=exclude,
-            by_utterances=by_utterances,
-            by_files=by_files,
-        )
+        return self._chat.jyutping(by_utterance=by_utterance, by_file=by_file)
 
     @staticmethod
-    def _get_chars_from_sent(sent: List[str]) -> List[str]:
+    def _get_chars_from_sent(sent: list[str]) -> list[str]:
         result = []
         for word in sent:
             if word and "\u4e00" <= word[0] <= "\u9fff":
@@ -181,53 +259,58 @@ class CHATReader(Reader):
                 result.append(word)
         return result
 
-    @_params_in_docstring("participants", "exclude", "by_utterances", "by_files")
     def characters(
-        self, participants=None, exclude=None, by_utterances=False, by_files=False
-    ) -> Union[List[str], List[List[str]], List[List[List[str]]]]:
+        self,
+        *,
+        by_utterance=False,
+        by_file=False,
+    ) -> list[str] | list[list[str]] | list[list[list[str]]]:
         """Return the data in individual Chinese characters.
 
         Parameters
         ----------
+        by_utterance : bool, optional
+            If True, return characters grouped by utterance.
+        by_file : bool, optional
+            If True, return characters grouped by file.
 
         Returns
         -------
-        List[List[List[str]]] if both by_utterances and by_files are True
-        List[List[str]] if by_utterances is True and by_files is False
-        List[List[str]] if by_utterances is False and by_files is True
-        List[str] if both by_utterances and by_files are False
+        list
         """
-        sents = self.words(
-            participants=participants,
-            exclude=exclude,
-            by_utterances=True,
-            by_files=True,
+        sents = cast(
+            list[list[list[str]]],
+            self.words(by_utterance=True, by_file=True),
         )
         result = [
             [self._get_chars_from_sent(sent) for sent in sents_for_file]
             for sents_for_file in sents
         ]
-        if by_files and by_utterances:
+        if by_file and by_utterance:
             pass
-        elif by_files and not by_utterances:
-            result = [self._flatten(list, f) for f in result]
-        elif not by_files and by_utterances:
-            result = self._flatten(list, result)
+        elif by_file and not by_utterance:
+            result = [_flatten(f) for f in result]
+        elif not by_file and by_utterance:
+            result = _flatten(result)
         else:
-            # not by_files and not by_utterances
-            result = self._flatten(list, (self._flatten(list, f) for f in result))
+            result = _flatten(_flatten(f) for f in result)
         return result
 
-    def character_sents(self, participants=None, exclude=None, by_files=False):
-        _deprecate(
-            "character_sents", "characters with by_utterances=True", "3.2.0", "4.0.0"
-        )
-        return self.characters(
-            participants=participants,
-            exclude=exclude,
-            by_utterances=True,
-            by_files=by_files,
-        )
+    def word_ngrams(self, n: int):
+        """Return word n-grams across all utterances.
+
+        N-grams do not cross utterance boundaries.
+
+        Parameters
+        ----------
+        n : int
+            The n-gram order (1 for unigrams, 2 for bigrams, etc.).
+
+        Returns
+        -------
+        Ngrams
+        """
+        return self._chat.word_ngrams(n)
 
     def search(
         self,
@@ -243,18 +326,11 @@ class CHATReader(Reader):
         pos=None,
         word_range=(0, 0),
         utterance_range=(0, 0),
-        sent_range=(0, 0),  # Deprecated
-        by_tokens=True,
-        by_utterances=False,
-        tagged=None,  # Deprecated
-        sents=None,  # Deprecated
-        participants=None,
-        exclude=None,
-        by_files=False,
+        by_token=True,
+        by_utterance=False,
+        by_file=False,
     ):
         """Search the data for the given criteria.
-
-        For examples, please see https://pycantonese.org/searches.html.
 
         Parameters
         ----------
@@ -268,80 +344,32 @@ class CHATReader(Reader):
             Tone to search for. A regex is supported.
         initial : str, optional
             Initial to search for. A regex is supported.
-            An initial, a term more prevalent in traditional Chinese
-            phonology, is the equivalent of an onset.
         final : str, optional
             Final to search for.
-            A final, a term more prevalent in traditional Chinese
-            phonology, is the equivalent of a nucleus plus a coda.
         jyutping : str, optional
             Jyutping romanization of one Cantonese character to search for.
-            If the romanization contains more than one character, a ValueError
-            is raised.
         character : str, optional
-            One or more Cantonese characters (within a segmented word) to
-            search for.
+            One or more Cantonese characters to search for.
         pos : str, optional
             A part-of-speech tag to search for. A regex is supported.
         word_range : tuple[int, int], optional
-            Span of words to the left and right of a matching word to include
-            in the output. The default is `(0, 0)` to disable a range.
-            If `sent_range` is used, `word_range` is ignored.
-        utterance_range : Tuple[int, int], optional
-            Span of utterances before and after an utterance containing a matching
-            word to include in the output.
-            If set to ``(0, 0)`` (the default), no utterance range output is generated.
-            If `utterance_range` is used, `word_range` is ignored.
-        sent_range : Tuple[int, int], optional
-            [Deprecated; please use utterance_range instead]
-        by_tokens : bool, optional
-            If ``True`` (the default), words in the output are in the token form
-            (i.e., with Jyutping and part-of-speech tags).
-            Otherwise just words as text strings are returned.
-        by_utterances : bool, optional
-            If ``True`` (default is False), utterances containing matching words
-            are returned. Otherwise, only matching words are returned.
-        tagged : bool, optional
-            [Deprecated; please use by_tokens instead]
-        sents : bool, optional
-            [Deprecated; please use by_utterances instead]
-        participants : str or iterable[str], optional
-            One or more participants to include in the search.
-            If unspecified, all participants are included.
-        exclude : str or iterable[str], optional
-            One or more participants to exclude in the search.
-            If unspecified, no participants are excluded.
-        by_files : bool, optional
-            If True (default: False), return data organized by the
-            individual file paths.
+            Span of words around a match. Default is ``(0, 0)``.
+        utterance_range : tuple[int, int], optional
+            Span of utterances around a match. Default is ``(0, 0)``.
+        by_token : bool, optional
+            If True, return Token objects. Otherwise return word strings.
+        by_utterance : bool, optional
+            If True, return full utterances containing matches.
+        by_file : bool, optional
+            If True, return data organized by file.
 
         Returns
         -------
         list
         """
-        if sent_range != (0, 0):
-            _deprecate("sent_range", "utterance_range", "3.2.0", "4.0.0")
-            if utterance_range != (0, 0):
-                raise TypeError(
-                    "Do not use both utterance_range and sent_range "
-                    f"(you've passed in {utterance_range} and {sent_range}, "
-                    f"respectively). "
-                    f"Please use utterance_range; "
-                    f"sent_range has been deprecated."
-                )
-            utterance_range = sent_range
-        if tagged is not None:
-            _deprecate("tagged", "by_tokens", "3.2.0", "4.0.0")
-            by_tokens = tagged
-        if sents is not None:
-            _deprecate("sents", "by_utterances", "3.2.0", "4.0.0")
-            by_utterances = sents
-
         tagged_sents = self.tokens(
-            participants=participants,
-            exclude=exclude,
-            by_utterances=True,
-            by_files=True,
+            by_utterance=True,
+            by_file=True,
         )
         result_by_files = _perform_search(
             tagged_sents,
@@ -356,70 +384,181 @@ class CHATReader(Reader):
             pos=pos,
             word_range=word_range,
             utterance_range=utterance_range,
-            by_tokens=by_tokens,
-            by_utterances=by_utterances,
+            by_token=by_token,
+            by_utterance=by_utterance,
         )
 
-        if by_files:
+        if by_file:
             return result_by_files
         else:
-            return self._flatten(list, result_by_files)
+            return _flatten(result_by_files)
 
+    def utterances(self, *, by_file=False) -> list[Utterance] | list[list[Utterance]]:
+        """Return the utterances.
 
-class _HKCanCorReader(CHATReader):
-    """Corpus reader for HKCanCor specifically.
+        Parameters
+        ----------
+        by_file : bool, optional
+            If True, return utterances grouped by file.
 
-    We enforce uppercase for part-of-speech tags,
-    because the original HKCanCor's tags have a mix of upper- and lowercase, e.g.,
-    v and Vg, which makes it harder to perform a corpus search
-    with a clean(er) regex.
-    """
+        Returns
+        -------
+        list[Utterance] | list[list[Utterance]]
+        """
+        return self._chat.utterances(by_file=by_file)
 
-    @staticmethod
-    def _preprocess_pos(pos: str) -> str:
-        """Override the parent Reader class's method."""
-        try:
-            return pos.upper()
-        except AttributeError:
-            return pos
+    def to_strs(self):
+        """Return the data as CHAT-formatted strings.
+
+        Returns
+        -------
+        list[str]
+        """
+        return self._chat.to_strs()
+
+    def to_chat(self, path: str | os.PathLike[str], *, is_dir=False, filenames=None):
+        """Write the data to CHAT file(s).
+
+        Parameters
+        ----------
+        path : str or os.PathLike[str]
+            Output path.
+        is_dir : bool, optional
+            If True, write each file to a directory.
+        filenames : list[str], optional
+            Filenames for each file.
+        """
+        self._chat.to_chat(os.fspath(path), is_dir=is_dir, filenames=filenames)
+
+    @property
+    def n_files(self):
+        """The number of files."""
+        return self._chat.n_files
+
+    @property
+    def file_paths(self):
+        """The file paths."""
+        return self._chat.file_paths
+
+    def filter(self, *, participants=None, files=None):
+        """Filter the data by participants and/or files.
+
+        Parameters
+        ----------
+        participants : str, optional
+            Regex pattern to match participant codes.
+        files : str, optional
+            Glob pattern to match file paths.
+
+        Returns
+        -------
+        CHAT
+        """
+        filtered = self._chat.filter(participants=participants, files=files)
+        return CHAT(filtered)
+
+    def append(self, other):
+        """Append another CHAT object's data."""
+        self._chat.append(other._chat)
+
+    def extend(self, others):
+        """Extend with data from multiple CHAT objects."""
+        self._chat.extend([o._chat for o in others])
+
+    def info(self, verbose=False):
+        """Print summary information."""
+        self._chat.info(verbose=verbose)
+
+    def headers(self):
+        """Return the headers."""
+        return self._chat.headers()
+
+    def participants(self, *, by_file=False):
+        """Return the participants."""
+        return self._chat.participants(by_file=by_file)
+
+    def ages(self):
+        """Return the ages."""
+        return self._chat.ages()
+
+    def head(self, n=5):
+        """Return the first n utterances with a formatted display."""
+        return self._chat.head(n=n)
+
+    def tail(self, n=5):
+        """Return the last n utterances with a formatted display."""
+        return self._chat.tail(n=n)
+
+    def languages(self, *, by_file=False):
+        """Return the languages."""
+        return self._chat.languages(by_file=by_file)
 
 
 @functools.lru_cache(maxsize=1)
-def hkcancor() -> CHATReader:
+def hkcancor() -> CHAT:
     """Create a corpus object for the Hong Kong Cantonese Corpus.
 
     Returns
     -------
-    :class:`~pycantonese.CHATReader`
+    :class:`~pycantonese.CHAT`
     """
     data_dir = os.path.join(os.path.dirname(__file__), "data", "hkcancor")
-    reader = _HKCanCorReader.from_dir(data_dir)
-    for f in reader._files:
-        f.file_path = f.file_path.replace(data_dir, "").lstrip(os.sep)
-    return reader
+    chat = _RustChat.from_dir(data_dir, parallel=not _IS_WASM)
+    return CHAT(chat)
 
 
-@_params_in_docstring("match", "exclude", "encoding", class_method=False)
+def _normalize_filter(
+    value: str | Sequence[str] | None,
+) -> str | None:
+    """Convert a filter value to a single regex pattern string."""
+    if value is None:
+        return None
+    if isinstance(value, str):
+        return value
+    return "|".join(re.escape(v) for v in value)
+
+
 def read_chat(
-    path: str, match: str = None, exclude: str = None, encoding: str = _ENCODING
-) -> CHATReader:
+    path: str | os.PathLike[str],
+    *,
+    filter_files: str | Sequence[str] | None = None,
+    filter_participants: str | Sequence[str] | None = None,
+    strict: bool = True,
+) -> CHAT:
     """Read Cantonese CHAT data files.
 
     Parameters
     ----------
-    path : str
+    path : str or os.PathLike[str]
         A path that points to one of the following:
 
-        - ZIP file. Either a local ``.zip`` file path or a URL (one that begins with
-          ``"https://"`` or ``"http://"``).
-          URL example: ``"https://childes.talkbank.org/data/Biling/YipMatthews.zip"``
+        - A local ``.zip`` file path.
         - A local directory, for files under this directory recursively.
         - A single ``.cha`` CHAT file.
 
+    filter_files : str or Sequence[str], optional
+        Filename(s) to keep. Regular expression matching is supported.
+        If ``None``, all files are included.
+    filter_participants : str or Sequence[str], optional
+        Participant code(s) to keep. Regular expression matching is supported.
+        If ``None``, all participants are included.
+    strict : bool, optional
+        If ``True``, enforce strict parsing of the CHAT data.
+
     Returns
     -------
-    :class:`~pycantonese.CHATReader`
+    :class:`~pycantonese.CHAT`
     """
-    return pylangacq_read_chat(
-        path, match=match, exclude=exclude, encoding=encoding, cls=CHATReader
-    )
+    path = os.fspath(path)
+    parallel = not _IS_WASM
+    if path.endswith(".zip"):
+        chat = _RustChat.from_zip(path, parallel=parallel, strict=strict)
+    elif os.path.isdir(path):
+        chat = _RustChat.from_dir(path, parallel=parallel, strict=strict)
+    else:
+        chat = _RustChat.from_files([path], parallel=parallel, strict=strict)
+    files_pattern = _normalize_filter(filter_files)
+    participants_pattern = _normalize_filter(filter_participants)
+    if files_pattern is not None or participants_pattern is not None:
+        chat = chat.filter(files=files_pattern, participants=participants_pattern)
+    return CHAT(chat)

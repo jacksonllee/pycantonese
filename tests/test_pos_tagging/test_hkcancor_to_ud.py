@@ -13,10 +13,9 @@ _UD_TAGSET = frozenset(
 @pytest.mark.parametrize(
     "tag, expected",
     [
-        ("V", "VERB"),
         ("v", "VERB"),
-        ("V ", "VERB"),
-        ("V1", "VERB"),
+        ("v ", "VERB"),
+        ("v1", "VERB"),
         ("foobar", "X"),
     ],
 )

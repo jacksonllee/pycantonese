@@ -28,7 +28,7 @@ from pycantonese import characters_to_jyutping
         ),
         (
             "佢成日呃like",
-            [("佢", "keoi5"), ("成日", "seng4jat6"), ("呃like", "aak1lai1")],
+            [("佢", "keoi5"), ("成日", "sing4jat6"), ("呃", "ngaak1"), ("like", None)],
         ),
         ("蛋", [("蛋", "daan2")]),
         ("蛋糕", [("蛋糕", "daan6gou1")]),

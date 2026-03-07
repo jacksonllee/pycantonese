@@ -7,33 +7,51 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+## [4.0.0] - 2026-03-07
+
+The major version bump from v3 to v4 is due to backward-incompatible yet minor
+API changes triggered by the switch from the PyLangAcq + wordseg
+dependencies to Rustling for handing CHAT data, word segmentation, and
+part-of-speech tagging.
+
+### Added
 - Added the new function `jyutping_to_ipa` for Jyutping-to-IPA conversion.
 - The `characters_to_jyutping` function can now take a list of strings as input
   with user-provided word segmentation.
-- Added support for Python 3.11 and 3.12.
+- Added support for Python 3.11, 3.12, 3.13, and 3.14.
 
 ### Changed
-- Updated versions of the dependencies: `pylangacq >= 0.17.0` and `wordseg >= 0.0.4`.
-- Restructured the repository to use top-level `src/` and `tests/` directories.
-- Replaced tagger.pickle with tagger.json.
+- Switched to Rustling as the underlying engine
+  for CHAT data parsing, word segmentation, and part-of-speech tagging;
+  dropped PyLangAcq and wordseg as dependencies.
+- `CHATReader` has been renamed `CHAT` and switched from PyLangAcq's legacy pure-Python
+  parser to a Rust-based parser from Rustling, with various API changes
+  for method names, arguments, etc.
+- The word segmentation model has been updated to a semi-supervised hybrid approach
+  that combines a DAG and hidden Markov model.
+  The `segment` function for word segmentation no longer accepts an argument
+  for a custom segmenter.
+- For both word segmentation and part-of-speech tagging, the persisted models
+  shipped with the package are now zstd-compressed FlatBuffers binaries.
 
-### Deprecated
 ### Removed
-- Dropped support for Python 3.7.
+- Dropped support for Python 3.7, 3.8, and 3.9.
 
 ### Fixed
 - Fixed word segmentation so that spaces between English words
   in the user input are now honored as word boundaries.
-- Fixed feature extraction in part-of-speech tagging.
-- Fixed known issues in the rime-cantonese data.
 - If `parse_text` is given an empty input or `None`,
-  now an empty `CHATReader` instance is returned.
+  now an empty `CHAT` instance is returned.
 - If `parse_text` is given a non-empty list of utterances,
   then any empty utterance (e.g., `None`, `""`)
-  will now be represented by an empty `Utterance` instance inside the resulting `CHATReader` output.
+  will now be represented by an empty `Utterance` instance inside the resulting `CHAT` output.
 - Fixed the HKCanCor-to-UD mapping for `G1` mapped to `VERB` not `V`.
-
-### Security
 
 ## [3.4.0] - 2021-12-28
 

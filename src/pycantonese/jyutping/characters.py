@@ -1,12 +1,12 @@
+from __future__ import annotations
+
 from collections import Counter, defaultdict
 from functools import lru_cache
-from typing import List, Tuple, Union
 
 from ..corpus import hkcancor, Token
-from ..data.rime_cantonese import CHARS_TO_JYUTPING, LETTERED
+from ..data.rime_cantonese import CHARS_TO_JYUTPING
 from ..jyutping.parse_jyutping import parse_jyutping
-from ..word_segmentation import _get_default_segmenter, segment, Segmenter
-from ..util import _split_chars_with_alphanum, _deprecate
+from ..word_segmentation.segmenter import segment
 
 
 @lru_cache(maxsize=1)
@@ -15,7 +15,7 @@ def _get_words_characters_to_jyutping():
     words_to_jyutping_counters = defaultdict(Counter)
     characters_to_jyutping_counters = defaultdict(Counter)
 
-    for token in corpus.tokens(by_utterances=False):
+    for token in corpus.tokens():
         token: Token
         word = token.word
         jyutping = token.jyutping
@@ -45,17 +45,13 @@ def _get_words_characters_to_jyutping():
         # The ordering of the following dicts matters.
         # rime-cantonese (more accurate data) overrides HKCanCor if they don't agree.
         **words_to_jyutping,
-        **{k: v for k, v in LETTERED.items() if len(_split_chars_with_alphanum(k)) > 1},
-        **{k: v for k, v in CHARS_TO_JYUTPING.items() if len(k) > 1},
+        **CHARS_TO_JYUTPING,
     }
 
-    # TODO: Extract characters from CHARS_TO_JYUTPING and LETTERED
-    #    and add them to characters_to_jyutping
     chars_to_jp = {
         # The ordering of the following dicts matters.
         # rime-cantonese (more accurate data) overrides HKCanCor if they don't agree.
         **chars_to_jp,
-        **{k: v for k, v in LETTERED.items() if len(k) == 1},
         **{k: v for k, v in CHARS_TO_JYUTPING.items() if len(k) == 1},
     }
 
@@ -63,8 +59,8 @@ def _get_words_characters_to_jyutping():
 
 
 def characters_to_jyutping(
-    chars: Union[str, List[str]], segmenter: Segmenter = None
-) -> List[Tuple[str, str]]:
+    chars: str | list[str],
+) -> list[tuple[str, str]]:
     """Convert Cantonese characters into Jyutping romanization.
 
     The conversion model is based on the HKCanCor corpus and rime-cantonese
@@ -73,21 +69,13 @@ def characters_to_jyutping(
 
     Parameters
     ----------
-    chars : str or List[str]
+    chars : str or list[str]
         A string of Cantonese characters, in which case word segmentation is also
         run on this input string (by :func:`~pycantonese.segment`)
         in order to resolve potential ambiguity in
         mapping characters to Jyutping.
-        If you don't want word segmentaiton to be done, then provide a list of strings
+        If you don't want word segmentation to be done, then provide a list of strings
         instead with your desired segmentation.
-    segmenter : Segmenter, optional
-        (Not used if ``chars`` is a list of strings for user-provided word
-        segmentation.)
-        A :class:`~pycantonese.word_segmentation.Segmenter` instance to customize
-        word segmentation.
-        If specified, this segmenter is passed to the ``cls`` keyword argument of
-        :func:`~pycantonese.segment`.
-        If ``None`` or not given, the default segmenter is used.
 
     Returns
     -------
@@ -105,10 +93,7 @@ def characters_to_jyutping(
     if isinstance(chars, list):
         segmented = chars
     else:
-        # Assume `chars` is a str.
-        if segmenter is None:
-            segmenter = _get_default_segmenter()
-        segmented = segment(chars, cls=segmenter)
+        segmented = segment(chars)
     words_to_jyutping, chars_to_jyutping = _get_words_characters_to_jyutping()
     result = []
     for word in segmented:
@@ -124,12 +109,3 @@ def characters_to_jyutping(
                     break
         result.append((word, jp))
     return result
-
-
-@_deprecate("characters2jyutping", "characters_to_jyutping", "3.0.0", "4.0.0")
-def characters2jyutping(*args, **kwargs):
-    """Same as characters_to_jyutping.
-
-    .. deprecated:: 3.0.0
-    """
-    return characters_to_jyutping(*args, **kwargs)

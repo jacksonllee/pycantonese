@@ -1,17 +1,13 @@
-import collections
 import concurrent.futures as cf
 import functools
 import multiprocessing as mp
 import re
-import uuid
+import sys
 from string import ascii_uppercase
 
-from pylangacq.chat import _File, Utterance
-
-from pycantonese.corpus import CHATReader, Token
+from pycantonese.corpus import CHAT
 from pycantonese.jyutping.characters import characters_to_jyutping
 from pycantonese.pos_tagging.tagger import pos_tag
-
 
 # Punctuation marks for utterance segmentation.
 _UTTERANCE_PUNCT_MARKS = frozenset(("。", "！", "？"))
@@ -19,12 +15,13 @@ _ASCII_UPPERCASE = frozenset(ascii_uppercase)
 
 _UNKNOWN_PARTICIPANT = "X"
 
+_IS_WASM = sys.platform == "emscripten"
 _CPU_COUNT = mp.cpu_count()
 _CHUNK_SIZE = 4
 
 
-def _parse_text(text: str, segment_kwargs, pos_tag_kwargs):
-    chars_jps = characters_to_jyutping(text, **(segment_kwargs or {}))
+def _parse_text(text: str, pos_tag_kwargs):
+    chars_jps = characters_to_jyutping(text)
     segmented, jyutping = [], []
     for chars, jps in chars_jps:
         segmented.append(chars)
@@ -33,61 +30,45 @@ def _parse_text(text: str, segment_kwargs, pos_tag_kwargs):
     return segmented, tags, jyutping
 
 
-def _get_utterance(
-    unparsed_sent, segment_kwargs, pos_tag_kwargs, participant
-) -> Utterance:
+def _get_utterance(unparsed_sent, pos_tag_kwargs, participant):
+    """Parse text into (participant, words_str, mor_str) tuple."""
     if participant is None:
         participant = _UNKNOWN_PARTICIPANT
 
     if not unparsed_sent:
-        return Utterance(
-            participant=participant, tokens=[], time_marks=None, tiers={participant: ""}
-        )
+        return (str(participant), "", "")
 
     if isinstance(unparsed_sent, tuple):
         participant, unparsed_sent, *_ = unparsed_sent
 
     participant = str(participant)
 
-    words, tags, jps = _parse_text(unparsed_sent, segment_kwargs, pos_tag_kwargs)
+    words, tags, jps = _parse_text(unparsed_sent, pos_tag_kwargs)
 
-    tokens = [
-        Token(word, pos, jp, None, None, None)
-        for word, pos, jp in zip(words, tags, jps)
-    ]
+    words_str = " ".join(words)
+    mor_items = []
+    for word, pos, jp in zip(words, tags, jps):
+        if pos == "PUNCT" or pos[0].upper() not in _ASCII_UPPERCASE:
+            mor_items.append(word)
+        else:
+            mor_items.append(f"{pos}|{jp or ''}")
+    mor_str = " ".join(mor_items)
 
-    return Utterance(
-        participant=participant,
-        tokens=tokens,
-        time_marks=None,
-        tiers={
-            # TODO or question: Convert full-width punct to CHAT-styled punct?
-            participant: " ".join(words),
-            "%mor": " ".join(
-                (
-                    word
-                    if pos == "PUNCT" or pos[0].upper() not in _ASCII_UPPERCASE
-                    else f"{pos}|{jp or ''}"
-                )
-                for word, pos, jp in zip(words, tags, jps)
-            ),
-        },
-    )
+    return (participant, words_str, mor_str)
 
 
 def parse_text(
     data,
     *,
-    segment_kwargs=None,
     pos_tag_kwargs=None,
-    participant: str = None,
+    participant: str | None = None,
     parallel: bool = True,
-) -> CHATReader:
+) -> CHAT:
     """Parse raw Cantonese text.
 
     Parameters
     ----------
-    data : str or Iterable[str] or Iterable[Tuple[str, str]]
+    data : str or Iterable[str] or Iterable[tuple[str, str]]
         Raw Cantonese text data, in one of the following formats:
 
         - A single string, e.g.,
@@ -106,12 +87,8 @@ def parse_text(
           ``[("小芬", "你食咗飯未呀？"), ("小明", "我食咗喇。")]``.
 
         if an empty input or ``None`` is provided,
-        then an empty :class:`~pycantonese.CHATReader` instance is returned.
+        then an empty :class:`~pycantonese.CHAT` instance is returned.
 
-    segment_kwargs : dict, optional
-        To customize word segmentation,
-        provide a dictionary here which would then be passed as keyword arguments to
-        :func:`~pycantonese.segment`.
     pos_tag_kwargs : dict, optional
         To customize part-of-speech tagging,
         provide a dictionary here which would then be passed as keyword arguments to
@@ -133,12 +110,11 @@ def parse_text(
 
     Returns
     -------
-    :class:`~pycantonese.CHATReader`
+    :class:`~pycantonese.CHAT`
     """
 
-    reader = CHATReader()
     if not data:
-        return reader
+        return CHAT()
 
     if isinstance(data, str):
         # Perform basic sentence segmentation.
@@ -148,14 +124,9 @@ def parse_text(
         data = re.sub(r"\n{2,}", "\n", data)
         data = data.strip().split("\n")
 
-    # Internally, word segmentation is actually going to be done by
-    # `characters_to_jyutping` instead of `segment`.
-    # `characters_to_jyutping`'s segmenter kwarg is called `segmenter`,
-    # while that of `segment` is called `cls`.
-    segment_kwargs = segment_kwargs or {}
-    if "cls" in segment_kwargs:
-        segment_kwargs["segmenter"] = segment_kwargs["cls"]
-        del segment_kwargs["cls"]
+    # Disable parallelization in Pyodide (no subprocess/thread support).
+    if _IS_WASM:
+        parallel = False
 
     # If there's not much data, don't bother with parallelization.
     if parallel and len(data) < (_CPU_COUNT * _CHUNK_SIZE):
@@ -164,7 +135,6 @@ def parse_text(
     if parallel:
         func = functools.partial(
             _get_utterance,
-            segment_kwargs=segment_kwargs,
             pos_tag_kwargs=pos_tag_kwargs,
             participant=participant,
         )
@@ -172,14 +142,18 @@ def parse_text(
             utterances = list(executor.map(func, data, chunksize=_CHUNK_SIZE))
     else:
         utterances = [
-            _get_utterance(sent, segment_kwargs, pos_tag_kwargs, participant)
-            for sent in data
+            _get_utterance(sent, pos_tag_kwargs, participant) for sent in data
         ]
 
-    f = _File(
-        file_path=str(uuid.uuid4()),
-        header={},
-        utterances=utterances,
-    )
-    reader._files = collections.deque([f])
-    return reader
+    # Build CHAT-format string
+    all_participants = sorted(set(p for p, _, _ in utterances))
+    lines = ["@Begin"]
+    parts = ", ".join(f"{p} Other" for p in all_participants)
+    lines.append(f"@Participants:\t{parts}")
+    for p, words_str, mor_str in utterances:
+        lines.append(f"*{p}:\t{words_str}")
+        if mor_str:
+            lines.append(f"%mor:\t{mor_str}")
+    lines.append("@End")
+
+    return CHAT.from_strs(["\n".join(lines)], strict=False)

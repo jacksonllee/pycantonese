@@ -30,10 +30,14 @@ def test_null_input(input_):
 
 
 def test_syllabic_nasals():
-    # TODO assert parse_jyutping('hm4') == [('h', 'm', '', '4')]
     assert parse_jyutping("ng5") == [Jyutping("", "ng", "", "5")]
     assert parse_jyutping("m4") == [Jyutping("", "m", "", "4")]
     assert parse_jyutping("n3") == [Jyutping("", "n", "", "3")]
+
+
+def test_onset_with_syllabic_nasal_nucleus():
+    assert parse_jyutping("hm4") == [Jyutping("h", "m", "", "4")]
+    assert parse_jyutping("hng6") == [Jyutping("h", "ng", "", "6")]
 
 
 def test_invalid_tone():
@@ -76,5 +80,46 @@ def test_coda_ng():
     assert parse_jyutping("hoeng1") == [Jyutping("h", "oe", "ng", "1")]
 
 
-def test_no_noda():
+def test_no_coda():
     assert parse_jyutping("gaa1") == [Jyutping("g", "aa", "", "1")]
+
+
+def test_multi_syllable_nei5hou2():
+    assert parse_jyutping("nei5hou2") == [
+        Jyutping("n", "e", "i", "5"),
+        Jyutping("h", "o", "u", "2"),
+    ]
+
+
+@pytest.mark.parametrize(
+    "input_, expected",
+    [
+        ("baa1", Jyutping("b", "aa", "", "1")),
+        ("gwai3", Jyutping("gw", "a", "i", "3")),
+        ("kwong4", Jyutping("kw", "o", "ng", "4")),
+        ("ngoi6", Jyutping("ng", "o", "i", "6")),
+        ("jyu5", Jyutping("j", "yu", "", "5")),
+        ("zoi3", Jyutping("z", "o", "i", "3")),
+        ("ven1", Jyutping("v", "e", "n", "1")),  # as in van仔
+    ],
+)
+def test_various_onsets(input_, expected):
+    assert parse_jyutping(input_) == [expected]
+
+
+def test_case_insensitivity():
+    assert parse_jyutping("GWong2") == parse_jyutping("gwong2")
+
+
+@pytest.mark.parametrize(
+    "input_, expected",
+    [
+        ("aa3", Jyutping("", "aa", "", "3")),
+        ("i1", Jyutping("", "i", "", "1")),
+        ("o2", Jyutping("", "o", "", "2")),
+        ("u1", Jyutping("", "u", "", "1")),
+        ("e6", Jyutping("", "e", "", "6")),
+    ],
+)
+def test_syllabic_vowels(input_, expected):
+    assert parse_jyutping(input_) == [expected]

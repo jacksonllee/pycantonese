@@ -1,0 +1,190 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+env:
+  FLATC_VERSION: "25.12.19"
+
+jobs:
+  python-sdist:
+    name: Build source distribution
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Build sdist
+        uses: PyO3/maturin-action@v1
+        with:
+          command: sdist
+          args: --out dist
+
+      - name: Upload sdist
+        uses: actions/upload-artifact@v7
+        with:
+          name: wheels-sdist
+          path: dist
+
+  python-wheels:
+    name: Build wheels on ${{ matrix.os }} (${{ matrix.target }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Linux x86_64
+          - os: ubuntu-latest
+            target: x86_64
+          # Linux aarch64
+          - os: ubuntu-latest
+            target: aarch64
+          # macOS x86_64
+          - os: macos-15-intel
+            target: x86_64
+          # macOS arm64
+          - os: macos-14
+            target: aarch64
+          # Windows x86_64
+          - os: windows-latest
+            target: x86_64
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install FlatBuffers compiler (macOS)
+        if: runner.os == 'macOS'
+        run: brew install flatbuffers
+
+      - name: Install FlatBuffers compiler (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $url = "https://github.com/google/flatbuffers/releases/download/v${{ env.FLATC_VERSION }}/Windows.flatc.binary.zip"
+          Invoke-WebRequest -Uri $url -OutFile flatc.zip
+          Expand-Archive -Path flatc.zip -DestinationPath flatc_bin
+          echo "$PWD\flatc_bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+
+      - name: Build wheels
+        uses: PyO3/maturin-action@v1
+        with:
+          target: ${{ matrix.target }}
+          args: --release --out dist
+          sccache: "true"
+          manylinux: auto
+          before-script-linux: |
+            curl -sL "https://github.com/google/flatbuffers/releases/download/v${{ env.FLATC_VERSION }}/Linux.flatc.binary.clang++-18.zip" -o flatc.zip
+            command -v unzip || yum install -y unzip 2>/dev/null || (apt-get update -qq && apt-get install -y -qq unzip)
+            unzip -q flatc.zip
+            rm flatc.zip
+            chmod +x flatc
+            mv flatc /usr/local/bin/
+
+      - name: Upload wheels
+        uses: actions/upload-artifact@v7
+        with:
+          name: wheels-${{ matrix.os }}-${{ matrix.target }}
+          path: dist
+
+  # Not using maturin-action for WASM because it doesn't set up Rust nightly, Emscripten SDK, or wasm-eh sysroot.
+  python-wasm-wheel:
+    name: Build wasm32-unknown-emscripten wheel
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install FlatBuffers compiler
+        run: |
+          curl -sL "https://github.com/google/flatbuffers/releases/download/v${{ env.FLATC_VERSION }}/Linux.flatc.binary.clang++-18.zip" -o flatc.zip
+          unzip -q flatc.zip
+          rm flatc.zip
+          chmod +x flatc
+          sudo mv flatc /usr/local/bin/
+
+      - name: Install Rust nightly
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: nightly-2025-06-27
+          components: rust-src
+
+      - name: Install Emscripten wasm-eh sysroot
+        run: |
+          TOOLCHAIN_ROOT=$(rustup run nightly-2025-06-27 rustc --print sysroot)
+          RUSTLIB=$TOOLCHAIN_ROOT/lib/rustlib
+          curl -sL https://github.com/pyodide/rust-emscripten-wasm-eh-sysroot/releases/download/emcc-4.0.9_nightly-2025-06-27/emcc-4.0.9_nightly-2025-06-27.tar.bz2 -o emcc-4.0.9_nightly-2025-06-27.tar.bz2
+          tar -xf emcc-4.0.9_nightly-2025-06-27.tar.bz2 --directory=$RUSTLIB
+
+      - name: Cache Rust build artifacts
+        uses: Swatinem/rust-cache@v2
+
+      - name: Install Emscripten SDK
+        uses: mymindstorm/setup-emsdk@v14
+        with:
+          version: "4.0.9"
+          actions-cache-folder: emsdk-cache
+
+      - name: Patch Emscripten for Rust side module exports
+        run: |
+          # Rust side modules have mangled symbol names containing '$' which Emscripten
+          # rejects as invalid export names. These symbols are called from native code,
+          # not JavaScript, so the check is unnecessary for side modules.
+          # Upstream: https://github.com/emscripten-core/emscripten/pull/24359
+          EMSCRIPTEN_DIR=$(em-config EMSCRIPTEN_ROOT)
+          curl -sL https://raw.githubusercontent.com/pyodide/pyodide/refs/heads/main/emsdk/patches/0002-Don-t-check-exports-for-being-valid-C-C-identifiers-.patch | git -C "$EMSCRIPTEN_DIR" apply
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+
+      - name: Build wasm wheel
+        env:
+          RUSTFLAGS: "-Zemscripten-wasm-eh"
+          CFLAGS: "-fPIC"
+        run: uvx maturin build --release --target wasm32-unknown-emscripten --out dist -i 3.13 --no-default-features --features extension-module
+
+      - name: Upload wasm wheel
+        uses: actions/upload-artifact@v7
+        with:
+          # Not "wheels-*" to avoid being picked up by the PyPI publish step,
+          # which rejects the emscripten platform tag.
+          name: wasm-wheel
+          path: dist
+
+  python-publish:
+    name: Publish to PyPI
+    runs-on: ubuntu-latest
+    needs: [python-sdist, python-wheels]
+    environment:
+      name: pypi
+      url: https://pypi.org/p/pycantonese
+    permissions:
+      id-token: write
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v8
+        with:
+          path: dist
+          pattern: wheels-*
+          merge-multiple: true
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+
+  github-release-upload:
+    name: Upload artifacts to GitHub release
+    runs-on: ubuntu-latest
+    needs: [python-sdist, python-wheels, python-wasm-wheel]
+    permissions:
+      contents: write
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v8
+        with:
+          path: dist
+          merge-multiple: true
+
+      - name: Upload to GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ github.event.release.tag_name }}" dist/* --repo "${{ github.repository }}"

@@ -1,0 +1,19 @@
+[package]
+name = "pycantonese"
+version = "4.0.0"
+edition = "2024"
+
+[lib]
+name = "_pycantonese"
+crate-type = ["cdylib"]
+path = "src/rust/lib.rs"
+
+[dependencies]
+pyo3 = { version = "0.28", features = ["abi3-py310"] }
+rustling = { version = "0.6.0", default-features = false }
+regex = "1"
+
+[features]
+default = ["parallel"]
+extension-module = ["pyo3/extension-module"]
+parallel = ["rustling/parallel"]

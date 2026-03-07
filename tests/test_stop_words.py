@@ -1,6 +1,5 @@
 from pycantonese import stop_words
 
-
 _DEFAULT_STOP_WORDS = stop_words()
 
 

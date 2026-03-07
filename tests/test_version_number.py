@@ -3,7 +3,6 @@ import re
 
 import pycantonese
 
-
 REPO_DIR = os.path.dirname(os.path.dirname(__file__))
 
 

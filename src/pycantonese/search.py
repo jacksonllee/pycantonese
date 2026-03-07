@@ -24,8 +24,8 @@ def _perform_search(
     pos=None,
     word_range=(0, 0),
     utterance_range=(0, 0),
-    by_tokens=True,
-    by_utterances=False,
+    by_token=True,
+    by_utterance=False,
 ):
     """
     overall strategy: deal with jp (and all jp-related elements) first, and
@@ -61,7 +61,7 @@ def _perform_search(
         raise ValueError("int required for {words, sents}_{left, right}")
 
     if sents_left > 0 or sents_right > 0:
-        by_utterances = True
+        by_utterance = True
 
     if tone is None:
         pass
@@ -183,7 +183,7 @@ def _perform_search(
         results_list = []
 
         for i_sent, i_word in sent_word_index_pairs:
-            if not by_utterances:
+            if not by_utterance:
                 tagged_sent = tagged_sents_for_file[i_sent]
                 i_word_start = i_word - words_left
                 i_word_end = i_word + words_right + 1
@@ -195,7 +195,7 @@ def _perform_search(
 
                 words_wanted = tagged_sent[i_word_start:i_word_end]
 
-                if not by_tokens:
+                if not by_token:
                     words_wanted = [x.word for x in words_wanted]
 
                 if len(words_wanted) == 1:
@@ -213,7 +213,7 @@ def _perform_search(
 
                 sents_wanted = tagged_sents_for_file[i_sent_start:i_sent_end]
 
-                if not by_tokens:
+                if not by_token:
                     for i, sent in enumerate(sents_wanted[:]):
                         sents_wanted[i] = [x.word for x in sent]
 

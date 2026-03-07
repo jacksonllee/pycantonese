@@ -1,0 +1,230 @@
+name: Python
+
+on:
+  push:
+  pull_request:
+
+env:
+  PYTHON_VERSION: "3.14"
+  FLATC_VERSION: "25.12.19"
+  UV_NO_SOURCES: "1"
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install FlatBuffers compiler
+        run: |
+          curl -sL "https://github.com/google/flatbuffers/releases/download/v${{ env.FLATC_VERSION }}/Linux.flatc.binary.clang++-18.zip" -o flatc.zip
+          unzip -q flatc.zip
+          rm flatc.zip
+          chmod +x flatc
+          sudo mv flatc /usr/local/bin/
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+
+      - name: Set up Python
+        run: uv python install ${{ env.PYTHON_VERSION }}
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build and install package
+        run: |
+          uv venv
+          uv pip install maturin
+          uv run maturin develop -E dev
+
+      - name: Check formatting with black
+        run: uvx black --check src/ tests/
+
+      - name: Lint with flake8
+        run: uvx flake8 src/ tests/
+
+      - name: Type check with mypy
+        run: uv run mypy src/
+
+  test:
+    name: Test (${{ matrix.os }}, Python ${{ matrix.python-version }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install FlatBuffers compiler (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          curl -sL "https://github.com/google/flatbuffers/releases/download/v${{ env.FLATC_VERSION }}/Linux.flatc.binary.clang++-18.zip" -o flatc.zip
+          unzip -q flatc.zip
+          rm flatc.zip
+          chmod +x flatc
+          sudo mv flatc /usr/local/bin/
+
+      - name: Install FlatBuffers compiler (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $url = "https://github.com/google/flatbuffers/releases/download/v${{ env.FLATC_VERSION }}/Windows.flatc.binary.zip"
+          Invoke-WebRequest -Uri $url -OutFile flatc.zip
+          Expand-Archive -Path flatc.zip -DestinationPath flatc_bin
+          echo "$PWD\flatc_bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+
+      - name: Set up Python ${{ matrix.python-version }}
+        run: uv python install ${{ matrix.python-version }}
+
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build and install package
+        run: |
+          uv venv
+          uv pip install maturin
+          uv run maturin develop -E dev
+
+      - name: Run tests
+        run: uv run pytest
+
+  audit:
+    name: Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+
+      - name: Audit dev dependencies
+        run: uv export --no-hashes --group dev | uvx pip-audit -r /dev/stdin --desc
+
+  # This job should be the same as the "python-sdist" job in release.yml, but without the artifact upload.
+  sdist:
+    name: Build source distribution (release readiness check)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Build sdist
+        uses: PyO3/maturin-action@v1
+        with:
+          command: sdist
+          args: --out dist
+
+  # This job should be similar to the "python-wheels" job in release.yml, but without the artifact upload.
+  wheels:
+    name: Build wheels on ${{ matrix.os }} (${{ matrix.target }}) (release readiness check)
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Linux x86_64
+          - os: ubuntu-latest
+            target: x86_64
+          # Linux aarch64
+          - os: ubuntu-latest
+            target: aarch64
+          # macOS x86_64
+          - os: macos-15-intel
+            target: x86_64
+          # macOS arm64
+          - os: macos-14
+            target: aarch64
+          # Windows x86_64
+          - os: windows-latest
+            target: x86_64
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install FlatBuffers compiler (macOS)
+        if: runner.os == 'macOS'
+        run: brew install flatbuffers
+
+      - name: Install FlatBuffers compiler (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $url = "https://github.com/google/flatbuffers/releases/download/v${{ env.FLATC_VERSION }}/Windows.flatc.binary.zip"
+          Invoke-WebRequest -Uri $url -OutFile flatc.zip
+          Expand-Archive -Path flatc.zip -DestinationPath flatc_bin
+          echo "$PWD\flatc_bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+
+      - name: Build wheels
+        uses: PyO3/maturin-action@v1
+        with:
+          target: ${{ matrix.target }}
+          args: --release --out dist
+          sccache: "true"
+          manylinux: auto
+          before-script-linux: |
+            curl -sL "https://github.com/google/flatbuffers/releases/download/v${{ env.FLATC_VERSION }}/Linux.flatc.binary.clang++-18.zip" -o flatc.zip
+            command -v unzip || yum install -y unzip 2>/dev/null || (apt-get update -qq && apt-get install -y -qq unzip)
+            unzip -q flatc.zip
+            rm flatc.zip
+            chmod +x flatc
+            mv flatc /usr/local/bin/
+
+  # This job should be similar to the "python-wasm-wheel" job in release.yml, but without the artifact upload.
+  # Not using maturin-action for WASM because it doesn't set up Rust nightly, Emscripten SDK, or wasm-eh sysroot.
+  wasm-wheel:
+    name: Build wasm32-unknown-emscripten wheel (release readiness check)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install FlatBuffers compiler
+        run: |
+          curl -sL "https://github.com/google/flatbuffers/releases/download/v${{ env.FLATC_VERSION }}/Linux.flatc.binary.clang++-18.zip" -o flatc.zip
+          unzip -q flatc.zip
+          rm flatc.zip
+          chmod +x flatc
+          sudo mv flatc /usr/local/bin/
+
+      - name: Install Rust nightly
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: nightly-2025-06-27
+          components: rust-src
+
+      - name: Install Emscripten wasm-eh sysroot
+        run: |
+          TOOLCHAIN_ROOT=$(rustup run nightly-2025-06-27 rustc --print sysroot)
+          RUSTLIB=$TOOLCHAIN_ROOT/lib/rustlib
+          curl -sL https://github.com/pyodide/rust-emscripten-wasm-eh-sysroot/releases/download/emcc-4.0.9_nightly-2025-06-27/emcc-4.0.9_nightly-2025-06-27.tar.bz2 -o emcc-4.0.9_nightly-2025-06-27.tar.bz2
+          tar -xf emcc-4.0.9_nightly-2025-06-27.tar.bz2 --directory=$RUSTLIB
+
+      - name: Cache Rust build artifacts
+        uses: Swatinem/rust-cache@v2
+
+      - name: Install Emscripten SDK
+        uses: mymindstorm/setup-emsdk@v14
+        with:
+          version: "4.0.9"
+          actions-cache-folder: emsdk-cache
+
+      - name: Patch Emscripten for Rust side module exports
+        run: |
+          # Rust side modules have mangled symbol names containing '$' which Emscripten
+          # rejects as invalid export names. These symbols are called from native code,
+          # not JavaScript, so the check is unnecessary for side modules.
+          # Upstream: https://github.com/emscripten-core/emscripten/pull/24359
+          EMSCRIPTEN_DIR=$(em-config EMSCRIPTEN_ROOT)
+          curl -sL https://raw.githubusercontent.com/pyodide/pyodide/refs/heads/main/emsdk/patches/0002-Don-t-check-exports-for-being-valid-C-C-identifiers-.patch | git -C "$EMSCRIPTEN_DIR" apply
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+
+      - name: Build wasm wheel
+        env:
+          RUSTFLAGS: "-Zemscripten-wasm-eh"
+          CFLAGS: "-fPIC"
+        run: uvx maturin build --release --target wasm32-unknown-emscripten --out dist -i 3.13 --no-default-features --features extension-module

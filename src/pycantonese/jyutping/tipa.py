@@ -1,6 +1,4 @@
 from pycantonese.jyutping.parse_jyutping import parse_jyutping
-from pycantonese.util import _deprecate
-
 
 ONSETS_TIPA = {
     "b": "p",
@@ -22,6 +20,7 @@ ONSETS_TIPA = {
     "l": "l",
     "w": "w",
     "j": "j",
+    "v": "v",
     "": "",
 }
 
@@ -94,9 +93,6 @@ TONES_TIPA = {
 def jyutping_to_tipa(jp_str):
     """Convert Jyutping romanization into LaTeX TIPA.
 
-    .. versionadded:: 3.0.0
-        This function replaces the deprecated equivalent ``jyutping2tipa``.
-
     Parameters
     ----------
     jp_str : str
@@ -127,12 +123,3 @@ def jyutping_to_tipa(jp_str):
         tipa_list.append(tipa)
 
     return tipa_list
-
-
-@_deprecate("jyutping2tipa", "jyutping_to_tipa", "3.0.0", "4.0.0")
-def jyutping2tipa(*args, **kwargs):
-    """Same as jyutping_to_tipa.
-
-    .. deprecated:: 3.0.0
-    """
-    return jyutping_to_tipa(*args, **kwargs)

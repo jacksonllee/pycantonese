@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata from this file."
+title: "PyCantonese: Cantonese Linguistics and NLP in Python"
+type: software
+repository-code: "https://github.com/jacksonllee/pycantonese"
+url: "https://pycantonese.org"
+license: MIT
+authors:
+  - family-names: Lee
+    given-names: Jackson L.
+  - family-names: Chen
+    given-names: Litong
+  - family-names: Lam
+    given-names: Charles
+  - family-names: Lau
+    given-names: Chaak Ming
+  - family-names: Tsui
+    given-names: Tsz-Him
+preferred-citation:
+  type: conference-paper
+  title: "PyCantonese: Cantonese Linguistics and NLP in Python"
+  authors:
+    - family-names: Lee
+      given-names: Jackson L.
+    - family-names: Chen
+      given-names: Litong
+    - family-names: Lam
+      given-names: Charles
+    - family-names: Lau
+      given-names: Chaak Ming
+    - family-names: Tsui
+      given-names: Tsz-Him
+  collection-title: "Proceedings of The 13th Language Resources and Evaluation Conference"
+  month: 6
+  year: 2022
+  publisher:
+    name: "European Language Resources Association"

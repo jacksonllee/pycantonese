@@ -1,8 +1,8 @@
+from __future__ import annotations
+
 from functools import lru_cache
-from typing import Dict, List, Optional, Union
 
 from .parse_jyutping import parse_jyutping
-
 
 _ONSETS = {
     "b": "p",
@@ -74,13 +74,13 @@ def _replace(current, parsed, part_to_match, matches, default):
 
 def jyutping_to_ipa(
     jp_str: str,
-    as_list: bool = True,
+    return_as: str = "list",
     *,
-    onsets: Optional[Dict[str, str]] = None,
-    nuclei: Optional[Dict[str, str]] = None,
-    codas: Optional[Dict[str, str]] = None,
-    tones: Optional[Dict[str, str]] = None,
-) -> Union[List[str], str]:
+    onsets: dict[str, str] | None = None,
+    nuclei: dict[str, str] | None = None,
+    codas: dict[str, str] | None = None,
+    tones: dict[str, str] | None = None,
+) -> list[str] | str:
     """Convert Jyutping romanization into IPA.
 
     The Jyutping-to-IPA mapping is based on Matthews and Yip (2011: 461-463).
@@ -89,10 +89,11 @@ def jyutping_to_ipa(
     ----------
     jp_str : str
         Jyutping romanization for one or multiple characters
-    as_list : bool, optional
-        If ``True`` (the default), the returned value is a list of strings
+    return_as : str, optional
+        If ``"list"`` (the default), the returned value is a list of strings
         where each string is the IPA representation of each Cantonese / Chinese
         character based on the input Jyutping.
+        If ``"string"``, the returned value is a single space-joined string.
     onsets : dict[str, str], optional
         If provided, it must be a dictionary that maps Jyutping onsets to
         the desired IPA symbols for customization. For example, Jyutping "z"
@@ -123,7 +124,7 @@ def jyutping_to_ipa(
     --------
     >>> jyutping_to_ipa('gwong2dung1waa2')  # 廣東話 Cantonese
     ['kʷɔŋ25', 'tʊŋ55', 'waː25']
-    >>> jyutping_to_ipa('gwong2dung1waa2', as_list=False)
+    >>> jyutping_to_ipa('gwong2dung1waa2', return_as="string")
     'kʷɔŋ25 tʊŋ55 waː25'
     >>> jyutping_to_ipa('ci1', onsets={'c': "tʃ'"})
     ["tʃ'i55"]
@@ -158,7 +159,7 @@ def jyutping_to_ipa(
 
         ipa_list.append(onset + nucleus + coda + tone)
 
-    if as_list:
+    if return_as == "list":
         return ipa_list
     else:
         return " ".join(ipa_list)

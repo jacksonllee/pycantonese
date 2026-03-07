@@ -3,14 +3,14 @@
 import logging
 
 from pycantonese import hkcancor
-from pycantonese.pos_tagging import POSTagger
-from pycantonese.pos_tagging.tagger import _JSON_PATH
-
+from pycantonese.pos_tagging import _POSTagger
+from pycantonese.pos_tagging.tagger import _MODEL_PATH
 
 _TAGGER_PARAMETERS = {
     "frequency_threshold": 10,
     "ambiguity_threshold": 0.9,
     "n_iter": 10,
+    "random_seed": 42,
 }
 
 # Several POS tags in HKCanCor are odd ones for proper nouns.
@@ -32,14 +32,18 @@ _FIX_HKCANCOR_TAGS = {
 }
 
 
-def _get_tagged_sents():
-    return [
-        [(token.word, _FIX_HKCANCOR_TAGS.get(token.pos, token.pos)) for token in tokens]
-        for tokens in hkcancor().tokens(by_utterances=True)
-    ]
+def _get_training_data():
+    sequences = []
+    tags = []
+    for tokens in hkcancor().tokens(by_utterance=True):
+        sequences.append([token.word for token in tokens])
+        tags.append([_FIX_HKCANCOR_TAGS.get(token.pos, token.pos) for token in tokens])
+    return sequences, tags
 
 
 if __name__ == "__main__":
     logging.basicConfig(level="INFO")
-    tagger = POSTagger(**_TAGGER_PARAMETERS)
-    tagger.train(_get_tagged_sents(), save=_JSON_PATH)
+    tagger = _POSTagger(**_TAGGER_PARAMETERS)
+    sequences, tags = _get_training_data()
+    tagger.fit(sequences, tags)
+    tagger.save(_MODEL_PATH)

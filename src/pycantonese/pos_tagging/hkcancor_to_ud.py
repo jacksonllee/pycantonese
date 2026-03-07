@@ -2,7 +2,6 @@
 
 from pycantonese._punctuation_marks import _PUNCTUATION_MARKS
 
-
 # The Python dictionary below maps the HKCanCor tagset to the Universal
 # Dependencies (UD) 2.0 tagset.
 #
@@ -15,7 +14,7 @@ from pycantonese._punctuation_marks import _PUNCTUATION_MARKS
 #
 # For convenience, if HKCanCor has a brief part-of-speech tag description,
 # the description appears as a comment together with the key in the
-# dictionary below, e.g., the key "A" has the comment "HKCanCor: Adjective".
+# dictionary below, e.g., the key "a" has the comment "HKCanCor: Adjective".
 
 _MAP = {
     "!": "PUNCT",
@@ -27,124 +26,113 @@ _MAP = {
     ".": "PUNCT",
     "...": "PUNCT",
     "?": "PUNCT",
-    "A": "ADJ",  # HKCanCor: Adjective
-    "AD": "ADV",  # HKCanCor: Adjective as Adverbial
-    "AG": "ADJ",  # HKCanCor: Adjective Morpheme
-    "AIRWAYS0": "PROPN",
-    "AN": "NOUN",  # HKCanCor: Adjective with Nominal Function
-    "AND": "PROPN",  # In one instance of "Chilli and Pepper"
-    "B": "ADJ",  # HKCanCor: Non-predicate Adjective
-    "BG": "ADJ",  # HKCanCor: Non-predicate Adjective Morpheme
-    "BEAN0": "PROPN",  # In one instance of "Mr Bean"
-    "C": "CCONJ",  # HKCanCor: Conjunction
-    "CENTRE0": "NOUN",  # In one instance of "career centre"
-    "CG": "CCONJ",
-    "D": "ADV",  # HKCanCor: Adverb
-    "D1": "ADV",  # Most instances are gwai2 "ghost".
-    "DG": "ADV",  # HKCanCor: Adverb Morpheme
-    "E": "INTJ",  # HKCanCor: Interjection
-    "ECHO0": "PROPN",  # In one instance of "Big Echo"
-    "F": "ADV",  # HKCanCor: Directional Locality
-    "G": "X",  # HKCanCor: Morpheme
-    "G1": "VERB",  # The first A in the "A-not-AB" pattern, where AB is a verb.
-    "G2": "ADJ",  # The first A in "A-not-AB", where AB is an adjective.
-    "H": "PROPN",  # HKCanCor: Prefix (aa3 阿 followed by a person name)
-    "HILL0": "PROPN",  # In "Benny Hill"
-    "I": "X",  # HKCanCor: Idiom
-    "IG": "X",
-    "J": "NOUN",  # HKCanCor: Abbreviation
-    "JB": "ADJ",
-    "JM": "NOUN",
-    "JN": "NOUN",
-    "JNS": "PROPN",
-    "JNT": "PROPN",
-    "JNZ": "PROPN",
-    "K": "X",  # HKCanCor: Suffix (sing3 性 for nouns; dei6 地 for adverbs)
-    "KONG": "PROPN",  # In "Hong Kong"
-    "L": "X",  # Fixed Expression
-    "L1": "X",
-    "LG": "X",
-    "M": "NUM",  # HKCanCor: Numeral
-    "MG": "X",
-    "MONTY0": "PROPN",  # In "Full Monty"
-    "MOUNTAIN0": "PROPN",  # In "Blue Mountain"
-    "N": "NOUN",  # Common Noun
-    "N1": "DET",  # HKCanCor: only used for ne1 呢 determiner in the upstream data https://github.com/fcbond/hkcancor/blob/41f0631acda4f6a45460483ae23cad880edaacc8/data/utf8/FC-035_v2#L3455  # noqa: E501
-    "NG": "NOUN",
-    "NR": "PROPN",  # HKCanCor: Personal Name
-    "NS": "PROPN",  # HKCanCor: Place Name
-    "NSG": "PROPN",
-    "NT": "PROPN",  # HKCanCor: Organization Name
-    "NX": "NOUN",  # HKCanCor: Nominal Character String
-    "NZ": "PROPN",  # HKCanCor: Other Proper Noun
-    "O": "X",  # HKCanCor: Onomatopoeia
-    "P": "ADP",  # HKCanCor: Preposition
-    "PEPPER0": "PROPN",  # In "Chilli and Pepper"
-    "Q": "NOUN",  # HKCanCor: Classifier
-    "QG": "NOUN",  # HKCanCor: Classifier Morpheme
-    "R": "PRON",  # HKCanCor: Pronoun
-    "RG": "PRON",  # HKCanCor: Pronoun Morpheme
-    "S": "NOUN",  # HKCanCor: Space Word
-    "SOUND0": "PROPN",  # In "Manchester's Sound"
-    "T": "ADV",  # HKCanCor: Time Word
-    "TELECOM0": "PROPN",  # In "Hong Kong Telecom"
-    "TG": "ADV",  # HKCanCor: Time Word Morpheme
-    "TOUCH0": "PROPN",  # In "Don't Touch" (a magazine)
-    "U": "PART",  # HKCanCor: Auxiliary (e.g., ge3 嘅 after an attributive adj)
-    "UG": "PART",  # HKCanCor: Auxiliary Morpheme
-    "U0": "PROPN",  # U as in "Hong Kong U" (= The University of Hong Kong)
-    "V": "VERB",  # HKCanCor: Verb
-    "V1": "VERB",
-    "VD": "ADV",  # HKCanCor: Verb as Adverbial
-    "VG": "VERB",
-    "VK": "VERB",
-    "VN": "NOUN",  # HKCanCor: Verb with Nominal Function
-    "VU": "AUX",
-    "VUG": "AUX",
-    "W": "PUNCT",  # HKCanCor: Punctuation
-    "X": "X",  # HKCanCor: Unclassified Item
-    "XA": "ADJ",
-    "XB": "ADJ",
-    "XC": "CCONJ",
-    "XD": "ADV",
-    "XE": "INTJ",
-    "XJ": "X",
-    "XJB": "PROPN",
-    "XJN": "NOUN",
-    "XJNT": "PROPN",
-    "XJNZ": "PROPN",
-    "XJV": "VERB",
-    "XJA": "ADJ",  # HKCanCor: Only for "A" (= additional) as in "A Maths" in the upstream data https://github.com/fcbond/hkcancor/blob/41f0631acda4f6a45460483ae23cad880edaacc8/data/utf8/FC-027_v2#L4712  # noqa: E501
-    "XL1": "INTJ",
-    "XM": "NUM",
-    "XN": "NOUN",
-    "XNG": "NOUN",
-    "XNR": "PROPN",
-    "XNS": "PROPN",
-    "XNT": "PROPN",
-    "XNX": "NOUN",
-    "XNZ": "PROPN",
-    "XO": "NOUN",  # HKCanCor: Only for Gik1lik1gu4 in the upstream data https://github.com/fcbond/hkcancor/blob/41f0631acda4f6a45460483ae23cad880edaacc8/data/utf8/FC-R006_v2#L881  # noqa: E501
-    "XP": "ADP",
-    "XQ": "NOUN",
-    "XR": "PRON",
-    "XS": "PROPN",
-    "XT": "NOUN",
-    "XV": "VERB",
-    "XVG": "VERB",
-    "XVN": "NOUN",
-    "XX": "X",
-    "Y": "PART",  # HKCanCor: Modal Particle
-    "YG": "PART",  # HKCanCor: Modal Particle Morpheme
-    "Y1": "PART",
-    "Z": "ADJ",  # HKCanCor: Descriptive
+    "a": "ADJ",  # HKCanCor: Adjective
+    "ad": "ADV",  # HKCanCor: Adjective as Adverbial
+    "Ag": "ADJ",  # HKCanCor: Adjective Morpheme
+    "an": "NOUN",  # HKCanCor: Adjective with Nominal Function
+    "b": "ADJ",  # HKCanCor: Non-predicate Adjective
+    "Bg": "ADJ",  # HKCanCor: Non-predicate Adjective Morpheme
+    "c": "CCONJ",  # HKCanCor: Conjunction
+    "Cg": "CCONJ",
+    "d": "ADV",  # HKCanCor: Adverb
+    "d1": "ADV",  # Most instances are gwai2 "ghost".
+    "Dg": "ADV",  # HKCanCor: Adverb Morpheme
+    "e": "INTJ",  # HKCanCor: Interjection
+    "f": "ADV",  # HKCanCor: Directional Locality
+    "g": "X",  # HKCanCor: Morpheme
+    "g1": "VERB",  # The first A in the "A-not-AB" pattern, where AB is a verb.
+    "g2": "ADJ",  # The first A in "A-not-AB", where AB is an adjective.
+    "h": "PROPN",  # HKCanCor: Prefix (aa3 阿 followed by a person name)
+    "i": "X",  # HKCanCor: Idiom
+    "Ig": "X",
+    "j": "NOUN",  # HKCanCor: Abbreviation
+    "jb": "ADJ",
+    "jm": "NOUN",
+    "jn": "NOUN",
+    "jns": "PROPN",
+    "jnt": "PROPN",
+    "JNTg": "PROPN",
+    "jnz": "PROPN",
+    "k": "X",  # HKCanCor: Suffix (sing3 性 for nouns; dei6 地 for adverbs)
+    "l": "X",  # Fixed Expression
+    "l1": "X",
+    "Lg": "X",
+    "m": "NUM",  # HKCanCor: Numeral
+    "Mg": "X",
+    "n": "NOUN",  # Common Noun
+    "n1": "DET",  # HKCanCor: only used for ne1 呢 determiner in the upstream data https://github.com/fcbond/hkcancor/blob/41f0631acda4f6a45460483ae23cad880edaacc8/data/utf8/FC-035_v2#L3455  # noqa: E501
+    "Ng": "NOUN",
+    "nr": "PROPN",  # HKCanCor: Personal Name
+    "ns": "PROPN",  # HKCanCor: Place Name
+    "Nsg": "PROPN",
+    "nt": "PROPN",  # HKCanCor: Organization Name
+    "NTg": "PROPN",
+    "nx": "NOUN",  # HKCanCor: Nominal Character String
+    "nz": "PROPN",  # HKCanCor: Other Proper Noun
+    "NZg": "PROPN",
+    "o": "X",  # HKCanCor: Onomatopoeia
+    "p": "ADP",  # HKCanCor: Preposition
+    "q": "NOUN",  # HKCanCor: Classifier
+    "Qg": "NOUN",  # HKCanCor: Classifier Morpheme
+    "r": "PRON",  # HKCanCor: Pronoun
+    "Rg": "PRON",  # HKCanCor: Pronoun Morpheme
+    "s": "NOUN",  # HKCanCor: Space Word
+    "t": "ADV",  # HKCanCor: Time Word
+    "Tg": "ADV",  # HKCanCor: Time Word Morpheme
+    "u": "PART",  # HKCanCor: Auxiliary (e.g., ge3 嘅 after an attributive adj)
+    "Ug": "PART",  # HKCanCor: Auxiliary Morpheme
+    "v": "VERB",  # HKCanCor: Verb
+    "v1": "VERB",
+    "vd": "ADV",  # HKCanCor: Verb as Adverbial
+    "Vg": "VERB",
+    "vk": "VERB",
+    "vn": "NOUN",  # HKCanCor: Verb with Nominal Function
+    "vu": "AUX",
+    "Vug": "AUX",
+    "w": "PUNCT",  # HKCanCor: Punctuation
+    "x": "X",  # HKCanCor: Unclassified Item
+    "xa": "ADJ",
+    "xb": "ADJ",
+    "xc": "CCONJ",
+    "xd": "ADV",
+    "xe": "INTJ",
+    "xj": "X",
+    "xja": "ADJ",  # HKCanCor: Only for "A" (= additional) as in "A Maths" in the upstream data https://github.com/fcbond/hkcancor/blob/41f0631acda4f6a45460483ae23cad880edaacc8/data/utf8/FC-027_v2#L4712  # noqa: E501
+    "xjb": "PROPN",
+    "xjn": "NOUN",
+    "xjnt": "PROPN",
+    "xjnz": "PROPN",
+    "xjv": "VERB",
+    "xl1": "INTJ",
+    "xm": "NUM",
+    "xn": "NOUN",
+    "xNg": "NOUN",
+    "xnr": "PROPN",
+    "xns": "PROPN",
+    "xnt": "PROPN",
+    "xnx": "NOUN",
+    "xnz": "PROPN",
+    "xo": "NOUN",  # HKCanCor: Only for Gik1lik1gu4 in the upstream data https://github.com/fcbond/hkcancor/blob/41f0631acda4f6a45460483ae23cad880edaacc8/data/utf8/FC-R006_v2#L881  # noqa: E501
+    "xp": "ADP",
+    "xq": "NOUN",
+    "xr": "PRON",
+    "xs": "PROPN",
+    "xt": "NOUN",
+    "xv": "VERB",
+    "xVg": "VERB",
+    "xvn": "NOUN",
+    "xx": "X",
+    "y": "PART",  # HKCanCor: Modal Particle
+    "Yg": "PART",  # HKCanCor: Modal Particle Morpheme
+    "y1": "PART",
+    "z": "ADJ",  # HKCanCor: Descriptive
 }
 
 # Add the Chinese full-length punctuation marks.
 _MAP = {**_MAP, **{punct: "PUNCT" for punct in _PUNCTUATION_MARKS}}
 
 
-def hkcancor_to_ud(tag: str = None):
+def hkcancor_to_ud(tag: str | None = None):
     """Map a part-of-speech tag from HKCanCor to Universal Dependencies.
 
     HKCanCor uses a part-of-speech tagset of over 100 tags (46 of which
@@ -174,10 +162,10 @@ def hkcancor_to_ud(tag: str = None):
 
     Examples
     --------
-    >>> hkcancor_to_ud("V")
+    >>> hkcancor_to_ud("v")
     'VERB'
     """
     if tag is None:
         return _MAP
     else:
-        return _MAP.get(tag.strip().upper()) or "X"
+        return _MAP.get(tag.strip()) or "X"

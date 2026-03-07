@@ -27,8 +27,8 @@ def test_null_input(input_):
 
 
 @pytest.mark.parametrize("input_", ["", None])
-def test_null_input_as_list_false(input_):
-    assert jyutping_to_yale(input_, as_list=False) == ""
+def test_null_input_return_as_string(input_):
+    assert jyutping_to_yale(input_, return_as="string") == ""
 
 
 def test_jyutping_to_yale_m4goi1():

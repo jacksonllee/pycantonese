@@ -10,7 +10,7 @@ def test_pos_tag():
 
 
 def test_pos_tag_hkcancor_tagset():
-    assert pos_tag(["我"], tagset="hkcancor") == [("我", "R")]
+    assert pos_tag(["我"], tagset="hkcancor") == [("我", "r")]
 
 
 def test_pos_tag_wrong_input_type():

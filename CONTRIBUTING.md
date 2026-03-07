@@ -8,9 +8,19 @@ and check their compatibility with the rest of the package before making a pull 
 
 This page assumes that you have already created a fork of the `pycantonese` repo
 under your GitHub account and have the codebase available locally for
-development work. If you have followed
-[these steps](https://github.com/jacksonllee/pycantonese#setting-up-a-development-environment),
-then you are all set.
+development work. It also assumes that you have [uv](https://docs.astral.sh/uv/)
+and a [Rust toolchain](https://rustup.rs/) installed.
+
+To set up a development environment, clone your fork and build the package
+with development dependencies:
+
+```bash
+git clone https://github.com/<your-github-username>/pycantonese.git
+cd pycantonese
+uv venv
+uv pip install maturin
+uv run maturin develop -E dev
+```
 
 ## Working on a Feature or Bug Fix
 
@@ -72,12 +82,10 @@ If you aren't sure how to, say, add tests to go with your proposed changes,
 please still feel free to create a pull request.
 We will guide you to polish up your pull request.
 
-If you would like to help avoid wasting free Internet resources
-(every push of new commits to an open pull request triggers new CI builds),
-you can run pytest/flake8/black checks locally before pushing commits:
+To catch issues early, you can run these checks locally before pushing commits:
 
 ```bash
-flake8 src tests
-black --check src tests
-pytest
+uvx flake8 src tests
+uvx black --check src tests
+uv run pytest
 ```

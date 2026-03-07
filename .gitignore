@@ -1,0 +1,17 @@
+# Python
+*.egg-info/
+.pytest_cache/
+dist/
+uv.lock
+
+# Rust
+.cargo/
+target/
+src/*/*.so
+
+# Docs
+docs/_build/
+docs/generated/
+
+# Benchmarks
+benchmarks/_baseline/

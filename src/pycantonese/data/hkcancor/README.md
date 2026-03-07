@@ -12,7 +12,7 @@ in the late 1990's from local radio programs as well as other recordings.
 HKCanCor as included in PyCantonese has been substantially modified from its
 source in terms of data format. Please read below for details.
 
-The HKCanCor source is here:
+The current HKCanCor source is at
 https://github.com/fcbond/hkcancor
 
 HKCanCor is released under a CC BY license. A copy of the license
@@ -23,7 +23,7 @@ at `src/pycantonese/data/hkcancor/LICENSE.txt` (path from the PyCantonese reposi
 
 If this corpus is used, the following publication should be cited:
 
-K. K. Luke and May L.Y. Wong (2015) The Hong Kong Cantonese Corpus: Design and Uses. Journal of Chinese Linguistics (to appear).
+K. K. Luke and May L.Y. Wong (2015) The Hong Kong Cantonese Corpus: Design and Uses. *Journal of Chinese Linguistics Monograph Series*, 25, 312–333.
 
 
 The CHAT format in PyCantonese
@@ -35,7 +35,7 @@ is well-documented, rich for annotations, and designed mainly for
 conversational data.
 
 The version of HKCanCor incorporated in PyCantonese is in the CHAT format,
-in compliance with the [CHAT manual](https://talkbank.org/manuals/CHAT.pdf).
+in compliance with the [CHAT manual](https://talkbank.org/0info/manuals/CHAT.pdf).
 The following notes explain how this version differs from the source.
 
 HKCanCor comes with 58 data files, which have been rendered as `.cha` files.

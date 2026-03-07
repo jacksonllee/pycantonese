@@ -1,101 +1,31 @@
-import collections
 import functools
-import json
-import logging
 import os
-import random
 
-from typing import Dict
+from rustling.perceptron_pos_tagger import AveragedPerceptron
 
 from pycantonese._punctuation_marks import _PUNCTUATION_MARKS
 from pycantonese.pos_tagging.hkcancor_to_ud import hkcancor_to_ud
 
-
 _THIS_DIR = os.path.dirname(os.path.abspath(__file__))
-_JSON_PATH = os.path.join(_THIS_DIR, "tagger.json")
+_MODEL_PATH = os.path.join(_THIS_DIR, "tagger.fb.zst")
 
 
-class _AveragedPerceptron:
-    """An averaged perceptron.
-
-    This is a modified version based on the textblob-aptagger codebase
-    (MIT license), with original implementation by Matthew Honnibal:
-    https://github.com/sloria/textblob-aptagger/blob/266fa1c22daaff7c60577efa8577f1b6ce2f7f70/textblob_aptagger/_perceptron.py
-    """
-
-    def __init__(self):
-        # Each feature (key) gets its own weight vector (value).
-        self.weights: Dict[str, Dict[str, float]] = {}
-        self.classes = set()
-        # The accumulated values, for the averaging. These will be keyed by
-        # feature/class tuples
-        self._totals = collections.defaultdict(int)
-        # The last time the feature was changed, for the averaging. Also
-        # keyed by feature/class tuples
-        # (tstamps is short for timestamps)
-        self._tstamps = collections.defaultdict(int)
-        # Number of instances seen
-        self.i = 0
-
-    def predict(self, features):
-        """Return the best label for the given features.
-
-        It's computed based on the dot-product between the features and
-        current weights.
-        """
-        scores = collections.defaultdict(float)
-        for feat, value in features.items():
-            if feat not in self.weights or value == 0:
-                continue
-            weights = self.weights[feat]
-            for label, weight in weights.items():
-                scores[label] += value * weight
-        # Do a secondary alphabetic sort, for stability
-        return max(self.classes, key=lambda label: (scores[label], label))
-
-    def update(self, truth, guess, features):
-        """Update the feature weights."""
-
-        def upd_feat(c, f, w, v):
-            param = (f, c)
-            self._totals[param] += (self.i - self._tstamps[param]) * w
-            self._tstamps[param] = self.i
-            self.weights[f][c] = w + v
-
-        self.i += 1
-        if truth == guess:
-            return None
-        for f in features:
-            weights = self.weights.setdefault(f, {})
-            upd_feat(truth, f, weights.get(truth, 0.0), 1.0)
-            upd_feat(guess, f, weights.get(guess, 0.0), -1.0)
-
-    def average_weights(self):
-        """Average weights from all iterations."""
-        for feat, weights in self.weights.items():
-            new_feat_weights = {}
-            for clas, weight in weights.items():
-                param = (feat, clas)
-                total = self._totals[param]
-                total += (self.i - self._tstamps[param]) * weight
-                averaged = round(total / float(self.i), 3)
-                if averaged:
-                    new_feat_weights[clas] = averaged
-            self.weights[feat] = new_feat_weights
-
-
-class POSTagger:
+class _POSTagger:
     """A part-of-speech tagger.
 
-    This is a modified version based on the textblob-aptagger codebase
-    (MIT license), with original implementation by Matthew Honnibal:
-    https://github.com/sloria/textblob-aptagger/blob/266fa1c22daaff7c60577efa8577f1b6ce2f7f70/textblob_aptagger/taggers.py
+    This class wraps ``rustling.perceptron_pos_tagger.AveragedPerceptron``
+    and provides Cantonese-specific functionality such as
+    Chinese full-width punctuation handling.
     """
 
-    START = ["-START-", "-START2-"]
-    END = ["-END-", "-END2-"]
-
-    def __init__(self, *, frequency_threshold=10, ambiguity_threshold=0.95, n_iter=5):
+    def __init__(
+        self,
+        *,
+        frequency_threshold=10,
+        ambiguity_threshold=0.95,
+        n_iter=5,
+        random_seed=None,
+    ):
         """Initialize a part-of-speech tagger.
 
         Parameters
@@ -114,177 +44,78 @@ class POSTagger:
         n_iter : int, optional
             Number of times the training phase iterates through the data.
             At each new iteration, the data is randomly shuffled.
+        random_seed : int | None, optional
+            Random seed for reproducible training. If None, a random seed
+            is used.
         """
-        self.frequency_threshold = frequency_threshold
-        self.ambiguity_threshold = ambiguity_threshold
-        self.n_iter = n_iter
+        self._tagger = AveragedPerceptron(
+            frequency_threshold=frequency_threshold,
+            ambiguity_threshold=ambiguity_threshold,
+            n_iter=n_iter,
+            random_seed=random_seed,
+        )
+        # HKCanCor doesn't have the Chinese full-width punctuation marks,
+        # so they must be handled outside of the rustling tagger.
+        self._punctuation_tags = {punct: punct for punct in _PUNCTUATION_MARKS}
 
-        self.model = _AveragedPerceptron()
-        self.tagdict = {}
-        self.classes = set()
-
-        # HKCanCor doesn't have the Chinese full-width punctuation marks.
-        self.tagdict.update({punct: punct for punct in _PUNCTUATION_MARKS})
-
-    def tag(self, words):
-        """Tag the words.
+    def predict(self, sequences):
+        """Predict the tags for the sequences.
 
         Parameters
         ----------
-        words : list[str]
-            A segmented sentence or phrase, where each word is Cantonese
-            characters.
+        sequences : list[list[str]]
+            A list of segmented sentences, where each sentence is a list
+            of words in Cantonese characters.
 
         Returns
         -------
-        list[str]
-            The list of predicted tags.
+        list[list[str]]
+            The list of predicted tag sequences.
         """
-        prev, prev2 = self.START
-        tags = []
-        if not words:
-            return tags
-        context = self.START + words + self.END
-        for i, word in enumerate(words):
-            tag = self.tagdict.get(word)
-            if not tag:
-                features = self._get_features(i, word, context, prev, prev2)
-                tag = self.model.predict(features)
-            tags.append(tag)
-            prev2 = prev
-            prev = tag
+        tags = self._tagger.predict(sequences)
+        for seq_tags, seq_words in zip(tags, sequences):
+            for i, word in enumerate(seq_words):
+                if word in self._punctuation_tags:
+                    seq_tags[i] = self._punctuation_tags[word]
         return tags
 
-    def train(self, tagged_sents, save=None):
+    def fit(self, sequences, tags):
         """Train a model.
 
         Parameters
         ----------
-        tagged_sents : list[list[tuple[str, str]]]
-            A list of segmented and tagged sentences for training.
-        save : str, optional
-            If given, save the trained model as a JSON file at this path.
+        sequences : list[list[str]]
+            A list of segmented sentences for training.
+        tags : list[list[str]]
+            A list of tag sequences, parallel to ``sequences``.
         """
-        self._make_tagdict(tagged_sents)
-        self.model.classes = self.classes
+        self._tagger.fit(sequences, tags)
 
-        prev, prev2 = self.START
-        for iter_ in range(self.n_iter):
-            c = 0
-            n = 0
-            for tagged_sent in tagged_sents:
-                context = self.START + [w for w, _ in tagged_sent] + self.END
-                for i, (word, tag) in enumerate(tagged_sent):
-                    try:
-                        guess = self.tagdict[word]
-                    except KeyError:
-                        feats = self._get_features(i, word, context, prev, prev2)
-                        guess = self.model.predict(feats)
-                        self.model.update(tag, guess, feats)
-                    prev2 = prev
-                    prev = guess
-                    c += guess == tag
-                    n += 1
-            random.shuffle(tagged_sents)
-            logging.info("Iter %d: %d / %d = %f", iter_, c, n, c / n)
-        self.model.average_weights()
-
-        if save is not None:
-            json.dump(
-                {
-                    "weights": self.model.weights,
-                    "tagdict": self.tagdict,
-                    "classes": sorted(list(self.classes)),
-                },
-                open(save, "w", encoding="utf-8"),
-                ensure_ascii=False,
-                indent=2,
-                sort_keys=True,
-            )
-
-    def load(self, path):
-        """Load a model from a JSON file.
+    def save(self, path):
+        """Save the model as a binary model file.
 
         Parameters
         ----------
         path : str
-            The path where the model, stored as a JSON file, is located.
+            The path to save the model.
         """
-        try:
-            w_td_c = json.load(open(path, "r", encoding="utf-8"))
-        except IOError:
-            raise FileNotFoundError(f"Can't locate tagger model {path}")
-        except:  # noqa
-            raise EnvironmentError(
-                f"A file is detected at {path}, but it cannot be read as a "
-                "a tagger model. "
-                "The tagger model JSON file may be corrupted for some reason."
-            )
-        self.model.weights = w_td_c["weights"]
-        self.tagdict = w_td_c["tagdict"]
-        self.classes = set(w_td_c["classes"])
-        self.model.classes = self.classes
+        self._tagger.save(path)
 
-    def _get_features(self, i, word, context, prev, prev2):
-        """Map tokens into a feature representation, implemented as a
-        {hashable: float} dict. If the features change, a new model must be
-        trained.
+    def load(self, path):
+        """Load a model from a binary model file.
+
+        Parameters
+        ----------
+        path : str
+            The path where the binary model file is located.
         """
-
-        def add(name, *args):
-            features[" ".join((name,) + tuple(args))] += 1
-
-        i += len(self.START)
-        features = collections.defaultdict(int)
-
-        # It's useful to have a constant feature,
-        # which acts sort of like a prior.
-        add("bias")
-
-        add("i word's first char", word[0])
-        add("i word's final char", word[-1])
-
-        add("i-1 word's first char", context[i - 1][0])
-        add("i-1 word's final char", context[i - 1][-1])
-        add("i-1 tag", prev)
-
-        add("i-2 word's first char", context[i - 2][0])
-        add("i-2 word's final char", context[i - 2][-1])
-        add("i-2 tag", prev2)
-
-        add("i+1 word's first char", context[i + 1][0])
-        add("i+1 word's final char", context[i + 1][-1])
-
-        add("i+2 word's first char", context[i + 2][0])
-        add("i+2 word's final char", context[i + 2][-1])
-
-        return features
-
-    def _make_tagdict(self, tagged_sents):
-        """Make a tag dictionary for single-tag words."""
-        counts = collections.defaultdict(lambda: collections.defaultdict(int))
-        for tagged_sent in tagged_sents:
-            for word, tag in tagged_sent:
-                counts[word][tag] += 1
-                self.classes.add(tag)
-        words = set()
-        for word, tag_freqs in counts.items():
-            words.add(word)
-            tag, mode = max(tag_freqs.items(), key=lambda item: item[1])
-            n = sum(tag_freqs.values())
-            above_freq_threshold = n >= self.frequency_threshold
-            unambiguous = (mode / n) >= self.ambiguity_threshold
-            if above_freq_threshold and unambiguous:
-                self.tagdict[word] = tag
-        logging.info("%d unique words in the training data", len(words))
-        logging.info("%d tags in this tagset", len(self.classes))
-        logging.info("%d words are treated as having a unique tag", len(self.tagdict))
+        self._tagger.load(path)
 
 
 @functools.lru_cache(maxsize=1)
 def _get_tagger():
-    tagger = POSTagger()
-    tagger.load(_JSON_PATH)
+    tagger = _POSTagger()
+    tagger.load(_MODEL_PATH)
     return tagger
 
 
@@ -335,13 +166,13 @@ def pos_tag(words, tagset="universal"):
     >>> pos_tag(words)
     [('我', 'PRON'), ('噚日', 'ADV'), ('買', 'VERB'), ('嗰', 'PRON'), ('對', 'NOUN'), ('鞋', 'NOUN'), ('。', 'PUNCT')]
     >>> pos_tag(words, tagset="hkcancor")
-    [('我', 'R'), ('噚日', 'T'), ('買', 'V'), ('嗰', 'R'), ('對', 'Q'), ('鞋', 'N'), ('。', '。')]
+    [('我', 'r'), ('噚日', 't'), ('買', 'v'), ('嗰', 'r'), ('對', 'q'), ('鞋', 'n'), ('。', '。')]
     """  # noqa: E501
     if isinstance(words, str):
         raise TypeError(
             f"Input must be a list of segmented words, not a string: {words}"
         )
-    tags = _get_tagger().tag(words)
+    tags = _get_tagger().predict([words])[0]
     if tagset == "universal":
         tags = [hkcancor_to_ud(tag) for tag in tags]
     elif tagset != "hkcancor":

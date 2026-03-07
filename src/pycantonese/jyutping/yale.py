@@ -2,8 +2,6 @@ import unicodedata
 from functools import lru_cache
 
 from pycantonese.jyutping.parse_jyutping import parse_jyutping
-from pycantonese.util import _deprecate
-
 
 ONSETS_YALE = {
     "b": "b",
@@ -25,6 +23,7 @@ ONSETS_YALE = {
     "l": "l",
     "w": "w",
     "j": "y",
+    "v": "v",
     "": "",
 }
 
@@ -56,30 +55,23 @@ CODAS_YALE = {
 
 
 @lru_cache
-def jyutping_to_yale(jp_str, as_list=True):
+def jyutping_to_yale(jp_str, return_as="list"):
     """Convert Jyutping romanization into Yale romanization.
-
-    .. versionadded:: 3.0.0
-        This function replaces the deprecated equivalent ``jyutping2yale``.
-
-    .. versionchanged:: 3.0.0
-        ``as_list`` has its default value switched from ``False`` to ``True``,
-        so that by default the function returns a list, which is in line with
-        the other "jyutping_to_X" functions.
 
     Parameters
     ----------
     jp_str : str
         Jyutping romanization for one or multiple characters
-    as_list : bool, optional
-        If False (default is True), the output is a string with a single quote
+    return_as : str, optional
+        If ``"list"`` (the default), the returned value is a list of strings.
+        If ``"string"``, the output is a string with a single quote
         ``'`` to disambiguate unclear syllable boundaries (e.g., a consonant
         or the low-tone marker "h" being ambiguous as an onset or as
         part of the previous syllable).
 
     Returns
     -------
-    list[str], or str if as_list is False
+    list[str], or str if return_as is "string"
 
     Raises
     ------
@@ -91,11 +83,11 @@ def jyutping_to_yale(jp_str, as_list=True):
     --------
     >>> jyutping_to_yale("gwong2dung1waa2")  # 廣東話, Cantonese
     ['gwóng', 'dūng', 'wá']
-    >>> jyutping_to_yale("gwong2dung1waa2", as_list=False)
+    >>> jyutping_to_yale("gwong2dung1waa2", return_as="string")
     'gwóngdūngwá'
     >>>
     >>> # 'heihauh' would be ambiguous between hei3hau6 and hei6au6.
-    >>> jyutping_to_yale("hei3hau6", as_list=False)  # 氣候, climate
+    >>> jyutping_to_yale("hei3hau6", return_as="string")  # 氣候, climate
     "hei'hauh"
     """
     jp_parsed_list = parse_jyutping(jp_str)
@@ -190,7 +182,7 @@ def jyutping_to_yale(jp_str, as_list=True):
             yale = onset + nucleus + low_tone_h + coda
         yale_list.append(yale)
 
-    if as_list:
+    if return_as == "list":
         return yale_list
 
     # Output yale_list as a string
@@ -265,15 +257,6 @@ def jyutping_to_yale(jp_str, as_list=True):
     output_str += yale_list[-1]
 
     return output_str
-
-
-@_deprecate("jyutping2yale", "jyutping_to_yale", "3.0.0", "4.0.0")
-def jyutping2yale(*args, **kwargs):
-    """Same as jyutping_to_yale.
-
-    .. deprecated:: 3.0.0
-    """
-    return jyutping_to_yale(*args, **kwargs)
 
 
 def _startswithoneof(inputstr, seq):
