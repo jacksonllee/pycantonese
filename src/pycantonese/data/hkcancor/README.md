@@ -1,13 +1,16 @@
 Hong Kong Cantonese Corpus
 ==========================
 
-
 Introduction
 ------------
 
 The Hong Kong Cantonese Corpus (HKCanCor) is a corpus of conversational
 Hong Kong Cantonese compiled by Kang Kwong Luke based on data collected
 in the late 1990's from local radio programs as well as other recordings.
+
+HKCanCor is incorporated into PyCantonese for Jyutping data as well as
+model training for word segmentation and part-of-speech tagging.
+These trained models are persisted as zst-compressed FlatBuffers binaries.
 
 HKCanCor as included in PyCantonese has been substantially modified from its
 source in terms of data format. Please read below for details.
@@ -24,7 +27,6 @@ at `src/pycantonese/data/hkcancor/LICENSE.txt` (path from the PyCantonese reposi
 If this corpus is used, the following publication should be cited:
 
 K. K. Luke and May L.Y. Wong (2015) The Hong Kong Cantonese Corpus: Design and Uses. *Journal of Chinese Linguistics Monograph Series*, 25, 312–333.
-
 
 The CHAT format in PyCantonese
 ------------------------------

@@ -4,6 +4,8 @@ rime-cantonese
 The rime-cantonese data (CC BY 4.0 license) is
 incorporated into PyCantonese for word segmentation and
 characters-to-Jyutping conversion.
+The data and models that involve rime-cantonese are persisted as
+JSON files and zst-compressed FlatBuffers binaries.
 
 Data sources:
 

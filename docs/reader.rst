@@ -33,7 +33,7 @@ and the child's father's ``FAT``.
 
 Since PyCantonese uses Rustling/PyLangAcq to parse CHAT data files,
 the way in which header information is accessed is identical between the
-two packages. Please see `PyLangAcq's documentation on headers <https://pylangacq.org/headers.html>`_.
+two packages. Please see `PyLangAcq's documentation on headers <https://docs.pylangacq.org/stable/headers.html>`_.
 
 To see how a header from HKCanCor translates
 to its representation in PyCantonese,

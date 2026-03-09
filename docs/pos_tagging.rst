@@ -50,5 +50,5 @@ it is potentially due to the HKCanCor training data
 (e.g., specific occurrences of word + tag combinations might have thrown off the tagger),
 or the quality of word segmentation, especially if your segmented input comes from
 :func:`~pycantonese.segment`
--- please `get in touch <https://pycantonese.org/index.html#links>`_
+-- please `get in touch <https://docs.pycantonese.org/stable/index.html#links>`_
 if you would like further investigation.

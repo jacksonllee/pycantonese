@@ -91,16 +91,18 @@ Lee, Jackson L., Litong Chen, Charles Lam, Chaak Ming Lau, and Tsz-Him Tsui. 202
 License
 -------
 
-MIT License. Please see ``LICENSE.txt`` in the GitHub source code for details.
+MIT License.
 
-PyCantonese includes data from the following sources
-(please see `src/pycantonese/data <https://github.com/jacksonllee/pycantonese/tree/main/src/pycantonese/data>`_
-for details):
+Please note that PyCantonese includes data from the following sources,
+all of which are permissively licensed:
 
 - Hong Kong Cantonese Corpus (CC BY)
 - rime-cantonese (CC BY 4.0)
 - Common Voice Cantonese (Mozilla Public License 2.0)
 - Cantonese-Traditional Chinese Parallel Corpus (CC0 1.0 Universal)
+
+For details about these datasets,
+please see `src/pycantonese/data <https://github.com/jacksonllee/pycantonese/tree/main/src/pycantonese/data>`_
 
 Logo
 ----
