@@ -16,7 +16,7 @@ Full Documentation: https://pycantonese.org
    :target: https://pypi.python.org/pypi/pycantonese
    :alt: Supported Python versions
 
-.. image:: https://anaconda.org/conda-forge/pycantonese/badges/version.svg
+.. image:: https://img.shields.io/conda/vn/conda-forge/pycantonese.svg
    :target: https://anaconda.org/conda-forge/pycantonese
    :alt: Conda version
 
@@ -43,12 +43,12 @@ including major US tech companies.
 Download and Install
 --------------------
 
-To download and install the stable, most recent version::
+Using pip::
 
-   # Through pip
    pip install --upgrade pycantonese
 
-   # Through conda-forge
+Using conda::
+
    conda install -c conda-forge pycantonese
 
 For Pyodide users, PyCantonese now ships a WASM wheel, attached to a
@@ -102,7 +102,7 @@ all of which are permissively licensed:
 - Cantonese-Traditional Chinese Parallel Corpus (CC0 1.0 Universal)
 
 For details about these datasets,
-please see `src/pycantonese/data <https://github.com/jacksonllee/pycantonese/tree/main/src/pycantonese/data>`_
+please see `src/pycantonese/data <https://github.com/jacksonllee/pycantonese/tree/main/src/pycantonese/data>`_.
 
 Logo
 ----
@@ -111,8 +111,3 @@ The PyCantonese logo is the Chinese character 粵 meaning Cantonese,
 with artistic design by albino.snowman (Instagram handle).
 
 .. end-sphinx-website-index-page
-
-Changelog
----------
-
-Please see ``CHANGELOG.md``.

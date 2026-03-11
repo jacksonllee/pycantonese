@@ -1,0 +1,42 @@
+name: Build Linux x86_64 wheel
+
+on:
+  workflow_dispatch:
+    inputs:
+      git_ref:
+        description: "Git ref to build from (tag, branch, or commit)"
+        required: true
+        default: "v4.0.0"
+
+env:
+  FLATC_VERSION: "25.12.19"
+
+jobs:
+  build:
+    name: Build manylinux x86_64 wheel
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.inputs.git_ref }}
+
+      - name: Build wheels
+        uses: PyO3/maturin-action@v1
+        with:
+          target: x86_64
+          args: --release --out dist -i python3.10
+          sccache: "true"
+          manylinux: auto
+          before-script-linux: |
+            curl -sL "https://github.com/google/flatbuffers/releases/download/v${{ env.FLATC_VERSION }}/Linux.flatc.binary.clang++-18.zip" -o flatc.zip
+            command -v unzip || yum install -y unzip 2>/dev/null || (apt-get update -qq && apt-get install -y -qq unzip)
+            unzip -q flatc.zip
+            rm flatc.zip
+            chmod +x flatc
+            mv flatc /usr/local/bin/
+
+      - name: Upload wheel
+        uses: actions/upload-artifact@v7
+        with:
+          name: wheel-linux-x86_64
+          path: dist
