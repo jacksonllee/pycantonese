@@ -57,7 +57,7 @@ Source = "https://github.com/jacksonllee/pycantonese"
 
 [project.optional-dependencies]
 dev = [
-    "black == 26.3.0",
+    "black == 26.3.1",
     "build == 1.4.0",
     "flake8 == 7.3.0",
     "maturin >= 1.0",
