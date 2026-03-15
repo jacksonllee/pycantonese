@@ -93,25 +93,19 @@ TONES_TIPA = {
 def jyutping_to_tipa(jp_str):
     """Convert Jyutping romanization into LaTeX TIPA.
 
-    Parameters
-    ----------
-    jp_str : str
-        Jyutping romanization for one or multiple characters
+    Args:
+        jp_str (str): Jyutping romanization for one or multiple characters.
 
-    Returns
-    -------
-    list[str]
+    Returns:
+        list[str]
 
-    Raises
-    ------
-    ValueError
-        If the Jyutping romanization is illegal (e.g., with unrecognized
-        elements).
+    Raises:
+        ValueError: If the Jyutping romanization is illegal (e.g., with
+            unrecognized elements).
 
-    Examples
-    --------
-    >>> jyutping_to_tipa("gwong2dung1waa2")  # 廣東話, Cantonese  # doctest: +SKIP
-    ['k\\super w ON25', 'tUN55', 'wa25']
+    Examples:
+        >>> jyutping_to_tipa("gwong2dung1waa2")  # 廣東話, Cantonese  # doctest: +SKIP
+        ['k\\super w ON25', 'tUN55', 'wa25']
     """  # noqa: E501
     jp_parsed_list = parse_jyutping(jp_str)
     tipa_list = []

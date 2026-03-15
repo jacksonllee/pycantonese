@@ -113,32 +113,27 @@ def stop_words(add=None, remove=None):
 
     .. versionadded:: 2.2.0
 
-    Parameters
-    ----------
-    add : iterable[str], optional
-        Stop words to add.
-    remove : iterable[str], optional
-        Stop words to remove.
+    Args:
+        add (iterable[str], optional): Stop words to add.
+        remove (iterable[str], optional): Stop words to remove.
 
-    Returns
-    -------
-    set[str]
+    Returns:
+        set[str]
 
-    Examples
-    --------
-    >>> stop_words_1 = stop_words()
-    >>> len(stop_words_1)
-    104
-    >>> '香港' in stop_words_1
-    False
-    >>> stop_words_1  # doctest: +SKIP
-    {'一啲', '一定', '不如', '不過', ...}
-    >>>
-    >>> stop_words_2 = stop_words(add='香港')
-    >>> len(stop_words_2)
-    105
-    >>> '香港' in stop_words_2
-    True
+    Examples:
+        >>> stop_words_1 = stop_words()
+        >>> len(stop_words_1)
+        104
+        >>> '香港' in stop_words_1
+        False
+        >>> stop_words_1  # doctest: +SKIP
+        {'一啲', '一定', '不如', '不過', ...}
+        >>>
+        >>> stop_words_2 = stop_words(add='香港')
+        >>> len(stop_words_2)
+        105
+        >>> '香港' in stop_words_2
+        True
     """
     _stop_words = set(_STOP_WORDS)
     if add:

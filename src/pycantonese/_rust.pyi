@@ -33,7 +33,7 @@ class Utterance:
     tokens: list[Token]
     time_marks: tuple[int, int] | None
     tiers: dict[str, str]
-    raw: str
+    audible: str | None
     changeable_header: Any | None
 
     def __init__(
@@ -43,7 +43,7 @@ class Utterance:
         tokens: list[Token],
         time_marks: tuple[int, int] | None = None,
         tiers: dict[str, str] | None = None,
-        raw: str = "",
+        audible: str | None = None,
         changeable_header: Any | None = None,
     ) -> None: ...
     def __repr__(self) -> str: ...
@@ -58,6 +58,8 @@ class Chat:
         extension: str = ".cha",
         parallel: bool = True,
         strict: bool = True,
+        mor_tier: str | None = "%mor",
+        gra_tier: str | None = "%gra",
     ) -> Chat: ...
     @classmethod
     def from_files(
@@ -65,6 +67,8 @@ class Chat:
         paths: list[str],
         parallel: bool = True,
         strict: bool = True,
+        mor_tier: str | None = "%mor",
+        gra_tier: str | None = "%gra",
     ) -> Chat: ...
     @classmethod
     def from_strs(
@@ -73,6 +77,8 @@ class Chat:
         ids: list[str] | None = None,
         parallel: bool = True,
         strict: bool = True,
+        mor_tier: str | None = "%mor",
+        gra_tier: str | None = "%gra",
     ) -> Chat: ...
     @classmethod
     def from_zip(
@@ -82,6 +88,8 @@ class Chat:
         extension: str = ".cha",
         parallel: bool = True,
         strict: bool = True,
+        mor_tier: str | None = "%mor",
+        gra_tier: str | None = "%gra",
     ) -> Chat: ...
     @classmethod
     def from_utterances(cls, utterances: list[Utterance]) -> Chat: ...

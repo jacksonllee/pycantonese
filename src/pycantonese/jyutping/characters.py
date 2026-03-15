@@ -67,26 +67,21 @@ def characters_to_jyutping(
     data. Any unseen Cantonese character (or punctuation mark,
     for that matter) is represented by `None` in the output.
 
-    Parameters
-    ----------
-    chars : str or list[str]
-        A string of Cantonese characters, in which case word segmentation is also
-        run on this input string (by :func:`~pycantonese.segment`)
-        in order to resolve potential ambiguity in
-        mapping characters to Jyutping.
-        If you don't want word segmentation to be done, then provide a list of strings
-        instead with your desired segmentation.
+    Args:
+        chars (str or list[str]): A string of Cantonese characters, in which
+            case word segmentation is also run on this input string
+            (by :func:`~pycantonese.segment`) in order to resolve potential
+            ambiguity in mapping characters to Jyutping. If you don't want
+            word segmentation to be done, then provide a list of strings
+            instead with your desired segmentation.
 
-    Returns
-    -------
-    list[tuple[str, str]]
-        A list of segmented words, where each word is a 2-tuple of
-        (Cantonese characters, Jyutping romanization).
+    Returns:
+        list[tuple[str, str]]: A list of segmented words, where each word is
+        a 2-tuple of (Cantonese characters, Jyutping romanization).
 
-    Examples
-    --------
-    >>> characters_to_jyutping("香港人講廣東話。")  # Hongkongers speak Cantonese.
-    [('香港人', 'hoeng1gong2jan4'), ('講', 'gong2'), ('廣東話', 'gwong2dung1waa2'), ('。', None)]
+    Examples:
+        >>> characters_to_jyutping("香港人講廣東話。")  # Hongkongers speak Cantonese.
+        [('香港人', 'hoeng1gong2jan4'), ('講', 'gong2'), ('廣東話', 'gwong2dung1waa2'), ('。', None)]
     """  # noqa: E501
     if not chars:
         return []

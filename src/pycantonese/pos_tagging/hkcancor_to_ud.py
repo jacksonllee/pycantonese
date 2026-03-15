@@ -147,23 +147,19 @@ def hkcancor_to_ud(tag: str | None = None):
 
     .. versionadded:: 3.1.0
 
-    Parameters
-    ----------
-    tag : str, optional
-        A tag from the original HKCanCor annotated data.
-        If not provided or ``None``, this function returns the entire
-        dictionary of the tagset mapping from HKCanCor to UD.
+    Args:
+        tag (str, optional): A tag from the original HKCanCor annotated data.
+            If not provided or ``None``, this function returns the entire
+            dictionary of the tagset mapping from HKCanCor to UD.
 
-    Returns
-    -------
-    str or dict[str, str]
-        A tag from the Universal Dependencies v2 tagset, or a dictioary
-        from HKCanCor to UD tags if no input is given.
+    Returns:
+        str or dict[str, str]: A tag from the Universal Dependencies v2
+        tagset, or a dictioary from HKCanCor to UD tags if no input is
+        given.
 
-    Examples
-    --------
-    >>> hkcancor_to_ud("v")
-    'VERB'
+    Examples:
+        >>> hkcancor_to_ud("v")
+        'VERB'
     """
     if tag is None:
         return _MAP

@@ -262,8 +262,6 @@ Word Ngrams
 For word counts in various flavors, use the method
 :func:`~pycantonese.CHAT.word_ngrams`:
 
-.. skip: start
-
 .. code-block:: python
 
     trigrams = corpus.word_ngrams(3)  ## Trigrams
@@ -278,8 +276,6 @@ For word counts in various flavors, use the method
     #  (('𠺢', '嗎', '.'), 167),
     #  (('係', '喇', '.'), 140),
     #  (('係', '喇', ','), 134)]
-
-.. skip: end
 
 .. code-block:: python
 

@@ -13,6 +13,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Fixed
 ### Security
 
+## [4.1.0] - 2026-03-14
+
+### Added
+- `segment()` for word segmentation now takes a boolean keyword argument `offsets`
+  to optionally give the `(start, end)` indices of the segmented words.
+
+### Changed
+- Bumped rustling to >= 0.7.0, for retrieving offsets in word segmentation.
+
+### Fixed
+- `segment()` for word segmentation now splits a mixed Cantonese/English unit as separate
+  word if it's not already a recognized mixed word.
+
 ## [4.0.0] - 2026-03-07
 
 The major version bump from v3 to v4 is due to backward-incompatible yet minor

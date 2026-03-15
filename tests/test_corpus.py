@@ -34,7 +34,7 @@ def test_utterances_preserve_fields():
     utts = _HKCANCOR.utterances()
     u = utts[0]
     assert isinstance(u.participant, str)
-    assert isinstance(u.raw, str)
+    assert u.audible is None or isinstance(u.audible, str)
     assert isinstance(u.tiers, dict)
 
 

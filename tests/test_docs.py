@@ -27,11 +27,13 @@ import requests
         "https://universaldependencies.org/u/pos/index.html",
         "https://pycantonese.org/",
         "https://docs.pycantonese.org/stable/index.html",
+        "https://rustling.io",
         # Archives
         "https://jacksonllee.com/papers/lee-chen-tsui-wicl3-slides-2016-03-12.pdf",
         "https://jacksonllee.com/papers/lee-chen-tsui-wicl3-handout-2016-03-12.pdf",
         "https://jacksonllee.com/papers/Lee-pycantonese-2015.html",
         "https://jacksonllee.com/papers/pycantonese_lrec_2022-05-06.pdf",
+        "https://charles-lam.net/presentations/wicl6.html#/",
     ],
 )
 def test_urls_work(url):

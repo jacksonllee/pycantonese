@@ -284,30 +284,39 @@ pub struct Utterance {
     #[pyo3(get)]
     pub tiers: HashMap<String, String>,
     #[pyo3(get)]
-    pub raw: String,
+    pub audible: Option<String>,
     #[pyo3(get)]
     pub changeable_header: Option<PyObject>,
+    #[pyo3(get)]
+    pub mor_tier_name: Option<String>,
+    #[pyo3(get)]
+    pub gra_tier_name: Option<String>,
 }
 
 #[pymethods]
 impl Utterance {
     #[new]
-    #[pyo3(signature = (*, participant, tokens, time_marks=None, tiers=None, raw=String::new(), changeable_header=None))]
+    #[allow(clippy::too_many_arguments)]
+    #[pyo3(signature = (*, participant, tokens, time_marks=None, tiers=None, audible=None, changeable_header=None, mor_tier_name=Some("%mor".to_string()), gra_tier_name=Some("%gra".to_string())))]
     fn new(
         participant: String,
         tokens: Vec<Py<Token>>,
         time_marks: Option<(i64, i64)>,
         tiers: Option<HashMap<String, String>>,
-        raw: String,
+        audible: Option<String>,
         changeable_header: Option<PyObject>,
+        mor_tier_name: Option<String>,
+        gra_tier_name: Option<String>,
     ) -> Self {
         Self {
             participant,
             tokens,
             time_marks,
             tiers: tiers.unwrap_or_default(),
-            raw,
+            audible,
             changeable_header,
+            mor_tier_name,
+            gra_tier_name,
         }
     }
 
@@ -370,18 +379,7 @@ fn preprocess_utterance(py: Python<'_>, u: &rustling::chat::Utterance) -> PyResu
         })
         .unwrap_or_else(|| Ok(Vec::new()))?;
 
-    let raw = u
-        .tokens
-        .as_ref()
-        .map(|tokens| {
-            tokens
-                .iter()
-                .map(|t| t.word.as_str())
-                .filter(|w| !w.is_empty())
-                .collect::<Vec<_>>()
-                .join(" ")
-        })
-        .unwrap_or_default();
+    let audible = u.audible();
 
     let participant = u.participant.clone().unwrap_or_default();
     let tiers = u.tiers.clone().unwrap_or_default();
@@ -398,8 +396,10 @@ fn preprocess_utterance(py: Python<'_>, u: &rustling::chat::Utterance) -> PyResu
             tokens,
             time_marks: u.time_marks,
             tiers,
-            raw,
+            audible,
             changeable_header,
+            mor_tier_name: u.mor_tier_name.clone(),
+            gra_tier_name: u.gra_tier_name.clone(),
         },
     )
 }
@@ -490,6 +490,8 @@ fn pycantonese_utt_to_rustling(py: Python<'_>, u: &Utterance) -> PyResult<Rustli
         time_marks: u.time_marks,
         tiers,
         changeable_header,
+        mor_tier_name: u.mor_tier_name.clone(),
+        gra_tier_name: u.gra_tier_name.clone(),
     })
 }
 
@@ -498,6 +500,28 @@ fn pycantonese_utt_to_rustling(py: Python<'_>, u: &Utterance) -> PyResult<Rustli
 // ---------------------------------------------------------------------------
 
 /// Check misalignments and raise if strict mode.
+/// Convert user-facing tier names (without `%`) to internal `%`-prefixed keys.
+///
+/// If either tier is `None`, both are set to `None` (disabling mor+gra parsing).
+fn tier_keys(mor_tier: Option<&str>, gra_tier: Option<&str>) -> (Option<String>, Option<String>) {
+    match (mor_tier, gra_tier) {
+        (Some(m), Some(g)) => {
+            let mk = if m.starts_with('%') {
+                m.to_string()
+            } else {
+                format!("%{m}")
+            };
+            let gk = if g.starts_with('%') {
+                g.to_string()
+            } else {
+                format!("%{g}")
+            };
+            (Some(mk), Some(gk))
+        }
+        _ => (None, None),
+    }
+}
+
 fn check_misalignments(misalignments: &[MisalignmentInfo], strict: bool) -> PyResult<()> {
     if strict && !misalignments.is_empty() {
         let msgs: Vec<String> = misalignments
@@ -536,7 +560,7 @@ type JyutpingCache = Vec<Vec<Vec<Option<String>>>>;
 /// Implements rustling's `BaseChat` trait directly for access to shared
 /// CHAT reader behavior, and adds Cantonese-specific token preprocessing
 /// (Jyutping extraction, morphology parsing).
-#[pyclass]
+#[pyclass(subclass)]
 pub struct Chat {
     inner: RustlingChat,
     /// Cached preprocessed utterances: [file_idx][utt_idx].
@@ -657,7 +681,8 @@ impl Chat {
 
     /// Read CHAT data from a directory.
     #[classmethod]
-    #[pyo3(signature = (path, r#match=None, extension=".cha", parallel=true, strict=true))]
+    #[allow(clippy::too_many_arguments)]
+    #[pyo3(signature = (path, r#match=None, extension=".cha", parallel=true, strict=true, mor_tier=Some("%mor"), gra_tier=Some("%gra")))]
     fn from_dir(
         _cls: &Bound<'_, PyType>,
         path: &str,
@@ -665,10 +690,20 @@ impl Chat {
         extension: &str,
         parallel: bool,
         strict: bool,
+        mor_tier: Option<&str>,
+        gra_tier: Option<&str>,
     ) -> PyResult<Self> {
         let py = _cls.py();
-        let (chat, misalignments) = RustlingChat::read_dir(path, r#match, extension, parallel)
-            .map_err(chat_error_to_pyerr)?;
+        let (mor_key, gra_key) = tier_keys(mor_tier, gra_tier);
+        let (chat, misalignments) = RustlingChat::read_dir(
+            path,
+            r#match,
+            extension,
+            parallel,
+            mor_key.as_deref(),
+            gra_key.as_deref(),
+        )
+        .map_err(chat_error_to_pyerr)?;
         check_misalignments(&misalignments, strict)?;
         let result = Self {
             inner: chat,
@@ -683,16 +718,20 @@ impl Chat {
     /// Read CHAT data from file paths.
     #[classmethod]
     #[pyo3(name = "from_files")]
-    #[pyo3(signature = (paths, parallel=true, strict=true))]
+    #[pyo3(signature = (paths, parallel=true, strict=true, mor_tier=Some("%mor"), gra_tier=Some("%gra")))]
     fn read_files(
         _cls: &Bound<'_, PyType>,
         paths: Vec<String>,
         parallel: bool,
         strict: bool,
+        mor_tier: Option<&str>,
+        gra_tier: Option<&str>,
     ) -> PyResult<Self> {
         let py = _cls.py();
-        let (chat, misalignments) = RustlingChat::read_files(&paths, parallel)
-            .map_err(|e| pyo3::exceptions::PyIOError::new_err(e.to_string()))?;
+        let (mor_key, gra_key) = tier_keys(mor_tier, gra_tier);
+        let (chat, misalignments) =
+            RustlingChat::read_files(&paths, parallel, mor_key.as_deref(), gra_key.as_deref())
+                .map_err(|e| pyo3::exceptions::PyIOError::new_err(e.to_string()))?;
         check_misalignments(&misalignments, strict)?;
         let result = Self {
             inner: chat,
@@ -706,13 +745,15 @@ impl Chat {
 
     /// Read CHAT data from strings.
     #[classmethod]
-    #[pyo3(signature = (strs, ids=None, parallel=true, strict=true))]
+    #[pyo3(signature = (strs, ids=None, parallel=true, strict=true, mor_tier=Some("%mor"), gra_tier=Some("%gra")))]
     fn from_strs(
         _cls: &Bound<'_, PyType>,
         strs: Vec<String>,
         ids: Option<Vec<String>>,
         parallel: bool,
         strict: bool,
+        mor_tier: Option<&str>,
+        gra_tier: Option<&str>,
     ) -> PyResult<Self> {
         if let Some(ref ids) = ids
             && strs.len() != ids.len()
@@ -724,7 +765,9 @@ impl Chat {
             )));
         }
         let py = _cls.py();
-        let (chat, misalignments) = RustlingChat::from_strs(strs, ids, parallel);
+        let (mor_key, gra_key) = tier_keys(mor_tier, gra_tier);
+        let (chat, misalignments) =
+            RustlingChat::from_strs(strs, ids, parallel, mor_key.as_deref(), gra_key.as_deref());
         check_misalignments(&misalignments, strict)?;
         let result = Self {
             inner: chat,
@@ -738,7 +781,8 @@ impl Chat {
 
     /// Read CHAT data from a ZIP archive.
     #[classmethod]
-    #[pyo3(signature = (path, r#match=None, extension=".cha", parallel=true, strict=true))]
+    #[allow(clippy::too_many_arguments)]
+    #[pyo3(signature = (path, r#match=None, extension=".cha", parallel=true, strict=true, mor_tier=Some("%mor"), gra_tier=Some("%gra")))]
     fn from_zip(
         _cls: &Bound<'_, PyType>,
         path: &str,
@@ -746,10 +790,20 @@ impl Chat {
         extension: &str,
         parallel: bool,
         strict: bool,
+        mor_tier: Option<&str>,
+        gra_tier: Option<&str>,
     ) -> PyResult<Self> {
         let py = _cls.py();
-        let (chat, misalignments) = RustlingChat::read_zip(path, r#match, extension, parallel)
-            .map_err(chat_error_to_pyerr)?;
+        let (mor_key, gra_key) = tier_keys(mor_tier, gra_tier);
+        let (chat, misalignments) = RustlingChat::read_zip(
+            path,
+            r#match,
+            extension,
+            parallel,
+            mor_key.as_deref(),
+            gra_key.as_deref(),
+        )
+        .map_err(chat_error_to_pyerr)?;
         check_misalignments(&misalignments, strict)?;
         let result = Self {
             inner: chat,
@@ -1119,7 +1173,7 @@ impl Chat {
 
     /// Return word n-grams.
     fn word_ngrams(&self, n: usize) -> PyResult<PyNgrams> {
-        let mut counter = Ngrams::new(n, None).map_err(pyo3::exceptions::PyValueError::new_err)?;
+        let mut counter = Ngrams::new(n, None).map_err(PyErr::from)?;
         for file in self.files() {
             for utt in file.real_utterances() {
                 let words: Vec<String> = utt

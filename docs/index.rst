@@ -18,6 +18,14 @@ PyCantonese: Cantonese Linguistics and NLP in Python
         廣東話, 粵語, 粵拼, 語言學, 自然語言處理, 停用詞, 分詞, 詞性標注,
         广东话, 粤语, 粤拼, 语言学, 自然语言处理, 停用词, 分词, 词性标注
 
+.. image:: https://img.shields.io/pypi/v/pycantonese.svg
+   :target: https://pypi.org/project/pycantonese/
+   :alt: PyPI version
+
+.. image:: https://img.shields.io/conda/vn/conda-forge/pycantonese.svg
+   :target: https://anaconda.org/conda-forge/pycantonese
+   :alt: Conda version
+
 .. include:: ../README.rst
    :start-after: start-sphinx-website-index-page
    :end-before: end-sphinx-website-index-page

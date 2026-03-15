@@ -13,15 +13,18 @@ autosummary_generate = True
 
 extensions = [
     "sphinx.ext.autodoc",
+    "sphinx.ext.napoleon",
     "sphinx.ext.doctest",
     "sphinx.ext.autosummary",
     "sphinx.ext.viewcode",
     "sphinx_rtd_theme",
-    "numpydoc.numpydoc",
     "sphinx.ext.intersphinx",
     "sphinx_copybutton",
     "sphinxcontrib.googleanalytics",
 ]
+
+napoleon_google_docstring = True
+napoleon_numpy_docstring = False
 
 # See https://pypi.org/project/sphinx-sitemap/2.2.0/
 html_baseurl = "https://pycantonese.org/"
@@ -41,7 +44,6 @@ project = 'PyCantonese'
 author = 'Jackson L. Lee'
 html_author_link = author  # can't use the next line?
 # html_author_link = '<a href="https://jacksonllee.com/">{}</a>'.format(author)
-today_ = date.today()
 copyright = f'2014-{date.today().year}, {html_author_link}'
 
 # The version info for the project you're documenting, acts as replacement for

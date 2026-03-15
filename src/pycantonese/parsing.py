@@ -66,51 +66,48 @@ def parse_text(
 ) -> CHAT:
     """Parse raw Cantonese text.
 
-    Parameters
-    ----------
-    data : str or Iterable[str] or Iterable[tuple[str, str]]
-        Raw Cantonese text data, in one of the following formats:
+    Args:
+        data (str or Iterable[str] or Iterable[tuple[str, str]]):
+            Raw Cantonese text data, in one of the following formats:
 
-        - A single string, e.g.,
-          ``"廣東話好難學？都唔係吖！"`` (which would be two utterances).
-          Basic utterance segmentation
-          (i.e., splitting by the end-of-line character ``\\n``
-          or one of the Chinese full-width punctuation marks from {"。", "！", "？"})
-          will be applied to this string, and
-          each segmented utterance will be an utterance in the resulting CHAT reader.
-        - An iterable of strings, e.g.,
-          ``["廣東話好難學？", "都唔係吖！"]``.
-          No utterance segmentation will be done. Use this
-          option to pass in data that's utterance-segmented to your liking.
-        - An iterable of tuples, where each tuple has two strings, one for the
-          participant and the other for the utterance, e.g.,
-          ``[("小芬", "你食咗飯未呀？"), ("小明", "我食咗喇。")]``.
+            - A single string, e.g.,
+              ``"廣東話好難學？都唔係吖！"`` (which would be two utterances).
+              Basic utterance segmentation
+              (i.e., splitting by the end-of-line character ``\\n``
+              or one of the Chinese full-width punctuation marks from
+              {"。", "！", "？"})
+              will be applied to this string, and
+              each segmented utterance will be an utterance in the resulting
+              CHAT reader.
+            - An iterable of strings, e.g.,
+              ``["廣東話好難學？", "都唔係吖！"]``.
+              No utterance segmentation will be done. Use this
+              option to pass in data that's utterance-segmented to your liking.
+            - An iterable of tuples, where each tuple has two strings, one for
+              the participant and the other for the utterance, e.g.,
+              ``[("小芬", "你食咗飯未呀？"), ("小明", "我食咗喇。")]``.
 
-        if an empty input or ``None`` is provided,
-        then an empty :class:`~pycantonese.CHAT` instance is returned.
+            if an empty input or ``None`` is provided,
+            then an empty :class:`~pycantonese.CHAT` instance is returned.
 
-    pos_tag_kwargs : dict, optional
-        To customize part-of-speech tagging,
-        provide a dictionary here which would then be passed as keyword arguments to
-        :func:`~pycantonese.pos_tag`.
-    participant : str, optional
-        If provided, this will be the participant in the output CHAT-formatted data
-        (and will override all the particpants if your input to ``data`` is an iterable
-        of tuples).
-        If not provided, a default dummy participant ``"X"`` is used when your ``data``
-        is either a single string or an iterable of strings.
-    parallel : bool, optional
-        If ``True`` (the default), this function attempts to parallelize parsing
-        for speed-up.
-        (In case the data volume is very small, the parsing is not parallelized
-        even if you pass in ``True``.)
-        Under certain circumstances (e.g., your application is already parallelized and
-        further parallelization from within this function might be undesirable),
-        you may like to consider setting this parameter to ``False``.
+        pos_tag_kwargs (dict, optional): To customize part-of-speech tagging,
+            provide a dictionary here which would then be passed as keyword
+            arguments to :func:`~pycantonese.pos_tag`.
+        participant (str, optional): If provided, this will be the participant
+            in the output CHAT-formatted data (and will override all the
+            particpants if your input to ``data`` is an iterable of tuples).
+            If not provided, a default dummy participant ``"X"`` is used when
+            your ``data`` is either a single string or an iterable of strings.
+        parallel (bool, optional): If ``True`` (the default), this function
+            attempts to parallelize parsing for speed-up. (In case the data
+            volume is very small, the parsing is not parallelized even if you
+            pass in ``True``.) Under certain circumstances (e.g., your
+            application is already parallelized and further parallelization
+            from within this function might be undesirable), you may like to
+            consider setting this parameter to ``False``.
 
-    Returns
-    -------
-    :class:`~pycantonese.CHAT`
+    Returns:
+        :class:`~pycantonese.CHAT`
     """
 
     if not data:

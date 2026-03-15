@@ -49,16 +49,11 @@ _JYUTPING_SYLLABLE_RE = re.compile(
 class Jyutping:
     """Jyutping representation of a Chinese/Cantonese character.
 
-    Attributes
-    ----------
-    onset : str
-        Onset
-    nucleus : str
-        Nucleus
-    coda : str
-        Coda
-    tone : str
-        Tone
+    Attributes:
+        onset (str): Onset
+        nucleus (str): Nucleus
+        coda (str): Coda
+        tone (str): Tone
     """
 
     __slots__ = ("onset", "nucleus", "coda", "tone")
@@ -83,27 +78,21 @@ class Jyutping:
 def parse_jyutping(jp_str) -> list[Jyutping]:
     """Parse Jyutping romanization into onset, nucleus, coda, and tone.
 
-    Parameters
-    ----------
-    jp_str : str
-        Jyutping romanization for one or multiple characters.
+    Args:
+        jp_str (str): Jyutping romanization for one or multiple characters.
 
-    Returns
-    -------
-    list[Jyutping]
+    Returns:
+        list[Jyutping]
 
-    Raises
-    ------
-    ValueError
-        If the Jyutping romanization is illegal (e.g., with unrecognized
-        elements).
+    Raises:
+        ValueError: If the Jyutping romanization is illegal (e.g., with
+            unrecognized elements).
 
-    Examples
-    --------
-    >>> parse_jyutping("gwong2dung1waa2")  # 廣東話, Cantonese
-    [Jyutping(onset='gw', nucleus='o', coda='ng', tone='2'),
-     Jyutping(onset='d', nucleus='u', coda='ng', tone='1'),
-     Jyutping(onset='w', nucleus='aa', coda='', tone='2')]
+    Examples:
+        >>> parse_jyutping("gwong2dung1waa2")  # 廣東話, Cantonese
+        [Jyutping(onset='gw', nucleus='o', coda='ng', tone='2'),
+         Jyutping(onset='d', nucleus='u', coda='ng', tone='1'),
+         Jyutping(onset='w', nucleus='aa', coda='', tone='2')]
     """
     if not jp_str:
         return []
@@ -183,13 +172,11 @@ def _raise_detailed_error(jp: str) -> None:
 def _parse_final(final):
     """Parse a final into its nucleus and coda.
 
-    Parameters
-    ----------
-    final : str
+    Args:
+        final (str): The final to parse.
 
-    Returns
-    -------
-    tuple[str]
+    Returns:
+        tuple[str]
     """
     for i in range(1, len(final) + 1):
         possible_nucleus = final[:i]

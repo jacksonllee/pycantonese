@@ -18,6 +18,6 @@ sphinx:
 python:
     install:
     - requirements: docs/requirements.txt
-    # Install the `civis` package from the local directory.
+    # Install the package from the local directory.
     - method: pip
       path: .

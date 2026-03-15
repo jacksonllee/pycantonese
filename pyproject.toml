@@ -4,7 +4,7 @@ build-backend = "maturin"
 
 [project]
 name = "pycantonese"
-version = "4.0.0"
+version = "4.1.0"
 description = "Cantonese Linguistics and NLP in Python"
 readme = "README.rst"
 requires-python = ">= 3.10"
@@ -22,7 +22,7 @@ keywords = [
     "Chinese",
     "Jyutping",
 ]
-dependencies = ["rustling >= 0.6.0"]
+dependencies = ["rustling >= 0.7.0"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
@@ -57,19 +57,18 @@ Source = "https://github.com/jacksonllee/pycantonese"
 
 [project.optional-dependencies]
 dev = [
-    "black == 26.3.0",
-    "build == 1.4.0",
-    "flake8 == 7.3.0",
+    "black >= 26.3.0",
+    "build >= 1.4.0",
+    "flake8 >= 7.3.0",
     "maturin >= 1.0",
-    "pytest == 9.0.2",
-    "requests == 2.32.5",
-    "sybil == 9.3.0",
-    "mypy == 1.19.1",
-    "twine == 6.2.0",
+    "pytest >= 9.0.2",
+    "requests >= 2.32.5",
+    "sybil >= 9.3.0",
+    "mypy >= 1.19.1",
+    "twine >= 6.2.0",
     "pyarrow >= 18.0.0",  # For reading Parquet files in the CTCPC corpus.
 ]
 docs = [
-    "numpydoc >= 1.2",
     "Sphinx >= 4.3.0",
     "sphinx-copybutton >= 0.5.1",
     "sphinx-rtd-theme >= 1.1.0",

@@ -8,13 +8,9 @@ Full Documentation: https://pycantonese.org
 
 |
 
-.. image:: https://badge.fury.io/py/pycantonese.svg
-   :target: https://pypi.python.org/pypi/pycantonese
+.. image:: https://img.shields.io/pypi/v/pycantonese.svg
+   :target: https://pypi.org/project/pycantonese/
    :alt: PyPI version
-
-.. image:: https://img.shields.io/pypi/pyversions/pycantonese.svg
-   :target: https://pypi.python.org/pypi/pycantonese
-   :alt: Supported Python versions
 
 .. image:: https://img.shields.io/conda/vn/conda-forge/pycantonese.svg
    :target: https://anaconda.org/conda-forge/pycantonese
@@ -38,6 +34,10 @@ The design of PyCantonese prioritizes ease of use and linguistic knowledge.
 It has been successfully used by both academic and commercial organizations,
 including major US tech companies.
 
+Since v4.0.0 (March 2026), PyCantonese depends on
+`Rustling <https://rustling.io>`_, a library for efficient
+CHAT data handling, word segmentation, and part-of-speech tagging.
+
 .. _download_install:
 
 Download and Install
@@ -51,9 +51,10 @@ Using conda::
 
    conda install -c conda-forge pycantonese
 
-For Pyodide users, PyCantonese now ships a WASM wheel, attached to a
-`GitHub release <https://github.com/jacksonllee/pycantonese/releases>`_
-(find the ``.whl`` with ``emscripten`` in the name).
+For Pyodide, install the WASM wheels (the ``.whl`` files with ``emscripten`` in the filename)
+from the GitHub releases of
+`Rustling <https://github.com/jacksonllee/rustling/releases>`_ and
+`PyCantonese <https://github.com/jacksonllee/pycantonese/releases>`_.
 
 Ready for more?
 Check out the `Quickstart <https://pycantonese.org/quickstart.html>`_ page.
@@ -102,7 +103,7 @@ all of which are permissively licensed:
 - Cantonese-Traditional Chinese Parallel Corpus (CC0 1.0 Universal)
 
 For details about these datasets,
-please see `src/pycantonese/data <https://github.com/jacksonllee/pycantonese/tree/main/src/pycantonese/data>`_.
+please see `their documentation <https://github.com/jacksonllee/pycantonese/tree/main/src/pycantonese/data>`_.
 
 Logo
 ----

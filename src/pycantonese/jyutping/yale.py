@@ -58,37 +58,30 @@ CODAS_YALE = {
 def jyutping_to_yale(jp_str, return_as="list"):
     """Convert Jyutping romanization into Yale romanization.
 
-    Parameters
-    ----------
-    jp_str : str
-        Jyutping romanization for one or multiple characters
-    return_as : str, optional
-        If ``"list"`` (the default), the returned value is a list of strings.
-        If ``"string"``, the output is a string with a single quote
-        ``'`` to disambiguate unclear syllable boundaries (e.g., a consonant
-        or the low-tone marker "h" being ambiguous as an onset or as
-        part of the previous syllable).
+    Args:
+        jp_str (str): Jyutping romanization for one or multiple characters.
+        return_as (str, optional): If ``"list"`` (the default), the returned
+            value is a list of strings. If ``"string"``, the output is a
+            string with a single quote ``'`` to disambiguate unclear syllable
+            boundaries (e.g., a consonant or the low-tone marker "h" being
+            ambiguous as an onset or as part of the previous syllable).
 
-    Returns
-    -------
-    list[str], or str if return_as is "string"
+    Returns:
+        list[str], or str if return_as is "string"
 
-    Raises
-    ------
-    ValueError
-        If the Jyutping romanization is illegal (e.g., with unrecognized
-        elements).
+    Raises:
+        ValueError: If the Jyutping romanization is illegal (e.g., with
+            unrecognized elements).
 
-    Examples
-    --------
-    >>> jyutping_to_yale("gwong2dung1waa2")  # 廣東話, Cantonese
-    ['gwóng', 'dūng', 'wá']
-    >>> jyutping_to_yale("gwong2dung1waa2", return_as="string")
-    'gwóngdūngwá'
-    >>>
-    >>> # 'heihauh' would be ambiguous between hei3hau6 and hei6au6.
-    >>> jyutping_to_yale("hei3hau6", return_as="string")  # 氣候, climate
-    "hei'hauh"
+    Examples:
+        >>> jyutping_to_yale("gwong2dung1waa2")  # 廣東話, Cantonese
+        ['gwóng', 'dūng', 'wá']
+        >>> jyutping_to_yale("gwong2dung1waa2", return_as="string")
+        'gwóngdūngwá'
+        >>>
+        >>> # 'heihauh' would be ambiguous between hei3hau6 and hei6au6.
+        >>> jyutping_to_yale("hei3hau6", return_as="string")  # 氣候, climate
+        "hei'hauh"
     """
     jp_parsed_list = parse_jyutping(jp_str)
     yale_list = []

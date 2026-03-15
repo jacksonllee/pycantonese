@@ -41,7 +41,7 @@ if __name__ == "__main__":
     # Phase 1: Supervised fit with HKCanCor + rime-cantonese.
     logging.info("Phase 1: Supervised fit...")
     sents = _get_segmented_sents(segmenter)
-    segmenter.fit(sents)
+    segmenter.fit_segmented(sents)
 
     # Phase 2: Unsupervised EM refinement.
     logging.info("Phase 2: Unsupervised EM refinement...")
