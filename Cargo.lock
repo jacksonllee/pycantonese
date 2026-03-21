@@ -570,6 +570,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "quick-xml"
+version = "0.39.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "958f21e8e7ceb5a1aa7fa87fab28e7c75976e0bfe7e23ff069e0a260f894067d"
+dependencies = [
+ "memchr",
+ "serde",
+]
+
+[[package]]
 name = "quote"
 version = "1.0.45"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -673,13 +683,14 @@ dependencies = [
 
 [[package]]
 name = "rustling"
-version = "0.7.0"
+version = "0.8.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bbb69ffa8ebb242c03271ea14ef4811c3fe01a8c55a48e2a66d152e6de2da125"
+checksum = "a7391a17d28510b08a73cb1ca246539169f571575e5c62cb4dd4ae6ed5a239c3"
 dependencies = [
  "fancy-regex",
  "flatbuffers",
  "pyo3",
+ "quick-xml",
  "rand",
  "rayon",
  "regex",

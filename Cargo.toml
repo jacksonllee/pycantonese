@@ -10,7 +10,7 @@ path = "src/rust/lib.rs"
 
 [dependencies]
 pyo3 = { version = "0.28", features = ["abi3-py310"] }
-rustling = { version = "0.7.0", default-features = false, features = ["pyo3"] }
+rustling = { version = "0.8.0", default-features = false, features = ["pyo3"] }
 regex = "1"
 
 [features]
