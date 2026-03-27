@@ -51,13 +51,11 @@ Using conda::
 
    conda install -c conda-forge pycantonese
 
-For Pyodide, install the WASM wheels (the ``.whl`` files with ``emscripten`` in the filename)
-from the GitHub releases of
-`Rustling <https://github.com/jacksonllee/rustling/releases>`_ and
-`PyCantonese <https://github.com/jacksonllee/pycantonese/releases>`_.
+PyCantonese also works
+`in JavaScript <https://docs.pycantonese.org/stable/quickstart.html#javascript>`_.
 
 Ready for more?
-Check out the `Quickstart <https://pycantonese.org/quickstart.html>`_ page.
+Check out `Quickstart <https://docs.pycantonese.org/stable/quickstart.html>`_.
 
 Links
 -----
@@ -98,6 +96,7 @@ Please note that PyCantonese includes data from the following sources,
 all of which are permissively licensed:
 
 - Hong Kong Cantonese Corpus (CC BY)
+- CantoMap (GPL-3.0)
 - rime-cantonese (CC BY 4.0)
 - Common Voice Cantonese (Mozilla Public License 2.0)
 - Cantonese-Traditional Chinese Parallel Corpus (CC0 1.0 Universal)

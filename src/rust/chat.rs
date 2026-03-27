@@ -545,6 +545,7 @@ fn chat_error_to_pyerr(e: ChatError) -> pyo3::PyErr {
         ChatError::Io(e) => pyo3::exceptions::PyIOError::new_err(e.to_string()),
         ChatError::InvalidPattern(e) => pyo3::exceptions::PyValueError::new_err(e),
         ChatError::Zip(e) => pyo3::exceptions::PyIOError::new_err(e),
+        ChatError::Source(e) => pyo3::exceptions::PyIOError::new_err(e.to_string()),
     }
 }
 
@@ -1028,42 +1029,27 @@ impl Chat {
         self.to_strings()
     }
 
-    /// Write the data to CHAT file(s).
-    #[pyo3(signature = (path, *, is_dir=false, filenames=None))]
-    fn to_chat(&self, path: &str, is_dir: bool, filenames: Option<Vec<String>>) -> PyResult<()> {
+    /// Write CHAT (.cha) files to a directory.
+    #[pyo3(signature = (dir_path, /, *, filenames=None))]
+    fn to_files(&self, dir_path: &str, filenames: Option<Vec<String>>) -> PyResult<()> {
         let strs = self.to_strings();
-        if !is_dir {
-            if strs.len() > 1 {
-                return Err(pyo3::exceptions::PyValueError::new_err(
-                    "Multiple files in this reader. Use is_dir=True to write to a directory.",
-                ));
-            }
-            if let Some(s) = strs.first() {
-                std::fs::write(path, s).map_err(|e| {
-                    pyo3::exceptions::PyIOError::new_err(format!("Write error: {e}"))
-                })?;
-            }
-        } else {
-            std::fs::create_dir_all(path).map_err(|e| {
-                pyo3::exceptions::PyIOError::new_err(format!("Create dir error: {e}"))
-            })?;
-            let names: Vec<String> = filenames.unwrap_or_else(|| {
-                self.files()
-                    .iter()
-                    .map(|f| {
-                        std::path::Path::new(&f.file_path)
-                            .file_name()
-                            .map(|n| n.to_string_lossy().to_string())
-                            .unwrap_or_else(|| f.file_path.clone())
-                    })
-                    .collect()
-            });
-            for (s, name) in strs.iter().zip(names.iter()) {
-                let file_path = std::path::Path::new(path).join(name);
-                std::fs::write(&file_path, s).map_err(|e| {
-                    pyo3::exceptions::PyIOError::new_err(format!("Write error: {e}"))
-                })?;
-            }
+        std::fs::create_dir_all(dir_path)
+            .map_err(|e| pyo3::exceptions::PyIOError::new_err(format!("Create dir error: {e}")))?;
+        let names: Vec<String> = filenames.unwrap_or_else(|| {
+            self.files()
+                .iter()
+                .map(|f| {
+                    std::path::Path::new(&f.file_path)
+                        .file_name()
+                        .map(|n| n.to_string_lossy().to_string())
+                        .unwrap_or_else(|| f.file_path.clone())
+                })
+                .collect()
+        });
+        for (s, name) in strs.iter().zip(names.iter()) {
+            let file_path = std::path::Path::new(dir_path).join(name);
+            std::fs::write(&file_path, s)
+                .map_err(|e| pyo3::exceptions::PyIOError::new_err(format!("Write error: {e}")))?;
         }
         Ok(())
     }

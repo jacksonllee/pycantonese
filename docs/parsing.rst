@@ -42,7 +42,7 @@ Note:
   :func:`~pycantonese.CHAT.utterances`, :func:`~pycantonese.CHAT.search`, etc).
 * Since CHAT is designed for conversational data and your input data is a string,
   :func:`~pycantonese.parse_text` attempts simple utterance segmentation
-  (by the Chinese full-width punctuation marks ``{"，", "！", "。"}``
+  (by the Chinese full-width punctuation marks ``{"。", "！", "？"}``
   as well as the end-of-line character ``"\n"``).
 * By default, a dummy participant ``"X"`` is assigned to each utterance.
   To provide your own participant, pass it to the ``participant`` keyword argument of
@@ -143,20 +143,15 @@ This way, you can more easily share the processed data with your colleagues,
 reload the data (see :ref:`data`) for further processing and analysis in your workflow,
 and so forth.
 
-With a :class:`~pycantonese.CHAT` object, simply call the :func:`~pycantonese.CHAT.to_chat`
-method with a local file path.
+With a :class:`~pycantonese.CHAT` object, simply call the :func:`~pycantonese.CHAT.to_files`
+method with a local directory path.
 
 .. skip: start
 
 .. code-block:: python
 
-    file_path = "result.cha"
-    corpus.to_chat(file_path)
-
-    # If you're running code on Google Colab,
-    # you can download the file like this:
-    from google.colab import files
-    files.download(file_path)
+    dir_path = "output"
+    corpus.to_files(dir_path)
 
 .. skip: end
 

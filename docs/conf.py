@@ -91,5 +91,5 @@ googleanalytics_id = "UA-181803559"
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {
     "python": ('https://docs.python.org/3/', None),
-    "rustling": ("https://rustling.readthedocs.io/stable/", None),
+    "rustling": ("https://docs.rustling.io/stable/", None),
 }

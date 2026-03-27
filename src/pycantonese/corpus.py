@@ -196,6 +196,116 @@ class CHAT:
         )
 
     @classmethod
+    def from_git(
+        cls,
+        url: str,
+        *,
+        rev: str | None = None,
+        depth: int | None = None,
+        match: str | None = None,
+        extension=".cha",
+        cache_dir: str | os.PathLike[str] | None = None,
+        force_download=False,
+        parallel=True,
+        strict=True,
+        mor_tier="%mor",
+        gra_tier="%gra",
+    ):
+        """Read CHAT data from a Git repository.
+
+        Args:
+            url (str): URL of the Git repository.
+            rev (str, optional): Git revision (branch, tag, or commit hash).
+            depth (int, optional): Clone depth for shallow clones.
+            match (str, optional): Glob pattern to match filenames within
+                the repository.
+            extension (str, optional): File extension to match.
+                Default is ``".cha"``.
+            cache_dir (str or os.PathLike[str], optional): Directory to cache
+                the cloned repository.
+            force_download (bool, optional): If True, force re-download
+                even if cached.
+            parallel (bool, optional): If True, parse files in parallel.
+            strict (bool, optional): If True, enforce strict parsing.
+            mor_tier (str or None, optional): Name of the dependent tier to treat
+                as the morphology tier, e.g. ``"%mor"`` or ``"%xmor"``. Default is
+                ``"%mor"``. Set to None to disable mor+gra handling.
+            gra_tier (str or None, optional): Name of the dependent tier to treat
+                as the grammatical relation tier, e.g. ``"%gra"`` or ``"%xgra"``.
+                Default is ``"%gra"``. Set to None to disable mor+gra handling.
+
+        Returns:
+            :class:`~pycantonese.CHAT`
+        """
+        return cls(
+            _RustChat.from_git(
+                url,
+                rev=rev,
+                depth=depth,
+                match=match,
+                extension=extension,
+                cache_dir=os.fspath(cache_dir) if cache_dir is not None else None,
+                force_download=force_download,
+                parallel=parallel,
+                strict=strict,
+                mor_tier=mor_tier,
+                gra_tier=gra_tier,
+            )
+        )
+
+    @classmethod
+    def from_url(
+        cls,
+        url: str,
+        *,
+        match: str | None = None,
+        extension=".cha",
+        cache_dir: str | os.PathLike[str] | None = None,
+        force_download=False,
+        parallel=True,
+        strict=True,
+        mor_tier="%mor",
+        gra_tier="%gra",
+    ):
+        """Read CHAT data from a URL pointing to a ZIP archive.
+
+        Args:
+            url (str): URL of the ZIP archive.
+            match (str, optional): Glob pattern to match filenames within
+                the archive.
+            extension (str, optional): File extension to match.
+                Default is ``".cha"``.
+            cache_dir (str or os.PathLike[str], optional): Directory to cache
+                the downloaded archive.
+            force_download (bool, optional): If True, force re-download
+                even if cached.
+            parallel (bool, optional): If True, parse files in parallel.
+            strict (bool, optional): If True, enforce strict parsing.
+            mor_tier (str or None, optional): Name of the dependent tier to treat
+                as the morphology tier, e.g. ``"%mor"`` or ``"%xmor"``. Default is
+                ``"%mor"``. Set to None to disable mor+gra handling.
+            gra_tier (str or None, optional): Name of the dependent tier to treat
+                as the grammatical relation tier, e.g. ``"%gra"`` or ``"%xgra"``.
+                Default is ``"%gra"``. Set to None to disable mor+gra handling.
+
+        Returns:
+            :class:`~pycantonese.CHAT`
+        """
+        return cls(
+            _RustChat.from_url(
+                url,
+                match=match,
+                extension=extension,
+                cache_dir=os.fspath(cache_dir) if cache_dir is not None else None,
+                force_download=force_download,
+                parallel=parallel,
+                strict=strict,
+                mor_tier=mor_tier,
+                gra_tier=gra_tier,
+            )
+        )
+
+    @classmethod
     def from_utterances(cls, utterances):
         """Construct a CHAT reader from a list of utterances.
 
@@ -423,15 +533,14 @@ class CHAT:
         """
         return self._chat.to_strs()
 
-    def to_chat(self, path: str | os.PathLike[str], *, is_dir=False, filenames=None):
-        """Write the data to CHAT file(s).
+    def to_files(self, dir_path: str | os.PathLike[str], *, filenames=None):
+        """Write CHAT (.cha) files to a directory.
 
         Args:
-            path (str or os.PathLike[str]): Output path.
-            is_dir (bool, optional): If True, write each file to a directory.
+            dir_path (str or os.PathLike[str]): Output directory path.
             filenames (list[str], optional): Filenames for each file.
         """
-        self._chat.to_chat(os.fspath(path), is_dir=is_dir, filenames=filenames)
+        self._chat.to_files(os.fspath(dir_path), filenames=filenames)
 
     @property
     def n_files(self):
@@ -502,6 +611,18 @@ def hkcancor() -> CHAT:
         :class:`~pycantonese.CHAT`
     """
     data_dir = os.path.join(os.path.dirname(__file__), "data", "hkcancor")
+    chat = _RustChat.from_dir(data_dir, parallel=not _IS_WASM)
+    return CHAT(chat)
+
+
+@functools.lru_cache(maxsize=1)
+def cantomap() -> CHAT:
+    """Create a corpus object for the CantoMap corpus.
+
+    Returns:
+        :class:`~pycantonese.CHAT`
+    """
+    data_dir = os.path.join(os.path.dirname(__file__), "data", "cantomap", "extracted")
     chat = _RustChat.from_dir(data_dir, parallel=not _IS_WASM)
     return CHAT(chat)
 

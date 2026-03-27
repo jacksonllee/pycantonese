@@ -60,11 +60,11 @@ def test_from_files_with_path():
     assert reader.n_files == len(paths)
 
 
-def test_to_chat_with_path(tmp_path):
+def test_to_files(tmp_path):
     reader = CHAT.from_strs(["@UTF8\n@Begin\n@End\n"], strict=False)
-    out = tmp_path / "output.cha"
-    reader.to_chat(out)
-    reader2 = CHAT.from_files([out])
+    out = tmp_path / "output"
+    reader.to_files(out)
+    reader2 = CHAT.from_dir(out)
     assert reader2.words() == reader.words()
 
 

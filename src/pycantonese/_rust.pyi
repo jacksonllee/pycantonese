@@ -92,6 +92,36 @@ class Chat:
         gra_tier: str | None = "%gra",
     ) -> Chat: ...
     @classmethod
+    def from_git(
+        cls,
+        url: str,
+        *,
+        rev: str | None = None,
+        depth: int | None = None,
+        match: str | None = None,
+        extension: str = ".cha",
+        cache_dir: str | None = None,
+        force_download: bool = False,
+        parallel: bool = True,
+        strict: bool = True,
+        mor_tier: str | None = "%mor",
+        gra_tier: str | None = "%gra",
+    ) -> Chat: ...
+    @classmethod
+    def from_url(
+        cls,
+        url: str,
+        *,
+        match: str | None = None,
+        extension: str = ".cha",
+        cache_dir: str | None = None,
+        force_download: bool = False,
+        parallel: bool = True,
+        strict: bool = True,
+        mor_tier: str | None = "%mor",
+        gra_tier: str | None = "%gra",
+    ) -> Chat: ...
+    @classmethod
     def from_utterances(cls, utterances: list[Utterance]) -> Chat: ...
     def tokens(self, *, by_utterance: bool = False, by_file: bool = False) -> Any: ...
     def jyutping(self, *, by_utterance: bool = False, by_file: bool = False) -> Any: ...
@@ -105,11 +135,11 @@ class Chat:
         self, *, participants: str | None = None, files: str | None = None
     ) -> Chat: ...
     def to_strs(self) -> list[str]: ...
-    def to_chat(
+    def to_files(
         self,
-        path: str,
+        dir_path: str,
+        /,
         *,
-        is_dir: bool = False,
         filenames: list[str] | None = None,
     ) -> None: ...
     def append(self, other: Chat) -> None: ...

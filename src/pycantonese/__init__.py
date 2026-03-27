@@ -1,6 +1,6 @@
 from importlib.metadata import version
 
-from pycantonese.corpus import hkcancor, read_chat, CHAT
+from pycantonese.corpus import cantomap, hkcancor, read_chat, CHAT
 from pycantonese.jyutping.characters import characters_to_jyutping
 from pycantonese.jyutping.parse_jyutping import parse_jyutping
 from pycantonese.jyutping.ipa import jyutping_to_ipa
@@ -16,6 +16,7 @@ __version__ = version("pycantonese")
 __all__ = [
     "__version__",
     "parse_text",
+    "cantomap",
     "CHAT",
     "characters_to_jyutping",
     "hkcancor",

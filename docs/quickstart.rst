@@ -62,3 +62,102 @@ No errors? Great! Now you're ready to proceed.
 
 Looking for more functionality?
 Please use the documentation menu on the left.
+
+.. _javascript:
+
+Using PyCantonese in JavaScript
+-------------------------------
+
+PyCantonese can run entirely in the browser or in Node.js via
+`Pyodide <https://pyodide.org>`_, a Python runtime compiled to WebAssembly.
+This means you can use PyCantonese without a server-side Python backend.
+
+**Setup**
+
+WASM wheels are attached to each GitHub release of
+`Rustling <https://github.com/jacksonllee/rustling/releases>`_ and
+`PyCantonese <https://github.com/jacksonllee/pycantonese/releases>`_
+(the ``.whl`` files with ``emscripten`` in the filename).
+PyCantonese depends on Rustling, so both wheels are needed.
+Install them directly from the GitHub release URLs using ``micropip``.
+
+**Browser example**
+
+.. code-block:: html
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <script src="https://cdn.jsdelivr.net/pyodide/v0.27.5/full/pyodide.js"></script>
+    </head>
+    <body>
+      <script>
+        async function main() {
+          const pyodide = await loadPyodide();
+
+          // Update these version numbers as needed.
+          const RUSTLING_VERSION = "0.8.0";
+          const PYCANTONESE_VERSION = "4.2.0";
+          const EMSCRIPTEN_TAG = "cp310-abi3-emscripten_4_0_9_wasm32";
+
+          await pyodide.loadPackage("micropip");
+          const micropip = pyodide.pyimport("micropip");
+          await micropip.install(
+            `https://github.com/jacksonllee/rustling/releases/download/v${RUSTLING_VERSION}/rustling-${RUSTLING_VERSION}-${EMSCRIPTEN_TAG}.whl`
+          );
+          await micropip.install(
+            `https://github.com/jacksonllee/pycantonese/releases/download/v${PYCANTONESE_VERSION}/pycantonese-${PYCANTONESE_VERSION}-${EMSCRIPTEN_TAG}.whl`
+          );
+
+          // Use PyCantonese from JavaScript.
+          const result = pyodide.runPython(`
+            import pycantonese
+            print(pycantonese.characters_to_jyutping("香港人講廣東話"))
+          `);
+        }
+        main();
+      </script>
+    </body>
+    </html>
+
+**Node.js example**
+
+.. code-block:: javascript
+
+    const { loadPyodide } = require("pyodide");
+
+    async function main() {
+      const pyodide = await loadPyodide();
+      await pyodide.loadPackage("micropip");
+      const micropip = pyodide.pyimport("micropip");
+
+      // Update these version numbers as needed.
+      const RUSTLING_VERSION = "0.8.0";
+      const PYCANTONESE_VERSION = "4.2.0";
+      const EMSCRIPTEN_TAG = "cp310-abi3-emscripten_4_0_9_wasm32";
+
+      await micropip.install(
+        `https://github.com/jacksonllee/rustling/releases/download/v${RUSTLING_VERSION}/rustling-${RUSTLING_VERSION}-${EMSCRIPTEN_TAG}.whl`
+      );
+      await micropip.install(
+        `https://github.com/jacksonllee/pycantonese/releases/download/v${PYCANTONESE_VERSION}/pycantonese-${PYCANTONESE_VERSION}-${EMSCRIPTEN_TAG}.whl`
+      );
+
+      const jyutping = pyodide.runPython(`
+        import pycantonese
+        pycantonese.characters_to_jyutping("香港人講廣東話")
+      `);
+      console.log(jyutping.toJs());
+      // [['香港人', 'hoeng1gong2jan4'], ['講', 'gong2'], ['廣東話', 'gwong2dung1waa2']]
+    }
+
+    main();
+
+**Notes**
+
+- The URLs contain version numbers. Update them when using a different release.
+- Parallelization is automatically disabled in the Pyodide environment,
+  since WebAssembly does not support multithreading.
+  Single-threaded performance is otherwise the same.
+- All PyCantonese functions (word segmentation, Jyutping conversion, corpus access, etc.)
+  are available in Pyodide.

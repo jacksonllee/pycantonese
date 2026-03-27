@@ -11,23 +11,22 @@ import requests
     [
         "https://talkbank.org/",
         "https://talkbank.org/0info/manuals/CHAT.pdf",
-        "https://childes.talkbank.org/access/Biling/CHCC.html",
-        "https://childes.talkbank.org/access/Biling/Guthrie.html",
-        "https://childes.talkbank.org/access/Chinese/Cantonese/HKU.html",
-        "https://childes.talkbank.org/access/Chinese/Cantonese/LeeWongLeung.html",
+        "https://talkbank.org/childes/access/Biling/CHCC.html",
+        "https://talkbank.org/childes/access/Biling/Guthrie.html",
+        "https://talkbank.org/childes/access/Chinese/Cantonese/HKU.html",
+        "https://talkbank.org/childes/access/Chinese/Cantonese/LeeWongLeung.html",
         "https://talkbank.org/childes/access/Biling/EACMC.html",
-        "https://childes.talkbank.org/access/Biling/YipMatthews.html",
-        "https://pylangacq.org/",
-        "https://docs.pylangacq.org/stable/read.html",
-        "https://docs.pylangacq.org/stable/headers.html",
-        "https://docs.pylangacq.org/stable/transcriptions.html",
+        "https://talkbank.org/childes/access/Biling/YipMatthews.html",
+        "https://docs.rustling.io/stable/",
+        "https://docs.rustling.io/stable/chat.html",
+        "https://docs.rustling.io/stable/chat/transcriptions.html#chat-format",
+        "https://docs.rustling.io/stable/chat/headers.html",
         "https://docs.python.org/3/library/re.html",
         "https://lshk.org/jyutping-scheme/",
         "https://www.ctan.org/pkg/tipa?lang=en",
         "https://universaldependencies.org/u/pos/index.html",
-        "https://pycantonese.org/",
-        "https://docs.pycantonese.org/stable/index.html",
-        "https://rustling.io",
+        "https://docs.pycantonese.org/stable/index.html#links",
+        "https://pyodide.org",
         # Archives
         "https://jacksonllee.com/papers/lee-chen-tsui-wicl3-slides-2016-03-12.pdf",
         "https://jacksonllee.com/papers/lee-chen-tsui-wicl3-handout-2016-03-12.pdf",
@@ -46,12 +45,16 @@ def test_urls_work(url):
     "url",
     [
         "https://github.com/fcbond/hkcancor",
+        "https://github.com/gwinterstein/CantoMap",
         "https://github.com/jacksonllee/pycantonese/blob/main/src/pycantonese/data/hkcancor/README.md",  # noqa: E501
+        # "https://github.com/jacksonllee/pycantonese/blob/main/src/pycantonese/data/cantomap/README.md",  # noqa: E501
         "https://github.com/jacksonllee/pycantonese/blob/main/docs/tutorials/lee-pycantonese-2021-05-16.ipynb",  # noqa: E501
         "https://github.com/jacksonllee/pycantonese/blob/main/docs/tutorials/lee-python-2021-april.ipynb",  # noqa: E501
         "https://github.com/chaaklau/school-of-cantonese-2021-materials/blob/main/chaak_sfp_2021_05_16.ipynb",  # noqa: E501
         "https://github.com/charlestklam/school-of-cantonese-studies-2021/blob/main/Multiword_Expressions_Discontinuous_Constructions.ipynb",  # noqa: E501
         "https://github.com/jacksonllee/pycantonese/blob/main/docs/tutorials/lee-cantonese-childes-2022-05-27.ipynb",  # noqa: E501
+        "https://github.com/jacksonllee/rustling/releases",
+        "https://github.com/jacksonllee/pycantonese/releases",
         "https://gist.github.com/chaaklau/74444ef3b0c56c720148b730025fd57f",
     ],
 )

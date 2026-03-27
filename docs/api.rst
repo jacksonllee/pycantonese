@@ -14,6 +14,7 @@ Corpus Data
 
     read_chat
     hkcancor
+    cantomap
     CHAT
     CHAT.search
 
@@ -56,6 +57,12 @@ Natural Language Processing
 ----------------------------------
 
 .. autoclass:: pycantonese.corpus.Token
+
+
+:class:`~pycantonese.corpus.Utterance`
+--------------------------------------
+
+.. autoclass:: pycantonese.corpus.Utterance
 
 
 :class:`~pycantonese.jyutping.Jyutping`

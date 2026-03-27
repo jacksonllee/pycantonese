@@ -15,3 +15,6 @@ docs/generated/
 
 # Benchmarks
 benchmarks/_baseline/
+
+# From maturin develop
+src/pycantonese/lib_pycantonese.dylib.dSYM/

@@ -31,9 +31,9 @@ In contrast, many CHILDES and TalkBank datasets have their participants identifi
 By convention, the target child's code is ``CHI``, the child's mother's ``MOT``,
 and the child's father's ``FAT``.
 
-Since PyCantonese uses Rustling/PyLangAcq to parse CHAT data files,
+Since PyCantonese uses Rustling to parse CHAT data files,
 the way in which header information is accessed is identical between the
-two packages. Please see `PyLangAcq's documentation on headers <https://docs.pylangacq.org/stable/headers.html>`_.
+two packages. Please see `Rustling's documentation on headers <https://docs.rustling.io/stable/chat/headers.html>`_.
 
 To see how a header from HKCanCor translates
 to its representation in PyCantonese,
@@ -61,7 +61,7 @@ the ordering in ``yue , eng`` is meaningful).
 
 Through the corpus reader object ``corpus`` we've just created,
 we see the same information by calling the method :func:`~pycantonese.CHAT.headers`
-(which returns a list of dicts; ``[0]`` gets the first dict that
+(which returns a list of :class:`~rustling.chat.Headers` objects; ``[0]`` gets the first one that
 corresponds to ``FC-001_v2.cha``):
 
 .. code-block:: python

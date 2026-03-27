@@ -13,6 +13,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Fixed
 ### Security
 
+## [4.2.0] - 2026-03-27
+
+### Added
+- Added the CantoMap corpus.
+- Added `from_git` and `from_url` to `CHAT` to support fetching datasets from remote sources.
+
+### Changed
+- Bumped rustling to >= 0.8.0.
+
 ## [4.1.0] - 2026-03-14
 
 ### Added

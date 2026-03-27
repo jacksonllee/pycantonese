@@ -4,7 +4,7 @@ build-backend = "maturin"
 
 [project]
 name = "pycantonese"
-version = "4.1.0"
+version = "4.2.0"
 description = "Cantonese Linguistics and NLP in Python"
 readme = "README.rst"
 requires-python = ">= 3.10"
@@ -22,7 +22,7 @@ keywords = [
     "Chinese",
     "Jyutping",
 ]
-dependencies = ["rustling >= 0.7.0"]
+dependencies = ["rustling >= 0.8.0"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
