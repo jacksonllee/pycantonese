@@ -206,7 +206,7 @@ jobs:
         uses: Swatinem/rust-cache@v2
 
       - name: Install Emscripten SDK
-        uses: mymindstorm/setup-emsdk@v14
+        uses: mymindstorm/setup-emsdk@v16
         with:
           version: "4.0.9"
           actions-cache-folder: emsdk-cache
