@@ -18,7 +18,7 @@ Full Documentation: https://pycantonese.org
 
 |
 
-.. start-sphinx-website-index-page
+.. start-sphinx-website-index-page-part-1
 
 PyCantonese is a Python library for Cantonese linguistics and natural language
 processing (NLP). Currently implemented features:
@@ -38,6 +38,8 @@ Since v4.0.0 (March 2026), PyCantonese depends on
 `Rustling <https://rustling.io>`_, a library for efficient
 CHAT data handling, word segmentation, and part-of-speech tagging.
 
+.. end-sphinx-website-index-page-part-1
+
 .. _download_install:
 
 Download and Install
@@ -56,6 +58,8 @@ PyCantonese also works
 
 Ready for more?
 Check out `Quickstart <https://docs.pycantonese.org/stable/quickstart.html>`_.
+
+.. start-sphinx-website-index-page-part-2
 
 Links
 -----
@@ -110,4 +114,4 @@ Logo
 The PyCantonese logo is the Chinese character 粵 meaning Cantonese,
 with artistic design by albino.snowman (Instagram handle).
 
-.. end-sphinx-website-index-page
+.. end-sphinx-website-index-page-part-2

@@ -12,6 +12,7 @@ docutils==0.22.4
     # via
     #   sphinx
     #   sphinx-rtd-theme
+    #   sphinx-tabs
 idna==3.13
     # via requests
 imagesize==2.0.0
@@ -23,7 +24,9 @@ markupsafe==3.0.3
 packaging==26.2
     # via sphinx
 pygments==2.20.0
-    # via sphinx
+    # via
+    #   sphinx
+    #   sphinx-tabs
 requests==2.33.1
     # via sphinx
 roman-numerals==4.1.0
@@ -37,11 +40,14 @@ sphinx==9.1.0
     #   pycantonese (pyproject.toml)
     #   sphinx-copybutton
     #   sphinx-rtd-theme
+    #   sphinx-tabs
     #   sphinxcontrib-googleanalytics
     #   sphinxcontrib-jquery
 sphinx-copybutton==0.5.2
     # via pycantonese (pyproject.toml)
 sphinx-rtd-theme==3.1.0
+    # via pycantonese (pyproject.toml)
+sphinx-tabs==3.5.0
     # via pycantonese (pyproject.toml)
 sphinxcontrib-applehelp==2.0.0
     # via sphinx
@@ -59,5 +65,5 @@ sphinxcontrib-qthelp==2.0.0
     # via sphinx
 sphinxcontrib-serializinghtml==2.0.0
     # via sphinx
-urllib3==2.6.3
+urllib3==2.7.0
     # via requests

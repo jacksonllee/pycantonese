@@ -30,8 +30,42 @@ PyCantonese: Cantonese Linguistics and NLP in Python
    :alt: Conda version
 
 .. include:: ../README.rst
-   :start-after: start-sphinx-website-index-page
-   :end-before: end-sphinx-website-index-page
+   :start-after: start-sphinx-website-index-page-part-1
+   :end-before: end-sphinx-website-index-page-part-1
+
+Download and Install
+--------------------
+
+PyCantonese is available through Python and JavaScript.
+
+.. tabs::
+
+   .. tab:: pip
+
+      .. code-block:: bash
+
+         pip install pycantonese
+
+   .. tab:: uv
+
+      .. code-block:: bash
+
+         uv add pycantonese
+
+   .. tab:: conda
+
+      .. code-block:: bash
+
+         conda install -c conda-forge pycantonese
+
+   .. tab:: JavaScript
+
+      To use PyCantonese from JavaScript,
+      `install it via Pyodide <https://docs.pycantonese.org/stable/quickstart.html#javascript>`_.
+
+.. include:: ../README.rst
+   :start-after: start-sphinx-website-index-page-part-2
+   :end-before: end-sphinx-website-index-page-part-2
 
 Table of Contents
 -----------------

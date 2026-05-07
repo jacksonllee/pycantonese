@@ -20,6 +20,7 @@ extensions = [
     "sphinx_rtd_theme",
     "sphinx.ext.intersphinx",
     "sphinx_copybutton",
+    "sphinx_tabs.tabs",
     "sphinxcontrib.googleanalytics",
 ]
 
