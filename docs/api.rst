@@ -31,6 +31,13 @@ Jyutping Romanization
     jyutping_to_yale
     jyutping_to_tipa
 
+Grapheme-to-Phoneme Conversion
+------------------------------
+
+.. autosummary::
+    :toctree: generated
+
+    g2p
 
 Natural Language Processing
 ---------------------------

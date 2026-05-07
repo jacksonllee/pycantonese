@@ -124,6 +124,10 @@ def jyutping_to_ipa(
         ["tʃ'i55"]
         >>> jyutping_to_ipa('ci1', tones={'1': "˥"})
         ['tsʰi˥']
+
+    See Also:
+        :func:`~pycantonese.g2p`: One-shot grapheme-to-phoneme conversion that
+        composes :func:`~pycantonese.characters_to_jyutping` with this function.
     """
     jp_parsed_list = parse_jyutping(jp_str)
     ipa_list = []

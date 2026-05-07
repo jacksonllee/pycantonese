@@ -2,6 +2,7 @@ from importlib.metadata import version
 
 from pycantonese.corpus import cantomap, hkcancor, read_chat, CHAT
 from pycantonese.jyutping.characters import characters_to_jyutping
+from pycantonese.jyutping.g2p import g2p
 from pycantonese.jyutping.parse_jyutping import parse_jyutping
 from pycantonese.jyutping.ipa import jyutping_to_ipa
 from pycantonese.jyutping.tipa import jyutping_to_tipa
@@ -19,6 +20,7 @@ __all__ = [
     "cantomap",
     "CHAT",
     "characters_to_jyutping",
+    "g2p",
     "hkcancor",
     "jyutping_to_ipa",
     "jyutping_to_tipa",

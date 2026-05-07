@@ -13,6 +13,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Fixed
 ### Security
 
+## [4.3.0] - 2026-05-07
+
+### Added
+- Added a `g2p` wrapper function for grapheme-to-phoneme conversion.
+
 ## [4.2.0] - 2026-03-27
 
 ### Added

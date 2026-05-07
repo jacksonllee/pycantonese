@@ -113,26 +113,17 @@ jobs:
         run: |
           TOOLCHAIN_ROOT=$(rustup run nightly-2025-06-27 rustc --print sysroot)
           RUSTLIB=$TOOLCHAIN_ROOT/lib/rustlib
-          curl -sL https://github.com/pyodide/rust-emscripten-wasm-eh-sysroot/releases/download/emcc-4.0.9_nightly-2025-06-27/emcc-4.0.9_nightly-2025-06-27.tar.bz2 -o emcc-4.0.9_nightly-2025-06-27.tar.bz2
-          tar -xf emcc-4.0.9_nightly-2025-06-27.tar.bz2 --directory=$RUSTLIB
+          curl -sL https://github.com/pyodide/rust-emscripten-wasm-eh-sysroot/releases/download/emcc-4.0.19_nightly-2025-06-27/emcc-4.0.19_nightly-2025-06-27.tar.bz2 -o emcc-4.0.19_nightly-2025-06-27.tar.bz2
+          tar -xf emcc-4.0.19_nightly-2025-06-27.tar.bz2 --directory=$RUSTLIB
 
       - name: Cache Rust build artifacts
         uses: Swatinem/rust-cache@v2
 
       - name: Install Emscripten SDK
-        uses: mymindstorm/setup-emsdk@v14
+        uses: mymindstorm/setup-emsdk@v16
         with:
-          version: "4.0.9"
+          version: "4.0.19"
           actions-cache-folder: emsdk-cache
-
-      - name: Patch Emscripten for Rust side module exports
-        run: |
-          # Rust side modules have mangled symbol names containing '$' which Emscripten
-          # rejects as invalid export names. These symbols are called from native code,
-          # not JavaScript, so the check is unnecessary for side modules.
-          # Upstream: https://github.com/emscripten-core/emscripten/pull/24359
-          EMSCRIPTEN_DIR=$(em-config EMSCRIPTEN_ROOT)
-          curl -sL https://raw.githubusercontent.com/pyodide/pyodide/refs/heads/main/emsdk/patches/0002-Don-t-check-exports-for-being-valid-C-C-identifiers-.patch | git -C "$EMSCRIPTEN_DIR" apply
 
       - name: Install uv
         uses: astral-sh/setup-uv@v7

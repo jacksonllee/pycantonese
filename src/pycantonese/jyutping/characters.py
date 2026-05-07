@@ -82,6 +82,10 @@ def characters_to_jyutping(
     Examples:
         >>> characters_to_jyutping("香港人講廣東話。")  # Hongkongers speak Cantonese.
         [('香港人', 'hoeng1gong2jan4'), ('講', 'gong2'), ('廣東話', 'gwong2dung1waa2'), ('。', None)]
+
+    See Also:
+        :func:`~pycantonese.g2p`: One-shot grapheme-to-phoneme conversion that
+        composes this function with :func:`~pycantonese.jyutping_to_ipa`.
     """  # noqa: E501
     if not chars:
         return []

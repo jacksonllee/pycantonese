@@ -4,6 +4,31 @@ import warnings
 
 import pytest
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+
+
+@pytest.fixture(scope="module")
+def http():
+    # Retry transient network failures (DNS / connection / 5xx) with
+    # exponential backoff: 0s, 1s, 2s, 4s, 8s.
+    # 429 is intentionally excluded so test_github_urls_work can keep
+    # treating GitHub rate limits as a soft skip rather than a retry.
+    retry = Retry(
+        total=4,
+        connect=4,
+        read=4,
+        backoff_factor=1.0,
+        status_forcelist=(500, 502, 503, 504),
+        allowed_methods=("GET",),
+        respect_retry_after_header=True,
+    )
+    adapter = HTTPAdapter(max_retries=retry)
+    session = requests.Session()
+    session.mount("https://", adapter)
+    session.mount("http://", adapter)
+    yield session
+    session.close()
 
 
 @pytest.mark.parametrize(
@@ -35,9 +60,9 @@ import requests
         "https://charles-lam.net/presentations/wicl6.html#/",
     ],
 )
-def test_urls_work(url):
+def test_urls_work(http, url):
     """URLs used in the documentation shouldn't be dead."""
-    with requests.get(url) as r:
+    with http.get(url, timeout=15) as r:
         assert r.status_code == 200
 
 
@@ -58,9 +83,9 @@ def test_urls_work(url):
         "https://gist.github.com/chaaklau/74444ef3b0c56c720148b730025fd57f",
     ],
 )
-def test_github_urls_work(url):
+def test_github_urls_work(http, url):
     """GitHub URLs used in the documentation shouldn't be dead."""
-    with requests.get(url) as r:
+    with http.get(url, timeout=15) as r:
         if r.status_code == 429:
             warnings.warn(f"Rate limited by GitHub: {url}")
             return

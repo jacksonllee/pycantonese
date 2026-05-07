@@ -4,7 +4,7 @@ build-backend = "maturin"
 
 [project]
 name = "pycantonese"
-version = "4.2.0"
+version = "4.3.0"
 description = "Cantonese Linguistics and NLP in Python"
 readme = "README.rst"
 requires-python = ">= 3.10"
@@ -63,6 +63,7 @@ dev = [
     "maturin >= 1.0",
     "pytest >= 9.0.2",
     "requests >= 2.32.5",
+    "urllib3 >= 2.0",
     "sybil >= 9.3.0",
     "mypy >= 1.19.1",
     "twine >= 6.2.0",

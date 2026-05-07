@@ -15,8 +15,11 @@ PyCantonese: Cantonese Linguistics and NLP in Python
         pycantonese, cantonese, python, linguistics, language,
         computational linguistics, natural language processing, nlp, jyutping,
         stop words, word segmentation, part-of-speech tagging,
+        g2p, grapheme-to-phoneme,
         廣東話, 粵語, 粵拼, 語言學, 自然語言處理, 停用詞, 分詞, 詞性標注,
-        广东话, 粤语, 粤拼, 语言学, 自然语言处理, 停用词, 分词, 词性标注
+        字形到音素轉換,
+        广东话, 粤语, 粤拼, 语言学, 自然语言处理, 停用词, 分词, 词性标注,
+        字形到音素转换
 
 .. image:: https://img.shields.io/pypi/v/pycantonese.svg
    :target: https://pypi.org/project/pycantonese/
@@ -41,6 +44,7 @@ Table of Contents
     reader
     searches
     parsing
+    g2p
     jyutping
     stop_words
     word_segmentation

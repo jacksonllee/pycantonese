@@ -162,6 +162,15 @@ takes a dictionary that maps a Jyutping sound to your desired symbol:
     # ['tsʰi˥']
 
 
+Grapheme-to-Phoneme Conversion
+------------------------------
+
+If you want to go directly from Cantonese characters to IPA in a single call,
+see :ref:`g2p` for the dedicated :func:`~pycantonese.g2p` function, which
+composes :func:`~pycantonese.characters_to_jyutping` and
+:func:`~pycantonese.jyutping_to_ipa`.
+
+
 Jyutping-to-Yale Conversion
 ---------------------------
 
