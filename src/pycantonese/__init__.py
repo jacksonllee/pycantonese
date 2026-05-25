@@ -6,7 +6,7 @@ from pycantonese.jyutping.g2p import g2p
 from pycantonese.jyutping.parse_jyutping import parse_jyutping
 from pycantonese.jyutping.ipa import jyutping_to_ipa
 from pycantonese.jyutping.tipa import jyutping_to_tipa
-from pycantonese.jyutping.yale import jyutping_to_yale
+from pycantonese.jyutping.yale import jyutping_to_yale, yale_to_jyutping
 from pycantonese.pos_tagging.tagger import pos_tag
 from pycantonese.stop_words import stop_words
 from pycantonese.word_segmentation import segment
@@ -25,6 +25,7 @@ __all__ = [
     "jyutping_to_ipa",
     "jyutping_to_tipa",
     "jyutping_to_yale",
+    "yale_to_jyutping",
     "parse_jyutping",
     "pos_tag",
     "read_chat",

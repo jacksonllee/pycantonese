@@ -210,6 +210,43 @@ automatically adds the quote character ``'`` as a separator to disambiguate:
     # "hei'hauh"
     ## 'heihauh' would be ambiguous between hei3hau6 and hei6au6.
 
+Yale-to-Jyutping Conversion
+---------------------------
+
+The reverse of :func:`~pycantonese.jyutping_to_yale` is also available
+as :func:`~pycantonese.yale_to_jyutping`, which reads a Yale string
+and returns the Jyutping equivalent:
+
+.. code-block:: python
+
+    import pycantonese
+    pycantonese.yale_to_jyutping('gwóngdūngwá')  # 廣東話 Cantonese
+    # ['gwong2', 'dung1', 'waa2']
+
+By default, the output is a list of Jyutping strings.
+Passing in ``return_as="string"`` results in a single string output:
+
+.. code-block:: python
+
+    import pycantonese
+    pycantonese.yale_to_jyutping('gwóngdūngwá', return_as='string')
+    # 'gwong2dung1waa2'
+
+If the input has whitespace-separated elements (most likely for word segmentation),
+each element is converted independently and the grouping is preserved in the output:
+
+.. code-block:: python
+
+    import pycantonese
+    pycantonese.yale_to_jyutping('gāmyaht góng gwóngdūngwá')  # word-segmented input
+    # ['gam1jat6', 'gong2', 'gwong2dung1waa2']
+    pycantonese.yale_to_jyutping('gāmyaht góng gwóngdūngwá', return_as='string')
+    # 'gam1jat6 gong2 gwong2dung1waa2'
+
+Apostrophes ``'`` are accepted as syllable separators within a word (matching
+the output of :func:`~pycantonese.jyutping_to_yale` with ``return_as="string"``)
+and do not create word boundaries.
+
 Jyutping-to-TIPA Conversion
 ---------------------------
 

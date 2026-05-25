@@ -7,10 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- Added `yale_to_jyutping` to convert Yale romanization into Jyutping. 
 ### Changed
 ### Deprecated
 ### Removed
 ### Fixed
+- Fixed `jyutping_to_yale` mapping for the `kw` onset, which was incorrectly
+  mapped to `k`.
 ### Security
 
 ## [4.3.0] - 2026-05-07
