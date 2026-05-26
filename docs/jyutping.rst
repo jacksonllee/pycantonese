@@ -20,13 +20,14 @@ Characters-to-Jyutping Conversion
 
 The function :func:`~pycantonese.characters_to_jyutping`
 takes a string of Cantonese characters
-and returns its word-segmented version with Jyutping romanization:
+and returns its word-segmented version with Jyutping romanization.
+Within each Jyutping string, syllables are separated by a single space:
 
 .. code-block:: python
 
     import pycantonese
     pycantonese.characters_to_jyutping('香港人講廣東話')  # Hongkongers speak Cantonese
-    # [('香港人', 'hoeng1gong2jan4'), ('講', 'gong2'), ('廣東話', 'gwong2dung1waa2')]
+    # [('香港人', 'hoeng1 gong2 jan4'), ('講', 'gong2'), ('廣東話', 'gwong2 dung1 waa2')]
 
 The characters-to-Jyutping conversion model is based on two data sources:
 (i) the HKCanCor corpus data included in the PyCantonese library, and
@@ -52,7 +53,7 @@ the underlying data contains the relevant tokens. Example:
 
     ## The correct pronunciation of 蛋 is with tone 6 (low-level) in 蛋糕.
     pycantonese.characters_to_jyutping('蛋糕')  # cake
-    # [('蛋糕', 'daan6gou1')]
+    # [('蛋糕', 'daan6 gou1')]
 
 If you don't want :func:`~pycantonese.characters_to_jyutping` to perform
 word segmentation, provide a list of strings instead with your desired
@@ -77,7 +78,7 @@ Chinese characters.:
     import pycantonese
     pycantonese.parse_jyutping('hou2')  # 好 good
     # [Jyutping(onset='h', nucleus='o', coda='u', tone='2')]
-    pycantonese.parse_jyutping('gwong2dung1waa2')  # 廣東話 Cantonese
+    pycantonese.parse_jyutping('gwong2 dung1 waa2')  # 廣東話 Cantonese
     # [Jyutping(onset='gw', nucleus='o', coda='ng', tone='2'),
     #  Jyutping(onset='d', nucleus='u', coda='ng', tone='1'),
     #  Jyutping(onset='w', nucleus='aa', coda='', tone='2')]
@@ -135,15 +136,18 @@ Jyutping-to-IPA Conversion
 
 :func:`~pycantonese.jyutping_to_ipa` converts Jyutping into IPA
 (International Phonetic Alphabet), the standard representation of speech sounds
-in phonetics and phonology:
+in phonetics and phonology. It accepts either a single Jyutping string (one
+word) or a list of strings (one word per element). The output is a list with
+one entry per input word; within each entry, syllables are separated by a
+single space:
 
 .. code-block:: python
 
     import pycantonese
     pycantonese.jyutping_to_ipa('gwong2dung1waa2')  # 廣東話 Cantonese
-    # ['kʷɔŋ25', 'tʊŋ55', 'waː25']
-    pycantonese.jyutping_to_ipa('gwong2dung1waa2', return_as="string")
-    # 'kʷɔŋ25 tʊŋ55 waː25'
+    # ['kʷɔŋ25 tʊŋ55 waː25']
+    pycantonese.jyutping_to_ipa(['gwong2dung1', 'waa2'])  # word-segmented input
+    # ['kʷɔŋ25 tʊŋ55', 'waː25']
 
 The mapping from Jyutping to IPA symbols is based on Matthews and Yip (2011: 461-463).
 If you would like to customize the mapping of specific symbols,
@@ -177,38 +181,74 @@ Jyutping-to-Yale Conversion
 The Yale romanization is still a commonly used system, particularly in
 dictionaries and pedagogical materials. PyCantonese provides the
 :func:`~pycantonese.jyutping_to_yale`
-function which reads a valid Jyutping string and returns the Yale equivalent:
+function which reads a valid Jyutping string and returns the Yale equivalent.
+Like :func:`~pycantonese.jyutping_to_ipa`, the function accepts either a
+single string (one word) or a list of strings (one word per element). The
+output is a list with one entry per input word; within each entry, syllables
+are separated by a single space:
 
 .. code-block:: python
 
     import pycantonese
     pycantonese.jyutping_to_yale('m4goi1')  # 唔該 thank you / please
-    # ['m̀h', 'gōi']
+    # ['m̀h gōi']
     pycantonese.jyutping_to_yale('gwong2dung1waa2')  # 廣東話 Cantonese
-    # ['gwóng', 'dūng', 'wá']
+    # ['gwóng dūng wá']
+    pycantonese.jyutping_to_yale(['gwong2dung1', 'waa2'])  # word-segmented input
+    # ['gwóng dūng', 'wá']
 
-:func:`~pycantonese.jyutping_to_yale` has the keyword argument ``return_as``.
-When set to ``"string"``, it turns the returned value into a string.
+The space between syllables also disambiguates Yale strings where a
+consonant letter or the low-tone marker "h" could otherwise be read as either
+an onset of the next syllable or part of the previous one:
 
 .. code-block:: python
 
     import pycantonese
-    pycantonese.jyutping_to_yale('gwong2dung1waa2', return_as="string")  # 廣東話 Cantonese
+    pycantonese.jyutping_to_yale('hei3hau6')  # 氣候 climate
+    # ['hei hauh']
+    ## Without the space, 'heihauh' (Yale) would be ambiguous between hei3hau6 and hei6au6 (Jyutping).
+
+If you need one combined string instead of a list of words, use
+:func:`~pycantonese.stringify_yale`. Words are joined by spaces, and an
+apostrophe ``'`` is inserted only at syllable boundaries that would
+otherwise be ambiguous:
+
+.. code-block:: python
+
+    from pycantonese import jyutping_to_yale, stringify_yale
+    stringify_yale(jyutping_to_yale('gwong2dung1waa2'))
     # 'gwóngdūngwá'
+    stringify_yale(jyutping_to_yale('hei3hau6'))  # 氣候 climate
+    # "hei'hauh"
+    stringify_yale(jyutping_to_yale(['gwong2dung1', 'waa2']))
+    # 'gwóngdūng wá'
 
-While getting a string instead of a list might seem trivial enough without ``return_as``,
-the argument helps to resolve potential confusion.
-In Yale romanization, a consonant letter or
-the low-tone marker "h" can be ambiguous as an onset of a syllable or as part
-of the previous syllable. When such ambiguity is detected, ``return_as="string"``
-automatically adds the quote character ``'`` as a separator to disambiguate:
+Yale-to-Jyutping Conversion
+---------------------------
+
+The reverse of :func:`~pycantonese.jyutping_to_yale` is also available
+as :func:`~pycantonese.yale_to_jyutping`, which reads Yale and returns the
+Jyutping equivalent. As with the other conversion functions, pass a single
+string for one word, or a list of strings to mark explicit word boundaries:
 
 .. code-block:: python
 
     import pycantonese
-    pycantonese.jyutping_to_yale('hei3hau6', return_as="string")  # 氣候 climate
-    # "hei'hauh"
-    ## 'heihauh' would be ambiguous between hei3hau6 and hei6au6.
+    pycantonese.yale_to_jyutping('gwóngdūngwá')  # 廣東話 Cantonese
+    # ['gwong2 dung1 waa2']
+    pycantonese.yale_to_jyutping(['gāmyaht', 'góng', 'gwóngdūngwá'])  # word-segmented input
+    # ['gam1 jat6', 'gong2', 'gwong2 dung1 waa2']
+
+Inside a single-word string, both whitespace and apostrophes ``'`` are
+accepted as syllable-boundary hints and do not create word boundaries:
+
+.. code-block:: python
+
+    import pycantonese
+    pycantonese.yale_to_jyutping("hei'hauh")
+    # ['hei3 hau6']
+    pycantonese.yale_to_jyutping('hei hauh')
+    # ['hei3 hau6']
 
 Jyutping-to-TIPA Conversion
 ---------------------------
@@ -220,9 +260,9 @@ PyCantonese also offers the :func:`~pycantonese.jyutping_to_tipa` function for t
 
     import pycantonese
     pycantonese.jyutping_to_tipa('m4goi1')  # 唔該 thank you / please
-    # ['\\s{m}21', 'kOY55']
+    # ['\\s{m}21 kOY55']
     pycantonese.jyutping_to_tipa('gwong2dung1waa2')  # 廣東話 Cantonese
-    # ['k\\super w ON25', 'tUN55', 'wa25']
+    # ['k\\super w ON25 tUN55 wa25']
 
 Currently, tones are output as Chao tone letters (= the numbers from 1 to 5)
 directly suffixed to the individual syllable string.

@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from pycantonese.jyutping.parse_jyutping import parse_jyutping
 
 ONSETS_TIPA = {
@@ -90,14 +92,19 @@ TONES_TIPA = {
 }
 
 
-def jyutping_to_tipa(jp_str):
+def jyutping_to_tipa(jp: str | list[str]) -> list[str]:
     """Convert Jyutping romanization into LaTeX TIPA.
 
     Args:
-        jp_str (str): Jyutping romanization for one or multiple characters.
+        jp (str or list[str]): A Jyutping romanization string for a single
+            word (any number of syllables, optionally separated by spaces),
+            or a list of such strings carrying explicit word segmentation
+            (one word per element).
 
     Returns:
-        list[str]
+        list[str]: A list with one element per input word. Each element is
+        the TIPA representation of that word, with syllables separated by a
+        single space.
 
     Raises:
         ValueError: If the Jyutping romanization is illegal (e.g., with
@@ -105,9 +112,16 @@ def jyutping_to_tipa(jp_str):
 
     Examples:
         >>> jyutping_to_tipa("gwong2dung1waa2")  # 廣東話, Cantonese  # doctest: +SKIP
-        ['k\\super w ON25', 'tUN55', 'wa25']
+        ['k\\super w ON25 tUN55 wa25']
     """  # noqa: E501
-    jp_parsed_list = parse_jyutping(jp_str)
+    if not jp:
+        return []
+    words = [jp] if isinstance(jp, str) else jp
+    return [" ".join(_word_to_tipa_syllables(word)) for word in words]
+
+
+def _word_to_tipa_syllables(word: str) -> list[str]:
+    jp_parsed_list = parse_jyutping(word)
     tipa_list = []
 
     for jp_parsed in jp_parsed_list:

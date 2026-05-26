@@ -6,12 +6,54 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [5.0.0] - 2026-05-26
+
+This release incremented the major version number to v5 for the API breaking changes
+related to various conversion functions for Jyutping romanization.
+Please see the notes below for details.
+
 ### Added
+- Added `yale_to_jyutping` to convert Yale romanization into Jyutping.
+- `characters_to_jyutping`, `jyutping_to_ipa`, `jyutping_to_yale`,
+  `yale_to_jyutping`, and `jyutping_to_tipa` now all accept `str | list[str]`
+  as input. A `str` is treated as a single word with no word segmentation;
+  a `list[str]` carries explicit word segmentation, one word per element.
+- Added `stringify_yale` to take the output of `jyutping_to_yale` and return
+  a string with apostrophes for disambiguating syllable boundaries.
+- `parse_jyutping` now tolerates whitespace between syllables in its input
+  string.
+
 ### Changed
-### Deprecated
+- **Breaking:** `characters_to_jyutping`, `jyutping_to_ipa`,
+  `jyutping_to_yale`, `yale_to_jyutping`, `jyutping_to_tipa`, and `g2p` now
+  use a single space to separate the per-syllable representations within
+  each word in their output. For example,
+  `characters_to_jyutping('廣東話')` returns `[('廣東話', 'gwong2 dung1 waa2')]`
+  rather than the previous `[('廣東話', 'gwong2dung1waa2')]`. The underlying
+  rime-cantonese data file (`chars_to_jyutping.json`) is regenerated with
+  the same convention so that downstream consumers can recover syllables
+  via `str.split()`.
+- **Breaking:** `g2p` now returns `list[tuple[str, str | None]]` (the IPA
+  element is a single space-separated string), replacing the previous
+  `list[tuple[str, list[str] | None]]` shape.
+
 ### Removed
+- **Breaking:** removed the `return_as` keyword argument from
+  `jyutping_to_ipa`, `jyutping_to_yale`, and `yale_to_jyutping`.
+  These functions now always return a list of strings.
+- **Breaking:** removed the apostrophe-disambiguation behavior that
+  `jyutping_to_yale` previously applied under `return_as="string"`. The
+  space between syllables in the new output resolves the same ambiguity.
+  Please note:
+   * The new `stringify_yale` takes the output of `jyutping_to_yale` and returns
+     a string with apostrophes for disambiguating syllable boundaries.
+   * In `yale_to_jyutping` input, apostrophes are still accepted but are now
+     treated identically to whitespace as a syllable-boundary hint within a
+     single word.
+
 ### Fixed
-### Security
+- Fixed `jyutping_to_yale` mapping for the `kw` onset, which was incorrectly
+  mapped to `k`.
 
 ## [4.3.0] - 2026-05-07
 

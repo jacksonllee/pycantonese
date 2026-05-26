@@ -24,20 +24,37 @@ from pycantonese.jyutping.ipa import jyutping_to_ipa
     ],
 )
 def test_jyutping_to_ipa__base_cases(jp_str, expected):
-    assert jyutping_to_ipa(jp_str, return_as="string") == expected
+    assert jyutping_to_ipa(jp_str) == [expected]
+
+
+def test_jyutping_to_ipa__multi_syllable_str():
+    assert jyutping_to_ipa("gwong2dung1waa2") == ["kʷɔŋ25 tʊŋ55 waː25"]
+
+
+def test_jyutping_to_ipa__list_input():
+    assert jyutping_to_ipa(["gwong2dung1", "waa2"]) == ["kʷɔŋ25 tʊŋ55", "waː25"]
+
+
+def test_jyutping_to_ipa__space_separated_str():
+    assert jyutping_to_ipa("gwong2 dung1 waa2") == ["kʷɔŋ25 tʊŋ55 waː25"]
+
+
+def test_jyutping_to_ipa__empty():
+    assert jyutping_to_ipa("") == []
+    assert jyutping_to_ipa([]) == []
 
 
 def test_jyutping_to_ipa__custom_onsets():
-    assert jyutping_to_ipa("ci1", return_as="string", onsets={"c": "tʃ'"}) == "tʃ'i55"
+    assert jyutping_to_ipa("ci1", onsets={"c": "tʃ'"}) == ["tʃ'i55"]
 
 
 def test_jyutping_to_ipa__custom_nuclei():
-    assert jyutping_to_ipa("ci1", return_as="string", nuclei={"i": "iː"}) == "tsʰiː55"
+    assert jyutping_to_ipa("ci1", nuclei={"i": "iː"}) == ["tsʰiː55"]
 
 
 def test_jyutping_to_ipa__custom_tones():
-    assert jyutping_to_ipa("ci2", return_as="string", tones={"2": "35"}) == "tsʰi35"
+    assert jyutping_to_ipa("ci2", tones={"2": "35"}) == ["tsʰi35"]
 
 
 def test_jyutping_to_ipa__custom_codas():
-    assert jyutping_to_ipa("sip3", return_as="string", codas={"p": "p"}) == "sip33"
+    assert jyutping_to_ipa("sip3", codas={"p": "p"}) == ["sip33"]

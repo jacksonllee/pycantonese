@@ -28,7 +28,8 @@ def _get_words_characters_to_jyutping():
             continue
         if len(word) != len(parsed_jp):
             continue
-        words_to_jyutping_counters[word][jyutping] += 1
+        spaced = " ".join(str(jp) for jp in parsed_jp)
+        words_to_jyutping_counters[word][spaced] += 1
         for char, jp in zip(word, parsed_jp):
             characters_to_jyutping_counters[char][str(jp)] += 1
 
@@ -60,12 +61,12 @@ def _get_words_characters_to_jyutping():
 
 def characters_to_jyutping(
     chars: str | list[str],
-) -> list[tuple[str, str]]:
+) -> list[tuple[str, str | None]]:
     """Convert Cantonese characters into Jyutping romanization.
 
     The conversion model is based on the HKCanCor corpus and rime-cantonese
     data. Any unseen Cantonese character (or punctuation mark,
-    for that matter) is represented by `None` in the output.
+    for that matter) is represented by ``None`` in the output.
 
     Args:
         chars (str or list[str]): A string of Cantonese characters, in which
@@ -76,12 +77,13 @@ def characters_to_jyutping(
             instead with your desired segmentation.
 
     Returns:
-        list[tuple[str, str]]: A list of segmented words, where each word is
-        a 2-tuple of (Cantonese characters, Jyutping romanization).
+        list[tuple[str, str | None]]: A list of segmented words, where each
+        word is a 2-tuple of (Cantonese characters, Jyutping romanization).
+        Within the Jyutping string, syllables are separated by a single space.
 
     Examples:
         >>> characters_to_jyutping("香港人講廣東話。")  # Hongkongers speak Cantonese.
-        [('香港人', 'hoeng1gong2jan4'), ('講', 'gong2'), ('廣東話', 'gwong2dung1waa2'), ('。', None)]
+        [('香港人', 'hoeng1 gong2 jan4'), ('講', 'gong2'), ('廣東話', 'gwong2 dung1 waa2'), ('。', None)]
 
     See Also:
         :func:`~pycantonese.g2p`: One-shot grapheme-to-phoneme conversion that
@@ -94,17 +96,20 @@ def characters_to_jyutping(
     else:
         segmented = segment(chars)
     words_to_jyutping, chars_to_jyutping = _get_words_characters_to_jyutping()
-    result = []
+    result: list[tuple[str, str | None]] = []
     for word in segmented:
         try:
-            jp = words_to_jyutping[word]
+            jp: str | None = words_to_jyutping[word]
         except KeyError:
-            jp = ""
+            parts: list[str] = []
+            jp = None
             for char in word:
                 try:
-                    jp += chars_to_jyutping[char]
+                    parts.append(chars_to_jyutping[char])
                 except KeyError:
-                    jp = None
+                    parts = []
                     break
+            else:
+                jp = " ".join(parts)
         result.append((word, jp))
     return result

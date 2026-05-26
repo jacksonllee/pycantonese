@@ -89,7 +89,7 @@ def parse_jyutping(jp_str) -> list[Jyutping]:
             unrecognized elements).
 
     Examples:
-        >>> parse_jyutping("gwong2dung1waa2")  # 廣東話, Cantonese
+        >>> parse_jyutping("gwong2 dung1 waa2")  # 廣東話, Cantonese
         [Jyutping(onset='gw', nucleus='o', coda='ng', tone='2'),
          Jyutping(onset='d', nucleus='u', coda='ng', tone='1'),
          Jyutping(onset='w', nucleus='aa', coda='', tone='2')]
@@ -101,17 +101,22 @@ def parse_jyutping(jp_str) -> list[Jyutping]:
         raise ValueError("argument needs to be a string -- " + repr(jp_str))
     jp_str = jp_str.lower()
 
-    # Split into individual syllables at tone digits
+    # Split into individual syllables at tone digits; whitespace between
+    # syllables is tolerated and ignored.
     jp_list = []
     jp_current = ""
+    last_non_ws = ""
     for c in jp_str:
+        if c.isspace():
+            continue
         jp_current = jp_current + c
+        last_non_ws = c
         if c.isdigit():
             jp_list.append(jp_current)
             jp_current = ""
 
-    if not jp_str[-1].isdigit():
-        raise ValueError("tone error -- " + repr(jp_str[-1]))
+    if not last_non_ws.isdigit():
+        raise ValueError("tone error -- " + repr(last_non_ws))
 
     jp_parsed_list = []
 

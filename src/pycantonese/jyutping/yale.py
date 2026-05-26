@@ -1,5 +1,6 @@
+from __future__ import annotations
+
 import unicodedata
-from functools import lru_cache
 
 from pycantonese.jyutping.parse_jyutping import parse_jyutping
 
@@ -12,7 +13,7 @@ ONSETS_YALE = {
     "p": "p",
     "t": "t",
     "k": "k",
-    "kw": "k",
+    "kw": "kw",
     "c": "ch",
     "m": "m",
     "n": "n",
@@ -54,20 +55,109 @@ CODAS_YALE = {
 }
 
 
-@lru_cache
-def jyutping_to_yale(jp_str, return_as="list"):
+_YALE_AMBIGUOUS_CONSONANTS = ("ng", "h", "p", "t", "k", "m", "n")
+
+_YALE_VOWEL_DISPLAY_LETTERS = frozenset("aeiou" "áéíóú" "àèìòù" "āēīōū")
+
+
+def _needs_apostrophe(prev_syl: str, next_syl: str) -> bool:
+    """Return True iff gluing ``prev_syl`` + ``next_syl`` would produce an
+    ambiguous syllable boundary -- either visually (the same heuristic used
+    historically by ``jyutping_to_yale(..., return_as='string')``) or
+    structurally (the joined string parses as a different syllable split)."""
+    # Visual heuristic: a consonant or low-tone "h" sitting between two
+    # syllables can be read as either an onset or a coda.
+    ends_ambig = any(prev_syl.endswith(c) for c in _YALE_AMBIGUOUS_CONSONANTS)
+    starts_vowel = bool(next_syl) and next_syl[0] in _YALE_VOWEL_DISPLAY_LETTERS
+    starts_ambig = any(next_syl.startswith(c) for c in _YALE_AMBIGUOUS_CONSONANTS)
+    if ends_ambig and starts_vowel:
+        return True
+    if not ends_ambig and starts_ambig:
+        return True
+    # Structural check: the visual heuristic above misses the "both ends are
+    # ambiguous consonants" case (it only fires on exactly-one-ambiguous-end).
+    # Concatenating without an apostrophe can let the greedy splitter re-bind
+    # boundary characters into a syllable that doesn't match the original.
+    #
+    # Example where the structural check is *necessary*:
+    #   prev_syl="yih" (Jyutping ji6, low-tone "h"), next_syl="pa".
+    #   Visual: prev ends in "h" (ambig) AND next starts in "p" (ambig)
+    #     -- both ambig, so neither visual case fires.
+    #   But "yihpa" re-parses greedily as one syllable "yihp" + "a"
+    #     (Yale convention: low-tone "h" sits BEFORE a stop coda, so
+    #     y + i + h + p is a valid single syllable, Jyutping jip6),
+    #     so _split_piece("yihpa") = ["yihp", "a"] != ["yih", "pa"].
+    #   -> returns True -> an apostrophe gives "yih'pa".
+    #
+    # Example where the structural check *agrees* (no apostrophe):
+    #   prev_syl="m̀h" (Jyutping m4), next_syl="gōi" (goi1).
+    #   Visual: prev ends "h" but next starts "g" (not ambig, not vowel)
+    #     -> no apostrophe.
+    #   "m̀hgōi" re-parses cleanly as ["m̀h", "gōi"] (syllabic-nasal m̀h
+    #     followed by a fresh "gōi" syllable), so structural also says no.
+    nfd_prev = unicodedata.normalize("NFD", prev_syl)
+    nfd_next = unicodedata.normalize("NFD", next_syl)
+    try:
+        return _split_piece(nfd_prev + nfd_next) != [nfd_prev, nfd_next]
+    except ValueError:
+        return True
+
+
+def stringify_yale(yale: list[str]) -> str:
+    """Join Yale words (the output of :func:`jyutping_to_yale`) into one string.
+
+    Words (list elements) are separated by a single space. Within each word,
+    syllables are concatenated directly, with an apostrophe ``'`` inserted at
+    a syllable boundary only when the boundary would otherwise be ambiguous
+    (i.e., when a consonant letter or the low-tone marker ``h`` could be read
+    either as the onset of the next syllable or as the coda of the previous
+    one).
+
+    Args:
+        yale (list[str]): A list of Yale words, each a string of syllables
+            separated by single spaces -- the shape returned by
+            :func:`jyutping_to_yale`.
+
+    Returns:
+        str: The joined Yale string.
+
+    Examples:
+        >>> stringify_yale(jyutping_to_yale("gwong2dung1waa2"))  # 廣東話
+        'gwóngdūngwá'
+        >>> stringify_yale(jyutping_to_yale("hei3hau6"))  # 氣候
+        "hei'hauh"
+        >>> stringify_yale(jyutping_to_yale(["gwong2dung1", "waa2"]))
+        'gwóngdūng wá'
+    """
+    if not yale:
+        return ""
+    out_words = []
+    for word in yale:
+        syllables = word.split()
+        if not syllables:
+            continue
+        parts = [syllables[0]]
+        for prev, nxt in zip(syllables, syllables[1:]):
+            if _needs_apostrophe(prev, nxt):
+                parts.append("'")
+            parts.append(nxt)
+        out_words.append("".join(parts))
+    return " ".join(out_words)
+
+
+def jyutping_to_yale(jp: str | list[str]) -> list[str]:
     """Convert Jyutping romanization into Yale romanization.
 
     Args:
-        jp_str (str): Jyutping romanization for one or multiple characters.
-        return_as (str, optional): If ``"list"`` (the default), the returned
-            value is a list of strings. If ``"string"``, the output is a
-            string with a single quote ``'`` to disambiguate unclear syllable
-            boundaries (e.g., a consonant or the low-tone marker "h" being
-            ambiguous as an onset or as part of the previous syllable).
+        jp (str or list[str]): A Jyutping romanization string for a single
+            word (any number of syllables, optionally separated by spaces),
+            or a list of such strings carrying explicit word segmentation
+            (one word per element).
 
     Returns:
-        list[str], or str if return_as is "string"
+        list[str]: A list with one element per input word. Each element is
+        the Yale romanization of that word, with syllables separated by a
+        single space.
 
     Raises:
         ValueError: If the Jyutping romanization is illegal (e.g., with
@@ -75,15 +165,20 @@ def jyutping_to_yale(jp_str, return_as="list"):
 
     Examples:
         >>> jyutping_to_yale("gwong2dung1waa2")  # 廣東話, Cantonese
-        ['gwóng', 'dūng', 'wá']
-        >>> jyutping_to_yale("gwong2dung1waa2", return_as="string")
-        'gwóngdūngwá'
-        >>>
-        >>> # 'heihauh' would be ambiguous between hei3hau6 and hei6au6.
-        >>> jyutping_to_yale("hei3hau6", return_as="string")  # 氣候, climate
-        "hei'hauh"
+        ['gwóng dūng wá']
+        >>> jyutping_to_yale(["gwong2dung1", "waa2"])
+        ['gwóng dūng', 'wá']
+        >>> jyutping_to_yale("hei3hau6")  # 氣候, climate
+        ['hei hauh']
     """
-    jp_parsed_list = parse_jyutping(jp_str)
+    if not jp:
+        return []
+    words = [jp] if isinstance(jp, str) else jp
+    return [" ".join(_word_to_yale_syllables(word)) for word in words]
+
+
+def _word_to_yale_syllables(word: str) -> list[str]:
+    jp_parsed_list = parse_jyutping(word)
     yale_list = []
 
     for jp_parsed in jp_parsed_list:
@@ -175,120 +270,482 @@ def jyutping_to_yale(jp_str, return_as="list"):
             yale = onset + nucleus + low_tone_h + coda
         yale_list.append(yale)
 
-    if return_as == "list":
-        return yale_list
-
-    # Output yale_list as a string
-    # Check if there's potential ambiguity when Yale strings are concatenated
-
-    # Ambiguity case 1:
-    #   1st syllable coda is one of the "ambiguous_consonants"
-    #   and 2nd syllable starts with a vowel *letter*
-
-    # Ambiguity case 2:
-    #   1st syllable has no coda and 2nd syllable starts with one of the
-    #   "ambiguous_consonants"
-    #   e.g., hei3hau6 'climate' --> heihauh
-    #   (middle "h" for tone in 1st syllable or being onset of 2nd syllable?)
-
-    if len(yale_list) == 0:
-        return ""
-    elif len(yale_list) == 1:
-        return yale_list[0]
-
-    ambiguous_consonants = {"h", "p", "t", "k", "m", "n", "ng"}
-    vowel_letters = {
-        "a",
-        "e",
-        "i",
-        "o",
-        "u",
-        "á",
-        "é",
-        "í",
-        "ó",
-        "ú",
-        "à",
-        "è",
-        "ì",
-        "ò",
-        "ù",
-        "ā",
-        "ē",
-        "ī",
-        "ō",
-        "ū",
-    }
-
-    output_str = ""
-
-    for i in range(len(yale_list) - 1):
-        yale1 = yale_list[i]
-        yale2 = yale_list[i + 1]
-
-        ambiguous = False
-
-        # test case 1:
-        if _endswithoneof(yale1, ambiguous_consonants) and _startswithoneof(
-            yale2, vowel_letters
-        ):
-            ambiguous = True
-
-        # test case 2:
-        if (
-            not ambiguous
-            and not _endswithoneof(yale1, ambiguous_consonants)
-            and _startswithoneof(yale2, ambiguous_consonants)
-        ):
-            ambiguous = True
-
-        output_str += yale1
-
-        if ambiguous:
-            output_str += "'"
-
-    output_str += yale_list[-1]
-
-    return output_str
+    return yale_list
 
 
-def _startswithoneof(inputstr, seq):
+# Inverse mapping tables for Yale -> Jyutping.
+# Yale onsets and codas have unique inverses once kw->kw is corrected above.
+_ONSETS_JYUTPING = {v: k for k, v in ONSETS_YALE.items()}
+_CODAS_JYUTPING = {v: k for k, v in CODAS_YALE.items()}
+
+# Yale nucleus "eu" maps from both Jyutping "oe" and "eo"; resolved by coda
+# at parse time (see _resolve_eu). Other Yale nuclei invert cleanly.
+_NUCLEI_JYUTPING_UNAMBIGUOUS = {
+    "aa": "aa",
+    "a": "a",  # Jyutping "aa" with no coda is written "a" in Yale; reversed below
+    "i": "i",
+    "yu": "yu",
+    "u": "u",
+    "e": "e",
+    "o": "o",
+    "m": "m",
+    "ng": "ng",
+}
+
+# Yale onsets ordered longest-first for greedy matching.
+_YALE_ONSETS_ORDERED = (
+    "ch",
+    "gw",
+    "kw",
+    "ng",
+    "b",
+    "d",
+    "g",
+    "j",
+    "p",
+    "t",
+    "k",
+    "m",
+    "n",
+    "f",
+    "h",
+    "s",
+    "l",
+    "w",
+    "y",
+    "v",
+)
+
+# Yale nuclei ordered longest-first (base-letter form, no diacritic).
+_YALE_NUCLEI_ORDERED = ("aa", "eu", "yu", "ng", "a", "e", "i", "o", "u", "m")
+
+_YALE_VOWEL_LETTERS = set("aeiou")
+
+# Map a base vowel letter + combining-accent character to (vowel, tone-marker).
+# tone-marker: "macron" -> tone 1; "acute" -> tone 2 or 5; "grave" -> tone 4;
+# None -> tone 3 or 6 (disambiguated by trailing "h").
+_DIACRITIC_TO_MARK = {
+    "̄": "macron",
+    "́": "acute",
+    "̀": "grave",
+}
+
+
+def _strip_diacritic(nucleus_chars):
+    """Given an NFD-decomposed nucleus string (base letters + combining marks),
+    return (base_nucleus_str, tone_mark) where tone_mark is one of
+    {"macron", "acute", "grave", None}. Raises ValueError on unknown marks.
     """
-    Check if *inputstr* starts with one of the items in seq. If it does, return
-        the item that it starts with. If it doe not, return ``None``.
+    base = []
+    mark = None
+    for ch in nucleus_chars:
+        if unicodedata.category(ch) == "Mn":
+            found = _DIACRITIC_TO_MARK.get(ch)
+            if found is None:
+                raise ValueError("unrecognized diacritic in nucleus -- " + repr(ch))
+            if mark is not None and mark != found:
+                raise ValueError("multiple tone diacritics in one syllable")
+            mark = found
+        else:
+            base.append(ch)
+    return "".join(base), mark
 
-    :param inputstr: input string
 
-    :param seq: sequences of items to check
+def _tone_from(mark, has_h):
+    if mark == "macron":
+        return "1"
+    if mark == "acute":
+        return "5" if has_h else "2"
+    if mark == "grave":
+        if not has_h:
+            raise ValueError("grave (tone 4) requires 'h' low-tone marker")
+        return "4"
+    return "6" if has_h else "3"
 
-    :return: the item the the input string starts with (``None`` if not found)
 
-    :rtype: str or None
+def _resolve_eu(coda_yale):
+    """For nucleus 'eu', pick Jyutping 'oe' or 'eo' based on Yale coda."""
+    if coda_yale in {"n", "t", "i"}:
+        return "eo"
+    return "oe"
+
+
+def _split_word_syllables(word):
+    """Split a Yale word into a list of raw syllable strings. Both apostrophe
+    `'` and whitespace are honored as explicit syllable-break hints inside
+    the word."""
+    # Normalize apostrophes to spaces, then split on any whitespace.
+    pieces = [p for p in word.replace("'", " ").split() if p]
+    syllables = []
+    for piece in pieces:
+        syllables.extend(_split_piece(piece))
+    return syllables
+
+
+def _split_piece(piece):
+    """Split a Yale string with no apostrophes into syllables."""
+    nfd = unicodedata.normalize("NFD", piece)
+    syllables = []
+    i = 0
+    n = len(nfd)
+    while i < n:
+        end = _find_syllable_end(nfd, i)
+        syllables.append(nfd[i:end])
+        i = end
+    return syllables
+
+
+def _find_syllable_end(s, start):
+    """Find the end index (exclusive) of the syllable starting at s[start].
+
+    Yale low-tone 'h' placement depends on coda type:
+    - stop/nasal coda (p/t/k/m/n/ng): h comes BEFORE coda  -> nucleus + h + coda
+    - glide coda (i/u/w):             h comes AFTER  coda  -> nucleus + coda + h
+    - no coda:                        h comes at end       -> nucleus + h
     """
-    seq = set(seq)
-    for item in seq:
-        if inputstr.startswith(item):
-            return item
+    i = start
+    n = len(s)
+
+    # ---- onset ----
+    onset = ""
+    for cand in _YALE_ONSETS_ORDERED:
+        if s.startswith(cand, i):
+            onset = cand
+            break
+    nucleus_start = i + len(onset)
+
+    # Backtrack: 'm'/'ng' may be a syllabic nasal nucleus, not an onset.
+    if nucleus_start >= n or s[nucleus_start] not in _YALE_VOWEL_LETTERS:
+        if onset in ("m", "ng") and _looks_like_syllabic(s, i, onset):
+            onset = ""
+            nucleus_start = i
+        elif onset == "" and i < n and s[i] in _YALE_VOWEL_LETTERS:
+            pass  # vowel-initial syllable
+        else:
+            if onset == "":
+                raise ValueError(
+                    "cannot parse Yale syllable starting at "
+                    + repr(unicodedata.normalize("NFC", s[i:]))
+                )
+
+    # Backtrack onset "y" if it's really the prefix of nucleus "yu" (Jyutping
+    # "jyu"). The "yu" nucleus only combines with codas in {"", "n", "t"} in
+    # real Cantonese, so only backtrack when the rest fits that shape.
+    if onset == "y":
+        test_end, test_raw = _consume_nucleus(s, i)
+        test_base = "".join(c for c in test_raw if unicodedata.category(c) != "Mn")
+        if test_base == "yu" and _yu_compatible_tail(s, test_end):
+            onset = ""
+            nucleus_start = i
+
+    # ---- nucleus ----
+    nuc_end, nuc_raw = _consume_nucleus(s, nucleus_start)
+    if nuc_end == nucleus_start:
+        raise ValueError(
+            "cannot find nucleus in Yale syllable -- "
+            + repr(unicodedata.normalize("NFC", s[i:]))
+        )
+
+    # Syllabic nasals (onset-less "m" and "ng") never take a coda in Yale/Jyutping.
+    nuc_base = "".join(c for c in nuc_raw if unicodedata.category(c) != "Mn")
+    is_syllabic_nasal = onset == "" and nuc_base in ("m", "ng")
+
+    # ---- coda + h-marker, accounting for h placement ----
+    pos = nuc_end
+
+    if is_syllabic_nasal and (pos >= n or s[pos] != "h"):
+        # No 'h' follows: definitely no coda (prevents greedily consuming the
+        # next syllable's onset/nucleus as a coda, e.g. ng3+ng5 -> "ngnǵh").
+        return pos
+
+    if pos < n and s[pos] == "h":
+        # h before stop/nasal coda (low-tone case), or h at syllable end
+        after_h = pos + 1
+        for cand in ("ng", "p", "t", "k", "m", "n"):
+            if s.startswith(cand, after_h):
+                return after_h + len(cand)  # h + stop/nasal coda
+        # No stop/nasal coda after h: h is either a low-tone marker (end of
+        # syllable) or the onset of the next syllable (followed by a vowel).
+        if after_h >= n or s[after_h] not in _YALE_VOWEL_LETTERS:
+            return after_h  # low-tone h, no coda
+        return pos  # h is the next syllable's onset
     else:
-        return None
+        # Try glide coda (h follows the coda for low tones)
+        for cand in ("i", "u", "w"):
+            if s.startswith(cand, pos):
+                coda_end = pos + len(cand)
+                if coda_end < n and s[coda_end] == "h":
+                    after_h = coda_end + 1
+                    if after_h >= n or s[after_h] not in _YALE_VOWEL_LETTERS:
+                        return after_h  # glide coda + low-tone h
+                return coda_end  # glide coda, no h
+        # Try stop/nasal coda without h (tones 1-3)
+        for cand in ("ng", "p", "t", "k", "m", "n"):
+            if s.startswith(cand, pos):
+                return pos + len(cand)
+        return pos  # no coda
 
 
-def _endswithoneof(inputstr, seq):
+def _yu_compatible_tail(s, pos):
+    """True iff s[pos:] is a possible tail after a Yale "yu" nucleus.
+
+    The Jyutping "yu" nucleus only combines with codas in {"", "n", "t"}.
+    May be preceded by 'h' (low-tone marker) for codas "n"/"t" (h before
+    stop/nasal) or alone (no coda)."""
+    n = len(s)
+    if pos >= n:
+        return True  # bare "yu" nucleus
+    ch = s[pos]
+    if ch == "h":
+        after = pos + 1
+        if after >= n:
+            return True  # low-tone, no coda
+        if s[after] == "t":
+            return True
+        if s[after] == "n":
+            return after + 1 >= n or s[after + 1] != "g"
+        return False
+    if ch == "t":
+        return True
+    if ch == "n":
+        return pos + 1 >= n or s[pos + 1] != "g"
+    return False
+
+
+def _looks_like_syllabic(s, start, onset):
+    """Return True if the onset 'm' or 'ng' at s[start:] is really a syllabic
+    nasal nucleus (e.g., 'm̀h' or 'ǹgh'). True when the next char after the
+    onset letters is either end-of-string, a combining diacritic, an 'h', or
+    an apostrophe; i.e., not another vowel/consonant that would form a real
+    onset+rime."""
+    end = start + len(onset)
+    if end >= len(s):
+        return True
+    nxt = s[end]
+    if unicodedata.category(nxt) == "Mn":
+        return True
+    if nxt == "h":
+        return True
+    if nxt in _YALE_VOWEL_LETTERS:
+        return False  # m + vowel = onset + nucleus
+    # Another consonant means this is the boundary; treat as syllabic.
+    return True
+
+
+def _consume_nucleus(s, start):
+    """Consume nucleus characters (vowels/syllabic-nasal base letters with at
+    most one combining diacritic on the first base letter) starting at
+    s[start]. Returns (end_index, base_nucleus_string_with_diacritic_attached).
+
+    The base_nucleus_string returned includes the combining diacritic
+    (preserving NFD form) so the caller can extract tone via _strip_diacritic.
     """
-    Check if *inputstr* ends with one of the items in seq. If it does, return
-        the item that it ends with. If it doe not, return ``None``.
+    n = len(s)
+    if start >= n:
+        return start, ""
 
-    :param inputstr: input string
+    # Try multi-letter nuclei first (only against base letters, ignoring marks).
+    base_seq = []
+    spans = []  # parallel: end index after each base letter (including its mark)
+    j = start
+    while j < n and len(base_seq) < 2:
+        ch = s[j]
+        if unicodedata.category(ch) == "Mn":
+            # standalone mark with no preceding base — error
+            if not base_seq:
+                raise ValueError("orphan combining mark at start of nucleus")
+            j += 1
+            continue
+        if ch not in _YALE_VOWEL_LETTERS and ch not in ("m", "n", "g", "y"):
+            break
+        base_seq.append(ch)
+        k = j + 1
+        while k < n and unicodedata.category(s[k]) == "Mn":
+            k += 1
+        spans.append(k)
+        j = k
 
-    :param seq: sequences of items to check
+    if not base_seq:
+        return start, ""
 
-    :return: the item the the input string ends with (``None`` if not found)
+    base_str = "".join(base_seq)
 
-    :rtype: str or None
-    """
-    seq = set(seq)
-    for item in seq:
-        if inputstr.endswith(item):
-            return item
+    # Choose the longest matching nucleus from the longest-first list.
+    for cand in _YALE_NUCLEI_ORDERED:
+        L = len(cand)
+        if base_str.startswith(cand):
+            # Special: "ng" and "m" as nuclei are syllabic; only allowed as
+            # nucleus when nothing follows that could be a vowel (caller
+            # already enforces vowel-or-syllabic structure).
+            end = spans[L - 1]
+            return end, s[start:end]
+
+    # No multi-letter match: only fall back to single-letter nuclei.
+    if base_seq[0] in {"a", "e", "i", "o", "u", "m"}:
+        end = spans[0]
+        return end, s[start:end]
+    # 'y', 'n', 'g' alone are not valid nuclei.
+    return start, ""
+
+
+def _build_jyutping(onset_yale, nucleus_yale, coda_yale, tone):
+    """Convert decomposed Yale pieces to a Jyutping syllable string."""
+    if onset_yale not in _ONSETS_JYUTPING:
+        raise ValueError("unknown Yale onset -- " + repr(onset_yale))
+    if coda_yale not in _CODAS_JYUTPING and coda_yale != "w":
+        raise ValueError("unknown Yale coda -- " + repr(coda_yale))
+
+    onset_jp = _ONSETS_JYUTPING[onset_yale]
+
+    # Convention: bare nucleus "yu" with no Yale onset corresponds to Jyutping
+    # onset "j" + nucleus "yu" (real Cantonese has no /yu/ without a preceding
+    # /j/; the Yale form "yū" is shared by Jyutping "jyu1" and "yu1").
+    if onset_yale == "" and nucleus_yale == "yu":
+        onset_jp = "j"
+
+    # Yale coda "w" comes from Jyutping coda "u" with nucleus "oe" -> "ew".
+    if coda_yale == "w":
+        coda_jp = "u"
     else:
-        return None
+        coda_jp = _CODAS_JYUTPING[coda_yale]
+
+    # Nucleus resolution.
+    if nucleus_yale == "eu":
+        nucleus_jp = _resolve_eu(coda_yale)
+    elif nucleus_yale == "a" and coda_jp == "":
+        # Yale "a" with no coda corresponds to Jyutping "aa".
+        # But Yale also writes Jyutping "a" + coda as "a" + coda, so only
+        # promote to "aa" when there's no coda.
+        nucleus_jp = "aa"
+    elif nucleus_yale in _NUCLEI_JYUTPING_UNAMBIGUOUS:
+        nucleus_jp = _NUCLEI_JYUTPING_UNAMBIGUOUS[nucleus_yale]
+    else:
+        raise ValueError("unknown Yale nucleus -- " + repr(nucleus_yale))
+
+    return f"{onset_jp}{nucleus_jp}{coda_jp}{tone}"
+
+
+def _convert_syllable(raw):
+    """Convert a single NFD-form Yale syllable into a Jyutping string."""
+    n = len(raw)
+
+    # ---- onset ----
+    onset = ""
+    for cand in _YALE_ONSETS_ORDERED:
+        if raw.startswith(cand):
+            onset = cand
+            break
+    nucleus_start = len(onset)
+
+    # Backtrack: 'm'/'ng' may be a syllabic nasal nucleus.
+    if nucleus_start >= n or raw[nucleus_start] not in _YALE_VOWEL_LETTERS:
+        if onset in ("m", "ng") and _looks_like_syllabic(raw, 0, onset):
+            onset = ""
+            nucleus_start = 0
+        elif onset == "" and raw and raw[0] in _YALE_VOWEL_LETTERS:
+            pass
+        else:
+            if onset == "":
+                raise ValueError(
+                    "cannot parse Yale syllable -- "
+                    + repr(unicodedata.normalize("NFC", raw))
+                )
+
+    # Backtrack onset "y" if it's really the prefix of nucleus "yu".
+    if onset == "y":
+        test_end, test_raw = _consume_nucleus(raw, 0)
+        test_base = "".join(c for c in test_raw if unicodedata.category(c) != "Mn")
+        if test_base == "yu" and _yu_compatible_tail(raw, test_end):
+            onset = ""
+            nucleus_start = 0
+
+    # ---- nucleus ----
+    nuc_end, nuc_chars = _consume_nucleus(raw, nucleus_start)
+    if nuc_end == nucleus_start:
+        raise ValueError(
+            "cannot parse Yale syllable -- " + repr(unicodedata.normalize("NFC", raw))
+        )
+    base_nucleus, mark = _strip_diacritic(nuc_chars)
+
+    # ---- coda + h-marker ----
+    # Yale low-tone 'h' placement: BEFORE stop/nasal coda, AFTER glide coda.
+    # Syllabic nasals (no onset) never take a coda.
+    is_syllabic_nasal = onset == "" and base_nucleus in ("m", "ng")
+    pos = nuc_end
+    has_h = False
+    coda = ""
+
+    if is_syllabic_nasal and (pos >= n or raw[pos] != "h"):
+        # No 'h' follows: no coda (e.g. ng3 or m3 standalone syllables).
+        tone = _tone_from(mark, has_h)
+        return _build_jyutping(onset, base_nucleus, coda, tone)
+
+    if pos < n and raw[pos] == "h":
+        after_h = pos + 1
+        for cand in ("ng", "p", "t", "k", "m", "n"):
+            if raw.startswith(cand, after_h):
+                has_h = True
+                coda = cand
+                break
+        else:
+            has_h = True
+            coda = ""
+    else:
+        for cand in ("i", "u", "w"):
+            if raw.startswith(cand, pos):
+                coda = cand
+                coda_end = pos + len(cand)
+                if coda_end < n and raw[coda_end] == "h":
+                    has_h = True
+                break
+        else:
+            for cand in ("ng", "p", "t", "k", "m", "n"):
+                if raw.startswith(cand, pos):
+                    coda = cand
+                    break
+
+    tone = _tone_from(mark, has_h)
+    return _build_jyutping(onset, base_nucleus, coda, tone)
+
+
+def yale_to_jyutping(yale: str | list[str]) -> list[str]:
+    """Convert Yale romanization into Jyutping romanization.
+
+    The inverse of :func:`jyutping_to_yale`. Accepts Yale in the diacritic +
+    ``h`` low-tone style (same form produced by ``jyutping_to_yale``).
+
+    Args:
+        yale (str or list[str]): A Yale romanization string for a single word,
+            or a list of such strings carrying explicit word segmentation
+            (one word per element). Inside a single-word string, both
+            whitespace and apostrophes ``'`` are accepted as syllable-boundary
+            hints; neither creates a word boundary. Pass a ``list[str]`` to
+            mark word boundaries.
+
+    Returns:
+        list[str]: A list with one element per input word. Each element is
+        the Jyutping representation of that word, with syllables separated
+        by a single space.
+
+    Raises:
+        ValueError: If the Yale romanization is illegal (e.g., with
+            unrecognized elements or a missing low-tone marker on a tone-4
+            grave-accented syllable).
+
+    Examples:
+        >>> yale_to_jyutping("gwóngdūngwá")  # 廣東話, Cantonese
+        ['gwong2 dung1 waa2']
+        >>> yale_to_jyutping(["gāmyaht", "góng", "gwóngdūngwá"])
+        ['gam1 jat6', 'gong2', 'gwong2 dung1 waa2']
+    """
+    if not yale:
+        return []
+
+    words = [yale] if isinstance(yale, str) else yale
+
+    result = []
+    for word in words:
+        syllables = _split_word_syllables(word)
+        jp_parts = [_convert_syllable(s) for s in syllables]
+        result.append(" ".join(jp_parts))
+    return result

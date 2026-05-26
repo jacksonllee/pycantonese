@@ -73,25 +73,22 @@ def _replace(current, parsed, part_to_match, matches, default):
 
 
 def jyutping_to_ipa(
-    jp_str: str,
-    return_as: str = "list",
+    jp: str | list[str],
     *,
     onsets: dict[str, str] | None = None,
     nuclei: dict[str, str] | None = None,
     codas: dict[str, str] | None = None,
     tones: dict[str, str] | None = None,
-) -> list[str] | str:
+) -> list[str]:
     """Convert Jyutping romanization into IPA.
 
     The Jyutping-to-IPA mapping is based on Matthews and Yip (2011: 461-463).
 
     Args:
-        jp_str (str): Jyutping romanization for one or multiple characters.
-        return_as (str, optional): If ``"list"`` (the default), the returned
-            value is a list of strings where each string is the IPA
-            representation of each Cantonese / Chinese character based on the
-            input Jyutping. If ``"string"``, the returned value is a single
-            space-joined string.
+        jp (str or list[str]): A Jyutping romanization string for a single
+            word (any number of syllables, optionally separated by spaces),
+            or a list of such strings carrying explicit word segmentation
+            (one word per element).
         onsets (dict[str, str], optional): If provided, it must be a
             dictionary that maps Jyutping onsets to the desired IPA symbols
             for customization. For example, Jyutping "z" maps to IPA /ts/ by
@@ -113,13 +110,15 @@ def jyutping_to_ipa(
             Jyutping "2" to /35/ instead.
 
     Returns:
-        list[str] | str
+        list[str]: A list with one element per input word. Each element is
+        the IPA representation of that word, with syllables separated by a
+        single space.
 
     Examples:
         >>> jyutping_to_ipa('gwong2dung1waa2')  # 廣東話 Cantonese
-        ['kʷɔŋ25', 'tʊŋ55', 'waː25']
-        >>> jyutping_to_ipa('gwong2dung1waa2', return_as="string")
-        'kʷɔŋ25 tʊŋ55 waː25'
+        ['kʷɔŋ25 tʊŋ55 waː25']
+        >>> jyutping_to_ipa(['gwong2dung1', 'waa2'])
+        ['kʷɔŋ25 tʊŋ55', 'waː25']
         >>> jyutping_to_ipa('ci1', onsets={'c': "tʃ'"})
         ["tʃ'i55"]
         >>> jyutping_to_ipa('ci1', tones={'1': "˥"})
@@ -129,7 +128,23 @@ def jyutping_to_ipa(
         :func:`~pycantonese.g2p`: One-shot grapheme-to-phoneme conversion that
         composes :func:`~pycantonese.characters_to_jyutping` with this function.
     """
-    jp_parsed_list = parse_jyutping(jp_str)
+    if not jp:
+        return []
+    words = [jp] if isinstance(jp, str) else jp
+    return [
+        " ".join(_word_to_ipa_syllables(word, onsets, nuclei, codas, tones))
+        for word in words
+    ]
+
+
+def _word_to_ipa_syllables(
+    word: str,
+    onsets: dict[str, str] | None,
+    nuclei: dict[str, str] | None,
+    codas: dict[str, str] | None,
+    tones: dict[str, str] | None,
+) -> list[str]:
+    jp_parsed_list = parse_jyutping(word)
     ipa_list = []
 
     for jp_parsed in jp_parsed_list:
@@ -157,7 +172,4 @@ def jyutping_to_ipa(
 
         ipa_list.append(onset + nucleus + coda + tone)
 
-    if return_as == "list":
-        return ipa_list
-    else:
-        return " ".join(ipa_list)
+    return ipa_list
