@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-## [5.0.0]
+## [5.0.0] - 2026-05-26
 
 ### Added
 - Added `yale_to_jyutping` to convert Yale romanization into Jyutping.
@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   `yale_to_jyutping`, and `jyutping_to_tipa` now all accept `str | list[str]`
   as input. A `str` is treated as a single word with no word segmentation;
   a `list[str]` carries explicit word segmentation, one word per element.
+- Added `stringify_yale` to take the output of `jyutping_to_yale` and return
+  a string with apostrophes for disambiguating syllable boundaries.
 - `parse_jyutping` now tolerates whitespace between syllables in its input
   string.
 
@@ -39,11 +41,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - **Breaking:** removed the apostrophe-disambiguation behavior that
   `jyutping_to_yale` previously applied under `return_as="string"`. The
   space between syllables in the new output resolves the same ambiguity.
-  In `yale_to_jyutping` input, apostrophes are still accepted but are now
-  treated identically to whitespace as a syllable-boundary hint within a
-  single word.
-- Removed `@lru_cache` from `jyutping_to_yale` and `yale_to_jyutping`
-  (lists are not hashable).
+  Please note:
+   * The new `stringify_yale` takes the output of `jyutping_to_yale` and returns
+     a string with apostrophes for disambiguating syllable boundaries.
+   * In `yale_to_jyutping` input, apostrophes are still accepted but are now
+     treated identically to whitespace as a syllable-boundary hint within a
+     single word.
 
 ### Fixed
 - Fixed `jyutping_to_yale` mapping for the `kw` onset, which was incorrectly

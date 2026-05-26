@@ -1,6 +1,6 @@
 import pytest
 
-from pycantonese import jyutping_to_yale, yale_to_jyutping
+from pycantonese import jyutping_to_yale, stringify_yale, yale_to_jyutping
 from pycantonese.jyutping.parse_jyutping import (
     ONSETS,
     NUCLEI,
@@ -47,6 +47,28 @@ def test_jyutping_to_yale_list_input():
 def test_jyutping_to_yale_hei3hau6():
     # 氣候 climate -- spaces handle what the old apostrophe disambiguation did.
     assert jyutping_to_yale("hei3hau6") == ["hei hauh"]
+
+
+def test_stringify_yale__empty():
+    assert stringify_yale([]) == ""
+
+
+def test_stringify_yale__single_word_no_ambiguity():
+    assert stringify_yale(["gwóng dūng wá"]) == "gwóngdūngwá"
+
+
+def test_stringify_yale__single_word_apostrophe():
+    # hei + hauh: "h" of hauh could be read as low-tone marker of hei.
+    assert stringify_yale(["hei hauh"]) == "hei'hauh"
+
+
+def test_stringify_yale__syllabic_nasal():
+    # m̀h + gōi: previous ends in "h" but next starts with "g" (not a vowel).
+    assert stringify_yale(["m̀h gōi"]) == "m̀hgōi"
+
+
+def test_stringify_yale__word_boundaries():
+    assert stringify_yale(["gwóng dūng", "wá"]) == "gwóngdūng wá"
 
 
 @pytest.mark.parametrize("input_", ["", None, []])
@@ -141,3 +163,35 @@ def test_round_trip():
             f"  jp={j!r} -> yale={y!r} -> got {r!r}" for j, y, r in failures[:20]
         )
         pytest.fail(f"{len(failures)} round-trip failures:\n{lines}")
+
+
+def test_stringify_yale__round_trip():
+    """For every valid 2-syllable Jyutping word, stringify_yale of its Yale
+    form must still be reversible by yale_to_jyutping."""
+    failures = []
+    syllables = []
+    for onset in ONSETS:
+        for nucleus in NUCLEI:
+            for coda in CODAS:
+                for tone in TONES:
+                    if not _is_valid_jyutping(onset, nucleus, coda, tone):
+                        continue
+                    syllables.append(f"{onset}{nucleus}{coda}{tone}")
+    # Pair every syllable with a small fixed set of "challenging" partners
+    # whose Yale forms start with vowels or with the ambiguous consonants
+    # so the apostrophe-placement logic gets exercised.
+    partners = ["au6", "ap1", "ngo5", "ho2", "m4", "ngaak6"]
+    for jp1 in syllables:
+        for jp2 in partners:
+            jp = jp1 + jp2
+            [yale] = jyutping_to_yale(jp)
+            joined = stringify_yale([yale])
+            result = yale_to_jyutping(joined)
+            if result != [f"{jp1} {jp2}"]:
+                failures.append((jp, yale, joined, result))
+    if failures:
+        lines = "\n".join(
+            f"  jp={j!r} -> yale={y!r} -> joined={s!r} -> got {r!r}"
+            for j, y, s, r in failures[:20]
+        )
+        pytest.fail(f"{len(failures)} stringify_yale round-trip failures:\n{lines}")

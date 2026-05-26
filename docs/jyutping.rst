@@ -208,6 +208,21 @@ an onset of the next syllable or part of the previous one:
     # ['hei hauh']
     ## Without the space, 'heihauh' (Yale) would be ambiguous between hei3hau6 and hei6au6 (Jyutping).
 
+If you need one combined string instead of a list of words, use
+:func:`~pycantonese.stringify_yale`. Words are joined by spaces, and an
+apostrophe ``'`` is inserted only at syllable boundaries that would
+otherwise be ambiguous:
+
+.. code-block:: python
+
+    from pycantonese import jyutping_to_yale, stringify_yale
+    stringify_yale(jyutping_to_yale('gwong2dung1waa2'))
+    # 'gwóngdūngwá'
+    stringify_yale(jyutping_to_yale('hei3hau6'))  # 氣候 climate
+    # "hei'hauh"
+    stringify_yale(jyutping_to_yale(['gwong2dung1', 'waa2']))
+    # 'gwóngdūng wá'
+
 Yale-to-Jyutping Conversion
 ---------------------------
 

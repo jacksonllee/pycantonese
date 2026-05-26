@@ -29,6 +29,7 @@ Jyutping Romanization
     parse_jyutping
     jyutping_to_ipa
     jyutping_to_yale
+    stringify_yale
     yale_to_jyutping
     jyutping_to_tipa
 

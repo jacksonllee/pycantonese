@@ -55,6 +55,98 @@ CODAS_YALE = {
 }
 
 
+_YALE_AMBIGUOUS_CONSONANTS = ("ng", "h", "p", "t", "k", "m", "n")
+
+_YALE_VOWEL_DISPLAY_LETTERS = frozenset(
+    "aeiou" "áéíóú" "àèìòù" "āēīōū"
+)
+
+
+def _needs_apostrophe(prev_syl: str, next_syl: str) -> bool:
+    """Return True iff gluing ``prev_syl`` + ``next_syl`` would produce an
+    ambiguous syllable boundary -- either visually (the same heuristic used
+    historically by ``jyutping_to_yale(..., return_as='string')``) or
+    structurally (the joined string parses as a different syllable split)."""
+    # Visual heuristic: a consonant or low-tone "h" sitting between two
+    # syllables can be read as either an onset or a coda.
+    ends_ambig = any(prev_syl.endswith(c) for c in _YALE_AMBIGUOUS_CONSONANTS)
+    starts_vowel = bool(next_syl) and next_syl[0] in _YALE_VOWEL_DISPLAY_LETTERS
+    starts_ambig = any(next_syl.startswith(c) for c in _YALE_AMBIGUOUS_CONSONANTS)
+    if ends_ambig and starts_vowel:
+        return True
+    if not ends_ambig and starts_ambig:
+        return True
+    # Structural check: the visual heuristic above misses the "both ends are
+    # ambiguous consonants" case (it only fires on exactly-one-ambiguous-end).
+    # Concatenating without an apostrophe can let the greedy splitter re-bind
+    # boundary characters into a syllable that doesn't match the original.
+    #
+    # Example where the structural check is *necessary*:
+    #   prev_syl="yih" (Jyutping ji6, low-tone "h"), next_syl="pa".
+    #   Visual: prev ends in "h" (ambig) AND next starts in "p" (ambig)
+    #     -- both ambig, so neither visual case fires.
+    #   But "yihpa" re-parses greedily as one syllable "yihp" + "a"
+    #     (Yale convention: low-tone "h" sits BEFORE a stop coda, so
+    #     y + i + h + p is a valid single syllable, Jyutping jip6),
+    #     so _split_piece("yihpa") = ["yihp", "a"] != ["yih", "pa"].
+    #   -> returns True -> an apostrophe gives "yih'pa".
+    #
+    # Example where the structural check *agrees* (no apostrophe):
+    #   prev_syl="m̀h" (Jyutping m4), next_syl="gōi" (goi1).
+    #   Visual: prev ends "h" but next starts "g" (not ambig, not vowel)
+    #     -> no apostrophe.
+    #   "m̀hgōi" re-parses cleanly as ["m̀h", "gōi"] (syllabic-nasal m̀h
+    #     followed by a fresh "gōi" syllable), so structural also says no.
+    nfd_prev = unicodedata.normalize("NFD", prev_syl)
+    nfd_next = unicodedata.normalize("NFD", next_syl)
+    try:
+        return _split_piece(nfd_prev + nfd_next) != [nfd_prev, nfd_next]
+    except ValueError:
+        return True
+
+
+def stringify_yale(yale: list[str]) -> str:
+    """Join Yale words (the output of :func:`jyutping_to_yale`) into one string.
+
+    Words (list elements) are separated by a single space. Within each word,
+    syllables are concatenated directly, with an apostrophe ``'`` inserted at
+    a syllable boundary only when the boundary would otherwise be ambiguous
+    (i.e., when a consonant letter or the low-tone marker ``h`` could be read
+    either as the onset of the next syllable or as the coda of the previous
+    one).
+
+    Args:
+        yale (list[str]): A list of Yale words, each a string of syllables
+            separated by single spaces -- the shape returned by
+            :func:`jyutping_to_yale`.
+
+    Returns:
+        str: The joined Yale string.
+
+    Examples:
+        >>> stringify_yale(jyutping_to_yale("gwong2dung1waa2"))  # 廣東話
+        'gwóngdūngwá'
+        >>> stringify_yale(jyutping_to_yale("hei3hau6"))  # 氣候
+        "hei'hauh"
+        >>> stringify_yale(jyutping_to_yale(["gwong2dung1", "waa2"]))
+        'gwóngdūng wá'
+    """
+    if not yale:
+        return ""
+    out_words = []
+    for word in yale:
+        syllables = word.split()
+        if not syllables:
+            continue
+        parts = [syllables[0]]
+        for prev, nxt in zip(syllables, syllables[1:]):
+            if _needs_apostrophe(prev, nxt):
+                parts.append("'")
+            parts.append(nxt)
+        out_words.append("".join(parts))
+    return " ".join(out_words)
+
+
 def jyutping_to_yale(jp: str | list[str]) -> list[str]:
     """Convert Jyutping romanization into Yale romanization.
 

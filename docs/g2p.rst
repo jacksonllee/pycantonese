@@ -69,7 +69,7 @@ explicitly:
 The IPA mapping inherits the choices of :func:`~pycantonese.jyutping_to_ipa`,
 which follows Matthews and Yip (2011: 461-463). To customize specific
 IPA symbols, :func:`~pycantonese.g2p` accepts the keyword arguments
-``onsets``, ``nuclei``, and ``codas``, each a dictionary that maps a Jyutping
+``onsets``, ``nuclei``, ``codas``, and ``tones``, each a dictionary that maps a Jyutping
 sound to your desired IPA symbol:
 
 .. code-block:: python
