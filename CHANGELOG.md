@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [5.0.0] - 2026-05-26
 
+This release incremented the major version number to v5 for the API breaking changes
+related to various conversion functions for Jyutping romanization.
+Please see the notes below for details.
+
 ### Added
 - Added `yale_to_jyutping` to convert Yale romanization into Jyutping.
 - `characters_to_jyutping`, `jyutping_to_ipa`, `jyutping_to_yale`,
@@ -25,7 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   use a single space to separate the per-syllable representations within
   each word in their output. For example,
   `characters_to_jyutping('廣東話')` returns `[('廣東話', 'gwong2 dung1 waa2')]`
-  rather than `[('廣東話', 'gwong2dung1waa2')]`. The underlying
+  rather than the previous `[('廣東話', 'gwong2dung1waa2')]`. The underlying
   rime-cantonese data file (`chars_to_jyutping.json`) is regenerated with
   the same convention so that downstream consumers can recover syllables
   via `str.split()`.
@@ -35,9 +39,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Removed
 - **Breaking:** removed the `return_as` keyword argument from
-  `jyutping_to_ipa`, `jyutping_to_yale`, and `yale_to_jyutping`. The new
-  list-of-word-strings shape (with syllables space-separated inside each
-  word) renders both prior modes representable without a flag.
+  `jyutping_to_ipa`, `jyutping_to_yale`, and `yale_to_jyutping`.
+  These functions now always return a list of strings.
 - **Breaking:** removed the apostrophe-disambiguation behavior that
   `jyutping_to_yale` previously applied under `return_as="string"`. The
   space between syllables in the new output resolves the same ambiguity.
