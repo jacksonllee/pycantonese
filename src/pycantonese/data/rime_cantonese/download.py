@@ -60,7 +60,7 @@ def _process_csv(filename: str, content: str) -> dict[str, str]:
     preferred: dict[str, str] = {}
     for row in reader:
         char = row["char"]
-        jyutping = row["jyutping"].replace(" ", "")
+        jyutping = row["jyutping"]
         if filename == "char.csv":
             if row["pron_rank"] == "預設":
                 preferred[char] = jyutping
@@ -95,7 +95,7 @@ def _process_lettered_yaml(content: str) -> dict[str, str]:
         if len(parts) < 2:
             continue
         char = parts[0]
-        jyutping = parts[1].replace(" ", "")
+        jyutping = parts[1]
         # Keep first occurrence only (file is sorted by weight, so first = best).
         if char not in mapping:
             mapping[char] = jyutping

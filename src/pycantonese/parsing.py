@@ -51,7 +51,9 @@ def _get_utterance(unparsed_sent, pos_tag_kwargs, participant):
         if pos == "PUNCT" or pos[0].upper() not in _ASCII_UPPERCASE:
             mor_items.append(word)
         else:
-            mor_items.append(f"{pos}|{jp or ''}")
+            # CHAT %mor uses space as the inter-word delimiter, so the
+            # per-word Jyutping must be space-free.
+            mor_items.append(f"{pos}|{(jp or '').replace(' ', '')}")
     mor_str = " ".join(mor_items)
 
     return (participant, words_str, mor_str)

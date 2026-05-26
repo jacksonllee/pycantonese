@@ -21,9 +21,12 @@ def test_null_input(input_):
 
 
 def test_jyutping_to_tipa():
-    assert jyutping_to_tipa("m4goi1") == ["\\s{m}21", "kOY55"]
-    assert jyutping_to_tipa("gwong2dung1waa2") == [
-        "k\\super w ON25",
-        "tUN55",
+    assert jyutping_to_tipa("m4goi1") == ["\\s{m}21 kOY55"]
+    assert jyutping_to_tipa("gwong2dung1waa2") == ["k\\super w ON25 tUN55 wa25"]
+
+
+def test_jyutping_to_tipa__list_input():
+    assert jyutping_to_tipa(["gwong2dung1", "waa2"]) == [
+        "k\\super w ON25 tUN55",
         "wa25",
     ]

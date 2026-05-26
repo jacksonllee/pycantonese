@@ -1,6 +1,6 @@
-import re
+from __future__ import annotations
+
 import unicodedata
-from functools import lru_cache
 
 from pycantonese.jyutping.parse_jyutping import parse_jyutping
 
@@ -55,20 +55,19 @@ CODAS_YALE = {
 }
 
 
-@lru_cache
-def jyutping_to_yale(jp_str, return_as="list"):
+def jyutping_to_yale(jp: str | list[str]) -> list[str]:
     """Convert Jyutping romanization into Yale romanization.
 
     Args:
-        jp_str (str): Jyutping romanization for one or multiple characters.
-        return_as (str, optional): If ``"list"`` (the default), the returned
-            value is a list of strings. If ``"string"``, the output is a
-            string with a single quote ``'`` to disambiguate unclear syllable
-            boundaries (e.g., a consonant or the low-tone marker "h" being
-            ambiguous as an onset or as part of the previous syllable).
+        jp (str or list[str]): A Jyutping romanization string for a single
+            word (any number of syllables, optionally separated by spaces),
+            or a list of such strings carrying explicit word segmentation
+            (one word per element).
 
     Returns:
-        list[str], or str if return_as is "string"
+        list[str]: A list with one element per input word. Each element is
+        the Yale romanization of that word, with syllables separated by a
+        single space.
 
     Raises:
         ValueError: If the Jyutping romanization is illegal (e.g., with
@@ -76,15 +75,20 @@ def jyutping_to_yale(jp_str, return_as="list"):
 
     Examples:
         >>> jyutping_to_yale("gwong2dung1waa2")  # 廣東話, Cantonese
-        ['gwóng', 'dūng', 'wá']
-        >>> jyutping_to_yale("gwong2dung1waa2", return_as="string")
-        'gwóngdūngwá'
-        >>>
-        >>> # 'heihauh' would be ambiguous between hei3hau6 and hei6au6.
-        >>> jyutping_to_yale("hei3hau6", return_as="string")  # 氣候, climate
-        "hei'hauh"
+        ['gwóng dūng wá']
+        >>> jyutping_to_yale(["gwong2dung1", "waa2"])
+        ['gwóng dūng', 'wá']
+        >>> jyutping_to_yale("hei3hau6")  # 氣候, climate
+        ['hei hauh']
     """
-    jp_parsed_list = parse_jyutping(jp_str)
+    if not jp:
+        return []
+    words = [jp] if isinstance(jp, str) else jp
+    return [" ".join(_word_to_yale_syllables(word)) for word in words]
+
+
+def _word_to_yale_syllables(word: str) -> list[str]:
+    jp_parsed_list = parse_jyutping(word)
     yale_list = []
 
     for jp_parsed in jp_parsed_list:
@@ -176,123 +180,7 @@ def jyutping_to_yale(jp_str, return_as="list"):
             yale = onset + nucleus + low_tone_h + coda
         yale_list.append(yale)
 
-    if return_as == "list":
-        return yale_list
-
-    # Output yale_list as a string
-    # Check if there's potential ambiguity when Yale strings are concatenated
-
-    # Ambiguity case 1:
-    #   1st syllable coda is one of the "ambiguous_consonants"
-    #   and 2nd syllable starts with a vowel *letter*
-
-    # Ambiguity case 2:
-    #   1st syllable has no coda and 2nd syllable starts with one of the
-    #   "ambiguous_consonants"
-    #   e.g., hei3hau6 'climate' --> heihauh
-    #   (middle "h" for tone in 1st syllable or being onset of 2nd syllable?)
-
-    if len(yale_list) == 0:
-        return ""
-    elif len(yale_list) == 1:
-        return yale_list[0]
-
-    ambiguous_consonants = {"h", "p", "t", "k", "m", "n", "ng"}
-    vowel_letters = {
-        "a",
-        "e",
-        "i",
-        "o",
-        "u",
-        "á",
-        "é",
-        "í",
-        "ó",
-        "ú",
-        "à",
-        "è",
-        "ì",
-        "ò",
-        "ù",
-        "ā",
-        "ē",
-        "ī",
-        "ō",
-        "ū",
-    }
-
-    output_str = ""
-
-    for i in range(len(yale_list) - 1):
-        yale1 = yale_list[i]
-        yale2 = yale_list[i + 1]
-
-        ambiguous = False
-
-        # test case 1:
-        if _endswithoneof(yale1, ambiguous_consonants) and _startswithoneof(
-            yale2, vowel_letters
-        ):
-            ambiguous = True
-
-        # test case 2:
-        if (
-            not ambiguous
-            and not _endswithoneof(yale1, ambiguous_consonants)
-            and _startswithoneof(yale2, ambiguous_consonants)
-        ):
-            ambiguous = True
-
-        output_str += yale1
-
-        if ambiguous:
-            output_str += "'"
-
-    output_str += yale_list[-1]
-
-    return output_str
-
-
-def _startswithoneof(inputstr, seq):
-    """
-    Check if *inputstr* starts with one of the items in seq. If it does, return
-        the item that it starts with. If it doe not, return ``None``.
-
-    :param inputstr: input string
-
-    :param seq: sequences of items to check
-
-    :return: the item the the input string starts with (``None`` if not found)
-
-    :rtype: str or None
-    """
-    seq = set(seq)
-    for item in seq:
-        if inputstr.startswith(item):
-            return item
-    else:
-        return None
-
-
-def _endswithoneof(inputstr, seq):
-    """
-    Check if *inputstr* ends with one of the items in seq. If it does, return
-        the item that it ends with. If it doe not, return ``None``.
-
-    :param inputstr: input string
-
-    :param seq: sequences of items to check
-
-    :return: the item the the input string ends with (``None`` if not found)
-
-    :rtype: str or None
-    """
-    seq = set(seq)
-    for item in seq:
-        if inputstr.endswith(item):
-            return item
-    else:
-        return None
+    return yale_list
 
 
 # Inverse mapping tables for Yale -> Jyutping.
@@ -393,9 +281,11 @@ def _resolve_eu(coda_yale):
 
 
 def _split_word_syllables(word):
-    """Split a Yale word (no whitespace) into a list of raw syllable strings,
-    honoring apostrophe `'` as an explicit syllable break."""
-    pieces = [p for p in word.split("'") if p]
+    """Split a Yale word into a list of raw syllable strings. Both apostrophe
+    `'` and whitespace are honored as explicit syllable-break hints inside
+    the word."""
+    # Normalize apostrophes to spaces, then split on any whitespace.
+    pieces = [p for p in word.replace("'", " ").split() if p]
     syllables = []
     for piece in pieces:
         syllables.extend(_split_piece(piece))
@@ -728,27 +618,24 @@ def _convert_syllable(raw):
     return _build_jyutping(onset, base_nucleus, coda, tone)
 
 
-@lru_cache
-def yale_to_jyutping(yale_str, return_as="list"):
+def yale_to_jyutping(yale: str | list[str]) -> list[str]:
     """Convert Yale romanization into Jyutping romanization.
 
     The inverse of :func:`jyutping_to_yale`. Accepts Yale in the diacritic +
     ``h`` low-tone style (same form produced by ``jyutping_to_yale``).
 
     Args:
-        yale_str (str): Yale romanization. Whitespace marks word boundaries;
-            if multiple whitespace-separated tokens are present, each is
-            converted independently and the grouping is preserved in the
-            output. Apostrophes ``'`` are accepted as syllable separators
-            within a word and do not create word boundaries.
-        return_as (str, optional): If ``"list"`` (the default), the returned
-            value is a list of Jyutping strings, one per input word (with
-            that word's syllables concatenated). If ``"string"``, the output
-            is a single Jyutping string with spaces preserving the input
-            word boundaries.
+        yale (str or list[str]): A Yale romanization string for a single word,
+            or a list of such strings carrying explicit word segmentation
+            (one word per element). Inside a single-word string, both
+            whitespace and apostrophes ``'`` are accepted as syllable-boundary
+            hints; neither creates a word boundary. Pass a ``list[str]`` to
+            mark word boundaries.
 
     Returns:
-        list[str], or str if return_as is "string"
+        list[str]: A list with one element per input word. Each element is
+        the Jyutping representation of that word, with syllables separated
+        by a single space.
 
     Raises:
         ValueError: If the Yale romanization is illegal (e.g., with
@@ -757,45 +644,18 @@ def yale_to_jyutping(yale_str, return_as="list"):
 
     Examples:
         >>> yale_to_jyutping("gwóngdūngwá")  # 廣東話, Cantonese
-        ['gwong2', 'dung1', 'waa2']
-        >>> yale_to_jyutping("gwóngdūngwá", return_as="string")
-        'gwong2dung1waa2'
-        >>> yale_to_jyutping('gāmyaht góng gwóngdūngwá')  # word-segmented input
-        ['gam1jat6', 'gong2', 'gwong2dung1waa2']
-        >>> yale_to_jyutping('gāmyaht góng gwóngdūngwá', return_as='string')
-        'gam1jat6 gong2 gwong2dung1waa2'
+        ['gwong2 dung1 waa2']
+        >>> yale_to_jyutping(["gāmyaht", "góng", "gwóngdūngwá"])
+        ['gam1 jat6', 'gong2', 'gwong2 dung1 waa2']
     """
-    if not yale_str:
-        return [] if return_as == "list" else ""
+    if not yale:
+        return []
 
-    if not isinstance(yale_str, str):
-        raise ValueError("argument needs to be a string -- " + repr(yale_str))
+    words = [yale] if isinstance(yale, str) else yale
 
-    words = yale_str.split()
-    if not words:
-        return [] if return_as == "list" else ""
-
-    word_outputs = []
+    result = []
     for word in words:
         syllables = _split_word_syllables(word)
         jp_parts = [_convert_syllable(s) for s in syllables]
-        word_outputs.append("".join(jp_parts))
-
-    if len(words) == 1:
-        # Unsegmented input: return one element per syllable in list mode.
-        if return_as == "list":
-            single = word_outputs[0]
-            # Re-split by tone digits.
-            return _split_jyutping_by_tone(single)
-        return word_outputs[0]
-
-    if return_as == "list":
-        return word_outputs
-    return " ".join(word_outputs)
-
-
-_JYUTPING_SPLIT_RE = re.compile(r"[^1-6]*[1-6]")
-
-
-def _split_jyutping_by_tone(jp_str):
-    return _JYUTPING_SPLIT_RE.findall(jp_str)
+        result.append(" ".join(jp_parts))
+    return result

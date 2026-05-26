@@ -24,7 +24,7 @@ No errors? Great! Now you're ready to proceed.
 .. code-block:: python
 
     pycantonese.characters_to_jyutping('香港人講廣東話')  # Hongkongers speak Cantonese
-    # [('香港人', 'hoeng1gong2jan4'), ('講', 'gong2'), ('廣東話', 'gwong2dung1waa2')]
+    # [('香港人', 'hoeng1 gong2 jan4'), ('講', 'gong2'), ('廣東話', 'gwong2 dung1 waa2')]
 
 3. Finding all verbs in the HKCanCor corpus
 
@@ -55,7 +55,7 @@ No errors? Great! Now you're ready to proceed.
 
 .. code-block:: python
 
-    pycantonese.parse_jyutping('gwong2dung1waa2')  # 廣東話
+    pycantonese.parse_jyutping('gwong2 dung1 waa2')  # 廣東話
     # [Jyutping(onset='gw', nucleus='o', coda='ng', tone='2'),
     #  Jyutping(onset='d', nucleus='u', coda='ng', tone='1'),
     #  Jyutping(onset='w', nucleus='aa', coda='', tone='2')]
@@ -133,7 +133,7 @@ Install them directly from the GitHub release URLs using ``micropip``.
 
       // Update these version numbers as needed.
       const RUSTLING_VERSION = "0.8.0";
-      const PYCANTONESE_VERSION = "4.2.0";
+      const PYCANTONESE_VERSION = "5.0.0";
       const EMSCRIPTEN_TAG = "cp310-abi3-emscripten_4_0_9_wasm32";
 
       await micropip.install(
@@ -148,7 +148,7 @@ Install them directly from the GitHub release URLs using ``micropip``.
         pycantonese.characters_to_jyutping("香港人講廣東話")
       `);
       console.log(jyutping.toJs());
-      // [['香港人', 'hoeng1gong2jan4'], ['講', 'gong2'], ['廣東話', 'gwong2dung1waa2']]
+      // [['香港人', 'hoeng1 gong2 jan4'], ['講', 'gong2'], ['廣東話', 'gwong2 dung1 waa2']]
     }
 
     main();

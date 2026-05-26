@@ -10,7 +10,8 @@ def g2p(
     onsets: dict[str, str] | None = None,
     nuclei: dict[str, str] | None = None,
     codas: dict[str, str] | None = None,
-) -> list[tuple[str, list[str] | None]]:
+    tones: dict[str, str] | None = None,
+) -> list[tuple[str, str | None]]:
     """Convert Cantonese characters into IPA (grapheme-to-phoneme).
 
     This is a one-shot grapheme-to-phoneme (G2P) helper that composes
@@ -32,34 +33,35 @@ def g2p(
             overrides, forwarded to :func:`~pycantonese.jyutping_to_ipa`.
         codas (dict[str, str], optional): Custom Jyutping-coda to IPA-symbol
             overrides, forwarded to :func:`~pycantonese.jyutping_to_ipa`.
+        tones (dict[str, str], optional): Custom Jyutping-tone to IPA-symbol
+            overrides, forwarded to :func:`~pycantonese.jyutping_to_ipa`.
 
     Returns:
-        list[tuple[str, list[str] | None]]: A list of segmented words, where
-        each word is a 2-tuple of (Cantonese characters, list of IPA syllables).
-        The IPA list contains one IPA string per character of the word.
-        Any word with no Jyutping mapping (e.g. an unseen character or a
-        punctuation mark) yields ``None`` in place of the IPA list.
+        list[tuple[str, str | None]]: A list of segmented words, where each
+        word is a 2-tuple of (Cantonese characters, IPA string). Within the
+        IPA string, syllables are separated by a single space. Any word with
+        no Jyutping mapping (e.g. an unseen character or a punctuation mark)
+        yields ``None`` in place of the IPA string.
 
     Examples:
         >>> g2p("香港人講廣東話。")  # Hongkongers speak Cantonese.
-        [('香港人', ['hœŋ55', 'kɔŋ25', 'jɐn21']), ('講', ['kɔŋ25']), ('廣東話', ['kʷɔŋ25', 'tʊŋ55', 'waː25']), ('。', None)]
+        [('香港人', 'hœŋ55 kɔŋ25 jɐn21'), ('講', 'kɔŋ25'), ('廣東話', 'kʷɔŋ25 tʊŋ55 waː25'), ('。', None)]
 
     See Also:
         :func:`~pycantonese.characters_to_jyutping`,
         :func:`~pycantonese.jyutping_to_ipa`.
     """  # noqa: E501
-    result: list[tuple[str, list[str] | None]] = []
+    result: list[tuple[str, str | None]] = []
     for word, jp in characters_to_jyutping(chars):
         if jp is None:
             result.append((word, None))
         else:
-            ipa = jyutping_to_ipa(
+            [ipa] = jyutping_to_ipa(
                 jp,
-                return_as="list",
                 onsets=onsets,
                 nuclei=nuclei,
                 codas=codas,
+                tones=tones,
             )
-            assert isinstance(ipa, list)
             result.append((word, ipa))
     return result
