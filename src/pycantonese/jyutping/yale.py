@@ -57,9 +57,7 @@ CODAS_YALE = {
 
 _YALE_AMBIGUOUS_CONSONANTS = ("ng", "h", "p", "t", "k", "m", "n")
 
-_YALE_VOWEL_DISPLAY_LETTERS = frozenset(
-    "aeiou" "áéíóú" "àèìòù" "āēīōū"
-)
+_YALE_VOWEL_DISPLAY_LETTERS = frozenset("aeiou" "áéíóú" "àèìòù" "āēīōū")
 
 
 def _needs_apostrophe(prev_syl: str, next_syl: str) -> bool:
